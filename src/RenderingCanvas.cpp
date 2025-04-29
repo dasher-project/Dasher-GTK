@@ -1,6 +1,8 @@
 #include "RenderingCanvas.h"
 #include "ColorPalette.h"
 #include "DasherTypes.h"
+#include "cairomm/context.h"
+#include "cairomm/surface.h"
 #include "gtkmm/enums.h"
 #include "gtkmm/eventcontrollermotion.h"
 #include "gtkmm/gestureclick.h"
@@ -9,7 +11,6 @@
 #include <gtkmm/eventcontroller.h>
 #include <gdkmm/frameclock.h>
 #include <memory>
-#include <vector>
 
 
 const long long RenderingCanvas::getCurrentMS(){
@@ -40,13 +41,18 @@ RenderingCanvas::RenderingCanvas(): Dasher::CDasherScreen(100,100), CScreenCoord
     });
     add_controller(mouseClickController);
 
+    // Initalize Cairo
+    recordingSurface = Cairo::RecordingSurface::create();
+    renderingBackend = Cairo::Context::create(recordingSurface);
+
+    // Initialize Dasher
     Settings = std::make_shared<Dasher::XmlSettingsStore>("Settings.xml", this);
 	Settings->Load();
 	Settings->Save();
 	dasherController = std::make_shared<DasherController>(Settings);
 	dasherController->GetModuleManager()->RegisterInputDeviceModule(this, true);
-    dasherController->Initialize();
 	dasherController->ChangeScreen(this);
+    dasherController->Initialize();
 	dasherController->SetBuffer(0);
 
     // Enable Resizing
@@ -57,7 +63,16 @@ RenderingCanvas::RenderingCanvas(): Dasher::CDasherScreen(100,100), CScreenCoord
 
     // Enable Drawing
     startTime = std::chrono::steady_clock::now();
-    set_draw_func(sigc::mem_fun(*this, &RenderingCanvas::GtkDraw));
+    set_draw_func([this](Glib::RefPtr<Cairo::Context> cr, int width, int height){
+        cr->set_source(recordingSurface, 0, 0);
+        cr->paint();
+
+        //reset recording surface
+        renderingBackend->save();
+        renderingBackend->set_operator(Cairo::Context::Operator::CLEAR);
+        renderingBackend->paint();
+        renderingBackend->restore();
+    });
     add_tick_callback([this](Glib::RefPtr<Gdk::FrameClock> clock){
         dasherController->Render(getCurrentMS());
         return true;
@@ -65,93 +80,86 @@ RenderingCanvas::RenderingCanvas(): Dasher::CDasherScreen(100,100), CScreenCoord
 }
 
 std::pair<Dasher::screenint, Dasher::screenint> RenderingCanvas::TextSize(Label* label, unsigned iFontSize) {
-	std::pair<Dasher::screenint, Dasher::screenint> returnValue;
-	return returnValue;
+    Cairo::TextExtents te;
+    renderingBackend->set_font_size(iFontSize);
+    renderingBackend->get_text_extents(label->m_strText, te);
+	return {te.width, te.height};
 }
 
 void RenderingCanvas::DrawString(Label* label, Dasher::screenint x, Dasher::screenint y, unsigned iFontSize, const Dasher::ColorPalette::Color& Color) {
-    BackBuffer->emplace_back(std::make_unique<Text>(label, Dasher::point(x,y), iFontSize, Color));
+    Cairo::TextExtents te;
+    renderingBackend->begin_new_path();
+    renderingBackend->set_font_size(iFontSize);
+    renderingBackend->set_source_rgba(Color.Red/255.0, Color.Green/255.0, Color.Blue/255.0, Color.Alpha/255.0);
+
+    renderingBackend->get_text_extents(label->m_strText, te);
+    renderingBackend->move_to(x - te.x_bearing, y - te.y_bearing);
+    renderingBackend->show_text(label->m_strText);
 }
 
 void RenderingCanvas::DrawRectangle(Dasher::screenint x1, Dasher::screenint y1, Dasher::screenint x2, Dasher::screenint y2, const Dasher::ColorPalette::Color& Color, const Dasher::ColorPalette::Color& OutlineColor, int iThickness) {
     if(OutlineColor == Dasher::ColorPalette::noColor) iThickness = 0;
 
-    BackBuffer->emplace_back(std::make_unique<Rectangle>(Dasher::point(x1,y1), Dasher::point(x2-x1, y2-y1), Color, OutlineColor, iThickness));
+    renderingBackend->begin_new_path();
+    renderingBackend->rectangle(x1, y1, x2 - x1,y2 - y1);
+            
+    renderingBackend->set_source_rgba(Color.Red/255.0, Color.Green/255.0, Color.Blue/255.0, Color.Alpha/255.0);
+    renderingBackend->fill_preserve();
+
+    if(iThickness > 0){
+        renderingBackend->set_source_rgba(OutlineColor.Red/255.0, OutlineColor.Green/255.0, OutlineColor.Blue/255.0, OutlineColor.Alpha/255.0);
+        renderingBackend->set_line_width(iThickness);
+        renderingBackend->stroke();
+    }
 }
 
 void RenderingCanvas::DrawCircle(Dasher::screenint iCX, Dasher::screenint iCY, Dasher::screenint iR, const Dasher::ColorPalette::Color& iFillColor, const Dasher::ColorPalette::Color& LineColor, int iLineWidth) {
+    renderingBackend->begin_new_path();
+    renderingBackend->arc(iCX, iCY, iR, 0.0, 6.28318530718); //2*PI
+
+    renderingBackend->set_source_rgba(iFillColor.Red/255.0, iFillColor.Green/255.0, iFillColor.Blue/255.0, iFillColor.Alpha/255.0);
+    renderingBackend->fill_preserve();
+
+    if(iLineWidth > 0){
+        renderingBackend->set_source_rgba(LineColor.Red/255.0, LineColor.Green/255.0, LineColor.Blue/255.0, LineColor.Alpha/255.0);
+        renderingBackend->set_line_width(iLineWidth);
+        renderingBackend->stroke();
+    }
 }
 
 void RenderingCanvas::Polyline(Dasher::point* Points, int Number, int iWidth, const Dasher::ColorPalette::Color& Color) {
-    std::vector<Dasher::point> ps;
-    ps.reserve(Number);
+    renderingBackend->set_source_rgba(Color.Red/255.0, Color.Green/255.0, Color.Blue/255.0, Color.Alpha/255.0);
+    renderingBackend->set_line_width(iWidth);
+    
+    renderingBackend->begin_new_path(); //Clear current path if not done so far
     for(int i = 0; i < Number; i++){
-        ps.push_back(Points[i]);
+        if(i == 0) renderingBackend->move_to(Points[i].x, Points[i].y);
+        else renderingBackend->line_to(Points[i].x, Points[i].y);
     }
-
-    BackBuffer->emplace_back(std::make_unique<PolyLine>(ps, iWidth, Color));
+    renderingBackend->stroke();
 }
 
 void RenderingCanvas::Polygon(Dasher::point* Points, int Number, const Dasher::ColorPalette::Color& fillColor, const Dasher::ColorPalette::Color& outlineColor, int lineWidth) {
+    
+    renderingBackend->begin_new_path();
+    for(int i = 0; i < Number; i++){
+        if(i == 0) renderingBackend->move_to(Points[i].x, Points[i].y);
+        else renderingBackend->line_to(Points[i].x, Points[i].y);
+    }
+    renderingBackend->close_path();
+    renderingBackend->set_source_rgba(fillColor.Red/255.0, fillColor.Green/255.0, fillColor.Blue/255.0, fillColor.Alpha/255.0);
+    renderingBackend->fill_preserve();
+    
+    if(lineWidth > 0){
+        renderingBackend->set_source_rgba(outlineColor.Red/255.0, outlineColor.Green/255.0, outlineColor.Blue/255.0, outlineColor.Alpha/255.0);
+        renderingBackend->set_line_width(lineWidth);
+        renderingBackend->stroke();
+    }
+    renderingBackend->stroke();
 }
+
 void RenderingCanvas::Display() {
-    // Swap Buffers and clear BackBuffer
-    std::swap(FrontBuffer, BackBuffer);
-	BackBuffer->clear();
     queue_draw();
-}
-
-void RenderingCanvas::GtkDraw(Glib::RefPtr<Cairo::Context> cr, int width, int height){
-
-    Rectangle* r;
-	Text* t;
-	PolyLine* l;
-
-	std::vector<std::unique_ptr<DasherDrawGeometry>>& GeometryBuffer = *FrontBuffer;
-	for (std::unique_ptr<DasherDrawGeometry>& GeneralObject : GeometryBuffer)
-	{
-		switch (GeneralObject->Type)
-		{
-		case GT_Rectanlge:
-			r = static_cast<Rectangle*>(GeneralObject.get());
-            cr->rectangle(r->topLeft.x, r->topLeft.y, r->size.x,r->size.y);
-            
-            cr->set_source_rgba(r->color.Red, r->color.Green, r->color.Blue, r->color.Alpha);
-            cr->fill_preserve();
-
-            if(r->thickness > 0){
-                cr->set_source_rgba(r->outlineColor.Red, r->outlineColor.Green, r->outlineColor.Blue, r->outlineColor.Alpha);
-                cr->set_line_width(r->thickness);
-                cr->stroke();
-            }
-            cr->begin_new_path(); //Clear current path if not done so far
-
-            break;
-		case GT_Text:
-			t = static_cast<Text*>(GeneralObject.get());
-
-            cr->set_font_size(t->size);
-            cr->set_source_rgba(t->color.Red, t->color.Green, t->color.Blue, t->color.Alpha);
-            cr->move_to(t->pos.x, t->pos.y);
-            // cr->show_text(t->label->m_strText);
-
-			break;
-		case GT_PolyLine:
-			l = static_cast<PolyLine*>(GeneralObject.get());
-
-            cr->set_source_rgba(l->color.Red, l->color.Green, l->color.Blue, l->color.Alpha);
-            cr->set_line_width(l->linewidth);
-            
-            for(int i = 0; i < l->points.size(); i++){
-                if(i == 0) cr->move_to(l->points[i].x, l->points[i].y);
-                else cr->line_to(l->points[i].x, l->points[i].y);
-            }
-            cr->stroke();
-			break;
-		default: break;
-		}
-	}
-
 }
 
 bool RenderingCanvas::IsPointVisible(Dasher::screenint x, Dasher::screenint y) {

@@ -1,4 +1,5 @@
 #include "MainWindow.h"
+#include "glibmm/convert.h"
 #include "gtkmm/enums.h"
 #include <gtkmm/window.h>
 #include <iostream>
