@@ -2,18 +2,11 @@
 #include "Parameters.h"
 #include "RenderingCanvas.h"
 #include "cairomm/fontface.h"
-#include "cairomm/fontoptions.h"
-#include "giomm/listmodel.h"
-#include "glibmm/ustring.h"
+#include "gdkmm/display.h"
 #include "gtk/gtk.h"
 #include "gtkmm/enums.h"
-#include "gtkmm/adjustment.h"
-#include "gtkmm/label.h"
-#include "gtkmm/stringobject.h"
-#include "glibmm/refptr.h"
-#include "pangomm/font.h"
+#include "gtkmm.h"
 #include "pangomm/fontdescription.h"
-#include <gtkmm/window.h>
 #include <memory>
 
 Cairo::ToyFontFace::Slant getSlantFromPango(Pango::Style s){
@@ -31,6 +24,10 @@ MainWindow::MainWindow() :
 {
     g_setenv("GTK_CSD", "0", false);
 
+    Glib::RefPtr<Gtk::CssProvider> css = Gtk::CssProvider::create();
+    css->load_from_path("./UIStyle.css");
+    get_style_context()->add_provider_for_display(Gdk::Display::get_default(), css, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+
     set_title("Dasher v6");
 
     set_child(m_main_vertical_box);
@@ -39,16 +36,13 @@ MainWindow::MainWindow() :
     m_main_vertical_box.append(m_footer_bar);
 
     m_message_overlay.set_child(m_canvas);
+    m_message_overlay.ConnectToDasher(m_canvas.dasherController);
 
-    m_message_revealer.set_valign(Gtk::Align::END);
-    m_message_revealer.set_vexpand(false);
-    m_message_overlay.add_overlay(m_message_revealer);
-    m_message_revealer.set_child(m_test);
-
-    m_test.set_text("<span foreground='blue' weight='ultrabold' font='40'>This is a real test test.</span>");
-    m_test.set_use_markup(true);
-    m_speech_enable_switch.property_state().signal_changed().connect([this](){
-        m_message_revealer.set_reveal_child(m_speech_enable_switch.get_state());
+    m_new_button.signal_clicked().connect([this](){
+        m_canvas.dasherController->Message("This is an interrupting test", true);
+    });
+    m_open_button.signal_clicked().connect([this](){
+        m_canvas.dasherController->Message("This is a timed message", false);
     });
 
     // Pack Header Bar

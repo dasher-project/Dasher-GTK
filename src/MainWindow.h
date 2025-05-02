@@ -3,22 +3,8 @@
 #include "ImageButton.h"
 #include "RenderingCanvas.h"
 #include "glibmm/refptr.h"
-#include "gtkmm/enums.h"
-#include "gtkmm/fontdialog.h"
-#include <gtkmm/button.h>
-#include <gtkmm/label.h>
-#include <gtkmm/window.h>
-#include <gtkmm/paned.h>
-#include <gtkmm/actionbar.h>
-#include <gtkmm/box.h>
-#include <gtkmm/separator.h>
-#include <gtkmm/dropdown.h>
-#include <gtkmm/spinbutton.h>
-#include <gtkmm/switch.h>
-#include <gtkmm/fontdialogbutton.h>
-#include <gtkmm/stringlist.h>
-#include <gtkmm/overlay.h>
-#include <gtkmm/revealer.h>
+#include "gtkmm.h"
+#include "MessageOverlay.h"
 
 class MainWindow : public Gtk::Window
 {
@@ -45,10 +31,7 @@ protected:
     // Main Content
     Gtk::Box m_side_panel = Gtk::Box(Gtk::Orientation::VERTICAL);
     RenderingCanvas m_canvas;
-    Gtk::Box m_canvas_box = Gtk::Box(Gtk::Orientation::VERTICAL);
-    Gtk::Overlay m_message_overlay;
-    Gtk::Revealer m_message_revealer;
-    Gtk::Label m_test = Gtk::Label("This is a real test test.");
+    MessageOverlay m_message_overlay;
     
     // Footer Bar
     Gtk::ActionBar m_footer_bar;

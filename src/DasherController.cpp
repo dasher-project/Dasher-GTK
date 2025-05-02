@@ -3,7 +3,7 @@
 
 class XmlServerStore;
 
-DasherController::DasherController(std::shared_ptr<Dasher::CSettingsStore> pSettingsStore): CDashIntfScreenMsgs(pSettingsStore.get())
+DasherController::DasherController(std::shared_ptr<Dasher::CSettingsStore> pSettingsStore): CDashIntfSettings(pSettingsStore.get())
 {}
 
 void DasherController::editOutput(const std::string& strText, Dasher::CDasherNode* pNode) {
@@ -82,4 +82,19 @@ void DasherController::Initialize()
 
 void DasherController::Render(unsigned long iTime){
 	NewFrame(iTime, true);
+}
+
+void DasherController::Message(const std::string &strText, bool bInterrupt){
+	if(OnMessage) OnMessage(strText, !bInterrupt);
+	if(bInterrupt && GetActiveInputMethod()) GetActiveInputMethod()->pause();
+}
+	
+	
+void DasherController::onUnpause(unsigned long lTime){
+	if(OnUnpause && !OnUnpause()){
+		//there are more, not-yet displayed
+		if(GetActiveInputMethod()) GetActiveInputMethod()->pause();
+      	return;
+	}
+	CDasherInterfaceBase::onUnpause(lTime);
 }

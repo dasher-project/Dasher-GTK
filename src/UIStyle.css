@@ -1,0 +1,13 @@
+#PopoverBox > box {
+    border: 1px solid #1a5fb4;
+    border-radius: 999em;  /* Creates a pill shape */
+    background-color: #3584e4;
+    padding: 5px 20px;
+    margin: 5px;
+}
+
+#PopoverBox > box > label {
+    color:  #ffffff;
+    margin: 0px 25px;
+}
+

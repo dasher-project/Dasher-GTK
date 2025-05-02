@@ -34,6 +34,8 @@ ADD_Executable(Dasher
 	${PROJECT_SOURCE_DIR}/src/DasherController.h
 	${PROJECT_SOURCE_DIR}/src/DasherController.cpp
 	${PROJECT_SOURCE_DIR}/src/ImageButton.h
+	${PROJECT_SOURCE_DIR}/src/PopoverBox.h
+	${PROJECT_SOURCE_DIR}/src/MessageOverlay.h
 	${PROJECT_SOURCE_DIR}/src/main.cpp
 )
 add_dependencies(Dasher DasherCore)
@@ -58,3 +60,4 @@ file(GLOB RESOURCE_FILES
   ${PROJECT_SOURCE_DIR}/Resources/*.*
 )
 file(COPY ${RESOURCE_FILES} DESTINATION ${CMAKE_BINARY_DIR}/Dasher/Resources)
+file(COPY ${PROJECT_SOURCE_DIR}/src/UIStyle.css DESTINATION ${CMAKE_BINARY_DIR}/Dasher/)
