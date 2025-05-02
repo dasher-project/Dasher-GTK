@@ -37,7 +37,7 @@ public:
 	const long long getCurrentMS();
 	void show_text(const std::string& utf8);
 
-private:
+public:
 	Glib::RefPtr<Gtk::EventControllerMotion> mouseController;
 	Glib::RefPtr<Gtk::GestureClick> mouseClickController;
 	std::shared_ptr<Dasher::XmlSettingsStore> Settings;

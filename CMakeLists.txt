@@ -33,6 +33,7 @@ ADD_Executable(Dasher
 	${PROJECT_SOURCE_DIR}/src/RenderingCanvas.cpp
 	${PROJECT_SOURCE_DIR}/src/DasherController.h
 	${PROJECT_SOURCE_DIR}/src/DasherController.cpp
+	${PROJECT_SOURCE_DIR}/src/ImageButton.h
 	${PROJECT_SOURCE_DIR}/src/main.cpp
 )
 add_dependencies(Dasher DasherCore)
