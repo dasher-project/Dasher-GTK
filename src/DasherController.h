@@ -25,6 +25,7 @@ public:
 
 	std::function<void(const std::string strText, const bool timedMessage)> OnMessage;
 	std::function<bool()> OnUnpause;
+	Event<const std::string&> OnBufferChange;
 
 	void Message(const std::string &strText, bool bInterrupt) override;
 	

@@ -11,3 +11,7 @@
     margin: 0px 25px;
 }
 
+actionbar.topbar > revealer > box {
+    border-bottom: 1px solid @borders;
+    border-top: 0px solid @borders;
+}

@@ -1,14 +1,12 @@
 #include "DasherController.h"
 #include "Parameters.h"
-#include "gtkmm/enums.h"
+#include "gtkmm/box.h"
+#include "gtkmm/overlay.h"
 #include <algorithm>
-#include <gtkmm.h>
 #include <chrono>
 #include <memory>
 #include <vector>
 #include "PopoverBox.h"
-
-
 
 class MessageOverlay : public Gtk::Overlay
 {
@@ -17,7 +15,7 @@ public:
     void EraseMessage(PopoverBox* box){
         MessageQueue.erase(std::remove_if(MessageQueue.begin(), MessageQueue.end(), [&](QueuedMessage const& m){return m.Widget == box;}),MessageQueue.end());
     }
-    #pragma clang optimize off
+    
     MessageOverlay() {
         add_overlay(m_box);
         m_box.append(m_message1);
@@ -66,7 +64,6 @@ public:
             return true;
         });
     }
-    #pragma clang optimize on
 
     void ConnectToDasher(std::shared_ptr<DasherController> controller){
         dasherController = controller;

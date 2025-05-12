@@ -12,6 +12,7 @@ void DasherController::editOutput(const std::string& strText, Dasher::CDasherNod
 		Buffer.reserve((strText.length() + Buffer.size()) * 2);
 	}
 	Buffer.append(strText);
+	OnBufferChange.Broadcast(Buffer);
 	Cursor += static_cast<unsigned int>(strText.length());
 	CDasherInterfaceBase::editOutput(strText, pNode);
 }
@@ -20,6 +21,7 @@ void DasherController::editDelete(const std::string& strText, Dasher::CDasherNod
 	if(0 == Buffer.compare(Buffer.length() - strText.length(), strText.length(), strText))
 	{
 		Buffer.erase(Buffer.length() - strText.length(), strText.length());
+		OnBufferChange.Broadcast(Buffer);
 	}
 	CDasherInterfaceBase::editDelete(strText, pNode);
 }
@@ -38,6 +40,7 @@ unsigned DasherController::ctrlDelete(bool bForwards, Dasher::EditDistance dist)
 	if(dist == Dasher::EditDistance::EDIT_CHAR) {
 
 		Buffer.erase(Cursor - (bForwards ? 0 : 1), 1);
+		OnBufferChange.Broadcast(Buffer);
 	}
 	if(!bForwards) Cursor--;
 	return Cursor;

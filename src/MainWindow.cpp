@@ -4,12 +4,8 @@
 #include "RenderingCanvas.h"
 #include "cairomm/fontface.h"
 #include "gdkmm/display.h"
-#include "giomm/liststore.h"
-#include "glibmm/object.h"
 #include "glibmm/refptr.h"
-#include "gtk/gtk.h"
 #include "gtkmm/enums.h"
-#include "gtkmm.h"
 #include "pangomm/fontdescription.h"
 #include <memory>
 
@@ -46,72 +42,31 @@ MainWindow::MainWindow() :
     m_header_bar.pack_start(m_new_button);
     m_header_bar.pack_start(m_open_button);
     m_header_bar.pack_start(m_save_button);
-    m_header_bar.pack_start(m_separator_1);
+    m_header_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
     m_header_bar.pack_start(m_play_button);
-    m_header_bar.pack_start(m_separator_2);
+    m_header_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
     m_header_bar.pack_start(m_layout_chooser);
-    m_header_bar.pack_start(m_separator_3);
+    m_header_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
     m_header_bar.pack_start(m_pref_button);
+    m_header_bar.add_css_class("topbar");
 
     // Pack Footer Bar
     m_footer_bar.pack_start(m_alphabet_chooser);
-    m_footer_bar.pack_start(m_separator_4);
+    m_footer_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
     m_footer_bar.pack_start(m_speed_adjustment);
     m_footer_bar.pack_start(m_learning_label);
     m_footer_bar.pack_start(m_learning_switch);
-    m_footer_bar.pack_start(m_separator_5);
+    m_footer_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
     m_footer_bar.pack_start(m_color_chooser);
     m_footer_bar.pack_start(m_font_chooser);
-    m_footer_bar.pack_start(m_separator_6);
+    m_footer_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
     m_footer_bar.pack_start(m_speech_enable_label);
     m_footer_bar.pack_start(m_speech_enable_switch);
     m_speech_enable_switch.set_valign(Gtk::Align::CENTER);
     m_learning_switch.set_valign(Gtk::Align::CENTER);
 
-    auto color_factory = Gtk::SignalListItemFactory::create();
-    color_factory->signal_setup().connect([](const std::shared_ptr<Gtk::ListItem> item) {
-        auto widget = Gtk::make_managed<ColorDisplayWidget>();
-        auto box = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::HORIZONTAL, 5);
-        auto label = Gtk::make_managed<Gtk::Label>("Test");
-        box->append(*widget);
-        box->append(*label);
-        item->set_child(*box);
-    });
-    color_factory->signal_bind().connect([](const std::shared_ptr<Gtk::ListItem> item){
-        std::shared_ptr<PaletteProxy> palette = std::dynamic_pointer_cast<PaletteProxy>(item->get_item());
-        Gtk::Box* box = dynamic_cast<Gtk::Box*>(item->get_child());
-        ColorDisplayWidget* widget = dynamic_cast<ColorDisplayWidget*>(box->get_first_child());
-        Gtk::Label* label = dynamic_cast<Gtk::Label*>(box->get_last_child());
-        widget->ReadColorsFromPalette(palette->p);
-        label->set_label(palette->p->PaletteName);
-    });
-    m_color_chooser.set_list_factory(color_factory);
-
-    auto color_factory_header = Gtk::SignalListItemFactory::create();
-    color_factory_header->signal_setup().connect([](const std::shared_ptr<Gtk::ListItem> item) {
-        auto widget = Gtk::make_managed<ColorDisplayWidget>();
-        item->set_child(*widget);
-    });
-    color_factory_header->signal_bind().connect([](const std::shared_ptr<Gtk::ListItem> item){
-        std::shared_ptr<PaletteProxy> palette = std::dynamic_pointer_cast<PaletteProxy>(item->get_item());
-        ColorDisplayWidget* widget = dynamic_cast<ColorDisplayWidget*>(item->get_child());
-        widget->ReadColorsFromPalette(palette->p);
-    });
-    m_color_chooser.set_factory(color_factory_header);
-
-    const std::map<std::string, Dasher::ColorPalette*>& palettes = *m_canvas.dasherController->GetColorIO()->GetKnownPalettes();
-    for (const auto &[key, value] : palettes) {
-        colorPaletteList->append(PaletteProxy::create(value));
-    }
-    m_color_chooser.set_model(colorPaletteList);
-    
-    std::string selected_color = m_canvas.dasherController->GetStringParameter(Dasher::Parameter::SP_COLOUR_ID);
-    for(guint i = 0; i < colorPaletteList->get_n_items(); i++){
-        if(colorPaletteList->get_item(i)->p->PaletteName.compare(selected_color) == 0){
-            m_color_chooser.set_selected(i);
-        }
-    }
-    
+    m_color_chooser.AddPalettes(m_canvas.dasherController->GetColorIO()->GetKnownPalettes());
+    m_color_chooser.SelectPalette(m_canvas.dasherController->GetStringParameter(Dasher::Parameter::SP_COLOUR_ID));
     m_color_chooser.property_selected_item().signal_changed().connect([this](){
         std::shared_ptr<PaletteProxy> palette = std::dynamic_pointer_cast<PaletteProxy>(m_color_chooser.get_selected_item());
         m_canvas.dasherController->SetStringParameter(Dasher::Parameter::SP_COLOUR_ID, palette->p->PaletteName);
@@ -127,7 +82,6 @@ MainWindow::MainWindow() :
         Glib::ustring s = std::dynamic_pointer_cast<Gtk::StringObject>(m_alphabet_chooser.get_selected_item())->get_string();
         m_canvas.dasherController->SetStringParameter(Dasher::Parameter::SP_ALPHABET_ID, s);
     });
-
 
     m_font_chooser.property_font_desc().signal_changed().connect([this](){
         Pango::FontDescription newFont = m_font_chooser.get_font_desc();
@@ -151,8 +105,48 @@ MainWindow::MainWindow() :
     m_main_pane.set_resize_start_child(true);
     m_main_pane.set_end_child(m_side_panel);
 
-    m_side_panel.set_size_request(150,-1);
-    m_side_panel.set_vexpand(true);
-    m_side_panel.set_valign(Gtk::Align::FILL);
+    m_panel_bar.pack_start(m_accessibility_button);
+    m_panel_bar.pack_start(m_readout_button);
+    m_panel_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
+    m_panel_bar.pack_start(m_copy_button);
+    m_panel_bar.pack_start(m_copyall_button);
+    m_panel_bar.pack_start(m_paste_button);
+    m_panel_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
+    m_panel_bar.pack_start(m_undo_button);
+    m_panel_bar.pack_start(m_redo_button);
+    m_panel_bar.set_size_request(150,-1);
+    m_panel_bar.add_css_class("topbar");
+    m_canvas.dasherController->OnBufferChange.Subscribe(&m_text_view, [this](const std::string& newBuffer){
+        m_text_view.get_buffer()->set_text(newBuffer);
+    });
+    
+    m_side_panel.append(m_panel_bar);
+    m_side_panel.append(m_text_view);
+
+    m_text_view.set_vexpand(true);
+    m_text_view.set_valign(Gtk::Align::FILL);
+    m_text_view.set_margin(5);
+
+    m_paste_button.signal_clicked().connect([this](){
+        m_text_view.activate_action("clipboard.paste");
+    });
+
+    m_copy_button.signal_clicked().connect([this](){
+        m_text_view.activate_action("clipboard.copy");
+    });
+
+    m_copyall_button.signal_clicked().connect([this](){
+        m_text_view.activate_action("selection.select-all");
+        m_text_view.activate_action("clipboard.copy");
+    });
+
+    m_undo_button.signal_clicked().connect([this](){
+        m_text_view.activate_action("text.undo");
+    });
+
+    m_redo_button.signal_clicked().connect([this](){
+        m_text_view.activate_action("text.redo");
+    });
+
 }
 #pragma clang optimize on

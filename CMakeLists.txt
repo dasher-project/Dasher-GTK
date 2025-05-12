@@ -37,7 +37,7 @@ ADD_Executable(Dasher
 	${PROJECT_SOURCE_DIR}/src/PopoverBox.h
 	${PROJECT_SOURCE_DIR}/src/MessageOverlay.h
 	${PROJECT_SOURCE_DIR}/src/ColorDisplayWidget.h
-	${PROJECT_SOURCE_DIR}/src/PaletteProxy.h
+	${PROJECT_SOURCE_DIR}/src/ColorDropdown.h
 	${PROJECT_SOURCE_DIR}/src/main.cpp
 )
 add_dependencies(Dasher DasherCore)

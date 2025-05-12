@@ -1,3 +1,5 @@
+#pragma once
+
 #include "ColorPalette.h"
 #include "gtkmm/drawingarea.h"
 #include "gtkmm/enums.h"
