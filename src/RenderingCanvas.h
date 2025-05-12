@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ColorPalette.h"
 #include "DasherController.h"
 #include "DasherTypes.h"
 #include "FileUtils.h"

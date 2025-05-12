@@ -5,6 +5,9 @@
 #include "glibmm/refptr.h"
 #include "gtkmm.h"
 #include "MessageOverlay.h"
+#include "ColorDisplayWidget.h"
+#include "PaletteProxy.h"
+#include <memory>
 
 class MainWindow : public Gtk::Window
 {
@@ -15,7 +18,8 @@ public:
 protected:
     Gtk::Box m_main_vertical_box;
     Gtk::Paned m_main_pane;
-    
+    Glib::RefPtr<Gio::ListStore<PaletteProxy>> colorPaletteList = Gio::ListStore<PaletteProxy>::create();
+
     // Top Menu:
     Gtk::ActionBar m_header_bar;
     ImageButton m_new_button = ImageButton("New", "document-new-symbolic");

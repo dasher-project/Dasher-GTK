@@ -23,6 +23,11 @@ public:
         m_box.append(m_message1);
         m_box.append(m_message2);
 
+        m_box.set_valign(Gtk::Align::START);
+        m_box.set_halign(Gtk::Align::CENTER);
+        m_box.set_vexpand(false);
+        m_box.set_hexpand(false);
+
         // Remove dismissed messages from queue
         m_message1.property_child_revealed().signal_changed().connect([this](){
             if(!m_message1.get_reveal_child()) EraseMessage(&m_message1);
@@ -66,12 +71,16 @@ public:
     void ConnectToDasher(std::shared_ptr<DasherController> controller){
         dasherController = controller;
         dasherController->OnMessage = [this](const std::string message, const bool timedMessage){
-            // Find first unused widget
-            struct QueuedMessage queuedMessage = {message, timedMessage};
-            
-            MessageQueue.push_back(queuedMessage);
+            MessageQueue.push_back({message, timedMessage});
         };
         dasherController->OnUnpause = [this](){
+            for(auto& m : MessageQueue){
+                if(!m.timedMessage && m.Widget && m.Widget->get_child_revealed()){
+                    m.Widget->set_reveal_child(false); // Remove Message
+                    m.timedMessage = false;
+                }
+            }
+
             // search for not yet seen or dismissed messages
             for(auto& m : MessageQueue){
                 if(!m.Widget) return false;

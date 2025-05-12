@@ -87,8 +87,7 @@ void DasherController::Render(unsigned long iTime){
 void DasherController::Message(const std::string &strText, bool bInterrupt){
 	if(OnMessage) OnMessage(strText, !bInterrupt);
 	if(bInterrupt && GetActiveInputMethod()) GetActiveInputMethod()->pause();
-}
-	
+}	
 	
 void DasherController::onUnpause(unsigned long lTime){
 	if(OnUnpause && !OnUnpause()){
