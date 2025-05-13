@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ImageButton.h"
+#include "Preferences/PreferencesWindow.h"
 #include "RenderingCanvas.h"
 #include "MessageOverlay.h"
 #include "ColorDropdown.h"
@@ -63,4 +64,7 @@ protected:
     Gtk::FontDialogButton m_font_chooser = Gtk::FontDialogButton(m_font_dialog);
     Gtk::Label m_speech_enable_label = Gtk::Label("Speech");
     Gtk::Switch m_speech_enable_switch;
+
+    // Preferences Window
+    PreferencesWindow m_preferences_window;
 };

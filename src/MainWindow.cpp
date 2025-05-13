@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 #include "ColorPalette.h"
 #include "Parameters.h"
+#include "Preferences/PreferencesWindow.h"
 #include "RenderingCanvas.h"
 #include "cairomm/fontface.h"
 #include "gdkmm/display.h"
@@ -20,7 +21,8 @@ Cairo::ToyFontFace::Slant getSlantFromPango(Pango::Style s){
 MainWindow::MainWindow() :
     m_main_vertical_box(Gtk::Orientation::VERTICAL),
     m_side_panel(Gtk::Orientation::VERTICAL),
-    m_main_pane(Gtk::Orientation::HORIZONTAL)
+    m_main_pane(Gtk::Orientation::HORIZONTAL),
+    m_preferences_window(m_canvas.dasherController)
 {
     g_setenv("GTK_CSD", "0", false);
 
@@ -49,6 +51,10 @@ MainWindow::MainWindow() :
     m_header_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
     m_header_bar.pack_start(m_pref_button);
     m_header_bar.add_css_class("topbar");
+
+    m_pref_button.signal_clicked().connect([this](){
+        m_preferences_window.show();
+    });
 
     // Pack Footer Bar
     m_footer_bar.pack_start(m_alphabet_chooser);

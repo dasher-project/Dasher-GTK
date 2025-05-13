@@ -38,6 +38,11 @@ ADD_Executable(Dasher
 	${PROJECT_SOURCE_DIR}/src/MessageOverlay.h
 	${PROJECT_SOURCE_DIR}/src/ColorDisplayWidget.h
 	${PROJECT_SOURCE_DIR}/src/ColorDropdown.h
+	${PROJECT_SOURCE_DIR}/src/Preferences/PreferencesWindow.h
+	${PROJECT_SOURCE_DIR}/src/Preferences/PreferencesWindow.cpp
+	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsMode.h
+	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsMode.cpp
+	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsPageBase.h
 	${PROJECT_SOURCE_DIR}/src/main.cpp
 )
 add_dependencies(Dasher DasherCore)
