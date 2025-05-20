@@ -56,6 +56,13 @@ MainWindow::MainWindow() :
         m_preferences_window.show();
     });
 
+    m_new_button.signal_clicked().connect([this](){
+        m_canvas.dasherController->Message("Interrupting Message", true);
+    });
+    m_open_button.signal_clicked().connect([this](){
+        m_canvas.dasherController->Message("Timed Message", false);
+    });
+
     // Pack Footer Bar
     m_footer_bar.pack_start(m_alphabet_chooser);
     m_footer_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));

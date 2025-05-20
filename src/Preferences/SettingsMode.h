@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SettingsPageBase.h"
+#include "gtkmm/box.h"
 #include "gtkmm/dropdown.h"
 #include "gtkmm/enums.h"
 #include "gtkmm/frame.h"
@@ -16,4 +17,7 @@ class SettingsMode : public SettingsPageBase
     
     Gtk::Frame m_method_label = Gtk::Frame("Control Method");
     Gtk::DropDown m_method_switch;
+
+    Gtk::Frame m_method_specific = Gtk::Frame("Settings");
+    Gtk::Box m_method_specific_box = Gtk::Box(Gtk::Orientation::VERTICAL);
 };
