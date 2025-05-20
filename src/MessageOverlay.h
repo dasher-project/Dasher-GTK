@@ -6,6 +6,7 @@
 #include <chrono>
 #include <memory>
 #include <vector>
+#include <array>
 #include "PopoverBox.h"
 
 class MessageOverlay : public Gtk::Overlay
@@ -50,15 +51,14 @@ public:
                 if(m.Widget) continue;
                 
                 //find empty widget to display
-                for(auto& c : m_box.get_children()){
-                    PopoverBox* p = static_cast<PopoverBox*>(c);
-                    if(!p->get_reveal_child() && !p->get_child_revealed()){
-                        p->reveal(m.Message);
-                        m.DisplayStartingTime = std::chrono::steady_clock::now();
-                        m.Widget = p;
-                        m_box.reorder_child_at_start(*p);
-                        break;
-                    }
+                for (PopoverBox* p : children) {
+                  if (!p->get_reveal_child() && !p->get_child_revealed()) {
+                    p->reveal(m.Message);
+                    m.DisplayStartingTime = std::chrono::steady_clock::now();
+                    m.Widget = p;
+                    m_box.reorder_child_at_start(*p);
+                    break;
+                  }
                 }
             }
             return true;
@@ -100,5 +100,6 @@ protected:
     Gtk::Box m_box = Gtk::Box(Gtk::Orientation::VERTICAL);
     PopoverBox m_message1;
     PopoverBox m_message2;
+    std::array<PopoverBox*,2> children = {&m_message1, &m_message2};
     std::vector<struct QueuedMessage> MessageQueue;
 };
