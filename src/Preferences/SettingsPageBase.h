@@ -6,7 +6,7 @@
 #include "gtkmm/dropdown.h"
 #include "gtkmm/stringlist.h"
 #include "gtkmm/enums.h"
-#include "gtkmm/stringobject.h"
+#include "gtkmm/widget.h"
 #include <memory>
 
 class SettingsPageBase : public Gtk::Box
@@ -27,7 +27,7 @@ public:
     Glib::ustring getSettingsTitle() {return title;}
     std::shared_ptr<DasherController> Dasher() {return controller;}
 
-    void FillDropDown(std::shared_ptr<DasherController> controller, Gtk::DropDown& dropdown, Dasher::Parameter param){
+    static void FillDropDown(std::shared_ptr<DasherController> controller, Gtk::DropDown& dropdown, Dasher::Parameter param){
         //Get list from Dasher
         std::vector<std::string> input_method;
         controller->GetPermittedValues(param, input_method);
@@ -38,11 +38,7 @@ public:
         
         //Set selected element
         std::string selected = controller->GetStringParameter(Dasher::Parameter::SP_INPUT_FILTER);
-        dropdown.set_selected(std::find(method_list.begin(), method_list.end(), selected) - method_list.begin());
-        
-        dropdown.property_selected_item().signal_changed().connect([controller, &dropdown, param](){
-            Glib::ustring s = std::dynamic_pointer_cast<Gtk::StringObject>(dropdown.get_selected_item())->get_string();
-            controller->SetStringParameter(param, s);
-        });
+        dropdown.set_selected(std::find(method_list.begin(), method_list.end(), Glib::ustring(selected)) - method_list.begin());
     }
+
 };

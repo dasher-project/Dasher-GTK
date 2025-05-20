@@ -83,7 +83,7 @@ std::pair<Dasher::screenint, Dasher::screenint> RenderingCanvas::TextSize(Label*
     Cairo::TextExtents te;
     renderingBackend->set_font_size(iFontSize);
     renderingBackend->get_text_extents(label->m_strText, te);
-	return {te.width, te.height};
+	return {static_cast<Dasher::screenint>(te.width), static_cast<Dasher::screenint>(te.height)};
 }
 
 void RenderingCanvas::DrawString(Label* label, Dasher::screenint x, Dasher::screenint y, unsigned iFontSize, const Dasher::ColorPalette::Color& Color) {
