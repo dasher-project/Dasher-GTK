@@ -19,7 +19,7 @@ This library version can be build, simply by generating the required make files 
 
 ### Build Dependencies 📦
 * Windows: You will need to install GTK. The easiest way to install it is to grab a pre-build copy from [GVSBuild](https://github.com/wingtk/gvsbuild/releases) and extract it to `C:\gtk`. Afterwards add `C:\gtk\bin` to your path. Additionally, you will need basic C++ development tools like CMake, Git and a compiler like Clang or MSVC (from VisualStudio).
-* Linux: You will need to install GTK4 and GTK4mm using your package manager + some essential buildtools. E.g. using `apt-get install build-essential libgtk-4-dev libgtkmm-4.0-dev`
+* Linux: You will need to install GTK4 and GTK4mm using your package manager + some essential buildtools. E.g. using `apt-get install build-essential libgtk-4-dev libgtkmm-4.0-dev git cmake`
 * MacOS: You will also need to install GTK4 and GTK4mm using your package manager + some essential buildtools. E.g. using `brew install gtk4 gtkmm4`
 
 ## License 📎

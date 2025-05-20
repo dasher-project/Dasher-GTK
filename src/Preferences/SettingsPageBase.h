@@ -6,7 +6,6 @@
 #include "gtkmm/dropdown.h"
 #include "gtkmm/stringlist.h"
 #include "gtkmm/enums.h"
-#include "gtkmm/widget.h"
 #include <memory>
 
 class SettingsPageBase : public Gtk::Box

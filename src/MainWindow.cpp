@@ -90,7 +90,7 @@ MainWindow::MainWindow() :
     std::vector<Glib::ustring> AlphaUString(Alphabets.begin(), Alphabets.end());
     m_alphabet_chooser.set_model(Gtk::StringList::create(AlphaUString));
     std::string selected_alphabet = m_canvas.dasherController->GetStringParameter(Dasher::Parameter::SP_ALPHABET_ID);
-    m_alphabet_chooser.set_selected(std::find(AlphaUString.begin(), AlphaUString.end(), selected_alphabet) - AlphaUString.begin());
+    m_alphabet_chooser.set_selected(std::find(AlphaUString.begin(), AlphaUString.end(), Glib::ustring(selected_alphabet)) - AlphaUString.begin());
     m_alphabet_chooser.property_selected_item().signal_changed().connect([this](){
         Glib::ustring s = std::dynamic_pointer_cast<Gtk::StringObject>(m_alphabet_chooser.get_selected_item())->get_string();
         m_canvas.dasherController->SetStringParameter(Dasher::Parameter::SP_ALPHABET_ID, s);
