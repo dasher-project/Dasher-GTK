@@ -5,6 +5,7 @@
 #include "DasherTypes.h"
 #include "FileUtils.h"
 #include "cairomm/context.h"
+#include "gtkmm/shortcutcontroller.h"
 #include <gtkmm/button.h>
 #include <gtkmm/label.h>
 #include <gtkmm/drawingarea.h>
@@ -41,12 +42,14 @@ public:
 public:
 	Glib::RefPtr<Gtk::EventControllerMotion> mouseController;
 	Glib::RefPtr<Gtk::GestureClick> mouseClickController;
+	Glib::RefPtr<Gtk::ShortcutController> shortcutController;
 	std::shared_ptr<Dasher::XmlSettingsStore> Settings;
 	std::shared_ptr<DasherController> dasherController;
 	Dasher::point mousePos = {0,0};
 
 	Cairo::RefPtr<Cairo::RecordingSurface> recordingSurface;
 	Cairo::RefPtr<Cairo::Context> renderingBackend;
+	bool generatePDFNextFrame = false;
 
 	std::chrono::time_point<std::chrono::steady_clock> startTime;
 };

@@ -3,9 +3,16 @@
 #include "DasherTypes.h"
 #include "cairomm/context.h"
 #include "cairomm/surface.h"
+#include "gdk/gdkkeysyms.h"
+#include "gdkmm/enums.h"
+#include "glibmm/datetime.h"
 #include "gtkmm/enums.h"
 #include "gtkmm/eventcontrollermotion.h"
 #include "gtkmm/gestureclick.h"
+#include "gtkmm/shortcut.h"
+#include "gtkmm/shortcutaction.h"
+#include "gtkmm/shortcuttrigger.h"
+#include "gtkmm/shortcutcontroller.h"
 #include "gtkmm/widget.h"
 #include <chrono>
 #include <gtkmm/eventcontroller.h>
@@ -16,7 +23,7 @@
 const long long RenderingCanvas::getCurrentMS(){
     return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - startTime).count();
 }
-
+#pragma clang optimize off
 RenderingCanvas::RenderingCanvas(): Dasher::CDasherScreen(100,100), CScreenCoordInput("Mouse Input") {
     //Set Inital Size
     set_size_request(500,500);
@@ -40,6 +47,15 @@ RenderingCanvas::RenderingCanvas(): Dasher::CDasherScreen(100,100), CScreenCoord
         dasherController->KeyUp(getCurrentMS(), Dasher::Keys::Primary_Input);
     });
     add_controller(mouseClickController);
+
+    //add shortcut
+    shortcutController = Gtk::ShortcutController::create();
+    shortcutController->add_shortcut(Gtk::Shortcut::create(Gtk::KeyvalTrigger::create(GDK_KEY_F8, Gdk::ModifierType::NO_MODIFIER_MASK), Gtk::CallbackAction::create([this](Gtk::Widget&, const Glib::VariantBase&){
+        generatePDFNextFrame = true;
+        return true;
+    })));
+    shortcutController->set_scope(Gtk::ShortcutScope::GLOBAL);
+    add_controller(shortcutController);
 
     // Initalize Cairo
     recordingSurface = Cairo::RecordingSurface::create();
@@ -67,6 +83,17 @@ RenderingCanvas::RenderingCanvas(): Dasher::CDasherScreen(100,100), CScreenCoord
         cr->set_source(recordingSurface, 0, 0);
         cr->paint();
 
+        if(generatePDFNextFrame){
+          auto pdfSurface =
+              Cairo::PdfSurface::create(Glib::DateTime::create_now_local().format("Screenshot-%Y-%m-%d_%H-%M-%S.pdf"), width, height);
+          auto pdfBackend = Cairo::Context::create(pdfSurface);
+
+          pdfBackend->set_source(recordingSurface, 0, 0);
+          pdfBackend->paint();
+
+          generatePDFNextFrame = false;
+        }
+
         //reset recording surface
         renderingBackend->save();
         renderingBackend->set_operator(Cairo::Context::Operator::CLEAR);
@@ -78,6 +105,7 @@ RenderingCanvas::RenderingCanvas(): Dasher::CDasherScreen(100,100), CScreenCoord
         return true;
     });
 }
+#pragma clang optimize on
 
 std::pair<Dasher::screenint, Dasher::screenint> RenderingCanvas::TextSize(Label* label, unsigned iFontSize) {
     Cairo::TextExtents te;
