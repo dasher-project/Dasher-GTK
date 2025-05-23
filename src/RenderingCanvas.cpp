@@ -50,7 +50,7 @@ RenderingCanvas::RenderingCanvas(): Dasher::CDasherScreen(100,100), CScreenCoord
 
     //add shortcut
     shortcutController = Gtk::ShortcutController::create();
-    shortcutController->add_shortcut(Gtk::Shortcut::create(Gtk::KeyvalTrigger::create(GDK_KEY_F8, Gdk::ModifierType::NO_MODIFIER_MASK), Gtk::CallbackAction::create([this](Gtk::Widget&, const Glib::VariantBase&){
+    shortcutController->add_shortcut(Gtk::Shortcut::create(Gtk::KeyvalTrigger::create(GDK_KEY_F8), Gtk::CallbackAction::create([this](Gtk::Widget&, const Glib::VariantBase&){
         generatePDFNextFrame = true;
         return true;
     })));
