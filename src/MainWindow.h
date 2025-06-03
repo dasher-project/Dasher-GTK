@@ -2,11 +2,11 @@
 
 #include "ImageButton.h"
 #include "Preferences/PreferencesWindow.h"
+#include "Preferences/SyncedSwitch.h"
 #include "RenderingCanvas.h"
 #include "MessageOverlay.h"
 #include "ColorDropdown.h"
 
-#include "gtkmm/button.h"
 #include "gtkmm/window.h"
 #include "gtkmm/box.h"
 #include "gtkmm/label.h"
@@ -58,7 +58,7 @@ protected:
     Gtk::DropDown m_alphabet_chooser;
     Gtk::SpinButton m_speed_adjustment = Gtk::SpinButton();
     Gtk::Label m_learning_label = Gtk::Label("Learning");
-    Gtk::Switch m_learning_switch;
+    SyncedSwitch m_learning_switch;
     ColorDropdown m_color_chooser;
     Glib::RefPtr<Gtk::FontDialog> m_font_dialog = Gtk::FontDialog::create();
     Gtk::FontDialogButton m_font_chooser = Gtk::FontDialogButton(m_font_dialog);

@@ -22,7 +22,9 @@ MainWindow::MainWindow() :
     m_main_vertical_box(Gtk::Orientation::VERTICAL),
     m_side_panel(Gtk::Orientation::VERTICAL),
     m_main_pane(Gtk::Orientation::HORIZONTAL),
-    m_preferences_window(m_canvas.dasherController)
+    m_canvas(),
+    m_preferences_window(m_canvas.Settings, m_canvas.dasherController),
+    m_learning_switch(Dasher::Parameter::BP_LM_ADAPTIVE, m_canvas.Settings)
 {
     g_setenv("GTK_CSD", "0", false);
 

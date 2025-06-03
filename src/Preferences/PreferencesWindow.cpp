@@ -1,7 +1,8 @@
 #include "PreferencesWindow.h"
 #include "SettingsMode.h"
+#include "SettingsStore.h"
 
-PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherController> controller): controller(controller), m_mode_page(controller){
+PreferencesWindow::PreferencesWindow(std::shared_ptr<Dasher::CSettingsStore> settings, std::shared_ptr<DasherController> controller): controller(controller), settings(settings), m_mode_page(settings, controller){
     set_child(m_sideways_box);
     set_title("Dasher Preferences");
 

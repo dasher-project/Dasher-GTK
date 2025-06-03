@@ -6,7 +6,14 @@
 #include "gtkmm/dropdown.h"
 #include "gtkmm/stringlist.h"
 #include "gtkmm/enums.h"
+#include "gtkmm/grid.h"
+#include "gtkmm/label.h"
 #include <memory>
+#include "SyncedEnum.h"
+#include "SyncedSlider.h"
+#include "SyncedSpinButton.h"
+#include "SyncedTextbox.h"
+#include "SyncedSwitch.h"
 
 class SettingsPageBase : public Gtk::Box
 {
@@ -14,17 +21,17 @@ class SettingsPageBase : public Gtk::Box
 protected:
     SettingsPageBase(Glib::ustring name, Glib::ustring title, std::shared_ptr<DasherController> controller) :
         Gtk::Box(Gtk::Orientation::VERTICAL),
-        name(name), title(title), controller(controller)
+        m_settings_page_name(name), m_settings_page_title(title), m_controller(controller)
     {}
 
-    Glib::ustring name;
-    Glib::ustring title;
-    std::shared_ptr<DasherController> controller;
+    Glib::ustring m_settings_page_name;
+    Glib::ustring m_settings_page_title;
+    std::shared_ptr<DasherController> m_controller;
 
 public:
-    Glib::ustring getSettingsName() {return name;}
-    Glib::ustring getSettingsTitle() {return title;}
-    std::shared_ptr<DasherController> Dasher() {return controller;}
+    Glib::ustring getSettingsName() {return m_settings_page_name;}
+    Glib::ustring getSettingsTitle() {return m_settings_page_title;}
+    std::shared_ptr<DasherController> Dasher() {return m_controller;}
 
     static void FillDropDown(std::shared_ptr<DasherController> controller, Gtk::DropDown& dropdown, Dasher::Parameter param){
         //Get list from Dasher
@@ -40,4 +47,48 @@ public:
         dropdown.set_selected(std::find(method_list.begin(), method_list.end(), Glib::ustring(selected)) - method_list.begin());
     }
 
+    static void FillModuleSettingsGrid(Gtk::Grid& gridWidget, const std::vector<std::unique_ptr<Dasher::Settings::ModuleSetting>>& UISettings, std::shared_ptr<Dasher::CSettingsStore>& DasherSettings){       
+        //Clear the grid
+        Widget* iter = gridWidget.get_first_child();
+        while(iter) {
+            Widget* next = iter->get_next_sibling();
+            gridWidget.remove(*iter);
+            iter = next;
+        }
+        
+        for(unsigned int i = 0; i < UISettings.size(); i++){
+            // Attach Name Label
+            Gtk::Label* nameLabel = Gtk::make_managed<Gtk::Label>(UISettings[i]->Name);
+            nameLabel->set_halign(Gtk::Align::START);
+            gridWidget.attach(*nameLabel, 0, i);
+
+            // Attach Interactable Widget
+            switch(UISettings[i]->Type){
+                case Switch:
+                {
+                    gridWidget.attach(*Gtk::make_managed<SyncedSwitch>(UISettings[i]->Param, DasherSettings), 1, i);
+                    break;
+                }
+                case TextField: {
+                    gridWidget.attach(*Gtk::make_managed<SyncedTextbox>(UISettings[i]->Param, DasherSettings), 1, i);
+                    break;
+                }
+                case Slider: {
+                    Dasher::Settings::SliderSetting* setting = static_cast<Dasher::Settings::SliderSetting*>(UISettings[i].get());
+                    gridWidget.attach(*Gtk::make_managed<SyncedSlider>(setting->Param, DasherSettings, setting->min, setting->max, setting->step), 1, i);
+                    break;
+                }
+                case Step: {
+                    Dasher::Settings::SpinSetting* setting = static_cast<Dasher::Settings::SpinSetting*>(UISettings[i].get());
+                    gridWidget.attach(*Gtk::make_managed<SyncedSpinButton>(setting->Param, DasherSettings, setting->min, setting->max, setting->step), 1, i);
+                    break;
+                }
+                case Enum: {
+                    Dasher::Settings::EnumSetting* setting = static_cast<Dasher::Settings::EnumSetting*>(UISettings[i].get());
+                    gridWidget.attach(*Gtk::make_managed<SyncedEnum>(setting->Param, DasherSettings, setting->Enums), 1, i);
+                    break;
+                }
+            }
+        }
+    }
 };

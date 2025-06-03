@@ -69,7 +69,7 @@ protected:
     static void SetupItemList(const std::shared_ptr<Gtk::ListItem> item){
         ColorDisplayWidget* widget = Gtk::make_managed<ColorDisplayWidget>();
         Gtk::Box* box = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::HORIZONTAL, 5);
-        Gtk::Label* label = Gtk::make_managed<Gtk::Label>("Test");
+        Gtk::Label* label = Gtk::make_managed<Gtk::Label>("");
         box->append(*widget);
         box->append(*label);
         item->set_child(*box);
