@@ -1,5 +1,4 @@
 #include "MainWindow.h"
-#include "ColorPalette.h"
 #include "Parameters.h"
 #include "Preferences/PreferencesWindow.h"
 #include "UIComponents/RenderingCanvas.h"
@@ -25,7 +24,9 @@ MainWindow::MainWindow() :
     m_canvas(),
     m_preferences_window(m_canvas.Settings, m_canvas.dasherController),
     m_learning_switch(Dasher::Parameter::BP_LM_ADAPTIVE, m_canvas.Settings),
-    m_speed_adjustment(Dasher::Parameter::LP_MAX_BITRATE, m_canvas.Settings, 50, 1000, 1)
+    m_speed_adjustment(Dasher::Parameter::LP_MAX_BITRATE, m_canvas.Settings, 50, 1000, 1),
+    m_color_chooser(m_canvas.Settings, m_canvas.dasherController->GetColorIO()->GetKnownPalettes()),
+    m_alphabet_chooser(Dasher::Parameter::SP_ALPHABET_ID, m_canvas.Settings, m_canvas.dasherController->GetPermittedValues(Dasher::Parameter::SP_ALPHABET_ID))
 {
     g_setenv("GTK_CSD", "0", false);
 
@@ -81,24 +82,6 @@ MainWindow::MainWindow() :
     m_speech_enable_switch.set_valign(Gtk::Align::CENTER);
     m_learning_switch.set_valign(Gtk::Align::CENTER);
 
-    m_color_chooser.AddPalettes(m_canvas.dasherController->GetColorIO()->GetKnownPalettes());
-    m_color_chooser.SelectPalette(m_canvas.dasherController->GetStringParameter(Dasher::Parameter::SP_COLOUR_ID));
-    m_color_chooser.property_selected_item().signal_changed().connect([this](){
-        std::shared_ptr<PaletteProxy> palette = std::dynamic_pointer_cast<PaletteProxy>(m_color_chooser.get_selected_item());
-        m_canvas.dasherController->SetStringParameter(Dasher::Parameter::SP_COLOUR_ID, palette->p->PaletteName);
-    });
-
-    std::vector<std::string> Alphabets;
-    m_canvas.dasherController->GetPermittedValues(Dasher::Parameter::SP_ALPHABET_ID, Alphabets);
-    std::vector<Glib::ustring> AlphaUString(Alphabets.begin(), Alphabets.end());
-    m_alphabet_chooser.set_model(Gtk::StringList::create(AlphaUString));
-    std::string selected_alphabet = m_canvas.dasherController->GetStringParameter(Dasher::Parameter::SP_ALPHABET_ID);
-    m_alphabet_chooser.set_selected(std::find(AlphaUString.begin(), AlphaUString.end(), Glib::ustring(selected_alphabet)) - AlphaUString.begin());
-    m_alphabet_chooser.property_selected_item().signal_changed().connect([this](){
-        Glib::ustring s = std::dynamic_pointer_cast<Gtk::StringObject>(m_alphabet_chooser.get_selected_item())->get_string();
-        m_canvas.dasherController->SetStringParameter(Dasher::Parameter::SP_ALPHABET_ID, s);
-    });
-
     m_font_chooser.property_font_desc().signal_changed().connect([this](){
         Pango::FontDescription newFont = m_font_chooser.get_font_desc();
         m_canvas.renderingBackend->select_font_face(newFont.get_family(),
@@ -153,6 +136,5 @@ MainWindow::MainWindow() :
     m_redo_button.signal_clicked().connect([this](){
         m_text_view.activate_action("text.redo");
     });
-
 }
 #pragma clang optimize on

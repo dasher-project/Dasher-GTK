@@ -9,7 +9,7 @@
 #include "gtkmm/grid.h"
 #include "gtkmm/label.h"
 #include <memory>
-#include "UIComponents/SyncedEnum.h"
+#include "UIComponents/SyncedEnumDropdown.h"
 #include "UIComponents/SyncedSlider.h"
 #include "UIComponents/SyncedSpinButton.h"
 #include "UIComponents/SyncedTextbox.h"
@@ -35,8 +35,7 @@ public:
 
     static void FillDropDown(std::shared_ptr<DasherController> controller, Gtk::DropDown& dropdown, Dasher::Parameter param){
         //Get list from Dasher
-        std::vector<std::string> input_method;
-        controller->GetPermittedValues(param, input_method);
+        std::vector<std::string> input_method = controller->GetPermittedValues(param);
 
         //Copy list as elements
         std::vector<Glib::ustring> method_list(input_method.begin(), input_method.end());
@@ -87,7 +86,7 @@ public:
                 }
                 case Enum: {
                     Dasher::Settings::EnumSetting* setting = static_cast<Dasher::Settings::EnumSetting*>(UISettings[i].get());
-                    gridWidget.attach(*Gtk::make_managed<SyncedEnum>(setting->Param, DasherSettings, setting->Enums), 1, i);
+                    gridWidget.attach(*Gtk::make_managed<SyncedEnumDropdown>(setting->Param, DasherSettings, setting->Enums), 1, i);
                     break;
                 }
             }

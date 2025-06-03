@@ -22,12 +22,12 @@ class EnumProxy : public Glib::Object
         }
 };
 
-class SyncedEnum : public Gtk::DropDown {
+class SyncedEnumDropdown : public Gtk::DropDown {
 public:
     Glib::RefPtr<Gio::ListStore<EnumProxy>> valueList = Gio::ListStore<EnumProxy>::create();
     Glib::RefPtr<Gtk::SignalListItemFactory> itemFactory = Gtk::SignalListItemFactory::create();
     
-    SyncedEnum(Dasher::Parameter parameter, std::shared_ptr<Dasher::CSettingsStore> settings, std::unordered_map<std::string, int>& Enums) : m_settings(settings), m_synced_parameter(parameter) {
+    SyncedEnumDropdown(Dasher::Parameter parameter, std::shared_ptr<Dasher::CSettingsStore> settings, std::unordered_map<std::string, int>& Enums) : m_settings(settings), m_synced_parameter(parameter) {
         //Init values
         for(auto& [key, value] : Enums){
             valueList->append(EnumProxy::create(key, value));
@@ -36,8 +36,8 @@ public:
         set_model(valueList);
         set_factory(itemFactory);
 
-        itemFactory->signal_setup().connect(&SyncedEnum::SetupItemList);
-        itemFactory->signal_bind().connect(&SyncedEnum::BindItemList);
+        itemFactory->signal_setup().connect(&SyncedEnumDropdown::SetupItemList);
+        itemFactory->signal_bind().connect(&SyncedEnumDropdown::BindItemList);
 
         // Switch selected value on settings change
         settings->OnParameterChanged.Subscribe(this, [this](Dasher::Parameter param){

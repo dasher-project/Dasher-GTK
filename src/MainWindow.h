@@ -3,10 +3,11 @@
 #include "UIComponents/ImageButton.h"
 #include "Preferences/PreferencesWindow.h"
 #include "UIComponents/SyncedSpinButton.h"
+#include "UIComponents/SyncedStringDropdown.h"
 #include "UIComponents/SyncedSwitch.h"
 #include "UIComponents/RenderingCanvas.h"
 #include "UIComponents/MessageOverlay.h"
-#include "UIComponents/ColorDropdown.h"
+#include "UIComponents/SyncedColorDropdown.h"
 
 #include "gtkmm/window.h"
 #include "gtkmm/box.h"
@@ -55,11 +56,11 @@ protected:
     
     // Footer Bar
     Gtk::ActionBar m_footer_bar;
-    Gtk::DropDown m_alphabet_chooser;
+    SyncedStringDropdown m_alphabet_chooser;
     SyncedSpinButton m_speed_adjustment;
     Gtk::Label m_learning_label = Gtk::Label("Learning");
     SyncedSwitch m_learning_switch;
-    ColorDropdown m_color_chooser;
+    SyncedColorDropdown m_color_chooser;
     Glib::RefPtr<Gtk::FontDialog> m_font_dialog = Gtk::FontDialog::create();
     Gtk::FontDialogButton m_font_chooser = Gtk::FontDialogButton(m_font_dialog);
     Gtk::Label m_speech_enable_label = Gtk::Label("Speech");

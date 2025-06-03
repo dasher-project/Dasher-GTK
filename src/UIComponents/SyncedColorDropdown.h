@@ -2,11 +2,14 @@
 
 #include "ColorPalette.h"
 #include "ColorDisplayWidget.h"
+#include "Parameters.h"
+#include "SettingsStore.h"
 #include "giomm/liststore.h"
 #include "gtkmm/box.h"
 #include "gtkmm/dropdown.h"
 #include "gtkmm/label.h"
 #include "gtkmm/signallistitemfactory.h"
+#include <string>
 
 class PaletteProxy : public Glib::Object
 {
@@ -19,29 +22,46 @@ class PaletteProxy : public Glib::Object
         }
 };
 
-class ColorDropdown : public Gtk::DropDown
+class SyncedColorDropdown : public Gtk::DropDown
 {
 public:
     Glib::RefPtr<Gio::ListStore<PaletteProxy>> colorPaletteList = Gio::ListStore<PaletteProxy>::create();
     Glib::RefPtr<Gtk::SignalListItemFactory> color_factory_header = Gtk::SignalListItemFactory::create();
     Glib::RefPtr<Gtk::SignalListItemFactory> color_factory = Gtk::SignalListItemFactory::create();
 
-    ColorDropdown(){
+    SyncedColorDropdown(std::shared_ptr<Dasher::CSettingsStore> settings, const std::map<std::string, Dasher::ColorPalette*>* palettes){
+        // Add Values
+        for (const auto &[key, value] : *palettes) {
+            colorPaletteList->append(PaletteProxy::create(value));
+        }
+        
         set_list_factory(color_factory);
         set_factory(color_factory_header);
         set_model(colorPaletteList);
         
-        color_factory_header->signal_setup().connect(&ColorDropdown::SetupItemHeader);
-        color_factory_header->signal_bind().connect(&ColorDropdown::BindItemHeader);
+        color_factory_header->signal_setup().connect(&SyncedColorDropdown::SetupItemHeader);
+        color_factory_header->signal_bind().connect(&SyncedColorDropdown::BindItemHeader);
 
-        color_factory->signal_setup().connect(&ColorDropdown::SetupItemList);
-        color_factory->signal_bind().connect(&ColorDropdown::BindItemList);
+        color_factory->signal_setup().connect(&SyncedColorDropdown::SetupItemList);
+        color_factory->signal_bind().connect(&SyncedColorDropdown::BindItemList);
+
+        // Switch selected value on settings change
+        settings->OnParameterChanged.Subscribe(this, [this, settings](Dasher::Parameter param){
+            //Does not need exception for loop, as Dasher::SettingsStore capture a "non-state change"
+            if(param == Dasher::Parameter::SP_COLOUR_ID) SelectPalette(settings->GetStringParameter(Dasher::Parameter::SP_COLOUR_ID));
+        });
+
+        // Set inital state
+        SelectPalette(settings->GetStringParameter(Dasher::Parameter::SP_COLOUR_ID));
+
+        // Switch value on user interaction 
+        property_selected().signal_changed().connect([this, settings](){
+            settings->SetStringParameter(Dasher::Parameter::SP_COLOUR_ID, GetSelectedPalette());
+        });
     }
 
-    void AddPalettes(const std::map<std::string, Dasher::ColorPalette*>* palettes){
-        for (const auto &[key, value] : *palettes) {
-            colorPaletteList->append(PaletteProxy::create(value));
-        }
+    std::string GetSelectedPalette(){
+        return std::dynamic_pointer_cast<PaletteProxy>(get_selected_item())->p->PaletteName;
     }
 
     bool SelectPalette(const std::string& selected_color){

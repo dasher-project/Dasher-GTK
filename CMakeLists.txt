@@ -39,15 +39,16 @@ ADD_Executable(Dasher
 	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsPageBase.h
 	${PROJECT_SOURCE_DIR}/src/UIComponents
 	${PROJECT_SOURCE_DIR}/src/UIComponents/ColorDisplayWidget.h
-	${PROJECT_SOURCE_DIR}/src/UIComponents/ColorDropdown.h
 	${PROJECT_SOURCE_DIR}/src/UIComponents/ImageButton.h
 	${PROJECT_SOURCE_DIR}/src/UIComponents/MessageOverlay.h
 	${PROJECT_SOURCE_DIR}/src/UIComponents/PopoverBox.h
 	${PROJECT_SOURCE_DIR}/src/UIComponents/RenderingCanvas.cpp
 	${PROJECT_SOURCE_DIR}/src/UIComponents/RenderingCanvas.h
-	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedEnum.h
+	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedColorDropdown.h
+	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedEnumDropdown.h
 	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedSlider.h
 	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedSpinButton.h
+	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedStringDropdown.h
 	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedSwitch.h
 	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedTextbox.h
 	${PROJECT_SOURCE_DIR}/src/UIStyle.css
