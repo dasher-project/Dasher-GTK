@@ -9,11 +9,11 @@
 #include "gtkmm/grid.h"
 #include "gtkmm/label.h"
 #include <memory>
-#include "SyncedEnum.h"
-#include "SyncedSlider.h"
-#include "SyncedSpinButton.h"
-#include "SyncedTextbox.h"
-#include "SyncedSwitch.h"
+#include "UIComponents/SyncedEnum.h"
+#include "UIComponents/SyncedSlider.h"
+#include "UIComponents/SyncedSpinButton.h"
+#include "UIComponents/SyncedTextbox.h"
+#include "UIComponents/SyncedSwitch.h"
 
 class SettingsPageBase : public Gtk::Box
 {
@@ -47,7 +47,7 @@ public:
         dropdown.set_selected(std::find(method_list.begin(), method_list.end(), Glib::ustring(selected)) - method_list.begin());
     }
 
-    static void FillModuleSettingsGrid(Gtk::Grid& gridWidget, const std::vector<std::unique_ptr<Dasher::Settings::ModuleSetting>>& UISettings, std::shared_ptr<Dasher::CSettingsStore>& DasherSettings){       
+    static void FillModuleSettingsGrid(Gtk::Grid& gridWidget, CDasherModule* Module, std::shared_ptr<Dasher::CSettingsStore>& DasherSettings){       
         //Clear the grid
         Widget* iter = gridWidget.get_first_child();
         while(iter) {
@@ -56,6 +56,8 @@ public:
             iter = next;
         }
         
+        CDasherModule::UISettingList UISettings;
+        Module->GetUISettings(UISettings);
         for(unsigned int i = 0; i < UISettings.size(); i++){
             // Attach Name Label
             Gtk::Label* nameLabel = Gtk::make_managed<Gtk::Label>(UISettings[i]->Name);

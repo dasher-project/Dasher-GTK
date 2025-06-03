@@ -25,7 +25,7 @@ public:
 
         // Adjust based on movement
         signal_value_changed().connect([this](){
-            m_settings->SetLongParameter(m_synced_parameter, static_cast<long>(get_value()));
+            m_settings->SetLongParameter(m_synced_parameter, get_value_as_int());
         });
     }
 

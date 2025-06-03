@@ -1,11 +1,12 @@
 #pragma once
 
-#include "ImageButton.h"
+#include "UIComponents/ImageButton.h"
 #include "Preferences/PreferencesWindow.h"
-#include "Preferences/SyncedSwitch.h"
-#include "RenderingCanvas.h"
-#include "MessageOverlay.h"
-#include "ColorDropdown.h"
+#include "UIComponents/SyncedSpinButton.h"
+#include "UIComponents/SyncedSwitch.h"
+#include "UIComponents/RenderingCanvas.h"
+#include "UIComponents/MessageOverlay.h"
+#include "UIComponents/ColorDropdown.h"
 
 #include "gtkmm/window.h"
 #include "gtkmm/box.h"
@@ -14,7 +15,6 @@
 #include "gtkmm/actionbar.h"
 #include "gtkmm/dropdown.h"
 #include "gtkmm/switch.h"
-#include "gtkmm/spinbutton.h"
 #include "gtkmm/fontdialog.h"
 #include "gtkmm/fontdialogbutton.h"
 
@@ -56,7 +56,7 @@ protected:
     // Footer Bar
     Gtk::ActionBar m_footer_bar;
     Gtk::DropDown m_alphabet_chooser;
-    Gtk::SpinButton m_speed_adjustment = Gtk::SpinButton();
+    SyncedSpinButton m_speed_adjustment;
     Gtk::Label m_learning_label = Gtk::Label("Learning");
     SyncedSwitch m_learning_switch;
     ColorDropdown m_color_chooser;

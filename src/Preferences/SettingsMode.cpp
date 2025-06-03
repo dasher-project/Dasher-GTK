@@ -20,11 +20,11 @@ SettingsMode::SettingsMode(std::shared_ptr<Dasher::CSettingsStore> settings, std
     m_method_switch.property_selected_item().signal_changed().connect([this](){
         Glib::ustring s = std::dynamic_pointer_cast<Gtk::StringObject>(m_method_switch.get_selected_item())->get_string();
         m_controller->SetStringParameter(Dasher::Parameter::SP_INPUT_FILTER, s);
-        FillModuleSettingsGrid(m_method_specific_settings_grid, m_controller->GetModuleManager()->GetInputMethodByName(s)->getUISettings(), m_settings);
+        FillModuleSettingsGrid(m_method_specific_settings_grid, m_controller->GetModuleManager()->GetInputMethodByName(s), m_settings);
     });
 
     //Initial Filling of Optionspane
-    FillModuleSettingsGrid(m_method_specific_settings_grid, m_controller->GetModuleManager()->GetInputMethodByName(m_controller->GetStringParameter(Dasher::Parameter::SP_INPUT_FILTER))->getUISettings(), m_settings);
+    FillModuleSettingsGrid(m_method_specific_settings_grid, m_controller->GetModuleManager()->GetInputMethodByName(m_controller->GetStringParameter(Dasher::Parameter::SP_INPUT_FILTER)), m_settings);
 
     append(m_method_specific);
     m_method_specific.set_child(m_method_specific_settings_grid);

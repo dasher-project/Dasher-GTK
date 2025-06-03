@@ -27,27 +27,36 @@ pkg_check_modules(GTKMM REQUIRED gtkmm-4.0)
 ###############################
 
 ADD_Executable(Dasher
-	${PROJECT_SOURCE_DIR}/src/MainWindow.h
-	${PROJECT_SOURCE_DIR}/src/MainWindow.cpp
-	${PROJECT_SOURCE_DIR}/src/RenderingCanvas.h
-	${PROJECT_SOURCE_DIR}/src/RenderingCanvas.cpp
-	${PROJECT_SOURCE_DIR}/src/DasherController.h
 	${PROJECT_SOURCE_DIR}/src/DasherController.cpp
-	${PROJECT_SOURCE_DIR}/src/ImageButton.h
-	${PROJECT_SOURCE_DIR}/src/PopoverBox.h
-	${PROJECT_SOURCE_DIR}/src/MessageOverlay.h
-	${PROJECT_SOURCE_DIR}/src/ColorDisplayWidget.h
-	${PROJECT_SOURCE_DIR}/src/ColorDropdown.h
-	${PROJECT_SOURCE_DIR}/src/Preferences/PreferencesWindow.h
+	${PROJECT_SOURCE_DIR}/src/DasherController.h
+	${PROJECT_SOURCE_DIR}/src/MainWindow.cpp
+	${PROJECT_SOURCE_DIR}/src/MainWindow.h
+	${PROJECT_SOURCE_DIR}/src/Preferences
 	${PROJECT_SOURCE_DIR}/src/Preferences/PreferencesWindow.cpp
-	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsMode.h
+	${PROJECT_SOURCE_DIR}/src/Preferences/PreferencesWindow.h
 	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsMode.cpp
+	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsMode.h
 	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsPageBase.h
+	${PROJECT_SOURCE_DIR}/src/UIComponents
+	${PROJECT_SOURCE_DIR}/src/UIComponents/ColorDisplayWidget.h
+	${PROJECT_SOURCE_DIR}/src/UIComponents/ColorDropdown.h
+	${PROJECT_SOURCE_DIR}/src/UIComponents/ImageButton.h
+	${PROJECT_SOURCE_DIR}/src/UIComponents/MessageOverlay.h
+	${PROJECT_SOURCE_DIR}/src/UIComponents/PopoverBox.h
+	${PROJECT_SOURCE_DIR}/src/UIComponents/RenderingCanvas.cpp
+	${PROJECT_SOURCE_DIR}/src/UIComponents/RenderingCanvas.h
+	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedEnum.h
+	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedSlider.h
+	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedSpinButton.h
+	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedSwitch.h
+	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedTextbox.h
+	${PROJECT_SOURCE_DIR}/src/UIStyle.css
 	${PROJECT_SOURCE_DIR}/src/main.cpp
 )
 add_dependencies(Dasher DasherCore)
 target_link_libraries(Dasher PRIVATE DasherCore ${GTK_LIBRARIES} ${GTKMM_LIBRARIES})
 target_include_directories(Dasher PRIVATE ${GTK_INCLUDE_DIRS} ${GTKMM_INCLUDE_DIRS})
+target_include_directories(Dasher PRIVATE ${CMAKE_CURRENT_LIST_DIR}/src/)
 target_link_directories(Dasher PRIVATE ${GTK_LIBRARY_DIRS} ${GTKMM_LIBRARY_DIRS})
 
 ###############################

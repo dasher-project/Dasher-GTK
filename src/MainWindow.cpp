@@ -2,7 +2,7 @@
 #include "ColorPalette.h"
 #include "Parameters.h"
 #include "Preferences/PreferencesWindow.h"
-#include "RenderingCanvas.h"
+#include "UIComponents/RenderingCanvas.h"
 #include "cairomm/fontface.h"
 #include "gdkmm/display.h"
 #include "glibmm/refptr.h"
@@ -24,7 +24,8 @@ MainWindow::MainWindow() :
     m_main_pane(Gtk::Orientation::HORIZONTAL),
     m_canvas(),
     m_preferences_window(m_canvas.Settings, m_canvas.dasherController),
-    m_learning_switch(Dasher::Parameter::BP_LM_ADAPTIVE, m_canvas.Settings)
+    m_learning_switch(Dasher::Parameter::BP_LM_ADAPTIVE, m_canvas.Settings),
+    m_speed_adjustment(Dasher::Parameter::LP_MAX_BITRATE, m_canvas.Settings, 50, 1000, 1)
 {
     g_setenv("GTK_CSD", "0", false);
 
@@ -104,16 +105,6 @@ MainWindow::MainWindow() :
             getSlantFromPango(newFont.get_style()),
             (newFont.get_weight() == Pango::Weight::NORMAL) ? Cairo::ToyFontFace::Weight::NORMAL : Cairo::ToyFontFace::Weight::BOLD);
         m_canvas.dasherController->SetLongParameter(Dasher::Parameter::LP_DASHER_FONTSIZE, newFont.get_size() / Pango::SCALE);
-    });
-
-    m_speed_adjustment.set_adjustment(Gtk::Adjustment::create(m_canvas.dasherController->GetLongParameter(Dasher::Parameter::LP_MAX_BITRATE), 50, 1000));
-    m_speed_adjustment.property_value().signal_changed().connect([this](){
-        m_canvas.dasherController->SetLongParameter(Dasher::Parameter::LP_MAX_BITRATE, m_speed_adjustment.get_value_as_int());
-    });
-
-    m_learning_switch.set_active(m_canvas.dasherController->GetBoolParameter(Dasher::Parameter::BP_LM_ADAPTIVE));
-    m_learning_switch.property_active().signal_changed().connect([this](){
-        m_canvas.dasherController->SetBoolParameter(Dasher::Parameter::BP_LM_ADAPTIVE, m_learning_switch.get_active());
     });
 
     m_main_pane.set_start_child(m_message_overlay);
