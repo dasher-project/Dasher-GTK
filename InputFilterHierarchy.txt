@@ -7,28 +7,21 @@ CInputFilter
 			<self> LP_LINE_WIDTH
 			<self> LP_S
 			<self> LP_MAXZOOM
-			<inherited> LP_ZOOMSTEPS
 		CDasherButtons
 			<self> LP_BUTTON_SCAN_TIME (Timer)
-			<inherited> LP_ZOOMSTEPS (KeyDown+DirectKeyDown->ScheduleZoom)
 			CAlternatingDirectMode
-				<inherited> LP_BUTTON_SCAN_TIME
-				<inherited> LP_ZOOMSTEPS
+				None
 			CButtonMode
 				<self> LP_B
 				<self> LP_S
 				<self> LP_R
 				<self+inherited> LP_BUTTON_SCAN_TIME
-				<inherited> LP_ZOOMSTEPS
 			CCompassMode
 				<self> LP_RIGHTZOOM
-				<inherited> LP_BUTTON_SCAN_TIME
-				<inherited> LP_ZOOMSTEPS
 		COneButtonFilter
 			<self> LP_DYNAMIC_BUTTON_LAG
 			<self> LP_STATIC1B_TIME
 			<self> LP_STATIC1B_ZOOM
-			<inherited> LP_ZOOMSTEPS
 	CDynamicFilter
 		<self> BP_EXACT_DYNAMICS (OneStepTowards)
 		<self> LP_X_LIMIT_SPEED (OneStepTowards)
@@ -41,10 +34,6 @@ CInputFilter
 			<self> LP_DYNAMIC_SPEED_INC (Timer)
 			<self> LP_MAX_BITRATE (Timer+KeyDown->ButtonEvent->reverse)
 			<self> LP_DYNAMIC_SPEED_DEC (KeyDown->ButtonEvent->reverse)
-			<inherited> BP_EXACT_DYNAMICS (Timer)
-			<inherited> LP_X_LIMIT_SPEED (Timer)
-			<inherited> BP_SLOW_START (Timer)
-			<inherited> LP_SLOW_START_TIME (Timer)
 			CTwoPushDynamicFilter
 				<self> LP_TWO_PUSH_OUTER
 				<self> LP_DYNAMIC_BUTTON_LAG
@@ -54,40 +43,11 @@ CInputFilter
 				<self> BP_TWO_PUSH_RELEASE_TIME
 				<self+inherited> LP_MAX_BITRATE
 				<self+inherited> BP_BACKOFF_BUTTON
-				<inherited> BP_AUTO_SPEEDCONTROL
-				<inherited> LP_DYNAMIC_SPEED_FREQ
-				<inherited> LP_DYNAMIC_SPEED_INC
-				<inherited> LP_DYNAMIC_SPEED_DEC
-				<inherited> BP_EXACT_DYNAMICS
-				<inherited> LP_X_LIMIT_SPEED
-				<inherited> BP_SLOW_START
-				<inherited> LP_SLOW_START_TIME
 			CButtonMultiPress
 				<self> LP_HOLD_TIME (Timer)
 				<self> LP_MULTIPRESS_TIME (KeyDown)
-				<inherited> BP_BACKOFF_BUTTON (Timer)
-				<inherited> BP_AUTO_SPEEDCONTROL (Timer+KeyDown->ButtonEvent->reverse)
-				<inherited> LP_DYNAMIC_SPEED_FREQ (Timer)
-				<inherited> LP_DYNAMIC_SPEED_INC (Timer)
-				<inherited> LP_MAX_BITRATE (Timer+KeyDown->ButtonEvent->reverse)
-				<inherited> LP_DYNAMIC_SPEED_DEC (KeyDown->ButtonEvent->reverse)
-				<inherited> BP_EXACT_DYNAMICS (Timer)
-				<inherited> LP_X_LIMIT_SPEED (Timer)
-				<inherited> BP_SLOW_START (Timer)
-				<inherited> LP_SLOW_START_TIME (Timer)
 				COneButtonDynamicFilter
 					<self+inherited> BP_BACKOFF_BUTTON (KeyDown+KeyUp)
-					<inherited> LP_HOLD_TIME
-					<inherited> LP_MULTIPRESS_TIME
-					<inherited> BP_AUTO_SPEEDCONTROL
-					<inherited> LP_DYNAMIC_SPEED_FREQ
-					<inherited> LP_DYNAMIC_SPEED_INC
-					<inherited> LP_MAX_BITRATE
-					<inherited> LP_DYNAMIC_SPEED_DEC
-					<inherited> BP_EXACT_DYNAMICS
-					<inherited> LP_X_LIMIT_SPEED
-					<inherited> BP_SLOW_START
-					<inherited> LP_SLOW_START_TIME
 				CTwoButtonDynamicFilter
 					<self> BP_TWOBUTTON_REVERSE
 					<self> BP_2B_INVERT_DOUBLE
@@ -95,16 +55,6 @@ CInputFilter
 					<self> LP_DYNAMIC_BUTTON_LAG
 					<self+inherited> BP_BACKOFF_BUTTON
 					<self+inherited> LP_MAX_BITRATE
-					<inherited> LP_HOLD_TIME
-					<inherited> LP_MULTIPRESS_TIME
-					<inherited> BP_AUTO_SPEEDCONTROL
-					<inherited> LP_DYNAMIC_SPEED_FREQ
-					<inherited> LP_DYNAMIC_SPEED_INC
-					<inherited> LP_DYNAMIC_SPEED_DEC
-					<inherited> BP_EXACT_DYNAMICS
-					<inherited> LP_X_LIMIT_SPEED
-					<inherited> BP_SLOW_START
-					<inherited> LP_SLOW_START_TIME
 		CDemoFilter
 			<self> BP_DRAW_MOUSE
 			<self> BP_CURVE_MOUSE_LINE
@@ -116,8 +66,6 @@ CInputFilter
 			<self> LP_DEMO_SPRING
 			<self> LP_DEMO_NOISE_MEM
 			<self> LP_DEMO_NOISE_MAG
-			<inherited> BP_EXACT_DYNAMICS
-			<inherited> LP_X_LIMIT_SPEED
 			<not-inherited> BP_SLOW_START
 			<not-inherited> LP_SLOW_START_TIME
 		CDefaultFilter
@@ -135,52 +83,17 @@ CInputFilter
 			<self> LP_LINE_WIDTH (DecorateView)
 			<self> LP_GEOMETRY (ApplyTransform)
 			<self> LP_TARGET_OFFSET (Constructor+ApplyOffset)
-			<inherited> BP_EXACT_DYNAMICS (ExecuteMovement)
-			<inherited> LP_X_LIMIT_SPEED (ExecuteMovement)
-			<inherited> BP_SLOW_START (ExecuteMovement)
-			<inherited> LP_SLOW_START_TIME (ExecuteMovement)
 			CStylusFilter
 				<self> LP_ZOOMSTEPS
 				<self> LP_S
 				<self> LP_MAXZOOM
 				<self> LP_TAP_TIME
-				<inherited> BP_START_MOUSE
-				<inherited> BP_START_SPACE
-				<inherited> BP_TURBO_MODE
-				<inherited> BP_DRAW_MOUSE_LINE
-				<inherited> BP_DRAW_MOUSE
-				<inherited> BP_CURVE_MOUSE_LINE
 				<not-inherited> BP_MOUSEPOS_MODE
-				<inherited> BP_AUTOCALIBRATE
-				<inherited> BP_REMAP_XTREME
 				<not-inherited> BP_CIRCLE_START
-				<inherited> BP_STOP_OUTSIDE
-				<inherited> LP_LINE_WIDTH
-				<inherited> LP_GEOMETRY
-				<inherited> LP_TARGET_OFFSET
-				<inherited> BP_EXACT_DYNAMICS
-				<inherited> LP_X_LIMIT_SPEED
-				<inherited> BP_SLOW_START
-				<inherited> LP_SLOW_START_TIME
 			CPressFilter
 				<self+not-inherited> BP_START_MOUSE (KeyDown + KeyUp)
 				<self+not-inherited> BP_START_SPACE (KeyDown + KeyUp)
 				<self+inherited> BP_TURBO_MODE (KeyDown+Constructor)
-				<inherited> BP_DRAW_MOUSE_LINE
-				<inherited> BP_DRAW_MOUSE
-				<inherited> BP_CURVE_MOUSE_LINE
-				<inherited> BP_MOUSEPOS_MODE
-				<inherited> BP_AUTOCALIBRATE
-				<inherited> BP_REMAP_XTREME
-				<inherited> BP_CIRCLE_START
-				<inherited> BP_STOP_OUTSIDE
-				<inherited> LP_LINE_WIDTH
-				<inherited> LP_GEOMETRY
-				<inherited> LP_TARGET_OFFSET
-				<inherited> BP_EXACT_DYNAMICS
-				<inherited> LP_X_LIMIT_SPEED
-				<inherited> BP_SLOW_START
-				<inherited> LP_SLOW_START_TIME
 				CSmoothingFilter
 					<self> LP_SMOOTH_TAU
 					<self> BP_SMOOTH_DRAW_MOUSE_LINE
@@ -190,37 +103,7 @@ CInputFilter
 					<self+inherited> LP_LINE_WIDTH
 					<inherited only if BP_SMOOTH_PRESS_MODE> BP_START_MOUSE
 					<inherited only if BP_SMOOTH_PRESS_MODE> BP_START_SPACE
-					<inherited> BP_TURBO_MODE
-					<inherited> BP_DRAW_MOUSE_LINE
-					<inherited> BP_DRAW_MOUSE
-					<inherited> BP_CURVE_MOUSE_LINE
-					<inherited> BP_MOUSEPOS_MODE
-					<inherited> BP_AUTOCALIBRATE
-					<inherited> BP_REMAP_XTREME
-					<inherited> BP_CIRCLE_START
-					<inherited> BP_STOP_OUTSIDE
-					<inherited> LP_GEOMETRY
-					<inherited> LP_TARGET_OFFSET
-					<inherited> BP_EXACT_DYNAMICS
-					<inherited> LP_X_LIMIT_SPEED
-					<inherited> BP_SLOW_START
-					<inherited> LP_SLOW_START_TIME
 			COneDimensionalFilter
 				<self+inherited> BP_CIRCLE_START
 				<not-inherited> BP_REMAP_XTREME
 				<not-inherited> LP_GEOMETRY
-				<inherited> BP_DRAW_MOUSE_LINE
-				<inherited> BP_DRAW_MOUSE
-				<inherited> BP_CURVE_MOUSE_LINE
-				<inherited> BP_START_MOUSE
-				<inherited> BP_START_SPACE
-				<inherited> BP_MOUSEPOS_MODE
-				<inherited> BP_TURBO_MODE
-				<inherited> BP_AUTOCALIBRATE
-				<inherited> BP_STOP_OUTSIDE
-				<inherited> LP_LINE_WIDTH
-				<inherited> LP_TARGET_OFFSET
-				<inherited> BP_EXACT_DYNAMICS
-				<inherited> LP_X_LIMIT_SPEED
-				<inherited> BP_SLOW_START
-				<inherited> LP_SLOW_START_TIME
