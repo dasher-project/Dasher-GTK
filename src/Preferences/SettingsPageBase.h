@@ -8,12 +8,14 @@
 #include "gtkmm/enums.h"
 #include "gtkmm/grid.h"
 #include "gtkmm/label.h"
+#include <algorithm>
 #include <memory>
 #include "UIComponents/SyncedEnumDropdown.h"
 #include "UIComponents/SyncedSlider.h"
 #include "UIComponents/SyncedSpinButton.h"
 #include "UIComponents/SyncedTextbox.h"
 #include "UIComponents/SyncedSwitch.h"
+#include "UIComponents/PopoverMenuButtonInfo.h"
 
 class SettingsPageBase : public Gtk::Box
 {
@@ -46,7 +48,7 @@ public:
         dropdown.set_selected(std::find(method_list.begin(), method_list.end(), Glib::ustring(selected)) - method_list.begin());
     }
 
-    static void FillModuleSettingsGrid(Gtk::Grid& gridWidget, CDasherModule* Module, std::shared_ptr<Dasher::CSettingsStore>& DasherSettings){       
+    static void FillModuleSettingsGrid(Gtk::Grid& gridWidget, CDasherModule* Module, std::shared_ptr<Dasher::CSettingsStore>& DasherSettings, bool includeAdvancedSettings){       
         //Clear the grid
         Widget* iter = gridWidget.get_first_child();
         while(iter) {
@@ -57,7 +59,12 @@ public:
         
         CDasherModule::UISettingList UISettings;
         Module->GetUISettings(UISettings);
+
+        std::sort(UISettings.begin(), UISettings.end(), [](auto& a, auto&b){return *a < *b;}); //Sort Settingslist, comparator needed to dereference smartpointers
+        
         for(unsigned int i = 0; i < UISettings.size(); i++){
+            if(!includeAdvancedSettings && UISettings[i]->AdvancedSetting) continue; //Potentially skip advanced settings
+
             // Attach Name Label
             Gtk::Label* nameLabel = Gtk::make_managed<Gtk::Label>(UISettings[i]->Name);
             nameLabel->set_halign(Gtk::Align::START);
@@ -90,6 +97,8 @@ public:
                     break;
                 }
             }
+
+            gridWidget.attach(*Gtk::make_managed<PopoverMenuButtonInfo>(UISettings[i]->Description), 2, i);
         }
     }
 };

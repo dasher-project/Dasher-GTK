@@ -56,8 +56,12 @@ MainWindow::MainWindow() :
     m_header_bar.pack_start(m_pref_button);
     m_header_bar.add_css_class("topbar");
 
+    m_preferences_window.signal_close_request().connect([this](){
+        m_preferences_window.set_visible(false);
+        return true;
+    }, false);
     m_pref_button.signal_clicked().connect([this](){
-        m_preferences_window.show();
+        m_preferences_window.set_visible(true);
     });
 
     m_new_button.signal_clicked().connect([this](){

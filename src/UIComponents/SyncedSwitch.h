@@ -10,6 +10,7 @@ class SyncedSwitch : public Gtk::Switch {
 public:
     SyncedSwitch(Dasher::Parameter parameter, std::shared_ptr<Dasher::CSettingsStore> settings) : m_settings(settings), m_synced_parameter(parameter) {
         set_halign(Gtk::Align::CENTER);
+        set_valign(Gtk::Align::CENTER);
 
         // Switch state on settings change
         settings->OnParameterChanged.Subscribe(this, [this](Dasher::Parameter param){
