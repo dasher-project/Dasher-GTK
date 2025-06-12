@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../DasherController.h"
+#include "Parameters.h"
 #include "glibmm/ustring.h"
 #include "gtkmm/box.h"
 #include "gtkmm/dropdown.h"
@@ -57,48 +58,48 @@ public:
             iter = next;
         }
         
-        CDasherModule::UISettingList UISettings;
+        std::vector<Dasher::Parameter> UISettings;
         Module->GetUISettings(UISettings);
 
-        std::sort(UISettings.begin(), UISettings.end(), [](auto& a, auto&b){return *a < *b;}); //Sort Settingslist, comparator needed to dereference smartpointers
+        //Sort Settingslist, comparator needed to reference default parameter list
+        std::sort(UISettings.begin(), UISettings.end(), [](Dasher::Parameter& a, Dasher::Parameter&b) {return Dasher::Settings::parameter_defaults.at(a) < Dasher::Settings::parameter_defaults.at(b);});
         
         for(unsigned int i = 0; i < UISettings.size(); i++){
-            if(!includeAdvancedSettings && UISettings[i]->AdvancedSetting) continue; //Potentially skip advanced settings
+            const Dasher::Settings::Parameter_Value& setting = Dasher::Settings::parameter_defaults.at(UISettings[i]);
+            if(!includeAdvancedSettings && setting.advancedSetting) continue; //Potentially skip advanced settings
 
             // Attach Name Label
-            Gtk::Label* nameLabel = Gtk::make_managed<Gtk::Label>(UISettings[i]->Name);
+            Gtk::Label* nameLabel = Gtk::make_managed<Gtk::Label>(setting.humanName != "" ? setting.humanName : setting.storageName);
             nameLabel->set_halign(Gtk::Align::START);
             gridWidget.attach(*nameLabel, 0, i);
 
             // Attach Interactable Widget
-            switch(UISettings[i]->Type){
-                case Switch:
+            switch(setting.suggestedUI){
+                case Dasher::Settings::UIControlType::Switch:
                 {
-                    gridWidget.attach(*Gtk::make_managed<SyncedSwitch>(UISettings[i]->Param, DasherSettings), 1, i);
+                    gridWidget.attach(*Gtk::make_managed<SyncedSwitch>(UISettings[i], DasherSettings), 1, i);
                     break;
                 }
-                case TextField: {
-                    gridWidget.attach(*Gtk::make_managed<SyncedTextbox>(UISettings[i]->Param, DasherSettings), 1, i);
+                case Dasher::Settings::UIControlType::TextField: {
+                    gridWidget.attach(*Gtk::make_managed<SyncedTextbox>(UISettings[i], DasherSettings), 1, i);
                     break;
                 }
-                case Slider: {
-                    Dasher::Settings::SliderSetting* setting = static_cast<Dasher::Settings::SliderSetting*>(UISettings[i].get());
-                    gridWidget.attach(*Gtk::make_managed<SyncedSlider>(setting->Param, DasherSettings, setting->min, setting->max, setting->step), 1, i);
+                case Dasher::Settings::UIControlType::Slider: {
+                    gridWidget.attach(*Gtk::make_managed<SyncedSlider>(UISettings[i], DasherSettings, setting.min, setting.max, setting.step), 1, i);
                     break;
                 }
-                case Step: {
-                    Dasher::Settings::SpinSetting* setting = static_cast<Dasher::Settings::SpinSetting*>(UISettings[i].get());
-                    gridWidget.attach(*Gtk::make_managed<SyncedSpinButton>(setting->Param, DasherSettings, setting->min, setting->max, setting->step), 1, i);
+                case Dasher::Settings::UIControlType::Step: {
+                    gridWidget.attach(*Gtk::make_managed<SyncedSpinButton>(UISettings[i], DasherSettings, setting.min, setting.max, setting.step), 1, i);
                     break;
                 }
-                case Enum: {
-                    Dasher::Settings::EnumSetting* setting = static_cast<Dasher::Settings::EnumSetting*>(UISettings[i].get());
-                    gridWidget.attach(*Gtk::make_managed<SyncedEnumDropdown>(setting->Param, DasherSettings, setting->Enums), 1, i);
+                case Dasher::Settings::UIControlType::Enum: {
+                    gridWidget.attach(*Gtk::make_managed<SyncedEnumDropdown>(UISettings[i], DasherSettings, setting.possibleValues), 1, i);
                     break;
                 }
-            }
+                case Dasher::Settings::None: break;
+                }
 
-            gridWidget.attach(*Gtk::make_managed<PopoverMenuButtonInfo>(UISettings[i]->Description), 2, i);
+            gridWidget.attach(*Gtk::make_managed<PopoverMenuButtonInfo>(setting.humanDescription), 2, i);
         }
     }
 };

@@ -27,12 +27,12 @@ public:
     Glib::RefPtr<Gio::ListStore<EnumProxy>> valueList = Gio::ListStore<EnumProxy>::create();
     Glib::RefPtr<Gtk::SignalListItemFactory> itemFactory = Gtk::SignalListItemFactory::create();
     
-    SyncedEnumDropdown(Dasher::Parameter parameter, std::shared_ptr<Dasher::CSettingsStore> settings, std::unordered_map<std::string, int>& Enums) : m_settings(settings), m_synced_parameter(parameter) {
+    SyncedEnumDropdown(Dasher::Parameter parameter, std::shared_ptr<Dasher::CSettingsStore> settings, const std::map<std::string, int>& Enums) : m_settings(settings), m_synced_parameter(parameter) {
         //Init values
         for(auto& [key, value] : Enums){
             valueList->append(EnumProxy::create(key, value));
         }
-        
+
         set_model(valueList);
         set_factory(itemFactory);
 
