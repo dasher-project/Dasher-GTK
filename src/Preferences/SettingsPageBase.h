@@ -22,7 +22,7 @@ class SettingsPageBase : public Gtk::Box
 {
 
 protected:
-    SettingsPageBase(Glib::ustring name, Glib::ustring title, std::shared_ptr<DasherController> controller) :
+    SettingsPageBase(Glib::ustring name, Glib::ustring title, std::shared_ptr<DasherController> controller = nullptr) :
         Gtk::Box(Gtk::Orientation::VERTICAL),
         m_settings_page_name(name), m_settings_page_title(title), m_controller(controller)
     {}

@@ -12,4 +12,5 @@ PreferencesWindow::PreferencesWindow(std::shared_ptr<Dasher::CSettingsStore> set
 
     //Add Pages
     m_settings_stack.add(m_mode_page, m_mode_page.getSettingsName(), m_mode_page.getSettingsTitle());
+    m_settings_stack.add(m_help_page, m_help_page.getSettingsName(), m_help_page.getSettingsTitle());
 }

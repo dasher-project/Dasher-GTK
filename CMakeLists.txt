@@ -36,6 +36,8 @@ ADD_Executable(Dasher
 	${PROJECT_SOURCE_DIR}/src/Preferences/PreferencesWindow.h
 	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsMode.cpp
 	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsMode.h
+	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsHelp.cpp
+	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsHelp.h
 	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsPageBase.h
 	${PROJECT_SOURCE_DIR}/src/UIComponents
 	${PROJECT_SOURCE_DIR}/src/UIComponents/ColorDisplayWidget.h

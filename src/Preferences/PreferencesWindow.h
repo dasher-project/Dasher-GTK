@@ -1,9 +1,9 @@
 #pragma once
 
+#include "SettingsHelp.h"
 #include "SettingsMode.h"
 #include "SettingsStore.h"
 #include "gtkmm/enums.h"
-#include "gtkmm/headerbar.h"
 #include "gtkmm/stack.h"
 #include "gtkmm/stacksidebar.h"
 #include "gtkmm/window.h"
@@ -25,4 +25,5 @@ public:
 
     //Pages
     SettingsMode m_mode_page;
+    SettingsHelp m_help_page;
 };
