@@ -1,5 +1,6 @@
 
 #include "SettingsHelp.h"
+#include "Licenses/SDLLicense.h"
 #include "SettingsPageBase.h"
 #include "gtkmm/enums.h"
 #include "gtkmm/expander.h"
@@ -22,6 +23,7 @@ SettingsHelp::SettingsHelp(): SettingsPageBase("Help", "About & License") {
     //Add License Texts
     AddLicense("GTK4", gtkLicense);
     AddLicense("PugiXML", pugiLicense);
+    AddLicense("SDL2", sdlLicense);
 }
 
 void SettingsHelp::AddLicense(Glib::ustring title, Glib::ustring text){
