@@ -3,6 +3,7 @@
 #include "ScreenGameModule.h"
 #include <functional>
 #include <memory>
+#include "InputTest.h"
 
 class DasherController : public Dasher::CDashIntfSettings
 {
@@ -32,6 +33,8 @@ public:
 	///Flush any modal messages that have been displayed before resuming.
 	void onUnpause(unsigned long lTime) override;
 
+	void CreateModules() override;
+
 	Dasher::CGameModule *CreateGameModule() override {
 		return new Dasher::CScreenGameModule(m_pSettingsStore, this, GetView(), m_pDasherModel);
 	};
@@ -43,4 +46,6 @@ private:
 	std::string Buffer;
 	//Accumulated deltaTime
 	unsigned long Time;
+
+	std::unique_ptr<TestInput> testInput;
 };
