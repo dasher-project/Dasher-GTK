@@ -1,10 +1,16 @@
 #include "DasherController.h"
+#include "Input/Joystick/JoystickInput.h"
 #include <iostream>
 
 class XmlServerStore;
 
 DasherController::DasherController(std::shared_ptr<Dasher::CSettingsStore> pSettingsStore): CDashIntfSettings(pSettingsStore.get())
 {}
+
+void DasherController::CreateModules(){
+	CDashIntfSettings::CreateModules();
+	GetModuleManager()->RegisterInputDeviceModule(new JoystickInput(this, m_pSettingsStore));
+}
 
 void DasherController::editOutput(const std::string& strText, Dasher::CDasherNode* pNode) {
 

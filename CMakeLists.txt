@@ -6,8 +6,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY $<1:${CMAKE_BINARY_DIR}/Dasher>)
 
-add_compile_definitions(HAVE_ROUND)
-
 ###############################
 # Building Dasher Library
 ###############################
@@ -23,6 +21,30 @@ pkg_check_modules(GTK REQUIRED gtk4)
 pkg_check_modules(GTKMM REQUIRED gtkmm-4.0)
 
 ###############################
+# Using/Building SDL2
+###############################
+
+set(SDL_STATIC ON CACHE BOOL "" FORCE)
+set(SDL_SHARED OFF CACHE BOOL "" FORCE)
+set(SDL_ATOMIC OFF CACHE BOOL "" FORCE)
+set(SDL_AUDIO OFF CACHE BOOL "" FORCE)
+set(SDL_VIDEO OFF CACHE BOOL "" FORCE)
+set(SDL_RENDER OFF CACHE BOOL "" FORCE)
+set(SDL_EVENTS ON CACHE BOOL "" FORCE)
+set(SDL_HAPTIC OFF CACHE BOOL "" FORCE)
+set(SDL_HIDAPI OFF CACHE BOOL "" FORCE)
+set(SDL_POWER OFF CACHE BOOL "" FORCE)
+set(SDL_TIMERS OFF CACHE BOOL "" FORCE)
+set(SDL_FILE OFF CACHE BOOL "" FORCE)
+set(SDL_LOADSO OFF CACHE BOOL "" FORCE)
+set(SDL_CPUINFO OFF CACHE BOOL "" FORCE)
+set(SDL_FILESYSTEM OFF CACHE BOOL "" FORCE)
+set(SDL_SENSOR OFF CACHE BOOL "" FORCE)
+set(SDL_LOCALE OFF CACHE BOOL "" FORCE)
+set(SDL_MISC OFF CACHE BOOL "" FORCE)
+add_subdirectory( "Thirdparty/SDL" )
+
+###############################
 # Building Dasher-UI
 ###############################
 
@@ -31,7 +53,8 @@ ADD_Executable(Dasher
 	${PROJECT_SOURCE_DIR}/src/DasherController.h
 	${PROJECT_SOURCE_DIR}/src/MainWindow.cpp
 	${PROJECT_SOURCE_DIR}/src/MainWindow.h
-	${PROJECT_SOURCE_DIR}/src/FakeInput.h
+	${PROJECT_SOURCE_DIR}/src/FakeInput.h	${PROJECT_SOURCE_DIR}/src/Input/Joystick/JoystickInput.h
+	${PROJECT_SOURCE_DIR}/src/Input/Joystick/JoystickInput.cpp
 	${PROJECT_SOURCE_DIR}/src/Preferences/PreferencesWindow.cpp
 	${PROJECT_SOURCE_DIR}/src/Preferences/PreferencesWindow.h
 	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsMode.cpp
@@ -56,9 +79,10 @@ ADD_Executable(Dasher
 	${PROJECT_SOURCE_DIR}/src/main.cpp
 )
 add_dependencies(Dasher DasherCore)
-target_link_libraries(Dasher PRIVATE DasherCore ${GTK_LIBRARIES} ${GTKMM_LIBRARIES})
+target_link_libraries(Dasher PRIVATE DasherCore SDL3::SDL3 ${GTK_LIBRARIES} ${GTKMM_LIBRARIES})
 target_include_directories(Dasher PRIVATE ${GTK_INCLUDE_DIRS} ${GTKMM_INCLUDE_DIRS})
 target_include_directories(Dasher PRIVATE ${CMAKE_CURRENT_LIST_DIR}/src/)
+target_include_directories(Dasher PRIVATE ${CMAKE_CURRENT_LIST_DIR}/Thirdparty/SDL/include/SDL3/)
 target_link_directories(Dasher PRIVATE ${GTK_LIBRARY_DIRS} ${GTKMM_LIBRARY_DIRS})
 
 ###############################

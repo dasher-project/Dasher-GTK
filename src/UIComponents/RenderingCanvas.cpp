@@ -4,7 +4,6 @@
 #include "cairomm/context.h"
 #include "cairomm/surface.h"
 #include "gdk/gdkkeysyms.h"
-#include "gdkmm/enums.h"
 #include "glibmm/datetime.h"
 #include "gtkmm/enums.h"
 #include "gtkmm/eventcontrollermotion.h"

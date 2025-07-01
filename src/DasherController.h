@@ -19,6 +19,8 @@ public:
 	std::string GetTextAroundCursor(Dasher::EditDistance iDist) override;
 	int GetAllContextLenght() override;
 
+	virtual void CreateModules() override;
+
 	void Initialize();
 	void Render(unsigned long iTime);
 
