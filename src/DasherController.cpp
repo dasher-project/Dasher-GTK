@@ -100,3 +100,11 @@ void DasherController::onUnpause(unsigned long lTime){
 	}
 	CDasherInterfaceBase::onUnpause(lTime);
 }
+
+void DasherController::CreateModules()
+{
+	CDashIntfSettings::CreateModules();
+
+	testInput = std::make_unique<FakeInput>();
+    GetModuleManager()->RegisterInputDeviceModule(testInput.get(), true);
+}
