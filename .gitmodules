@@ -2,6 +2,6 @@
 	path = DasherCore
 	url = https://github.com/dasher-project/DasherCore
 [submodule "Thirdparty/SDL"]
-	path = Thirdparty/SDL/
+	path = Thirdparty/SDL
 	url = https://github.com/libsdl-org/SDL.git
 	branch = release-3.2.x
