@@ -11,7 +11,6 @@ class FakeInput : public Dasher::CDasherVectorInput {
   public:
   FakeInput() : Dasher::CDasherVectorInput("Fake Input") {
     timerThread = std::thread([this](){
-      const float extend = 0.9;
       while(keepRunning){
         if(currentTraceForm == square){
           for(float i = -extend; i < extend; i += 2.0f*extend/1000.0f){
@@ -59,24 +58,25 @@ class FakeInput : public Dasher::CDasherVectorInput {
   }
   
   virtual bool GetVectorCoords(float &VectorX, float &VectorY){
-    const float cap = std::max(1.0f,std::sqrtf(x*x + y*y));
+    const float cap = (currentTraceForm != square) ? std::max(1.0f,std::sqrt(x*x + y*y)) : 1.0f;
     VectorX = x / cap;
     VectorY = y / cap;
     return true;
   };
-
+  
   // thread that is used to trace the shape
   std::thread timerThread;
   bool keepRunning = true;
   
   // computed coords
-  float x = 0;
-  float y = 0;
+  const float extend = 0.9;
+  float x = -extend;
+  float y = extend;
   
   // can be used to switch the traced shape
   enum traceForm {
     square,
-    circle,
+    ellipse,
     flower
   };
   const traceForm currentTraceForm = square;
