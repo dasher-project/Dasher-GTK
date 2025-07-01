@@ -31,7 +31,7 @@ ADD_Executable(Dasher
 	${PROJECT_SOURCE_DIR}/src/DasherController.h
 	${PROJECT_SOURCE_DIR}/src/MainWindow.cpp
 	${PROJECT_SOURCE_DIR}/src/MainWindow.h
-	${PROJECT_SOURCE_DIR}/src/InputTest.h
+	${PROJECT_SOURCE_DIR}/src/FakeInput.h
 	${PROJECT_SOURCE_DIR}/src/Preferences/PreferencesWindow.cpp
 	${PROJECT_SOURCE_DIR}/src/Preferences/PreferencesWindow.h
 	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsMode.cpp

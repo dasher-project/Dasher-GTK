@@ -105,6 +105,6 @@ void DasherController::CreateModules()
 {
 	CDashIntfSettings::CreateModules();
 
-	testInput = std::make_unique<TestInput>();
+	testInput = std::make_unique<FakeInput>();
     GetModuleManager()->RegisterInputDeviceModule(testInput.get(), true);
 }

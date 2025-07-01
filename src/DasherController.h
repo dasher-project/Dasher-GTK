@@ -3,7 +3,7 @@
 #include "ScreenGameModule.h"
 #include <functional>
 #include <memory>
-#include "InputTest.h"
+#include "FakeInput.h"
 
 class DasherController : public Dasher::CDashIntfSettings
 {
@@ -47,5 +47,5 @@ private:
 	//Accumulated deltaTime
 	unsigned long Time;
 
-	std::unique_ptr<TestInput> testInput;
+	std::unique_ptr<FakeInput> testInput;
 };
