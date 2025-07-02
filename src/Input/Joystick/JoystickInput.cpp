@@ -46,6 +46,7 @@ std::string JoystickInput::GUIDButtonName(const JoystickInput::JoystickGUID id, 
 
 void JoystickInput::Activate() {
     if(eventThread) return;
+    keepThreadAlive = true;
     eventThread = std::make_unique<std::thread>([this](){
         if (!SDL_InitSubSystem(SDL_INIT_JOYSTICK)) {
             std::cout << "Unable to initialize the joystick subsystem." << std::endl;

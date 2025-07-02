@@ -100,9 +100,9 @@ file(GLOB RESOURCE_FILES
 )
 file(COPY ${RESOURCE_FILES} DESTINATION ${CMAKE_BINARY_DIR}/Dasher/Data)
 
-file(GLOB RESOURCE_FILES
-  ${PROJECT_SOURCE_DIR}/Thirdparty/imgui/misc/fonts/*.ttf
-  ${PROJECT_SOURCE_DIR}/Resources/*.*
-)
-file(COPY ${RESOURCE_FILES} DESTINATION ${CMAKE_BINARY_DIR}/Dasher/Resources)
+file(COPY ${PROJECT_SOURCE_DIR}/Resources/ DESTINATION ${CMAKE_BINARY_DIR}/Dasher/Resources)
 file(COPY ${PROJECT_SOURCE_DIR}/src/UIStyle.css DESTINATION ${CMAKE_BINARY_DIR}/Dasher/)
+
+# Copy Licenses
+configure_file(${PROJECT_SOURCE_DIR}/Thirdparty/SDL/LICENSE.txt ${CMAKE_BINARY_DIR}/Dasher/Resources/License/LICENSE_SDL.txt)
+configure_file(${PROJECT_SOURCE_DIR}/DasherCore/Thirdparty/pugixml/LICENSE.md ${CMAKE_BINARY_DIR}/Dasher/Resources/License/LICENSE_PugiXML.txt)

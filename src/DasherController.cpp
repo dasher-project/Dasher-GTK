@@ -1,4 +1,5 @@
 #include "DasherController.h"
+#include "DasherInterfaceBase.h"
 #include "DasherTypes.h"
 #include "Input/Joystick/JoystickInput.h"
 #include "Parameters.h"
@@ -11,6 +12,7 @@ class XmlServerStore;
 DasherController::DasherController(std::shared_ptr<Dasher::CSettingsStore> pSettingsStore): CDashIntfSettings(pSettingsStore.get())
 {
 	m_pSettingsStore->OnParameterChanged.Subscribe(this, [this](Dasher::Parameter p){
+		Dasher::CDasherInterfaceBase::HandleParameterChange(p);
 		if(p == Dasher::Parameter::SP_BUTTON_MAPPINGS) InitButtonMap();
 	});
 }

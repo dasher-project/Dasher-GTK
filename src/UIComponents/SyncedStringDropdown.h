@@ -25,6 +25,7 @@ public:
         // Adjust based on movement
         property_selected_item().signal_changed().connect([this](){
             m_settings->SetStringParameter(m_synced_parameter, GetSelected());
+            OnSelectionChanged.emit(GetSelected());
         });
     }
 
@@ -35,6 +36,7 @@ public:
     Glib::ustring GetSelected(){
         return std::dynamic_pointer_cast<Gtk::StringObject>(get_selected_item())->get_string();
     }
+    sigc::signal<void(Glib::ustring)> OnSelectionChanged;
 
 protected:
     std::shared_ptr<Dasher::CSettingsStore> m_settings;
