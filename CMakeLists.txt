@@ -39,7 +39,7 @@ set(SDL_HIDAPI OFF CACHE BOOL "" FORCE)
 set(SDL_POWER OFF CACHE BOOL "" FORCE)
 set(SDL_SENSOR OFF CACHE BOOL "" FORCE)
 set(SDL_DIALOG OFF CACHE BOOL "" FORCE)
-add_subdirectory( "Thirdparty/SDL" )
+add_subdirectory("Thirdparty/SDL" EXCLUDE_FROM_ALL)
 
 ###############################
 # Building Dasher-UI
@@ -80,7 +80,7 @@ add_dependencies(Dasher DasherCore)
 target_link_libraries(Dasher PRIVATE DasherCore SDL3::SDL3 ${GTK_LIBRARIES} ${GTKMM_LIBRARIES})
 target_include_directories(Dasher PRIVATE ${GTK_INCLUDE_DIRS} ${GTKMM_INCLUDE_DIRS})
 target_include_directories(Dasher PRIVATE ${CMAKE_CURRENT_LIST_DIR}/src/)
-target_include_directories(Dasher PRIVATE ${CMAKE_CURRENT_LIST_DIR}/Thirdparty/SDL/include/SDL3/)
+target_include_directories(Dasher PRIVATE ${CMAKE_CURRENT_LIST_DIR}/Thirdparty/SDL/include/)
 target_link_directories(Dasher PRIVATE ${GTK_LIBRARY_DIRS} ${GTKMM_LIBRARY_DIRS})
 
 ###############################

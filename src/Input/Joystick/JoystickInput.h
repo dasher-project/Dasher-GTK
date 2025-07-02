@@ -5,7 +5,7 @@
 #include <memory>
 #include <mutex>
 #include <thread>
-#include "SDL_joystick.h"
+#include "SDL3/SDL_joystick.h"
 #include <unordered_map>
 #include <unordered_set>
 

@@ -1,8 +1,8 @@
 #include "JoystickInput.h"
 #include "Parameters.h"
-#include "SDL_init.h"
-#include "SDL_events.h"
-#include "SDL_joystick.h"
+#include "SDL3/SDL_init.h"
+#include "SDL3/SDL_events.h"
+#include "SDL3/SDL_joystick.h"
 #include "SettingsStore.h"
 #include "DasherController.h"
 #include <iostream>
@@ -12,6 +12,7 @@
 #include <mutex>
 #include <ostream>
 #include <string>
+#include <cstring>
 
 #pragma clang optimize off
 
