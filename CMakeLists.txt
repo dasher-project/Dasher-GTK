@@ -38,6 +38,12 @@ set(SDL_HIDAPI OFF CACHE BOOL "" FORCE)
 set(SDL_POWER OFF CACHE BOOL "" FORCE)
 set(SDL_SENSOR OFF CACHE BOOL "" FORCE)
 set(SDL_DIALOG OFF CACHE BOOL "" FORCE)
+
+# Workaround for "Undefined symbols for architecture arm64", see https://github.com/libsdl-org/SDL/issues/13235
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+	set(SDL_VIDEO ON CACHE BOOL "" FORCE)
+ENDIF()
+
 add_subdirectory("Thirdparty/SDL" EXCLUDE_FROM_ALL)
 
 ###############################
