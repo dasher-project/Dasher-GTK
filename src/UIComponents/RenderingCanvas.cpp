@@ -3,6 +3,7 @@
 #include "DasherTypes.h"
 #include "cairomm/context.h"
 #include "cairomm/surface.h"
+#include "gdk/gdk.h"
 #include "gdk/gdkkeysyms.h"
 #include "glibmm/datetime.h"
 #include "gtkmm/enums.h"
@@ -18,10 +19,13 @@
 #include <gdkmm/frameclock.h>
 #include <memory>
 
+const std::string RenderingCanvas::ButtonNamePrimary = "MouseLeft";
+const std::string RenderingCanvas::ButtonNameSecondary = "MouseRight";
 
 const long long RenderingCanvas::getCurrentMS(){
     return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - startTime).count();
 }
+
 #pragma clang optimize off
 RenderingCanvas::RenderingCanvas(): Dasher::CDasherScreen(100,100), CScreenCoordInput("Mouse Input") {
     //Set Inital Size
@@ -38,14 +42,25 @@ RenderingCanvas::RenderingCanvas(): Dasher::CDasherScreen(100,100), CScreenCoord
     });
     add_controller(mouseController);
     
-    mouseClickController = Gtk::GestureClick::create();
-    mouseClickController->signal_pressed().connect([this](int, double, double){
-        dasherController->KeyDown(getCurrentMS(), Dasher::Keys::Primary_Input);
+    mouseLeftClickController = Gtk::GestureClick::create();
+    mouseLeftClickController->set_button(GDK_BUTTON_PRIMARY);
+    mouseLeftClickController->signal_pressed().connect([this](int, double, double){
+        if(inputActivated) dasherController->MappedKeyDown(getCurrentMS(), ButtonNamePrimary);
     });
-    mouseClickController->signal_released().connect([this](int, double, double){
-        dasherController->KeyUp(getCurrentMS(), Dasher::Keys::Primary_Input);
+    mouseLeftClickController->signal_released().connect([this](int, double, double){
+        if(inputActivated) dasherController->MappedKeyUp(getCurrentMS(), ButtonNamePrimary);
     });
-    add_controller(mouseClickController);
+    add_controller(mouseLeftClickController);
+
+    mouseRightClickController = Gtk::GestureClick::create();
+    mouseRightClickController->set_button(GDK_BUTTON_SECONDARY);
+    mouseRightClickController->signal_pressed().connect([this](int, double, double){
+        if(inputActivated) dasherController->MappedKeyDown(getCurrentMS(), ButtonNameSecondary);
+    });
+    mouseRightClickController->signal_released().connect([this](int, double, double){
+        if(inputActivated) dasherController->MappedKeyUp(getCurrentMS(), ButtonNameSecondary);
+    });
+    add_controller(mouseRightClickController);
 
     //add shortcut
     shortcutController = Gtk::ShortcutController::create();

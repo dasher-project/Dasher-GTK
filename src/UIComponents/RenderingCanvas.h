@@ -39,17 +39,26 @@ public:
 	const long long getCurrentMS();
 	void show_text(const std::string& utf8);
 
+	virtual void Activate() override {inputActivated = true;};
+    virtual void Deactivate() override {inputActivated = false;};
+
 public:
 	Glib::RefPtr<Gtk::EventControllerMotion> mouseController;
-	Glib::RefPtr<Gtk::GestureClick> mouseClickController;
+	Glib::RefPtr<Gtk::GestureClick> mouseLeftClickController;
+	Glib::RefPtr<Gtk::GestureClick> mouseRightClickController;
 	Glib::RefPtr<Gtk::ShortcutController> shortcutController;
 	std::shared_ptr<Dasher::XmlSettingsStore> Settings;
 	std::shared_ptr<DasherController> dasherController;
 	Dasher::point mousePos = {0,0};
+	bool inputActivated = false;
 
 	Cairo::RefPtr<Cairo::RecordingSurface> recordingSurface;
 	Cairo::RefPtr<Cairo::Context> renderingBackend;
 	bool generatePDFNextFrame = false;
 
 	std::chrono::time_point<std::chrono::steady_clock> startTime;
+
+private:
+	static const std::string ButtonNamePrimary;
+	static const std::string ButtonNameSecondary;
 };

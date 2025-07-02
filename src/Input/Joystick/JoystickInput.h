@@ -1,20 +1,22 @@
 #pragma once
 
 #include "DasherInput.h"
-#include "DasherInterfaceBase.h"
+#include "SettingsStore.h"
 #include <memory>
 #include <mutex>
 #include <thread>
+#include "SDL_joystick.h"
 #include <unordered_map>
-#include "DasherTypes.h"
-#include "SDL.h"
+#include <unordered_set>
 
-class JoystickInput : public Dasher::CScreenCoordInput
+class DasherController;
+
+class JoystickInput : public Dasher::CDasherVectorInput
 {
 public:
-    JoystickInput(Dasher::CDasherInterfaceBase* interface, Dasher::CSettingsStore* settings);
+    JoystickInput(DasherController* interface, Dasher::CSettingsStore* settings);
 
-    virtual bool GetScreenCoords(Dasher::screenint &iX, Dasher::screenint &iY, Dasher::CDasherView *pView) override;
+    virtual bool GetVectorCoords(float &VectorX, float &VectorY) override;
 
     virtual void Activate() override;
     virtual void Deactivate() override;
@@ -25,14 +27,17 @@ public:
     std::map<std::string, std::string> GetAvailableDevices(); 
 
 protected:
-    Dasher::CDasherInterfaceBase* interface;
+    DasherController* interface;
     Dasher::CSettingsStore* settings;
     Event<> JoysticksChanged;
     
-    std::unordered_map<SDL_JoystickID, std::string> openedControllers; //Known ControllerIDs to GUID Mapping
-    std::unordered_map<std::string, std::unordered_map<Uint8, Dasher::Keys::VirtualKey>> GUIDButtonMap; // GUID to Keymap
+    typedef std::string JoystickGUID;
+    std::unordered_set<JoystickGUID> requestedControllers;
+    std::unordered_map<SDL_JoystickID, JoystickGUID> openedControllers; //Known ControllerIDs to GUID Mapping
     std::pair<std::string, Uint8> XAxis; // GUID to AxisNum
     std::pair<std::string, Uint8> YAxis; // GUID to AxisNum
+    static JoystickGUID convertIDtoGUID(const SDL_JoystickID& id);
+    static std::string GUIDButtonName(const JoystickInput::JoystickGUID id, Uint8 button);
 
     //Input Vector
     double lastRelativeX = 0;

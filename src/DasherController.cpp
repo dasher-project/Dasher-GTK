@@ -1,15 +1,26 @@
 #include "DasherController.h"
+#include "DasherTypes.h"
 #include "Input/Joystick/JoystickInput.h"
+#include "Parameters.h"
 #include <iostream>
+#include <iterator>
+#include <string>
 
 class XmlServerStore;
 
 DasherController::DasherController(std::shared_ptr<Dasher::CSettingsStore> pSettingsStore): CDashIntfSettings(pSettingsStore.get())
-{}
+{
+	m_pSettingsStore->OnParameterChanged.Subscribe(this, [this](Dasher::Parameter p){
+		if(p == Dasher::Parameter::SP_BUTTON_MAPPINGS) InitButtonMap();
+	});
+}
 
 void DasherController::CreateModules(){
 	CDashIntfSettings::CreateModules();
 	GetModuleManager()->RegisterInputDeviceModule(new JoystickInput(this, m_pSettingsStore));
+
+	testInput = std::make_unique<FakeInput>();
+    GetModuleManager()->RegisterInputDeviceModule(testInput.get(), true);
 }
 
 void DasherController::editOutput(const std::string& strText, Dasher::CDasherNode* pNode) {
@@ -87,6 +98,7 @@ int DasherController::GetAllContextLenght()
 void DasherController::Initialize()
 {
 	Realize(0);
+	InitButtonMap();
 }
 
 void DasherController::Render(unsigned long iTime){
@@ -107,10 +119,63 @@ void DasherController::onUnpause(unsigned long lTime){
 	CDasherInterfaceBase::onUnpause(lTime);
 }
 
-void DasherController::CreateModules()
-{
-	CDashIntfSettings::CreateModules();
-
-	testInput = std::make_unique<FakeInput>();
-    GetModuleManager()->RegisterInputDeviceModule(testInput.get(), true);
+#pragma clang optimize off
+void DasherController::MappedKeyDown(unsigned long iTime, const std::string& key) {
+	for(auto& [virtualKey, deviceKey] : keyMappings){
+		if(deviceKey == key) KeyDown(iTime, virtualKey);
+	}
 }
+
+void DasherController::MappedKeyUp(unsigned long iTime, const std::string& key) {
+	for(auto& [virtualKey, deviceKey] : keyMappings){
+		if(deviceKey == key) KeyUp(iTime, virtualKey);
+	}
+}
+
+void DasherController::AddKeyToButtonMap(Dasher::Keys::VirtualKey key, const std::string& mapping){
+	keyMappings.insert({key, mapping});
+	WriteButtonMap();
+}
+
+void DasherController::RemoveKeyFromButtonMap(Dasher::Keys::VirtualKey key, const std::string& mapping){
+	keyMappings.erase({key, mapping});
+	WriteButtonMap();
+}
+
+void DasherController::InitButtonMap() {
+	if(ignoreChangesInButtonMap) return;
+
+	const std::string& mappings = GetStringParameter(Dasher::Parameter::SP_BUTTON_MAPPINGS);
+	
+	keyMappings.clear(); //empty the map first
+	auto left = mappings.begin();
+	std::string deviceKey;
+    for (auto it = left; it != mappings.end(); ++it) 
+    { 
+        if (*it == ';' || it == std::prev(mappings.end())) 
+        { 
+			const Dasher::Keys::VirtualKey virtualKey = Dasher::Keys::StringToVirtualKey(std::string(&*left, it - left + ((it == std::prev(mappings.end())) ? 1 : 0)));
+			if(!deviceKey.empty() && virtualKey != Dasher::Keys::Invalid_Key) keyMappings.insert({virtualKey, deviceKey});
+			deviceKey = "";
+            left = it + 1; 
+        }
+		if (*it == ':') 
+        {
+            deviceKey = std::string(&*left, it - left);
+            left = it + 1; 
+        }
+    } 
+}
+
+// write button map as "<deviceKey>:<virtualKey>;<deviceKey>:<virtualKey>;...", where both keys are potentially doubled
+void DasherController::WriteButtonMap(){
+	std::string output;
+	for(auto& [virtualKey, deviceKey] : keyMappings){
+		output += deviceKey + ":" + Dasher::Keys::VirtualKeyToString(virtualKey) + ";";
+	}
+	ignoreChangesInButtonMap = true;
+	SetStringParameter(Dasher::Parameter::SP_BUTTON_MAPPINGS, output);
+	ignoreChangesInButtonMap = false;
+}
+
+#pragma clang optimize on

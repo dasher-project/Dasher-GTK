@@ -53,7 +53,8 @@ ADD_Executable(Dasher
 	${PROJECT_SOURCE_DIR}/src/DasherController.h
 	${PROJECT_SOURCE_DIR}/src/MainWindow.cpp
 	${PROJECT_SOURCE_DIR}/src/MainWindow.h
-	${PROJECT_SOURCE_DIR}/src/FakeInput.h	${PROJECT_SOURCE_DIR}/src/Input/Joystick/JoystickInput.h
+	${PROJECT_SOURCE_DIR}/src/FakeInput.h
+	${PROJECT_SOURCE_DIR}/src/Input/Joystick/JoystickInput.h
 	${PROJECT_SOURCE_DIR}/src/Input/Joystick/JoystickInput.cpp
 	${PROJECT_SOURCE_DIR}/src/Preferences/PreferencesWindow.cpp
 	${PROJECT_SOURCE_DIR}/src/Preferences/PreferencesWindow.h

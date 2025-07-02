@@ -1,9 +1,28 @@
 #pragma once
 #include <DashIntfScreenMsgs.h>
+#include "DasherTypes.h"
 #include "ScreenGameModule.h"
 #include <functional>
 #include <memory>
+#include <unordered_set>
 #include "FakeInput.h"
+
+struct hash_pair {
+    template <class T1, class T2>
+    size_t operator()(const std::pair<T1, T2>& p) const
+    {
+        return hash_combine(std::hash<T1>{}(p.first), std::hash<T2>{}(p.second));
+    }
+	// Taken from https://stackoverflow.com/a/27952689
+	size_t hash_combine( size_t lhs, size_t rhs ) const {
+		if constexpr (sizeof(size_t) >= 8) {
+			lhs ^= rhs + 0x517cc1b727220a95 + (lhs << 6) + (lhs >> 2);
+		} else {
+			lhs ^= rhs + 0x9e3779b9 + (lhs << 6) + (lhs >> 2);
+		}
+		return lhs;
+	}
+};
 
 class DasherController : public Dasher::CDashIntfSettings
 {
@@ -35,11 +54,19 @@ public:
 	///Flush any modal messages that have been displayed before resuming.
 	void onUnpause(unsigned long lTime) override;
 
-	void CreateModules() override;
-
 	Dasher::CGameModule *CreateGameModule() override {
 		return new Dasher::CScreenGameModule(m_pSettingsStore, this, GetView(), m_pDasherModel);
 	};
+
+	void MappedKeyDown(unsigned long iTime, const std::string& key);
+  	void MappedKeyUp(unsigned long iTime, const std::string& key);
+	void InitButtonMap();
+	void WriteButtonMap();
+	void AddKeyToButtonMap(Dasher::Keys::VirtualKey key, const std::string& mapping);
+	void RemoveKeyFromButtonMap(Dasher::Keys::VirtualKey key, const std::string& mapping);
+	bool ignoreChangesInButtonMap = false;
+	//Key Mappings from settings
+	std::unordered_set<std::pair<Dasher::Keys::VirtualKey, std::string>,hash_pair> keyMappings;
 
 private:
 	//Cursor position in the output buffer
@@ -48,6 +75,7 @@ private:
 	std::string Buffer;
 	//Accumulated deltaTime
 	unsigned long Time;
+
 
 	std::unique_ptr<FakeInput> testInput;
 };
