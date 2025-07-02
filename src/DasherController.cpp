@@ -153,8 +153,9 @@ void DasherController::InitButtonMap() {
     for (auto it = left; it != mappings.end(); ++it) 
     { 
         if (*it == ';' || it == std::prev(mappings.end())) 
-        { 
-			const Dasher::Keys::VirtualKey virtualKey = Dasher::Keys::StringToVirtualKey(std::string(&*left, it - left + ((it == std::prev(mappings.end())) ? 1 : 0)));
+        {
+			const int offset = (*it != ';') ? 1 : 0; // must be last character of string and instead of ';'
+			const Dasher::Keys::VirtualKey virtualKey = Dasher::Keys::StringToVirtualKey(std::string(&*left, it - left + offset));
 			if(!deviceKey.empty() && virtualKey != Dasher::Keys::Invalid_Key) keyMappings.insert({virtualKey, deviceKey});
 			deviceKey = "";
             left = it + 1; 
@@ -167,7 +168,7 @@ void DasherController::InitButtonMap() {
     } 
 }
 
-// write button map as "<deviceKey>:<virtualKey>;<deviceKey>:<virtualKey>;...", where both keys are potentially doubled
+// write button map as "<deviceKey>:<virtualKey>;<deviceKey>:<virtualKey>;[...]", where both keys could potentially be doubled, but any mapping is unique
 void DasherController::WriteButtonMap(){
 	std::string output;
 	for(auto& [virtualKey, deviceKey] : keyMappings){
