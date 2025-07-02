@@ -24,7 +24,6 @@ public:
     // bool OpenCurrentJoystick();
     void OpenNeededControllers();
     void PoplulateInputMaps();
-    std::map<std::string, std::string> GetAvailableDevices(); 
 
 protected:
     DasherController* interface;
@@ -36,8 +35,9 @@ protected:
     std::unordered_map<SDL_JoystickID, JoystickGUID> openedControllers; //Known ControllerIDs to GUID Mapping
     std::pair<std::string, Uint8> XAxis; // GUID to AxisNum
     std::pair<std::string, Uint8> YAxis; // GUID to AxisNum
-    static JoystickGUID convertIDtoGUID(const SDL_JoystickID& id);
-    static std::string GUIDButtonName(const JoystickInput::JoystickGUID id, Uint8 button);
+    static JoystickGUID IDtoGUID(const SDL_JoystickID& id);
+    static std::string GUIDAndSpecifierToString(const JoystickInput::JoystickGUID id, Uint8 specifier);
+    static std::pair<JoystickInput::JoystickGUID, Uint8> GUIDAndSpecifierFromString(const std::string& InputString);
 
     //Input Vector
     double lastRelativeX = 0;

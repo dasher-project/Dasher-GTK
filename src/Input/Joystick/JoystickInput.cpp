@@ -19,15 +19,18 @@
 JoystickInput::JoystickInput(DasherController* interface, Dasher::CSettingsStore* settings) : interface(interface), settings(settings), Dasher::CDasherVectorInput("Joystick") {
     PoplulateInputMaps();
     settings->OnParameterChanged.Subscribe(this, [this](Dasher::Parameter p){
-        static std::vector<Dasher::Parameter> Buttons = {Dasher::Parameter::SP_JOYSTICK_DEVICE};
-        if(std::find(Buttons.begin(), Buttons.end(), p) != Buttons.end()){
+        if(p == Dasher::SP_JOYSTICK_XAXIS || p == Dasher::SP_JOYSTICK_YAXIS){
             PoplulateInputMaps();
             OpenNeededControllers();
         }
     });
+    interface->ButtonMappingsChanged.Subscribe(this, [this](){
+        PoplulateInputMaps();
+        OpenNeededControllers();
+    });
 }
 
-JoystickInput::JoystickGUID JoystickInput::convertIDtoGUID(const SDL_JoystickID& id){
+JoystickInput::JoystickGUID JoystickInput::IDtoGUID(const SDL_JoystickID& id){
     SDL_GUID GUID = SDL_GetJoystickGUIDForID(id);
     JoystickGUID stringification = std::string(33,'\0');
     SDL_GUIDToString(GUID, stringification.data(), 33);
@@ -35,12 +38,26 @@ JoystickInput::JoystickGUID JoystickInput::convertIDtoGUID(const SDL_JoystickID&
     return stringification;
 }
 
-std::string JoystickInput::GUIDButtonName(const JoystickInput::JoystickGUID id, Uint8 button){
+// Converts to format "JOY-<GUID-32>-<TwoDigitSpecifier>" 
+std::string JoystickInput::GUIDAndSpecifierToString(const JoystickInput::JoystickGUID id, Uint8 specifier){
     if(id.size() != 32) return "";
-    std::string res = std::string("JOY-00000000000000000000000000000000-00"); // "JOY-<GUID-32>-<TwoDigitButton>"
+    std::string res = std::string("JOY-00000000000000000000000000000000-00"); 
     std::memcpy(&res[4], id.data(), id.size());
-    res[37] = char('0' + button / 10);
-    res[38] = char('0' + button % 10);
+    res[37] = char('0' + specifier / 10);
+    res[38] = char('0' + specifier % 10);
+    return res;
+}
+
+// Parsing "JOY-<GUID-32>-<TwoDigitSpecifier>" format into tuple
+std::pair<JoystickInput::JoystickGUID, Uint8> JoystickInput::GUIDAndSpecifierFromString(const std::string& InputString){
+    if(InputString.size() != 39 ||
+        !(InputString[0] == 'J' && InputString[1] == 'O' && InputString[2] == 'Y' && InputString[3] == '-')){
+            return {"", 0}; //Input format wrong
+    }
+    
+    std::pair<JoystickInput::JoystickGUID, Uint8> res = {"00000000000000000000000000000000", 0};
+    std::memcpy(res.first.data(), &InputString[4], res.first.size());
+    res.second = (InputString[37] - '0') * 10 + (InputString[38] - '0');
     return res;
 }
 
@@ -54,8 +71,6 @@ void JoystickInput::Activate() {
             return;
         }
         sdl_initialized = true;
-
-        GetAvailableDevices();
 
         SDL_Event event;
         while (keepThreadAlive) {
@@ -75,17 +90,17 @@ void JoystickInput::Activate() {
                     break;
                 case SDL_EVENT_JOYSTICK_BUTTON_DOWN:
                     {
-                        interface->MappedKeyDown(0, GUIDButtonName(openedControllers[event.jdevice.which], event.jbutton.button));
+                        interface->MappedKeyDown(0, GUIDAndSpecifierToString(openedControllers[event.jdevice.which], event.jbutton.button));
                     }
                     break;
                 case SDL_EVENT_JOYSTICK_BUTTON_UP:
                     {
-                        interface->MappedKeyUp(0, GUIDButtonName(openedControllers[event.jdevice.which], event.jbutton.button));
+                        interface->MappedKeyUp(0, GUIDAndSpecifierToString(openedControllers[event.jdevice.which], event.jbutton.button));
                     }
                     break;
                 case SDL_EVENT_JOYSTICK_ADDED:
                     {
-                        const JoystickGUID GUID = convertIDtoGUID(event.jdevice.which);
+                        const JoystickGUID GUID = IDtoGUID(event.jdevice.which);
                         if(requestedControllers.count(GUID) && openedControllers.count(event.jdevice.which) == 0 && SDL_OpenJoystick(event.jdevice.which)){
                             openedControllers[event.jdevice.which] = GUID;
                         }
@@ -116,22 +131,6 @@ void JoystickInput::Deactivate() {
     eventThread.reset();
 }
 
-std::map<std::string, std::string> JoystickInput::GetAvailableDevices() {
-    std::scoped_lock lock(sdl_external);
-    std::map<JoystickGUID, std::string> deviceMap;
-    
-    if(!sdl_initialized) return deviceMap; //Not initialized
-
-    int count;
-    SDL_JoystickID* joysticks = SDL_GetJoysticks(&count);
-    for(int i = 0; i < count; i++){
-        deviceMap[convertIDtoGUID(joysticks[i])] = SDL_GetJoystickNameForID(joysticks[i]);
-    }
-    SDL_free(joysticks);
-
-    return deviceMap;
-}
-
 void JoystickInput::OpenNeededControllers(){
     std::scoped_lock lock(sdl_external);
     if(!sdl_initialized) return;
@@ -139,7 +138,7 @@ void JoystickInput::OpenNeededControllers(){
     int count;
     SDL_JoystickID* joysticks = SDL_GetJoysticks(&count);
     for(int i = 0; i < count; i++){
-        const JoystickGUID GUID = convertIDtoGUID(joysticks[i]);
+        const JoystickGUID GUID = IDtoGUID(joysticks[i]);
         // Do we need this one and did we not open it so far?
         if(requestedControllers.count(GUID) && openedControllers.count(joysticks[i]) == 0 && SDL_OpenJoystick(joysticks[i])){
             openedControllers[joysticks[i]] = GUID;
@@ -153,10 +152,20 @@ void JoystickInput::OpenNeededControllers(){
 }
 
 void JoystickInput::PoplulateInputMaps(){
-    requestedControllers = {"0300fa675e0400008e02000014017801"};
+    requestedControllers.clear();
 
-    XAxis = {"0300fa675e0400008e02000014017801", 0};
-    YAxis = {"0300fa675e0400008e02000014017801", 1};
+    // Read axis mappings
+    XAxis = GUIDAndSpecifierFromString(interface->GetStringParameter(Dasher::Parameter::SP_JOYSTICK_XAXIS));
+    YAxis = GUIDAndSpecifierFromString(interface->GetStringParameter(Dasher::Parameter::SP_JOYSTICK_YAXIS));
+    
+    // Find controllers to open
+    if(!XAxis.first.empty()) requestedControllers.insert(XAxis.first);
+    if(!YAxis.first.empty()) requestedControllers.insert(YAxis.first);
+
+    for(auto& [virtualKey, deviceKey] : interface->keyMappings){
+        const std::pair<JoystickInput::JoystickGUID, Uint8> res = GUIDAndSpecifierFromString(deviceKey);
+        if(!res.first.empty()) requestedControllers.insert(res.first);
+    }
 }
 
 bool JoystickInput::GetVectorCoords(float &VectorX, float &VectorY){

@@ -99,8 +99,8 @@ int DasherController::GetAllContextLenght()
 
 void DasherController::Initialize()
 {
-	Realize(0);
 	InitButtonMap();
+	Realize(0);
 }
 
 void DasherController::Render(unsigned long iTime){
@@ -167,7 +167,8 @@ void DasherController::InitButtonMap() {
             deviceKey = std::string(&*left, it - left);
             left = it + 1; 
         }
-    } 
+    }
+	ButtonMappingsChanged.Broadcast();
 }
 
 // write button map as "<deviceKey>:<virtualKey>;<deviceKey>:<virtualKey>;[...]", where both keys could potentially be doubled, but any mapping is unique

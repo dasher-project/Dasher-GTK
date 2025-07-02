@@ -67,6 +67,7 @@ public:
 	bool ignoreChangesInButtonMap = false;
 	//Key Mappings from settings
 	std::unordered_set<std::pair<Dasher::Keys::VirtualKey, std::string>,hash_pair> keyMappings;
+	Event<> ButtonMappingsChanged;
 
 private:
 	//Cursor position in the output buffer
