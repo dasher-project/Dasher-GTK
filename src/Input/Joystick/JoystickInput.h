@@ -22,7 +22,7 @@ public:
     virtual void Deactivate() override;
 
     // bool OpenCurrentJoystick();
-    void OpenNeededControllers();
+    void OpenNeededControllers(bool openAll = false);
     void PoplulateInputMaps();
 
 protected:

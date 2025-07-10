@@ -24,9 +24,12 @@ JoystickInput::JoystickInput(DasherController* interface, Dasher::CSettingsStore
             OpenNeededControllers();
         }
     });
-    interface->ButtonMappingsChanged.Subscribe(this, [this](){
+    interface->GetButtonMapper()->ButtonMappingsChanged.Subscribe(this, [this](){
         PoplulateInputMaps();
         OpenNeededControllers();
+    });
+    interface->GetButtonMapper()->ListeningForAllKeys.Subscribe(this, [this](bool listening){
+        OpenNeededControllers(listening);
     });
 }
 
@@ -90,12 +93,12 @@ void JoystickInput::Activate() {
                     break;
                 case SDL_EVENT_JOYSTICK_BUTTON_DOWN:
                     {
-                        interface->MappedKeyDown(0, GUIDAndSpecifierToString(openedControllers[event.jdevice.which], event.jbutton.button));
+                        interface->GetButtonMapper()->MappedKeyDown(GUIDAndSpecifierToString(openedControllers[event.jdevice.which], event.jbutton.button));
                     }
                     break;
                 case SDL_EVENT_JOYSTICK_BUTTON_UP:
                     {
-                        interface->MappedKeyUp(0, GUIDAndSpecifierToString(openedControllers[event.jdevice.which], event.jbutton.button));
+                        interface->GetButtonMapper()->MappedKeyUp(GUIDAndSpecifierToString(openedControllers[event.jdevice.which], event.jbutton.button));
                     }
                     break;
                 case SDL_EVENT_JOYSTICK_ADDED:
@@ -131,7 +134,7 @@ void JoystickInput::Deactivate() {
     eventThread.reset();
 }
 
-void JoystickInput::OpenNeededControllers(){
+void JoystickInput::OpenNeededControllers(bool openAll){
     std::scoped_lock lock(sdl_external);
     if(!sdl_initialized) return;
 
@@ -139,8 +142,8 @@ void JoystickInput::OpenNeededControllers(){
     SDL_JoystickID* joysticks = SDL_GetJoysticks(&count);
     for(int i = 0; i < count; i++){
         const JoystickGUID GUID = IDtoGUID(joysticks[i]);
-        // Do we need this one and did we not open it so far?
-        if(requestedControllers.count(GUID) && openedControllers.count(joysticks[i]) == 0 && SDL_OpenJoystick(joysticks[i])){
+        // Do we need this one (requested or openAll) and did we not open it so far?
+        if((requestedControllers.count(GUID) || openAll) && openedControllers.count(joysticks[i]) == 0 && SDL_OpenJoystick(joysticks[i])){
             openedControllers[joysticks[i]] = GUID;
         } else if(openedControllers.count(joysticks[i])) {
             //Opened before but not needed anymore
@@ -162,7 +165,7 @@ void JoystickInput::PoplulateInputMaps(){
     if(!XAxis.first.empty()) requestedControllers.insert(XAxis.first);
     if(!YAxis.first.empty()) requestedControllers.insert(YAxis.first);
 
-    for(auto& [virtualKey, deviceKey] : interface->keyMappings){
+    for(auto& [virtualKey, deviceKey] : interface->GetButtonMapper()->GetKeyMap()){
         const std::pair<JoystickInput::JoystickGUID, Uint8> res = GUIDAndSpecifierFromString(deviceKey);
         if(!res.first.empty()) requestedControllers.insert(res.first);
     }

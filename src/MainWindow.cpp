@@ -4,9 +4,11 @@
 #include "UIComponents/RenderingCanvas.h"
 #include "cairomm/fontface.h"
 #include "gdkmm/display.h"
+#include "gdkmm/event.h"
 #include "glibmm/refptr.h"
 #include "gtkmm/enums.h"
 #include "pangomm/fontdescription.h"
+#include "gdk/gdkkeys.h"
 #include <memory>
 
 Cairo::ToyFontFace::Slant getSlantFromPango(Pango::Style s){
@@ -70,6 +72,16 @@ MainWindow::MainWindow() :
     m_open_button.signal_clicked().connect([this](){
         m_canvas.dasherController->Message("Timed Message", false);
     });
+
+    // Send All Keys to the Button Mapper
+    auto event_controller = Gtk::EventControllerKey::create();
+    event_controller->signal_key_pressed().connect([this](guint keyval, guint keycode, Gdk::ModifierType state){
+        return m_canvas.dasherController->GetButtonMapper()->MappedKeyDown(gdk_keyval_name(keyval));
+    }, false);
+    event_controller->signal_key_released().connect([this](guint keyval, guint keycode, Gdk::ModifierType state){
+        m_canvas.dasherController->GetButtonMapper()->MappedKeyUp(gdk_keyval_name(keyval));
+    }, false);
+    add_controller(event_controller);
 
     // Pack Footer Bar
     m_footer_bar.pack_start(m_alphabet_chooser);

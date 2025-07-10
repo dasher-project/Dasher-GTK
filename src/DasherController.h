@@ -1,28 +1,10 @@
 #pragma once
 #include <DashIntfScreenMsgs.h>
-#include "DasherTypes.h"
+#include "ButtonMapper.h"
 #include "ScreenGameModule.h"
 #include <functional>
 #include <memory>
-#include <unordered_set>
 #include "FakeInput.h"
-
-struct hash_pair {
-    template <class T1, class T2>
-    size_t operator()(const std::pair<T1, T2>& p) const
-    {
-        return hash_combine(std::hash<T1>{}(p.first), std::hash<T2>{}(p.second));
-    }
-	// Taken from https://stackoverflow.com/a/27952689
-	size_t hash_combine( size_t lhs, size_t rhs ) const {
-		if constexpr (sizeof(size_t) >= 8) {
-			lhs ^= rhs + 0x517cc1b727220a95 + (lhs << 6) + (lhs >> 2);
-		} else {
-			lhs ^= rhs + 0x9e3779b9 + (lhs << 6) + (lhs >> 2);
-		}
-		return lhs;
-	}
-};
 
 class DasherController : public Dasher::CDashIntfSettings
 {
@@ -41,7 +23,7 @@ public:
 	virtual void CreateModules() override;
 
 	void Initialize();
-	void Render(unsigned long iTime);
+	void Render();
 
 	std::string* GetBufferRef() { return &Buffer; }
 
@@ -58,25 +40,18 @@ public:
 		return new Dasher::CScreenGameModule(m_pSettingsStore, this, GetView(), m_pDasherModel);
 	};
 
-	void MappedKeyDown(unsigned long iTime, const std::string& key);
-  	void MappedKeyUp(unsigned long iTime, const std::string& key);
-	void InitButtonMap();
-	void WriteButtonMap();
-	void AddKeyToButtonMap(Dasher::Keys::VirtualKey key, const std::string& mapping);
-	void RemoveKeyFromButtonMap(Dasher::Keys::VirtualKey key, const std::string& mapping);
-	bool ignoreChangesInButtonMap = false;
-	//Key Mappings from settings
-	std::unordered_set<std::pair<Dasher::Keys::VirtualKey, std::string>,hash_pair> keyMappings;
-	Event<> ButtonMappingsChanged;
+	std::shared_ptr<ButtonMapper> GetButtonMapper(){return buttonMapper;}
+
+	const long long getCurrentMS();
 
 private:
 	//Cursor position in the output buffer
 	unsigned int Cursor = 0;
 	//Output Buffer
 	std::string Buffer;
-	//Accumulated deltaTime
-	unsigned long Time;
 
+	std::chrono::time_point<std::chrono::steady_clock> startTime;
 
+	std::shared_ptr<ButtonMapper> buttonMapper;
 	std::unique_ptr<FakeInput> testInput;
 };

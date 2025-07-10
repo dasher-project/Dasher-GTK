@@ -53,6 +53,8 @@ add_subdirectory("Thirdparty/SDL" EXCLUDE_FROM_ALL)
 ADD_Executable(Dasher
 	${PROJECT_SOURCE_DIR}/src/DasherController.cpp
 	${PROJECT_SOURCE_DIR}/src/DasherController.h
+	${PROJECT_SOURCE_DIR}/src/ButtonMapper.h
+	${PROJECT_SOURCE_DIR}/src/ButtonMapper.cpp
 	${PROJECT_SOURCE_DIR}/src/MainWindow.cpp
 	${PROJECT_SOURCE_DIR}/src/MainWindow.h
 	${PROJECT_SOURCE_DIR}/src/FakeInput.h
@@ -65,6 +67,8 @@ ADD_Executable(Dasher
 	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsHelp.cpp
 	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsHelp.h
 	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsPageBase.h
+	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsInputMapping.h
+	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsInputMapping.cpp
 	${PROJECT_SOURCE_DIR}/src/UIComponents/ColorDisplayWidget.h
 	${PROJECT_SOURCE_DIR}/src/UIComponents/ImageButton.h
 	${PROJECT_SOURCE_DIR}/src/UIComponents/MessageOverlay.h

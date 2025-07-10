@@ -19,7 +19,6 @@
 #include <DasherInput.h>
 #include <XmlSettingsStore.h>
 #include <memory>
-#include <chrono>
 
 class RenderingCanvas : public Gtk::DrawingArea, public Dasher::CDasherScreen, public Dasher::CScreenCoordInput, public Dasher::CommandlineErrorDisplay
 {
@@ -56,9 +55,8 @@ public:
 	Cairo::RefPtr<Cairo::Context> renderingBackend;
 	bool generatePDFNextFrame = false;
 
-	std::chrono::time_point<std::chrono::steady_clock> startTime;
 
-private:
-	static const std::string ButtonNamePrimary;
-	static const std::string ButtonNameSecondary;
+public:
+	static const std::string MouseButtonNamePrimary;
+	static const std::string MouseButtonNameSecondary;
 };

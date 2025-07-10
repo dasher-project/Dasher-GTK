@@ -8,23 +8,22 @@
 #include "glibmm/datetime.h"
 #include "gtkmm/enums.h"
 #include "gtkmm/eventcontrollermotion.h"
+#include "gtkmm/eventcontrollerkey.h"
 #include "gtkmm/gestureclick.h"
 #include "gtkmm/shortcut.h"
 #include "gtkmm/shortcutaction.h"
 #include "gtkmm/shortcuttrigger.h"
 #include "gtkmm/shortcutcontroller.h"
 #include "gtkmm/widget.h"
-#include <chrono>
 #include <gtkmm/eventcontroller.h>
 #include <gdkmm/frameclock.h>
 #include <memory>
+#include "ButtonMapper.h"
 
-const std::string RenderingCanvas::ButtonNamePrimary = "MouseLeft";
-const std::string RenderingCanvas::ButtonNameSecondary = "MouseRight";
+const std::string RenderingCanvas::MouseButtonNamePrimary = "MouseLeft";
+const std::string RenderingCanvas::MouseButtonNameSecondary = "MouseRight";
 
-const long long RenderingCanvas::getCurrentMS(){
-    return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - startTime).count();
-}
+
 
 #pragma clang optimize off
 RenderingCanvas::RenderingCanvas(): Dasher::CDasherScreen(100,100), CScreenCoordInput("Mouse Input") {
@@ -45,20 +44,20 @@ RenderingCanvas::RenderingCanvas(): Dasher::CDasherScreen(100,100), CScreenCoord
     mouseLeftClickController = Gtk::GestureClick::create();
     mouseLeftClickController->set_button(GDK_BUTTON_PRIMARY);
     mouseLeftClickController->signal_pressed().connect([this](int, double, double){
-        if(inputActivated) dasherController->MappedKeyDown(getCurrentMS(), ButtonNamePrimary);
+        if(inputActivated) dasherController->GetButtonMapper()->MappedKeyDown(MouseButtonNamePrimary);
     });
     mouseLeftClickController->signal_released().connect([this](int, double, double){
-        if(inputActivated) dasherController->MappedKeyUp(getCurrentMS(), ButtonNamePrimary);
+        if(inputActivated) dasherController->GetButtonMapper()->MappedKeyUp(MouseButtonNamePrimary);
     });
     add_controller(mouseLeftClickController);
 
     mouseRightClickController = Gtk::GestureClick::create();
     mouseRightClickController->set_button(GDK_BUTTON_SECONDARY);
     mouseRightClickController->signal_pressed().connect([this](int, double, double){
-        if(inputActivated) dasherController->MappedKeyDown(getCurrentMS(), ButtonNameSecondary);
+        if(inputActivated) dasherController->GetButtonMapper()->MappedKeyDown(MouseButtonNameSecondary);
     });
     mouseRightClickController->signal_released().connect([this](int, double, double){
-        if(inputActivated) dasherController->MappedKeyUp(getCurrentMS(), ButtonNameSecondary);
+        if(inputActivated) dasherController->GetButtonMapper()->MappedKeyUp(MouseButtonNameSecondary);
     });
     add_controller(mouseRightClickController);
 
@@ -92,7 +91,6 @@ RenderingCanvas::RenderingCanvas(): Dasher::CDasherScreen(100,100), CScreenCoord
     });
 
     // Enable Drawing
-    startTime = std::chrono::steady_clock::now();
     set_draw_func([this](Glib::RefPtr<Cairo::Context> cr, int width, int height){
         cr->set_source(recordingSurface, 0, 0);
         cr->paint();
@@ -115,7 +113,7 @@ RenderingCanvas::RenderingCanvas(): Dasher::CDasherScreen(100,100), CScreenCoord
         renderingBackend->restore();
     });
     add_tick_callback([this](Glib::RefPtr<Gdk::FrameClock> clock){
-        dasherController->Render(getCurrentMS());
+        dasherController->Render();
         return true;
     });
 }
