@@ -61,12 +61,6 @@ jobs:
         linux-release: 'libgtk-4-dev libgtkmm-4.0-dev'
         macos-release: 'gtk4 gtkmm4'
 
-    - name: 'Show Internals'
-      if: runner.os == 'Windows'
-      run: |
-        echo $env:Path
-        ls C:/gtk
-
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
