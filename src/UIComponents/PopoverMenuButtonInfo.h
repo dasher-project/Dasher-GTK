@@ -1,9 +1,12 @@
+#pragma once
+
 #include "glibmm/ustring.h"
 #include "gtkmm/label.h"
 #include "gtkmm/image.h"
 #include "gtkmm/popover.h"
 #include "gtkmm/eventcontrollermotion.h"
 
+#pragma clang optimize off
 class PopoverMenuButtonInfo : public Gtk::Image
 {
 
@@ -28,13 +31,17 @@ public:
         });
         add_controller(m_mouseController);
     
-        signal_unrealize().connect([this](){
+        signal_destroy().connect([this](){
             m_popover.unparent();
         });
     }
+
+    Glib::ustring GetText(){return m_label.get_text();}
+    void SetText(Glib::ustring text){return m_label.set_text(text);}
 
 protected:
     Gtk::Popover m_popover;
     Gtk::Label m_label;
     Glib::RefPtr<Gtk::EventControllerMotion> m_mouseController;
 };
+#pragma clang optimize on

@@ -25,6 +25,11 @@ public:
         }, false);
     }
 
+    void SetText(Glib::ustring text){
+        set_text(text);
+        m_settings->SetStringParameter(m_synced_parameter, text);
+    }
+
 protected:
     std::shared_ptr<Dasher::CSettingsStore> m_settings;
     const Dasher::Parameter m_synced_parameter;

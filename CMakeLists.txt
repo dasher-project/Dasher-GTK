@@ -69,6 +69,7 @@ ADD_Executable(Dasher
 	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsPageBase.h
 	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsInputMapping.h
 	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsInputMapping.cpp
+	${PROJECT_SOURCE_DIR}/src/Preferences/DeviceSettingsProvider.h
 	${PROJECT_SOURCE_DIR}/src/UIComponents/ColorDisplayWidget.h
 	${PROJECT_SOURCE_DIR}/src/UIComponents/ImageButton.h
 	${PROJECT_SOURCE_DIR}/src/UIComponents/MessageOverlay.h
@@ -77,6 +78,7 @@ ADD_Executable(Dasher
 	${PROJECT_SOURCE_DIR}/src/UIComponents/RenderingCanvas.h
 	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedColorDropdown.h
 	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedEnumDropdown.h
+	${PROJECT_SOURCE_DIR}/src/UIComponents/EnumDropdown.h
 	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedSlider.h
 	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedSpinButton.h
 	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedStringDropdown.h

@@ -8,7 +8,7 @@
 
 class XmlServerStore;
 
-DasherController::DasherController(std::shared_ptr<Dasher::CSettingsStore> pSettingsStore): CDashIntfSettings(pSettingsStore.get())
+DasherController::DasherController(std::shared_ptr<Dasher::CSettingsStore> pSettingsStore): CDashIntfSettings(pSettingsStore.get()), m_spSettingsStore(pSettingsStore)
 {
     startTime = std::chrono::steady_clock::now();
 }
@@ -23,7 +23,7 @@ void DasherController::CreateModules(){
 	buttonMapper = std::make_shared<ButtonMapper>(m_pSettingsStore, this);
 	buttonMapper->InitButtonMap();
 
-	GetModuleManager()->RegisterInputDeviceModule(new JoystickInput(this, m_pSettingsStore));
+	GetModuleManager()->RegisterInputDeviceModule(new JoystickInput(this, m_spSettingsStore));
 
 	testInput = std::make_unique<FakeInput>();
     GetModuleManager()->RegisterInputDeviceModule(testInput.get(), true);

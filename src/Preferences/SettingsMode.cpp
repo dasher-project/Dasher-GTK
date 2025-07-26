@@ -1,5 +1,6 @@
 #include "SettingsMode.h"
 #include "SettingsPageBase.h"
+#include "DeviceSettingsProvider.h"
 #include <memory>
 
 
@@ -13,6 +14,12 @@ SettingsMode::SettingsMode(std::shared_ptr<Dasher::CSettingsStore> settings, std
     append(m_device_label);
     m_device_label.set_child(m_device_switch);
 
+    append(m_device_specific);
+    m_device_specific.set_child(m_device_specific_settings_grid);
+
+    m_device_switch.OnSelectionChanged.connect([this](Glib::ustring selectedString){DeviceSwitched(selectedString);});
+    DeviceSwitched(m_device_switch.GetSelected());
+
     append(m_method_label);
     m_method_label.set_child(m_method_switch);
 
@@ -25,6 +32,16 @@ SettingsMode::SettingsMode(std::shared_ptr<Dasher::CSettingsStore> settings, std
 
     append(m_method_specific);
     m_method_specific.set_child(m_method_specific_settings_grid);
+}
+
+void SettingsMode::DeviceSwitched(Glib::ustring selectedString){
+    DeviceSettingsProvider* input = dynamic_cast<DeviceSettingsProvider*>(m_controller->GetModuleManager()->GetInputDeviceByName(selectedString));
+    bool settingsVisible = false;
+    if(input){
+        ClearGrid(m_device_specific_settings_grid);
+        settingsVisible = input->FillInputDeviceSettings(&m_device_specific_settings_grid);
+    }
+    m_device_specific.set_visible(settingsVisible);
 }
 
 #pragma clang optimize on

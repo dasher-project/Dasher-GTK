@@ -59,7 +59,7 @@ SettingsInputMapping::SettingsInputMapping(std::shared_ptr<ButtonMapper> buttonM
         if(mapping.get() != nullptr) buttonMapper->RemoveKeyFromButtonMap(mapping->dasherKey, mapping->deviceKey);
     });
     deviceKeyListenButton.signal_clicked().connect([this]() {
-        buttonMapper->ListenForAnyKey(!buttonMapper->IsListeningForAnyKey());
+        buttonMapper->ListenForAnyKey(deviceKeyListenButton.get_active());
     });
     buttonMapper->AnyKeyPressed.Subscribe(this, [this](std::string deviceKey){
         deviceKeyEntry.get_buffer()->set_text(deviceKey);

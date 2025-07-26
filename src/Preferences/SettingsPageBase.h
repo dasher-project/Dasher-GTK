@@ -49,14 +49,17 @@ public:
         dropdown.set_selected(std::find(method_list.begin(), method_list.end(), Glib::ustring(selected)) - method_list.begin());
     }
 
-    static void FillModuleSettingsGrid(Gtk::Grid& gridWidget, CDasherModule* Module, std::shared_ptr<Dasher::CSettingsStore>& DasherSettings, bool includeAdvancedSettings){       
-        //Clear the grid
+    static void ClearGrid(Gtk::Grid& gridWidget){
         Widget* iter = gridWidget.get_first_child();
         while(iter) {
             Widget* next = iter->get_next_sibling();
             gridWidget.remove(*iter);
             iter = next;
         }
+    }
+
+    static void FillModuleSettingsGrid(Gtk::Grid& gridWidget, CDasherModule* Module, std::shared_ptr<Dasher::CSettingsStore>& DasherSettings, bool includeAdvancedSettings){       
+        ClearGrid(gridWidget);
         
         std::vector<Dasher::Parameter> UISettings;
         Module->GetUISettings(UISettings);

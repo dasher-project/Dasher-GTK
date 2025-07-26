@@ -5,6 +5,7 @@
 #include "SDL3/SDL_joystick.h"
 #include "SettingsStore.h"
 #include "DasherController.h"
+#include "gtkmm/togglebutton.h"
 #include <iostream>
 #include <limits>
 #include <math.h>
@@ -16,7 +17,10 @@
 
 #pragma clang optimize off
 
-JoystickInput::JoystickInput(DasherController* interface, Dasher::CSettingsStore* settings) : interface(interface), settings(settings), Dasher::CDasherVectorInput("Joystick") {
+JoystickInput::JoystickInput(DasherController* interface, std::shared_ptr<Dasher::CSettingsStore> settings) :
+    interface(interface), settings(settings), Dasher::CDasherVectorInput("Joystick"),
+    valueAxisX(Dasher::Parameter::SP_JOYSTICK_XAXIS, settings), valueAxisY(Dasher::Parameter::SP_JOYSTICK_YAXIS, settings)
+{
     PoplulateInputMaps();
     settings->OnParameterChanged.Subscribe(this, [this](Dasher::Parameter p){
         if(p == Dasher::SP_JOYSTICK_XAXIS || p == Dasher::SP_JOYSTICK_YAXIS){
@@ -31,6 +35,59 @@ JoystickInput::JoystickInput(DasherController* interface, Dasher::CSettingsStore
     interface->GetButtonMapper()->ListeningForAllKeys.Subscribe(this, [this](bool listening){
         OpenNeededControllers(listening);
     });
+
+    // create options labels etc.
+    nameLabelAxisX.set_halign(Gtk::Align::START);
+    nameLabelAxisY.set_halign(Gtk::Align::START);
+    recordAxisButtonX.property_active().signal_changed().connect([this](){
+        if(recordAxisButtonX.get_active() && recordAxisButtonY.get_active()) recordAxisButtonY.set_active(false); //Manual grouping to allow deactivation
+
+        StartListenForAxis(recordAxisButtonX.get_active(), Dasher::Parameter::SP_JOYSTICK_XAXIS);
+
+        if(recordAxisButtonX.get_active()){
+            AxisSelected.Subscribe(&recordAxisButtonX, [this](Dasher::Parameter param, std::string selectedAxis){
+                if(param != Dasher::Parameter::SP_JOYSTICK_XAXIS) return;
+                valueAxisX.SetText(selectedAxis);
+                recordAxisButtonX.set_active(false);
+            });
+        } else {
+            AxisSelected.Unsubscribe(&recordAxisButtonX);
+        }
+    });
+    recordAxisButtonY.property_active().signal_changed().connect([this](){
+        if(recordAxisButtonX.get_active() && recordAxisButtonY.get_active()) recordAxisButtonX.set_active(false); //Manual grouping to allow deactivation
+
+        StartListenForAxis(recordAxisButtonY.get_active(), Dasher::Parameter::SP_JOYSTICK_YAXIS);
+
+        if(recordAxisButtonY.get_active()){
+            AxisSelected.Subscribe(&recordAxisButtonY, [this](Dasher::Parameter param, std::string selectedAxis){
+                if(param != Dasher::Parameter::SP_JOYSTICK_YAXIS) return;
+                valueAxisY.SetText(selectedAxis);
+                recordAxisButtonY.set_active(false);
+            });
+        } else {
+            AxisSelected.Unsubscribe(&recordAxisButtonY);
+        }
+    });
+}
+
+bool JoystickInput::FillInputDeviceSettings(Gtk::Grid* grid){   
+    grid->attach(nameLabelAxisX, 0, 0);
+    grid->attach(valueAxisX, 1, 0);
+    grid->attach(recordAxisButtonX, 2, 0);
+    grid->attach(descriptionX, 3, 0);
+
+    grid->attach(nameLabelAxisY, 0, 1);
+    grid->attach(valueAxisY, 1, 1);
+    grid->attach(recordAxisButtonY, 2, 1);
+    grid->attach(descriptionY, 3, 1);
+    return true;
+}
+
+void JoystickInput::StartListenForAxis(bool startStopListen, Dasher::Parameter listenParam){
+    listeningForAxis = startStopListen;
+    listeningParameter = listenParam;
+    OpenNeededControllers(listeningForAxis);
 }
 
 JoystickInput::JoystickGUID JoystickInput::IDtoGUID(const SDL_JoystickID& id){
@@ -84,10 +141,23 @@ void JoystickInput::Activate() {
                     break;
                 case SDL_EVENT_JOYSTICK_AXIS_MOTION:
                     {
-                        if(XAxis.second == event.jaxis.axis && XAxis.first == openedControllers[event.jdevice.which]){
-                            lastRelativeX = static_cast<double>(event.jaxis.value) / std::numeric_limits<Sint16>().max();
-                        } else if(YAxis.second == event.jaxis.axis && YAxis.first == openedControllers[event.jdevice.which]){
-                            lastRelativeY = -static_cast<double>(event.jaxis.value) / std::numeric_limits<Sint16>().max();
+                        if(listeningForAxis){
+                            const double value = static_cast<double>(event.jaxis.value) / std::numeric_limits<Sint16>().max();
+                            if(listeningAxisStartingValueMap[event.jdevice.which].count(event.jaxis.axis) == 0){
+                                listeningAxisStartingValueMap[event.jdevice.which][event.jaxis.axis] = value;
+                            }
+                            const double difference = std::abs(listeningAxisStartingValueMap[event.jdevice.which][event.jaxis.axis] - value);
+                            if(difference > 0.5){
+                                AxisSelected.Broadcast(listeningParameter, GUIDAndSpecifierToString(openedControllers[event.jdevice.which], event.jbutton.button));
+                                StartListenForAxis(false, Dasher::Parameter::PM_INVALID);
+                                listeningAxisStartingValueMap[event.jdevice.which].clear();
+                            }
+                        } else {
+                            if(XAxis.second == event.jaxis.axis && XAxis.first == openedControllers[event.jdevice.which]){
+                                lastRelativeX = static_cast<double>(event.jaxis.value) / std::numeric_limits<Sint16>().max();
+                            } else if(YAxis.second == event.jaxis.axis && YAxis.first == openedControllers[event.jdevice.which]){
+                                lastRelativeY = -static_cast<double>(event.jaxis.value) / std::numeric_limits<Sint16>().max();
+                            }
                         }
                     }
                     break;
@@ -142,11 +212,16 @@ void JoystickInput::OpenNeededControllers(bool openAll){
     SDL_JoystickID* joysticks = SDL_GetJoysticks(&count);
     for(int i = 0; i < count; i++){
         const JoystickGUID GUID = IDtoGUID(joysticks[i]);
-        // Do we need this one (requested or openAll) and did we not open it so far?
-        if((requestedControllers.count(GUID) || openAll) && openedControllers.count(joysticks[i]) == 0 && SDL_OpenJoystick(joysticks[i])){
-            openedControllers[joysticks[i]] = GUID;
-        } else if(openedControllers.count(joysticks[i])) {
-            //Opened before but not needed anymore
+        // Do we need this one (requested or openAll)?
+        if(requestedControllers.count(GUID) || openAll){
+            // Was it not opened before?
+            if(openedControllers.count(joysticks[i]) == 0){
+                SDL_OpenJoystick(joysticks[i]);
+                openedControllers[joysticks[i]] = GUID;
+            }
+        } else
+        //Opened before but not needed anymore
+        if(openedControllers.count(joysticks[i])) {
             SDL_CloseJoystick(SDL_GetJoystickFromID(joysticks[i]));
             openedControllers.erase(joysticks[i]);
         }

@@ -54,4 +54,6 @@ private:
 
 	std::shared_ptr<ButtonMapper> buttonMapper;
 	std::unique_ptr<FakeInput> testInput;
+
+	std::shared_ptr<Dasher::CSettingsStore> m_spSettingsStore;
 };

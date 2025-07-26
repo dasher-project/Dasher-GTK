@@ -1,16 +1,33 @@
 #pragma once
 
 #include "DasherInput.h"
+#include "UIComponents/EnumDropdown.h"
+#include "UIComponents/PopoverMenuButtonInfo.h"
+#include "Preferences/DeviceSettingsProvider.h"
+#include "gtkmm/grid.h"
+#include "gtkmm/label.h"
+#include "gtkmm/object.h"
 #include <thread> 
 #include <chrono> 
 #include <cmath> 
 
 using namespace std::chrono_literals;
 
-class FakeInput : public Dasher::CDasherVectorInput {
+
+class FakeInput : public Dasher::CDasherVectorInput, public DeviceSettingsProvider {
   public:
   FakeInput() : Dasher::CDasherVectorInput("Fake Input") {
-    timerThread = std::thread([this](){
+    optionsDropdown.property_selected().signal_changed().connect([this](){
+      currentTraceForm = static_cast<traceForm>(optionsDropdown.GetSelected());
+    });
+  }
+
+  ~FakeInput(){}
+
+  void Activate() override {
+    if(timerThread) return;
+    keepRunning = true;
+    timerThread = std::make_unique<std::thread>([this](){
       while(keepRunning){
         if(currentTraceForm == square){
           for(float i = -extend; i < extend; i += 2.0f*extend/1000.0f){
@@ -52,12 +69,20 @@ class FakeInput : public Dasher::CDasherVectorInput {
     });
   }
 
-  ~FakeInput(){
+  void Deactivate() override {
     keepRunning = false;
-    if(timerThread.joinable()) timerThread.join();
+    if(timerThread->joinable()) timerThread->join();
+    timerThread.reset();
+  }
+
+  bool FillInputDeviceSettings(Gtk::Grid* grid) override {
+    grid->attach(*Gtk::make_managed<Gtk::Label>("Traceform"), 0, 0);
+    grid->attach(optionsDropdown, 1, 0);
+    grid->attach(*Gtk::make_managed<PopoverMenuButtonInfo>("Form that is traced on the screen"), 2, 0);
+    return true;
   }
   
-  virtual bool GetVectorCoords(float &VectorX, float &VectorY){
+  virtual bool GetVectorCoords(float &VectorX, float &VectorY) override {
     const float cap = (currentTraceForm != square) ? std::max(1.0f,std::sqrt(x*x + y*y)) : 1.0f;
     VectorX = x / cap;
     VectorY = y / cap;
@@ -65,7 +90,7 @@ class FakeInput : public Dasher::CDasherVectorInput {
   };
   
   // thread that is used to trace the shape
-  std::thread timerThread;
+  std::unique_ptr<std::thread> timerThread;
   bool keepRunning = true;
   
   // computed coords
@@ -79,5 +104,6 @@ class FakeInput : public Dasher::CDasherVectorInput {
     ellipse,
     flower
   };
-  const traceForm currentTraceForm = square;
+  traceForm currentTraceForm = square;
+  EnumDropdown optionsDropdown = EnumDropdown({{"Square",traceForm::square},{"Ellipse",traceForm::ellipse},{"Flower",traceForm::flower}}, traceForm::square);
 };
