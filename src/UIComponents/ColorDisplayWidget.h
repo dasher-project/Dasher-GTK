@@ -29,12 +29,7 @@ public:
     }
 
     void ReadColorsFromPalette(const Dasher::ColorPalette* palette){
-        Colors = {
-            palette->GetNodeColor("lowercase", 5, false),
-            palette->GetNodeColor("lowercase", 10, false),
-            palette->GetNodeColor("lowercase", 15, false),
-            palette->GetNodeColor("lowercase", 20, false)
-        };
+        Colors = palette->GetUIPreviewColors();
         queue_draw();
     }
 
