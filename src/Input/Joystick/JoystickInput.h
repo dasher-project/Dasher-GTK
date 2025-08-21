@@ -6,15 +6,13 @@
 #include <memory>
 #include <mutex>
 #include <thread>
-#include "SDL3/SDL_joystick.h"
-#include <unordered_map>
-#include <unordered_set>
 #include <utility>
 #include "gtkmm/togglebutton.h"
 #include "gtkmm/label.h"
 #include "UIComponents/SyncedTextbox.h"
 #include "Preferences/DeviceSettingsProvider.h"
 #include "UIComponents/PopoverMenuButtonInfo.h"
+#include "SDLJoystick.h"
 
 class DasherController;
 
@@ -43,7 +41,6 @@ protected:
     bool listeningForAxis = false;
     Dasher::Parameter listeningParameter = Dasher::Parameter::PM_INVALID;
     Event<Dasher::Parameter, std::string> AxisSelected;
-    std::unordered_map<SDL_JoystickID, std::unordered_map<Uint8, double>> listeningAxisStartingValueMap; //Stores the starting value (zero position) for each axis when listening for movement
 
     //Options Stuff
     Gtk::Label nameLabelAxisX = Gtk::Label("Controller Axis for X-Input");
@@ -55,14 +52,11 @@ protected:
     PopoverMenuButtonInfo descriptionX = PopoverMenuButtonInfo("Click the record button and move the desired axis on your controller");
     PopoverMenuButtonInfo descriptionY = PopoverMenuButtonInfo(descriptionX.GetText());
 
-    typedef std::string JoystickGUID;
-    std::unordered_set<JoystickGUID> requestedControllers;
-    std::unordered_map<SDL_JoystickID, JoystickGUID> openedControllers; //Known ControllerIDs to GUID Mapping
+    std::vector<SDLJoystick> controllers;
+    SDLJoystick& GetControllerByID(SDLJoystick::ID id);
+    SDLJoystick& GetControllerByGUID(SDLJoystick::GUID guid);
     std::pair<std::string, Uint8> XAxis; // GUID to AxisNum
     std::pair<std::string, Uint8> YAxis; // GUID to AxisNum
-    static JoystickGUID IDtoGUID(const SDL_JoystickID& id);
-    static std::string GUIDAndSpecifierToString(const JoystickInput::JoystickGUID id, Uint8 specifier);
-    static std::pair<JoystickInput::JoystickGUID, Uint8> GUIDAndSpecifierFromString(const std::string& InputString);
 
     //Input Vector
     double lastRelativeX = 0;

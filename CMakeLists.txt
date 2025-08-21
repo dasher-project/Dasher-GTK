@@ -33,8 +33,8 @@ set(SDL_GPU OFF CACHE BOOL "" FORCE)
 set(SDL_RENDER OFF CACHE BOOL "" FORCE)
 set(SDL_CAMERA OFF CACHE BOOL "" FORCE)
 set(SDL_JOYSTICK ON CACHE BOOL "" FORCE)
-set(SDL_HAPTIC OFF CACHE BOOL "" FORCE)
-set(SDL_HIDAPI OFF CACHE BOOL "" FORCE)
+set(SDL_HAPTIC ON CACHE BOOL "" FORCE)
+set(SDL_HIDAPI ON CACHE BOOL "" FORCE)
 set(SDL_POWER OFF CACHE BOOL "" FORCE)
 set(SDL_SENSOR OFF CACHE BOOL "" FORCE)
 set(SDL_DIALOG OFF CACHE BOOL "" FORCE)
@@ -60,6 +60,8 @@ ADD_Executable(Dasher
 	${PROJECT_SOURCE_DIR}/src/FakeInput.h
 	${PROJECT_SOURCE_DIR}/src/Input/Joystick/JoystickInput.h
 	${PROJECT_SOURCE_DIR}/src/Input/Joystick/JoystickInput.cpp
+	${PROJECT_SOURCE_DIR}/src/Input/Joystick/SDLJoystick.h
+	${PROJECT_SOURCE_DIR}/src/Input/Joystick/SDLJoystick.cpp
 	${PROJECT_SOURCE_DIR}/src/Preferences/PreferencesWindow.cpp
 	${PROJECT_SOURCE_DIR}/src/Preferences/PreferencesWindow.h
 	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsMode.cpp
