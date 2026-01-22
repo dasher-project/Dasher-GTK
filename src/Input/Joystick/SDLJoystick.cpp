@@ -1,5 +1,7 @@
 #include "SDLJoystick.h"
 #include <iostream>
+#include <cstring>
+#include <string>
 
 SDLJoystick::SDLJoystick(const GUID guid): joystickGUID(guid)
 {}
