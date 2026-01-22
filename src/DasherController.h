@@ -1,6 +1,7 @@
 #pragma once
 #include <DashIntfScreenMsgs.h>
 #include "ButtonMapper.h"
+#include "Input/Joystick/JoystickInput.h"
 #include "ScreenGameModule.h"
 #include <functional>
 #include <memory>
@@ -36,8 +37,8 @@ public:
 	///Flush any modal messages that have been displayed before resuming.
 	void onUnpause(unsigned long lTime) override;
 
-	Dasher::CGameModule *CreateGameModule() override {
-		return new Dasher::CScreenGameModule(m_pSettingsStore, this, GetView(), m_pDasherModel);
+	std::unique_ptr<Dasher::CGameModule> CreateGameModule() override {
+		return std::make_unique<Dasher::CScreenGameModule>(m_pSettingsStore, this, GetView(), m_pDasherModel.get());
 	};
 
 	std::shared_ptr<ButtonMapper> GetButtonMapper(){return buttonMapper;}
@@ -53,6 +54,7 @@ private:
 	std::chrono::time_point<std::chrono::steady_clock> startTime;
 
 	std::shared_ptr<ButtonMapper> buttonMapper;
+	std::unique_ptr<JoystickInput> joystickInput;
 	std::unique_ptr<FakeInput> testInput;
 
 	std::shared_ptr<Dasher::CSettingsStore> m_spSettingsStore;

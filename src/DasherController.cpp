@@ -23,7 +23,8 @@ void DasherController::CreateModules(){
 	buttonMapper = std::make_shared<ButtonMapper>(m_pSettingsStore, this);
 	buttonMapper->InitButtonMap();
 
-	GetModuleManager()->RegisterInputDeviceModule(new JoystickInput(this, m_spSettingsStore));
+	joystickInput = std::make_unique<JoystickInput>(this, m_spSettingsStore);
+	GetModuleManager()->RegisterInputDeviceModule(joystickInput.get());
 
 	testInput = std::make_unique<FakeInput>();
     GetModuleManager()->RegisterInputDeviceModule(testInput.get(), true);
