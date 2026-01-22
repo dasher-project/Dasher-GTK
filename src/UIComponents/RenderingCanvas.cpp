@@ -100,6 +100,7 @@ RenderingCanvas::RenderingCanvas(): Dasher::CDasherScreen(100,100), CScreenCoord
               Cairo::PdfSurface::create(Glib::DateTime::create_now_local().format("Screenshot-%Y-%m-%d_%H-%M-%S.pdf"), width, height);
           auto pdfBackend = Cairo::Context::create(pdfSurface);
 
+          pdfSurface->restrict_to_version(Cairo::PDF_VERSION_1_5); // standard version used in most software packages
           pdfBackend->set_source(recordingSurface, 0, 0);
           pdfBackend->paint();
 
