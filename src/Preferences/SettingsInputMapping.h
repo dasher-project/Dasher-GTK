@@ -1,6 +1,6 @@
 #pragma once
 
-#include "DasherTypes.h"
+#include "DasherCore/DasherTypes.h"
 #include "SettingsPageBase.h"
 #include "gtkmm/button.h"
 #include "gtkmm/togglebutton.h"

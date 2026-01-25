@@ -1,9 +1,9 @@
 #pragma once
 
-#include "ColorPalette.h"
+#include "DasherCore/ColorPalette.h"
 #include "DasherController.h"
-#include "DasherTypes.h"
-#include "FileUtils.h"
+#include "DasherCore/DasherTypes.h"
+#include "DasherCore/FileUtils.h"
 #include "cairomm/context.h"
 #include "gtkmm/shortcutcontroller.h"
 #include <gtkmm/button.h>
@@ -15,9 +15,9 @@
 #include <cairomm/context.h>
 #include <cairomm/surface.h>
 
-#include <DasherScreen.h>
-#include <DasherInput.h>
-#include <XmlSettingsStore.h>
+#include "DasherCore/DasherScreen.h"
+#include "DasherCore/DasherInput.h"
+#include "DasherCore/XmlSettingsStore.h"
 #include <memory>
 
 class RenderingCanvas : public Gtk::DrawingArea, public Dasher::CDasherScreen, public Dasher::CScreenCoordInput, public Dasher::CommandlineErrorDisplay

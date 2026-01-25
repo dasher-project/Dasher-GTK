@@ -1,8 +1,8 @@
 #pragma once
 
-#include "DasherInput.h"
-#include "Parameters.h"
-#include "SettingsStore.h"
+#include "DasherCore/DasherInput.h"
+#include "DasherCore/Parameters.h"
+#include "DasherCore/SettingsStore.h"
 #include <memory>
 #include <mutex>
 #include <thread>

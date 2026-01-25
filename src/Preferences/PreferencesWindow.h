@@ -3,7 +3,7 @@
 #include "SettingsHelp.h"
 #include "SettingsInputMapping.h"
 #include "SettingsMode.h"
-#include "SettingsStore.h"
+#include "DasherCore/SettingsStore.h"
 #include "gtkmm/enums.h"
 #include "gtkmm/stack.h"
 #include "gtkmm/stacksidebar.h"

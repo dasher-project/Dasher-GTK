@@ -1,8 +1,8 @@
 #pragma once
-#include <DashIntfScreenMsgs.h>
+#include "DasherCore/DashIntfSettings.h"
 #include "ButtonMapper.h"
 #include "Input/Joystick/JoystickInput.h"
-#include "ScreenGameModule.h"
+#include "DasherCore/ScreenGameModule.h"
 #include <functional>
 #include <memory>
 #include "FakeInput.h"

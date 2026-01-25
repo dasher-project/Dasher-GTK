@@ -1,10 +1,10 @@
 #pragma once
 
 #include "EnumDropdown.h"
-#include "Parameters.h"
+#include "DasherCore/Parameters.h"
 #include "giomm/liststore.h"
 #include "gtkmm/signallistitemfactory.h"
-#include "SettingsStore.h"
+#include "DasherCore/SettingsStore.h"
 #include <memory>
 
 class SyncedEnumDropdown : public EnumDropdown {

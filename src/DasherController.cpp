@@ -1,6 +1,6 @@
 #include "DasherController.h"
 #include "ButtonMapper.h"
-#include "DasherInterfaceBase.h"
+#include "DasherCore/DasherInterfaceBase.h"
 #include "Input/Joystick/JoystickInput.h"
 #include <iostream>
 #include <memory>

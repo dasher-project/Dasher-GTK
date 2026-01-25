@@ -1,6 +1,6 @@
 #pragma once
 
-#include "DasherInput.h"
+#include "DasherCore/DasherInput.h"
 #include "UIComponents/EnumDropdown.h"
 #include "UIComponents/PopoverMenuButtonInfo.h"
 #include "Preferences/DeviceSettingsProvider.h"

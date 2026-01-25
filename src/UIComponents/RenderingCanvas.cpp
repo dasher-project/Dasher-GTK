@@ -1,6 +1,6 @@
 #include "RenderingCanvas.h"
-#include "ColorPalette.h"
-#include "DasherTypes.h"
+#include "DasherCore/ColorPalette.h"
+#include "DasherCore/DasherTypes.h"
 #include "cairomm/context.h"
 #include "cairomm/surface.h"
 #include "gdk/gdk.h"

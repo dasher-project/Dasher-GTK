@@ -1,6 +1,6 @@
 #include "ButtonMapper.h"
 #include "DasherController.h"
-#include "DasherTypes.h"
+#include "DasherCore/DasherTypes.h"
 #include "UIComponents/RenderingCanvas.h"
 
 ButtonMapper::ButtonMapper(Dasher::CSettingsStore* settings, DasherController* controller) : controller(controller), settings(settings) {

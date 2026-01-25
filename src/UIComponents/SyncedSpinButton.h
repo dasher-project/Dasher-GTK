@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Parameters.h"
-#include "SettingsStore.h"
+#include "DasherCore/Parameters.h"
+#include "DasherCore/SettingsStore.h"
 #include "gtkmm/spinbutton.h"
 #include <memory>
 

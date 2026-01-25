@@ -1,7 +1,7 @@
 #pragma once
 
 #include "SettingsPageBase.h"
-#include "SettingsStore.h"
+#include "DasherCore/SettingsStore.h"
 #include "UIComponents/SyncedStringDropdown.h"
 #include "gtkmm/frame.h"
 #include "gtkmm/grid.h"

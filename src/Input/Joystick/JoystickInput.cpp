@@ -1,8 +1,8 @@
 #include "JoystickInput.h"
-#include "Parameters.h"
+#include "DasherCore/Parameters.h"
 #include "SDL3/SDL_init.h"
 #include "SDL3/SDL_joystick.h"
-#include "SettingsStore.h"
+#include "DasherCore/SettingsStore.h"
 #include "DasherController.h"
 #include "gtkmm/togglebutton.h"
 #include <math.h>

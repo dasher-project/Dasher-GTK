@@ -1,5 +1,5 @@
 #include "DasherController.h"
-#include "Parameters.h"
+#include "DasherCore/Parameters.h"
 #include "gtkmm/box.h"
 #include "gtkmm/overlay.h"
 #include <algorithm>
