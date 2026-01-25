@@ -65,6 +65,13 @@ ADD_Executable(Dasher
 	${SOURCE_FILES}
 )
 
+# Hide console window on windows builds
+if(WIN32)
+	set_target_properties(Dasher PROPERTIES
+		LINK_FLAGS /SUBSYSTEM:WINDOWS
+	)
+endif()
+
 add_dependencies(Dasher DasherCore)
 target_link_libraries(Dasher PRIVATE DasherCore SDL3::SDL3 ${GTK_LIBRARIES} ${GTKMM_LIBRARIES})
 target_include_directories(Dasher SYSTEM PRIVATE ${GTK_INCLUDE_DIRS} ${GTKMM_INCLUDE_DIRS})
