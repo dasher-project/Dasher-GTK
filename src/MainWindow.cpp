@@ -1,5 +1,5 @@
 #include "MainWindow.h"
-#include "Parameters.h"
+#include "DasherCore/Parameters.h"
 #include "Preferences/PreferencesWindow.h"
 #include "UIComponents/RenderingCanvas.h"
 #include "cairomm/fontface.h"

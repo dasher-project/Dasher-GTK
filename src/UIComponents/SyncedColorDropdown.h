@@ -1,9 +1,9 @@
 #pragma once
 
-#include "ColorPalette.h"
+#include "DasherCore/ColorPalette.h"
 #include "ColorDisplayWidget.h"
-#include "Parameters.h"
-#include "SettingsStore.h"
+#include "DasherCore/Parameters.h"
+#include "DasherCore/SettingsStore.h"
 #include "giomm/liststore.h"
 #include "gtkmm/box.h"
 #include "gtkmm/dropdown.h"

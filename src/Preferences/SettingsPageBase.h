@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../DasherController.h"
-#include "Parameters.h"
+#include "DasherController.h"
+#include "DasherCore/Parameters.h"
 #include "glibmm/ustring.h"
 #include "gtkmm/box.h"
 #include "gtkmm/dropdown.h"

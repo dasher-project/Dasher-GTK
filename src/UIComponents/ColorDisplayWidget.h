@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ColorPalette.h"
+#include "DasherCore/ColorPalette.h"
 #include "gtkmm/drawingarea.h"
 #include "gtkmm/enums.h"
 #include <array>

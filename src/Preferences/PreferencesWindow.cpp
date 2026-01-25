@@ -1,6 +1,6 @@
 #include "PreferencesWindow.h"
 #include "SettingsMode.h"
-#include "SettingsStore.h"
+#include "DasherCore/SettingsStore.h"
 #include "gtkmm/eventcontrollerkey.h"
 
 PreferencesWindow::PreferencesWindow(std::shared_ptr<Dasher::CSettingsStore> settings, std::shared_ptr<DasherController> controller): m_controller(controller), m_settings(settings), m_mode_page(settings, controller), m_input_page(m_controller->GetButtonMapper()) {

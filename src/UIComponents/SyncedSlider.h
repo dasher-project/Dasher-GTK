@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Parameters.h"
+#include "DasherCore/Parameters.h"
 #include "gtkmm/scale.h"
-#include "SettingsStore.h"
+#include "DasherCore/SettingsStore.h"
 #include <memory>
 
 class SyncedSlider : public Gtk::Scale {

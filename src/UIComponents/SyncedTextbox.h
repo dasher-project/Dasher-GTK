@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Parameters.h"
+#include "DasherCore/Parameters.h"
 #include "gtkmm/entry.h"
-#include "SettingsStore.h"
+#include "DasherCore/SettingsStore.h"
 #include <memory>
 
 #pragma clang optimize off

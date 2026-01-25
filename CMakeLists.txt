@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.20)
-project(Dasher)
+project(DasherGTK)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY $<1:${CMAKE_BINARY_DIR}/Dasher>)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Dasher)
 
 ###############################
 # Building Dasher Library
@@ -50,67 +50,56 @@ add_subdirectory("Thirdparty/SDL" EXCLUDE_FROM_ALL)
 # Building Dasher-UI
 ###############################
 
-ADD_Executable(Dasher
-	${PROJECT_SOURCE_DIR}/src/DasherController.cpp
-	${PROJECT_SOURCE_DIR}/src/DasherController.h
-	${PROJECT_SOURCE_DIR}/src/ButtonMapper.h
-	${PROJECT_SOURCE_DIR}/src/ButtonMapper.cpp
-	${PROJECT_SOURCE_DIR}/src/MainWindow.cpp
-	${PROJECT_SOURCE_DIR}/src/MainWindow.h
-	${PROJECT_SOURCE_DIR}/src/FakeInput.h
-	${PROJECT_SOURCE_DIR}/src/Input/Joystick/JoystickInput.h
-	${PROJECT_SOURCE_DIR}/src/Input/Joystick/JoystickInput.cpp
-	${PROJECT_SOURCE_DIR}/src/Input/Joystick/SDLJoystick.h
-	${PROJECT_SOURCE_DIR}/src/Input/Joystick/SDLJoystick.cpp
-	${PROJECT_SOURCE_DIR}/src/Preferences/PreferencesWindow.cpp
-	${PROJECT_SOURCE_DIR}/src/Preferences/PreferencesWindow.h
-	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsMode.cpp
-	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsMode.h
-	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsHelp.cpp
-	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsHelp.h
-	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsPageBase.h
-	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsInputMapping.h
-	${PROJECT_SOURCE_DIR}/src/Preferences/SettingsInputMapping.cpp
-	${PROJECT_SOURCE_DIR}/src/Preferences/DeviceSettingsProvider.h
-	${PROJECT_SOURCE_DIR}/src/UIComponents/ColorDisplayWidget.h
-	${PROJECT_SOURCE_DIR}/src/UIComponents/ImageButton.h
-	${PROJECT_SOURCE_DIR}/src/UIComponents/MessageOverlay.h
-	${PROJECT_SOURCE_DIR}/src/UIComponents/PopoverBox.h
-	${PROJECT_SOURCE_DIR}/src/UIComponents/RenderingCanvas.cpp
-	${PROJECT_SOURCE_DIR}/src/UIComponents/RenderingCanvas.h
-	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedColorDropdown.h
-	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedEnumDropdown.h
-	${PROJECT_SOURCE_DIR}/src/UIComponents/EnumDropdown.h
-	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedSlider.h
-	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedSpinButton.h
-	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedStringDropdown.h
-	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedSwitch.h
-	${PROJECT_SOURCE_DIR}/src/UIComponents/SyncedTextbox.h
-	${PROJECT_SOURCE_DIR}/src/UIStyle.css
-	${PROJECT_SOURCE_DIR}/src/main.cpp
+file(GLOB_RECURSE HEADER_FILES CONFIGURE_DEPENDS
+    ${CMAKE_CURRENT_LIST_DIR}/src/*.h
+    ${CMAKE_CURRENT_LIST_DIR}/src/**/*.h
 )
+file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS
+    ${CMAKE_CURRENT_LIST_DIR}/src/*.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/src/**/*.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/src/**/*.css
+)
+
+ADD_Executable(Dasher
+	${HEADER_FILES}
+	${SOURCE_FILES}
+)
+
+# Hide console window on windows builds
+if(WIN32)
+	set_target_properties(Dasher PROPERTIES
+		LINK_FLAGS /SUBSYSTEM:WINDOWS
+	)
+endif()
+
 add_dependencies(Dasher DasherCore)
 target_link_libraries(Dasher PRIVATE DasherCore SDL3::SDL3 ${GTK_LIBRARIES} ${GTKMM_LIBRARIES})
-target_include_directories(Dasher PRIVATE ${GTK_INCLUDE_DIRS} ${GTKMM_INCLUDE_DIRS})
+target_include_directories(Dasher SYSTEM PRIVATE ${GTK_INCLUDE_DIRS} ${GTKMM_INCLUDE_DIRS})
 target_include_directories(Dasher PRIVATE ${CMAKE_CURRENT_LIST_DIR}/src/)
 target_include_directories(Dasher PRIVATE ${CMAKE_CURRENT_LIST_DIR}/Thirdparty/SDL/include/)
 target_link_directories(Dasher PRIVATE ${GTK_LIBRARY_DIRS} ${GTKMM_LIBRARY_DIRS})
 
 ###############################
-# Setting up deloyment
+# Setting up runtime environment
 ###############################
 
-file(GLOB RESOURCE_FILES
+file(GLOB DATA_FILES
   ${PROJECT_SOURCE_DIR}/DasherCore/Data/alphabets/alphabet*.xml
   ${PROJECT_SOURCE_DIR}/DasherCore/Data/colors/color*.xml
   ${PROJECT_SOURCE_DIR}/DasherCore/Data/control/control*.xml
   ${PROJECT_SOURCE_DIR}/DasherCore/Data/training/training*.txt
 )
-file(COPY ${RESOURCE_FILES} DESTINATION ${CMAKE_BINARY_DIR}/Dasher/Data)
+file(COPY ${DATA_FILES} DESTINATION ${CMAKE_BINARY_DIR}/Dasher/Data)
 
 file(COPY ${PROJECT_SOURCE_DIR}/Resources/ DESTINATION ${CMAKE_BINARY_DIR}/Dasher/Resources)
 file(COPY ${PROJECT_SOURCE_DIR}/src/UIStyle.css DESTINATION ${CMAKE_BINARY_DIR}/Dasher/)
 
 # Copy Licenses
-configure_file(${PROJECT_SOURCE_DIR}/Thirdparty/SDL/LICENSE.txt ${CMAKE_BINARY_DIR}/Dasher/Resources/License/LICENSE_SDL.txt)
-configure_file(${PROJECT_SOURCE_DIR}/DasherCore/Thirdparty/pugixml/LICENSE.md ${CMAKE_BINARY_DIR}/Dasher/Resources/License/LICENSE_PugiXML.txt)
+file(COPY_FILE ${PROJECT_SOURCE_DIR}/Thirdparty/SDL/LICENSE.txt ${CMAKE_BINARY_DIR}/Dasher/Resources/License/LICENSE_SDL.txt)
+file(COPY_FILE ${PROJECT_SOURCE_DIR}/DasherCore/Thirdparty/pugixml/LICENSE.md ${CMAKE_BINARY_DIR}/Dasher/Resources/License/LICENSE_PugiXML.txt)
+
+###############################
+# Setting up deployment
+###############################
+
+install(DIRECTORY ${CMAKE_BINARY_DIR}/Dasher/ DESTINATION .)

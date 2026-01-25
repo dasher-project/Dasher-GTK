@@ -2,7 +2,7 @@
 
 #include "gtkmm/dropdown.h"
 #include "gtkmm/stringlist.h"
-#include "SettingsStore.h"
+#include "DasherCore/SettingsStore.h"
 #include "gtkmm/stringobject.h"
 #include <vector>
 

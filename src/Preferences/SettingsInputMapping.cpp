@@ -1,5 +1,5 @@
 #include "SettingsInputMapping.h"
-#include "DasherTypes.h"
+#include "DasherCore/DasherTypes.h"
 #include "gtkmm/enums.h"
 #include "gtkmm/singleselection.h"
 

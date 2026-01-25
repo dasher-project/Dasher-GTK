@@ -1,8 +1,8 @@
 #pragma once
 
-#include "DasherTypes.h"
-#include "SettingsStore.h"
-#include "Event.h"
+#include "DasherCore/DasherTypes.h"
+#include "DasherCore/SettingsStore.h"
+#include "DasherCore/Event.h"
 #include <string>
 #include <unordered_set>
 #include <utility>
