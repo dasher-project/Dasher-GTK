@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(Dasher)
+project(DasherGTK)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -88,5 +88,11 @@ file(COPY ${PROJECT_SOURCE_DIR}/Resources/ DESTINATION ${CMAKE_BINARY_DIR}/Dashe
 file(COPY ${PROJECT_SOURCE_DIR}/src/UIStyle.css DESTINATION ${CMAKE_BINARY_DIR}/Dasher/)
 
 # Copy Licenses
-file(COPY_FILE  ${PROJECT_SOURCE_DIR}/Thirdparty/SDL/LICENSE.txt ${CMAKE_BINARY_DIR}/Dasher/Resources/License/LICENSE_SDL.txt)
-file(COPY_FILE  ${PROJECT_SOURCE_DIR}/DasherCore/Thirdparty/pugixml/LICENSE.md ${CMAKE_BINARY_DIR}/Dasher/Resources/License/LICENSE_PugiXML.txt)
+file(COPY_FILE ${PROJECT_SOURCE_DIR}/Thirdparty/SDL/LICENSE.txt ${CMAKE_BINARY_DIR}/Dasher/Resources/License/LICENSE_SDL.txt)
+file(COPY_FILE ${PROJECT_SOURCE_DIR}/DasherCore/Thirdparty/pugixml/LICENSE.md ${CMAKE_BINARY_DIR}/Dasher/Resources/License/LICENSE_PugiXML.txt)
+
+###############################
+# Setting up deployment
+###############################
+
+install(DIRECTORY ${CMAKE_BINARY_DIR}/Dasher/ DESTINATION .)
