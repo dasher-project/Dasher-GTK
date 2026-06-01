@@ -1,62 +1,35 @@
 #pragma once
 
-#include "DasherCore/ColorPalette.h"
-#include "DasherController.h"
-#include "DasherCore/DasherTypes.h"
-#include "DasherCore/FileUtils.h"
-#include "cairomm/context.h"
-#include "gtkmm/shortcutcontroller.h"
-#include <gtkmm/button.h>
-#include <gtkmm/label.h>
-#include <gtkmm/drawingarea.h>
-#include <gtkmm/box.h>
-#include <gtkmm/eventcontrollermotion.h>
-#include <gtkmm/gestureclick.h>
+#include "Engine/DasherBridge.h"
+#include "Engine/CommandRenderer.h"
 #include <cairomm/context.h>
 #include <cairomm/surface.h>
-
-#include "DasherCore/DasherScreen.h"
-#include "DasherCore/DasherInput.h"
-#include "DasherCore/XmlSettingsStore.h"
+#include <gtkmm/drawingarea.h>
+#include <gtkmm/eventcontrollermotion.h>
+#include <gtkmm/gestureclick.h>
 #include <memory>
 
-class RenderingCanvas : public Gtk::DrawingArea, public Dasher::CDasherScreen, public Dasher::CScreenCoordInput, public Dasher::CommandlineErrorDisplay
-{
+class RenderingCanvas : public Gtk::DrawingArea {
 public:
     RenderingCanvas();
+    ~RenderingCanvas() override = default;
 
-    std::pair<Dasher::screenint, Dasher::screenint> TextSize(Label* label, unsigned iFontSize) override;
-	void DrawString(Label* label, Dasher::screenint x, Dasher::screenint y, unsigned iFontSize, const Dasher::ColorPalette::Color& Color) override;
-	void DrawRectangle(Dasher::screenint x1, Dasher::screenint y1, Dasher::screenint x2, Dasher::screenint y2, const Dasher::ColorPalette::Color& Color, const Dasher::ColorPalette::Color& OutlineColor, int iThickness) override;
-	void DrawCircle(Dasher::screenint iCX, Dasher::screenint iCY, Dasher::screenint iR, const Dasher::ColorPalette::Color& iFillColor, const Dasher::ColorPalette::Color& LineColor, int iLineWidth) override;
-	void Polyline(Dasher::point* Points, int Number, int iWidth, const Dasher::ColorPalette::Color& Color) override;
-	void Polygon(Dasher::point* Points, int Number, const Dasher::ColorPalette::Color& fillColor, const Dasher::ColorPalette::Color& outlineColor, int lineWidth) override;
-	void Display() override;
-	bool IsPointVisible(Dasher::screenint x, Dasher::screenint y) override;
+    std::shared_ptr<DasherBridge> bridge;
+    std::unique_ptr<CommandRenderer> renderer;
 
-    bool GetScreenCoords(Dasher::screenint& iX, Dasher::screenint& iY, Dasher::CDasherView* pView) override;
-	const long long getCurrentMS();
-	void show_text(const std::string& utf8);
+    sigc::signal<void(const std::string&)> OnBufferChange;
 
-	virtual void Activate() override {inputActivated = true;};
-    virtual void Deactivate() override {inputActivated = false;};
+private:
+    Glib::RefPtr<Gtk::EventControllerMotion> m_motion_controller;
+    Glib::RefPtr<Gtk::GestureClick> m_primary_click;
+    Glib::RefPtr<Gtk::GestureClick> m_secondary_click;
 
-public:
-	Glib::RefPtr<Gtk::EventControllerMotion> mouseController;
-	Glib::RefPtr<Gtk::GestureClick> mouseLeftClickController;
-	Glib::RefPtr<Gtk::GestureClick> mouseRightClickController;
-	Glib::RefPtr<Gtk::ShortcutController> shortcutController;
-	std::shared_ptr<Dasher::XmlSettingsStore> Settings;
-	std::shared_ptr<DasherController> dasherController;
-	Dasher::point mousePos = {0,0};
-	bool inputActivated = false;
+    float m_mouse_x = 0.0f;
+    float m_mouse_y = 0.0f;
+    bool m_mouse_down = false;
 
-	Cairo::RefPtr<Cairo::RecordingSurface> recordingSurface;
-	Cairo::RefPtr<Cairo::Context> renderingBackend;
-	bool generatePDFNextFrame = false;
+    Cairo::RefPtr<Cairo::RecordingSurface> m_recording_surface;
+    Cairo::RefPtr<Cairo::Context> m_recording_context;
 
-
-public:
-	static const std::string MouseButtonNamePrimary;
-	static const std::string MouseButtonNameSecondary;
+    std::string m_output_buffer;
 };

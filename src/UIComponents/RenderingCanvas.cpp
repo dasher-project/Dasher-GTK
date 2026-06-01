@@ -1,213 +1,90 @@
 #include "RenderingCanvas.h"
-#include "DasherCore/ColorPalette.h"
-#include "DasherCore/DasherTypes.h"
-#include "cairomm/context.h"
-#include "cairomm/surface.h"
-#include "gdk/gdk.h"
-#include "gdk/gdkkeysyms.h"
-#include "glibmm/datetime.h"
-#include "gtkmm/enums.h"
-#include "gtkmm/eventcontrollermotion.h"
-#include "gtkmm/eventcontrollerkey.h"
-#include "gtkmm/gestureclick.h"
-#include "gtkmm/shortcut.h"
-#include "gtkmm/shortcutaction.h"
-#include "gtkmm/shortcuttrigger.h"
-#include "gtkmm/shortcutcontroller.h"
-#include "gtkmm/widget.h"
-#include <gtkmm/eventcontroller.h>
 #include <gdkmm/frameclock.h>
-#include <memory>
-#include "ButtonMapper.h"
+#include <gdk/gdkkeysyms.h>
+#include <glibmm/datetime.h>
 
-const std::string RenderingCanvas::MouseButtonNamePrimary = "MouseLeft";
-const std::string RenderingCanvas::MouseButtonNameSecondary = "MouseRight";
-
-
-
-#pragma clang optimize off
-RenderingCanvas::RenderingCanvas(): Dasher::CDasherScreen(100,100), CScreenCoordInput("Mouse Input") {
-    //Set Inital Size
-    set_size_request(500,500);
+RenderingCanvas::RenderingCanvas() {
+    set_size_request(500, 500);
     set_hexpand(true);
     set_vexpand(true);
     set_valign(Gtk::Align::FILL);
     set_halign(Gtk::Align::FILL);
 
-    // Capture Mouse Movement
-    mouseController = Gtk::EventControllerMotion::create();
-    mouseController->signal_motion().connect([this](double x, double y){
-        mousePos = {static_cast<int>(x),static_cast<int>(y)};
+    m_motion_controller = Gtk::EventControllerMotion::create();
+    m_motion_controller->signal_motion().connect([this](double x, double y) {
+        m_mouse_x = static_cast<float>(x);
+        m_mouse_y = static_cast<float>(y);
+        bridge->mouse_move(m_mouse_x, m_mouse_y);
     });
-    add_controller(mouseController);
-    
-    mouseLeftClickController = Gtk::GestureClick::create();
-    mouseLeftClickController->set_button(GDK_BUTTON_PRIMARY);
-    mouseLeftClickController->signal_pressed().connect([this](int, double, double){
-        if(inputActivated) dasherController->GetButtonMapper()->MappedKeyDown(MouseButtonNamePrimary);
+    add_controller(m_motion_controller);
+
+    m_primary_click = Gtk::GestureClick::create();
+    m_primary_click->set_button(GDK_BUTTON_PRIMARY);
+    m_primary_click->signal_pressed().connect([this](int, double, double) {
+        m_mouse_down = true;
+        bridge->mouse_down();
     });
-    mouseLeftClickController->signal_released().connect([this](int, double, double){
-        if(inputActivated) dasherController->GetButtonMapper()->MappedKeyUp(MouseButtonNamePrimary);
+    m_primary_click->signal_released().connect([this](int, double, double) {
+        m_mouse_down = false;
+        bridge->mouse_up();
     });
-    add_controller(mouseLeftClickController);
+    add_controller(m_primary_click);
 
-    mouseRightClickController = Gtk::GestureClick::create();
-    mouseRightClickController->set_button(GDK_BUTTON_SECONDARY);
-    mouseRightClickController->signal_pressed().connect([this](int, double, double){
-        if(inputActivated) dasherController->GetButtonMapper()->MappedKeyDown(MouseButtonNameSecondary);
+    m_secondary_click = Gtk::GestureClick::create();
+    m_secondary_click->set_button(GDK_BUTTON_SECONDARY);
+    m_secondary_click->signal_pressed().connect([this](int, double, double) {
+        bridge->key_event(100, 1);
     });
-    mouseRightClickController->signal_released().connect([this](int, double, double){
-        if(inputActivated) dasherController->GetButtonMapper()->MappedKeyUp(MouseButtonNameSecondary);
+    m_secondary_click->signal_released().connect([this](int, double, double) {
+        bridge->key_event(100, 0);
     });
-    add_controller(mouseRightClickController);
+    add_controller(m_secondary_click);
 
-    //add shortcut
-    shortcutController = Gtk::ShortcutController::create();
-    shortcutController->add_shortcut(Gtk::Shortcut::create(Gtk::KeyvalTrigger::create(GDK_KEY_F8), Gtk::CallbackAction::create([this](Gtk::Widget&, const Glib::VariantBase&){
-        generatePDFNextFrame = true;
-        return true;
-    })));
-    shortcutController->set_scope(Gtk::ShortcutScope::GLOBAL);
-    add_controller(shortcutController);
+    m_recording_surface = Cairo::RecordingSurface::create();
+    m_recording_context = Cairo::Context::create(m_recording_surface);
 
-    // Initalize Cairo
-    recordingSurface = Cairo::RecordingSurface::create();
-    renderingBackend = Cairo::Context::create(recordingSurface);
+    bridge = std::make_shared<DasherBridge>("Data", "");
+    renderer = std::make_unique<CommandRenderer>();
 
-    // Initialize Dasher
-    Settings = std::make_shared<Dasher::XmlSettingsStore>("Settings.xml", this);
-	Settings->Load();
-	Settings->Save();
-	dasherController = std::make_shared<DasherController>(Settings);
-	dasherController->GetModuleManager()->RegisterInputDeviceModule(this, true);
-	dasherController->ChangeScreen(this);
-    dasherController->Initialize();
-	dasherController->SetBuffer(0);
-
-    // Enable Resizing
-    signal_resize().connect([this](int width, int height){
-        resize(width, height);
-        dasherController->ScreenResized(this);
+    bridge->set_output_callback([this](int event_type, const std::string& text) {
+        if (event_type == 0) {
+            m_output_buffer.append(text);
+        } else if (event_type == 1) {
+            size_t len = text.length();
+            if (m_output_buffer.length() >= len &&
+                m_output_buffer.compare(m_output_buffer.length() - len, len, text) == 0) {
+                m_output_buffer.erase(m_output_buffer.length() - len, len);
+            }
+        }
+        OnBufferChange.emit(m_output_buffer);
     });
 
-    // Enable Drawing
-    set_draw_func([this](Glib::RefPtr<Cairo::Context> cr, int width, int height){
-        cr->set_source(recordingSurface, 0, 0);
+    signal_resize().connect([this](int width, int height) {
+        bridge->set_screen_size(width, height);
+    });
+
+    set_draw_func([this](const Cairo::RefPtr<Cairo::Context>& cr, int, int) {
+        cr->set_source(m_recording_surface, 0, 0);
         cr->paint();
 
-        if(generatePDFNextFrame){
-          auto pdfSurface =
-              Cairo::PdfSurface::create(Glib::DateTime::create_now_local().format("Screenshot-%Y-%m-%d_%H-%M-%S.pdf"), width, height);
-          auto pdfBackend = Cairo::Context::create(pdfSurface);
-
-          pdfSurface->restrict_to_version(Cairo::PDF_VERSION_1_5); // standard version used in most software packages
-          pdfBackend->set_source(recordingSurface, 0, 0);
-          pdfBackend->paint();
-
-          generatePDFNextFrame = false;
-        }
-
-        //reset recording surface
-        renderingBackend->save();
-        renderingBackend->set_operator(Cairo::Context::Operator::CLEAR);
-        renderingBackend->paint();
-        renderingBackend->restore();
+        m_recording_context->save();
+        m_recording_context->set_operator(Cairo::Context::Operator::CLEAR);
+        m_recording_context->paint();
+        m_recording_context->restore();
     });
-    add_tick_callback([this](Glib::RefPtr<Gdk::FrameClock> clock){
-        dasherController->Render();
+
+    add_tick_callback([this](const Glib::RefPtr<Gdk::FrameClock>&) -> bool {
+        int width = get_width();
+        int height = get_height();
+        if (width <= 0 || height <= 0) return true;
+
+        DasherBridge::FrameResult result = bridge->frame(bridge->get_current_time_ms());
+        if (!result.commands.empty()) {
+            m_recording_context->save();
+            renderer->render(result, m_recording_context);
+            m_recording_context->restore();
+            queue_draw();
+        }
         return true;
     });
-}
-#pragma clang optimize on
-
-std::pair<Dasher::screenint, Dasher::screenint> RenderingCanvas::TextSize(Label* label, unsigned iFontSize) {
-    Cairo::TextExtents te;
-    renderingBackend->set_font_size(iFontSize);
-    renderingBackend->get_text_extents(label->m_strText, te);
-	return {static_cast<Dasher::screenint>(te.width), static_cast<Dasher::screenint>(te.height)};
-}
-
-void RenderingCanvas::DrawString(Label* label, Dasher::screenint x, Dasher::screenint y, unsigned iFontSize, const Dasher::ColorPalette::Color& Color) {
-    Cairo::TextExtents te;
-    renderingBackend->begin_new_path();
-    renderingBackend->set_font_size(iFontSize);
-    renderingBackend->set_source_rgba(Color.Red/255.0, Color.Green/255.0, Color.Blue/255.0, Color.Alpha/255.0);
-
-    renderingBackend->get_text_extents(label->m_strText, te);
-    renderingBackend->move_to(x - te.x_bearing, y - te.y_bearing);
-    renderingBackend->show_text(label->m_strText);
-}
-
-void RenderingCanvas::DrawRectangle(Dasher::screenint x1, Dasher::screenint y1, Dasher::screenint x2, Dasher::screenint y2, const Dasher::ColorPalette::Color& Color, const Dasher::ColorPalette::Color& OutlineColor, int iThickness) {
-    if(OutlineColor == Dasher::ColorPalette::noColor) iThickness = 0;
-
-    renderingBackend->begin_new_path();
-    renderingBackend->rectangle(x1, y1, x2 - x1,y2 - y1);
-            
-    renderingBackend->set_source_rgba(Color.Red/255.0, Color.Green/255.0, Color.Blue/255.0, Color.Alpha/255.0);
-    renderingBackend->fill_preserve();
-
-    if(iThickness > 0){
-        renderingBackend->set_source_rgba(OutlineColor.Red/255.0, OutlineColor.Green/255.0, OutlineColor.Blue/255.0, OutlineColor.Alpha/255.0);
-        renderingBackend->set_line_width(iThickness);
-        renderingBackend->stroke();
-    }
-}
-
-void RenderingCanvas::DrawCircle(Dasher::screenint iCX, Dasher::screenint iCY, Dasher::screenint iR, const Dasher::ColorPalette::Color& iFillColor, const Dasher::ColorPalette::Color& LineColor, int iLineWidth) {
-    renderingBackend->begin_new_path();
-    renderingBackend->arc(iCX, iCY, iR, 0.0, 6.28318530718); //2*PI
-
-    renderingBackend->set_source_rgba(iFillColor.Red/255.0, iFillColor.Green/255.0, iFillColor.Blue/255.0, iFillColor.Alpha/255.0);
-    renderingBackend->fill_preserve();
-
-    if(iLineWidth > 0){
-        renderingBackend->set_source_rgba(LineColor.Red/255.0, LineColor.Green/255.0, LineColor.Blue/255.0, LineColor.Alpha/255.0);
-        renderingBackend->set_line_width(iLineWidth);
-        renderingBackend->stroke();
-    }
-}
-
-void RenderingCanvas::Polyline(Dasher::point* Points, int Number, int iWidth, const Dasher::ColorPalette::Color& Color) {
-    renderingBackend->set_source_rgba(Color.Red/255.0, Color.Green/255.0, Color.Blue/255.0, Color.Alpha/255.0);
-    renderingBackend->set_line_width(iWidth);
-    
-    renderingBackend->begin_new_path(); //Clear current path if not done so far
-    for(int i = 0; i < Number; i++){
-        if(i == 0) renderingBackend->move_to(Points[i].x, Points[i].y);
-        else renderingBackend->line_to(Points[i].x, Points[i].y);
-    }
-    renderingBackend->stroke();
-}
-
-void RenderingCanvas::Polygon(Dasher::point* Points, int Number, const Dasher::ColorPalette::Color& fillColor, const Dasher::ColorPalette::Color& outlineColor, int lineWidth) {
-    
-    renderingBackend->begin_new_path();
-    for(int i = 0; i < Number; i++){
-        if(i == 0) renderingBackend->move_to(Points[i].x, Points[i].y);
-        else renderingBackend->line_to(Points[i].x, Points[i].y);
-    }
-    renderingBackend->close_path();
-    renderingBackend->set_source_rgba(fillColor.Red/255.0, fillColor.Green/255.0, fillColor.Blue/255.0, fillColor.Alpha/255.0);
-    renderingBackend->fill_preserve();
-    
-    if(lineWidth > 0){
-        renderingBackend->set_source_rgba(outlineColor.Red/255.0, outlineColor.Green/255.0, outlineColor.Blue/255.0, outlineColor.Alpha/255.0);
-        renderingBackend->set_line_width(lineWidth);
-        renderingBackend->stroke();
-    }
-    renderingBackend->stroke();
-}
-
-void RenderingCanvas::Display() {
-    queue_draw();
-}
-
-bool RenderingCanvas::IsPointVisible(Dasher::screenint x, Dasher::screenint y) {
-	return true;
-}
-bool RenderingCanvas::GetScreenCoords(Dasher::screenint& iX, Dasher::screenint& iY, Dasher::CDasherView* pView) {
-    iX = mousePos.x;
-    iY = mousePos.y;
-	return true;
 }
