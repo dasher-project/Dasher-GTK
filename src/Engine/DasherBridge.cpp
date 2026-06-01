@@ -1,0 +1,252 @@
+#include "DasherBridge.h"
+#include <cstring>
+#include <iostream>
+
+DasherBridge::DasherBridge(const std::string& data_dir, const std::string& user_dir) {
+    m_start_time = std::chrono::steady_clock::now();
+
+    char* error = nullptr;
+    m_ctx = dasher_create(data_dir.c_str(), user_dir.empty() ? nullptr : user_dir.c_str(), &error);
+    if (!m_ctx) {
+        std::string err = error ? error : "Unknown error creating Dasher context";
+        std::cerr << "DasherBridge: " << err << std::endl;
+    }
+}
+
+DasherBridge::~DasherBridge() {
+    if (m_ctx) {
+        dasher_destroy(m_ctx);
+    }
+}
+
+void DasherBridge::set_screen_size(int width, int height) {
+    if (m_ctx) dasher_set_screen_size(m_ctx, width, height);
+}
+
+void DasherBridge::mouse_move(float x, float y) {
+    if (m_ctx) dasher_mouse_move(m_ctx, x, y);
+}
+
+void DasherBridge::mouse_down() {
+    if (m_ctx) dasher_mouse_down(m_ctx);
+}
+
+void DasherBridge::mouse_up() {
+    if (m_ctx) dasher_mouse_up(m_ctx);
+}
+
+void DasherBridge::key_event(int key, int pressed) {
+    if (m_ctx) dasher_key_event(m_ctx, key, pressed);
+}
+
+DasherBridge::FrameResult DasherBridge::frame(int64_t time_ms) {
+    FrameResult result;
+    if (!m_ctx) return result;
+
+    int* cmds = nullptr;
+    int cmd_count = 0;
+    char** strs = nullptr;
+    int str_count = 0;
+
+    dasher_frame(m_ctx, time_ms, &cmds, &cmd_count, &strs, &str_count);
+
+    if (cmds && cmd_count > 0) {
+        result.commands.assign(cmds, cmds + cmd_count);
+    }
+
+    if (strs && str_count > 0) {
+        for (int i = 0; i < str_count; i++) {
+            result.strings.emplace_back(strs[i] ? strs[i] : "");
+        }
+    }
+
+    return result;
+}
+
+std::string DasherBridge::get_output_text() const {
+    if (!m_ctx) return "";
+    const char* text = dasher_get_output_text(m_ctx);
+    return text ? text : "";
+}
+
+void DasherBridge::reset_output_text() {
+    if (m_ctx) dasher_reset_output_text(m_ctx);
+}
+
+std::string DasherBridge::get_alphabet_id() const {
+    if (!m_ctx) return "";
+    const char* id = dasher_get_alphabet_id(m_ctx);
+    return id ? id : "";
+}
+
+void DasherBridge::set_alphabet_id(const std::string& id) {
+    if (m_ctx) dasher_set_alphabet_id(m_ctx, id.c_str());
+}
+
+int DasherBridge::get_alphabet_count() const {
+    if (!m_ctx) return 0;
+    return dasher_get_alphabet_count(m_ctx);
+}
+
+std::string DasherBridge::get_alphabet_name(int index) const {
+    if (!m_ctx) return "";
+    const char* name = dasher_get_alphabet_name(m_ctx, index);
+    return name ? name : "";
+}
+
+int DasherBridge::get_language_model_id() const {
+    if (!m_ctx) return 0;
+    return dasher_get_language_model_id(m_ctx);
+}
+
+void DasherBridge::set_language_model_id(int model_id) {
+    if (m_ctx) dasher_set_language_model_id(m_ctx, model_id);
+}
+
+int DasherBridge::get_speed_percent() const {
+    if (!m_ctx) return 100;
+    return dasher_get_speed_percent(m_ctx);
+}
+
+void DasherBridge::set_speed_percent(int percent) {
+    if (m_ctx) dasher_set_speed_percent(m_ctx, percent);
+}
+
+bool DasherBridge::get_bool_parameter(int key) const {
+    if (!m_ctx) return false;
+    return dasher_get_bool_parameter(m_ctx, key) != 0;
+}
+
+void DasherBridge::set_bool_parameter(int key, bool value) {
+    if (m_ctx) dasher_set_bool_parameter(m_ctx, key, value ? 1 : 0);
+}
+
+long DasherBridge::get_long_parameter(int key) const {
+    if (!m_ctx) return 0;
+    return dasher_get_long_parameter(m_ctx, key);
+}
+
+void DasherBridge::set_long_parameter(int key, long value) {
+    if (m_ctx) dasher_set_long_parameter(m_ctx, key, value);
+}
+
+std::string DasherBridge::get_string_parameter(int key) const {
+    if (!m_ctx) return "";
+    const char* val = dasher_get_string_parameter(m_ctx, key);
+    return val ? val : "";
+}
+
+void DasherBridge::set_string_parameter(int key, const std::string& value) {
+    if (m_ctx) dasher_set_string_parameter(m_ctx, key, value.c_str());
+}
+
+int DasherBridge::get_parameter_count() const {
+    return dasher_get_parameter_count();
+}
+
+DasherParameterInfo DasherBridge::get_parameter_info(int index) const {
+    DasherParameterInfo info = {};
+    ::dasher_parameter_info raw = {};
+    if (dasher_get_parameter_info(index, &raw) == 0) {
+        info.key = raw.key;
+        info.name = raw.name ? raw.name : "";
+        info.desc = raw.desc ? raw.desc : "";
+        info.type = raw.type;
+        info.ui_type = raw.ui_type;
+        info.min_val = raw.min_val;
+        info.max_val = raw.max_val;
+        info.step = raw.step;
+        info.advanced = raw.advanced != 0;
+        info.group = raw.group ? raw.group : "";
+        info.subgroup = raw.subgroup ? raw.subgroup : "";
+    }
+    return info;
+}
+
+int DasherBridge::get_parameter_enum_count(int key) const {
+    return dasher_get_parameter_enum_count(key);
+}
+
+std::string DasherBridge::get_parameter_enum_name(int key, int index) const {
+    const char* name = dasher_get_parameter_enum_name(key, index);
+    return name ? name : "";
+}
+
+int DasherBridge::get_parameter_enum_value(int key, int index) const {
+    return dasher_get_parameter_enum_value(key, index);
+}
+
+std::vector<std::string> DasherBridge::get_parameter_string_values(int key) const {
+    std::vector<std::string> result;
+    if (!m_ctx) return result;
+
+    int count = dasher_get_parameter_string_values(m_ctx, key, nullptr, 0);
+    if (count <= 0) return result;
+
+    std::vector<const char*> ptrs(count);
+    dasher_get_parameter_string_values(m_ctx, key, ptrs.data(), count);
+    for (int i = 0; i < count; i++) {
+        result.emplace_back(ptrs[i] ? ptrs[i] : "");
+    }
+    return result;
+}
+
+int DasherBridge::get_palette_count() const {
+    if (!m_ctx) return 0;
+    return dasher_get_palette_count(m_ctx);
+}
+
+std::string DasherBridge::get_palette_name(int index) const {
+    if (!m_ctx) return "";
+    const char* name = dasher_get_palette_name(m_ctx, index);
+    return name ? name : "";
+}
+
+std::string DasherBridge::get_current_palette() const {
+    if (!m_ctx) return "";
+    const char* name = dasher_get_current_palette(m_ctx);
+    return name ? name : "";
+}
+
+bool DasherBridge::get_palette_preview_colors(int index, int out_colors[4]) const {
+    if (!m_ctx) return false;
+    return dasher_get_palette_preview_colors(m_ctx, index, out_colors) == 0;
+}
+
+void DasherBridge::set_palette(const std::string& name) {
+    if (m_ctx) dasher_set_palette(m_ctx, name.c_str());
+}
+
+void DasherBridge::save_settings() {
+    if (m_ctx) dasher_save_settings(m_ctx);
+}
+
+int DasherBridge::set_locale(const std::string& locale) {
+    if (!m_ctx) return -1;
+    return dasher_set_locale(m_ctx, locale.c_str());
+}
+
+std::string DasherBridge::get_locale() const {
+    if (!m_ctx) return "en";
+    const char* loc = dasher_get_locale(m_ctx);
+    return loc ? loc : "en";
+}
+
+void DasherBridge::set_output_callback(std::function<void(int, const std::string&)> callback) {
+    m_output_callback = std::move(callback);
+    if (m_ctx) {
+        dasher_set_output_callback(m_ctx, output_callback_trampoline, this);
+    }
+}
+
+void DasherBridge::output_callback_trampoline(int event_type, const char* text, void* user_data) {
+    auto* self = static_cast<DasherBridge*>(user_data);
+    if (self && self->m_output_callback) {
+        self->m_output_callback(event_type, text ? text : "");
+    }
+}
+
+int64_t DasherBridge::get_current_time_ms() const {
+    return std::chrono::duration_cast<std::chrono::milliseconds>(
+        std::chrono::steady_clock::now() - m_start_time).count();
+}
