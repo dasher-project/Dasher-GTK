@@ -65,12 +65,29 @@ MainWindow::MainWindow()
             m_canvas.bridge->key_event(0, 1);
             return true;
         }
+        if (keyval >= GDK_KEY_1 && keyval <= GDK_KEY_4) {
+            m_canvas.bridge->key_event(keyval - GDK_KEY_1 + 1, 1);
+            return true;
+        }
+        if (keyval >= GDK_KEY_F1 && keyval <= GDK_KEY_F4) {
+            m_canvas.bridge->key_event(keyval - GDK_KEY_F1 + 1, 1);
+            return true;
+        }
         return false;
     }, false);
     event_controller->signal_key_released().connect([this](guint keyval, guint, Gdk::ModifierType) {
         std::string key_name = gdk_keyval_name(keyval);
         if (key_name == "space" || key_name == "Return" || key_name == "KP_Enter") {
             m_canvas.bridge->key_event(0, 0);
+            return;
+        }
+        if (keyval >= GDK_KEY_1 && keyval <= GDK_KEY_4) {
+            m_canvas.bridge->key_event(keyval - GDK_KEY_1 + 1, 0);
+            return;
+        }
+        if (keyval >= GDK_KEY_F1 && keyval <= GDK_KEY_F4) {
+            m_canvas.bridge->key_event(keyval - GDK_KEY_F1 + 1, 0);
+            return;
         }
     }, false);
     add_controller(event_controller);
