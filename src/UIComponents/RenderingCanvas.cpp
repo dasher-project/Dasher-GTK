@@ -45,6 +45,8 @@ RenderingCanvas::RenderingCanvas() {
 
     bridge = std::make_shared<DasherBridge>("Data", "");
     renderer = std::make_unique<CommandRenderer>();
+    input_manager = std::make_unique<InputManager>(bridge);
+    input_manager->activate();
 
     bridge->set_output_callback([this](int event_type, const std::string& text) {
         if (event_type == 0) {
@@ -61,6 +63,7 @@ RenderingCanvas::RenderingCanvas() {
 
     signal_resize().connect([this](int width, int height) {
         bridge->set_screen_size(width, height);
+        input_manager->set_canvas_size(width, height);
     });
 
     set_draw_func([this](const Cairo::RefPtr<Cairo::Context>& cr, int, int) {
@@ -87,4 +90,10 @@ RenderingCanvas::RenderingCanvas() {
         }
         return true;
     });
+}
+
+RenderingCanvas::~RenderingCanvas() {
+    if (input_manager) {
+        input_manager->deactivate();
+    }
 }

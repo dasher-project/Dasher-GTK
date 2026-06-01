@@ -2,6 +2,7 @@
 
 #include "Engine/DasherBridge.h"
 #include "Engine/CommandRenderer.h"
+#include "Input/InputManager.h"
 #include <cairomm/context.h>
 #include <cairomm/surface.h>
 #include <gtkmm/drawingarea.h>
@@ -12,10 +13,11 @@
 class RenderingCanvas : public Gtk::DrawingArea {
 public:
     RenderingCanvas();
-    ~RenderingCanvas() override = default;
+    ~RenderingCanvas() override;
 
     std::shared_ptr<DasherBridge> bridge;
     std::unique_ptr<CommandRenderer> renderer;
+    std::unique_ptr<InputManager> input_manager;
 
     sigc::signal<void(const std::string&)> OnBufferChange;
 
