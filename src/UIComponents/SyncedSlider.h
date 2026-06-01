@@ -1,34 +1,29 @@
 #pragma once
 
-#include "DasherCore/Parameters.h"
-#include "gtkmm/scale.h"
-#include "DasherCore/SettingsStore.h"
+#include "Engine/DasherBridge.h"
+#include <gtkmm/scale.h>
 #include <memory>
 
 class SyncedSlider : public Gtk::Scale {
 public:
-    SyncedSlider(Dasher::Parameter parameter, std::shared_ptr<Dasher::CSettingsStore> settings, int min, int max, int step) : m_settings(settings), m_synced_parameter(parameter) {
-        // Set slider parameters 
+    SyncedSlider(int parameter_key, std::shared_ptr<DasherBridge> bridge, long min, long max, long step)
+        : m_bridge(bridge), m_key(parameter_key)
+    {
         set_digits(0);
         set_range(min, max);
-        set_increments(step, step*5);
+        set_increments(step, step * 5);
+        set_value(m_bridge->get_long_parameter(m_key));
 
-        // Adjust state on settings change
-        settings->OnParameterChanged.Subscribe(this, [this](Dasher::Parameter param){
-            //Does not need exception for loop, as Dasher::SettingsStore capture a "non-state change"
-            if(param == m_synced_parameter) set_value(m_settings->GetLongParameter(m_synced_parameter));
-        });
-
-        // Set inital state
-        set_value(m_settings->GetLongParameter(m_synced_parameter));
-
-        // Adjust based on movement
-        signal_value_changed().connect([this](){
-            m_settings->SetLongParameter(m_synced_parameter, static_cast<long>(get_value()));
+        signal_value_changed().connect([this]() {
+            m_bridge->set_long_parameter(m_key, static_cast<long>(get_value()));
         });
     }
 
+    void update_from_bridge() {
+        set_value(m_bridge->get_long_parameter(m_key));
+    }
+
 protected:
-    std::shared_ptr<Dasher::CSettingsStore> m_settings;
-    const Dasher::Parameter m_synced_parameter;
+    std::shared_ptr<DasherBridge> m_bridge;
+    int m_key;
 };

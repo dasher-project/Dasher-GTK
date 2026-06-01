@@ -1,37 +1,26 @@
 #pragma once
 
-#include "DasherCore/Parameters.h"
-#include "gtkmm/entry.h"
-#include "DasherCore/SettingsStore.h"
+#include "Engine/DasherBridge.h"
+#include <gtkmm/entry.h>
 #include <memory>
 
-#pragma clang optimize off
 class SyncedTextbox : public Gtk::Entry {
 public:
-    SyncedTextbox(Dasher::Parameter parameter, std::shared_ptr<Dasher::CSettingsStore> settings) : m_settings(settings), m_synced_parameter(parameter) {
+    SyncedTextbox(int parameter_key, std::shared_ptr<DasherBridge> bridge)
+        : m_bridge(bridge), m_key(parameter_key)
+    {
+        set_text(m_bridge->get_string_parameter(m_key));
 
-        // Change String on settings change
-        settings->OnParameterChanged.Subscribe(this, [this](Dasher::Parameter param){
-            //Does not need exception for loop, as Dasher::SettingsStore capture a "non-state change"
-            if(param == m_synced_parameter) set_text(m_settings->GetStringParameter(m_synced_parameter));
-        });
-
-        // Set inital string
-        set_text(m_settings->GetStringParameter(m_synced_parameter));
-
-        // Change value on user input
-        signal_activate().connect([this](){
-            m_settings->SetStringParameter(m_synced_parameter, get_text());
+        signal_activate().connect([this]() {
+            m_bridge->set_string_parameter(m_key, get_text());
         }, false);
     }
 
-    void SetText(Glib::ustring text){
-        set_text(text);
-        m_settings->SetStringParameter(m_synced_parameter, text);
+    void update_from_bridge() {
+        set_text(m_bridge->get_string_parameter(m_key));
     }
 
 protected:
-    std::shared_ptr<Dasher::CSettingsStore> m_settings;
-    const Dasher::Parameter m_synced_parameter;
+    std::shared_ptr<DasherBridge> m_bridge;
+    int m_key;
 };
-#pragma clang optimize on
