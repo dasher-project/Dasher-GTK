@@ -20,6 +20,7 @@ public:
     std::unique_ptr<InputManager> input_manager;
 
     sigc::signal<void(const std::string&)> OnBufferChange;
+    sigc::signal<void(int, const std::string&)> OnOutputEvent;
 
 private:
     Glib::RefPtr<Gtk::EventControllerMotion> m_motion_controller;

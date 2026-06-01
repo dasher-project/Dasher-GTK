@@ -59,6 +59,7 @@ RenderingCanvas::RenderingCanvas() {
             }
         }
         OnBufferChange.emit(m_output_buffer);
+        OnOutputEvent.emit(event_type, text);
     });
 
     signal_resize().connect([this](int width, int height) {

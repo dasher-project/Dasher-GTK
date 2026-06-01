@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Engine/DasherBridge.h"
+#include "Output/DirectModeService.h"
 #include "UIComponents/ImageButton.h"
 #include "UIComponents/RenderingCanvas.h"
 #include "UIComponents/MessageOverlay.h"
@@ -59,6 +60,11 @@ protected:
     Gtk::FontDialogButton m_font_chooser = Gtk::FontDialogButton(m_font_dialog);
     Gtk::Label m_speech_label = Gtk::Label("Speech");
     Gtk::Switch m_speech_switch;
+    Gtk::Label m_keyboard_label = Gtk::Label("Keyboard");
+    Gtk::Switch m_keyboard_switch;
+
+    std::unique_ptr<DirectModeService> m_direct_mode;
+    bool m_direct_mode_active = false;
 
     PreferencesWindow m_preferences_window;
 };

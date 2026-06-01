@@ -103,8 +103,25 @@ MainWindow::MainWindow()
     m_footer_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
     m_footer_bar.pack_start(m_speech_label);
     m_footer_bar.pack_start(m_speech_switch);
+    m_footer_bar.pack_start(m_keyboard_label);
+    m_footer_bar.pack_start(m_keyboard_switch);
     m_speech_switch.set_valign(Gtk::Align::CENTER);
     m_learning_switch.set_valign(Gtk::Align::CENTER);
+    m_keyboard_switch.set_valign(Gtk::Align::CENTER);
+
+    m_direct_mode = std::make_unique<DirectModeService>();
+    m_keyboard_switch.set_sensitive(m_direct_mode->is_available());
+    if (!m_direct_mode->is_available()) {
+        m_keyboard_label.set_tooltip_text("Install ydotool for on-screen keyboard mode");
+    }
+
+    m_keyboard_switch.property_active().signal_changed().connect([this]() {
+        m_direct_mode_active = m_keyboard_switch.get_active();
+        if (m_direct_mode_active) {
+            m_pane.set_shrink_end_child(false);
+            m_pane.set_position(get_width() - 50);
+        }
+    });
 
     m_font_chooser.property_font_desc().signal_changed().connect([this]() {
         Pango::FontDescription font = m_font_chooser.get_font_desc();
@@ -130,6 +147,21 @@ MainWindow::MainWindow()
 
     m_canvas.OnBufferChange.connect([this](const std::string& text) {
         m_text_view.get_buffer()->set_text(text);
+    });
+
+    m_canvas.OnOutputEvent.connect([this](int event_type, const std::string& text) {
+        if (!m_direct_mode_active || text.empty()) return;
+        if (event_type == 0) {
+            m_direct_mode->inject_text(text);
+        } else if (event_type == 1) {
+            int count = 0;
+            try {
+                count = static_cast<int>(text.size());
+            } catch (...) {
+                count = 1;
+            }
+            m_direct_mode->inject_delete(count);
+        }
     });
 
     m_side_panel.append(m_panel_bar);
