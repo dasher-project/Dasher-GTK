@@ -6,9 +6,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Dasher)
 
 ###############################
-# Building Dasher Library
+# Building Dasher CAPI Library
 ###############################
 
+set(BUILD_CAPI ON CACHE BOOL "" FORCE)
+set(BUILD_TESTS OFF CACHE BOOL "" FORCE)
 add_subdirectory("DasherCore")
 
 ###############################
@@ -20,7 +22,7 @@ pkg_check_modules(GTK REQUIRED gtk4)
 pkg_check_modules(GTKMM REQUIRED gtkmm-4.0)
 
 ###############################
-# Using/Building SDL2
+# Using/Building SDL3
 ###############################
 
 set(SDL_STATIC ON CACHE BOOL "" FORCE)
@@ -39,7 +41,6 @@ set(SDL_POWER OFF CACHE BOOL "" FORCE)
 set(SDL_SENSOR OFF CACHE BOOL "" FORCE)
 set(SDL_DIALOG OFF CACHE BOOL "" FORCE)
 
-# Workaround for "Undefined symbols for architecture arm64", see https://github.com/libsdl-org/SDL/issues/13235
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	set(SDL_VIDEO ON CACHE BOOL "" FORCE)
 ENDIF()
@@ -65,17 +66,17 @@ ADD_Executable(Dasher
 	${SOURCE_FILES}
 )
 
-# Hide console window on windows builds
 if(WIN32)
 	set_target_properties(Dasher PROPERTIES
 		LINK_FLAGS /SUBSYSTEM:WINDOWS
 	)
 endif()
 
-add_dependencies(Dasher DasherCore)
-target_link_libraries(Dasher PRIVATE DasherCore SDL3::SDL3 ${GTK_LIBRARIES} ${GTKMM_LIBRARIES})
+add_dependencies(Dasher dasher)
+target_link_libraries(Dasher PRIVATE dasher SDL3::SDL3 ${GTK_LIBRARIES} ${GTKMM_LIBRARIES})
 target_include_directories(Dasher SYSTEM PRIVATE ${GTK_INCLUDE_DIRS} ${GTKMM_INCLUDE_DIRS})
 target_include_directories(Dasher PRIVATE ${CMAKE_CURRENT_LIST_DIR}/src/)
+target_include_directories(Dasher PRIVATE ${CMAKE_CURRENT_LIST_DIR}/DasherCore/src/)
 target_include_directories(Dasher PRIVATE ${CMAKE_CURRENT_LIST_DIR}/Thirdparty/SDL/include/)
 target_link_directories(Dasher PRIVATE ${GTK_LIBRARY_DIRS} ${GTKMM_LIBRARY_DIRS})
 
@@ -85,18 +86,30 @@ target_link_directories(Dasher PRIVATE ${GTK_LIBRARY_DIRS} ${GTKMM_LIBRARY_DIRS}
 
 file(GLOB DATA_FILES
   ${PROJECT_SOURCE_DIR}/DasherCore/Data/alphabets/alphabet*.xml
+  ${PROJECT_SOURCE_DIR}/DasherCore/Data/colours/colour*.xml
   ${PROJECT_SOURCE_DIR}/DasherCore/Data/colors/color*.xml
   ${PROJECT_SOURCE_DIR}/DasherCore/Data/control/control*.xml
   ${PROJECT_SOURCE_DIR}/DasherCore/Data/training/training*.txt
 )
 file(COPY ${DATA_FILES} DESTINATION ${CMAKE_BINARY_DIR}/Dasher/Data)
 
+file(GLOB STRING_FILES
+  ${PROJECT_SOURCE_DIR}/DasherCore/Strings/*.json
+)
+file(COPY ${STRING_FILES} DESTINATION ${CMAKE_BINARY_DIR}/Dasher/Strings)
+
 file(COPY ${PROJECT_SOURCE_DIR}/Resources/ DESTINATION ${CMAKE_BINARY_DIR}/Dasher/Resources)
 file(COPY ${PROJECT_SOURCE_DIR}/src/UIStyle.css DESTINATION ${CMAKE_BINARY_DIR}/Dasher/)
 
-# Copy Licenses
 file(COPY_FILE ${PROJECT_SOURCE_DIR}/Thirdparty/SDL/LICENSE.txt ${CMAKE_BINARY_DIR}/Dasher/Resources/License/LICENSE_SDL.txt)
 file(COPY_FILE ${PROJECT_SOURCE_DIR}/DasherCore/Thirdparty/pugixml/LICENSE.md ${CMAKE_BINARY_DIR}/Dasher/Resources/License/LICENSE_PugiXML.txt)
+
+# Copy the shared library next to the executable
+add_custom_command(TARGET Dasher POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        $<TARGET_FILE:dasher>
+        ${CMAKE_BINARY_DIR}/Dasher/
+)
 
 ###############################
 # Setting up deployment
