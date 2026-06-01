@@ -15,6 +15,9 @@
 #include <gtkmm/actionbar.h>
 #include <gtkmm/label.h>
 #include <gtkmm/textview.h>
+#include <gtkmm/cssprovider.h>
+#include <gtkmm/separator.h>
+#include <gtkmm/eventcontrollerkey.h>
 #include <gtkmm/fontdialog.h>
 #include <gtkmm/fontdialogbutton.h>
 #include <gtkmm/switch.h>

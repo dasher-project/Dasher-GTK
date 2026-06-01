@@ -12,9 +12,9 @@ static Cairo::ToyFontFace::Slant getSlantFromPango(Pango::Style s) {
 }
 
 MainWindow::MainWindow()
-    : m_alphabet_chooser(2, m_canvas.bridge, m_canvas.bridge->get_parameter_string_values(2))
+    : m_alphabet_chooser(95, m_canvas.bridge, m_canvas.bridge->get_parameter_string_values(95))
     , m_speed_adjustment(30, m_canvas.bridge, 20, 400, 5)
-    , m_learning_switch(3, m_canvas.bridge)
+    , m_learning_switch(15, m_canvas.bridge)
     , m_color_chooser(m_canvas.bridge)
     , m_preferences_window(m_canvas.bridge)
 {

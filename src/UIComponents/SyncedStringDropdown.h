@@ -3,6 +3,7 @@
 #include "Engine/DasherBridge.h"
 #include "gtkmm/dropdown.h"
 #include "gtkmm/stringlist.h"
+#include "gtkmm/stringobject.h"
 #include <vector>
 #include <memory>
 
