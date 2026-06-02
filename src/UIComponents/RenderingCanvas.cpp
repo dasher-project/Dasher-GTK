@@ -4,6 +4,10 @@
 #include <glibmm/datetime.h>
 #include <cmath>
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 RenderingCanvas::RenderingCanvas() {
     set_size_request(500, 500);
     set_hexpand(true);
@@ -129,19 +133,19 @@ void RenderingCanvas::draw_dwell_indicator(const Cairo::RefPtr<Cairo::Context>& 
     float progress = dwell_handler->get_progress();
     if (progress <= 0.0f) return;
 
-    float cx = dwell_handler->get_center_x();
-    float cy = dwell_handler->get_center_y();
-    float outer_radius = 25.0f;
+    double cx = static_cast<double>(dwell_handler->get_center_x());
+    double cy = static_cast<double>(dwell_handler->get_center_y());
+    double outer_radius = 25.0;
 
     cr->save();
     cr->set_source_rgba(0.2, 0.6, 0.8, 0.4);
     cr->set_line_width(3.0);
-    cr->arc(cx, cy, outer_radius, 0, 2 * M_PI);
+    cr->arc(cx, cy, outer_radius, 0.0, 2.0 * M_PI);
     cr->stroke();
 
     cr->set_source_rgba(0.2, 0.8, 0.9, 0.8);
     cr->set_line_width(4.0);
-    cr->arc(cx, cy, outer_radius, -M_PI / 2, -M_PI / 2 + 2 * M_PI * progress);
+    cr->arc(cx, cy, outer_radius, -M_PI / 2.0, -M_PI / 2.0 + 2.0 * M_PI * static_cast<double>(progress));
     cr->stroke();
     cr->restore();
 }

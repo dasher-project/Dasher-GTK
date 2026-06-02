@@ -2,6 +2,7 @@
 #include "Output/TtsService.h"
 #include <gtkmm/dropdown.h>
 #include <gtkmm/stringlist.h>
+#include <gtkmm/stringlist.h>
 
 PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge)
     : m_bridge(bridge)
