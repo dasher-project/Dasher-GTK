@@ -23,7 +23,8 @@
 #include <gtkmm/fontdialog.h>
 #include <gtkmm/fontdialogbutton.h>
 #include <gtkmm/switch.h>
-#include <memory>
+#include <gtkmm/filedialog.h>
+#include <gtkmm/filefilter.h>
 
 class MainWindow : public Gtk::Window {
 public:
@@ -61,6 +62,8 @@ protected:
     Gtk::FontDialogButton m_font_chooser = Gtk::FontDialogButton(m_font_dialog);
     Gtk::Label m_speech_label = Gtk::Label("Speech");
     Gtk::Switch m_speech_switch;
+    Gtk::Label m_dwell_label = Gtk::Label("Dwell");
+    Gtk::Switch m_dwell_switch;
     Gtk::Label m_keyboard_label = Gtk::Label("Keyboard");
     Gtk::Switch m_keyboard_switch;
 

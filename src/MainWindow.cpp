@@ -54,6 +54,54 @@ MainWindow::MainWindow()
         m_canvas.bridge->reset_output_text();
     });
 
+    m_open_button.signal_clicked().connect([this]() {
+        auto dialog = Gtk::FileDialog::create();
+        dialog->set_title("Open Text File");
+        auto filter = Gtk::FileFilter::create();
+        filter->set_name("Text files");
+        filter->add_mime_type("text/plain");
+        dialog->set_default_filter(filter);
+        dialog->open(*this, [this, dialog](Glib::RefPtr<Gio::AsyncResult>& result) {
+            try {
+                auto file = dialog->open_finish(result);
+                if (!file) return;
+                auto stream = file->read();
+                gsize size = 0;
+                auto bytes = stream->read_bytes(1024 * 1024, Glib::RefPtr<Gio::Cancellable>());
+                auto data = bytes->get_data(size);
+                std::string contents(static_cast<const char*>(data), size);
+                stream->close();
+                m_canvas.bridge->reset_output_text();
+                m_text_view.get_buffer()->set_text(contents);
+            } catch (const Glib::Error& e) {
+                m_message_overlay.show_message("Failed to open: " + std::string(e.what()));
+            }
+        });
+    });
+
+    m_save_button.signal_clicked().connect([this]() {
+        auto dialog = Gtk::FileDialog::create();
+        dialog->set_title("Save Text File");
+        auto filter = Gtk::FileFilter::create();
+        filter->set_name("Text files");
+        filter->add_mime_type("text/plain");
+        dialog->set_default_filter(filter);
+        dialog->save(*this, [this, dialog](Glib::RefPtr<Gio::AsyncResult>& result) {
+            try {
+                auto file = dialog->save_finish(result);
+                if (!file) return;
+                auto buffer = m_text_view.get_buffer();
+                std::string text = buffer->get_text();
+                auto stream = file->replace();
+                stream->write(text);
+                stream->close();
+                m_message_overlay.show_message("Saved: " + file->get_basename(), true);
+            } catch (const Glib::Error& e) {
+                m_message_overlay.show_message("Failed to save: " + std::string(e.what()));
+            }
+        });
+    });
+
     auto event_controller = Gtk::EventControllerKey::create();
     event_controller->signal_key_pressed().connect([this](guint keyval, guint, Gdk::ModifierType) {
         std::string key_name = gdk_keyval_name(keyval);
@@ -103,9 +151,12 @@ MainWindow::MainWindow()
     m_footer_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
     m_footer_bar.pack_start(m_speech_label);
     m_footer_bar.pack_start(m_speech_switch);
+    m_footer_bar.pack_start(m_dwell_label);
+    m_footer_bar.pack_start(m_dwell_switch);
     m_footer_bar.pack_start(m_keyboard_label);
     m_footer_bar.pack_start(m_keyboard_switch);
     m_speech_switch.set_valign(Gtk::Align::CENTER);
+    m_dwell_switch.set_valign(Gtk::Align::CENTER);
     m_learning_switch.set_valign(Gtk::Align::CENTER);
     m_keyboard_switch.set_valign(Gtk::Align::CENTER);
 
@@ -123,6 +174,10 @@ MainWindow::MainWindow()
             m_pane.set_shrink_end_child(false);
             m_pane.set_position(get_width() - 50);
         }
+    });
+
+    m_dwell_switch.property_active().signal_changed().connect([this]() {
+        m_canvas.dwell_handler->set_enabled(m_dwell_switch.get_active());
     });
 
     m_font_chooser.property_font_desc().signal_changed().connect([this]() {
