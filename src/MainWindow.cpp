@@ -173,6 +173,9 @@ MainWindow::MainWindow()
         if (m_direct_mode_active) {
             m_pane.set_shrink_end_child(false);
             m_pane.set_position(get_width() - 50);
+        } else {
+            m_pane.set_shrink_end_child(true);
+            m_pane.set_position(get_width() * 2 / 3);
         }
     });
 

@@ -2,7 +2,6 @@
 #include "Output/TtsService.h"
 #include <gtkmm/dropdown.h>
 #include <gtkmm/stringlist.h>
-#include <gtkmm/stringlist.h>
 
 PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge)
     : m_bridge(bridge)
@@ -14,6 +13,26 @@ PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge)
     m_layout.append(m_sidebar);
     m_layout.append(m_stack);
     m_sidebar.set_stack(m_stack);
+
+    rebuild_sections();
+    add_locale_section();
+
+    auto* scrolled_help = Gtk::make_managed<Gtk::ScrolledWindow>();
+    auto* help_box = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::VERTICAL, 8);
+    help_box->set_margin(12);
+    auto* about = Gtk::make_managed<Gtk::Label>("");
+    about->set_markup("<big><b>Dasher v6</b></big>\nGTK Edition — CAPI Architecture");
+    about->set_justify(Gtk::Justification::CENTER);
+    help_box->append(*about);
+    scrolled_help->set_child(*help_box);
+    m_stack.add(*scrolled_help, "help", "About");
+}
+
+void PreferencesWindow::rebuild_sections() {
+    for (auto* w : m_dynamic_pages) {
+        m_stack.remove(*w);
+    }
+    m_dynamic_pages.clear();
 
     struct GroupDef {
         std::string id;
@@ -36,6 +55,7 @@ PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge)
         scrolled->set_vexpand(true);
         scrolled->set_hexpand(true);
         m_stack.add(*scrolled, g.id, g.label);
+        m_dynamic_pages.push_back(scrolled);
     }
 
     auto* scrolled_speech = Gtk::make_managed<Gtk::ScrolledWindow>();
@@ -99,14 +119,44 @@ PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge)
 
     scrolled_speech->set_child(*speech_box);
     m_stack.add(*scrolled_speech, "speech", "Speech");
+    m_dynamic_pages.push_back(scrolled_speech);
+}
 
-    auto* scrolled_help = Gtk::make_managed<Gtk::ScrolledWindow>();
-    auto* help_box = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::VERTICAL, 8);
-    help_box->set_margin(12);
-    auto* about = Gtk::make_managed<Gtk::Label>("");
-    about->set_markup("<big><b>Dasher v6</b></big>\nGTK Edition — CAPI Architecture");
-    about->set_justify(Gtk::Justification::CENTER);
-    help_box->append(*about);
-    scrolled_help->set_child(*help_box);
-    m_stack.add(*scrolled_help, "help", "About");
+void PreferencesWindow::add_locale_section() {
+    auto* scrolled = Gtk::make_managed<Gtk::ScrolledWindow>();
+    auto* box = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::VERTICAL, 8);
+    box->set_margin(12);
+
+    auto* title = Gtk::make_managed<Gtk::Label>("");
+    title->set_markup("<b>Language / Locale</b>");
+    title->set_halign(Gtk::Align::START);
+    box->append(*title);
+
+    auto locales = m_bridge->get_available_locales();
+    std::string current = m_bridge->get_locale();
+
+    std::vector<Glib::ustring> names;
+    guint selected_idx = 0;
+    for (size_t i = 0; i < locales.size(); i++) {
+        names.push_back(locales[i].display_name + " (" + locales[i].code + ")");
+        if (locales[i].code == current) {
+            selected_idx = static_cast<guint>(i);
+        }
+    }
+
+    auto list = Gtk::StringList::create(names);
+    auto* dropdown = Gtk::make_managed<Gtk::DropDown>(list);
+    dropdown->set_selected(selected_idx);
+    box->append(*dropdown);
+
+    dropdown->property_selected().signal_changed().connect([this, dropdown, locales]() {
+        guint idx = dropdown->get_selected();
+        if (idx < locales.size()) {
+            m_bridge->set_locale(locales[idx].code);
+            rebuild_sections();
+        }
+    });
+
+    scrolled->set_child(*box);
+    m_stack.add(*scrolled, "locale", "Locale");
 }

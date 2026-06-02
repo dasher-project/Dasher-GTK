@@ -16,6 +16,33 @@ RenderingCanvas::RenderingCanvas() {
     set_halign(Gtk::Align::FILL);
 
     bridge = std::make_shared<DasherBridge>("Data", "");
+
+    auto locales = bridge->get_available_locales();
+    auto* const* sys_langs = g_get_language_names();
+    if (sys_langs) {
+        for (int i = 0; sys_langs[i]; i++) {
+            std::string lang(sys_langs[i]);
+            bool found = false;
+            for (auto& loc : locales) {
+                if (loc.code == lang) {
+                    bridge->set_locale(loc.code);
+                    found = true;
+                    break;
+                }
+            }
+            if (found) break;
+            std::string prefix = lang.substr(0, 2);
+            for (auto& loc : locales) {
+                if (loc.code.substr(0, 2) == prefix) {
+                    bridge->set_locale(loc.code);
+                    found = true;
+                    break;
+                }
+            }
+            if (found) break;
+        }
+    }
+
     renderer = std::make_unique<CommandRenderer>();
     input_manager = std::make_unique<InputManager>(bridge);
     input_manager->activate();

@@ -80,6 +80,12 @@ public:
     int set_locale(const std::string& locale);
     std::string get_locale() const;
 
+    struct LocaleInfo {
+        std::string code;
+        std::string display_name;
+    };
+    std::vector<LocaleInfo> get_available_locales() const;
+
     void set_output_callback(std::function<void(int, const std::string&)> callback);
 
     int64_t get_current_time_ms() const;

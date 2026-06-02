@@ -13,8 +13,13 @@ public:
     PreferencesWindow(std::shared_ptr<DasherBridge> bridge);
 
 private:
+    void rebuild_sections();
+    void add_locale_section();
+
     std::shared_ptr<DasherBridge> m_bridge;
     Gtk::Box m_layout = Gtk::Box(Gtk::Orientation::HORIZONTAL);
     Gtk::StackSidebar m_sidebar;
     Gtk::Stack m_stack;
+
+    std::vector<Gtk::Widget*> m_dynamic_pages;
 };
