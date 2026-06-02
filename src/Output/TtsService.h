@@ -30,6 +30,8 @@ public:
     void speak(const std::string& text);
     void speak_sync(const std::string& text);
     void stop();
+    void pause();
+    void resume();
 
     void set_engine(const std::string& engine_id, const std::string& credentials = "");
     std::string get_current_engine() const;

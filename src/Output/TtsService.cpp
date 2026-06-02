@@ -50,6 +50,20 @@ void TtsService::stop() {
 #endif
 }
 
+void TtsService::pause() {
+#ifdef HAS_TTS
+    if (!m_ctx) return;
+    tts_pause(static_cast<tts_ctx*>(m_ctx));
+#endif
+}
+
+void TtsService::resume() {
+#ifdef HAS_TTS
+    if (!m_ctx) return;
+    tts_resume(static_cast<tts_ctx*>(m_ctx));
+#endif
+}
+
 void TtsService::set_engine(const std::string& engine_id, const std::string& credentials) {
 #ifdef HAS_TTS
     if (m_ctx) {

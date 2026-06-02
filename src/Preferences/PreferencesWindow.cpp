@@ -2,6 +2,9 @@
 #include "Output/TtsService.h"
 #include <gtkmm/dropdown.h>
 #include <gtkmm/stringlist.h>
+#include <gtkmm/scale.h>
+#include <gtkmm/adjustment.h>
+#include <functional>
 
 PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge)
     : m_bridge(bridge)
@@ -111,6 +114,28 @@ void PreferencesWindow::rebuild_sections() {
                     tts->set_voice(voices[idx].id);
                 }
             });
+
+        auto add_slider = [&](const Glib::ustring& label_text, float min, float max, float def, float step,
+                              std::function<void(float)> setter) {
+            auto* lbl = Gtk::make_managed<Gtk::Label>(label_text);
+            lbl->set_halign(Gtk::Align::START);
+            speech_box->append(*lbl);
+
+            auto adj = Gtk::Adjustment::create(def, min, max, step, step * 5, 0);
+            auto* scale = Gtk::make_managed<Gtk::Scale>(adj, Gtk::Orientation::HORIZONTAL);
+            scale->set_hexpand(true);
+            scale->set_digits(1);
+            scale->set_draw_value(true);
+            speech_box->append(*scale);
+
+            adj->signal_value_changed().connect([adj, setter = std::move(setter)]() {
+                setter(static_cast<float>(adj->get_value()));
+            });
+        };
+
+        add_slider("Rate:", 0.1, 3.0, 1.0, 0.1, [tts](float v) { tts->set_rate(v); });
+        add_slider("Pitch:", 0.1, 3.0, 1.0, 0.1, [tts](float v) { tts->set_pitch(v); });
+        add_slider("Volume:", 0.0, 2.0, 1.0, 0.1, [tts](float v) { tts->set_volume(v); });
     } else {
         auto* no_tts = Gtk::make_managed<Gtk::Label>("No TTS engine available.\nInstall speech-dispatcher for system TTS.");
         no_tts->set_halign(Gtk::Align::START);
