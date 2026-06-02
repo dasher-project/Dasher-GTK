@@ -48,6 +48,27 @@ ENDIF()
 add_subdirectory("Thirdparty/SDL" EXCLUDE_FROM_ALL)
 
 ###############################
+# rust-tts-wrapper
+###############################
+
+set(TTS_WRAPPER_DIR "${CMAKE_CURRENT_LIST_DIR}/../rust-tts-wrapper")
+set(TTS_WRAPPER_BUILD_DIR "${CMAKE_BINARY_DIR}/../rust-tts-wrapper")
+
+if(EXISTS "${TTS_WRAPPER_DIR}/Cargo.toml")
+	set(TTS_WRAPPER_LIB "${TTS_WRAPPER_BUILD_DIR}/release/librust_tts_wrapper.a")
+	set(TTS_WRAPPER_HEADER "${TTS_WRAPPER_DIR}/include/tts_wrapper.h")
+
+	add_custom_command(
+		OUTPUT "${TTS_WRAPPER_LIB}"
+		COMMAND cargo build --release --all-features --target-dir "${TTS_WRAPPER_BUILD_DIR}"
+		WORKING_DIRECTORY "${TTS_WRAPPER_DIR}"
+		DEPENDS "${TTS_WRAPPER_DIR}/src/lib.rs"
+		COMMENT "Building rust-tts-wrapper static library"
+	)
+	add_custom_target(tts_wrapper DEPENDS "${TTS_WRAPPER_LIB}")
+endif()
+
+###############################
 # Building Dasher-UI
 ###############################
 
@@ -73,6 +94,12 @@ if(WIN32)
 endif()
 
 add_dependencies(Dasher dasher)
+if(TARGET tts_wrapper)
+	add_dependencies(Dasher tts_wrapper)
+	target_link_libraries(Dasher PRIVATE "${TTS_WRAPPER_LIB}" dl pthread)
+	target_include_directories(Dasher PRIVATE "${TTS_WRAPPER_DIR}/include")
+	target_compile_definitions(Dasher PRIVATE HAS_TTS)
+endif()
 target_link_libraries(Dasher PRIVATE dasher SDL3::SDL3 ${GTK_LIBRARIES} ${GTKMM_LIBRARIES})
 target_include_directories(Dasher SYSTEM PRIVATE ${GTK_INCLUDE_DIRS} ${GTKMM_INCLUDE_DIRS})
 target_include_directories(Dasher PRIVATE ${CMAKE_CURRENT_LIST_DIR}/src/)
@@ -110,6 +137,14 @@ add_custom_command(TARGET Dasher POST_BUILD
         $<TARGET_FILE:dasher>
         ${CMAKE_BINARY_DIR}/Dasher/
 )
+
+if(EXISTS "${TTS_WRAPPER_BUILD_DIR}/release/librust_tts_wrapper.so")
+	add_custom_command(TARGET Dasher POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different
+			"${TTS_WRAPPER_BUILD_DIR}/release/librust_tts_wrapper.so"
+			${CMAKE_BINARY_DIR}/Dasher/
+	)
+endif()
 
 ###############################
 # Setting up deployment

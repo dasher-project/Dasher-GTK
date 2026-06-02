@@ -2,6 +2,7 @@
 
 #include "Engine/DasherBridge.h"
 #include "Output/DirectModeService.h"
+#include "Output/TtsService.h"
 #include "UIComponents/ImageButton.h"
 #include "UIComponents/RenderingCanvas.h"
 #include "UIComponents/MessageOverlay.h"
@@ -64,6 +65,7 @@ protected:
     Gtk::Switch m_keyboard_switch;
 
     std::unique_ptr<DirectModeService> m_direct_mode;
+    std::unique_ptr<TtsService> m_tts;
     bool m_direct_mode_active = false;
 
     PreferencesWindow m_preferences_window;

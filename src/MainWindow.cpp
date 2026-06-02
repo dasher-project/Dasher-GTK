@@ -110,7 +110,9 @@ MainWindow::MainWindow()
     m_keyboard_switch.set_valign(Gtk::Align::CENTER);
 
     m_direct_mode = std::make_unique<DirectModeService>();
+    m_tts = std::make_unique<TtsService>();
     m_keyboard_switch.set_sensitive(m_direct_mode->is_available());
+    m_speech_switch.set_sensitive(m_tts->is_available());
     if (!m_direct_mode->is_available()) {
         m_keyboard_label.set_tooltip_text("Install ydotool for on-screen keyboard mode");
     }
@@ -145,8 +147,32 @@ MainWindow::MainWindow()
     m_panel_bar.set_size_request(150, -1);
     m_panel_bar.add_css_class("topbar");
 
+    m_read_button.signal_clicked().connect([this]() {
+        if (!m_tts || !m_tts->is_available()) return;
+        auto buffer = m_text_view.get_buffer();
+        std::string text = buffer->get_text();
+        if (!text.empty()) {
+            m_tts->speak(text);
+        }
+    });
+
     m_canvas.OnBufferChange.connect([this](const std::string& text) {
         m_text_view.get_buffer()->set_text(text);
+        if (m_speech_switch.get_active() && m_tts && m_tts->is_available()) {
+            if (!text.empty() && text.back() == ' ') {
+                std::string last_word;
+                auto pos = text.rfind(' ', text.size() - 2);
+                if (pos == std::string::npos) {
+                    last_word = text.substr(0, text.size() - 1);
+                } else {
+                    last_word = text.substr(pos + 1, text.size() - pos - 2);
+                }
+                if (!last_word.empty()) {
+                    m_tts->stop();
+                    m_tts->speak(last_word);
+                }
+            }
+        }
     });
 
     m_canvas.OnOutputEvent.connect([this](int event_type, const std::string& text) {
