@@ -53,19 +53,24 @@ add_subdirectory("Thirdparty/SDL" EXCLUDE_FROM_ALL)
 
 set(TTS_WRAPPER_DIR "${CMAKE_CURRENT_LIST_DIR}/../rust-tts-wrapper")
 set(TTS_WRAPPER_BUILD_DIR "${CMAKE_BINARY_DIR}/../rust-tts-wrapper")
+set(TTS_WRAPPER_VERSION "0.1.0" CACHE STRING "rust-tts-wrapper version to download")
 
-	if(EXISTS "${TTS_WRAPPER_DIR}/Cargo.toml")
+if(EXISTS "${TTS_WRAPPER_DIR}/Cargo.toml")
 	set(TTS_WRAPPER_LIB "${TTS_WRAPPER_BUILD_DIR}/release/librust_tts_wrapper.a")
 	set(TTS_WRAPPER_HEADER "${TTS_WRAPPER_DIR}/include/tts_wrapper.h")
 
-	add_custom_command(
-		OUTPUT "${TTS_WRAPPER_LIB}"
-		COMMAND cargo build --release --no-default-features --features system --target-dir "${TTS_WRAPPER_BUILD_DIR}"
-		WORKING_DIRECTORY "${TTS_WRAPPER_DIR}"
-		DEPENDS "${TTS_WRAPPER_DIR}/src/lib.rs"
-		COMMENT "Building rust-tts-wrapper static library (system TTS only)"
-	)
-	add_custom_target(tts_wrapper DEPENDS "${TTS_WRAPPER_LIB}")
+	if(EXISTS "${TTS_WRAPPER_LIB}")
+		add_custom_target(tts_wrapper DEPENDS "${TTS_WRAPPER_LIB}")
+	else()
+		add_custom_command(
+			OUTPUT "${TTS_WRAPPER_LIB}"
+			COMMAND cargo build --release --no-default-features --features system --target-dir "${TTS_WRAPPER_BUILD_DIR}"
+			WORKING_DIRECTORY "${TTS_WRAPPER_DIR}"
+			DEPENDS "${TTS_WRAPPER_DIR}/src/lib.rs"
+			COMMENT "Building rust-tts-wrapper static library (system TTS only)"
+		)
+		add_custom_target(tts_wrapper DEPENDS "${TTS_WRAPPER_LIB}")
+	endif()
 endif()
 
 ###############################
