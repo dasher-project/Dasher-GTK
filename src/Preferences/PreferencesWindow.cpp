@@ -5,7 +5,49 @@
 #include <gtkmm/scale.h>
 #include <gtkmm/adjustment.h>
 #include <gtkmm/button.h>
+#include <gtkmm/entry.h>
 #include <functional>
+#include <sstream>
+#include <algorithm>
+
+static std::vector<std::string> parse_json_keys(const std::string& json) {
+    std::vector<std::string> keys;
+    if (json.size() < 2 || json[0] != '[') return keys;
+    std::string inner = json.substr(1, json.size() - 2);
+    std::stringstream ss(inner);
+    std::string token;
+    while (std::getline(ss, token, ',')) {
+        size_t start = token.find('"');
+        size_t end = token.rfind('"');
+        if (start != std::string::npos && end > start) {
+            keys.push_back(token.substr(start + 1, end - start - 1));
+        }
+    }
+    return keys;
+}
+
+static std::string build_credentials_json(
+    const std::vector<std::string>& keys,
+    const std::vector<Gtk::Entry*>& entries)
+{
+    std::string json = "{";
+    for (size_t i = 0; i < keys.size() && i < entries.size(); i++) {
+        if (i > 0) json += ",";
+        json += "\"" + keys[i] + "\":\"" + entries[i]->get_text() + "\"";
+    }
+    json += "}";
+    return json;
+}
+
+static std::string prettify_key(const std::string& key) {
+    std::string result;
+    for (size_t i = 0; i < key.size(); i++) {
+        if (i > 0 && std::isupper(key[i])) result += ' ';
+        result += key[i];
+    }
+    if (!result.empty()) result[0] = std::toupper(result[0]);
+    return result;
+}
 
 PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge)
     : m_bridge(bridge)
@@ -87,6 +129,16 @@ void PreferencesWindow::rebuild_sections() {
         auto* engine_dropdown = Gtk::make_managed<Gtk::DropDown>(engine_list);
         speech_box->append(*engine_dropdown);
 
+        auto* creds_box = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::VERTICAL, 4);
+        speech_box->append(*creds_box);
+
+        auto* creds_title = Gtk::make_managed<Gtk::Label>("");
+        creds_title->set_halign(Gtk::Align::START);
+        creds_box->append(*creds_title);
+
+        auto cred_keys = std::make_shared<std::vector<std::string>>();
+        auto cred_entries = std::make_shared<std::vector<Gtk::Entry*>>();
+
         auto* voice_label = Gtk::make_managed<Gtk::Label>("Voice:");
         voice_label->set_halign(Gtk::Align::START);
         speech_box->append(*voice_label);
@@ -107,13 +159,59 @@ void PreferencesWindow::rebuild_sections() {
             }
         };
 
-        engine_dropdown->property_selected().signal_changed().connect(
-            [tts, engines, engine_dropdown, refresh_voices]() {
-                guint idx = engine_dropdown->get_selected();
-                if (idx < engines.size()) {
-                    tts->set_engine(engines[idx].id);
+        auto rebuild_creds = [creds_box, creds_title, cred_keys, cred_entries, tts, engines, engine_dropdown, refresh_voices]() {
+            while (creds_box->get_first_child() != nullptr) {
+                auto* child = creds_box->get_first_child();
+                creds_box->remove(*child);
+            }
+            cred_keys->clear();
+            cred_entries->clear();
+
+            guint idx = engine_dropdown->get_selected();
+            if (idx >= engines.size()) return;
+
+            auto& engine = engines[idx];
+            auto keys = parse_json_keys(engine.credential_keys_json);
+
+            if (keys.empty()) {
+                creds_title->set_markup("");
+                tts->set_engine(engine.id);
+                refresh_voices();
+                return;
+            }
+
+            creds_title->set_markup("<b>Credentials</b>");
+            creds_box->append(*creds_title);
+
+            for (auto& key : keys) {
+                auto* lbl = Gtk::make_managed<Gtk::Label>(prettify_key(key) + ":");
+                lbl->set_halign(Gtk::Align::START);
+                creds_box->append(*lbl);
+
+                auto* entry = Gtk::make_managed<Gtk::Entry>();
+                entry->set_hexpand(true);
+                entry->set_visibility(false);
+                creds_box->append(*entry);
+                cred_keys->push_back(key);
+                cred_entries->push_back(entry);
+            }
+
+            auto* connect_btn = Gtk::make_managed<Gtk::Button>("Connect");
+            connect_btn->set_halign(Gtk::Align::START);
+            connect_btn->set_margin_top(4);
+            creds_box->append(*connect_btn);
+
+            connect_btn->signal_clicked().connect(
+                [tts, engine, cred_keys, cred_entries, refresh_voices]() {
+                    auto json = build_credentials_json(*cred_keys, *cred_entries);
+                    tts->set_engine(engine.id, json);
                     refresh_voices();
-                }
+                });
+        };
+
+        engine_dropdown->property_selected().signal_changed().connect(
+            [rebuild_creds]() {
+                rebuild_creds();
             });
 
         voice_dropdown->property_selected().signal_changed().connect(
@@ -125,7 +223,7 @@ void PreferencesWindow::rebuild_sections() {
                 }
             });
 
-        refresh_voices();
+        rebuild_creds();
 
         auto add_slider = [&](const Glib::ustring& label_text, float min, float max, float def, float step,
                               std::function<void(float)> setter) {

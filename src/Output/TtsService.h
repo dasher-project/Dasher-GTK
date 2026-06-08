@@ -15,6 +15,7 @@ struct TtsEngineInfo {
     std::string id;
     std::string name;
     bool needs_credentials;
+    std::string credential_keys_json;
 };
 
 class TtsService {

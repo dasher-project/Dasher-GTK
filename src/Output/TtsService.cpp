@@ -8,10 +8,17 @@
 
 TtsService::TtsService() : m_ctx(nullptr) {
 #ifdef HAS_TTS
-    m_ctx = tts_create("system", nullptr);
-    m_available = (m_ctx != nullptr);
-    if (m_available) {
-        m_engine_id = "system";
+    const char* try_engines[] = {"system", "avsynth", "sapi", nullptr};
+    for (int i = 0; try_engines[i]; i++) {
+        m_ctx = tts_create(try_engines[i], nullptr);
+        if (m_ctx) {
+            m_available = true;
+            m_engine_id = try_engines[i];
+            break;
+        }
+    }
+    if (!m_ctx) {
+        m_available = false;
     }
 #endif
 }
@@ -79,9 +86,18 @@ void TtsService::set_engine(const std::string& engine_id, const std::string& cre
         std::cerr << "TtsService: Failed to create engine: " << engine_id << std::endl;
         const char* err = tts_get_last_error();
         if (err) std::cerr << "  Error: " << err << std::endl;
-        m_ctx = tts_create("system", nullptr);
-        m_available = (m_ctx != nullptr);
-        if (m_available) m_engine_id = "system";
+        const char* fallbacks[] = {"system", "avsynth", "sapi", nullptr};
+        for (int i = 0; fallbacks[i]; i++) {
+            m_ctx = tts_create(fallbacks[i], nullptr);
+            if (m_ctx) {
+                m_available = true;
+                m_engine_id = fallbacks[i];
+                break;
+            }
+        }
+        if (!m_ctx) {
+            m_available = false;
+        }
     }
 #else
     (void)engine_id;
@@ -141,6 +157,7 @@ std::vector<TtsEngineInfo> TtsService::get_engines() const {
         if (infos[i].id) info.id = infos[i].id;
         if (infos[i].name) info.name = infos[i].name;
         info.needs_credentials = infos[i].needs_credentials;
+        if (infos[i].credential_keys_json) info.credential_keys_json = infos[i].credential_keys_json;
         result.push_back(std::move(info));
     }
     tts_free_engine_info(infos, count);
