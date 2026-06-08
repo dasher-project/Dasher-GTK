@@ -4,6 +4,7 @@
 #include <gtkmm/stringlist.h>
 #include <gtkmm/scale.h>
 #include <gtkmm/adjustment.h>
+#include <gtkmm/button.h>
 #include <functional>
 
 PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge)
@@ -86,34 +87,45 @@ void PreferencesWindow::rebuild_sections() {
         auto* engine_dropdown = Gtk::make_managed<Gtk::DropDown>(engine_list);
         speech_box->append(*engine_dropdown);
 
-        engine_dropdown->property_selected().signal_changed().connect(
-            [tts, engines, engine_dropdown]() {
-                guint idx = engine_dropdown->get_selected();
-                if (idx < engines.size()) {
-                    tts->set_engine(engines[idx].id);
-                }
-            });
-
         auto* voice_label = Gtk::make_managed<Gtk::Label>("Voice:");
         voice_label->set_halign(Gtk::Align::START);
         speech_box->append(*voice_label);
 
-        auto voices = tts->get_voices();
-        std::vector<Glib::ustring> voice_names;
-        for (auto& v : voices) {
-            voice_names.push_back(v.name.empty() ? v.id : v.name);
-        }
-        auto voice_list = Gtk::StringList::create(voice_names);
+        auto voice_list = Gtk::StringList::create({});
         auto* voice_dropdown = Gtk::make_managed<Gtk::DropDown>(voice_list);
         speech_box->append(*voice_dropdown);
 
+        auto refresh_voices = [tts, voice_list]() {
+            while (voice_list->get_n_items() > 0)
+                voice_list->remove(0);
+            auto voices = tts->get_voices();
+            for (auto& v : voices) {
+                voice_list->append(v.name.empty() ? v.id : v.name);
+            }
+            if (!voices.empty()) {
+                tts->set_voice(voices[0].id);
+            }
+        };
+
+        engine_dropdown->property_selected().signal_changed().connect(
+            [tts, engines, engine_dropdown, refresh_voices]() {
+                guint idx = engine_dropdown->get_selected();
+                if (idx < engines.size()) {
+                    tts->set_engine(engines[idx].id);
+                    refresh_voices();
+                }
+            });
+
         voice_dropdown->property_selected().signal_changed().connect(
-            [tts, voices, voice_dropdown]() {
+            [tts, voice_dropdown]() {
+                auto voices = tts->get_voices();
                 guint idx = voice_dropdown->get_selected();
                 if (idx < voices.size()) {
                     tts->set_voice(voices[idx].id);
                 }
             });
+
+        refresh_voices();
 
         auto add_slider = [&](const Glib::ustring& label_text, float min, float max, float def, float step,
                               std::function<void(float)> setter) {
@@ -136,6 +148,16 @@ void PreferencesWindow::rebuild_sections() {
         add_slider("Rate:", 0.1, 3.0, 1.0, 0.1, [tts](float v) { tts->set_rate(v); });
         add_slider("Pitch:", 0.1, 3.0, 1.0, 0.1, [tts](float v) { tts->set_pitch(v); });
         add_slider("Volume:", 0.0, 2.0, 1.0, 0.1, [tts](float v) { tts->set_volume(v); });
+
+        auto* preview_btn = Gtk::make_managed<Gtk::Button>("Test Voice");
+        preview_btn->set_halign(Gtk::Align::START);
+        preview_btn->set_margin_top(8);
+        speech_box->append(*preview_btn);
+
+        preview_btn->signal_clicked().connect([tts]() {
+            tts->stop();
+            tts->speak("Hello, this is a test of the text to speech engine.");
+        });
     } else {
         auto* no_tts = Gtk::make_managed<Gtk::Label>("No TTS engine available.\nInstall speech-dispatcher for system TTS.");
         no_tts->set_halign(Gtk::Align::START);
