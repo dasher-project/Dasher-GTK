@@ -68,9 +68,12 @@ Training files are copied from `DasherCore/Data/training/` during the build. If 
 2. Data files are copied automatically on each build. If stale, rebuild: `cmake --build build`
 3. Ensure you are running from `build/Dasher/` so the `"Data"` relative path resolves correctly
 
-#### Optional: TTS Support
+#### TTS Support
 
-If `../rust-tts-wrapper` exists alongside this repo, CMake will build and link it automatically for text-to-speech support.
+The `rust-tts-wrapper` submodule provides text-to-speech support. It is included automatically when cloning with `--recursive`. CMake builds and links it if the submodule is present.
+
+- **macOS**: builds with the `cloud` feature (no local speech-dispatcher needed)
+- **Linux**: builds with `system,cloud` features (uses speech-dispatcher + cloud engines)
 
 ### Known Issues
 
