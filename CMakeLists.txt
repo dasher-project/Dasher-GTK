@@ -60,7 +60,7 @@ if(EXISTS "${TTS_WRAPPER_DIR}/Cargo.toml")
 	set(TTS_WRAPPER_HEADER "${TTS_WRAPPER_DIR}/include/tts_wrapper.h")
 
 	if(APPLE)
-		set(TTS_WRAPPER_FEATURES "cloud")
+		set(TTS_WRAPPER_FEATURES "avsynth,cloud")
 	elseif(WIN32)
 		set(TTS_WRAPPER_FEATURES "sapi,cloud")
 	else()
