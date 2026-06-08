@@ -118,25 +118,25 @@ target_link_directories(Dasher PRIVATE ${GTK_LIBRARY_DIRS} ${GTKMM_LIBRARY_DIRS}
 # Setting up runtime environment
 ###############################
 
-file(GLOB DATA_FILES
-  ${PROJECT_SOURCE_DIR}/DasherCore/Data/alphabets/alphabet*.xml
-  ${PROJECT_SOURCE_DIR}/DasherCore/Data/colours/colour*.xml
-  ${PROJECT_SOURCE_DIR}/DasherCore/Data/colors/color*.xml
-  ${PROJECT_SOURCE_DIR}/DasherCore/Data/control/control*.xml
-  ${PROJECT_SOURCE_DIR}/DasherCore/Data/training/training*.txt
+# Data files are copied as a POST_BUILD step so they stay fresh on every build
+# rather than only on cmake reconfigure.
+set(DATA_DIR ${CMAKE_SOURCE_DIR}/DasherCore/Data)
+
+add_custom_command(TARGET Dasher POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/Dasher/Data
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${DATA_DIR}/alphabets ${CMAKE_BINARY_DIR}/Dasher/Data
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${DATA_DIR}/colors ${CMAKE_BINARY_DIR}/Dasher/Data
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${DATA_DIR}/colours ${CMAKE_BINARY_DIR}/Dasher/Data
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${DATA_DIR}/training ${CMAKE_BINARY_DIR}/Dasher/Data
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/Dasher/Strings
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/DasherCore/Strings ${CMAKE_BINARY_DIR}/Dasher/Strings
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/Dasher/Resources/License
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources ${CMAKE_BINARY_DIR}/Dasher/Resources
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/src/UIStyle.css ${CMAKE_BINARY_DIR}/Dasher/
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/Thirdparty/SDL/LICENSE.txt ${CMAKE_BINARY_DIR}/Dasher/Resources/License/LICENSE_SDL.txt
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/DasherCore/Thirdparty/pugixml/LICENSE.md ${CMAKE_BINARY_DIR}/Dasher/Resources/License/LICENSE_PugiXML.txt
+    COMMENT "Copying runtime data files"
 )
-file(COPY ${DATA_FILES} DESTINATION ${CMAKE_BINARY_DIR}/Dasher/Data)
-
-file(GLOB STRING_FILES
-  ${PROJECT_SOURCE_DIR}/DasherCore/Strings/*.json
-)
-file(COPY ${STRING_FILES} DESTINATION ${CMAKE_BINARY_DIR}/Dasher/Strings)
-
-file(COPY ${PROJECT_SOURCE_DIR}/Resources/ DESTINATION ${CMAKE_BINARY_DIR}/Dasher/Resources)
-file(COPY ${PROJECT_SOURCE_DIR}/src/UIStyle.css DESTINATION ${CMAKE_BINARY_DIR}/Dasher/)
-
-file(COPY_FILE ${PROJECT_SOURCE_DIR}/Thirdparty/SDL/LICENSE.txt ${CMAKE_BINARY_DIR}/Dasher/Resources/License/LICENSE_SDL.txt)
-file(COPY_FILE ${PROJECT_SOURCE_DIR}/DasherCore/Thirdparty/pugixml/LICENSE.md ${CMAKE_BINARY_DIR}/Dasher/Resources/License/LICENSE_PugiXML.txt)
 
 # Copy the shared library next to the executable
 add_custom_command(TARGET Dasher POST_BUILD
