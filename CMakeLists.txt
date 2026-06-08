@@ -51,23 +51,29 @@ add_subdirectory("Thirdparty/SDL" EXCLUDE_FROM_ALL)
 # rust-tts-wrapper
 ###############################
 
-set(TTS_WRAPPER_DIR "${CMAKE_CURRENT_LIST_DIR}/../rust-tts-wrapper")
-set(TTS_WRAPPER_BUILD_DIR "${CMAKE_BINARY_DIR}/../rust-tts-wrapper")
+set(TTS_WRAPPER_DIR "${CMAKE_CURRENT_LIST_DIR}/rust-tts-wrapper")
+set(TTS_WRAPPER_BUILD_DIR "${CMAKE_BINARY_DIR}/rust-tts-wrapper")
 set(TTS_WRAPPER_VERSION "0.1.0" CACHE STRING "rust-tts-wrapper version to download")
 
 if(EXISTS "${TTS_WRAPPER_DIR}/Cargo.toml")
 	set(TTS_WRAPPER_LIB "${TTS_WRAPPER_BUILD_DIR}/release/librust_tts_wrapper.a")
 	set(TTS_WRAPPER_HEADER "${TTS_WRAPPER_DIR}/include/tts_wrapper.h")
 
+	if(APPLE)
+		set(TTS_WRAPPER_FEATURES "cloud")
+	else()
+		set(TTS_WRAPPER_FEATURES "system,cloud")
+	endif()
+
 	if(EXISTS "${TTS_WRAPPER_LIB}")
 		add_custom_target(tts_wrapper DEPENDS "${TTS_WRAPPER_LIB}")
 	else()
 		add_custom_command(
 			OUTPUT "${TTS_WRAPPER_LIB}"
-			COMMAND cargo build --release --no-default-features --features system --target-dir "${TTS_WRAPPER_BUILD_DIR}"
+			COMMAND cargo build --release --no-default-features --features ${TTS_WRAPPER_FEATURES} --target-dir "${TTS_WRAPPER_BUILD_DIR}"
 			WORKING_DIRECTORY "${TTS_WRAPPER_DIR}"
 			DEPENDS "${TTS_WRAPPER_DIR}/src/lib.rs"
-			COMMENT "Building rust-tts-wrapper static library (system TTS only)"
+			COMMENT "Building rust-tts-wrapper static library (features: ${TTS_WRAPPER_FEATURES})"
 		)
 		add_custom_target(tts_wrapper DEPENDS "${TTS_WRAPPER_LIB}")
 	endif()
@@ -105,8 +111,11 @@ if(TARGET tts_wrapper)
 endif()
 target_link_libraries(Dasher PRIVATE dasher SDL3::SDL3 ${GTK_LIBRARIES} ${GTKMM_LIBRARIES})
 if(TARGET tts_wrapper)
-	target_link_libraries(Dasher PRIVATE "${TTS_WRAPPER_LIB}" dl pthread speechd)
+	target_link_libraries(Dasher PRIVATE "${TTS_WRAPPER_LIB}")
 	target_include_directories(Dasher PRIVATE "${TTS_WRAPPER_DIR}/include")
+	if(NOT APPLE)
+		target_link_libraries(Dasher PRIVATE dl pthread speechd)
+	endif()
 endif()
 target_include_directories(Dasher SYSTEM PRIVATE ${GTK_INCLUDE_DIRS} ${GTKMM_INCLUDE_DIRS})
 target_include_directories(Dasher PRIVATE ${CMAKE_CURRENT_LIST_DIR}/src/)
@@ -145,10 +154,16 @@ add_custom_command(TARGET Dasher POST_BUILD
         ${CMAKE_BINARY_DIR}/Dasher/
 )
 
-if(EXISTS "${TTS_WRAPPER_BUILD_DIR}/release/librust_tts_wrapper.so")
+if(APPLE)
+	set(TTS_WRAPPER_LIB_EXT "dylib")
+else()
+	set(TTS_WRAPPER_LIB_EXT "so")
+endif()
+
+if(EXISTS "${TTS_WRAPPER_BUILD_DIR}/release/librust_tts_wrapper.${TTS_WRAPPER_LIB_EXT}")
 	add_custom_command(TARGET Dasher POST_BUILD
 		COMMAND ${CMAKE_COMMAND} -E copy_if_different
-			"${TTS_WRAPPER_BUILD_DIR}/release/librust_tts_wrapper.so"
+			"${TTS_WRAPPER_BUILD_DIR}/release/librust_tts_wrapper.${TTS_WRAPPER_LIB_EXT}"
 			${CMAKE_BINARY_DIR}/Dasher/
 	)
 endif()

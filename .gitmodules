@@ -6,3 +6,6 @@
 	path = Thirdparty/SDL
 	url = https://github.com/libsdl-org/SDL.git
 	branch = release-3.2.x
+[submodule "rust-tts-wrapper"]
+	path = rust-tts-wrapper
+	url = https://github.com/AACTools/rust-tts-wrapper.git
