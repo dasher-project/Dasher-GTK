@@ -132,10 +132,6 @@ void PreferencesWindow::rebuild_sections() {
         auto* creds_box = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::VERTICAL, 4);
         speech_box->append(*creds_box);
 
-        auto* creds_title = Gtk::make_managed<Gtk::Label>("");
-        creds_title->set_halign(Gtk::Align::START);
-        creds_box->append(*creds_title);
-
         auto cred_keys = std::make_shared<std::vector<std::string>>();
         auto cred_entries = std::make_shared<std::vector<Gtk::Entry*>>();
 
@@ -159,7 +155,7 @@ void PreferencesWindow::rebuild_sections() {
             }
         };
 
-        auto rebuild_creds = [creds_box, creds_title, cred_keys, cred_entries, tts, engines, engine_dropdown, refresh_voices]() {
+        auto rebuild_creds = [creds_box, cred_keys, cred_entries, tts, engines, engine_dropdown, refresh_voices]() {
             while (creds_box->get_first_child() != nullptr) {
                 auto* child = creds_box->get_first_child();
                 creds_box->remove(*child);
@@ -174,14 +170,15 @@ void PreferencesWindow::rebuild_sections() {
             auto keys = parse_json_keys(engine.credential_keys_json);
 
             if (keys.empty()) {
-                creds_title->set_markup("");
                 tts->set_engine(engine.id);
                 refresh_voices();
                 return;
             }
 
-            creds_title->set_markup("<b>Credentials</b>");
-            creds_box->append(*creds_title);
+            auto* title = Gtk::make_managed<Gtk::Label>("");
+            title->set_markup("<b>Credentials</b>");
+            title->set_halign(Gtk::Align::START);
+            creds_box->append(*title);
 
             for (auto& key : keys) {
                 auto* lbl = Gtk::make_managed<Gtk::Label>(prettify_key(key) + ":");
