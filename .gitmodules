@@ -1,7 +1,7 @@
 [submodule "DasherCore"]
 	path = DasherCore
 	url = https://github.com/dasher-project/DasherCore
-	branch = feature-CAPI
+	branch = main
 [submodule "Thirdparty/SDL"]
 	path = Thirdparty/SDL
 	url = https://github.com/libsdl-org/SDL.git
