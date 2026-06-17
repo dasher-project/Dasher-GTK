@@ -1,0 +1,48 @@
+---
+# clang-tidy configuration for Dasher-GTK frontend code.
+# Mirrors DasherCore's config — focused on real bugs, not style modernization.
+#
+# Run with: clang-tidy -p build/ src/your_file.cpp
+
+Checks: >
+  -*,
+  bugprone-*,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-narrowing-conversions,
+  -bugprone-assignment-in-if,
+  -bugprone-virtual-call,
+  -bugprone-reserved-identifier,
+  cert-*,
+  -cert-err58-cpp,
+  -cert-err34-c,
+  -cert-err33-c,
+  -cert-dcl50-cpp,
+  -cert-dcl37-c,
+  -cert-dcl51-cpp,
+  -cert-dcl16-c,
+  clang-analyzer-*,
+  -clang-analyzer-core.NullDereference,
+  -clang-analyzer-core.CallAndMessage,
+  -clang-analyzer-core.UndefinedBinaryOperatorResult,
+  -clang-analyzer-core.uninitialized.Branch,
+  -clang-analyzer-optin.cplusplus.VirtualCall,
+  clang-diagnostic-*,
+  cppcoreguidelines-pro-type-cstyle-cast,
+  -cppcoreguidelines-pro-type-static-cast-downcast,
+  cppcoreguidelines-slicing,
+  performance-*,
+  -performance-enum-size,
+  -performance-unnecessary-value-param,
+  -performance-trivially-destructible,
+  -performance-avoid-endl,
+  -performance-no-int-to-ptr,
+
+WarningsAsErrors: ''
+
+HeaderFilterRegex: '.*src/.*\.h$'
+
+CheckOptions:
+  - key:   modernize-use-override.IgnoreDestructors
+    value: '1'
+  - key:   performance-unnecessary-value-param.AllowedTypes
+    value: 'std::string;std::function'
