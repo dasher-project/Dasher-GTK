@@ -34,6 +34,18 @@ make -j$(nproc 2>/dev/null || sysctl -n hw.ncpu)
 
 The binary and all runtime files are placed in `build/Dasher/`.
 
+### Running the Tests 🧪
+
+Lightweight unit tests live in `tests/` and build alongside the app — doctest is
+fetched automatically at configure time, so no extra dependency is required.
+After configuring and building, run the suite with ctest:
+
+```sh
+ctest --test-dir build --output-on-failure
+```
+
+CI runs these tests on every push as part of the multi-platform workflow.
+
 ### Running
 
 Dasher must be launched from the `build/Dasher/` directory so it can find its data files:
