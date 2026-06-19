@@ -7,6 +7,11 @@ FetchContent_Declare(
     GIT_REPOSITORY https://github.com/doctest/doctest.git
     GIT_TAG v2.4.11
 )
+# doctest v2.4.11 ships cmake_minimum_required(VERSION 3.0); CMake 4.x (the
+# macOS/Windows runners) removed compatibility with minimums below 3.5 and
+# aborts. This variable supplies the 3.5 floor for that dependency and is
+# ignored by the older CMake on the Linux runners.
+set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
 FetchContent_MakeAvailable(doctest)
 
 add_executable(dasher_unit_tests
