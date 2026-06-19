@@ -14,8 +14,13 @@ Based on the DasherCore library this repository aims at implementing a fully fea
 | Platform | Command |
 |----------|---------|
 | macOS | `brew install gtk4 gtkmm4 pkg-config cmake` |
-| Linux (Debian/Ubuntu) | `apt-get install build-essential libgtk-4-dev libgtkmm-4.0-dev git cmake pkg-config` |
+| Linux (Debian/Ubuntu) | `apt-get install build-essential libgtk-4-dev libgtkmm-4.0-dev git cmake pkg-config libspeechd-dev libclang-dev` |
 | Windows | Install GTK from [GVSBuild](https://github.com/wingtk/gvsbuild/releases) to `C:\gtk`, add `C:\gtk\bin` to PATH. Requires CMake, Git, and MSVC or Clang. Use an optimized release build for binary compatibility. |
+
+All platforms additionally require a **Rust toolchain** (`cargo`) to build the bundled
+`rust-tts-wrapper`. Install it from [rustup.rs](https://rustup.rs). On Linux the
+`system` TTS feature binds speech-dispatcher via bindgen, hence `libspeechd-dev`
+(headers) and `libclang-dev` (for bindgen) above.
 
 ### Build Steps
 
@@ -72,8 +77,9 @@ Training files are copied from `DasherCore/Data/training/` during the build. If 
 
 The `rust-tts-wrapper` submodule provides text-to-speech support. It is included automatically when cloning with `--recursive`. CMake builds and links it if the submodule is present.
 
-- **macOS**: builds with the `cloud` feature (no local speech-dispatcher needed)
-- **Linux**: builds with `system,cloud` features (uses speech-dispatcher + cloud engines)
+- **macOS**: builds with `avsynth,cloud` features (no local speech-dispatcher needed)
+- **Linux**: builds with `system,cloud` features (uses speech-dispatcher + cloud engines); needs `libspeechd-dev` and `libclang-dev` (see Build Dependencies)
+- All platforms need a Rust toolchain (`cargo`) on `PATH` to compile the wrapper
 
 ### Known Issues
 
