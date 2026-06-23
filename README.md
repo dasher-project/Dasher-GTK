@@ -91,12 +91,16 @@ The `rust-tts-wrapper` submodule provides text-to-speech support. It is included
 
 - **macOS**: builds with `avsynth,cloud` features (no local speech-dispatcher needed)
 - **Linux**: builds with `system,cloud` features (uses speech-dispatcher + cloud engines); needs `libspeechd-dev` and `libclang-dev` (see Build Dependencies)
+- **Windows**: builds with `sapi,cloud` features — currently broken, see Known Issues
 - All platforms need a Rust toolchain (`cargo`) on `PATH` to compile the wrapper
 
 ### Known Issues
 
 - `bad_variant_access` warnings on startup are non-fatal — the GTK UI queries some CAPI parameters with the wrong getter type (string vs long). These do not affect functionality.
 - The `Data/control/` directory is referenced in CMake but does not yet exist in DasherCore; this is harmless.
+- **Windows CI is currently red** at the Build step, for two independent reasons. Linux and macOS build, test, and run cleanly; both must be resolved before Windows can go green:
+  1. The `rust-tts-wrapper` submodule's SAPI backend does not compile under the current windows-rs API (`SpEnumTokens`, `SPEAK_FLAGS`, and the `w!` wide-string macro are unresolved in `src/sapi_engine.rs`).
+  2. glibmm does not compile under MSVC on the GVSBuild `C:\gtk` toolchain — `glibmm-2.68/glibmm/iochannel.h` raises a cascade of `C2059`/`C2143` syntax errors. This affects **every** glibmm-dependent target (the app and the unit tests alike); on the app it is normally masked because the Rust build above fails first in the same step.
 
 ### Branches
 
