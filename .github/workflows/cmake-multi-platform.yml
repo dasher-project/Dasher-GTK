@@ -103,14 +103,12 @@ jobs:
         name: dasher-${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.c_compiler }}
         path: ${{ steps.strings.outputs.build-output-dir }}/Dasher/
 
-  # Style gate. Checks only the lines changed in a PR/push against .clang-format,
-  # so it does not require a one-time sweep of the (not-yet-clean) existing tree.
-  # NOTE: continue-on-error keeps it informational until it's been confirmed green
-  # on a real PR — drop that line to make formatting a hard gate.
+  # Style gate (blocking). Checks only the lines changed in a PR/push against
+  # .clang-format, so it does not require a one-time sweep of the existing tree.
+  # Validated green on PR #7 (and it caught two real deviations there first).
   lint:
     name: clang-format (changed lines)
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
         with:
@@ -129,11 +127,11 @@ jobs:
             base="$(git rev-parse HEAD~1 2>/dev/null || git rev-parse HEAD)"
           fi
           echo "Comparing changed lines against $base"
-          git clang-format --diff "$base" -- src > fmt.diff || true
+          git clang-format --diff "$base" -- src tests > fmt.diff || true
           if grep -qE 'did not modify any files|no modified files to format' fmt.diff; then
             echo "Formatting clean on changed lines."
             exit 0
           fi
-          echo "::error::clang-format would change the lines you touched. Run: git clang-format $base -- src"
+          echo "::error::clang-format would change the lines you touched. Run: git clang-format $base -- src tests"
           cat fmt.diff
           exit 1
