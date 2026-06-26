@@ -62,6 +62,8 @@ public:
     std::string get_string_parameter(int key) const;
     void set_string_parameter(int key, const std::string& value);
 
+    int find_parameter_key(const std::string& enum_key_name) const;
+
     int get_parameter_count() const;
     DasherParameterInfo get_parameter_info(int index) const;
     int get_parameter_enum_count(int key) const;
@@ -95,6 +97,7 @@ private:
     std::function<void(int, const std::string&)> m_output_callback;
 
     static void output_callback_trampoline(int event_type, const char* text, void* user_data);
+    static void log_callback_trampoline(int level, const char* message, void* user_data);
 
     std::chrono::time_point<std::chrono::steady_clock> m_start_time;
 };

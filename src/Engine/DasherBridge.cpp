@@ -1,6 +1,7 @@
 #include "DasherBridge.h"
 #include <cstring>
 #include <iostream>
+#include <glib.h>
 
 DasherBridge::DasherBridge(const std::string& data_dir, const std::string& user_dir) {
     m_start_time = std::chrono::steady_clock::now();
@@ -10,6 +11,14 @@ DasherBridge::DasherBridge(const std::string& data_dir, const std::string& user_
     if (!m_ctx) {
         std::string err = error ? error : "Unknown error creating Dasher context";
         std::cerr << "DasherBridge: " << err << std::endl;
+    }
+
+    if (m_ctx) {
+        // Route DasherCore's internal diagnostic logging to GLib so it integrates
+        // with GTK's structured logging (stderr / journald). Default to warnings
+        // and above (level 2); debug/info messages are discarded inside the engine
+        // at zero cost. Without this call DasherCore silently drops all log output.
+        dasher_set_log_callback(m_ctx, log_callback_trampoline, nullptr, /*min_level=*/2);
     }
 }
 
@@ -140,6 +149,14 @@ void DasherBridge::set_string_parameter(int key, const std::string& value) {
     if (m_ctx) dasher_set_string_parameter(m_ctx, key, value.c_str());
 }
 
+int DasherBridge::find_parameter_key(const std::string& enum_key_name) const {
+    // Resolve a parameter by its stable enum name (e.g. "LP_MAX_BITRATE") to its
+    // current integer key. The numeric values of Dasher::Parameter are an
+    // implementation detail of DasherCore and shift between releases, so callers
+    // must never hardcode them. Returns -1 if the name is unknown.
+    return dasher_find_parameter_key(enum_key_name.c_str());
+}
+
 int DasherBridge::get_parameter_count() const {
     return dasher_get_parameter_count();
 }
@@ -264,6 +281,22 @@ void DasherBridge::output_callback_trampoline(int event_type, const char* text, 
     if (self && self->m_output_callback) {
         self->m_output_callback(event_type, text ? text : "");
     }
+}
+
+void DasherBridge::log_callback_trampoline(int level, const char* message, void* /*user_data*/) {
+    // Map DasherCore log levels (0=debug, 1=info, 2=warning, 3=error) onto GLib
+    // log levels under the "DasherCore" domain. Note: engine "error" maps to
+    // G_LOG_LEVEL_CRITICAL rather than G_LOG_LEVEL_ERROR, because the latter is
+    // fatal under GLib and would abort the process.
+    GLogLevelFlags glib_level;
+    switch (level) {
+        case 0:  glib_level = G_LOG_LEVEL_DEBUG;    break;
+        case 1:  glib_level = G_LOG_LEVEL_INFO;     break;
+        case 2:  glib_level = G_LOG_LEVEL_WARNING;  break;
+        case 3:
+        default: glib_level = G_LOG_LEVEL_CRITICAL; break;
+    }
+    g_log("DasherCore", glib_level, "%s", message ? message : "");
 }
 
 int64_t DasherBridge::get_current_time_ms() const {
