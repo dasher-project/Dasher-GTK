@@ -99,3 +99,38 @@ jobs:
       with:
         name: dasher-${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.c_compiler }}
         path: ${{ steps.strings.outputs.build-output-dir }}/Dasher/
+
+  # Style gate. Checks only the lines changed in a PR/push against .clang-format,
+  # so it does not require a one-time sweep of the (not-yet-clean) existing tree.
+  # NOTE: continue-on-error keeps it informational until it's been confirmed green
+  # on a real PR — drop that line to make formatting a hard gate.
+  lint:
+    name: clang-format (changed lines)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install clang-format
+        run: sudo apt-get update && sudo apt-get install -y clang-format
+
+      - name: Check formatting of changed lines
+        shell: bash
+        run: |
+          if [ -n "${{ github.base_ref }}" ]; then
+            git fetch --depth=1 origin "${{ github.base_ref }}"
+            base="origin/${{ github.base_ref }}"
+          else
+            base="$(git rev-parse HEAD~1 2>/dev/null || git rev-parse HEAD)"
+          fi
+          echo "Comparing changed lines against $base"
+          git clang-format --diff "$base" -- src > fmt.diff || true
+          if grep -qE 'did not modify any files|no modified files to format' fmt.diff; then
+            echo "Formatting clean on changed lines."
+            exit 0
+          fi
+          echo "::error::clang-format would change the lines you touched. Run: git clang-format $base -- src"
+          cat fmt.diff
+          exit 1
