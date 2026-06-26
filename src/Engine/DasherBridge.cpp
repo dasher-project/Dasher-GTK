@@ -290,11 +290,19 @@ void DasherBridge::log_callback_trampoline(int level, const char* message, void*
     // fatal under GLib and would abort the process.
     GLogLevelFlags glib_level;
     switch (level) {
-        case 0:  glib_level = G_LOG_LEVEL_DEBUG;    break;
-        case 1:  glib_level = G_LOG_LEVEL_INFO;     break;
-        case 2:  glib_level = G_LOG_LEVEL_WARNING;  break;
-        case 3:
-        default: glib_level = G_LOG_LEVEL_CRITICAL; break;
+    case 0:
+        glib_level = G_LOG_LEVEL_DEBUG;
+        break;
+    case 1:
+        glib_level = G_LOG_LEVEL_INFO;
+        break;
+    case 2:
+        glib_level = G_LOG_LEVEL_WARNING;
+        break;
+    case 3:
+    default:
+        glib_level = G_LOG_LEVEL_CRITICAL;
+        break;
     }
     g_log("DasherCore", glib_level, "%s", message ? message : "");
 }
