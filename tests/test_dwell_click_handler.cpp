@@ -54,8 +54,8 @@ TEST_CASE("movement within the radius keeps the dwell centre") {
     DwellClickHandler h;
     h.set_enabled(true);
     h.set_radius(20.0f);
-    h.on_pointer_move(0.0f, 0.0f);   // start dwell at the origin
-    h.on_pointer_move(5.0f, 5.0f);   // ~7.07px, inside the 20px radius
+    h.on_pointer_move(0.0f, 0.0f); // start dwell at the origin
+    h.on_pointer_move(5.0f, 5.0f); // ~7.07px, inside the 20px radius
     CHECK(h.get_center_x() == doctest::Approx(0.0f));
     CHECK(h.get_center_y() == doctest::Approx(0.0f));
 }
@@ -76,7 +76,7 @@ TEST_CASE("movement exactly at the radius does not restart the dwell") {
     h.set_enabled(true);
     h.set_radius(10.0f);
     h.on_pointer_move(0.0f, 0.0f);
-    h.on_pointer_move(10.0f, 0.0f);  // distance == radius, not greater
+    h.on_pointer_move(10.0f, 0.0f); // distance == radius, not greater
     CHECK(h.get_center_x() == doctest::Approx(0.0f));
 }
 
@@ -96,7 +96,7 @@ TEST_CASE("no click is emitted before the dwell duration elapses") {
     h.set_enabled(true);
     h.set_duration_ms(100);
     h.on_pointer_move(0.0f, 0.0f);
-    h.on_frame();                    // ~0ms elapsed
+    h.on_frame(); // ~0ms elapsed
     CHECK(clicks == 0);
 }
 
@@ -110,7 +110,7 @@ TEST_CASE("a click is emitted once the dwell duration elapses") {
     std::this_thread::sleep_for(std::chrono::milliseconds(150));
     h.on_frame();
     CHECK(clicks == 1);
-    CHECK_FALSE(h.is_active());       // the handler latches after firing
+    CHECK_FALSE(h.is_active()); // the handler latches after firing
 }
 
 int main(int argc, char** argv) {
