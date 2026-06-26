@@ -9,6 +9,12 @@ jobs:
   build:
     runs-on: ${{ matrix.os }}
 
+    # Windows is informational only: the rust-tts-wrapper `sapi` feature does not
+    # yet build against the windows crate (tracked upstream — needs a windows 0.62
+    # migration done on a Windows host). Keep the job running for visibility but do
+    # not let it block CI; Linux and macOS fully gate the build.
+    continue-on-error: ${{ matrix.os == 'windows-2025' }}
+
     strategy:
       # Set fail-fast to false to ensure that feedback is delivered for all matrix combinations. Consider changing this to true when your workflow is stable.
       fail-fast: false

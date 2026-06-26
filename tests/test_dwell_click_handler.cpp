@@ -2,15 +2,19 @@
 // hands-light / switch-free access. These cover the deterministic geometry,
 // input clamping and state-machine behaviour. The single timing case uses a
 // real short wait because the handler reads steady_clock directly.
-#define DOCTEST_CONFIG_IMPLEMENT
-#include <doctest/doctest.h>
-
+// On Windows, doctest's DOCTEST_CONFIG_IMPLEMENT drags in <windows.h>, whose
+// macros collide with glibmm (e.g. Glib::IOChannel::read), breaking the gtkmm
+// headers with cascading C2059/C3646 errors. Parse the glibmm/gtkmm headers
+// first so they compile cleanly, then bring in the doctest implementation.
 #include <glibmm/init.h>
+
+#include "Input/DwellClickHandler.h"
 
 #include <chrono>
 #include <thread>
 
-#include "Input/DwellClickHandler.h"
+#define DOCTEST_CONFIG_IMPLEMENT
+#include <doctest/doctest.h>
 
 TEST_CASE("duration is clamped to a 100ms floor") {
     DwellClickHandler h;
