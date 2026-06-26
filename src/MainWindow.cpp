@@ -16,7 +16,8 @@ MainWindow::MainWindow()
     // numeric indices: Dasher::Parameter values are an internal detail of
     // DasherCore and are renumbered between releases.
     : m_alphabet_chooser(m_canvas.bridge->find_parameter_key("SP_ALPHABET_ID"), m_canvas.bridge,
-                         m_canvas.bridge->get_parameter_string_values(m_canvas.bridge->find_parameter_key("SP_ALPHABET_ID")))
+                         m_canvas.bridge->get_parameter_string_values(
+                             m_canvas.bridge->find_parameter_key("SP_ALPHABET_ID")))
     , m_speed_adjustment(m_canvas.bridge->find_parameter_key("LP_MAX_BITRATE"), m_canvas.bridge, 20, 400, 5)
     , m_learning_switch(m_canvas.bridge->find_parameter_key("BP_LM_ADAPTIVE"), m_canvas.bridge)
     , m_color_chooser(m_canvas.bridge)
