@@ -124,6 +124,11 @@ if(TARGET tts_wrapper)
 	if(APPLE)
 		target_link_libraries(Dasher PRIVATE "-framework AVFAudio" "-framework Foundation" "-lobjc")
 	elseif(WIN32)
+		# The rust-tts-wrapper staticlib pulls in Rust std, getrandom and rustls,
+		# whose native dependencies are not propagated when the archive is linked
+		# by MSVC instead of by cargo. Mirror `rustc --print native-static-libs`.
+		target_link_libraries(Dasher PRIVATE
+			ntdll userenv bcrypt ws2_32 advapi32 crypt32 secur32 ncrypt ole32 oleaut32)
 	else()
 		target_link_libraries(Dasher PRIVATE dl pthread speechd)
 	endif()
