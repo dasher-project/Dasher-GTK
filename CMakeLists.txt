@@ -56,7 +56,13 @@ set(TTS_WRAPPER_BUILD_DIR "${CMAKE_BINARY_DIR}/rust-tts-wrapper")
 set(TTS_WRAPPER_VERSION "0.1.0" CACHE STRING "rust-tts-wrapper version to download")
 
 if(EXISTS "${TTS_WRAPPER_DIR}/Cargo.toml")
-	set(TTS_WRAPPER_LIB "${TTS_WRAPPER_BUILD_DIR}/release/librust_tts_wrapper.a")
+	# cargo names the staticlib per target: MSVC produces rust_tts_wrapper.lib,
+	# GNU/Unix toolchains produce librust_tts_wrapper.a.
+	if(WIN32)
+		set(TTS_WRAPPER_LIB "${TTS_WRAPPER_BUILD_DIR}/release/rust_tts_wrapper.lib")
+	else()
+		set(TTS_WRAPPER_LIB "${TTS_WRAPPER_BUILD_DIR}/release/librust_tts_wrapper.a")
+	endif()
 	set(TTS_WRAPPER_HEADER "${TTS_WRAPPER_DIR}/include/tts_wrapper.h")
 
 	if(APPLE)
