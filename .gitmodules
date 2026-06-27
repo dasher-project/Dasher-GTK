@@ -8,4 +8,4 @@
 	branch = release-3.2.x
 [submodule "rust-tts-wrapper"]
 	path = rust-tts-wrapper
-	url = https://github.com/AACTools/rust-tts-wrapper.git
+	url = https://github.com/owenpkent/rust-tts-wrapper.git
