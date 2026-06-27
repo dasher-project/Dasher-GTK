@@ -24,4 +24,16 @@ target_include_directories(dasher_unit_tests PRIVATE ${CMAKE_SOURCE_DIR}/src)
 target_link_libraries(dasher_unit_tests PRIVATE doctest::doctest ${GTKMM_LIBRARIES})
 target_link_directories(dasher_unit_tests PRIVATE ${GTKMM_LIBRARY_DIRS})
 
+# The Windows runner's gtkmm/sigc++ are prebuilt release (/MD,
+# _ITERATOR_DEBUG_LEVEL=0) binaries. Building this test in the Debug config with
+# the debug runtime (/MDd, _ITERATOR_DEBUG_LEVEL=2) gives sigc++'s internal slot
+# containers a different STL ABI than the compiled libsigc, corrupting the slot
+# list and crashing on the first signal connect(). The Release job already runs
+# this suite cleanly with /MD, so force the test to the release runtime in every
+# config to match the gtkmm ABI. CMP0091 is NEW here (cmake_minimum 3.20).
+if(MSVC)
+    set_property(TARGET dasher_unit_tests PROPERTY
+        MSVC_RUNTIME_LIBRARY "MultiThreadedDLL")
+endif()
+
 add_test(NAME dasher_unit_tests COMMAND dasher_unit_tests)
