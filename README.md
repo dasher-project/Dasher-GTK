@@ -29,14 +29,14 @@ git clone --recursive https://github.com/dasher-project/Dasher-GTK.git
 cd Dasher-GTK
 mkdir build && cd build
 cmake ..
-make -j$(nproc 2>/dev/null || sysctl -n hw.ncpu)
+cmake --build . --config Release --parallel
 ```
 
 The binary and all runtime files are placed in `build/Dasher/`.
 
 ### Running the Tests 🧪
 
-Lightweight unit tests live in `tests/` and build alongside the app — doctest is
+Lightweight unit tests live in `tests/` and build alongside the app; doctest is
 fetched automatically at configure time, so no extra dependency is required.
 After configuring and building, run the suite with ctest:
 
@@ -62,7 +62,7 @@ The CMake build copies data files into `build/Dasher/Data/`. The directory layou
 ```
 build/Dasher/
 ├── Dasher              # executable
-├── libdasher.dylib     # (or .so / .dll)
+├── libdasher.dylib     # macOS (libdasher.so on Linux, dasher.dll on Windows)
 ├── UIStyle.css
 ├── Data/
 │   ├── alphabet.*.xml  # alphabet definitions
@@ -91,21 +91,17 @@ The `rust-tts-wrapper` submodule provides text-to-speech support. It is included
 
 - **macOS**: builds with `avsynth,cloud` features (no local speech-dispatcher needed)
 - **Linux**: builds with `system,cloud` features (uses speech-dispatcher + cloud engines); needs `libspeechd-dev` and `libclang-dev` (see Build Dependencies)
-- **Windows**: builds with `sapi,cloud` features — currently broken, see Known Issues
+- **Windows**: builds with `sapi,cloud` features (uses the Windows SAPI engine plus cloud engines)
 - All platforms need a Rust toolchain (`cargo`) on `PATH` to compile the wrapper
 
 ### Known Issues
 
-- `bad_variant_access` warnings on startup are non-fatal — the GTK UI queries some CAPI parameters with the wrong getter type (string vs long). These do not affect functionality.
-- The `Data/control/` directory is referenced in CMake but does not yet exist in DasherCore; this is harmless.
-- **Windows CI is currently red** at the Build step, for two independent reasons. Linux and macOS build, test, and run cleanly; both must be resolved before Windows can go green:
-  1. The `rust-tts-wrapper` submodule's SAPI backend does not compile under the current windows-rs API (`SpEnumTokens`, `SPEAK_FLAGS`, and the `w!` wide-string macro are unresolved in `src/sapi_engine.rs`).
-  2. glibmm does not compile under MSVC on the GVSBuild `C:\gtk` toolchain — `glibmm-2.68/glibmm/iochannel.h` raises a cascade of `C2059`/`C2143` syntax errors. This affects **every** glibmm-dependent target (the app and the unit tests alike); on the app it is normally masked because the Rust build above fails first in the same step.
+- `bad_variant_access` warnings on startup are non-fatal. The GTK UI queries some CAPI parameters with the wrong getter type (string vs long); these do not affect functionality.
 
 ### Branches
 
-- `main` — stable development
-- `feature/v6-capi-migration` — CAPI-based GTK4 frontend (uses DasherCore `feature-CAPI` submodule)
+- `main`: stable development
+- `feature/v6-capi-migration`: CAPI-based GTK4 frontend (tracks the DasherCore `main` submodule, pinned at v0.1.5; the former `feature-CAPI` work has been merged into DasherCore `main`)
 
 ## License 📎
 
@@ -115,5 +111,5 @@ As this front-end is based on the DasherCore and we hope to attract some help fr
 
 Please file any bug reports in the issues of this repository. If you want to help and join the development group, either send us a pull request or get in contact using [Slack in the OpenAAC group](https://join.slack.com/t/openaac/shared_invite/enQtNTQwNDgwODYyNjU5LTAwODNmZjM4ZmJmOTJkYTY2MWZkNjc0MDQ0NTcwMTRmMzY0MWI3OWJiNGYwZGIzMzc2YTk2N2FiY2JlYTI5Njc).
 
-You can find the Dasher website and more info at:
+You can find the Dasher website at https://dasher.at/. The source code is hosted on GitHub at:
 https://github.com/dasher-project
