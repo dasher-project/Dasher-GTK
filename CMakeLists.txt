@@ -56,7 +56,13 @@ set(TTS_WRAPPER_BUILD_DIR "${CMAKE_BINARY_DIR}/rust-tts-wrapper")
 set(TTS_WRAPPER_VERSION "0.1.0" CACHE STRING "rust-tts-wrapper version to download")
 
 if(EXISTS "${TTS_WRAPPER_DIR}/Cargo.toml")
-	set(TTS_WRAPPER_LIB "${TTS_WRAPPER_BUILD_DIR}/release/librust_tts_wrapper.a")
+	# cargo names the staticlib per target: MSVC produces rust_tts_wrapper.lib,
+	# GNU/Unix toolchains produce librust_tts_wrapper.a.
+	if(WIN32)
+		set(TTS_WRAPPER_LIB "${TTS_WRAPPER_BUILD_DIR}/release/rust_tts_wrapper.lib")
+	else()
+		set(TTS_WRAPPER_LIB "${TTS_WRAPPER_BUILD_DIR}/release/librust_tts_wrapper.a")
+	endif()
 	set(TTS_WRAPPER_HEADER "${TTS_WRAPPER_DIR}/include/tts_wrapper.h")
 
 	if(APPLE)
@@ -118,6 +124,11 @@ if(TARGET tts_wrapper)
 	if(APPLE)
 		target_link_libraries(Dasher PRIVATE "-framework AVFAudio" "-framework Foundation" "-lobjc")
 	elseif(WIN32)
+		# The rust-tts-wrapper staticlib pulls in Rust std, getrandom and rustls,
+		# whose native dependencies are not propagated when the archive is linked
+		# by MSVC instead of by cargo. Mirror `rustc --print native-static-libs`.
+		target_link_libraries(Dasher PRIVATE
+			ntdll userenv bcrypt ws2_32 advapi32 crypt32 secur32 ncrypt ole32 oleaut32)
 	else()
 		target_link_libraries(Dasher PRIVATE dl pthread speechd)
 	endif()
