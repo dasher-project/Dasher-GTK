@@ -178,3 +178,13 @@ endif()
 ###############################
 
 install(DIRECTORY ${CMAKE_BINARY_DIR}/Dasher/ DESTINATION .)
+
+###############################
+# Tests
+###############################
+
+option(BUILD_GTK_TESTS "Build Dasher-GTK unit tests" ON)
+if(BUILD_GTK_TESTS)
+	enable_testing()
+	add_subdirectory(tests)
+endif()
