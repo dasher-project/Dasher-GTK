@@ -191,6 +191,28 @@ endif()
 install(DIRECTORY ${CMAKE_BINARY_DIR}/Dasher/ DESTINATION .)
 
 ###############################
+# Linux desktop integration
+###############################
+
+# Additive freedesktop metadata so the app shows up in menus / software centres
+# and can be packaged (Flatpak, distro packages). Does not alter the portable
+# install(DIRECTORY) above; uses standard share/ locations via GNUInstallDirs.
+if(UNIX AND NOT APPLE)
+	include(GNUInstallDirs)
+	set(DASHER_APP_ID "org.alternativeinterface.dasher")
+	install(FILES packaging/${DASHER_APP_ID}.desktop
+		DESTINATION ${CMAKE_INSTALL_DATADIR}/applications
+		COMPONENT dasher-metadata)
+	install(FILES packaging/${DASHER_APP_ID}.metainfo.xml
+		DESTINATION ${CMAKE_INSTALL_DATADIR}/metainfo
+		COMPONENT dasher-metadata)
+	install(FILES Resources/icon.png
+		DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/48x48/apps
+		RENAME ${DASHER_APP_ID}.png
+		COMPONENT dasher-metadata)
+endif()
+
+###############################
 # Tests
 ###############################
 

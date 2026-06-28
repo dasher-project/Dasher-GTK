@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Dasher
+GenericName=Predictive Text Entry
+Comment=Enter text without a keyboard using zooming predictive input
+Exec=dasher
+TryExec=dasher
+Icon=org.alternativeinterface.dasher
+Terminal=false
+StartupNotify=true
+Categories=Utility;Accessibility;
+Keywords=text;accessibility;AAC;predictive;input;dwell;switch;
