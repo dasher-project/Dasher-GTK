@@ -61,6 +61,19 @@ jobs:
         linux-release: 'libgtk-4-dev libgtkmm-4.0-dev'
         macos-release: 'gtk4 gtkmm4'
 
+    # The Linux TTS backend (rust-tts-wrapper "system" feature) binds
+    # speech-dispatcher via bindgen, so it needs the speechd dev headers and
+    # libclang. macOS (avsynth) and Windows (sapi) use system frameworks.
+    - name: Install extra Linux build deps
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libspeechd-dev libclang-dev
+
+    # rust-tts-wrapper is built with cargo on every platform.
+    - name: Set up Rust
+      uses: dtolnay/rust-toolchain@stable
+
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
@@ -74,9 +87,45 @@ jobs:
     - name: Build
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
-    
+
+    - name: Test
+      run: ctest --test-dir ${{ steps.strings.outputs.build-output-dir }} --build-config ${{ matrix.build_type }} --output-on-failure
+
     - name: Upload Binaries
       uses: actions/upload-artifact@v4
       with:
         name: dasher-${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.c_compiler }}
         path: ${{ steps.strings.outputs.build-output-dir }}/Dasher/
+
+  # Style gate (blocking). Checks only the lines changed in a PR/push against
+  # .clang-format, so it does not require a one-time sweep of the existing tree.
+  # Validated green on PR #7 (and it caught two real deviations there first).
+  lint:
+    name: clang-format (changed lines)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install clang-format
+        run: sudo apt-get update && sudo apt-get install -y clang-format
+
+      - name: Check formatting of changed lines
+        shell: bash
+        run: |
+          if [ -n "${{ github.base_ref }}" ]; then
+            git fetch --depth=1 origin "${{ github.base_ref }}"
+            base="origin/${{ github.base_ref }}"
+          else
+            base="$(git rev-parse HEAD~1 2>/dev/null || git rev-parse HEAD)"
+          fi
+          echo "Comparing changed lines against $base"
+          git clang-format --diff "$base" -- src tests > fmt.diff || true
+          if grep -qE 'did not modify any files|no modified files to format' fmt.diff; then
+            echo "Formatting clean on changed lines."
+            exit 0
+          fi
+          echo "::error::clang-format would change the lines you touched. Run: git clang-format $base -- src tests"
+          cat fmt.diff
+          exit 1

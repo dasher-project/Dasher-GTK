@@ -1,7 +1,11 @@
 [submodule "DasherCore"]
 	path = DasherCore
 	url = https://github.com/dasher-project/DasherCore
+	branch = main
 [submodule "Thirdparty/SDL"]
 	path = Thirdparty/SDL
 	url = https://github.com/libsdl-org/SDL.git
 	branch = release-3.2.x
+[submodule "rust-tts-wrapper"]
+	path = rust-tts-wrapper
+	url = https://github.com/owenpkent/rust-tts-wrapper.git

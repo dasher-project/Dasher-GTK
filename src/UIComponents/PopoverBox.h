@@ -1,15 +1,15 @@
-#include "gtkmm/button.h"
-#include "gtkmm/enums.h"
-#include "gtkmm/revealer.h"
-#include <gtkmm.h>
+#pragma once
 
-class PopoverBox : public Gtk::Revealer
-{
+#include <gtkmm/box.h>
+#include <gtkmm/button.h>
+#include <gtkmm/image.h>
+#include <gtkmm/label.h>
+#include <gtkmm/revealer.h>
 
+class PopoverBox : public Gtk::Revealer {
 public:
     PopoverBox() {
         set_name("PopoverBox");
-        
         set_valign(Gtk::Align::END);
         set_vexpand(false);
         set_halign(Gtk::Align::CENTER);
@@ -26,18 +26,18 @@ public:
         m_label.set_text("");
 
         m_close.set_image_from_icon_name("process-stop-symbolic");
-        m_close.signal_clicked().connect([this](){
+        m_close.signal_clicked().connect([this]() {
             set_reveal_child(false);
         });
         set_reveal_child(false);
     }
 
-    void reveal(std::string text){
+    void reveal(const std::string& text) {
         m_label.set_text(text);
         set_reveal_child(true);
     }
 
-protected:
+private:
     Gtk::Box m_box;
     Gtk::Label m_label;
     Gtk::Image m_icon;

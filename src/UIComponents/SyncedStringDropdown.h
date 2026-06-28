@@ -1,61 +1,45 @@
 #pragma once
 
+#include "Engine/DasherBridge.h"
 #include "gtkmm/dropdown.h"
 #include "gtkmm/stringlist.h"
-#include "DasherCore/SettingsStore.h"
 #include "gtkmm/stringobject.h"
 #include <vector>
-
+#include <memory>
 
 class SyncedStringDropdown : public Gtk::DropDown {
 public:
-    SyncedStringDropdown(Dasher::Parameter parameter, std::shared_ptr<Dasher::CSettingsStore> settings, std::vector<std::string> values) : m_settings(settings), m_synced_parameter(parameter) {
+    SyncedStringDropdown(int parameter_key, std::shared_ptr<DasherBridge> bridge, const std::vector<std::string>& values)
+        : m_bridge(bridge), m_key(parameter_key)
+    {
         possible_values = std::vector<Glib::ustring>(values.begin(), values.end());
         set_model(Gtk::StringList::create(possible_values));
+        set_selected(find_index(m_bridge->get_string_parameter(m_key)));
 
-        // Adjust state on settings change
-        settings->OnParameterChanged.Subscribe(this, [this](Dasher::Parameter param){
-            //Does not need exception for loop, as Dasher::SettingsStore capture a "non-state change"
-            if(param == m_synced_parameter) SetSelected(m_settings->GetStringParameter(m_synced_parameter));
-        });
-
-        // Set inital state
-        SetSelected(m_settings->GetStringParameter(m_synced_parameter));
-
-        // Adjust based on movement
-        property_selected_item().signal_changed().connect([this](){
-            m_settings->SetStringParameter(m_synced_parameter, GetSelected());
-            OnSelectionChanged.emit(GetSelected());
+        property_selected_item().signal_changed().connect([this]() {
+            Glib::ustring sel = get_selected_string();
+            m_bridge->set_string_parameter(m_key, sel);
+            OnSelectionChanged.emit(sel);
         });
     }
 
-    void SetSelected(Glib::ustring item){
-        set_selected(std::find(possible_values.begin(), possible_values.end(), item) - possible_values.begin());
-    }
-
-    Glib::ustring GetSelected(){
+    Glib::ustring get_selected_string() {
         return std::dynamic_pointer_cast<Gtk::StringObject>(get_selected_item())->get_string();
     }
+
+    void update_from_bridge() {
+        set_selected(find_index(m_bridge->get_string_parameter(m_key)));
+    }
+
     sigc::signal<void(Glib::ustring)> OnSelectionChanged;
 
 protected:
-    std::shared_ptr<Dasher::CSettingsStore> m_settings;
-    const Dasher::Parameter m_synced_parameter;
+    std::shared_ptr<DasherBridge> m_bridge;
+    int m_key;
     std::vector<Glib::ustring> possible_values;
+
+    guint find_index(const std::string& value) {
+        auto it = std::find(possible_values.begin(), possible_values.end(), Glib::ustring(value));
+        return static_cast<guint>(it - possible_values.begin());
+    }
 };
-
-
-
-
-
-
-// std::vector<std::string> Alphabets;
-//     ;
-//     
-//     
-//     std::string selected_alphabet = m_canvas.dasherController->GetStringParameter(Dasher::Parameter::SP_ALPHABET_ID);
-//     m_alphabet_chooser.set_selected(std::find(AlphaUString.begin(), AlphaUString.end(), Glib::ustring(selected_alphabet)) - AlphaUString.begin());
-//     m_alphabet_chooser.property_selected_item().signal_changed().connect([this](){
-//         Glib::ustring s = std::dynamic_pointer_cast<Gtk::StringObject>(m_alphabet_chooser.get_selected_item())->get_string();
-//         m_canvas.dasherController->SetStringParameter(Dasher::Parameter::SP_ALPHABET_ID, s);
-//     });

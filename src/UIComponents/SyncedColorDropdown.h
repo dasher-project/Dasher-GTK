@@ -1,105 +1,85 @@
 #pragma once
 
-#include "DasherCore/ColorPalette.h"
+#include "Engine/DasherBridge.h"
 #include "ColorDisplayWidget.h"
-#include "DasherCore/Parameters.h"
-#include "DasherCore/SettingsStore.h"
-#include "giomm/liststore.h"
 #include "gtkmm/box.h"
 #include "gtkmm/dropdown.h"
 #include "gtkmm/label.h"
 #include "gtkmm/signallistitemfactory.h"
+#include "giomm/liststore.h"
+#include <memory>
 #include <string>
 
-class PaletteProxy : public Glib::Object
-{
-    public:
-        PaletteProxy(const Dasher::ColorPalette* p): p(p){}
-        const Dasher::ColorPalette* p;
-        static Glib::RefPtr<PaletteProxy> create(const Dasher::ColorPalette* p)
-        {
-            return Glib::make_refptr_for_instance<PaletteProxy>(new PaletteProxy(p));
-        }
+class PaletteProxy : public Glib::Object {
+public:
+    std::string name;
+    int preview_colors[4] = {};
+    static Glib::RefPtr<PaletteProxy> create(const std::string& name) {
+        return Glib::make_refptr_for_instance<PaletteProxy>(new PaletteProxy(name));
+    }
+protected:
+    PaletteProxy(const std::string& n) : name(n) {}
 };
 
-class SyncedColorDropdown : public Gtk::DropDown
-{
+class SyncedColorDropdown : public Gtk::DropDown {
 public:
-    Glib::RefPtr<Gio::ListStore<PaletteProxy>> colorPaletteList = Gio::ListStore<PaletteProxy>::create();
-    Glib::RefPtr<Gtk::SignalListItemFactory> color_factory_header = Gtk::SignalListItemFactory::create();
-    Glib::RefPtr<Gtk::SignalListItemFactory> color_factory = Gtk::SignalListItemFactory::create();
-
-    SyncedColorDropdown(std::shared_ptr<Dasher::CSettingsStore> settings, const std::map<std::string, Dasher::ColorPalette*>* palettes){
-        // Add Values
-        for (const auto &[key, value] : *palettes) {
-            colorPaletteList->append(PaletteProxy::create(value));
+    SyncedColorDropdown(std::shared_ptr<DasherBridge> bridge)
+        : m_bridge(bridge)
+    {
+        int count = m_bridge->get_palette_count();
+        for (int i = 0; i < count; i++) {
+            auto proxy = PaletteProxy::create(m_bridge->get_palette_name(i));
+            m_bridge->get_palette_preview_colors(i, proxy->preview_colors);
+            palette_list->append(proxy);
         }
-        
-        set_list_factory(color_factory);
-        set_factory(color_factory_header);
-        set_model(colorPaletteList);
-        
-        color_factory_header->signal_setup().connect(&SyncedColorDropdown::SetupItemHeader);
-        color_factory_header->signal_bind().connect(&SyncedColorDropdown::BindItemHeader);
 
-        color_factory->signal_setup().connect(&SyncedColorDropdown::SetupItemList);
-        color_factory->signal_bind().connect(&SyncedColorDropdown::BindItemList);
+        set_list_factory(list_factory);
+        set_factory(header_factory);
+        set_model(palette_list);
 
-        // Switch selected value on settings change
-        settings->OnParameterChanged.Subscribe(this, [this, settings](Dasher::Parameter param){
-            //Does not need exception for loop, as Dasher::SettingsStore capture a "non-state change"
-            if(param == Dasher::Parameter::SP_COLOUR_ID) SelectPalette(settings->GetStringParameter(Dasher::Parameter::SP_COLOUR_ID));
+        header_factory->signal_setup().connect([](const std::shared_ptr<Gtk::ListItem> item) {
+            item->set_child(*Gtk::make_managed<ColorDisplayWidget>());
+        });
+        header_factory->signal_bind().connect([](const std::shared_ptr<Gtk::ListItem> item) {
+            auto proxy = std::dynamic_pointer_cast<PaletteProxy>(item->get_item());
+            auto* widget = dynamic_cast<ColorDisplayWidget*>(item->get_child());
+            widget->set_colors_from_argb(proxy->preview_colors);
         });
 
-        // Set inital state
-        SelectPalette(settings->GetStringParameter(Dasher::Parameter::SP_COLOUR_ID));
-
-        // Switch value on user interaction 
-        property_selected().signal_changed().connect([this, settings](){
-            settings->SetStringParameter(Dasher::Parameter::SP_COLOUR_ID, GetSelectedPalette());
+        list_factory->signal_setup().connect([](const std::shared_ptr<Gtk::ListItem> item) {
+            auto* box = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::HORIZONTAL, 5);
+            box->append(*Gtk::make_managed<ColorDisplayWidget>());
+            box->append(*Gtk::make_managed<Gtk::Label>(""));
+            item->set_child(*box);
         });
-    }
+        list_factory->signal_bind().connect([](const std::shared_ptr<Gtk::ListItem> item) {
+            auto proxy = std::dynamic_pointer_cast<PaletteProxy>(item->get_item());
+            auto* box = dynamic_cast<Gtk::Box*>(item->get_child());
+            auto* widget = dynamic_cast<ColorDisplayWidget*>(box->get_first_child());
+            auto* label = dynamic_cast<Gtk::Label*>(box->get_last_child());
+            widget->set_colors_from_argb(proxy->preview_colors);
+            label->set_label(proxy->name);
+        });
 
-    std::string GetSelectedPalette(){
-        return std::dynamic_pointer_cast<PaletteProxy>(get_selected_item())->p->PaletteName;
-    }
-
-    bool SelectPalette(const std::string& selected_color){
-        for(guint i = 0; i < colorPaletteList->get_n_items(); i++){
-            if(colorPaletteList->get_item(i)->p->PaletteName.compare(selected_color) == 0){
+        std::string current = m_bridge->get_current_palette();
+        for (guint i = 0; i < palette_list->get_n_items(); i++) {
+            if (palette_list->get_item(i)->name == current) {
                 set_selected(i);
-                return true;
+                break;
             }
         }
-        return false;
+
+        property_selected().signal_changed().connect([this]() {
+            auto proxy = std::dynamic_pointer_cast<PaletteProxy>(get_selected_item());
+            if (proxy) {
+                m_bridge->set_palette(proxy->name);
+            }
+        });
     }
 
 protected:
-    // Functions for Header Display (without Palettename)
-    static void SetupItemHeader(const std::shared_ptr<Gtk::ListItem> item){
-        item->set_child(*Gtk::make_managed<ColorDisplayWidget>());
-    }
-    static void BindItemHeader(const std::shared_ptr<Gtk::ListItem> item){
-        std::shared_ptr<PaletteProxy> palette = std::dynamic_pointer_cast<PaletteProxy>(item->get_item());
-        ColorDisplayWidget* widget = dynamic_cast<ColorDisplayWidget*>(item->get_child());
-        widget->ReadColorsFromPalette(palette->p);
-    }
-
-    // Functions for List Items (with Palettename)
-    static void SetupItemList(const std::shared_ptr<Gtk::ListItem> item){
-        ColorDisplayWidget* widget = Gtk::make_managed<ColorDisplayWidget>();
-        Gtk::Box* box = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::HORIZONTAL, 5);
-        Gtk::Label* label = Gtk::make_managed<Gtk::Label>("");
-        box->append(*widget);
-        box->append(*label);
-        item->set_child(*box);
-    }
-    static void BindItemList(const std::shared_ptr<Gtk::ListItem> item){
-        std::shared_ptr<PaletteProxy> palette = std::dynamic_pointer_cast<PaletteProxy>(item->get_item());
-        Gtk::Box* box = dynamic_cast<Gtk::Box*>(item->get_child());
-        ColorDisplayWidget* widget = dynamic_cast<ColorDisplayWidget*>(box->get_first_child());
-        Gtk::Label* label = dynamic_cast<Gtk::Label*>(box->get_last_child());
-        widget->ReadColorsFromPalette(palette->p);
-        label->set_label(palette->p->PaletteName);
-    }
+    std::shared_ptr<DasherBridge> m_bridge;
+    Glib::RefPtr<Gio::ListStore<PaletteProxy>> palette_list = Gio::ListStore<PaletteProxy>::create();
+    Glib::RefPtr<Gtk::SignalListItemFactory> header_factory = Gtk::SignalListItemFactory::create();
+    Glib::RefPtr<Gtk::SignalListItemFactory> list_factory = Gtk::SignalListItemFactory::create();
 };

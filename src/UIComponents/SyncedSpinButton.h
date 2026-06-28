@@ -1,35 +1,29 @@
 #pragma once
 
-#include "DasherCore/Parameters.h"
-#include "DasherCore/SettingsStore.h"
-#include "gtkmm/spinbutton.h"
+#include "Engine/DasherBridge.h"
+#include <gtkmm/spinbutton.h>
 #include <memory>
 
-//Basically a copy of the SyncedSlider
 class SyncedSpinButton : public Gtk::SpinButton {
 public:
-    SyncedSpinButton(Dasher::Parameter parameter, std::shared_ptr<Dasher::CSettingsStore> settings, int min, int max, int step) : m_settings(settings), m_synced_parameter(parameter) {
-        // Set spinbutton parameters 
+    SyncedSpinButton(int parameter_key, std::shared_ptr<DasherBridge> bridge, long min, long max, long step)
+        : m_bridge(bridge), m_key(parameter_key)
+    {
         set_digits(0);
         set_range(min, max);
-        set_increments(step, step*5);
+        set_increments(step, step * 5);
+        set_value(m_bridge->get_long_parameter(m_key));
 
-        // Adjust state on settings change
-        settings->OnParameterChanged.Subscribe(this, [this](Dasher::Parameter param){
-            //Does not need exception for loop, as Dasher::SettingsStore capture a "non-state change"
-            if(param == m_synced_parameter) set_value(m_settings->GetLongParameter(m_synced_parameter));
-        });
-
-        // Set inital state
-        set_value(m_settings->GetLongParameter(m_synced_parameter));
-
-        // Adjust based on movement
-        signal_value_changed().connect([this](){
-            m_settings->SetLongParameter(m_synced_parameter, get_value_as_int());
+        signal_value_changed().connect([this]() {
+            m_bridge->set_long_parameter(m_key, get_value_as_int());
         });
     }
 
+    void update_from_bridge() {
+        set_value(m_bridge->get_long_parameter(m_key));
+    }
+
 protected:
-    std::shared_ptr<Dasher::CSettingsStore> m_settings;
-    const Dasher::Parameter m_synced_parameter;
+    std::shared_ptr<DasherBridge> m_bridge;
+    int m_key;
 };
