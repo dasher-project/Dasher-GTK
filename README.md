@@ -34,6 +34,18 @@ make -j$(nproc 2>/dev/null || sysctl -n hw.ncpu)
 
 The binary and all runtime files are placed in `build/Dasher/`.
 
+### Running the Tests 🧪
+
+Lightweight unit tests live in `tests/` and build alongside the app — doctest is
+fetched automatically at configure time, so no extra dependency is required.
+After configuring and building, run the suite with ctest:
+
+```sh
+ctest --test-dir build --output-on-failure
+```
+
+CI runs these tests on every push as part of the multi-platform workflow.
+
 ### Running
 
 Dasher must be launched from the `build/Dasher/` directory so it can find its data files:
@@ -77,14 +89,18 @@ Training files are copied from `DasherCore/Data/training/` during the build. If 
 
 The `rust-tts-wrapper` submodule provides text-to-speech support. It is included automatically when cloning with `--recursive`. CMake builds and links it if the submodule is present.
 
-- **macOS**: builds with the `cloud` feature (no local speech-dispatcher needed)
+- **macOS**: builds with `avsynth,cloud` features (no local speech-dispatcher needed)
 - **Linux**: builds with `system,cloud` features (uses speech-dispatcher + cloud engines); needs `libspeechd-dev` and `libclang-dev` (see Build Dependencies)
+- **Windows**: builds with `sapi,cloud` features — currently broken, see Known Issues
 - All platforms need a Rust toolchain (`cargo`) on `PATH` to compile the wrapper
 
 ### Known Issues
 
 - `bad_variant_access` warnings on startup are non-fatal — the GTK UI queries some CAPI parameters with the wrong getter type (string vs long). These do not affect functionality.
 - The `Data/control/` directory is referenced in CMake but does not yet exist in DasherCore; this is harmless.
+- **Windows CI is currently red** at the Build step, for two independent reasons. Linux and macOS build, test, and run cleanly; both must be resolved before Windows can go green:
+  1. The `rust-tts-wrapper` submodule's SAPI backend does not compile under the current windows-rs API (`SpEnumTokens`, `SPEAK_FLAGS`, and the `w!` wide-string macro are unresolved in `src/sapi_engine.rs`).
+  2. glibmm does not compile under MSVC on the GVSBuild `C:\gtk` toolchain — `glibmm-2.68/glibmm/iochannel.h` raises a cascade of `C2059`/`C2143` syntax errors. This affects **every** glibmm-dependent target (the app and the unit tests alike); on the app it is normally masked because the Rust build above fails first in the same step.
 
 ### Branches
 

@@ -200,3 +200,13 @@ if(UNIX AND NOT APPLE)
 		RENAME ${DASHER_APP_ID}.png
 		COMPONENT dasher-metadata)
 endif()
+
+###############################
+# Tests
+###############################
+
+option(BUILD_GTK_TESTS "Build Dasher-GTK unit tests" ON)
+if(BUILD_GTK_TESTS)
+	enable_testing()
+	add_subdirectory(tests)
+endif()
