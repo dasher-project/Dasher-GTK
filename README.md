@@ -1,15 +1,33 @@
-# The Dasher Text Entry System ✨
-Dasher is a zooming predictive text entry system, designed for situations
-where keyboard input is impractical (for instance, accessibility or PDAs). It
-is usable with highly limited amounts of physical input while still allowing
-high rates of text entry.
+# Dasher for GTK
 
-## Dasher GTK 🖥️
-Based on the DasherCore library this repository aims at implementing a fully featured new version of Dasher. Due to the usage of [GTK4](https://gtk.org/) as a frontend we strive to develop a multi-platform application that can be used regardless of the computing hardware. This project is still in its early stages of development and will need some time to be able to replace the Dasher 5 version.
+[![Build](https://github.com/dasher-project/Dasher-GTK/actions/workflows/cmake-multi-platform.yml/badge.svg)](https://github.com/dasher-project/Dasher-GTK/actions/workflows/cmake-multi-platform.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
-## Build Instructions ⚙️🏗️
+Dasher is an information-efficient text-entry interface, driven by continuous
+pointing gestures. It lets you write using eye gaze, a mouse, a switch, a
+joystick, or touch — designed for accessibility and augmentative communication
+(AAC).
 
-### Build Dependencies
+This is the **GTK** frontend, built on the shared
+[DasherCore](https://github.com/dasher-project/DasherCore) engine.
+
+> **[dasher.at](https://dasher.at)** — downloads, user docs, and live demo
+> **[Feature status](https://dasher.at/status/)** — what each platform supports
+> **[All repos](https://github.com/dasher-project)** — engine, frontends, design guide
+
+## Status
+
+> **In development** — early-stage GTK4 frontend aiming to replace Dasher 5.
+> See the [feature matrix](https://dasher.at/status/) for what's implemented.
+
+## Install
+
+Not yet publicly available — build from source (see below), or grab an artifact
+from [Releases](../../releases).
+
+## Build
+
+### Prerequisites
 
 | Platform | Command |
 |----------|---------|
@@ -22,7 +40,7 @@ All platforms additionally require a **Rust toolchain** (`cargo`) to build the b
 `system` TTS feature binds speech-dispatcher via bindgen, hence `libspeechd-dev`
 (headers) and `libclang-dev` (for bindgen) above.
 
-### Build Steps
+### Steps
 
 ```sh
 git clone --recursive https://github.com/dasher-project/Dasher-GTK.git
@@ -34,7 +52,16 @@ cmake --build . --config Release --parallel
 
 The binary and all runtime files are placed in `build/Dasher/`.
 
-### Running the Tests 🧪
+### Running
+
+Dasher must be launched from the `build/Dasher/` directory so it can find its data files:
+
+```sh
+cd build/Dasher
+./Dasher
+```
+
+### Running the Tests
 
 Lightweight unit tests live in `tests/` and build alongside the app; doctest is
 fetched automatically at configure time, so no extra dependency is required.
@@ -46,18 +73,21 @@ ctest --test-dir build --output-on-failure
 
 CI runs these tests on every push as part of the multi-platform workflow.
 
-### Running
+### TTS Support
 
-Dasher must be launched from the `build/Dasher/` directory so it can find its data files:
+The `rust-tts-wrapper` submodule provides text-to-speech support. It is included
+automatically when cloning with `--recursive`. CMake builds and links it if the
+submodule is present.
 
-```sh
-cd build/Dasher
-./Dasher
-```
+- **macOS**: builds with `avsynth,cloud` features (no local speech-dispatcher needed)
+- **Linux**: builds with `system,cloud` features (uses speech-dispatcher + cloud engines); needs `libspeechd-dev` and `libclang-dev` (see Prerequisites)
+- **Windows**: builds with `sapi,cloud` features (uses the Windows SAPI engine plus cloud engines)
+- All platforms need a Rust toolchain (`cargo`) on `PATH` to compile the wrapper
 
 ### Runtime Data Files
 
-The CMake build copies data files into `build/Dasher/Data/`. The directory layout after building:
+The CMake build copies data files into `build/Dasher/Data/`. The directory layout
+after building:
 
 ```
 build/Dasher/
@@ -67,7 +97,6 @@ build/Dasher/
 ├── Data/
 │   ├── alphabet.*.xml  # alphabet definitions
 │   ├── color*.xml      # colour schemes
-│   ├── colour*.xml
 │   └── training*.txt   # language model training data (PPM)
 ├── Strings/
 │   └── strings_*.json  # UI translations
@@ -75,41 +104,64 @@ build/Dasher/
     └── License/
 ```
 
-#### Training Data and the PPM Language Model
-
-Dasher uses a PPM (Prediction by Partial Match) language model trained on text files. Each alphabet definition specifies a `trainingFilename` (e.g. `training_english_GB.txt`). Without training data, all letter boxes will be the same size and prediction will not work.
-
-Training files are copied from `DasherCore/Data/training/` during the build. If letters appear uniformly sized after launch:
-
-1. Confirm training files exist: `ls build/Dasher/Data/training_*.txt`
-2. Data files are copied automatically on each build. If stale, rebuild: `cmake --build build`
-3. Ensure you are running from `build/Dasher/` so the `"Data"` relative path resolves correctly
-
-#### TTS Support
-
-The `rust-tts-wrapper` submodule provides text-to-speech support. It is included automatically when cloning with `--recursive`. CMake builds and links it if the submodule is present.
-
-- **macOS**: builds with `avsynth,cloud` features (no local speech-dispatcher needed)
-- **Linux**: builds with `system,cloud` features (uses speech-dispatcher + cloud engines); needs `libspeechd-dev` and `libclang-dev` (see Build Dependencies)
-- **Windows**: builds with `sapi,cloud` features (uses the Windows SAPI engine plus cloud engines)
-- All platforms need a Rust toolchain (`cargo`) on `PATH` to compile the wrapper
+Dasher uses a PPM (Prediction by Partial Match) language model trained on text
+files. Each alphabet definition specifies a `trainingFilename`
+(e.g. `training_english_GB.txt`). Without training data, all letter boxes will be
+the same size and prediction will not work. Training files are copied from
+`DasherCore/Data/training/` during the build; if letters appear uniformly sized
+after launch, run from `build/Dasher/` so the `"Data"` relative path resolves, and
+rebuild if stale (`cmake --build build`).
 
 ### Known Issues
 
-- `bad_variant_access` warnings on startup are non-fatal. The GTK UI queries some CAPI parameters with the wrong getter type (string vs long); these do not affect functionality.
+- `bad_variant_access` warnings on startup are non-fatal. The GTK UI queries some
+  CAPI parameters with the wrong getter type (string vs long); these do not affect
+  functionality.
 
-### Branches
+## Architecture
 
-- `main`: stable development
-- `feature/v6-capi-migration`: CAPI-based GTK4 frontend (tracks the DasherCore `main` submodule, pinned at v0.1.5; the former `feature-CAPI` work has been merged into DasherCore `main`)
+This frontend consumes DasherCore through its **C API** (`src/Engine/DasherBridge.cpp`,
+backed by `dasher.h`). `DasherBridge` owns the engine handle, feeds it GTK pointer
+input, and receives draw commands that `RenderingCanvas` renders onto a GTK widget.
+`InputManager`/`DwellClickHandler` translate raw input, and `TtsService` /
+`DirectModeService` handle output and spoken feedback.
 
-## License 📎
+```mermaid
+flowchart LR
+    Input["GTK pointer / keys"] --> InputMgmt["InputManager<br/>DwellClickHandler"]
+    InputMgmt --> Bridge["DasherBridge"]
+    Bridge <-->|"C API (dasher.h)"| Core[("DasherCore<br/>engine")]
+    Core -.->|"draw commands"| Canvas["RenderingCanvas"]
+    Bridge --> Output["TtsService<br/>DirectModeService"]
+```
 
-As this front-end is based on the DasherCore and we hope to attract some help from other developers and encurage everyone to extend the Dasher system, we licensed this front-end also under the MIT license.
+See [DasherCore's C API](https://github.com/dasher-project/DasherCore/blob/main/docs/C_API.md)
+for the engine contract.
 
-## Support and Feedback 🗣️
+## Repository layout
 
-Please file any bug reports in the issues of this repository. If you want to help and join the development group, either send us a pull request or get in contact using [Slack in the OpenAAC group](https://join.slack.com/t/openaac/shared_invite/enQtNTQwNDgwODYyNjU5LTAwODNmZjM4ZmJmOTJkYTY2MWZkNjc0MDQ0NTcwMTRmMzY0MWI3OWJiNGYwZGIzMzc2YTk2N2FiY2JlYTI5Njc).
+| Path | Purpose |
+|-------|---------|
+| `src/Engine/` | `DasherBridge` + `CommandRenderer`: C API bridge to DasherCore |
+| `src/Input/` | `InputManager`, `DwellClickHandler` (pointer/switch input) |
+| `src/Output/` | `TtsService`, `DirectModeService` (speech + output modes) |
+| `src/Preferences/` | Settings UI (`PreferencesWindow`, `SettingsSection`) |
+| `src/UIComponents/` | Reusable GTK widgets (canvas, synced controls) |
+| `tests/` | doctest unit tests |
+| `DasherCore/` | DasherCore submodule (do not edit here — PR upstream) |
+| `rust-tts-wrapper/` | TTS wrapper submodule |
+| `Thirdparty/SDL` | SDL submodule (joystick input) |
 
-You can find the Dasher website at https://dasher.at/. The source code is hosted on GitHub at:
-https://github.com/dasher-project
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for build details, code style, and DCO
+sign-off. For project-wide conventions (code of conduct, RFCs, security), see the
+[org contributing guide](https://github.com/dasher-project/.github/blob/main/CONTRIBUTING.md).
+
+Please file bug reports in the [issues](../../issues) of this repository. To join
+the development group, send a pull request or reach us via
+[Slack (OpenAAC)](https://join.slack.com/t/openaac/shared_invite/enQtNTQwNDgwODYyNjU5LTAwODNmZjM4ZmJmOTJkYTY2MWZkNjc0MDQ0NTcwMTRmMzY0MWI3OWJiNGYwZGIzMzc2YTk2N2FiY2JlYTI5Njc).
+
+## License
+
+MIT — see [LICENSE](./LICENSE).
