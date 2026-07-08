@@ -30,6 +30,7 @@ jobs:
 
       - name: Build Flatpak
         run: |
+          git config --global protocol.file.allow always
           flatpak-builder --user --install --force-clean \
             build-flatpak \
             packaging/flatpak/org.alternativeinterface.dasher.yaml
