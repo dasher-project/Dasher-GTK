@@ -68,8 +68,8 @@ modules:
       - -Dbuild-documentation=false
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/cairomm/1.18/cairomm-1.18.0.tar.xz
-        sha256: e3f6df9d79046312dc18023269c502836918b765421013e8f922b577d6b5dc3f
+        url: https://www.cairographics.org/releases/cairomm-1.18.0.tar.xz
+        sha256: 7c753f452a8c6c4fbec08b5551bf446bfed6a47fd16424095b978274c8e2c486
 
   - name: pangomm
     buildsystem: meson
