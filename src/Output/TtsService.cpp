@@ -84,7 +84,7 @@ void TtsService::set_engine(const std::string& engine_id, const std::string& cre
     } else {
         m_engine_id.clear();
         std::cerr << "TtsService: Failed to create engine: " << engine_id << std::endl;
-        const char* err = tts_get_last_error();
+        const char* err = tts_get_last_error(nullptr);
         if (err) std::cerr << "  Error: " << err << std::endl;
         const char* fallbacks[] = {"system", "avsynth", "sapi", nullptr};
         for (int i = 0; fallbacks[i]; i++) {
@@ -148,11 +148,11 @@ void TtsService::set_volume(float volume) {
 std::vector<TtsEngineInfo> TtsService::get_engines() const {
     std::vector<TtsEngineInfo> result;
 #ifdef HAS_TTS
-    int count = tts_get_engine_count();
-    if (count <= 0) return result;
-    auto* infos = new tts_engine_info[count];
-    tts_get_engines(infos);
-    for (int i = 0; i < count; i++) {
+    tts_engine_info* infos = nullptr;
+    int32_t count = 0;
+    if (tts_get_engines(&infos, &count) != 0 || !infos || count <= 0)
+        return result;
+    for (int32_t i = 0; i < count; i++) {
         TtsEngineInfo info;
         if (infos[i].id) info.id = infos[i].id;
         if (infos[i].name) info.name = infos[i].name;
@@ -160,7 +160,7 @@ std::vector<TtsEngineInfo> TtsService::get_engines() const {
         if (infos[i].credential_keys_json) info.credential_keys_json = infos[i].credential_keys_json;
         result.push_back(std::move(info));
     }
-    tts_free_engine_info(infos, count);
+    tts_free_engines(infos, count);
 #endif
     return result;
 }
