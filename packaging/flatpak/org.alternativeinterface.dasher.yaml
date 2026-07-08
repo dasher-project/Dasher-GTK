@@ -132,6 +132,7 @@ modules:
       append-path: /usr/lib/sdk/rust-stable/bin
       env:
         CARGO_HOME: /run/build/dasher/cargo
+        PKG_CONFIG_PATH: /app/lib/pkgconfig:/app/lib/x86_64-linux-gnu/pkgconfig:/app/share/pkgconfig
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DTTS_WRAPPER_FEATURES=cloud
