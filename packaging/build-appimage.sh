@@ -90,10 +90,13 @@ APPRUN
 chmod +x "$APPDIR/AppRun"
 
 # ─── Create AppImage ──────────────────────────────────────────────────
+# appimagetool needs libfuse2; extract-and-run avoids FUSE requirement
 wget -q "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
 chmod +x appimagetool-x86_64.AppImage
 
-./appimagetool-x86_64.AppImage "$APPDIR" "Dasher-x86_64.AppImage"
+# Extract appimagetool so it doesn't need FUSE at runtime
+./appimagetool-x86_64.AppImage --appimage-extract
+./squashfs-root/AppRun "$APPDIR" "Dasher-x86_64.AppImage"
 
 echo "AppImage created: Dasher-x86_64.AppImage"
 ls -lh Dasher-x86_64.AppImage
