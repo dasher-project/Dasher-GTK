@@ -69,7 +69,7 @@ modules:
     sources:
       - type: archive
         url: https://www.cairographics.org/releases/cairomm-1.18.0.tar.xz
-        sha256: 7c753f452a8c6c4fbec08b5551bf446bfed6a47fd16424095b978274c8e2c486
+        sha256: b81255394e3ea8e8aa887276d22afa8985fc8daef60692eb2407d23049f03cfb
 
   - name: pangomm
     buildsystem: meson
