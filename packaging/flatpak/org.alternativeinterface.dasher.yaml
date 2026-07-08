@@ -15,7 +15,6 @@ finish-args:
   - --talk-name=org.a11y.Bus
   - --talk-name=org.a11y.*
   - --filesystem=home
-  - --filesystem=/run/user  # speech-dispatcher socket
 
 cleanup:
   - /include
@@ -123,28 +122,9 @@ modules:
         sha256: 4a5b1fd1b7c47a1af45277ea82b5abeaca8e08fb10a27daa6394cf88d74e7acf
         dest: subprojects/pangomm
 
-  # ─── speech-dispatcher (client library for local TTS) ─────────────────
-  - name: speech-dispatcher
-    buildsystem: autotools
-    config-opts:
-      - --disable-python
-      - --without-espeak
-      - --without-espeak-ng
-      - --without-flite
-      - --without-pico
-      - --without-baratinoo
-      - --without-ibmtts
-      - --without-voxin
-      - --with-pulse=no
-    sources:
-      - type: git
-        url: https://github.com/brailcom/speechd.git
-        tag: '0.11.5'
-      - type: shell
-        commands:
-          - autoreconf -fi
-
   # ─── Dasher-GTK (builds DasherCore + SDL3 + TTS + app together) ───────
+  # Note: Flatpak uses cloud-only TTS (no speech-dispatcher) to avoid
+  # building dotconf/libspeechd in the sandbox. AppImage has full system TTS.
   - name: dasher
     buildsystem: cmake
     builddir: true
@@ -154,7 +134,7 @@ modules:
         CARGO_HOME: /run/build/dasher/cargo
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
-      - -DTTS_WRAPPER_FEATURES=system,cloud
+      - -DTTS_WRAPPER_FEATURES=cloud
     post-install:
       - install -Dm644 ../packaging/org.alternativeinterface.dasher.desktop /app/share/applications/org.alternativeinterface.dasher.desktop
       - install -Dm644 ../packaging/org.alternativeinterface.dasher.metainfo.xml /app/share/metainfo/org.alternativeinterface.dasher.metainfo.xml
