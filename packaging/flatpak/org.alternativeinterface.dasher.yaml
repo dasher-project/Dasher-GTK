@@ -131,11 +131,8 @@ modules:
       append-path: /usr/lib/sdk/rust-stable/bin
       env:
         CARGO_HOME: /run/build/dasher/cargo
-        PKG_CONFIG_PATH: /app/lib/pkgconfig:/app/lib/x86_64-linux-gnu/pkgconfig:/app/share/pkgconfig
+        PKG_CONFIG_PATH: /app/lib64/pkgconfig:/app/lib/pkgconfig:/app/lib/x86_64-linux-gnu/pkgconfig:/app/share/pkgconfig
     build-commands:
-      # Diagnostic: find where gtkmm .pc files landed
-      - find /app -name '*.pc' -path '*/pkgconfig/*' 2>/dev/null | head -30 || true
-      - find /app -name 'gtkmm*' -type f 2>/dev/null | head -20 || true
       - cmake -B _build -DCMAKE_BUILD_TYPE=Release -DTTS_WRAPPER_FEATURES=cloud -DCMAKE_INSTALL_PREFIX=/app .
       - cmake --build _build -j$(nproc)
       - cmake --install _build
