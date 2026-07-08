@@ -35,9 +35,9 @@ modules:
     cleanup:
       - '*'
     sources:
-      - type: git
-        url: https://gitlab.gnome.org/GNOME/mm-common.git
-        tag: '1.0.7'
+      - type: archive
+        url: https://download.gnome.org/sources/mm-common/1.0/mm-common-1.0.7.tar.xz
+        sha256: 494abfce781418259b1e9d8888c73af4de4b6f3be36cc75d9baa8baa0f2a7a39
 
   - name: libsigc++
     buildsystem: meson
@@ -47,9 +47,9 @@ modules:
     cleanup:
       - /lib/sigc++-3.0
     sources:
-      - type: git
-        url: https://gitlab.gnome.org/GNOME/libsigc++.git
-        tag: '3.6.0'
+      - type: archive
+        url: https://download.gnome.org/sources/libsigc++/3.6/libsigc++-3.6.0.tar.xz
+        sha256: c3d23b37dfd6e39f2e09f091b77b1541fbfa17c4f0b6bf5c89baef7229080e17
 
   - name: glibmm
     buildsystem: meson
@@ -57,9 +57,9 @@ modules:
       - -Dbuild-tests=false
       - -Dbuild-documentation=false
     sources:
-      - type: git
-        url: https://gitlab.gnome.org/GNOME/glibmm.git
-        tag: '2.84.0'
+      - type: archive
+        url: https://download.gnome.org/sources/glibmm/2.84/glibmm-2.84.0.tar.xz
+        sha256: 56ee5f51c8acfc0afdf46959316e4c8554cb50ed2b6bc5ce389d979cbb642509
 
   - name: cairomm
     buildsystem: meson
@@ -67,9 +67,9 @@ modules:
       - -Dbuild-tests=false
       - -Dbuild-documentation=false
     sources:
-      - type: git
-        url: https://gitlab.gnome.org/GNOME/cairomm.git
-        tag: '1.18.0'
+      - type: archive
+        url: https://download.gnome.org/sources/cairomm/1.18/cairomm-1.18.0.tar.xz
+        sha256: e3f6df9d79046312dc18023269c502836918b765421013e8f922b577d6b5dc3f
 
   - name: pangomm
     buildsystem: meson
@@ -77,9 +77,9 @@ modules:
       - -Dbuild-tests=false
       - -Dbuild-documentation=false
     sources:
-      - type: git
-        url: https://gitlab.gnome.org/GNOME/pangomm.git
-        tag: '2.54.0'
+      - type: archive
+        url: https://download.gnome.org/sources/pangomm/2.54/pangomm-2.54.0.tar.xz
+        sha256: 4a5b1fd1b7c47a1af45277ea82b5abeaca8e08fb10a27daa6394cf88d74e7acf
 
   - name: gtkmm
     buildsystem: meson
@@ -88,9 +88,9 @@ modules:
       - -Dbuild-documentation=false
       - -Dbuild-demos=false
     sources:
-      - type: git
-        url: https://gitlab.gnome.org/GNOME/gtkmm.git
-        tag: '4.16.0'
+      - type: archive
+        url: https://download.gnome.org/sources/gtkmm/4.16/gtkmm-4.16.0.tar.xz
+        sha256: 3b23fd3abf8fb223b00e9983b6010af2db80e38c89ab6994b8b6230aa85d60f9
 
   # ─── speech-dispatcher (client library for local TTS) ─────────────────
   - name: speech-dispatcher
