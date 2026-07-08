@@ -144,6 +144,10 @@ modules:
       - type: git
         url: https://github.com/dasher-project/Dasher-GTK.git
         branch: main
+      # Remove empty submodule dirs so the git sources below can clone cleanly
+      - type: shell
+        commands:
+          - rm -rf DasherCore Thirdparty rust-tts-wrapper
       - type: git
         url: https://github.com/dasher-project/DasherCore.git
         branch: main
