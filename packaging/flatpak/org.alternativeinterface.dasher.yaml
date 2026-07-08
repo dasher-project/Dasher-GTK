@@ -146,7 +146,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/dasher-project/Dasher-GTK.git
-        branch: main
+        branch: feature/linux-publish
       # Remove empty submodule dirs and .gitmodules so git doesn't
       # try to re-init submodules when the separate git sources clone
       - type: shell
