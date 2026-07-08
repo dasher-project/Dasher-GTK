@@ -1,0 +1,144 @@
+---
+app-id: org.alternativeinterface.dasher
+runtime: org.gnome.Platform
+runtime-version: '48'
+sdk: org.gnome.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+command: dasher
+
+finish-args:
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --share=ipc
+  - --device=all
+  - --talk-name=org.a11y.Bus
+  - --talk-name=org.a11y.*
+  - --filesystem=home
+  - --filesystem=/run/user  # speech-dispatcher socket
+
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /share/pkgconfig
+  - /share/aclocal
+  - /share/man
+  - /share/gtk-doc
+  - /share/doc
+  - '*.la'
+  - '*.a'
+
+modules:
+  # ─── C++ binding chain for gtkmm ──────────────────────────────────────
+  - name: mm-common
+    buildsystem: meson
+    cleanup:
+      - '*'
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/GNOME/mm-common.git
+        tag: '1.0.7'
+
+  - name: libsigc++
+    buildsystem: meson
+    config-opts:
+      - -Dbuild-examples=false
+      - -Dbuild-tests=false
+    cleanup:
+      - /lib/sigc++-3.0
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/GNOME/libsigc++.git
+        tag: '3.6.0'
+
+  - name: glibmm
+    buildsystem: meson
+    config-opts:
+      - -Dbuild-tests=false
+      - -Dbuild-documentation=false
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/GNOME/glibmm.git
+        tag: '2.84.0'
+
+  - name: cairomm
+    buildsystem: meson
+    config-opts:
+      - -Dbuild-tests=false
+      - -Dbuild-documentation=false
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/GNOME/cairomm.git
+        tag: '1.18.0'
+
+  - name: pangomm
+    buildsystem: meson
+    config-opts:
+      - -Dbuild-tests=false
+      - -Dbuild-documentation=false
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/GNOME/pangomm.git
+        tag: '2.54.0'
+
+  - name: gtkmm
+    buildsystem: meson
+    config-opts:
+      - -Dbuild-tests=false
+      - -Dbuild-documentation=false
+      - -Dbuild-demos=false
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/GNOME/gtkmm.git
+        tag: '4.16.0'
+
+  # ─── speech-dispatcher (client library for local TTS) ─────────────────
+  - name: speech-dispatcher
+    buildsystem: autotools
+    config-opts:
+      - --disable-python
+      - --without-espeak
+      - --without-espeak-ng
+      - --without-flite
+      - --without-pico
+      - --without-baratinoo
+      - --without-ibmtts
+      - --without-voxin
+      - --with-pulse=no
+    sources:
+      - type: git
+        url: https://github.com/brailcom/speechd.git
+        tag: '0.11.5'
+
+  # ─── Dasher-GTK (builds DasherCore + SDL3 + TTS + app together) ───────
+  - name: dasher
+    buildsystem: cmake
+    builddir: true
+    build-options:
+      append-path: /usr/lib/sdk/rust-stable/bin
+      env:
+        CARGO_HOME: /run/build/dasher/cargo
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DTTS_WRAPPER_FEATURES=system,cloud
+    post-install:
+      - install -Dm644 ../packaging/org.alternativeinterface.dasher.desktop /app/share/applications/org.alternativeinterface.dasher.desktop
+      - install -Dm644 ../packaging/org.alternativeinterface.dasher.metainfo.xml /app/share/metainfo/org.alternativeinterface.dasher.metainfo.xml
+      - install -Dm644 ../Resources/icon.png /app/share/icons/hicolor/48x48/apps/org.alternativeinterface.dasher.png
+      - install -Dm644 ../DasherCore/Data/dasher.svg /app/share/icons/hicolor/scalable/apps/org.alternativeinterface.dasher.svg
+    sources:
+      - type: git
+        url: https://github.com/dasher-project/Dasher-GTK.git
+        branch: main
+      - type: git
+        url: https://github.com/dasher-project/DasherCore.git
+        branch: main
+        dest: DasherCore
+      - type: git
+        url: https://github.com/libsdl-org/SDL.git
+        tag: release-3.2.16
+        dest: Thirdparty/SDL
+      - type: git
+        url: https://github.com/AACTools/rust-tts-wrapper.git
+        branch: main
+        dest: rust-tts-wrapper
