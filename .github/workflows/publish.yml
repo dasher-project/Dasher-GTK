@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build Flatpak
-        uses: flatpak/flatpak-github-actions/flatpak-github-actions@v6.4
+        uses: flatpak/flatpak-github-actions@v6.4
         with:
           bundle: Dasher.flatpak
           manifest-path: packaging/flatpak/org.alternativeinterface.dasher.yaml
@@ -28,19 +28,21 @@ jobs:
   # ─── AppImage ─────────────────────────────────────────────────────────
   appimage:
     name: AppImage
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      - name: Install dependencies
+      - name: Install GTK4
+        uses: PapeCoding/Install-GTK@main
+        with:
+          linux-release: 'libgtk-4-dev libgtkmm-4.0-dev'
+
+      - name: Install extra build deps
         run: |
           sudo apt-get update
-          sudo apt-get install -y \
-            build-essential cmake pkg-config ninja-build \
-            libgtk-4-dev libgtkmm-4.0-dev \
-            libspeechd-dev libclang-dev
+          sudo apt-get install -y libspeechd-dev libclang-dev
 
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
