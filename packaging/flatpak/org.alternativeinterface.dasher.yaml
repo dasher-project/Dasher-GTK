@@ -72,6 +72,10 @@ modules:
       - type: archive
         url: https://www.cairographics.org/releases/cairomm-1.18.0.tar.xz
         sha256: b81255394e3ea8e8aa887276d22afa8985fc8daef60692eb2407d23049f03cfb
+      - type: archive
+        url: https://download.gnome.org/sources/libsigc++/3.6/libsigc++-3.6.0.tar.xz
+        sha256: c3d23b37dfd6e39f2e09f091b77b1541fbfa17c4f0b6bf5c89baef7229080e17
+        dest: subprojects/libsigcplusplus
 
   - name: pangomm
     buildsystem: meson
@@ -81,6 +85,10 @@ modules:
       - type: archive
         url: https://download.gnome.org/sources/pangomm/2.54/pangomm-2.54.0.tar.xz
         sha256: 4a5b1fd1b7c47a1af45277ea82b5abeaca8e08fb10a27daa6394cf88d74e7acf
+      - type: archive
+        url: https://download.gnome.org/sources/libsigc++/3.6/libsigc++-3.6.0.tar.xz
+        sha256: c3d23b37dfd6e39f2e09f091b77b1541fbfa17c4f0b6bf5c89baef7229080e17
+        dest: subprojects/libsigcplusplus
 
   - name: gtkmm
     buildsystem: meson
@@ -90,6 +98,10 @@ modules:
       - type: archive
         url: https://download.gnome.org/sources/gtkmm/4.16/gtkmm-4.16.0.tar.xz
         sha256: 3b23fd3abf8fb223b00e9983b6010af2db80e38c89ab6994b8b6230aa85d60f9
+      - type: archive
+        url: https://download.gnome.org/sources/libsigc++/3.6/libsigc++-3.6.0.tar.xz
+        sha256: c3d23b37dfd6e39f2e09f091b77b1541fbfa17c4f0b6bf5c89baef7229080e17
+        dest: subprojects/libsigcplusplus
 
   # ─── speech-dispatcher (client library for local TTS) ─────────────────
   - name: speech-dispatcher
