@@ -66,12 +66,13 @@ if(EXISTS "${TTS_WRAPPER_DIR}/Cargo.toml")
 	set(TTS_WRAPPER_HEADER "${TTS_WRAPPER_DIR}/include/tts_wrapper.h")
 
 	if(APPLE)
-		set(TTS_WRAPPER_FEATURES "avsynth,cloud")
+		set(TTS_WRAPPER_FEATURES_DEFAULT "avsynth,cloud")
 	elseif(WIN32)
-		set(TTS_WRAPPER_FEATURES "sapi,cloud")
+		set(TTS_WRAPPER_FEATURES_DEFAULT "sapi,cloud")
 	else()
-		set(TTS_WRAPPER_FEATURES "system,cloud")
+		set(TTS_WRAPPER_FEATURES_DEFAULT "system,cloud")
 	endif()
+	set(TTS_WRAPPER_FEATURES "${TTS_WRAPPER_FEATURES_DEFAULT}" CACHE STRING "rust-tts-wrapper cargo features")
 
 	if(EXISTS "${TTS_WRAPPER_LIB}")
 		add_custom_target(tts_wrapper DEPENDS "${TTS_WRAPPER_LIB}")
@@ -105,6 +106,11 @@ ADD_Executable(Dasher
 	${HEADER_FILES}
 	${SOURCE_FILES}
 )
+
+# Install as lowercase 'dasher' on Linux for desktop integration
+if(UNIX AND NOT APPLE)
+	set_target_properties(Dasher PROPERTIES OUTPUT_NAME "dasher")
+endif()
 
 if(WIN32)
 	set_target_properties(Dasher PROPERTIES
