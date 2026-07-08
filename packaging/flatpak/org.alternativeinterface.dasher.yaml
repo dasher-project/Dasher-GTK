@@ -126,16 +126,19 @@ modules:
   # Note: Flatpak uses cloud-only TTS (no speech-dispatcher) to avoid
   # building dotconf/libspeechd in the sandbox. AppImage has full system TTS.
   - name: dasher
-    buildsystem: cmake
-    builddir: true
+    buildsystem: simple
     build-options:
       append-path: /usr/lib/sdk/rust-stable/bin
       env:
         CARGO_HOME: /run/build/dasher/cargo
         PKG_CONFIG_PATH: /app/lib/pkgconfig:/app/lib/x86_64-linux-gnu/pkgconfig:/app/share/pkgconfig
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=Release
-      - -DTTS_WRAPPER_FEATURES=cloud
+    build-commands:
+      # Diagnostic: find where gtkmm .pc files landed
+      - find /app -name '*.pc' -path '*/pkgconfig/*' 2>/dev/null | head -30 || true
+      - find /app -name 'gtkmm*' -type f 2>/dev/null | head -20 || true
+      - cmake -B _build -DCMAKE_BUILD_TYPE=Release -DTTS_WRAPPER_FEATURES=cloud -DCMAKE_INSTALL_PREFIX=/app .
+      - cmake --build _build -j$(nproc)
+      - cmake --install _build
     post-install:
       - install -Dm644 ../packaging/org.alternativeinterface.dasher.desktop /app/share/applications/org.alternativeinterface.dasher.desktop
       - install -Dm644 ../packaging/org.alternativeinterface.dasher.metainfo.xml /app/share/metainfo/org.alternativeinterface.dasher.metainfo.xml
