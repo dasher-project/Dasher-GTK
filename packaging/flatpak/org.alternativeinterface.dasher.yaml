@@ -53,6 +53,8 @@ modules:
 
   - name: glibmm
     buildsystem: meson
+    config-opts:
+      - --wrap-mode=nodownload
     sources:
       - type: archive
         url: https://download.gnome.org/sources/glibmm/2.84/glibmm-2.84.0.tar.xz
@@ -60,6 +62,8 @@ modules:
 
   - name: cairomm
     buildsystem: meson
+    config-opts:
+      - --wrap-mode=nodownload
     sources:
       - type: archive
         url: https://www.cairographics.org/releases/cairomm-1.18.0.tar.xz
@@ -67,6 +71,8 @@ modules:
 
   - name: pangomm
     buildsystem: meson
+    config-opts:
+      - --wrap-mode=nodownload
     sources:
       - type: archive
         url: https://download.gnome.org/sources/pangomm/2.54/pangomm-2.54.0.tar.xz
@@ -74,6 +80,8 @@ modules:
 
   - name: gtkmm
     buildsystem: meson
+    config-opts:
+      - --wrap-mode=nodownload
     sources:
       - type: archive
         url: https://download.gnome.org/sources/gtkmm/4.16/gtkmm-4.16.0.tar.xz
