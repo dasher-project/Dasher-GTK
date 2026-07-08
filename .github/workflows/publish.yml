@@ -19,11 +19,31 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup Flatpak
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y flatpak flatpak-builder
+          flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+          flatpak install --user -y --noninteractive \
+            flathub org.gnome.Sdk//48 org.gnome.Platform//48 \
+                   org.freedesktop.Sdk.Extension.rust-stable//24.08
+
       - name: Build Flatpak
-        uses: flatpak/flatpak-github-actions@v6.4
+        run: |
+          flatpak-builder --user --install --force-clean \
+            build-flatpak \
+            packaging/flatpak/org.alternativeinterface.dasher.yaml
+
+      - name: Export bundle
+        run: |
+          flatpak build-bundle ~/.local/share/flatpak/repo \
+            Dasher.flatpak org.alternativeinterface.dasher
+
+      - name: Upload Flatpak
+        uses: actions/upload-artifact@v4
         with:
-          bundle: Dasher.flatpak
-          manifest-path: packaging/flatpak/org.alternativeinterface.dasher.yaml
+          name: Dasher-flatpak
+          path: Dasher.flatpak
 
   # ─── AppImage ─────────────────────────────────────────────────────────
   appimage:
