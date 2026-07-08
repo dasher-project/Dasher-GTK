@@ -140,6 +140,9 @@ modules:
       - type: git
         url: https://github.com/brailcom/speechd.git
         tag: '0.11.5'
+      - type: shell
+        commands:
+          - autoreconf -fi
 
   # ─── Dasher-GTK (builds DasherCore + SDL3 + TTS + app together) ───────
   - name: dasher
