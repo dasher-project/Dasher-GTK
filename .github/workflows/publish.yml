@@ -15,7 +15,10 @@ jobs:
   # ─── Flatpak ──────────────────────────────────────────────────────────
   flatpak:
     name: Flatpak
-    runs-on: ubuntu-22.04
+    # 24.04 ships flatpak-builder 1.4+, which drives appstream via
+    # `appstreamcli compose` (present in GNOME SDK 48). 22.04's 1.2.x calls
+    # the old `appstream-compose`, which the SDK no longer provides.
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
 
