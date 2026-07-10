@@ -111,7 +111,13 @@ ADD_Executable(Dasher
 
 # Install as lowercase 'dasher' on Linux for desktop integration
 if(UNIX AND NOT APPLE)
-	set_target_properties(Dasher PROPERTIES OUTPUT_NAME "dasher")
+	# Lowercase binary, and resolve the co-located libdasher.so via $ORIGIN.
+	# The app deploys as a portable directory (binary + libdasher.so together),
+	# so without an $ORIGIN rpath the runtime can't find libdasher.so.
+	set_target_properties(Dasher PROPERTIES
+		OUTPUT_NAME "dasher"
+		BUILD_WITH_INSTALL_RPATH TRUE
+		INSTALL_RPATH "$ORIGIN")
 endif()
 
 if(WIN32)
@@ -202,7 +208,9 @@ endif()
 # Setting up deployment
 ###############################
 
-install(DIRECTORY ${CMAKE_BINARY_DIR}/Dasher/ DESTINATION .)
+# USE_SOURCE_PERMISSIONS keeps the executable bit on the binary; without it
+# install(DIRECTORY) forces 644 and /app/dasher becomes non-executable.
+install(DIRECTORY ${CMAKE_BINARY_DIR}/Dasher/ DESTINATION . USE_SOURCE_PERMISSIONS)
 
 ###############################
 # Linux desktop integration
