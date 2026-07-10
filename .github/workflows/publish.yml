@@ -31,9 +31,13 @@ jobs:
       - name: Build Flatpak
         run: |
           git config --global protocol.file.allow always
+          # Run outside the repo so the manifest's `type: dir` source (repo
+          # root) doesn't recursively copy flatpak-builder's own build/state
+          # dirs. Source paths in the manifest resolve relative to the manifest.
+          mkdir -p "$RUNNER_TEMP/fb" && cd "$RUNNER_TEMP/fb"
           flatpak-builder --user --install --force-clean \
-            build-flatpak \
-            packaging/flatpak/org.alternativeinterface.dasher.yaml
+            build \
+            "$GITHUB_WORKSPACE/packaging/flatpak/org.alternativeinterface.dasher.yaml"
 
       - name: Export bundle
         run: |

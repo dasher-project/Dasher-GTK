@@ -144,11 +144,14 @@ modules:
       - install -Dm644 ../Resources/icon.png /app/share/icons/hicolor/48x48/apps/org.alternativeinterface.dasher.png
       - install -Dm644 ../DasherCore/Data/dasher.svg /app/share/icons/hicolor/scalable/apps/org.alternativeinterface.dasher.svg
     sources:
-      - type: git
-        url: https://github.com/dasher-project/Dasher-GTK.git
-        branch: feature/linux-publish
-      # Remove empty submodule dirs and .gitmodules so git doesn't
-      # try to re-init submodules when the separate git sources clone
+      # Build the checked-out working tree (the PR's own code), NOT a re-clone
+      # of a hardcoded branch. Re-cloning meant fork PRs built upstream's C++
+      # and frontend changes here were never actually tested by the Flatpak job.
+      # Path is relative to this manifest (packaging/flatpak/ -> repo root).
+      - type: dir
+        path: ../..
+      # Remove the (empty) submodule dirs and git metadata so the separate git
+      # sources below can clone DasherCore / SDL / rust-tts-wrapper cleanly.
       - type: shell
         commands:
           - rm -rf DasherCore Thirdparty rust-tts-wrapper .gitmodules .git
