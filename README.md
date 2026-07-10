@@ -69,7 +69,7 @@ Linux:
 
 ```sh
 cd build/Dasher
-./Dasher      # ./dasher on Linux
+./dasher      # 'Dasher' on macOS/Windows
 ```
 
 ### Running the Tests
