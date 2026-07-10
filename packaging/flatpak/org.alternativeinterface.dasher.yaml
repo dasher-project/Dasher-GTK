@@ -10,6 +10,9 @@ command: dasher
 finish-args:
   - --socket=fallback-x11
   - --socket=wayland
+  # GtkApplication registers its app-id on the session bus at startup; without
+  # this the app aborts with "Failed to register: ... ServiceUnknown".
+  - --socket=session-bus
   - --share=ipc
   - --device=all
   - --talk-name=org.a11y.Bus
@@ -143,12 +146,14 @@ modules:
       - install -Dm644 packaging/org.alternativeinterface.dasher.metainfo.xml /app/share/metainfo/org.alternativeinterface.dasher.metainfo.xml
       - install -Dm644 Resources/icon.png /app/share/icons/hicolor/48x48/apps/org.alternativeinterface.dasher.png
       - install -Dm644 DasherCore/Data/dasher.svg /app/share/icons/hicolor/scalable/apps/org.alternativeinterface.dasher.svg
-      # The app installs as a portable dir at /app (binary, libdasher.so and
-      # Data co-located). Flatpak's `command: dasher` resolves via /app/bin, so
-      # add a launcher there that execs the real binary with $ORIGIN=/app.
+      # The app installs as a portable dir at /app (binary + libdasher.so), and
+      # the gtkmm C++ stack builds into /app/lib64 (flatpak only searches
+      # /app/lib). Flatpak's `command: dasher` resolves via /app/bin, so add a
+      # launcher there that puts both dirs on the library path (covers the
+      # transitive mm deps, which an rpath alone would not) and execs the binary.
       - |
         install -d /app/bin
-        printf '#!/bin/sh\nexec /app/dasher "$@"\n' > /app/bin/dasher
+        printf '%s\n' '#!/bin/sh' 'export LD_LIBRARY_PATH="/app:/app/lib64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"' 'exec /app/dasher "$@"' > /app/bin/dasher
         chmod +x /app/bin/dasher
     sources:
       # Build the checked-out working tree (the PR's own code), NOT a re-clone
