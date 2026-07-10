@@ -139,10 +139,10 @@ modules:
       - cmake --build _build -j$(nproc)
       - cmake --install _build
     post-install:
-      - install -Dm644 ../packaging/org.alternativeinterface.dasher.desktop /app/share/applications/org.alternativeinterface.dasher.desktop
-      - install -Dm644 ../packaging/org.alternativeinterface.dasher.metainfo.xml /app/share/metainfo/org.alternativeinterface.dasher.metainfo.xml
-      - install -Dm644 ../Resources/icon.png /app/share/icons/hicolor/48x48/apps/org.alternativeinterface.dasher.png
-      - install -Dm644 ../DasherCore/Data/dasher.svg /app/share/icons/hicolor/scalable/apps/org.alternativeinterface.dasher.svg
+      - install -Dm644 packaging/org.alternativeinterface.dasher.desktop /app/share/applications/org.alternativeinterface.dasher.desktop
+      - install -Dm644 packaging/org.alternativeinterface.dasher.metainfo.xml /app/share/metainfo/org.alternativeinterface.dasher.metainfo.xml
+      - install -Dm644 Resources/icon.png /app/share/icons/hicolor/48x48/apps/org.alternativeinterface.dasher.png
+      - install -Dm644 DasherCore/Data/dasher.svg /app/share/icons/hicolor/scalable/apps/org.alternativeinterface.dasher.svg
     sources:
       # Build the checked-out working tree (the PR's own code), NOT a re-clone
       # of a hardcoded branch. Re-cloning meant fork PRs built upstream's C++
