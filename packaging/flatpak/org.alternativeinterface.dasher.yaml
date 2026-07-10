@@ -160,7 +160,11 @@ modules:
         url: https://github.com/libsdl-org/SDL.git
         tag: release-3.2.16
         dest: Thirdparty/SDL
+      # Pinned to the commit Dasher-GTK's TtsService.cpp is written against:
+      # AACTools/main's tree + the from_mins->from_secs fix (stable-Rust safe).
+      # AACTools/main itself still uses unstable Duration::from_mins and won't
+      # build on the GNOME SDK's stable rustc.
       - type: git
-        url: https://github.com/AACTools/rust-tts-wrapper.git
-        branch: main
+        url: https://github.com/owenpkent/rust-tts-wrapper.git
+        branch: pin/dasher-gtk-linux-publish
         dest: rust-tts-wrapper
