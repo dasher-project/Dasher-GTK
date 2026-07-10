@@ -22,8 +22,17 @@ This is the **GTK** frontend, built on the shared
 
 ## Install
 
-Not yet publicly available — build from source (see below), or grab an artifact
-from [Releases](../../releases).
+Prebuilt **Linux** packages are attached to each [Release](../../releases):
+
+- **Flatpak** — needs the GNOME 48 runtime
+  (`flatpak install flathub org.gnome.Platform//48`), then
+  `flatpak install --user Dasher.flatpak` and
+  `flatpak run org.alternativeinterface.dasher`.
+- **AppImage** — `chmod +x Dasher-x86_64.AppImage && ./Dasher-x86_64.AppImage`
+  (self-contained).
+
+macOS and Windows aren't packaged yet — build from source (below). How the
+artifacts are produced is described under [Packaging & releases](#packaging--releases).
 
 ## Build
 
@@ -54,11 +63,13 @@ The binary and all runtime files are placed in `build/Dasher/`.
 
 ### Running
 
-Dasher must be launched from the `build/Dasher/` directory so it can find its data files:
+Dasher must be launched from the `build/Dasher/` directory so it can find its
+data files. The binary is `Dasher` on macOS/Windows and lowercase `dasher` on
+Linux:
 
 ```sh
 cd build/Dasher
-./Dasher
+./Dasher      # ./dasher on Linux
 ```
 
 ### Running the Tests
@@ -83,6 +94,10 @@ submodule is present.
 - **Linux**: builds with `system,cloud` features (uses speech-dispatcher + cloud engines); needs `libspeechd-dev` and `libclang-dev` (see Prerequisites)
 - **Windows**: builds with `sapi,cloud` features (uses the Windows SAPI engine plus cloud engines)
 - All platforms need a Rust toolchain (`cargo`) on `PATH` to compile the wrapper
+
+Override the default feature set with `-DTTS_WRAPPER_FEATURES=...` at configure
+time — e.g. `-DTTS_WRAPPER_FEATURES=cloud` for a cloud-only build with no
+speech-dispatcher dependency (this is what the Flatpak uses).
 
 ### Runtime Data Files
 
@@ -114,9 +129,46 @@ rebuild if stale (`cmake --build build`).
 
 ### Known Issues
 
-- `bad_variant_access` warnings on startup are non-fatal. The GTK UI queries some
-  CAPI parameters with the wrong getter type (string vs long); these do not affect
-  functionality.
+- `bad_variant_access` / `std::get: wrong index for variant` warnings on startup
+  are non-fatal — the GTK UI queries some CAPI parameters with the wrong getter
+  type (string vs long); they don't affect functionality. Tracked in
+  [#17](../../issues/17).
+- In packaged builds the custom `UIStyle.css` isn't loaded — it's resolved
+  relative to the working directory, so the app falls back to default GTK
+  styling. Tracked in [#18](../../issues/18).
+
+## Packaging & releases
+
+Linux is distributed as **Flatpak** and **AppImage**, both built by
+[`.github/workflows/publish.yml`](.github/workflows/publish.yml).
+
+**Flatpak** — manifest: `packaging/flatpak/org.alternativeinterface.dasher.yaml`
+(GNOME 48 runtime + the `rust-stable` SDK extension; builds `rust-tts-wrapper`
+with `TTS_WRAPPER_FEATURES=cloud`). The manifest bundles the working tree via a
+`type: dir` source, so run `flatpak-builder` from **outside** the repo to avoid
+copying its build directory into itself:
+
+```sh
+flatpak install flathub org.gnome.Sdk//48 org.gnome.Platform//48 \
+    org.freedesktop.Sdk.Extension.rust-stable//24.08
+repo=$(pwd)
+mkdir -p /tmp/dasher-fb && cd /tmp/dasher-fb
+flatpak-builder --user --install --force-clean build \
+    "$repo/packaging/flatpak/org.alternativeinterface.dasher.yaml"
+flatpak run org.alternativeinterface.dasher
+```
+
+> The GNOME 48 runtime is end-of-life; bumping to a supported release is tracked
+> in [#19](../../issues/19).
+
+**AppImage** — `bash packaging/build-appimage.sh` produces `Dasher-x86_64.AppImage`.
+
+**Cutting a release** — push a `v*` tag; the publish workflow builds both
+artifacts and attaches them to a new GitHub Release:
+
+```sh
+git tag v0.2.3 && git push origin v0.2.3
+```
 
 ## Architecture
 
@@ -148,6 +200,7 @@ for the engine contract.
 | `src/Preferences/` | Settings UI (`PreferencesWindow`, `SettingsSection`) |
 | `src/UIComponents/` | Reusable GTK widgets (canvas, synced controls) |
 | `tests/` | doctest unit tests |
+| `packaging/` | Flatpak manifest + AppImage build script (Linux distribution) |
 | `DasherCore/` | DasherCore submodule (do not edit here — PR upstream) |
 | `rust-tts-wrapper/` | TTS wrapper submodule |
 | `Thirdparty/SDL` | SDL submodule (joystick input) |
