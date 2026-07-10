@@ -150,8 +150,7 @@ std::vector<TtsEngineInfo> TtsService::get_engines() const {
 #ifdef HAS_TTS
     tts_engine_info* infos = nullptr;
     int32_t count = 0;
-    if (tts_get_engines(&infos, &count) != 0 || !infos || count <= 0)
-        return result;
+    if (tts_get_engines(&infos, &count) != 0 || !infos || count <= 0) return result;
     for (int32_t i = 0; i < count; i++) {
         TtsEngineInfo info;
         if (infos[i].id) info.id = infos[i].id;
