@@ -138,7 +138,13 @@ if(TARGET tts_wrapper)
 		target_link_libraries(Dasher PRIVATE
 			ntdll userenv bcrypt ws2_32 advapi32 crypt32 secur32 ncrypt ole32 oleaut32)
 	else()
-		target_link_libraries(Dasher PRIVATE dl pthread speechd)
+		target_link_libraries(Dasher PRIVATE dl pthread)
+		# speech-dispatcher (libspeechd) is only pulled in by the `system`
+		# TTS engine. Cloud-only builds have no speechd symbols, so linking
+		# it there just fails (e.g. the Flatpak SDK has no libspeechd).
+		if(TTS_WRAPPER_FEATURES MATCHES "system")
+			target_link_libraries(Dasher PRIVATE speechd)
+		endif()
 	endif()
 endif()
 target_include_directories(Dasher SYSTEM PRIVATE ${GTK_INCLUDE_DIRS} ${GTKMM_INCLUDE_DIRS})
