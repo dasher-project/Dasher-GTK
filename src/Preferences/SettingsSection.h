@@ -43,21 +43,35 @@ public:
             name_label->set_hexpand(true);
             row->append(*name_label);
 
-            switch (info.ui_type) {
-            case 1:
+            // Choose the widget by the parameter's value type so its getter always
+            // matches the stored variant (see #17). DasherCore emits:
+            //   info.type    -> ParameterType {BOOL=0, LONG=1, STRING=2}
+            //   info.ui_type -> UIControlType {Switch=0, TextField=1, Slider=2, Enum=3, Step=4, None=5}
+            // ui_type only refines the widget within a value type.
+            constexpr int UI_ENUM = 3;
+            constexpr int UI_STEP = 4;
+            switch (info.type) {
+            case 0: // BOOL
                 row->append(*Gtk::make_managed<SyncedSwitch>(info.key, m_bridge));
                 break;
-            case 2:
-                row->append(*Gtk::make_managed<SyncedSlider>(info.key, m_bridge, info.min_val, info.max_val, info.step));
+            case 1: // LONG
+                if (info.ui_type == UI_ENUM) {
+                    row->append(*Gtk::make_managed<SyncedEnumDropdown>(info.key, m_bridge));
+                } else if (info.ui_type == UI_STEP) {
+                    row->append(*Gtk::make_managed<SyncedSpinButton>(info.key, m_bridge, info.min_val, info.max_val,
+                                                                     info.step));
+                } else {
+                    row->append(
+                        *Gtk::make_managed<SyncedSlider>(info.key, m_bridge, info.min_val, info.max_val, info.step));
+                }
                 break;
-            case 3:
-                row->append(*Gtk::make_managed<SyncedSpinButton>(info.key, m_bridge, info.min_val, info.max_val, info.step));
-                break;
-            case 4:
-                row->append(*Gtk::make_managed<SyncedEnumDropdown>(info.key, m_bridge));
-                break;
-            case 5:
-                row->append(*Gtk::make_managed<SyncedTextbox>(info.key, m_bridge));
+            case 2: // STRING
+                if (info.ui_type == UI_ENUM) {
+                    row->append(*Gtk::make_managed<SyncedStringDropdown>(
+                        info.key, m_bridge, m_bridge->get_parameter_string_values(info.key)));
+                } else {
+                    row->append(*Gtk::make_managed<SyncedTextbox>(info.key, m_bridge));
+                }
                 break;
             default:
                 break;
