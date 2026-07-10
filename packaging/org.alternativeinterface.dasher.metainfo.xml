@@ -36,6 +36,21 @@
   </developer>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="0.2.2" date="2026-07-10">
+      <description>
+        <p>Linux Flatpak and AppImage packages now launch correctly (portable /app layout, library paths, and session-bus access). Updated the bundled TTS wrapper.</p>
+      </description>
+    </release>
+    <release version="0.2.1" date="2026-07-10" type="development">
+      <description>
+        <p>Linux packaging fixes. Superseded by 0.2.2 — this build does not launch.</p>
+      </description>
+    </release>
+    <release version="0.2.0" date="2026-07-07">
+      <description>
+        <p>First Linux Flatpak and AppImage artifacts, published via the release workflow.</p>
+      </description>
+    </release>
     <release version="0.1.0" date="2026-06-18">
       <description>
         <p>Early development build of the GTK 4 front-end.</p>
