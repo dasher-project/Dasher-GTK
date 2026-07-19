@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Dasher Analytics Event Schema v1",
+  "description": "Published openly at https://github.com/dasher-project/Dasher-Windows. If it's not in this schema, it's not collected. All Dasher frontends (Windows, Apple, GTK) share the same PostHog project — events are distinguished by the default properties below.",
+  "default_properties": {
+    "description": "Automatically appended to every event from every frontend",
+    "properties": {
+      "platform": { "type": "string", "examples": ["windows", "macos", "ios", "visionos", "linux"] },
+      "app_variant": { "type": "string", "examples": ["dasher-windows", "dasher-mac", "dasher-ios", "dasher-gtk"] },
+      "app_version": { "type": "string", "example": "0.1.0-preview9" },
+      "os_version": { "type": "string", "example": "Microsoft Windows 10.0.19045" }
+    }
+  },
+  "events": {
+    "app_launched": {
+      "description": "App starts (after opt-in)",
+      "properties": { "locale": { "type": "string", "example": "en-GB" } },
+      "pii": false
+    },
+    "input_method_changed": {
+      "description": "User selects input method",
+      "properties": { "method": { "type": "string", "enum": ["pointer", "touch", "switch", "joystick", "eye_gaze", "tilt"] } },
+      "pii": false
+    },
+    "alphabet_selected": {
+      "description": "User picks alphabet",
+      "properties": { "alphabet_id": { "type": "string", "example": "English with limited punctuation" } },
+      "pii": false
+    },
+    "settings_viewed": {
+      "description": "User opens a settings tab",
+      "properties": { "tab_name": { "type": "string", "enum": ["Input", "Language", "Customization", "Speed", "Output", "Speech", "Privacy", "Appearance", "Advanced"] } },
+      "pii": false
+    },
+    "analytics_opted_in":  { "description": "User opted into analytics", "properties": {}, "pii": false },
+    "analytics_id_reset":  { "description": "User reset their anonymous analytics ID", "properties": {}, "pii": false },
+    "crash": {
+      "description": "Uncaught exception",
+      "properties": { "stack_trace": { "type": "string", "note": "May contain file paths but not user text" } },
+      "pii": false
+    }
+  },
+  "explicitly_not_collected": [
+    "Typed text or symbols",
+    "Clipboard contents",
+    "Dasher canvas contents / node positions",
+    "User name, email, or account info",
+    "IP address (scrubbed at ingest)",
+    "Training text contents",
+    "Game mode target text"
+  ]
+}

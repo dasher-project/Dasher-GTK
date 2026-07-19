@@ -132,6 +132,11 @@ ADD_Executable(Dasher
 	${GRESOURCE_C}
 )
 
+# Version string surfaced to analytics/crash reports as app_version. Keep in
+# sync with packaging/org.alternativeinterface.dasher.metainfo.xml releases.
+set(DASHER_GTK_VERSION "0.2.2" CACHE STRING "Dasher-GTK version string")
+target_compile_definitions(Dasher PRIVATE DASHER_GTK_VERSION="${DASHER_GTK_VERSION}")
+
 # Install as lowercase 'dasher' on Linux for desktop integration
 if(UNIX AND NOT APPLE)
 	# Lowercase binary, and resolve the co-located libdasher.so via $ORIGIN.

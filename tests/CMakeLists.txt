@@ -17,6 +17,12 @@ FetchContent_MakeAvailable(doctest)
 add_executable(dasher_unit_tests
     test_dwell_click_handler.cpp
     ${CMAKE_SOURCE_DIR}/src/Input/DwellClickHandler.cpp
+    test_pii_scrubber.cpp
+    test_engine_log_ring_buffer.cpp
+    test_crash_file_roundtrip.cpp
+    ${CMAKE_SOURCE_DIR}/src/Analytics/PiiScrubber.cpp
+    ${CMAKE_SOURCE_DIR}/src/Analytics/EngineLogRingBuffer.cpp
+    ${CMAKE_SOURCE_DIR}/src/Analytics/CrashReporter.cpp
 )
 
 target_include_directories(dasher_unit_tests SYSTEM PRIVATE ${GTKMM_INCLUDE_DIRS})
