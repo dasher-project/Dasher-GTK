@@ -68,6 +68,28 @@ APPRUN
 chmod +x "$APPDIR/AppRun"
 
 # ─── Bundle shared library deps with linuxdeploy ──────────────────────
+# AppImages ship as a static-PIE ELF wrapper around an ISO9660+squashfs
+# payload. QEMU's binfmt can't exec the static-PIE wrapper on the aarch64
+# leg ("Exec format error"), so we bypass the wrapper entirely: locate the
+# embedded squashfs by its 'hsqs' magic and unsquashfs straight into
+# squashfs-root, then run the inner AppRun (a regular static ELF that
+# QEMU handles fine).
+extract_appimage() {
+  local src="$1" dest="$2"
+  local offset
+  offset="$(python3 -c "
+import sys
+with open('${src}', 'rb') as f:
+    data = f.read()
+idx = data.find(b'hsqs')
+if idx < 0:
+    sys.exit('no squashfs magic in ${src}')
+print(idx)
+")"
+  rm -rf "$dest"
+  unsquashfs -f -d "$dest" -o "$offset" "$src" >/dev/null
+}
+
 wget -q "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-${ARCH}.AppImage"
 chmod +x "linuxdeploy-${ARCH}.AppImage"
 
@@ -78,12 +100,7 @@ export DEPLOY_GTK_VERSION=4
 export ARCH="$ARCH"
 export VERSION="${VERSION:-0.1.0}"
 
-# Extract linuxdeploy so it doesn't need FUSE / binfmt at runtime — the
-# aarch64 leg runs inside a QEMU container where AppImages can't exec
-# directly ("Exec format error"), and extracting also avoids the libfuse2
-# requirement on the host.
-./linuxdeploy-${ARCH}.AppImage --appimage-extract
-rm -rf linuxdeploy-appimage-extract 2>/dev/null || true
+extract_appimage "linuxdeploy-${ARCH}.AppImage" squashfs-root
 LINUXDEPLOY=./squashfs-root/AppRun
 
 # linuxdeploy bundles deps into the AppDir, but we use our custom AppRun
@@ -94,7 +111,7 @@ LINUXDEPLOY=./squashfs-root/AppRun
   --icon-file "$APPDIR/usr/share/icons/hicolor/scalable/apps/org.alternativeinterface.dasher.svg" \
   --plugin gtk
 
-# Clear the squashfs-root so appimagetool's own --appimage-extract below
+# Clear the squashfs-root so appimagetool's own extraction below
 # doesn't collide with it.
 rm -rf squashfs-root
 
@@ -108,12 +125,11 @@ APPRUN
 chmod +x "$APPDIR/AppRun"
 
 # ─── Create AppImage ──────────────────────────────────────────────────
-# appimagetool needs libfuse2; extract-and-run avoids FUSE requirement
+# Same extract-avoiding-the-static-PIE-wrapper trick as linuxdeploy above.
 wget -q "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-${ARCH}.AppImage"
 chmod +x "appimagetool-${ARCH}.AppImage"
 
-# Extract appimagetool so it doesn't need FUSE at runtime
-./appimagetool-${ARCH}.AppImage --appimage-extract
+extract_appimage "appimagetool-${ARCH}.AppImage" squashfs-root
 ./squashfs-root/AppRun "$APPDIR" "Dasher-${ARCH}.AppImage"
 
 echo "AppImage created: Dasher-${ARCH}.AppImage"

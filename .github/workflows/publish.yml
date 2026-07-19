@@ -104,8 +104,10 @@ jobs:
         run: |
           sudo apt-get update
           # libcurl4-openssl-dev backs the analytics HTTP transport; linuxdeploy
-          # bundles it into the AppImage.
-          sudo apt-get install -y libspeechd-dev libclang-dev libcurl4-openssl-dev
+          # bundles it into the AppImage. squashfs-tools lets us extract the
+          # AppImages without running their static-PIE wrapper (QEMU's binfmt
+          # on the aarch64 leg can't exec those wrappers; we unify both legs).
+          sudo apt-get install -y libspeechd-dev libclang-dev libcurl4-openssl-dev squashfs-tools python3
 
       - name: Install Rust toolchain (x86_64)
         if: matrix.arch == 'x86_64'
@@ -140,6 +142,7 @@ jobs:
               apt-get update
               DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
                 build-essential cmake ninja-build pkg-config git wget curl ca-certificates \
+                squashfs-tools python3 \
                 libgtk-4-dev libgtkmm-4.0-dev libspeechd-dev libclang-dev \
                 libcurl4-openssl-dev libfuse2t64
               curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal
