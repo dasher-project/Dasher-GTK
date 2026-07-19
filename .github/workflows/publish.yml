@@ -70,7 +70,9 @@ jobs:
       - name: Install extra build deps
         run: |
           sudo apt-get update
-          sudo apt-get install -y libspeechd-dev libclang-dev
+          # libcurl4-openssl-dev backs the analytics HTTP transport; linuxdeploy
+          # bundles it into the AppImage.
+          sudo apt-get install -y libspeechd-dev libclang-dev libcurl4-openssl-dev
 
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
