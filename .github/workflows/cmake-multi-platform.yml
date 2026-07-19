@@ -68,7 +68,9 @@ jobs:
       if: runner.os == 'Linux'
       run: |
         sudo apt-get update
-        sudo apt-get install -y libspeechd-dev libclang-dev
+        # libcurl4-openssl-dev provides the analytics HTTP transport (optional,
+        # so the Windows/macOS jobs build without it).
+        sudo apt-get install -y libspeechd-dev libclang-dev libcurl4-openssl-dev
 
     # rust-tts-wrapper is built with cargo on every platform.
     - name: Set up Rust

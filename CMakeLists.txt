@@ -21,6 +21,12 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTK REQUIRED gtk4)
 pkg_check_modules(GTKMM REQUIRED gtkmm-4.0)
 
+# libcurl backs the analytics HTTP transport (POST to PostHog). Optional: it is
+# present in the GNOME/freedesktop SDK (Flatpak) and Linux CI, but not every
+# toolchain ships it (e.g. GVSBuild on Windows). When absent the app still
+# builds and events are queued but not transmitted (see HAS_ANALYTICS_CURL).
+find_package(CURL)
+
 ###############################
 # Using/Building SDL3
 ###############################
@@ -160,6 +166,10 @@ if(TARGET tts_wrapper)
 	target_compile_definitions(Dasher PRIVATE HAS_TTS)
 endif()
 target_link_libraries(Dasher PRIVATE dasher SDL3::SDL3 ${GTK_LIBRARIES} ${GTKMM_LIBRARIES})
+if(CURL_FOUND)
+	target_link_libraries(Dasher PRIVATE CURL::libcurl)
+	target_compile_definitions(Dasher PRIVATE HAS_ANALYTICS_CURL)
+endif()
 if(TARGET tts_wrapper)
 	target_link_libraries(Dasher PRIVATE "${TTS_WRAPPER_LIB}")
 	target_include_directories(Dasher PRIVATE "${TTS_WRAPPER_DIR}/include")
