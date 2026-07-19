@@ -20,6 +20,15 @@ This is the **GTK** frontend, built on the shared
 > **In development** — early-stage GTK4 frontend aiming to replace Dasher 5.
 > See the [feature matrix](https://dasher.at/status/) for what's implemented.
 
+## Usage
+
+Runtime controls live in the footer bar, alongside the alphabet, speed, and the
+Speech / Dwell / Keyboard toggles. The **Rate** switch (off by default) shows a
+live typing-rate readout, e.g. `4.2 cps · 50 wpm` (characters per second and
+words per minute). The rate is computed engine-side over a short rolling window
+and refreshed about twice a second; flip the switch on to see it. See
+[RFC 0012](https://github.com/dasher-project/governance/pull/19).
+
 ## Install
 
 Prebuilt **Linux** packages are attached to each [Release](../../releases):
