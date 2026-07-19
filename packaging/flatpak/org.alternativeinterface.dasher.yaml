@@ -141,7 +141,10 @@ modules:
         - --share=network
       env:
         CARGO_HOME: /run/build/dasher/cargo
-        PKG_CONFIG_PATH: /app/lib64/pkgconfig:/app/lib/pkgconfig:/app/lib/x86_64-linux-gnu/pkgconfig:/app/share/pkgconfig
+        # FLATPAK_ARCH is x86_64 / aarch64 depending on the leg. The C++ mm
+        # bindings install their .pc files under the multiarch triplet dir,
+        # so PKG_CONFIG_PATH has to follow the build arch.
+        PKG_CONFIG_PATH: /app/lib64/pkgconfig:/app/lib/pkgconfig:/app/lib/${FLATPAK_ARCH}-linux-gnu/pkgconfig:/app/share/pkgconfig
     build-commands:
       - cmake -B _build -DCMAKE_BUILD_TYPE=Release -DTTS_WRAPPER_FEATURES=cloud -DBUILD_GTK_TESTS=OFF -DCMAKE_INSTALL_PREFIX=/app .
       - cmake --build _build -j$(nproc)
