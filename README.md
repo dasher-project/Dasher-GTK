@@ -133,9 +133,6 @@ rebuild if stale (`cmake --build build`).
   are non-fatal — the GTK UI queries some CAPI parameters with the wrong getter
   type (string vs long); they don't affect functionality. Tracked in
   [#17](../../issues/17).
-- In packaged builds the custom `UIStyle.css` isn't loaded — it's resolved
-  relative to the working directory, so the app falls back to default GTK
-  styling. Tracked in [#18](../../issues/18).
 
 ## Packaging & releases
 
@@ -170,13 +167,40 @@ artifacts and attaches them to a new GitHub Release:
 git tag v0.2.3 && git push origin v0.2.3
 ```
 
+## Privacy & analytics
+
+Dasher-GTK includes **opt-in** anonymous usage analytics and crash reporting to
+help prioritise accessibility work. It is **off by default** — nothing is sent
+until you turn it on under **Preferences → Privacy**. All Dasher frontends share
+one self-hosted [PostHog](https://posthog.com) project; the complete event
+schema is published in [`analytics-events.json`](./analytics-events.json).
+
+- **Collected only after opt-in:** app launches, the input method / alphabet you
+  select, which settings tab you open, and crash reports. Each event carries a
+  random anonymous ID (resettable under Privacy) plus `platform`, `app_variant`,
+  `app_version`, and `os_version`.
+- **Never collected:** the text you type, clipboard contents, canvas contents,
+  your name / email / account, training text, or game-mode targets.
+- **Crash reports** capture the exception type, a stack trace, and the last
+  lines of the engine log, with home-directory paths and email addresses
+  scrubbed before anything leaves your device. A crash is written locally and
+  only transmitted (as a PostHog `$exception`) on the next launch if you have
+  opted in; otherwise it is discarded after 7 days.
+
+Design details are in the org RFCs
+[0001 (analytics)](https://github.com/dasher-project/governance/blob/main/rfcs/0001-analytics.md)
+and [0009 (crash reporting)](https://github.com/dasher-project/governance/blob/main/rfcs/0009-crash-reporting.md).
+
 ## Architecture
 
 This frontend consumes DasherCore through its **C API** (`src/Engine/DasherBridge.cpp`,
 backed by `dasher.h`). `DasherBridge` owns the engine handle, feeds it GTK pointer
 input, and receives draw commands that `RenderingCanvas` renders onto a GTK widget.
 `InputManager`/`DwellClickHandler` translate raw input, and `TtsService` /
-`DirectModeService` handle output and spoken feedback.
+`DirectModeService` handle output and spoken feedback. The `Analytics` module
+keeps a bounded engine-log ring buffer and installs crash handlers, powering the
+opt-in analytics and crash reporting described under
+[Privacy & analytics](#privacy--analytics).
 
 ```mermaid
 flowchart LR
@@ -199,6 +223,7 @@ for the engine contract.
 | `src/Output/` | `TtsService`, `DirectModeService` (speech + output modes) |
 | `src/Preferences/` | Settings UI (`PreferencesWindow`, `SettingsSection`) |
 | `src/UIComponents/` | Reusable GTK widgets (canvas, synced controls) |
+| `src/Analytics/` | Opt-in analytics + crash reporting (PostHog, RFC 0001/0009) |
 | `tests/` | doctest unit tests |
 | `packaging/` | Flatpak manifest + AppImage build script (Linux distribution) |
 | `DasherCore/` | DasherCore submodule (do not edit here — PR upstream) |
