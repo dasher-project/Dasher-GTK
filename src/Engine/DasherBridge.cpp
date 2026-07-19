@@ -1,4 +1,5 @@
 #include "DasherBridge.h"
+#include "Analytics/EngineLogRingBuffer.h"
 #include <cstring>
 #include <iostream>
 #include <glib.h>
@@ -15,10 +16,11 @@ DasherBridge::DasherBridge(const std::string& data_dir, const std::string& user_
 
     if (m_ctx) {
         // Route DasherCore's internal diagnostic logging to GLib so it integrates
-        // with GTK's structured logging (stderr / journald). Default to warnings
-        // and above (level 2); debug/info messages are discarded inside the engine
-        // at zero cost. Without this call DasherCore silently drops all log output.
-        dasher_set_log_callback(m_ctx, log_callback_trampoline, nullptr, /*min_level=*/2);
+        // with GTK's structured logging (stderr / journald), and mirror it into
+        // the crash-report ring buffer. Capture from info (level 1) up so a crash
+        // report has useful engine context (RFC 0009); GLib still filters what
+        // actually reaches stderr by domain/level at display time.
+        dasher_set_log_callback(m_ctx, log_callback_trampoline, nullptr, /*min_level=*/1);
     }
 }
 
@@ -305,6 +307,10 @@ void DasherBridge::log_callback_trampoline(int level, const char* message, void*
         break;
     }
     g_log("DasherCore", glib_level, "%s", message ? message : "");
+
+    // Also retain the line in the crash-report ring buffer (and its on-disk
+    // mirror) so a subsequent crash can attach recent engine context.
+    analytics::engine_log_buffer().append(level, message ? message : "");
 }
 
 int64_t DasherBridge::get_current_time_ms() const {
