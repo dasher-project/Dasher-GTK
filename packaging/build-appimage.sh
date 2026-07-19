@@ -1,10 +1,16 @@
 #!/bin/bash
-# AppImage packaging script — runs inside CI on ubuntu-22.04
-# Produces Dasher-x86_64.AppImage
+# AppImage packaging script — runs inside CI on ubuntu-22.04 (x86_64 native)
+# or inside an arm64v8/ubuntu container under QEMU (aarch64).
+# Produces Dasher-${ARCH}.AppImage
 set -ex
 
 BUILD_DIR="${BUILD_DIR:-build}"
 APPDIR="${APPDIR:-AppDir}"
+
+# Host arch defaults to uname -m; override via the env (set by the publish
+# workflow for cross-arch legs). linuxdeploy / appimagetool ship per-arch
+# AppImages, and the output filename carries the arch too.
+ARCH="${ARCH:-$(uname -m)}"
 
 # ─── Build ─────────────────────────────────────────────────────────────
 cmake -B "$BUILD_DIR" -DCMAKE_BUILD_TYPE=Release
@@ -62,18 +68,18 @@ APPRUN
 chmod +x "$APPDIR/AppRun"
 
 # ─── Bundle shared library deps with linuxdeploy ──────────────────────
-wget -q "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
-chmod +x linuxdeploy-x86_64.AppImage
+wget -q "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-${ARCH}.AppImage"
+chmod +x "linuxdeploy-${ARCH}.AppImage"
 
 wget -q "https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/master/linuxdeploy-plugin-gtk.sh"
 chmod +x linuxdeploy-plugin-gtk.sh
 
 export DEPLOY_GTK_VERSION=4
-export ARCH=x86_64
+export ARCH="$ARCH"
 export VERSION="${VERSION:-0.1.0}"
 
 # linuxdeploy bundles deps into the AppDir, but we use our custom AppRun
-./linuxdeploy-x86_64.AppImage \
+./linuxdeploy-${ARCH}.AppImage \
   --appdir "$APPDIR" \
   --desktop-file "$APPDIR/org.alternativeinterface.dasher.desktop" \
   --icon-file "$APPDIR/usr/share/icons/hicolor/48x48/apps/org.alternativeinterface.dasher.png" \
@@ -91,12 +97,12 @@ chmod +x "$APPDIR/AppRun"
 
 # ─── Create AppImage ──────────────────────────────────────────────────
 # appimagetool needs libfuse2; extract-and-run avoids FUSE requirement
-wget -q "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
-chmod +x appimagetool-x86_64.AppImage
+wget -q "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-${ARCH}.AppImage"
+chmod +x "appimagetool-${ARCH}.AppImage"
 
 # Extract appimagetool so it doesn't need FUSE at runtime
-./appimagetool-x86_64.AppImage --appimage-extract
-./squashfs-root/AppRun "$APPDIR" "Dasher-x86_64.AppImage"
+./appimagetool-${ARCH}.AppImage --appimage-extract
+./squashfs-root/AppRun "$APPDIR" "Dasher-${ARCH}.AppImage"
 
-echo "AppImage created: Dasher-x86_64.AppImage"
-ls -lh Dasher-x86_64.AppImage
+echo "AppImage created: Dasher-${ARCH}.AppImage"
+ls -lh "Dasher-${ARCH}.AppImage"
