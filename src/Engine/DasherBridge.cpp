@@ -121,6 +121,16 @@ void DasherBridge::set_speed_percent(int percent) {
     if (m_ctx) dasher_set_speed_percent(m_ctx, percent);
 }
 
+double DasherBridge::get_cps() const {
+    if (!m_ctx) return 0.0;
+    return dasher_get_cps(m_ctx);
+}
+
+double DasherBridge::get_wpm() const {
+    if (!m_ctx) return 0.0;
+    return dasher_get_wpm(m_ctx);
+}
+
 bool DasherBridge::get_bool_parameter(int key) const {
     if (!m_ctx) return false;
     return dasher_get_bool_parameter(m_ctx, key) != 0;

@@ -55,6 +55,11 @@ public:
     int get_speed_percent() const;
     void set_speed_percent(int percent);
 
+    // Typing-rate metrics (DasherCore v0.1.8+, RFC 0012): characters per second
+    // and words per minute, as reported by the engine.
+    double get_cps() const;
+    double get_wpm() const;
+
     bool get_bool_parameter(int key) const;
     void set_bool_parameter(int key, bool value);
     long get_long_parameter(int key) const;
