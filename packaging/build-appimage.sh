@@ -78,13 +78,25 @@ export DEPLOY_GTK_VERSION=4
 export ARCH="$ARCH"
 export VERSION="${VERSION:-0.1.0}"
 
+# Extract linuxdeploy so it doesn't need FUSE / binfmt at runtime — the
+# aarch64 leg runs inside a QEMU container where AppImages can't exec
+# directly ("Exec format error"), and extracting also avoids the libfuse2
+# requirement on the host.
+./linuxdeploy-${ARCH}.AppImage --appimage-extract
+rm -rf linuxdeploy-appimage-extract 2>/dev/null || true
+LINUXDEPLOY=./squashfs-root/AppRun
+
 # linuxdeploy bundles deps into the AppDir, but we use our custom AppRun
-./linuxdeploy-${ARCH}.AppImage \
+"$LINUXDEPLOY" \
   --appdir "$APPDIR" \
   --desktop-file "$APPDIR/org.alternativeinterface.dasher.desktop" \
   --icon-file "$APPDIR/usr/share/icons/hicolor/48x48/apps/org.alternativeinterface.dasher.png" \
   --icon-file "$APPDIR/usr/share/icons/hicolor/scalable/apps/org.alternativeinterface.dasher.svg" \
   --plugin gtk
+
+# Clear the squashfs-root so appimagetool's own --appimage-extract below
+# doesn't collide with it.
+rm -rf squashfs-root
 
 # Re-write our custom AppRun (linuxdeploy may have overwritten it)
 cat > "$APPDIR/AppRun" << 'APPRUN'
