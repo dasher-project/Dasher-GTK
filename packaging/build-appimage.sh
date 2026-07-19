@@ -77,14 +77,25 @@ chmod +x "$APPDIR/AppRun"
 extract_appimage() {
   local src="$1" dest="$2"
   local offset
+  # The 4 bytes 'hsqs' (squashfs magic) can occur by chance inside the ELF
+  # payload, so we walk every match and pick the first that's followed by a
+  # sane superblock (block_size one of the documented powers of two from
+  # 4 KiB .. 1 MiB).
   offset="$(python3 -c "
-import sys
+import struct, sys
 with open('${src}', 'rb') as f:
     data = f.read()
-idx = data.find(b'hsqs')
-if idx < 0:
-    sys.exit('no squashfs magic in ${src}')
-print(idx)
+valid_bs = {4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288, 1048576}
+idx = 0
+while True:
+    idx = data.find(b'hsqs', idx)
+    if idx < 0:
+        sys.exit('no valid squashfs superblock in ${src}')
+    bs = struct.unpack('<I', data[idx+12:idx+16])[0]
+    if bs in valid_bs:
+        print(idx)
+        break
+    idx += 4
 ")"
   rm -rf "$dest"
   unsquashfs -f -d "$dest" -o "$offset" "$src" >/dev/null
