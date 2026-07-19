@@ -101,12 +101,35 @@ file(GLOB_RECURSE HEADER_FILES CONFIGURE_DEPENDS
 file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS
     ${CMAKE_CURRENT_LIST_DIR}/src/*.cpp
     ${CMAKE_CURRENT_LIST_DIR}/src/**/*.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/src/**/*.css
+)
+
+###############################
+# Embedded resources (GResource)
+###############################
+
+# Compile UIStyle.css into the binary as a GResource so the stylesheet loads
+# regardless of the current working directory or install layout. Flatpak and
+# AppImage place the css in different locations relative to the executable, so
+# any file-path lookup was fragile; embedding removes the dependency entirely.
+find_program(GLIB_COMPILE_RESOURCES NAMES glib-compile-resources REQUIRED)
+set(GRESOURCE_XML ${CMAKE_CURRENT_LIST_DIR}/src/dasher.gresource.xml)
+set(GRESOURCE_C ${CMAKE_BINARY_DIR}/dasher_resources.c)
+add_custom_command(
+    OUTPUT ${GRESOURCE_C}
+    COMMAND ${GLIB_COMPILE_RESOURCES}
+            --target=${GRESOURCE_C}
+            --sourcedir=${CMAKE_CURRENT_LIST_DIR}/src
+            --generate-source
+            ${GRESOURCE_XML}
+    DEPENDS ${GRESOURCE_XML} ${CMAKE_CURRENT_LIST_DIR}/src/UIStyle.css
+    COMMENT "Compiling GResource bundle (UIStyle.css)"
+    VERBATIM
 )
 
 ADD_Executable(Dasher
 	${HEADER_FILES}
 	${SOURCE_FILES}
+	${GRESOURCE_C}
 )
 
 # Install as lowercase 'dasher' on Linux for desktop integration
@@ -177,7 +200,6 @@ add_custom_command(TARGET Dasher POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/DasherCore/Strings ${CMAKE_BINARY_DIR}/Dasher/Strings
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/Dasher/Resources/License
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources ${CMAKE_BINARY_DIR}/Dasher/Resources
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/src/UIStyle.css ${CMAKE_BINARY_DIR}/Dasher/
     COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/Thirdparty/SDL/LICENSE.txt ${CMAKE_BINARY_DIR}/Dasher/Resources/License/LICENSE_SDL.txt
     COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/DasherCore/Thirdparty/pugixml/LICENSE.md ${CMAKE_BINARY_DIR}/Dasher/Resources/License/LICENSE_PugiXML.txt
     COMMENT "Copying runtime data files"

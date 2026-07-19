@@ -22,7 +22,12 @@ MainWindow::MainWindow()
       m_learning_switch(m_canvas.bridge->find_parameter_key("BP_LM_ADAPTIVE"), m_canvas.bridge),
       m_color_chooser(m_canvas.bridge), m_preferences_window(m_canvas.bridge) {
     Glib::RefPtr<Gtk::CssProvider> css = Gtk::CssProvider::create();
-    css->load_from_path("./UIStyle.css");
+    // Load the stylesheet from the GResource bundle compiled into the binary
+    // (see src/dasher.gresource.xml). Loading from a file path meant the CSS
+    // was resolved against the current working directory, so packaged builds
+    // (Flatpak/AppImage), whose CWD isn't the source tree, silently fell back
+    // to unstyled default GTK. Embedding it removes any CWD/layout dependency.
+    css->load_from_resource("/org/alternativeinterface/dasher/UIStyle.css");
     get_style_context()->add_provider_for_display(Gdk::Display::get_default(), css, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
     set_title("Dasher v6");
