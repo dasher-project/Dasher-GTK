@@ -55,11 +55,47 @@ jobs:
       run: |
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
-    - name:  Ensure GTK4
-      uses: PapeCoding/Install-GTK@main
+    - name: Install GTK4 (Linux)
+      if: runner.os == 'Linux'
+      run: sudo apt-get update && sudo apt-get install -y libgtk-4-dev libgtkmm-4.0-dev
+
+    - name: Install GTK4 (macOS)
+      if: runner.os == 'macOS'
+      run: brew install gtk4 gtkmm4
+
+    # PapeCoding/Install-GTK makes an unauthenticated Invoke-RestMethod to
+    # api.github.com; GitHub Actions runners share egress IPs so the
+    # per-IP anonymous quota (60/h) blows through constantly. Inline the
+    # Windows step and authenticate via the job's GH_TOKEN (5000/h).
+    - name: Resolve GVSBuild URL (Windows)
+      if: runner.os == 'Windows'
+      shell: bash
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        url="$(gh api repos/wingtk/gvsbuild/releases/latest \
+                --jq '.assets[] | select(.name | test("^GTK4_.*_x64\\.zip$")) | .browser_download_url' \
+              | head -n1)"
+        [ -n "$url" ] || { echo "no GTK4 asset in gvsbuild latest release"; exit 1; }
+        echo "GVS_URL=$url" >> "$GITHUB_ENV"
+
+    - name: Cache GVSBuild (Windows)
+      if: runner.os == 'Windows'
+      uses: actions/cache@v4
       with:
-        linux-release: 'libgtk-4-dev libgtkmm-4.0-dev'
-        macos-release: 'gtk4 gtkmm4'
+        key: ${{ env.GVS_URL }}
+        path: C:/gtk
+
+    - name: Install GTK4 (Windows)
+      if: runner.os == 'Windows'
+      shell: pwsh
+      run: |
+        if (!(Test-Path "C:\gtk")) {
+          Invoke-WebRequest -OutFile gtk.zip ${{ env.GVS_URL }}
+          Expand-Archive -Path gtk.zip -DestinationPath "C:\gtk"
+          Remove-Item gtk.zip
+        }
+        "C:\gtk\bin;" >> $env:GITHUB_PATH
 
     # The Linux TTS backend (rust-tts-wrapper "system" feature) binds
     # speech-dispatcher via bindgen, so it needs the speechd dev headers and
