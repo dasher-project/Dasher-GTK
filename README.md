@@ -24,8 +24,8 @@ This is the **GTK** frontend, built on the shared
 
 Prebuilt **Linux** packages are attached to each [Release](../../releases):
 
-- **Flatpak** — needs the GNOME 48 runtime
-  (`flatpak install flathub org.gnome.Platform//48`), then
+- **Flatpak** — needs the GNOME 50 runtime
+  (`flatpak install flathub org.gnome.Platform//50`), then
   `flatpak install --user Dasher.flatpak` and
   `flatpak run org.alternativeinterface.dasher`.
 - **AppImage** — `chmod +x Dasher-x86_64.AppImage && ./Dasher-x86_64.AppImage`
@@ -143,23 +143,20 @@ Linux is distributed as **Flatpak** and **AppImage**, both built by
 [`.github/workflows/publish.yml`](.github/workflows/publish.yml).
 
 **Flatpak** — manifest: `packaging/flatpak/org.alternativeinterface.dasher.yaml`
-(GNOME 48 runtime + the `rust-stable` SDK extension; builds `rust-tts-wrapper`
+(GNOME 50 runtime + the `rust-stable` SDK extension; builds `rust-tts-wrapper`
 with `TTS_WRAPPER_FEATURES=cloud`). The manifest bundles the working tree via a
 `type: dir` source, so run `flatpak-builder` from **outside** the repo to avoid
-copying its build directory into itself:
+copying its build directory into itself. `--install-deps-from=flathub` pulls the
+runtime, SDK and `rust-stable` extension at the versions the manifest declares:
 
 ```sh
-flatpak install flathub org.gnome.Sdk//48 org.gnome.Platform//48 \
-    org.freedesktop.Sdk.Extension.rust-stable//24.08
+flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 repo=$(pwd)
 mkdir -p /tmp/dasher-fb && cd /tmp/dasher-fb
-flatpak-builder --user --install --force-clean build \
+flatpak-builder --user --install --force-clean --install-deps-from=flathub build \
     "$repo/packaging/flatpak/org.alternativeinterface.dasher.yaml"
 flatpak run org.alternativeinterface.dasher
 ```
-
-> The GNOME 48 runtime is end-of-life; bumping to a supported release is tracked
-> in [#19](../../issues/19).
 
 **AppImage** — `bash packaging/build-appimage.sh` produces `Dasher-x86_64.AppImage`.
 

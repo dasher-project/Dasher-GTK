@@ -16,7 +16,7 @@ jobs:
   flatpak:
     name: Flatpak
     # 24.04 ships flatpak-builder 1.4+, which drives appstream via
-    # `appstreamcli compose` (present in GNOME SDK 48). 22.04's 1.2.x calls
+    # `appstreamcli compose` (present in the GNOME SDK). 22.04's 1.2.x calls
     # the old `appstream-compose`, which the SDK no longer provides.
     runs-on: ubuntu-24.04
     steps:
@@ -27,9 +27,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y flatpak flatpak-builder
           flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-          flatpak install --user -y --noninteractive \
-            flathub org.gnome.Sdk//48 org.gnome.Platform//48 \
-                   org.freedesktop.Sdk.Extension.rust-stable//24.08
 
       - name: Build Flatpak
         run: |
@@ -38,7 +35,12 @@ jobs:
           # root) doesn't recursively copy flatpak-builder's own build/state
           # dirs. Source paths in the manifest resolve relative to the manifest.
           mkdir -p "$RUNNER_TEMP/fb" && cd "$RUNNER_TEMP/fb"
+          # --install-deps-from=flathub pulls the runtime, SDK and the
+          # rust-stable SDK extension at the versions the manifest's
+          # runtime-version resolves to, so the GNOME runtime lives in exactly
+          # one place (the manifest) and CI never pins an EOL version by hand.
           flatpak-builder --user --install --force-clean \
+            --install-deps-from=flathub \
             build \
             "$GITHUB_WORKSPACE/packaging/flatpak/org.alternativeinterface.dasher.yaml"
 
