@@ -141,7 +141,7 @@ jobs:
               set -ex
               apt-get update
               DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-                build-essential cmake ninja-build pkg-config git wget curl ca-certificates \
+                build-essential cmake ninja-build pkg-config git wget curl file ca-certificates \
                 squashfs-tools python3 \
                 libgtk-4-dev libgtkmm-4.0-dev libspeechd-dev libclang-dev \
                 libcurl4-openssl-dev libfuse2t64
