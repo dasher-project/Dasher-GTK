@@ -75,6 +75,16 @@ PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge)
     help_box->append(*about);
     scrolled_help->set_child(*help_box);
     m_stack.add(*scrolled_help, "help", "About");
+
+    // Record which settings tab the user opens (opt-in gated in AnalyticsClient).
+    m_stack.property_visible_child().signal_changed().connect([this]() {
+        Gtk::Widget* child = m_stack.get_visible_child();
+        if (!child) return;
+        auto page = m_stack.get_page(*child);
+        if (!page) return;
+        analytics::AnalyticsClient::instance().capture("settings_viewed",
+                                                       {{"tab_name", std::string(page->get_title())}});
+    });
 }
 
 void PreferencesWindow::rebuild_sections() {

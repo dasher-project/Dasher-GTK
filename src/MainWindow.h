@@ -11,6 +11,9 @@
 #include "UIComponents/SyncedSwitch.h"
 #include "UIComponents/SyncedColorDropdown.h"
 #include "Preferences/PreferencesWindow.h"
+#include "Analytics/AnalyticsClient.h"
+#include "Analytics/AnalyticsSettings.h"
+#include <gtkmm/alertdialog.h>
 #include <gtkmm/window.h>
 #include <gtkmm/box.h>
 #include <gtkmm/paned.h>
@@ -80,4 +83,9 @@ protected:
     PreferencesWindow m_preferences_window;
 
     void update_typing_rate();
+
+    // Frontend analytics consent; drives the first-run opt-in prompt below.
+    analytics::AnalyticsSettings m_analytics = analytics::AnalyticsSettings::load();
+    void maybe_show_consent_dialog();
+    void capture_app_launched();
 };
