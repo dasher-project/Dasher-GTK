@@ -23,10 +23,10 @@ cp "$BUILD_DIR/Dasher/dasher" "$APPDIR/usr/bin/"
 cp "$BUILD_DIR/Dasher/libdasher.so" "$APPDIR/usr/bin/" 2>/dev/null || true
 cp "$BUILD_DIR/Dasher/librust_tts_wrapper.so" "$APPDIR/usr/bin/" 2>/dev/null || true
 
-# Runtime data into share/dasher/ (AppRun will cd here so ./Data resolves)
+# Runtime data into share/dasher/ (AppRun will cd here so ./Data resolves).
+# UIStyle.css is compiled into the binary as a GResource, so it is not copied.
 cp -r "$BUILD_DIR/Dasher/Data" "$APPDIR/usr/share/dasher/"
 cp -r "$BUILD_DIR/Dasher/Strings" "$APPDIR/usr/share/dasher/"
-cp "$BUILD_DIR/Dasher/UIStyle.css" "$APPDIR/usr/share/dasher/"
 cp -r "$BUILD_DIR/Dasher/Resources" "$APPDIR/usr/share/dasher/"
 
 # Desktop entry + icons
