@@ -13,23 +13,32 @@ env:
 
 jobs:
   # ─── Flatpak ──────────────────────────────────────────────────────────
+  # Two legs: x86_64 native, aarch64 via QEMU/binfmt. flathub serves both
+  # runtimes natively, so the only arch-specific bit is the `--arch` flag
+  # passed to flatpak-builder and the bundle filename.
   flatpak:
-    name: Flatpak
-    # 24.04 ships flatpak-builder 1.4+, which drives appstream via
-    # `appstreamcli compose` (present in GNOME SDK 48). 22.04's 1.2.x calls
-    # the old `appstream-compose`, which the SDK no longer provides.
+    name: Flatpak (${{ matrix.arch }})
     runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, aarch64]
     steps:
       - uses: actions/checkout@v4
+
+      # Register binfmt handlers so aarch64 binaries (the SDK's build tools
+      # and any generated executables) run transparently under QEMU.
+      - name: Setup QEMU (aarch64 leg only)
+        if: matrix.arch == 'aarch64'
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: arm64
 
       - name: Setup Flatpak
         run: |
           sudo apt-get update
           sudo apt-get install -y flatpak flatpak-builder
           flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-          flatpak install --user -y --noninteractive \
-            flathub org.gnome.Sdk//48 org.gnome.Platform//48 \
-                   org.freedesktop.Sdk.Extension.rust-stable//24.08
 
       - name: Build Flatpak
         run: |
@@ -38,51 +47,112 @@ jobs:
           # root) doesn't recursively copy flatpak-builder's own build/state
           # dirs. Source paths in the manifest resolve relative to the manifest.
           mkdir -p "$RUNNER_TEMP/fb" && cd "$RUNNER_TEMP/fb"
+          # --install-deps-from=flathub pulls the runtime, SDK and the
+          # rust-stable SDK extension at the versions the manifest's
+          # runtime-version resolves to, so the GNOME runtime lives in exactly
+          # one place (the manifest) and CI never pins an EOL version by hand.
           flatpak-builder --user --install --force-clean \
+            --arch="${{ matrix.arch }}" \
+            --install-deps-from=flathub \
             build \
             "$GITHUB_WORKSPACE/packaging/flatpak/org.alternativeinterface.dasher.yaml"
 
       - name: Export bundle
         run: |
           flatpak build-bundle ~/.local/share/flatpak/repo \
-            Dasher.flatpak org.alternativeinterface.dasher
+            "Dasher-${{ matrix.arch }}.flatpak" \
+            org.alternativeinterface.dasher \
+            --arch="${{ matrix.arch }}"
 
       - name: Upload Flatpak
         uses: actions/upload-artifact@v4
         with:
-          name: Dasher-flatpak
-          path: Dasher.flatpak
+          name: Dasher-flatpak-${{ matrix.arch }}
+          path: Dasher-${{ matrix.arch }}.flatpak
 
   # ─── AppImage ─────────────────────────────────────────────────────────
+  # x86_64 builds natively on the runner; aarch64 builds inside an
+  # arm64v8/ubuntu:24.04 container under QEMU so all GTK / gtkmm / libcurl
+  # deps resolve as native arm64 packages.
   appimage:
-    name: AppImage
+    name: AppImage (${{ matrix.arch }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, aarch64]
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      - name: Install GTK4
-        uses: PapeCoding/Install-GTK@main
+      - name: Setup QEMU (aarch64 leg only)
+        if: matrix.arch == 'aarch64'
+        uses: docker/setup-qemu-action@v3
         with:
-          linux-release: 'libgtk-4-dev libgtkmm-4.0-dev'
+          platforms: arm64
+
+      # ─── x86_64: build on the runner itself ───────────────────────────
+      - name: Install GTK4 (x86_64)
+        if: matrix.arch == 'x86_64'
+        run: sudo apt-get update && sudo apt-get install -y libgtk-4-dev libgtkmm-4.0-dev
 
       - name: Install extra build deps
+        if: matrix.arch == 'x86_64'
         run: |
           sudo apt-get update
-          sudo apt-get install -y libspeechd-dev libclang-dev
+          # libcurl4-openssl-dev backs the analytics HTTP transport; linuxdeploy
+          # bundles it into the AppImage. squashfs-tools lets us extract the
+          # AppImages without running their static-PIE wrapper (QEMU's binfmt
+          # on the aarch64 leg can't exec those wrappers; we unify both legs).
+          sudo apt-get install -y libspeechd-dev libclang-dev libcurl4-openssl-dev squashfs-tools python3
 
-      - name: Install Rust toolchain
+      - name: Install Rust toolchain (x86_64)
+        if: matrix.arch == 'x86_64'
         uses: dtolnay/rust-toolchain@stable
 
-      - name: Build AppImage
-        run: VERSION=${GITHUB_REF_NAME:-0.1.0} bash packaging/build-appimage.sh
+      - name: Build AppImage (x86_64)
+        if: matrix.arch == 'x86_64'
+        env:
+          ARCH: x86_64
+          VERSION: ${{ github.ref_name }}
+        run: bash packaging/build-appimage.sh
+
+      # ─── aarch64: build inside a native arm64 container ───────────────
+      # Building under emulation is much simpler than cross-compiling: apt
+      # gives us arm64 GTK/gtkmm/libcurl directly, and linuxdeploy's own
+      # arch detection sees a real arm64 host. We use `docker run` directly
+      # (rather than `uses: docker://`) so we control the workspace mount
+      # and env propagation; the working dir is `/work` inside the container.
+      - name: Build AppImage (aarch64, containerised)
+        if: matrix.arch == 'aarch64'
+        env:
+          DASHER_VERSION: ${{ github.ref_name }}
+        run: |
+          docker run --rm \
+            --platform linux/arm64 \
+            -v "$GITHUB_WORKSPACE:/work" \
+            -w /work \
+            -e DASHER_VERSION \
+            arm64v8/ubuntu:24.04 \
+            bash -c '
+              set -ex
+              apt-get update
+              DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+                build-essential cmake ninja-build pkg-config git wget curl file ca-certificates \
+                squashfs-tools python3 \
+                libgtk-4-dev libgtkmm-4.0-dev libspeechd-dev libclang-dev \
+                libcurl4-openssl-dev libfuse2t64
+              curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal
+              . "$HOME/.cargo/env"
+              ARCH=aarch64 VERSION="${DASHER_VERSION:-0.1.0}" bash packaging/build-appimage.sh
+            '
 
       - name: Upload AppImage
         uses: actions/upload-artifact@v4
         with:
-          name: Dasher-AppImage
-          path: Dasher-x86_64.AppImage
+          name: Dasher-AppImage-${{ matrix.arch }}
+          path: Dasher-${{ matrix.arch }}.AppImage
 
   # ─── GitHub Release (tags only) ───────────────────────────────────────
   release:
@@ -95,12 +165,22 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: Dasher-flatpak
+          name: Dasher-flatpak-x86_64
           path: release/
 
       - uses: actions/download-artifact@v4
         with:
-          name: Dasher-AppImage
+          name: Dasher-flatpak-aarch64
+          path: release/
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: Dasher-AppImage-x86_64
+          path: release/
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: Dasher-AppImage-aarch64
           path: release/
 
       - name: Create GitHub Release
@@ -108,5 +188,7 @@ jobs:
         with:
           generate_release_notes: true
           files: |
-            release/Dasher.flatpak
+            release/Dasher-x86_64.flatpak
+            release/Dasher-aarch64.flatpak
             release/Dasher-x86_64.AppImage
+            release/Dasher-aarch64.AppImage

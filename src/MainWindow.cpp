@@ -3,6 +3,9 @@
 #include <cairomm/fontface.h>
 #include <gdkmm/display.h>
 #include <pangomm/fontdescription.h>
+#include <glibmm/main.h>
+#include <cmath>
+#include <cstdio>
 #include <memory>
 
 static Cairo::ToyFontFace::Slant getSlantFromPango(Pango::Style s) {
@@ -22,7 +25,12 @@ MainWindow::MainWindow()
       m_learning_switch(m_canvas.bridge->find_parameter_key("BP_LM_ADAPTIVE"), m_canvas.bridge),
       m_color_chooser(m_canvas.bridge), m_preferences_window(m_canvas.bridge, m_canvas.dwell_handler.get()) {
     Glib::RefPtr<Gtk::CssProvider> css = Gtk::CssProvider::create();
-    css->load_from_path("./UIStyle.css");
+    // Load the stylesheet from the GResource bundle compiled into the binary
+    // (see src/dasher.gresource.xml). Loading from a file path meant the CSS
+    // was resolved against the current working directory, so packaged builds
+    // (Flatpak/AppImage), whose CWD isn't the source tree, silently fell back
+    // to unstyled default GTK. Embedding it removes any CWD/layout dependency.
+    css->load_from_resource("/org/alternativeinterface/dasher/UIStyle.css");
     get_style_context()->add_provider_for_display(Gdk::Display::get_default(), css, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
     set_title("Dasher v6");
@@ -156,8 +164,27 @@ MainWindow::MainWindow()
     m_footer_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
     m_footer_bar.pack_start(m_speech_label);
     m_footer_bar.pack_start(m_speech_switch);
+    m_footer_bar.pack_start(m_rate_toggle_label);
+    m_footer_bar.pack_start(m_rate_switch);
+    m_footer_bar.pack_start(m_rate_value);
     m_speech_switch.set_valign(Gtk::Align::CENTER);
     m_learning_switch.set_valign(Gtk::Align::CENTER);
+    m_rate_switch.set_valign(Gtk::Align::CENTER);
+
+    // Typing-rate readout (RFC 0012). Off by default; when shown, refresh at
+    // ~2 Hz so the number doesn't churn (the engine keeps a 5s rolling window).
+    m_rate_value.set_visible(false);
+    m_rate_switch.property_active().signal_changed().connect([this]() {
+        bool on = m_rate_switch.get_active();
+        m_rate_value.set_visible(on);
+        if (on) update_typing_rate();
+    });
+    Glib::signal_timeout().connect(
+        [this]() -> bool {
+            if (m_rate_switch.get_active()) update_typing_rate();
+            return true;
+        },
+        500);
 
     m_direct_mode = std::make_unique<DirectModeService>();
     m_tts = std::make_unique<TtsService>();
@@ -266,4 +293,58 @@ MainWindow::MainWindow()
         m_text_view.activate_action("selection.select-all");
         m_text_view.activate_action("clipboard.copy");
     });
+
+    // Analytics event wiring. Every capture() is opt-in gated inside
+    // AnalyticsClient, so these can be connected unconditionally.
+    m_alphabet_chooser.OnSelectionChanged.connect([](Glib::ustring id) {
+        analytics::AnalyticsClient::instance().capture("alphabet_selected", {{"alphabet_id", std::string(id)}});
+    });
+    capture_app_launched();      // no-op unless already opted in
+    maybe_show_consent_dialog(); // first launch only
+}
+
+void MainWindow::capture_app_launched() {
+    analytics::AnalyticsClient::instance().capture("app_launched", {{"locale", m_canvas.bridge->get_locale()}});
+}
+
+void MainWindow::maybe_show_consent_dialog() {
+    if (m_analytics.prompt_shown()) return;
+
+    auto dialog = Gtk::AlertDialog::create();
+    dialog->set_modal(true);
+    dialog->set_message("Help improve Dasher?");
+    dialog->set_detail("Share anonymous usage analytics and crash reports? No typed text, clipboard "
+                       "contents or personal information is ever collected. You can change this any "
+                       "time under Preferences → Privacy.");
+    dialog->set_buttons({"Not now", "Help improve Dasher"});
+    dialog->set_default_button(1);
+    dialog->set_cancel_button(0);
+    dialog->choose(*this, [this, dialog](const Glib::RefPtr<Gio::AsyncResult>& result) {
+        int choice = 0;
+        try {
+            choice = dialog->choose_finish(result);
+        } catch (const Glib::Error&) {
+            choice = 0; // dismissed → treat as "not now"
+        }
+        const bool opted = (choice == 1);
+        m_analytics.set_opted_in(opted);
+        m_analytics.set_prompt_shown(true);
+        m_analytics.save();
+        analytics::AnalyticsClient::instance().set_opted_in(opted);
+        if (opted) {
+            analytics::AnalyticsClient::instance().init(m_analytics);
+            analytics::AnalyticsClient::instance().capture("analytics_opted_in");
+            capture_app_launched();
+        }
+    });
+}
+
+void MainWindow::update_typing_rate() {
+    // Engine-reported smoothed rate (WPM = CPS * 12, RFC 0012). Formatted as
+    // e.g. "4.2 cps · 50 wpm"; the separator is a UTF-8 middle dot (\xc2\xb7).
+    double cps = m_canvas.bridge->get_cps();
+    double wpm = m_canvas.bridge->get_wpm();
+    char buf[64];
+    std::snprintf(buf, sizeof(buf), "%.1f cps \xc2\xb7 %d wpm", cps, static_cast<int>(std::llround(wpm)));
+    m_rate_value.set_text(buf);
 }

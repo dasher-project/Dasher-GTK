@@ -1,7 +1,7 @@
 ---
 app-id: org.alternativeinterface.dasher
 runtime: org.gnome.Platform
-runtime-version: '48'
+runtime-version: '50'
 sdk: org.gnome.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
@@ -32,6 +32,11 @@ cleanup:
 
 modules:
   # ─── C++ binding chain for gtkmm ──────────────────────────────────────
+  # The GNOME runtime ships GTK/glib/pango (C) but not their C++ bindings, so
+  # the mm stack is built from source. These versions MUST track the runtime:
+  # runtime-version 50 ships GTK 4.22 / glib 2.88 / pango 1.56, hence gtkmm
+  # 4.22 / glibmm 2.88 / pangomm 2.56. Bumping runtime-version means bumping
+  # these too — an older gtkmm won't compile against a newer GTK.
   - name: mm-common
     buildsystem: meson
     cleanup:
@@ -59,8 +64,8 @@ modules:
       - --wrap-mode=nodownload
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/glibmm/2.84/glibmm-2.84.0.tar.xz
-        sha256: 56ee5f51c8acfc0afdf46959316e4c8554cb50ed2b6bc5ce389d979cbb642509
+        url: https://download.gnome.org/sources/glibmm/2.88/glibmm-2.88.1.tar.xz
+        sha256: c139f962b1575c8827cd39d1ac21b7a367be3bda1409c0c7e21a29090f371506
       - type: archive
         url: https://download.gnome.org/sources/libsigc++/3.6/libsigc++-3.6.0.tar.xz
         sha256: c3d23b37dfd6e39f2e09f091b77b1541fbfa17c4f0b6bf5c89baef7229080e17
@@ -85,8 +90,8 @@ modules:
       - --wrap-mode=nodownload
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/pangomm/2.54/pangomm-2.54.0.tar.xz
-        sha256: 4a5b1fd1b7c47a1af45277ea82b5abeaca8e08fb10a27daa6394cf88d74e7acf
+        url: https://download.gnome.org/sources/pangomm/2.56/pangomm-2.56.2.tar.xz
+        sha256: f1e984c85a85b6a0e61616366521f51dd8282a072bb45d15b5084762b62f4c0e
       - type: archive
         url: https://download.gnome.org/sources/libsigc++/3.6/libsigc++-3.6.0.tar.xz
         sha256: c3d23b37dfd6e39f2e09f091b77b1541fbfa17c4f0b6bf5c89baef7229080e17
@@ -96,8 +101,8 @@ modules:
         sha256: b81255394e3ea8e8aa887276d22afa8985fc8daef60692eb2407d23049f03cfb
         dest: subprojects/cairomm
       - type: archive
-        url: https://download.gnome.org/sources/glibmm/2.84/glibmm-2.84.0.tar.xz
-        sha256: 56ee5f51c8acfc0afdf46959316e4c8554cb50ed2b6bc5ce389d979cbb642509
+        url: https://download.gnome.org/sources/glibmm/2.88/glibmm-2.88.1.tar.xz
+        sha256: c139f962b1575c8827cd39d1ac21b7a367be3bda1409c0c7e21a29090f371506
         dest: subprojects/glibmm
 
   - name: gtkmm
@@ -106,8 +111,8 @@ modules:
       - --wrap-mode=nodownload
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gtkmm/4.16/gtkmm-4.16.0.tar.xz
-        sha256: 3b23fd3abf8fb223b00e9983b6010af2db80e38c89ab6994b8b6230aa85d60f9
+        url: https://download.gnome.org/sources/gtkmm/4.22/gtkmm-4.22.0.tar.xz
+        sha256: 2e8a21b4b0725f620e33aaee0cd343ed121b533275b632896619b1c89e96de67
       - type: archive
         url: https://download.gnome.org/sources/libsigc++/3.6/libsigc++-3.6.0.tar.xz
         sha256: c3d23b37dfd6e39f2e09f091b77b1541fbfa17c4f0b6bf5c89baef7229080e17
@@ -117,12 +122,12 @@ modules:
         sha256: b81255394e3ea8e8aa887276d22afa8985fc8daef60692eb2407d23049f03cfb
         dest: subprojects/cairomm
       - type: archive
-        url: https://download.gnome.org/sources/glibmm/2.84/glibmm-2.84.0.tar.xz
-        sha256: 56ee5f51c8acfc0afdf46959316e4c8554cb50ed2b6bc5ce389d979cbb642509
+        url: https://download.gnome.org/sources/glibmm/2.88/glibmm-2.88.1.tar.xz
+        sha256: c139f962b1575c8827cd39d1ac21b7a367be3bda1409c0c7e21a29090f371506
         dest: subprojects/glibmm
       - type: archive
-        url: https://download.gnome.org/sources/pangomm/2.54/pangomm-2.54.0.tar.xz
-        sha256: 4a5b1fd1b7c47a1af45277ea82b5abeaca8e08fb10a27daa6394cf88d74e7acf
+        url: https://download.gnome.org/sources/pangomm/2.56/pangomm-2.56.2.tar.xz
+        sha256: f1e984c85a85b6a0e61616366521f51dd8282a072bb45d15b5084762b62f4c0e
         dest: subprojects/pangomm
 
   # ─── Dasher-GTK (builds DasherCore + SDL3 + TTS + app together) ───────
@@ -136,7 +141,10 @@ modules:
         - --share=network
       env:
         CARGO_HOME: /run/build/dasher/cargo
-        PKG_CONFIG_PATH: /app/lib64/pkgconfig:/app/lib/pkgconfig:/app/lib/x86_64-linux-gnu/pkgconfig:/app/share/pkgconfig
+        # FLATPAK_ARCH is x86_64 / aarch64 depending on the leg. The C++ mm
+        # bindings install their .pc files under the multiarch triplet dir,
+        # so PKG_CONFIG_PATH has to follow the build arch.
+        PKG_CONFIG_PATH: /app/lib64/pkgconfig:/app/lib/pkgconfig:/app/lib/${FLATPAK_ARCH}-linux-gnu/pkgconfig:/app/share/pkgconfig
     build-commands:
       - cmake -B _build -DCMAKE_BUILD_TYPE=Release -DTTS_WRAPPER_FEATURES=cloud -DBUILD_GTK_TESTS=OFF -DCMAKE_INSTALL_PREFIX=/app .
       - cmake --build _build -j$(nproc)

@@ -32,6 +32,7 @@ platform-specific dependencies (GTK4, gtkmm, pkg-config).
 | `src/Output/`      | TTS (rust-tts-wrapper), direct mode                            |
 | `src/Preferences/` | Settings UI                                                    |
 | `src/UIComponents/` | Reusable GTK widgets (Synced* controls bound to CAPI params)  |
+| `src/Analytics/`   | Opt-in analytics + crash reporting (PostHog; RFC 0001/0009)    |
 | `packaging/`       | Flatpak manifest + AppImage build script (Linux)              |
 | `DasherCore/`      | **Submodule** — the C++ engine (do not edit here; PR upstream) |
 | `Thirdparty/SDL/`  | **Submodule** — SDL3 (joystick/haptic input only)             |

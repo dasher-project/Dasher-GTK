@@ -1,7 +1,9 @@
 #include "PreferencesWindow.h"
+#include "Analytics/AnalyticsClient.h"
 #include "Output/TtsService.h"
 #include "Input/DwellClickHandler.h"
 #include "UIComponents/PopoverMenuButtonInfo.h"
+#include <gtkmm/checkbutton.h>
 #include <gtkmm/dropdown.h>
 #include <gtkmm/stringlist.h>
 #include <gtkmm/scale.h>
@@ -65,6 +67,7 @@ PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge, Dwell
 
     rebuild_sections();
     add_locale_section();
+    add_privacy_section();
 
     auto* scrolled_help = Gtk::make_managed<Gtk::ScrolledWindow>();
     auto* help_box = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::VERTICAL, 8);
@@ -75,6 +78,16 @@ PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge, Dwell
     help_box->append(*about);
     scrolled_help->set_child(*help_box);
     m_stack.add(*scrolled_help, "help", "About");
+
+    // Record which settings tab the user opens (opt-in gated in AnalyticsClient).
+    m_stack.property_visible_child().signal_changed().connect([this]() {
+        Gtk::Widget* child = m_stack.get_visible_child();
+        if (!child) return;
+        auto page = m_stack.get_page(*child);
+        if (!page) return;
+        analytics::AnalyticsClient::instance().capture("settings_viewed",
+                                                       {{"tab_name", std::string(page->get_title())}});
+    });
 }
 
 void PreferencesWindow::rebuild_sections() {
@@ -330,4 +343,55 @@ void PreferencesWindow::add_locale_section() {
 
     scrolled->set_child(*box);
     m_stack.add(*scrolled, "locale", "Locale");
+}
+
+void PreferencesWindow::add_privacy_section() {
+    auto* scrolled = Gtk::make_managed<Gtk::ScrolledWindow>();
+    auto* box = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::VERTICAL, 8);
+    box->set_margin(12);
+
+    auto* title = Gtk::make_managed<Gtk::Label>("");
+    title->set_markup("<b>Privacy</b>");
+    title->set_halign(Gtk::Align::START);
+    box->append(*title);
+
+    auto* blurb = Gtk::make_managed<Gtk::Label>("Help improve Dasher by sharing anonymous usage analytics and crash "
+                                                "reports. No typed text, clipboard contents or personal information is "
+                                                "ever collected, and reports are only sent if you opt in.");
+    blurb->set_halign(Gtk::Align::START);
+    blurb->set_wrap(true);
+    blurb->set_xalign(0.0f);
+    box->append(*blurb);
+
+    auto* opt_in = Gtk::make_managed<Gtk::CheckButton>("Share anonymous analytics and crash reports");
+    opt_in->set_active(m_analytics.opted_in());
+    box->append(*opt_in);
+
+    auto* reset_btn = Gtk::make_managed<Gtk::Button>("Reset analytics ID");
+    reset_btn->set_halign(Gtk::Align::START);
+    reset_btn->set_sensitive(m_analytics.opted_in());
+    box->append(*reset_btn);
+
+    opt_in->signal_toggled().connect([this, opt_in, reset_btn]() {
+        bool on = opt_in->get_active();
+        m_analytics.set_opted_in(on);
+        m_analytics.set_prompt_shown(true);
+        m_analytics.save();
+        analytics::AnalyticsClient::instance().set_opted_in(on);
+        reset_btn->set_sensitive(on);
+        if (on) {
+            // Materialise the anonymous id and record the consent event.
+            analytics::AnalyticsClient::instance().init(m_analytics);
+            analytics::AnalyticsClient::instance().capture("analytics_opted_in");
+        }
+    });
+
+    reset_btn->signal_clicked().connect([this]() {
+        m_analytics.reset_anonymous_id();
+        analytics::AnalyticsClient::instance().init(m_analytics);
+        analytics::AnalyticsClient::instance().capture("analytics_id_reset");
+    });
+
+    scrolled->set_child(*box);
+    m_stack.add(*scrolled, "privacy", "Privacy");
 }

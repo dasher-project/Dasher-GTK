@@ -14,14 +14,27 @@ FetchContent_Declare(
 set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
 FetchContent_MakeAvailable(doctest)
 
+find_package(Threads REQUIRED)
+
 add_executable(dasher_unit_tests
     test_dwell_click_handler.cpp
     ${CMAKE_SOURCE_DIR}/src/Input/DwellClickHandler.cpp
+    test_pii_scrubber.cpp
+    test_engine_log_ring_buffer.cpp
+    test_crash_file_roundtrip.cpp
+    test_analytics_client.cpp
+    ${CMAKE_SOURCE_DIR}/src/Analytics/PiiScrubber.cpp
+    ${CMAKE_SOURCE_DIR}/src/Analytics/EngineLogRingBuffer.cpp
+    ${CMAKE_SOURCE_DIR}/src/Analytics/CrashReporter.cpp
+    ${CMAKE_SOURCE_DIR}/src/Analytics/AnalyticsClient.cpp
+    ${CMAKE_SOURCE_DIR}/src/Analytics/AnalyticsSettings.cpp
 )
 
 target_include_directories(dasher_unit_tests SYSTEM PRIVATE ${GTKMM_INCLUDE_DIRS})
 target_include_directories(dasher_unit_tests PRIVATE ${CMAKE_SOURCE_DIR}/src)
-target_link_libraries(dasher_unit_tests PRIVATE doctest::doctest ${GTKMM_LIBRARIES})
+# The tests compile AnalyticsClient.cpp without HAS_ANALYTICS_CURL (they exercise
+# only the pure serialisation helpers), so libcurl is not needed here.
+target_link_libraries(dasher_unit_tests PRIVATE doctest::doctest ${GTKMM_LIBRARIES} Threads::Threads)
 target_link_directories(dasher_unit_tests PRIVATE ${GTKMM_LIBRARY_DIRS})
 
 # The Windows runner's gtkmm/sigc++ are prebuilt release (/MD,

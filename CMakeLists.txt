@@ -21,6 +21,12 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTK REQUIRED gtk4)
 pkg_check_modules(GTKMM REQUIRED gtkmm-4.0)
 
+# libcurl backs the analytics HTTP transport (POST to PostHog). Optional: it is
+# present in the GNOME/freedesktop SDK (Flatpak) and Linux CI, but not every
+# toolchain ships it (e.g. GVSBuild on Windows). When absent the app still
+# builds and events are queued but not transmitted (see HAS_ANALYTICS_CURL).
+find_package(CURL)
+
 ###############################
 # Using/Building SDL3
 ###############################
@@ -101,13 +107,41 @@ file(GLOB_RECURSE HEADER_FILES CONFIGURE_DEPENDS
 file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS
     ${CMAKE_CURRENT_LIST_DIR}/src/*.cpp
     ${CMAKE_CURRENT_LIST_DIR}/src/**/*.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/src/**/*.css
+)
+
+###############################
+# Embedded resources (GResource)
+###############################
+
+# Compile UIStyle.css into the binary as a GResource so the stylesheet loads
+# regardless of the current working directory or install layout. Flatpak and
+# AppImage place the css in different locations relative to the executable, so
+# any file-path lookup was fragile; embedding removes the dependency entirely.
+find_program(GLIB_COMPILE_RESOURCES NAMES glib-compile-resources REQUIRED)
+set(GRESOURCE_XML ${CMAKE_CURRENT_LIST_DIR}/src/dasher.gresource.xml)
+set(GRESOURCE_C ${CMAKE_BINARY_DIR}/dasher_resources.c)
+add_custom_command(
+    OUTPUT ${GRESOURCE_C}
+    COMMAND ${GLIB_COMPILE_RESOURCES}
+            --target=${GRESOURCE_C}
+            --sourcedir=${CMAKE_CURRENT_LIST_DIR}/src
+            --generate-source
+            ${GRESOURCE_XML}
+    DEPENDS ${GRESOURCE_XML} ${CMAKE_CURRENT_LIST_DIR}/src/UIStyle.css
+    COMMENT "Compiling GResource bundle (UIStyle.css)"
+    VERBATIM
 )
 
 ADD_Executable(Dasher
 	${HEADER_FILES}
 	${SOURCE_FILES}
+	${GRESOURCE_C}
 )
+
+# Version string surfaced to analytics/crash reports as app_version. Keep in
+# sync with packaging/org.alternativeinterface.dasher.metainfo.xml releases.
+set(DASHER_GTK_VERSION "0.2.2" CACHE STRING "Dasher-GTK version string")
+target_compile_definitions(Dasher PRIVATE DASHER_GTK_VERSION="${DASHER_GTK_VERSION}")
 
 # Install as lowercase 'dasher' on Linux for desktop integration
 if(UNIX AND NOT APPLE)
@@ -132,6 +166,10 @@ if(TARGET tts_wrapper)
 	target_compile_definitions(Dasher PRIVATE HAS_TTS)
 endif()
 target_link_libraries(Dasher PRIVATE dasher SDL3::SDL3 ${GTK_LIBRARIES} ${GTKMM_LIBRARIES})
+if(CURL_FOUND)
+	target_link_libraries(Dasher PRIVATE CURL::libcurl)
+	target_compile_definitions(Dasher PRIVATE HAS_ANALYTICS_CURL)
+endif()
 if(TARGET tts_wrapper)
 	target_link_libraries(Dasher PRIVATE "${TTS_WRAPPER_LIB}")
 	target_include_directories(Dasher PRIVATE "${TTS_WRAPPER_DIR}/include")
@@ -177,7 +215,6 @@ add_custom_command(TARGET Dasher POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/DasherCore/Strings ${CMAKE_BINARY_DIR}/Dasher/Strings
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/Dasher/Resources/License
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources ${CMAKE_BINARY_DIR}/Dasher/Resources
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/src/UIStyle.css ${CMAKE_BINARY_DIR}/Dasher/
     COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/Thirdparty/SDL/LICENSE.txt ${CMAKE_BINARY_DIR}/Dasher/Resources/License/LICENSE_SDL.txt
     COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/DasherCore/Thirdparty/pugixml/LICENSE.md ${CMAKE_BINARY_DIR}/Dasher/Resources/License/LICENSE_PugiXML.txt
     COMMENT "Copying runtime data files"

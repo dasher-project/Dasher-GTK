@@ -20,12 +20,21 @@ This is the **GTK** frontend, built on the shared
 > **In development** — early-stage GTK4 frontend aiming to replace Dasher 5.
 > See the [feature matrix](https://dasher.at/status/) for what's implemented.
 
+## Usage
+
+Runtime controls live in the footer bar, alongside the alphabet, speed, and the
+Speech / Dwell / Keyboard toggles. The **Rate** switch (off by default) shows a
+live typing-rate readout, e.g. `4.2 cps · 50 wpm` (characters per second and
+words per minute). The rate is computed engine-side over a short rolling window
+and refreshed about twice a second; flip the switch on to see it. See
+[RFC 0012](https://github.com/dasher-project/governance/pull/19).
+
 ## Install
 
 Prebuilt **Linux** packages are attached to each [Release](../../releases):
 
-- **Flatpak** — needs the GNOME 48 runtime
-  (`flatpak install flathub org.gnome.Platform//48`), then
+- **Flatpak** — needs the GNOME 50 runtime
+  (`flatpak install flathub org.gnome.Platform//50`), then
   `flatpak install --user Dasher.flatpak` and
   `flatpak run org.alternativeinterface.dasher`.
 - **AppImage** — `chmod +x Dasher-x86_64.AppImage && ./Dasher-x86_64.AppImage`
@@ -157,9 +166,6 @@ rebuild if stale (`cmake --build build`).
   are non-fatal — the GTK UI queries some CAPI parameters with the wrong getter
   type (string vs long); they don't affect functionality. Tracked in
   [#17](../../issues/17).
-- In packaged builds the custom `UIStyle.css` isn't loaded — it's resolved
-  relative to the working directory, so the app falls back to default GTK
-  styling. Tracked in [#18](../../issues/18).
 - **Keyboard mode** and **system Speech** aren't available in the Flatpak and
   AppImage builds. Both need host-level access the self-contained, sandboxed
   formats can't provide: `/dev/uinput` (via `ydotoold`) for `ydotool` keyboard
@@ -173,23 +179,20 @@ Linux is distributed as **Flatpak** and **AppImage**, both built by
 [`.github/workflows/publish.yml`](.github/workflows/publish.yml).
 
 **Flatpak** — manifest: `packaging/flatpak/org.alternativeinterface.dasher.yaml`
-(GNOME 48 runtime + the `rust-stable` SDK extension; builds `rust-tts-wrapper`
+(GNOME 50 runtime + the `rust-stable` SDK extension; builds `rust-tts-wrapper`
 with `TTS_WRAPPER_FEATURES=cloud`). The manifest bundles the working tree via a
 `type: dir` source, so run `flatpak-builder` from **outside** the repo to avoid
-copying its build directory into itself:
+copying its build directory into itself. `--install-deps-from=flathub` pulls the
+runtime, SDK and `rust-stable` extension at the versions the manifest declares:
 
 ```sh
-flatpak install flathub org.gnome.Sdk//48 org.gnome.Platform//48 \
-    org.freedesktop.Sdk.Extension.rust-stable//24.08
+flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 repo=$(pwd)
 mkdir -p /tmp/dasher-fb && cd /tmp/dasher-fb
-flatpak-builder --user --install --force-clean build \
+flatpak-builder --user --install --force-clean --install-deps-from=flathub build \
     "$repo/packaging/flatpak/org.alternativeinterface.dasher.yaml"
 flatpak run org.alternativeinterface.dasher
 ```
-
-> The GNOME 48 runtime is end-of-life; bumping to a supported release is tracked
-> in [#19](../../issues/19).
 
 **AppImage** — `bash packaging/build-appimage.sh` produces `Dasher-x86_64.AppImage`.
 
@@ -200,13 +203,40 @@ artifacts and attaches them to a new GitHub Release:
 git tag v0.2.3 && git push origin v0.2.3
 ```
 
+## Privacy & analytics
+
+Dasher-GTK includes **opt-in** anonymous usage analytics and crash reporting to
+help prioritise accessibility work. It is **off by default** — nothing is sent
+until you turn it on under **Preferences → Privacy**. All Dasher frontends share
+one self-hosted [PostHog](https://posthog.com) project; the complete event
+schema is published in [`analytics-events.json`](./analytics-events.json).
+
+- **Collected only after opt-in:** app launches, the input method / alphabet you
+  select, which settings tab you open, and crash reports. Each event carries a
+  random anonymous ID (resettable under Privacy) plus `platform`, `app_variant`,
+  `app_version`, and `os_version`.
+- **Never collected:** the text you type, clipboard contents, canvas contents,
+  your name / email / account, training text, or game-mode targets.
+- **Crash reports** capture the exception type, a stack trace, and the last
+  lines of the engine log, with home-directory paths and email addresses
+  scrubbed before anything leaves your device. A crash is written locally and
+  only transmitted (as a PostHog `$exception`) on the next launch if you have
+  opted in; otherwise it is discarded after 7 days.
+
+Design details are in the org RFCs
+[0001 (analytics)](https://github.com/dasher-project/governance/blob/main/rfcs/0001-analytics.md)
+and [0009 (crash reporting)](https://github.com/dasher-project/governance/blob/main/rfcs/0009-crash-reporting.md).
+
 ## Architecture
 
 This frontend consumes DasherCore through its **C API** (`src/Engine/DasherBridge.cpp`,
 backed by `dasher.h`). `DasherBridge` owns the engine handle, feeds it GTK pointer
 input, and receives draw commands that `RenderingCanvas` renders onto a GTK widget.
 `InputManager`/`DwellClickHandler` translate raw input, and `TtsService` /
-`DirectModeService` handle output and spoken feedback.
+`DirectModeService` handle output and spoken feedback. The `Analytics` module
+keeps a bounded engine-log ring buffer and installs crash handlers, powering the
+opt-in analytics and crash reporting described under
+[Privacy & analytics](#privacy--analytics).
 
 ```mermaid
 flowchart LR
@@ -229,6 +259,7 @@ for the engine contract.
 | `src/Output/` | `TtsService`, `DirectModeService` (speech + output modes) |
 | `src/Preferences/` | Settings UI (`PreferencesWindow`, `SettingsSection`) |
 | `src/UIComponents/` | Reusable GTK widgets (canvas, synced controls) |
+| `src/Analytics/` | Opt-in analytics + crash reporting (PostHog, RFC 0001/0009) |
 | `tests/` | doctest unit tests |
 | `packaging/` | Flatpak manifest + AppImage build script (Linux distribution) |
 | `DasherCore/` | DasherCore submodule (do not edit here — PR upstream) |
