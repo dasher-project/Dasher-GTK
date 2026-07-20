@@ -23,7 +23,7 @@ MainWindow::MainWindow()
           m_canvas.bridge->get_parameter_string_values(m_canvas.bridge->find_parameter_key("SP_ALPHABET_ID"))),
       m_speed_adjustment(m_canvas.bridge->find_parameter_key("LP_MAX_BITRATE"), m_canvas.bridge, 20, 400, 5),
       m_learning_switch(m_canvas.bridge->find_parameter_key("BP_LM_ADAPTIVE"), m_canvas.bridge),
-      m_color_chooser(m_canvas.bridge), m_preferences_window(m_canvas.bridge) {
+      m_color_chooser(m_canvas.bridge), m_preferences_window(m_canvas.bridge, m_canvas.dwell_handler.get()) {
     Glib::RefPtr<Gtk::CssProvider> css = Gtk::CssProvider::create();
     // Load the stylesheet from the GResource bundle compiled into the binary
     // (see src/dasher.gresource.xml). Loading from a file path meant the CSS
@@ -48,7 +48,9 @@ MainWindow::MainWindow()
     m_header_bar.pack_start(m_open_button);
     m_header_bar.pack_start(m_save_button);
     m_header_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
+    m_keyboard_holder.append(m_keyboard_button);
     m_header_bar.pack_start(m_play_button);
+    m_header_bar.pack_start(m_keyboard_holder);
     m_header_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
     m_header_bar.pack_start(m_pref_button);
     m_header_bar.add_css_class("topbar");
@@ -162,17 +164,11 @@ MainWindow::MainWindow()
     m_footer_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
     m_footer_bar.pack_start(m_speech_label);
     m_footer_bar.pack_start(m_speech_switch);
-    m_footer_bar.pack_start(m_dwell_label);
-    m_footer_bar.pack_start(m_dwell_switch);
-    m_footer_bar.pack_start(m_keyboard_label);
-    m_footer_bar.pack_start(m_keyboard_switch);
     m_footer_bar.pack_start(m_rate_toggle_label);
     m_footer_bar.pack_start(m_rate_switch);
     m_footer_bar.pack_start(m_rate_value);
     m_speech_switch.set_valign(Gtk::Align::CENTER);
-    m_dwell_switch.set_valign(Gtk::Align::CENTER);
     m_learning_switch.set_valign(Gtk::Align::CENTER);
-    m_keyboard_switch.set_valign(Gtk::Align::CENTER);
     m_rate_switch.set_valign(Gtk::Align::CENTER);
 
     // Typing-rate readout (RFC 0012). Off by default; when shown, refresh at
@@ -192,14 +188,20 @@ MainWindow::MainWindow()
 
     m_direct_mode = std::make_unique<DirectModeService>();
     m_tts = std::make_unique<TtsService>();
-    m_keyboard_switch.set_sensitive(m_direct_mode->is_available());
+    m_keyboard_button.set_sensitive(m_direct_mode->is_available());
     m_speech_switch.set_sensitive(m_tts->is_available());
     if (!m_direct_mode->is_available()) {
-        m_keyboard_label.set_tooltip_text("Install ydotool for on-screen keyboard mode");
+        m_keyboard_holder.set_tooltip_text("Install ydotool for on-screen keyboard mode");
+    }
+    if (!m_tts->is_available()) {
+        // The switch itself is insensitive, so tooltip the (sensitive) label
+        // beside it, otherwise GTK never shows the hint.
+        m_speech_label.set_tooltip_text(
+            "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences.");
     }
 
-    m_keyboard_switch.property_active().signal_changed().connect([this]() {
-        m_direct_mode_active = m_keyboard_switch.get_active();
+    m_keyboard_button.signal_toggled().connect([this]() {
+        m_direct_mode_active = m_keyboard_button.get_active();
         if (m_direct_mode_active) {
             m_pane.set_shrink_end_child(false);
             m_pane.set_position(get_width() - 50);
@@ -207,10 +209,6 @@ MainWindow::MainWindow()
             m_pane.set_shrink_end_child(true);
             m_pane.set_position(get_width() * 2 / 3);
         }
-    });
-
-    m_dwell_switch.property_active().signal_changed().connect([this]() {
-        m_canvas.dwell_handler->set_enabled(m_dwell_switch.get_active());
     });
 
     m_font_chooser.property_font_desc().signal_changed().connect([this]() {
