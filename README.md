@@ -34,6 +34,27 @@ Prebuilt **Linux** packages are attached to each [Release](../../releases):
 macOS and Windows aren't packaged yet — build from source (below). How the
 artifacts are produced is described under [Packaging & releases](#packaging--releases).
 
+## Optional runtime features
+
+Two of the on-screen toggles depend on an external service and appear **greyed
+out** until that service is available:
+
+- **Speech** (spoken feedback and read-aloud) needs a working text-to-speech
+  engine. A from-source Linux build enables the `system` feature, which drives a
+  running `speech-dispatcher` (`sudo apt install speech-dispatcher`). The Flatpak
+  and AppImage ship `cloud`-only, so configure a cloud engine under
+  **Preferences → Speech**. With no engine available the Speech toggle stays
+  disabled. See [TTS Support](#tts-support) for how the feature set is chosen at
+  build time.
+- **Keyboard mode** (types Dasher's output into other applications) uses
+  [`ydotool`](https://github.com/ReimuNotMoe/ydotool). Install it and run the
+  `ydotoold` daemon (it needs access to `/dev/uinput`); on Debian/Ubuntu that is
+  `sudo apt install ydotool`. Without it the Keyboard toggle, on the top toolbar,
+  is disabled.
+
+**Dwell to click** (hover in place to click, under **Preferences → Input**) needs
+no external dependency.
+
 ## Build
 
 ### Prerequisites
@@ -41,13 +62,16 @@ artifacts are produced is described under [Packaging & releases](#packaging--rel
 | Platform | Command |
 |----------|---------|
 | macOS | `brew install gtk4 gtkmm4 pkg-config cmake` |
-| Linux (Debian/Ubuntu) | `apt-get install build-essential libgtk-4-dev libgtkmm-4.0-dev git cmake pkg-config libspeechd-dev libclang-dev` |
+| Linux (Debian/Ubuntu) | `apt-get install build-essential libgtk-4-dev libgtkmm-4.0-dev git cmake pkg-config libspeechd-dev libclang-dev speech-dispatcher ydotool` |
 | Windows | Install GTK from [GVSBuild](https://github.com/wingtk/gvsbuild/releases) to `C:\gtk`, add `C:\gtk\bin` to PATH. Requires CMake, Git, and MSVC or Clang. Use an optimized release build for binary compatibility. |
 
 All platforms additionally require a **Rust toolchain** (`cargo`) to build the bundled
 `rust-tts-wrapper`. Install it from [rustup.rs](https://rustup.rs). On Linux the
 `system` TTS feature binds speech-dispatcher via bindgen, hence `libspeechd-dev`
-(headers) and `libclang-dev` (for bindgen) above.
+(headers) and `libclang-dev` (for bindgen) above. The `speech-dispatcher` and
+`ydotool` packages are runtime dependencies for the optional Speech and
+Keyboard-mode features (see [Optional runtime features](#optional-runtime-features));
+the app still builds and runs without them, with those toggles disabled.
 
 ### Steps
 
@@ -136,6 +160,12 @@ rebuild if stale (`cmake --build build`).
 - In packaged builds the custom `UIStyle.css` isn't loaded — it's resolved
   relative to the working directory, so the app falls back to default GTK
   styling. Tracked in [#18](../../issues/18).
+- **Keyboard mode** and **system Speech** aren't available in the Flatpak and
+  AppImage builds. Both need host-level access the self-contained, sandboxed
+  formats can't provide: `/dev/uinput` (via `ydotoold`) for `ydotool` keyboard
+  injection, and `libspeechd` plus a running `speech-dispatcher` for system TTS.
+  The Flatpak is `cloud`-only for speech; Keyboard mode expects a from-source or
+  native install. See [Optional runtime features](#optional-runtime-features).
 
 ## Packaging & releases
 

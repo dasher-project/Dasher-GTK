@@ -4,6 +4,7 @@
 #include "Output/DirectModeService.h"
 #include "Output/TtsService.h"
 #include "UIComponents/ImageButton.h"
+#include "UIComponents/ImageToggleButton.h"
 #include "UIComponents/RenderingCanvas.h"
 #include "UIComponents/MessageOverlay.h"
 #include "UIComponents/SyncedSpinButton.h"
@@ -39,6 +40,10 @@ protected:
     ImageButton m_open_button = ImageButton("Open", "document-open-symbolic");
     ImageButton m_save_button = ImageButton("Save", "document-save-symbolic");
     ImageButton m_play_button = ImageButton("Play", "input-gaming-symbolic");
+    ImageToggleButton m_keyboard_button = ImageToggleButton("Keyboard", "input-keyboard-symbolic");
+    // Sensitive wrapper so the "install ydotool" tooltip still shows when the
+    // button itself is insensitive (GTK4 drops tooltips on insensitive widgets).
+    Gtk::Box m_keyboard_holder;
     ImageButton m_pref_button = ImageButton("Prefs", "applications-system-symbolic");
 
     RenderingCanvas m_canvas;
@@ -62,10 +67,6 @@ protected:
     Gtk::FontDialogButton m_font_chooser = Gtk::FontDialogButton(m_font_dialog);
     Gtk::Label m_speech_label = Gtk::Label("Speech");
     Gtk::Switch m_speech_switch;
-    Gtk::Label m_dwell_label = Gtk::Label("Dwell");
-    Gtk::Switch m_dwell_switch;
-    Gtk::Label m_keyboard_label = Gtk::Label("Keyboard");
-    Gtk::Switch m_keyboard_switch;
 
     std::unique_ptr<DirectModeService> m_direct_mode;
     std::unique_ptr<TtsService> m_tts;

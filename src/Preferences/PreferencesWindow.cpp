@@ -1,11 +1,15 @@
 #include "PreferencesWindow.h"
 #include "Output/TtsService.h"
+#include "Input/DwellClickHandler.h"
+#include "UIComponents/PopoverMenuButtonInfo.h"
 #include <gtkmm/dropdown.h>
 #include <gtkmm/stringlist.h>
 #include <gtkmm/scale.h>
 #include <gtkmm/adjustment.h>
 #include <gtkmm/button.h>
 #include <gtkmm/entry.h>
+#include <gtkmm/switch.h>
+#include <gtkmm/label.h>
 #include <functional>
 #include <sstream>
 #include <algorithm>
@@ -49,9 +53,8 @@ static std::string prettify_key(const std::string& key) {
     return result;
 }
 
-PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge)
-    : m_bridge(bridge)
-{
+PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge, DwellClickHandler* dwell_handler)
+    : m_bridge(bridge), m_dwell_handler(dwell_handler) {
     set_child(m_layout);
     set_title("Dasher Preferences");
     set_default_size(600, 500);
@@ -97,6 +100,32 @@ void PreferencesWindow::rebuild_sections() {
     for (auto& g : groups) {
         auto* scrolled = Gtk::make_managed<Gtk::ScrolledWindow>();
         auto* section = Gtk::make_managed<SettingsSection>(g.label, m_bridge, g.group);
+        // Dwell-to-click is a GTK-side input mode (no backing DasherCore parameter,
+        // so SettingsSection can't auto-render it). Hand-build its toggle here so it
+        // lives under Input alongside the engine's input settings, instead of in the
+        // footer bar (issue #35). The row mirrors SettingsSection's layout.
+        if (g.id == "input" && m_dwell_handler) {
+            auto* row = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::HORIZONTAL, 8);
+            row->set_margin_top(4);
+            row->set_margin_bottom(4);
+
+            auto* name_label = Gtk::make_managed<Gtk::Label>("Dwell to click");
+            name_label->set_halign(Gtk::Align::START);
+            name_label->set_hexpand(true);
+            row->append(*name_label);
+
+            auto* dwell_switch = Gtk::make_managed<Gtk::Switch>();
+            dwell_switch->set_valign(Gtk::Align::CENTER);
+            dwell_switch->set_active(m_dwell_handler->get_enabled());
+            dwell_switch->property_active().signal_changed().connect(
+                [this, dwell_switch]() { m_dwell_handler->set_enabled(dwell_switch->get_active()); });
+            row->append(*dwell_switch);
+
+            row->append(*Gtk::make_managed<PopoverMenuButtonInfo>(
+                "Hover in one spot to trigger a click, instead of pressing a button or switch."));
+
+            section->append(*row);
+        }
         scrolled->set_child(*section);
         scrolled->set_vexpand(true);
         scrolled->set_hexpand(true);
