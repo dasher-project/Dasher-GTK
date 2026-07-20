@@ -10,6 +10,11 @@ bool DirectModeService::is_available() const {
     return m_available;
 }
 
+bool DirectModeService::recheck() {
+    m_available = check_ydotool_installed();
+    return m_available;
+}
+
 bool DirectModeService::check_ydotool_installed() {
     return std::system("which ydotool >/dev/null 2>&1") == 0;
 }

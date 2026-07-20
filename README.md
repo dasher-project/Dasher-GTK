@@ -48,8 +48,7 @@ artifacts are produced is described under [Packaging & releases](#packaging--rel
 
 ## Optional runtime features
 
-Two of the on-screen toggles depend on an external service and appear **greyed
-out** until that service is available:
+Speech and Keyboard mode each depend on an external service:
 
 - **Speech** (spoken feedback and read-aloud) needs a working text-to-speech
   engine. A from-source Linux build enables the `system` feature, which drives a
@@ -61,8 +60,9 @@ out** until that service is available:
 - **Keyboard mode** (types Dasher's output into other applications) uses
   [`ydotool`](https://github.com/ReimuNotMoe/ydotool). Install it and run the
   `ydotoold` daemon (it needs access to `/dev/uinput`); on Debian/Ubuntu that is
-  `sudo apt install ydotool`. Without it the Keyboard toggle, on the top toolbar,
-  is disabled.
+  `sudo apt install ydotool`. Without it, clicking the Keyboard button (on the top
+  toolbar) opens a setup dialog with the install command for your distro and a
+  Retry, instead of enabling the mode.
 
 **Dwell to click** (hover in place to click, under **Preferences → Input**) needs
 no external dependency.
@@ -83,7 +83,8 @@ All platforms additionally require a **Rust toolchain** (`cargo`) to build the b
 (headers) and `libclang-dev` (for bindgen) above. The `speech-dispatcher` and
 `ydotool` packages are runtime dependencies for the optional Speech and
 Keyboard-mode features (see [Optional runtime features](#optional-runtime-features));
-the app still builds and runs without them, with those toggles disabled.
+the app still builds and runs without them (the Speech toggle greys out, and
+Keyboard mode offers an in-app setup helper).
 
 ### Steps
 
