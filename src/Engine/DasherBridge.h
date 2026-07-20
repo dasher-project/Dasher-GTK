@@ -59,6 +59,8 @@ public:
     // and words per minute, as reported by the engine.
     double get_cps() const;
     double get_wpm() const;
+    // v0.1.9 (RFC 0012): clear the engine's rolling window so CPS/WPM restart from zero.
+    void reset_cps();
 
     bool get_bool_parameter(int key) const;
     void set_bool_parameter(int key, bool value);

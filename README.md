@@ -22,11 +22,14 @@ This is the **GTK** frontend, built on the shared
 
 ## Usage
 
-Runtime controls live in the footer bar, alongside the alphabet, speed, and the
-Speech / Dwell / Keyboard toggles. The **Rate** switch (off by default) shows a
-live typing-rate readout, e.g. `4.2 cps · 50 wpm` (characters per second and
-words per minute). The rate is computed engine-side over a short rolling window
-and refreshed about twice a second; flip the switch on to see it. See
+Runtime controls live in the footer bar: the alphabet chooser, speed, a Learning
+toggle, colour and font choosers, and the Speech toggle. Keyboard mode sits on the
+top toolbar, and dwell-to-click is under **Preferences → Input**.
+
+The live typing-rate readout (RFC 0012) lives under **Preferences → Output**,
+showing characters per second and words per minute (e.g. `4.2 cps · 50 wpm`) in
+subtle text. It is computed engine-side over a short rolling window and refreshed
+about twice a second, with a **Reset** button that restarts the measurement. See
 [RFC 0012](https://github.com/dasher-project/governance/pull/19).
 
 ## Install

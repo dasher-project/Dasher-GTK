@@ -71,19 +71,11 @@ protected:
     Gtk::Label m_speech_label = Gtk::Label("Speech");
     Gtk::Switch m_speech_switch;
 
-    // Typing-rate readout (RFC 0012): a "Rate" toggle (off by default) and the
-    // CPS/WPM value badge it shows.
-    Gtk::Label m_rate_toggle_label = Gtk::Label("Rate");
-    Gtk::Switch m_rate_switch;
-    Gtk::Label m_rate_value;
-
     std::unique_ptr<DirectModeService> m_direct_mode;
     std::unique_ptr<TtsService> m_tts;
     bool m_direct_mode_active = false;
 
     PreferencesWindow m_preferences_window;
-
-    void update_typing_rate();
 
     // Frontend analytics consent; drives the first-run opt-in prompt below.
     analytics::AnalyticsSettings m_analytics = analytics::AnalyticsSettings::load();

@@ -133,6 +133,10 @@ double DasherBridge::get_wpm() const {
     return dasher_get_wpm(m_ctx);
 }
 
+void DasherBridge::reset_cps() {
+    if (m_ctx) dasher_reset_cps(m_ctx);
+}
+
 bool DasherBridge::get_bool_parameter(int key) const {
     if (!m_ctx) return false;
     return dasher_get_bool_parameter(m_ctx, key) != 0;

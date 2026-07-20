@@ -164,27 +164,8 @@ MainWindow::MainWindow()
     m_footer_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
     m_footer_bar.pack_start(m_speech_label);
     m_footer_bar.pack_start(m_speech_switch);
-    m_footer_bar.pack_start(m_rate_toggle_label);
-    m_footer_bar.pack_start(m_rate_switch);
-    m_footer_bar.pack_start(m_rate_value);
     m_speech_switch.set_valign(Gtk::Align::CENTER);
     m_learning_switch.set_valign(Gtk::Align::CENTER);
-    m_rate_switch.set_valign(Gtk::Align::CENTER);
-
-    // Typing-rate readout (RFC 0012). Off by default; when shown, refresh at
-    // ~2 Hz so the number doesn't churn (the engine keeps a 5s rolling window).
-    m_rate_value.set_visible(false);
-    m_rate_switch.property_active().signal_changed().connect([this]() {
-        bool on = m_rate_switch.get_active();
-        m_rate_value.set_visible(on);
-        if (on) update_typing_rate();
-    });
-    Glib::signal_timeout().connect(
-        [this]() -> bool {
-            if (m_rate_switch.get_active()) update_typing_rate();
-            return true;
-        },
-        500);
 
     m_direct_mode = std::make_unique<DirectModeService>();
     m_tts = std::make_unique<TtsService>();
@@ -337,14 +318,4 @@ void MainWindow::maybe_show_consent_dialog() {
             capture_app_launched();
         }
     });
-}
-
-void MainWindow::update_typing_rate() {
-    // Engine-reported smoothed rate (WPM = CPS * 12, RFC 0012). Formatted as
-    // e.g. "4.2 cps · 50 wpm"; the separator is a UTF-8 middle dot (\xc2\xb7).
-    double cps = m_canvas.bridge->get_cps();
-    double wpm = m_canvas.bridge->get_wpm();
-    char buf[64];
-    std::snprintf(buf, sizeof(buf), "%.1f cps \xc2\xb7 %d wpm", cps, static_cast<int>(std::llround(wpm)));
-    m_rate_value.set_text(buf);
 }
