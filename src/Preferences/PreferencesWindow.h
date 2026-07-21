@@ -21,9 +21,12 @@ private:
     void rebuild_sections();
     void add_locale_section();
     void add_privacy_section();
+    void update_rate_readout();
 
     std::shared_ptr<DasherBridge> m_bridge;
     DwellClickHandler* m_dwell_handler = nullptr;
+    // Live CPS/WPM readout hosted in Settings -> Output (moved from the footer, issue #35).
+    Gtk::Label* m_rate_value = nullptr;
     analytics::AnalyticsSettings m_analytics = analytics::AnalyticsSettings::load();
     Gtk::Box m_layout = Gtk::Box(Gtk::Orientation::HORIZONTAL);
     Gtk::StackSidebar m_sidebar;

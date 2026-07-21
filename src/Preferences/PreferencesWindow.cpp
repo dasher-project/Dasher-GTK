@@ -15,6 +15,9 @@
 #include <functional>
 #include <sstream>
 #include <algorithm>
+#include <glibmm/main.h>
+#include <cstdio>
+#include <cmath>
 
 static std::vector<std::string> parse_json_keys(const std::string& json) {
     std::vector<std::string> keys;
@@ -88,6 +91,26 @@ PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge, Dwell
         analytics::AnalyticsClient::instance().capture("settings_viewed",
                                                        {{"tab_name", std::string(page->get_title())}});
     });
+
+    // Refresh the Settings -> Output typing-rate readout ~2 Hz while this window is
+    // open (the engine keeps a 5s rolling window). Moved from the footer (issue #35).
+    Glib::signal_timeout().connect(
+        [this]() -> bool {
+            update_rate_readout();
+            return true;
+        },
+        500);
+}
+
+void PreferencesWindow::update_rate_readout() {
+    if (!m_rate_value || !get_visible()) return;
+    // Engine-reported live rate over its 5s window (WPM = CPS * 12, RFC 0012);
+    // the separator is a UTF-8 middle dot (\xc2\xb7).
+    double cps = m_bridge->get_cps();
+    double wpm = m_bridge->get_wpm();
+    char buf[64];
+    std::snprintf(buf, sizeof(buf), "%.1f cps \xc2\xb7 %d wpm", cps, static_cast<int>(std::llround(wpm)));
+    m_rate_value->set_text(buf);
 }
 
 void PreferencesWindow::rebuild_sections() {
@@ -95,6 +118,7 @@ void PreferencesWindow::rebuild_sections() {
         m_stack.remove(*w);
     }
     m_dynamic_pages.clear();
+    m_rate_value = nullptr; // rebuilt below with the Output section
 
     struct GroupDef {
         std::string id;
@@ -138,6 +162,39 @@ void PreferencesWindow::rebuild_sections() {
                 "Hover in one spot to trigger a click, instead of pressing a button or switch."));
 
             section->append(*row);
+        }
+        if (g.id == "output") {
+            // Typing-rate readout, moved here from the footer (issue #35 / RFC 0012):
+            // a live CPS/WPM value in subtle text, with a Reset that clears the
+            // engine's rolling window via dasher_reset_cps (DasherCore v0.1.9).
+            auto* row = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::HORIZONTAL, 8);
+            row->set_margin_top(4);
+            row->set_margin_bottom(4);
+
+            auto* name_label = Gtk::make_managed<Gtk::Label>("Typing rate");
+            name_label->set_halign(Gtk::Align::START);
+            name_label->set_hexpand(true);
+            row->append(*name_label);
+
+            m_rate_value = Gtk::make_managed<Gtk::Label>("-");
+            m_rate_value->add_css_class("dim-label"); // subtle text (issue #35)
+            m_rate_value->set_valign(Gtk::Align::CENTER);
+            row->append(*m_rate_value);
+
+            auto* reset_btn = Gtk::make_managed<Gtk::Button>("Reset");
+            reset_btn->set_valign(Gtk::Align::CENTER);
+            reset_btn->signal_clicked().connect([this]() {
+                m_bridge->reset_cps();
+                update_rate_readout();
+            });
+            row->append(*reset_btn);
+
+            row->append(*Gtk::make_managed<PopoverMenuButtonInfo>(
+                "Live characters-per-second and words-per-minute over the last few seconds. "
+                "Reset restarts the measurement."));
+
+            section->append(*row);
+            update_rate_readout();
         }
         scrolled->set_child(*section);
         scrolled->set_vexpand(true);
