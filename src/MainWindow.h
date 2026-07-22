@@ -5,6 +5,7 @@
 #include "Output/TtsService.h"
 #include "UIComponents/ImageButton.h"
 #include "UIComponents/ImageToggleButton.h"
+#include "UIComponents/KeyboardSetupDialog.h"
 #include "UIComponents/RenderingCanvas.h"
 #include "UIComponents/MessageOverlay.h"
 #include "UIComponents/SyncedSpinButton.h"
@@ -44,9 +45,6 @@ protected:
     ImageButton m_save_button = ImageButton("Save", "document-save-symbolic");
     ImageButton m_play_button = ImageButton("Play", "input-gaming-symbolic");
     ImageToggleButton m_keyboard_button = ImageToggleButton("Keyboard", "input-keyboard-symbolic");
-    // Sensitive wrapper so the "install ydotool" tooltip still shows when the
-    // button itself is insensitive (GTK4 drops tooltips on insensitive widgets).
-    Gtk::Box m_keyboard_holder;
     ImageButton m_pref_button = ImageButton("Prefs", "applications-system-symbolic");
 
     RenderingCanvas m_canvas;
@@ -74,6 +72,10 @@ protected:
     std::unique_ptr<DirectModeService> m_direct_mode;
     std::unique_ptr<TtsService> m_tts;
     bool m_direct_mode_active = false;
+
+    // Setup helper shown when Keyboard mode is enabled without ydotool (issue #38).
+    std::unique_ptr<KeyboardSetupDialog> m_keyboard_setup_dialog;
+    void show_keyboard_setup_dialog();
 
     PreferencesWindow m_preferences_window;
 

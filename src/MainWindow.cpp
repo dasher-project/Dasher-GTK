@@ -48,9 +48,8 @@ MainWindow::MainWindow()
     m_header_bar.pack_start(m_open_button);
     m_header_bar.pack_start(m_save_button);
     m_header_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
-    m_keyboard_holder.append(m_keyboard_button);
     m_header_bar.pack_start(m_play_button);
-    m_header_bar.pack_start(m_keyboard_holder);
+    m_header_bar.pack_start(m_keyboard_button);
     m_header_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
     m_header_bar.pack_start(m_pref_button);
     m_header_bar.add_css_class("topbar");
@@ -169,10 +168,11 @@ MainWindow::MainWindow()
 
     m_direct_mode = std::make_unique<DirectModeService>();
     m_tts = std::make_unique<TtsService>();
-    m_keyboard_button.set_sensitive(m_direct_mode->is_available());
     m_speech_switch.set_sensitive(m_tts->is_available());
+    // Keyboard mode stays clickable even without ydotool: clicking it opens the
+    // setup helper (issue #38) rather than being a dead greyed-out button.
     if (!m_direct_mode->is_available()) {
-        m_keyboard_holder.set_tooltip_text("Install ydotool for on-screen keyboard mode");
+        m_keyboard_button.set_tooltip_text("Click to set up keyboard mode (needs ydotool)");
     }
     if (!m_tts->is_available()) {
         // The switch itself is insensitive, so tooltip the (sensitive) label
@@ -182,7 +182,15 @@ MainWindow::MainWindow()
     }
 
     m_keyboard_button.signal_toggled().connect([this]() {
-        m_direct_mode_active = m_keyboard_button.get_active();
+        bool on = m_keyboard_button.get_active();
+        if (on && !m_direct_mode->is_available()) {
+            // ydotool missing: guide the user through installing it instead of
+            // silently failing; revert until it is actually available (issue #38).
+            m_keyboard_button.set_active(false);
+            show_keyboard_setup_dialog();
+            return;
+        }
+        m_direct_mode_active = on;
         if (m_direct_mode_active) {
             m_pane.set_shrink_end_child(false);
             m_pane.set_position(get_width() - 50);
@@ -318,4 +326,12 @@ void MainWindow::maybe_show_consent_dialog() {
             capture_app_launched();
         }
     });
+}
+
+void MainWindow::show_keyboard_setup_dialog() {
+    if (!m_keyboard_setup_dialog) {
+        m_keyboard_setup_dialog = std::make_unique<KeyboardSetupDialog>(
+            *this, m_direct_mode.get(), [this]() { m_keyboard_button.set_active(true); });
+    }
+    m_keyboard_setup_dialog->present();
 }
