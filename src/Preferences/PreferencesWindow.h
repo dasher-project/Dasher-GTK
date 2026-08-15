@@ -8,6 +8,7 @@
 #include "gtkmm/stacksidebar.h"
 #include "gtkmm/window.h"
 #include <memory>
+#include <sigc++/signal.h>
 
 class DwellClickHandler;
 
@@ -16,6 +17,10 @@ public:
   // dwell_handler is owned by the canvas (may be null); the Input section hosts
   // its on/off toggle, which used to live in the footer bar (issue #35).
   PreferencesWindow(std::shared_ptr<DasherBridge> bridge, DwellClickHandler* dwell_handler = nullptr);
+
+  // Emitted after "Reset all settings to defaults" so footer-bar widgets
+  // (speed/alphabet/learning/colour) can re-read from the engine.
+  sigc::signal<void()> OnSettingsReset;
 
 private:
     void rebuild_sections();

@@ -449,6 +449,21 @@ void PreferencesWindow::add_privacy_section() {
         analytics::AnalyticsClient::instance().capture("analytics_id_reset");
     });
 
+    // Reset every engine parameter to its built-in default (dasher_reset_settings,
+    // DasherCore v0.1.6+; mirrors DasherApple #18 / Dasher-Windows). Fires
+    // parameter-change notifications; we rebuild the sections and tell the
+    // footer bar to re-read from the engine.
+    auto* settings_reset_btn = Gtk::make_managed<Gtk::Button>("Reset all settings to defaults");
+    settings_reset_btn->set_halign(Gtk::Align::START);
+    box->append(*settings_reset_btn);
+
+    settings_reset_btn->signal_clicked().connect([this]() {
+        m_bridge->reset_settings();
+        rebuild_sections();
+        OnSettingsReset.emit();
+        analytics::AnalyticsClient::instance().capture("settings_reset_defaults");
+    });
+
     scrolled->set_child(*box);
     m_stack.add(*scrolled, "privacy", "Privacy");
 }

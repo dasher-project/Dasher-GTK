@@ -318,4 +318,13 @@ void CrashReporter::flush_pending(const std::function<void(const CrashEnvelope&)
     g_unlink(path.c_str());
 }
 
+CrashEnvelope CrashReporter::make_envelope(const std::string& exception_type, const std::string& source) {
+    CrashEnvelope env;
+    env.exception_type = exception_type;
+    env.source = source;
+    env.app_version = DASHER_GTK_VERSION;
+    env.os_version = os_version();
+    return env;
+}
+
 } // namespace analytics

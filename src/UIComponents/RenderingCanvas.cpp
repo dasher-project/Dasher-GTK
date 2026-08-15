@@ -1,4 +1,6 @@
 #include "RenderingCanvas.h"
+#include "Analytics/AnalyticsClient.h"
+#include "Analytics/CrashReporter.h"
 #include <gdkmm/frameclock.h>
 #include <gdk/gdkkeysyms.h>
 #include <glibmm/datetime.h>
@@ -138,6 +140,14 @@ RenderingCanvas::RenderingCanvas() {
         }
 
         DasherBridge::FrameResult result = bridge->frame(bridge->get_current_time_ms());
+        // RFC 0009 A2: sticky error flag — report once per session as a
+        // $exception (same sink as crashes; opt-in gated inside the client).
+        if (!m_engine_error_reported && bridge->has_engine_error()) {
+            m_engine_error_reported = true;
+            analytics::CrashEnvelope env = analytics::CrashReporter::make_envelope("DasherEngineError", "frame_tick");
+            env.stack_trace = "dasher_has_engine_error: sticky error flag set";
+            analytics::AnalyticsClient::instance().capture_exception(env);
+        }
         if (!result.commands.empty()) {
             m_recording_context->save();
             renderer->render(result, m_recording_context);

@@ -41,6 +41,10 @@ class CrashReporter {
     // Serialise/parse the crash-file text format. Exposed for unit tests.
     static bool write_crash_file(const std::string& path, const CrashEnvelope& env);
     static bool parse_crash_file(const std::string& path, CrashEnvelope& out);
+
+    // Pre-filled envelope (app/os version) for caught, non-fatal reports —
+    // e.g. the engine's sticky error flag (RFC 0009 A2).
+    static CrashEnvelope make_envelope(const std::string& exception_type, const std::string& source);
 };
 
 } // namespace analytics
