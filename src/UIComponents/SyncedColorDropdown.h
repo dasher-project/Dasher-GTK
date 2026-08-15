@@ -77,6 +77,19 @@ public:
         });
     }
 
+    // Re-select the engine's current palette (e.g. after reset-to-defaults).
+    // Mirrors the other Synced* widgets; setting the same row re-fires
+    // notify::selected, which re-sets the same palette — a no-op.
+    void update_from_bridge() {
+        std::string current = m_bridge->get_current_palette();
+        for (guint i = 0; i < palette_list->get_n_items(); i++) {
+            if (palette_list->get_item(i)->name == current) {
+                set_selected(i);
+                break;
+            }
+        }
+    }
+
 protected:
     std::shared_ptr<DasherBridge> m_bridge;
     Glib::RefPtr<Gio::ListStore<PaletteProxy>> palette_list = Gio::ListStore<PaletteProxy>::create();

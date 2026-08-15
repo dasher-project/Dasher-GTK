@@ -449,19 +449,33 @@ void PreferencesWindow::add_privacy_section() {
         analytics::AnalyticsClient::instance().capture("analytics_id_reset");
     });
 
-    // Reset every engine parameter to its built-in default (dasher_reset_settings,
-    // DasherCore v0.1.6+; mirrors DasherApple #18 / Dasher-Windows). Fires
-    // parameter-change notifications; we rebuild the sections and tell the
-    // footer bar to re-read from the engine.
-    auto* settings_reset_btn = Gtk::make_managed<Gtk::Button>("Reset all settings to defaults");
+    // Reset every ENGINE parameter to its built-in default (dasher_reset_settings,
+    // DasherCore v0.1.6+; mirrors DasherApple #18 / Dasher-Windows). Scoped name:
+    // this does not touch GTK-side state (analytics opt-in/ID, dwell-to-click,
+    // canvas font). Irreversible + persists immediately, so confirm first —
+    // dwell-to-click makes accidental activation a real risk for our users
+    // (review feedback on #41).
+    auto* settings_reset_btn = Gtk::make_managed<Gtk::Button>("Reset engine settings to defaults");
     settings_reset_btn->set_halign(Gtk::Align::START);
     box->append(*settings_reset_btn);
 
     settings_reset_btn->signal_clicked().connect([this]() {
-        m_bridge->reset_settings();
-        rebuild_sections();
-        OnSettingsReset.emit();
-        analytics::AnalyticsClient::instance().capture("settings_reset_defaults");
+        auto dialog = Gtk::AlertDialog::create("Reset all engine settings to their built-in defaults?");
+        dialog->set_detail("Speed, alphabet, language model, colours and input options return to "
+                           "their defaults. This takes effect immediately and cannot be undone. "
+                           "Your analytics choice and accessibility options on this screen are "
+                           "not affected.");
+        dialog->set_buttons({"_Cancel", "_Reset"});
+        dialog->set_default_button(0);
+        dialog->set_cancel_button(0);
+        dialog->choose(*this, [this, dialog](const Glib::RefPtr<Gio::AsyncResult>& result) {
+            // Index into set_buttons; -1 (dismissed) also means cancel.
+            if (dialog->choose_finish(result) != 1) return;
+            m_bridge->reset_settings();
+            rebuild_sections();
+            OnSettingsReset.emit();
+            analytics::AnalyticsClient::instance().capture("settings_reset_defaults");
+        });
     });
 
     scrolled->set_child(*box);

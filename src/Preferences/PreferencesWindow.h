@@ -3,6 +3,7 @@
 #include "Analytics/AnalyticsSettings.h"
 #include "Engine/DasherBridge.h"
 #include "SettingsSection.h"
+#include "gtkmm/alertdialog.h"
 #include "gtkmm/box.h"
 #include "gtkmm/stack.h"
 #include "gtkmm/stacksidebar.h"

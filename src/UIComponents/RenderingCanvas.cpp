@@ -1,6 +1,8 @@
 #include "RenderingCanvas.h"
 #include "Analytics/AnalyticsClient.h"
 #include "Analytics/CrashReporter.h"
+#include "Analytics/EngineLogRingBuffer.h"
+#include "Analytics/PiiScrubber.h"
 #include <gdkmm/frameclock.h>
 #include <gdk/gdkkeysyms.h>
 #include <glibmm/datetime.h>
@@ -141,11 +143,17 @@ RenderingCanvas::RenderingCanvas() {
 
         DasherBridge::FrameResult result = bridge->frame(bridge->get_current_time_ms());
         // RFC 0009 A2: sticky error flag — report once per session as a
-        // $exception (same sink as crashes; opt-in gated inside the client).
+        // $exception (opt-in gated inside the client), carrying the scrubbed
+        // engine log tail so each report is actionable rather than a
+        // byte-identical "error happened" (mirrors the terminate handler).
         if (!m_engine_error_reported && bridge->has_engine_error()) {
             m_engine_error_reported = true;
+            g_warning("DasherCore: sticky engine error flag set — the engine may be in an inconsistent state");
             analytics::CrashEnvelope env = analytics::CrashReporter::make_envelope("DasherEngineError", "frame_tick");
             env.stack_trace = "dasher_has_engine_error: sticky error flag set";
+            env.engine_log_tail = analytics::PiiScrubber::truncate(
+                analytics::PiiScrubber::scrub(analytics::engine_log_buffer().snapshot()),
+                analytics::PiiScrubber::kEngineLogTailCap);
             analytics::AnalyticsClient::instance().capture_exception(env);
         }
         if (!result.commands.empty()) {
