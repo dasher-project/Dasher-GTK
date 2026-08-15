@@ -34,6 +34,7 @@
     },
     "analytics_opted_in":  { "description": "User opted into analytics", "properties": {}, "pii": false },
     "analytics_id_reset":  { "description": "User reset their anonymous analytics ID", "properties": {}, "pii": false },
+    "settings_reset_defaults": { "description": "User reset every engine parameter to its built-in default", "properties": {}, "pii": false },
     "crash": {
       "description": "Uncaught exception",
       "properties": { "stack_trace": { "type": "string", "note": "May contain file paths but not user text" } },
