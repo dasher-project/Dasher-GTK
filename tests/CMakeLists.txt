@@ -88,6 +88,9 @@ if(TARGET tts_wrapper)
     target_compile_definitions(prefs_rebuild_selftest PRIVATE HAS_TTS)
 endif()
 target_link_libraries(prefs_rebuild_selftest PRIVATE dasher SDL3::SDL3 ${GTK_LIBRARIES} ${GTKMM_LIBRARIES})
+# Windows GTK lives in a custom prefix, so the bare -l names above need the
+# pkg-config link dirs to resolve (matches Dasher and dasher_unit_tests).
+target_link_directories(prefs_rebuild_selftest PRIVATE ${GTK_LIBRARY_DIRS} ${GTKMM_LIBRARY_DIRS})
 target_include_directories(prefs_rebuild_selftest PRIVATE ${CMAKE_SOURCE_DIR}/src)
 if(CURL_FOUND)
     target_link_libraries(prefs_rebuild_selftest PRIVATE CURL::libcurl)
