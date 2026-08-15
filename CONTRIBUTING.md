@@ -50,6 +50,47 @@ platform-specific dependencies (GTK4, gtkmm, pkg-config).
 - **.editorconfig** — enforces indentation and line endings in editors that
   support it.
 
+## Debugging crashes
+
+Configure a sanitizer build in a separate directory so it doesn't clobber your
+normal one:
+
+```bash
+cmake -B build-asan -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+      -DCMAKE_C_FLAGS="-fsanitize=address -fno-omit-frame-pointer -g" \
+      -DCMAKE_CXX_FLAGS="-fsanitize=address -fno-omit-frame-pointer -g" \
+      -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address" \
+      -DCMAKE_SHARED_LINKER_FLAGS="-fsanitize=address"
+cmake --build build-asan -j$(nproc)
+```
+
+**`src/Analytics/CrashReporter.cpp` installs its own SIGSEGV/SIGABRT/SIGILL
+handlers, which will swallow the sanitizer's report.** Run with
+`handle_segv=2` so ASan keeps its handler, or you will get a silent exit and a
+`pending_crash.txt` instead of a stack trace:
+
+```bash
+cd build-asan/Dasher
+ASAN_OPTIONS=detect_leaks=0:handle_segv=2 G_SLICE=always-malloc ./dasher
+```
+
+`G_SLICE=always-malloc` routes GLib allocations through malloc so ASan can see
+them. Note that a faulting read inside uninstrumented GLib/GTK is reported as a
+plain SEGV rather than a use-after-free with allocation stacks, so a clean
+`AddressSanitizer can not provide additional info` does not rule out a lifetime
+bug on our side.
+
+Point the XDG directories somewhere disposable to keep test runs from touching
+your real settings, analytics opt-in, or pending crash file:
+
+```bash
+XDG_DATA_HOME=/tmp/d/data XDG_CONFIG_HOME=/tmp/d/config XDG_CACHE_HOME=/tmp/d/cache ./dasher
+```
+
+Engine parameters are *not* stored under XDG — `DasherBridge` is constructed
+with a relative data directory, so `dasher_settings.xml` is written to
+`Data/` next to the binary you launched.
+
 ## DasherCore changes
 
 DasherCore is a git submodule pointing to
