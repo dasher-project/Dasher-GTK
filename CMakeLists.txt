@@ -131,6 +131,11 @@ add_custom_command(
     COMMENT "Compiling GResource bundle (UIStyle.css)"
     VERBATIM
 )
+# A custom command's OUTPUT rule is only visible in the directory that
+# declares it, so targets in tests/ listing ${GRESOURCE_C} as a source can't
+# regenerate it on a clean tree. This named target carries the dependency
+# across directories (per @owenpkent's review of #44).
+add_custom_target(dasher_gresource DEPENDS ${GRESOURCE_C})
 
 ADD_Executable(Dasher
 	${HEADER_FILES}

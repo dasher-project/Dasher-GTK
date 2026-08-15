@@ -51,15 +51,26 @@ endif()
 
 add_test(NAME dasher_unit_tests COMMAND dasher_unit_tests)
 
-# Register the #42 selftest with ctest where a virtual display is available,
-# so a segfaulting rebuild_sections() fails local `ctest` too, not just the CI
-# workflow step. macOS/Windows have no xvfb; those platforms skip registration
-# (the workflow only runs it on Linux anyway).
-find_program(XVFB_RUN xvfb-run)
-if(XVFB_RUN)
-    add_test(NAME prefs_rebuild_selftest
-        COMMAND ${XVFB_RUN} -a $<TARGET_FILE:prefs_rebuild_selftest>
-        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+# Register the #42 gate with ctest only where it can actually run: it maps a
+# real window, so it needs a display. Linux CI has xvfb-run; a Linux dev box
+# with a session can run it directly. Left unregistered on macOS/Windows and
+# on headless boxes with no xvfb, so `ctest` there stays green instead of
+# failing for want of a display. (Registration per @owenpkent's review; the
+# WORKING_DIRECTORY keeps the engine's relative "Data" path resolving.)
+if(UNIX AND NOT APPLE)
+    find_program(XVFB_RUN_EXECUTABLE xvfb-run)
+    if(XVFB_RUN_EXECUTABLE)
+        add_test(NAME prefs_rebuild_selftest
+                 COMMAND "${XVFB_RUN_EXECUTABLE}" -a "$<TARGET_FILE:prefs_rebuild_selftest>"
+                 WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+    elseif(DEFINED ENV{DISPLAY})
+        add_test(NAME prefs_rebuild_selftest
+                 COMMAND "$<TARGET_FILE:prefs_rebuild_selftest>"
+                 WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+    endif()
+    if(TEST prefs_rebuild_selftest)
+        set_tests_properties(prefs_rebuild_selftest PROPERTIES TIMEOUT 180)
+    endif()
 endif()
 list(FILTER SOURCE_FILES EXCLUDE REGEX ".*/src/main\\.cpp$")
 add_executable(prefs_rebuild_selftest
@@ -71,7 +82,7 @@ target_compile_definitions(prefs_rebuild_selftest PRIVATE DASHER_GTK_VERSION="se
 target_include_directories(prefs_rebuild_selftest SYSTEM PRIVATE ${GTK_INCLUDE_DIRS} ${GTKMM_INCLUDE_DIRS})
 target_include_directories(prefs_rebuild_selftest PRIVATE
     ${CMAKE_SOURCE_DIR}/src/ ${CMAKE_SOURCE_DIR}/DasherCore/src/ ${CMAKE_SOURCE_DIR}/Thirdparty/SDL/include/)
-add_dependencies(prefs_rebuild_selftest dasher)
+add_dependencies(prefs_rebuild_selftest dasher dasher_gresource)
 if(TARGET tts_wrapper)
     add_dependencies(prefs_rebuild_selftest tts_wrapper)
     target_compile_definitions(prefs_rebuild_selftest PRIVATE HAS_TTS)
