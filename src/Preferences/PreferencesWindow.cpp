@@ -69,6 +69,7 @@ PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge, Dwell
     m_sidebar.set_stack(m_stack);
 
     rebuild_sections();
+    add_speech_section();
     add_locale_section();
     add_privacy_section();
 
@@ -202,7 +203,16 @@ void PreferencesWindow::rebuild_sections() {
         m_stack.add(*scrolled, g.id, g.label);
         m_dynamic_pages.push_back(scrolled);
     }
+}
 
+// Speech / TTS page. Built ONCE in the constructor and deliberately NOT part
+// of m_dynamic_pages: its content is locale-independent, and tearing it down
+// mid-rebuild is the use-after-free family behind issue #42 (the engine
+// dropdown's notify::selected can fire during dispose, when sibling widgets
+// captured by rebuild_creds — creds_box first in child order — are already
+// freed; cf. 0f0f793). Keeping it alive also avoids re-instantiating
+// TtsService on every locale change.
+void PreferencesWindow::add_speech_section() {
     auto* scrolled_speech = Gtk::make_managed<Gtk::ScrolledWindow>();
     auto* speech_box = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::VERTICAL, 8);
     speech_box->set_margin(12);
@@ -360,7 +370,7 @@ void PreferencesWindow::rebuild_sections() {
 
     scrolled_speech->set_child(*speech_box);
     m_stack.add(*scrolled_speech, "speech", "Speech");
-    m_dynamic_pages.push_back(scrolled_speech);
+    // Intentionally NOT pushed to m_dynamic_pages — see the note above.
 }
 
 void PreferencesWindow::add_locale_section() {

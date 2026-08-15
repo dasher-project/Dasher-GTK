@@ -50,3 +50,43 @@ if(MSVC)
 endif()
 
 add_test(NAME dasher_unit_tests COMMAND dasher_unit_tests)
+
+# Issue #42 reproducer: rebuild_sections() use-after-free in
+# PreferencesWindow. Links the real app sources (minus main.cpp) so it
+# exercises the production widget tree; run under Xvfb in CI/Linux dev:
+#   xvfb-run ./build/tests/prefs_rebuild_selftest
+# (from the repo root so the engine finds Data/). Not part of ctest because
+# it needs a display; it is the acceptance gate for #42's fix.
+list(FILTER SOURCE_FILES EXCLUDE REGEX ".*/src/main\\.cpp$")
+add_executable(prefs_rebuild_selftest
+    test_prefs_rebuild_selftest.cpp
+    ${SOURCE_FILES}
+    ${CMAKE_BINARY_DIR}/dasher_resources.c
+)
+target_compile_definitions(prefs_rebuild_selftest PRIVATE DASHER_GTK_VERSION="selftest")
+target_include_directories(prefs_rebuild_selftest SYSTEM PRIVATE ${GTK_INCLUDE_DIRS} ${GTKMM_INCLUDE_DIRS})
+target_include_directories(prefs_rebuild_selftest PRIVATE
+    ${CMAKE_SOURCE_DIR}/src/ ${CMAKE_SOURCE_DIR}/DasherCore/src/ ${CMAKE_SOURCE_DIR}/Thirdparty/SDL/include/)
+add_dependencies(prefs_rebuild_selftest dasher)
+if(TARGET tts_wrapper)
+    add_dependencies(prefs_rebuild_selftest tts_wrapper)
+    target_compile_definitions(prefs_rebuild_selftest PRIVATE HAS_TTS)
+endif()
+target_link_libraries(prefs_rebuild_selftest PRIVATE dasher SDL3::SDL3 ${GTK_LIBRARIES} ${GTKMM_LIBRARIES})
+target_include_directories(prefs_rebuild_selftest PRIVATE ${CMAKE_SOURCE_DIR}/src)
+if(CURL_FOUND)
+    target_link_libraries(prefs_rebuild_selftest PRIVATE CURL::libcurl)
+    target_compile_definitions(prefs_rebuild_selftest PRIVATE HAS_ANALYTICS_CURL)
+endif()
+if(TARGET tts_wrapper)
+    target_link_libraries(prefs_rebuild_selftest PRIVATE "${TTS_WRAPPER_LIB}")
+    target_include_directories(prefs_rebuild_selftest PRIVATE "${TTS_WRAPPER_DIR}/include")
+    if(APPLE)
+        target_link_libraries(prefs_rebuild_selftest PRIVATE "-framework AVFAudio" "-framework Foundation" "-lobjc")
+    elseif(WIN32)
+        target_link_libraries(prefs_rebuild_selftest PRIVATE
+            ntdll userenv bcrypt ws2_32 advapi32 crypt32 secur32 ncrypt ole32 oleaut32)
+    else()
+        target_link_libraries(prefs_rebuild_selftest PRIVATE dl pthread)
+    endif()
+endif()
