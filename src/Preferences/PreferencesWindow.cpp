@@ -115,9 +115,19 @@ void PreferencesWindow::update_rate_readout() {
 }
 
 void PreferencesWindow::rebuild_sections() {
+    // Detach the sidebar before tearing pages out of the stack (issue #42, fix
+    // by @owenpkent in #43). GtkStackSidebar tracks the stack's pages model,
+    // and on GTK 4.14 the handler it runs during gtk_stack_remove ends up
+    // calling g_signal_handlers_disconnect_matched on a stale instance,
+    // segfaulting on the very first removal. The pages themselves are still
+    // live widgets, so taking the sidebar out of the loop is enough;
+    // re-attach once the stack is quiet again and it repopulates from the
+    // rebuilt pages.
+    m_sidebar.unset_stack();
     for (auto* w : m_dynamic_pages) {
         m_stack.remove(*w);
     }
+    m_sidebar.set_stack(m_stack);
     m_dynamic_pages.clear();
     m_rate_value = nullptr; // rebuilt below with the Output section
 

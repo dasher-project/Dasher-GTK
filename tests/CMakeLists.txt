@@ -51,12 +51,16 @@ endif()
 
 add_test(NAME dasher_unit_tests COMMAND dasher_unit_tests)
 
-# Issue #42 reproducer: rebuild_sections() use-after-free in
-# PreferencesWindow. Links the real app sources (minus main.cpp) so it
-# exercises the production widget tree; run under Xvfb in CI/Linux dev:
-#   xvfb-run ./build/tests/prefs_rebuild_selftest
-# (from the repo root so the engine finds Data/). Not part of ctest because
-# it needs a display; it is the acceptance gate for #42's fix.
+# Register the #42 selftest with ctest where a virtual display is available,
+# so a segfaulting rebuild_sections() fails local `ctest` too, not just the CI
+# workflow step. macOS/Windows have no xvfb; those platforms skip registration
+# (the workflow only runs it on Linux anyway).
+find_program(XVFB_RUN xvfb-run)
+if(XVFB_RUN)
+    add_test(NAME prefs_rebuild_selftest
+        COMMAND ${XVFB_RUN} -a $<TARGET_FILE:prefs_rebuild_selftest>
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+endif()
 list(FILTER SOURCE_FILES EXCLUDE REGEX ".*/src/main\\.cpp$")
 add_executable(prefs_rebuild_selftest
     test_prefs_rebuild_selftest.cpp
@@ -88,5 +92,12 @@ if(TARGET tts_wrapper)
             ntdll userenv bcrypt ws2_32 advapi32 crypt32 secur32 ncrypt ole32 oleaut32)
     else()
         target_link_libraries(prefs_rebuild_selftest PRIVATE dl pthread)
+        # speech-dispatcher (libspeechd) is only pulled in by the `system`
+        # TTS engine (the default feature set on Linux CI). Cloud-only builds
+        # have no speechd symbols, so linking it there just fails — mirrors
+        # the Dasher target's conditional.
+        if(TTS_WRAPPER_FEATURES MATCHES "system")
+            target_link_libraries(prefs_rebuild_selftest PRIVATE speechd)
+        endif()
     endif()
 endif()
