@@ -39,6 +39,17 @@
       "description": "Uncaught exception",
       "properties": { "stack_trace": { "type": "string", "note": "May contain file paths but not user text" } },
       "pii": false
+    },
+    "engine_error": {
+      "description": "DasherCore raised its sticky error flag (RFC 0009 A2). Non-fatal: reported once per session and the app keeps running.",
+      "properties": {
+        "exception_type": { "type": "string", "example": "DasherEngineError" },
+        "source": { "type": "string", "example": "frame_tick", "note": "Where the flag was observed" },
+        "stack_trace": { "type": "string", "note": "Fixed marker string identifying the flag, not a captured stack" },
+        "engine_log_tail": { "type": "string", "note": "Last engine log lines, PII-scrubbed" }
+      },
+      "pii": false,
+      "note": "Shares the PostHog `$exception` channel with `crash`; the two are distinguished by exception_type."
     }
   },
   "explicitly_not_collected": [
