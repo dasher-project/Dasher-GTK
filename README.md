@@ -221,11 +221,14 @@ schema is published in [`analytics-events.json`](./analytics-events.json).
   `app_version`, and `os_version`.
 - **Never collected:** the text you type, clipboard contents, canvas contents,
   your name / email / account, training text, or game-mode targets.
-- **Crash reports** capture the exception type, a stack trace, and the last
-  lines of the engine log, with home-directory paths and email addresses
-  scrubbed before anything leaves your device. A crash is written locally and
-  only transmitted (as a PostHog `$exception`) on the next launch if you have
-  opted in; otherwise it is discarded after 7 days.
+- **Crash reports** capture the exception type and the last lines of the engine
+  log, with home-directory paths and email addresses scrubbed before anything
+  leaves your device. An uncaught C++ exception also carries its message and
+  the live log tail; a native signal (SIGSEGV/SIGABRT/SIGILL) is handled in an
+  async-signal-safe path that writes a minimal record with no stack trace, and
+  recovers the log tail from the mirrored `engine.log` on the next launch. A
+  crash is written locally and only transmitted (as a PostHog `$exception`) on
+  the next launch if you have opted in; otherwise it is discarded after 7 days.
 
 Design details are in the org RFCs
 [0001 (analytics)](https://github.com/dasher-project/governance/blob/main/rfcs/0001-analytics.md)

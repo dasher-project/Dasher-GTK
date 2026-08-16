@@ -20,7 +20,8 @@
     "input_method_changed": {
       "description": "User selects input method",
       "properties": { "method": { "type": "string", "enum": ["pointer", "touch", "switch", "joystick", "eye_gaze", "tilt"] } },
-      "pii": false
+      "pii": false,
+      "note": "Not emitted by Dasher-GTK as of 0.2.2; kept here because this schema is shared across frontends."
     },
     "alphabet_selected": {
       "description": "User picks alphabet",
@@ -29,16 +30,22 @@
     },
     "settings_viewed": {
       "description": "User opens a settings tab",
-      "properties": { "tab_name": { "type": "string", "enum": ["Input", "Language", "Customization", "Speed", "Output", "Speech", "Privacy", "Appearance", "Advanced"] } },
+      "properties": { "tab_name": { "type": "string", "enum": ["Customization", "Input", "Language", "Output", "Game Mode", "Speech", "Locale", "Privacy", "About"] } },
       "pii": false
     },
     "analytics_opted_in":  { "description": "User opted into analytics", "properties": {}, "pii": false },
     "analytics_id_reset":  { "description": "User reset their anonymous analytics ID", "properties": {}, "pii": false },
     "settings_reset_defaults": { "description": "User reset every engine parameter to its built-in default", "properties": {}, "pii": false },
     "crash": {
-      "description": "Uncaught exception",
-      "properties": { "stack_trace": { "type": "string", "note": "May contain file paths but not user text" } },
-      "pii": false
+      "description": "Uncaught C++ exception or fatal signal (SIGSEGV/SIGABRT/SIGILL), reported on the launch after the crash.",
+      "properties": {
+        "exception_type": { "type": "string", "example": "Signal:SIGSEGV" },
+        "source": { "type": "string", "example": "signal_handler", "note": "Which capture hook fired: 'std::terminate' or 'signal_handler'" },
+        "stack_trace": { "type": "string", "note": "PII-scrubbed; may contain file paths but not user text. Empty for native signals, which are captured async-signal-safe." },
+        "engine_log_tail": { "type": "string", "note": "Last engine log lines, PII-scrubbed" }
+      },
+      "pii": false,
+      "note": "Dasher-GTK transmits this as a PostHog `$exception` event (Error Tracking), not a custom event named `crash`."
     },
     "engine_error": {
       "description": "DasherCore raised its sticky error flag (RFC 0009 A2). Non-fatal: reported once per session and the app keeps running.",
