@@ -35,6 +35,7 @@
     },
     "analytics_opted_in":  { "description": "User opted into analytics", "properties": {}, "pii": false },
     "analytics_id_reset":  { "description": "User reset their anonymous analytics ID", "properties": {}, "pii": false },
+    "settings_reset_defaults": { "description": "User reset every engine parameter to its built-in default", "properties": {}, "pii": false },
     "crash": {
       "description": "Uncaught C++ exception or fatal signal (SIGSEGV/SIGABRT/SIGILL), reported on the launch after the crash.",
       "properties": {
@@ -45,6 +46,17 @@
       },
       "pii": false,
       "note": "Dasher-GTK transmits this as a PostHog `$exception` event (Error Tracking), not a custom event named `crash`."
+    },
+    "engine_error": {
+      "description": "DasherCore raised its sticky error flag (RFC 0009 A2). Non-fatal: reported once per session and the app keeps running.",
+      "properties": {
+        "exception_type": { "type": "string", "example": "DasherEngineError" },
+        "source": { "type": "string", "example": "frame_tick", "note": "Where the flag was observed" },
+        "stack_trace": { "type": "string", "note": "Fixed marker string identifying the flag, not a captured stack" },
+        "engine_log_tail": { "type": "string", "note": "Last engine log lines, PII-scrubbed" }
+      },
+      "pii": false,
+      "note": "Shares the PostHog `$exception` channel with `crash`; the two are distinguished by exception_type."
     }
   },
   "explicitly_not_collected": [

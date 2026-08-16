@@ -58,6 +58,15 @@ MainWindow::MainWindow()
         m_preferences_window.set_visible(false);
         return true;
     }, false);
+    // Re-read footer widgets from the engine after "Reset engine settings to
+    // defaults" (dasher_reset_settings fires change notifications, but nothing
+    // pushes them into the synced widgets yet).
+    m_preferences_window.OnSettingsReset.connect([this]() {
+        m_alphabet_chooser.update_from_bridge();
+        m_speed_adjustment.update_from_bridge();
+        m_learning_switch.update_from_bridge();
+        m_color_chooser.update_from_bridge();
+    });
     m_pref_button.signal_clicked().connect([this]() {
         m_preferences_window.set_visible(true);
     });

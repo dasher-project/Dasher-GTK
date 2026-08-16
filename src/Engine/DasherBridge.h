@@ -86,6 +86,14 @@ public:
 
     void save_settings();
 
+    // v0.1.6+: reset every parameter to its built-in default, then persist the
+    // result. Mirrors DasherApple's reset-to-defaults (#18) and Dasher-Windows.
+    void reset_settings();
+
+    // RFC 0009 A2: sticky error flag — set once any C API call has failed;
+    // only destroy + create clears it. Frontends report it and may recreate.
+    bool has_engine_error() const;
+
     int set_locale(const std::string& locale);
     std::string get_locale() const;
 
