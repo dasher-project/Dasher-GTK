@@ -98,6 +98,29 @@ cmake --build . --config Release --parallel
 
 The binary and all runtime files are placed in `build/Dasher/`.
 
+#### Or use the launcher
+
+`run.py` does the above and launches the result, on Linux, macOS and Windows
+alike. It is a convenience wrapper, not a required part of the build:
+
+```sh
+python run.py                 # configure, build, then launch
+python run.py --build-only    # stop after the build
+python run.py --tests         # build, then run the ctest suite
+python run.py --clean         # start the build directory over
+```
+
+It checks for the system dependencies listed above and names the package to
+install when one is missing, initialises the submodules if you cloned without
+`--recursive`, falls back to `-DTTS_WRAPPER_FEATURES=cloud` when the
+speech-dispatcher headers are absent, and launches from the right working
+directory (see [Running](#running) for why that matters).
+
+If a submodule is checked out at a commit other than the one this repository
+records, the launcher says so and leaves it alone, since that is usually
+somebody testing against a different engine revision. `--sync-submodules`
+resets them to the recorded commits.
+
 ### Running
 
 Dasher must be launched from the `build/Dasher/` directory so it can find its

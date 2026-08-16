@@ -19,6 +19,12 @@ The binary and runtime data are placed in `build/Dasher/`. Launch from there:
 `./Dasher/dasher` (the binary is lowercase `dasher` on Linux, `Dasher` on
 macOS/Windows).
 
+Or `python run.py`, which does the same and launches the result. It checks the
+system dependencies below, initialises submodules if you cloned without them,
+and starts the binary from the directory it needs to run in. `--build-only`,
+`--tests` and `--clean` do what they sound like. It is a convenience wrapper:
+CMake remains the build system, and CI does not use it.
+
 See the [build guide](https://dasher.at/developers/build-guides/gtk/) for
 platform-specific dependencies (GTK4, gtkmm, pkg-config).
 
