@@ -66,6 +66,12 @@ set_property(CACHE DASHER_TTS_BACKEND PROPERTY STRINGS wrapper ssip)
 if(NOT DASHER_TTS_BACKEND MATCHES "^(wrapper|ssip)$")
 	message(FATAL_ERROR "DASHER_TTS_BACKEND must be 'wrapper' or 'ssip', got '${DASHER_TTS_BACKEND}'")
 endif()
+if(DASHER_TTS_BACKEND STREQUAL "ssip" AND WIN32)
+	# speech-dispatcher is a POSIX service; the Windows path to the same engines
+	# is a SAPI5 COM provider, which is not this. SsipTtsService.cpp compiles to
+	# nothing there, so catch the misconfiguration here rather than at link time.
+	message(FATAL_ERROR "DASHER_TTS_BACKEND=ssip is POSIX-only; use 'wrapper' on Windows")
+endif()
 message(STATUS "TTS backend: ${DASHER_TTS_BACKEND}")
 
 set(TTS_WRAPPER_DIR "${CMAKE_CURRENT_LIST_DIR}/rust-tts-wrapper")

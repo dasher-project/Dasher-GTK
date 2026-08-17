@@ -1,5 +1,9 @@
 #include "SsipTtsService.h"
 
+// See the header: POSIX only, and the whole file compiles away on Windows so
+// the globbed MSVC build does not trip over <sys/socket.h>.
+#ifndef _WIN32
+
 #include <sys/socket.h>
 #include <sys/un.h>
 #include <unistd.h>
@@ -16,13 +20,11 @@ namespace {
 // end of a reply is unambiguous without knowing the command.
 constexpr char CRLF[] = "\r\n";
 
-std::string runtime_socket_path()
-{
+std::string runtime_socket_path() {
     // speech-dispatcher 0.12 puts the per-session socket here. SPEECHD_SOCKET
     // overrides it, which is also how a Flatpak build would be pointed at a
     // socket bind-mounted into the sandbox.
-    if (const char* explicit_path = std::getenv("SPEECHD_SOCKET"))
-        return explicit_path;
+    if (const char* explicit_path = std::getenv("SPEECHD_SOCKET")) return explicit_path;
     if (const char* runtime = std::getenv("XDG_RUNTIME_DIR"))
         return std::string(runtime) + "/speech-dispatcher/speechd.sock";
     return {};
@@ -31,22 +33,19 @@ std::string runtime_socket_path()
 // A line consisting of a single '.' terminates message data, so a literal '.'
 // at the start of a line has to be doubled. Dasher emits arbitrary user text,
 // so this is not hypothetical.
-std::string escape_message(const std::string& text)
-{
+std::string escape_message(const std::string& text) {
     std::string out;
     out.reserve(text.size() + 8);
     bool at_line_start = true;
     for (char c : text) {
-        if (at_line_start && c == '.')
-            out.push_back('.');
+        if (at_line_start && c == '.') out.push_back('.');
         out.push_back(c);
         at_line_start = (c == '\n');
     }
     return out;
 }
 
-std::vector<std::string> split_tabs(const std::string& line)
-{
+std::vector<std::string> split_tabs(const std::string& line) {
     std::vector<std::string> parts;
     std::string current;
     for (char c : line) {
@@ -61,22 +60,18 @@ std::vector<std::string> split_tabs(const std::string& line)
     return parts;
 }
 
-}  // namespace
+} // namespace
 
-SsipTtsService::SsipTtsService()
-{
+SsipTtsService::SsipTtsService() {
     connect();
 }
 
-SsipTtsService::~SsipTtsService()
-{
-    if (m_fd >= 0)
-        command("QUIT");
+SsipTtsService::~SsipTtsService() {
+    if (m_fd >= 0) command("QUIT");
     disconnect();
 }
 
-bool SsipTtsService::connect()
-{
+bool SsipTtsService::connect() {
     m_socket_path = runtime_socket_path();
     if (m_socket_path.empty()) {
         m_last_error = "no XDG_RUNTIME_DIR and no SPEECHD_SOCKET";
@@ -116,16 +111,14 @@ bool SsipTtsService::connect()
     return true;
 }
 
-void SsipTtsService::disconnect()
-{
+void SsipTtsService::disconnect() {
     if (m_fd >= 0) {
         ::close(m_fd);
         m_fd = -1;
     }
 }
 
-bool SsipTtsService::write_all(const std::string& data) const
-{
+bool SsipTtsService::write_all(const std::string& data) const {
     size_t written = 0;
     while (written < data.size()) {
         const ssize_t n = ::write(m_fd, data.data() + written, data.size() - written);
@@ -138,18 +131,13 @@ bool SsipTtsService::write_all(const std::string& data) const
     return true;
 }
 
-bool SsipTtsService::command(const std::string& line, std::vector<std::string>* out,
-                             int* code) const
-{
-    if (m_fd < 0)
-        return false;
-    if (!write_all(line + CRLF))
-        return false;
+bool SsipTtsService::command(const std::string& line, std::vector<std::string>* out, int* code) const {
+    if (m_fd < 0) return false;
+    if (!write_all(line + CRLF)) return false;
     return read_reply(out, code);
 }
 
-bool SsipTtsService::read_reply(std::vector<std::string>* out, int* code) const
-{
+bool SsipTtsService::read_reply(std::vector<std::string>* out, int* code) const {
     // Read until a final line, i.e. one whose 4th character is a space rather
     // than '-'. Replies are small; a byte-at-a-time read keeps the framing
     // simple and avoids buffering state between calls.
@@ -161,8 +149,7 @@ bool SsipTtsService::read_reply(std::vector<std::string>* out, int* code) const
             m_last_error = "connection closed mid-reply";
             return false;
         }
-        if (c == '\r')
-            continue;
+        if (c == '\r') continue;
         if (c != '\n') {
             buffer.push_back(c);
             continue;
@@ -174,11 +161,9 @@ bool SsipTtsService::read_reply(std::vector<std::string>* out, int* code) const
         }
         const int this_code = std::atoi(buffer.substr(0, 3).c_str());
         const bool final_line = (buffer[3] == ' ');
-        if (!final_line && out)
-            out->push_back(buffer.substr(4));
+        if (!final_line && out) out->push_back(buffer.substr(4));
         if (final_line) {
-            if (code)
-                *code = this_code;
+            if (code) *code = this_code;
             // 2xx/1xx are success; 3xx/4xx/5xx are errors.
             return this_code < 300;
         }
@@ -186,17 +171,14 @@ bool SsipTtsService::read_reply(std::vector<std::string>* out, int* code) const
     }
 }
 
-int SsipTtsService::to_ssip_scale(float v)
-{
+int SsipTtsService::to_ssip_scale(float v) {
     // Callers pass roughly -1..1 (the wrapper's range); SSIP wants -100..100.
     const int scaled = static_cast<int>(v * 100.0f);
     return std::max(-100, std::min(100, scaled));
 }
 
-void SsipTtsService::speak(const std::string& text)
-{
-    if (m_fd < 0 || text.empty())
-        return;
+void SsipTtsService::speak(const std::string& text) {
+    if (m_fd < 0 || text.empty()) return;
 
     // Note 230, not the 202 the *module* protocol uses for the same step. The
     // client and module sides of speech-dispatcher have separate code spaces
@@ -209,77 +191,62 @@ void SsipTtsService::speak(const std::string& text)
         return;
     }
 
-    if (!write_all(escape_message(text) + CRLF + "." + CRLF))
-        return;
+    if (!write_all(escape_message(text) + CRLF + "." + CRLF)) return;
 
     // "225-<message id>" then "225 OK MESSAGE QUEUED".
     std::vector<std::string> lines;
-    if (!read_reply(&lines, &code))
-        m_last_error = "message rejected (code " + std::to_string(code) + ")";
+    if (!read_reply(&lines, &code)) m_last_error = "message rejected (code " + std::to_string(code) + ")";
 }
 
-void SsipTtsService::speak_sync(const std::string& text)
-{
+void SsipTtsService::speak_sync(const std::string& text) {
     // Dasher only ever calls speak() on the UI thread; speak_sync exists for
     // interface parity. Blocking would need the event notifications
     // (701 BEGIN / 702 END), which nothing in Dasher currently consumes.
     speak(text);
 }
 
-void SsipTtsService::stop()
-{
+void SsipTtsService::stop() {
     command("STOP self");
 }
 
-void SsipTtsService::pause()
-{
+void SsipTtsService::pause() {
     command("PAUSE self");
 }
 
-void SsipTtsService::resume()
-{
+void SsipTtsService::resume() {
     command("RESUME self");
 }
 
-void SsipTtsService::set_engine(const std::string& engine_id, const std::string& credentials)
-{
+void SsipTtsService::set_engine(const std::string& engine_id, const std::string& credentials) {
     // Credentials have no SSIP equivalent on purpose: under this model the
     // API keys live in the module's own configuration, not in every client.
     (void)credentials;
-    if (command("SET self OUTPUT_MODULE " + engine_id))
-        m_engine_id = engine_id;
+    if (command("SET self OUTPUT_MODULE " + engine_id)) m_engine_id = engine_id;
 }
 
-void SsipTtsService::set_voice(const std::string& voice_id)
-{
+void SsipTtsService::set_voice(const std::string& voice_id) {
     command("SET self SYNTHESIS_VOICE " + voice_id);
 }
 
-void SsipTtsService::set_rate(float rate)
-{
+void SsipTtsService::set_rate(float rate) {
     command("SET self RATE " + std::to_string(to_ssip_scale(rate)));
 }
 
-void SsipTtsService::set_pitch(float pitch)
-{
+void SsipTtsService::set_pitch(float pitch) {
     command("SET self PITCH " + std::to_string(to_ssip_scale(pitch)));
 }
 
-void SsipTtsService::set_volume(float volume)
-{
+void SsipTtsService::set_volume(float volume) {
     command("SET self VOLUME " + std::to_string(to_ssip_scale(volume)));
 }
 
-std::vector<TtsEngineInfo> SsipTtsService::get_engines() const
-{
+std::vector<TtsEngineInfo> SsipTtsService::get_engines() const {
     std::vector<TtsEngineInfo> engines;
     std::vector<std::string> lines;
-    if (!command("LIST OUTPUT_MODULES", &lines))
-        return engines;
+    if (!command("LIST OUTPUT_MODULES", &lines)) return engines;
 
     for (const auto& line : lines) {
-        if (line.empty())
-            continue;
+        if (line.empty()) continue;
         TtsEngineInfo info;
         info.id = line;
         info.name = line;
@@ -292,16 +259,13 @@ std::vector<TtsEngineInfo> SsipTtsService::get_engines() const
     return engines;
 }
 
-std::vector<TtsVoiceInfo> SsipTtsService::get_voices() const
-{
+std::vector<TtsVoiceInfo> SsipTtsService::get_voices() const {
     std::vector<TtsVoiceInfo> voices;
     std::vector<std::string> lines;
-    if (!command("LIST SYNTHESIS_VOICES", &lines))
-        return voices;
+    if (!command("LIST SYNTHESIS_VOICES", &lines)) return voices;
 
     for (const auto& line : lines) {
-        if (line.empty())
-            continue;
+        if (line.empty()) continue;
         // NAME<TAB>LANGUAGE<TAB>VARIANT
         const auto parts = split_tabs(line);
         TtsVoiceInfo info;
@@ -315,3 +279,5 @@ std::vector<TtsVoiceInfo> SsipTtsService::get_voices() const
     }
     return voices;
 }
+
+#endif // !_WIN32

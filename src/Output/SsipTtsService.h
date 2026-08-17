@@ -8,13 +8,19 @@
 // Every call TtsService makes into the wrapper maps onto one SSIP command,
 // which is the whole point of the experiment.
 
+// POSIX only. speech-dispatcher's client socket has no Windows equivalent, and
+// the Windows route to the same engines is VoiceGarden-SAPI, which is a SAPI5
+// COM provider rather than anything SSIP-shaped. The sources are globbed into
+// every platform's build, so this guard is what keeps the MSVC legs green.
+#ifndef _WIN32
+
 #include <string>
 #include <vector>
 
-#include "TtsService.h"  // TtsVoiceInfo, TtsEngineInfo
+#include "TtsService.h" // TtsVoiceInfo, TtsEngineInfo
 
 class SsipTtsService {
-public:
+  public:
     SsipTtsService();
     ~SsipTtsService();
 
@@ -46,13 +52,12 @@ public:
     const std::string& last_error() const { return m_last_error; }
     const std::string& socket_path() const { return m_socket_path; }
 
-private:
+  private:
     // One SSIP request/response. Returns the reply's continuation lines with
     // their "NNN-" prefixes stripped; the final "NNN " line is consumed and
     // its code returned in `code`. Not reentrant, which is fine: everything
     // here runs on the GTK main thread.
-    bool command(const std::string& line, std::vector<std::string>* out = nullptr,
-                 int* code = nullptr) const;
+    bool command(const std::string& line, std::vector<std::string>* out = nullptr, int* code = nullptr) const;
 
     // Consume one complete reply. Split out from command() because SPEAK is
     // two exchanges - the command, then the message data - and both ends have
@@ -72,3 +77,5 @@ private:
     std::string m_engine_id;
     mutable std::string m_last_error;
 };
+
+#endif // !_WIN32
