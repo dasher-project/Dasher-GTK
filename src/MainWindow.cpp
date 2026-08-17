@@ -176,7 +176,7 @@ MainWindow::MainWindow()
     m_learning_switch.set_valign(Gtk::Align::CENTER);
 
     m_direct_mode = std::make_unique<DirectModeService>();
-    m_tts = std::make_unique<TtsService>();
+    m_tts = std::make_unique<TtsBackend>();
     m_speech_switch.set_sensitive(m_tts->is_available());
     // Keyboard mode stays clickable even without ydotool: clicking it opens the
     // setup helper (issue #38) rather than being a dead greyed-out button.

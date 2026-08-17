@@ -57,11 +57,25 @@ add_subdirectory("Thirdparty/SDL" EXCLUDE_FROM_ALL)
 # rust-tts-wrapper
 ###############################
 
+# Which TTS implementation the UI talks to. See src/Output/TtsBackend.h.
+#   wrapper  link rust-tts-wrapper through its C FFI (needs a Rust toolchain)
+#   ssip     talk SSIP to speech-dispatcher (no Rust, no FFI, no cargo step)
+# The ssip value is the spike for issue #47.
+set(DASHER_TTS_BACKEND "wrapper" CACHE STRING "TTS backend: wrapper or ssip")
+set_property(CACHE DASHER_TTS_BACKEND PROPERTY STRINGS wrapper ssip)
+if(NOT DASHER_TTS_BACKEND MATCHES "^(wrapper|ssip)$")
+	message(FATAL_ERROR "DASHER_TTS_BACKEND must be 'wrapper' or 'ssip', got '${DASHER_TTS_BACKEND}'")
+endif()
+message(STATUS "TTS backend: ${DASHER_TTS_BACKEND}")
+
 set(TTS_WRAPPER_DIR "${CMAKE_CURRENT_LIST_DIR}/rust-tts-wrapper")
 set(TTS_WRAPPER_BUILD_DIR "${CMAKE_BINARY_DIR}/rust-tts-wrapper")
 set(TTS_WRAPPER_VERSION "0.1.0" CACHE STRING "rust-tts-wrapper version to download")
 
-if(EXISTS "${TTS_WRAPPER_DIR}/Cargo.toml")
+# The whole cargo path is skipped for the ssip backend: that is the point of it.
+if(DASHER_TTS_BACKEND STREQUAL "ssip")
+	message(STATUS "Skipping rust-tts-wrapper: the ssip backend needs no Rust toolchain")
+elseif(EXISTS "${TTS_WRAPPER_DIR}/Cargo.toml")
 	# cargo names the staticlib per target: MSVC produces rust_tts_wrapper.lib,
 	# GNU/Unix toolchains produce librust_tts_wrapper.a.
 	if(WIN32)
@@ -169,6 +183,11 @@ add_dependencies(Dasher dasher)
 if(TARGET tts_wrapper)
 	add_dependencies(Dasher tts_wrapper)
 	target_compile_definitions(Dasher PRIVATE HAS_TTS)
+endif()
+if(DASHER_TTS_BACKEND STREQUAL "ssip")
+	# No link dependency to add: SsipTtsService speaks the protocol over a unix
+	# socket, so the only thing the build needs is the define that swaps it in.
+	target_compile_definitions(Dasher PRIVATE DASHER_TTS_SSIP)
 endif()
 target_link_libraries(Dasher PRIVATE dasher SDL3::SDL3 ${GTK_LIBRARIES} ${GTKMM_LIBRARIES})
 if(CURL_FOUND)
