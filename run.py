@@ -55,8 +55,9 @@ IS_MACOS = sys.platform == "darwin"
 # Submodules the build cannot proceed without.
 SUBMODULES = ("DasherCore", "Thirdparty/SDL", "rust-tts-wrapper")
 
-# The executable is lowercase on Linux, capitalised elsewhere.
-BINARY_NAME = "dasher" if IS_LINUX else "Dasher"
+# The OUTPUT_NAME rewrite to lowercase is UNIX AND NOT APPLE only, so macOS
+# keeps the target's capitalised name and Windows adds the .exe suffix.
+BINARY_NAME = "dasher" if IS_LINUX else ("Dasher.exe" if IS_WINDOWS else "Dasher")
 
 
 def check_python_version():
@@ -212,7 +213,10 @@ def check_system_deps():
                 "  NOTE: speech-dispatcher headers not found.\n"
                 "  Building cloud-only TTS (-DTTS_WRAPPER_FEATURES=cloud).\n"
                 "  For system speech, install:\n"
-                "    sudo apt install libspeechd-dev libclang-dev"
+                "    sudo apt install libspeechd-dev libclang-dev\n"
+                "  and then re-run with --clean. The feature set is decided at\n"
+                "  configure time and cached, so installing it alongside an\n"
+                "  existing build directory leaves that build cloud-only."
             )
     elif IS_MACOS:
         if not _have_pkg("gtkmm-4.0"):
@@ -244,16 +248,48 @@ def wants_cloud_only_tts():
 
 
 def _cache_vars(cache):
-    """Pull the two INTERNAL paths CMake stamps into a cache file."""
+    """Pull the entries CMake stamps into a cache file that we care about."""
     out = {}
     try:
         for line in cache.read_text(errors="replace").splitlines():
-            for key in ("CMAKE_HOME_DIRECTORY", "CMAKE_CACHEFILE_DIR"):
+            for key in ("CMAKE_HOME_DIRECTORY", "CMAKE_CACHEFILE_DIR",
+                        "CMAKE_CONFIGURATION_TYPES"):
                 if line.startswith(key + ":"):
                     out[key] = line.split("=", 1)[1].strip()
     except OSError:
         pass
     return out
+
+
+def is_multi_config(build_dir):
+    """
+    True for a generator that picks the configuration at build time.
+
+    Visual Studio, the default generator on Windows, is one: it ignores
+    CMAKE_BUILD_TYPE at configure time, needs --config on the build line
+    (without it you silently get Debug), and writes the binary into a
+    per-configuration subdirectory. Ninja and Unix Makefiles do none of
+    that. Only the multi-config generators list CMAKE_CONFIGURATION_TYPES
+    in the cache, which makes it the cheap way to tell them apart.
+    """
+    types = _cache_vars(build_dir / "CMakeCache.txt").get("CMAKE_CONFIGURATION_TYPES")
+    return bool(types)
+
+
+def binary_path(build_dir, build_type):
+    """
+    Where the built executable lands.
+
+    CMAKE_RUNTIME_OUTPUT_DIRECTORY is build/Dasher, but a multi-config
+    generator appends the configuration to it, so on Windows the binary is
+    build/Dasher/Release/Dasher.exe. The Data/ POST_BUILD copy is not
+    per-configuration and always lands in build/Dasher, which is why the
+    launch directory and the binary's directory are not the same there.
+    """
+    rundir = build_dir / "Dasher"
+    if is_multi_config(build_dir):
+        return rundir / build_type / BINARY_NAME
+    return rundir / BINARY_NAME
 
 
 def check_cache_matches(build_dir):
@@ -325,10 +361,14 @@ def cmake_configure(build_dir, build_type):
     return True
 
 
-def cmake_build(build_dir, jobs):
+def cmake_build(build_dir, jobs, build_type):
     """Build the default target."""
     print(f"Building with {jobs} job(s)...")
     cmd = ["cmake", "--build", str(build_dir), "-j", str(jobs)]
+    if is_multi_config(build_dir):
+        # A multi-config generator took no build type at configure time, and
+        # defaults to Debug here if we don't say. Match what was asked for.
+        cmd += ["--config", build_type]
     if subprocess.run(cmd, cwd=str(SCRIPT_DIR)).returncode != 0:
         print("ERROR: build failed")
         return False
@@ -336,13 +376,15 @@ def cmake_build(build_dir, jobs):
     return True
 
 
-def run_tests(build_dir):
+def run_tests(build_dir, build_type):
     """Run the ctest suite."""
     cmd = ["ctest", "--test-dir", str(build_dir), "--output-on-failure"]
+    if is_multi_config(build_dir):
+        cmd += ["-C", build_type]
     return subprocess.run(cmd, cwd=str(SCRIPT_DIR)).returncode
 
 
-def run_dasher(build_dir, extra_args):
+def run_dasher(build_dir, build_type, extra_args):
     """
     Launch Dasher from inside build/Dasher.
 
@@ -353,7 +395,7 @@ def run_dasher(build_dir, extra_args):
     model found no training data.
     """
     rundir = build_dir / "Dasher"
-    binary = rundir / BINARY_NAME
+    binary = binary_path(build_dir, build_type)
     if not binary.exists():
         print(f"ERROR: {binary} not found. Try: python run.py --build-only")
         return 1
@@ -398,6 +440,16 @@ def main():
         platform_name = "macOS"
     else:
         platform_name = sys.platform
+    # Our print()s go through Python's buffer while cmake and the compiler
+    # write straight to the same fd. When stdout is a pipe rather than a
+    # terminal that buffer only flushes at exit, so in a captured log the
+    # banner and the NOTEs land after the build output they introduce, which
+    # is precisely the log somebody pastes when asking for help.
+    try:
+        sys.stdout.reconfigure(line_buffering=True)
+    except (AttributeError, OSError):
+        pass
+
     print("=" * 50)
     print(f"  Dasher-GTK - Predictive Text Entry for {platform_name}")
     print("=" * 50)
@@ -433,14 +485,14 @@ def main():
         return 1
     if not cmake_configure(build_dir, args.build_type):
         return 1
-    if not cmake_build(build_dir, args.jobs):
+    if not cmake_build(build_dir, args.jobs, args.build_type):
         return 1
 
     if args.tests:
-        return run_tests(build_dir)
+        return run_tests(build_dir, args.build_type)
 
     if args.build_only:
-        print(f"Binary: {build_dir / 'Dasher' / BINARY_NAME}")
+        print(f"Binary: {binary_path(build_dir, args.build_type)}")
         return 0
 
     # argparse.REMAINDER keeps the "--" separator; drop it before forwarding.
@@ -450,7 +502,7 @@ def main():
     print()
 
     try:
-        return run_dasher(build_dir, extra)
+        return run_dasher(build_dir, args.build_type, extra)
     except KeyboardInterrupt:
         print("\nDasher closed.")
         return 0
