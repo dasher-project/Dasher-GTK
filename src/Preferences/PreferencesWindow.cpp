@@ -69,6 +69,7 @@ PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge, Dwell
     m_sidebar.set_stack(m_stack);
 
     rebuild_sections();
+    add_speech_section();
     add_locale_section();
     add_privacy_section();
 
@@ -114,9 +115,19 @@ void PreferencesWindow::update_rate_readout() {
 }
 
 void PreferencesWindow::rebuild_sections() {
+    // Detach the sidebar before tearing pages out of the stack (issue #42, fix
+    // by @owenpkent in #43). GtkStackSidebar tracks the stack's pages model,
+    // and on GTK 4.14 the handler it runs during gtk_stack_remove ends up
+    // calling g_signal_handlers_disconnect_matched on a stale instance,
+    // segfaulting on the very first removal. The pages themselves are still
+    // live widgets, so taking the sidebar out of the loop is enough;
+    // re-attach once the stack is quiet again and it repopulates from the
+    // rebuilt pages.
+    m_sidebar.unset_stack();
     for (auto* w : m_dynamic_pages) {
         m_stack.remove(*w);
     }
+    m_sidebar.set_stack(m_stack);
     m_dynamic_pages.clear();
     m_rate_value = nullptr; // rebuilt below with the Output section
 
@@ -202,7 +213,16 @@ void PreferencesWindow::rebuild_sections() {
         m_stack.add(*scrolled, g.id, g.label);
         m_dynamic_pages.push_back(scrolled);
     }
+}
 
+// Speech / TTS page. Built ONCE in the constructor and deliberately NOT part
+// of m_dynamic_pages: its content is locale-independent, and tearing it down
+// mid-rebuild is the use-after-free family behind issue #42 (the engine
+// dropdown's notify::selected can fire during dispose, when sibling widgets
+// captured by rebuild_creds — creds_box first in child order — are already
+// freed; cf. 0f0f793). Keeping it alive also avoids re-instantiating
+// TtsService on every locale change.
+void PreferencesWindow::add_speech_section() {
     auto* scrolled_speech = Gtk::make_managed<Gtk::ScrolledWindow>();
     auto* speech_box = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::VERTICAL, 8);
     speech_box->set_margin(12);
@@ -360,7 +380,7 @@ void PreferencesWindow::rebuild_sections() {
 
     scrolled_speech->set_child(*speech_box);
     m_stack.add(*scrolled_speech, "speech", "Speech");
-    m_dynamic_pages.push_back(scrolled_speech);
+    // Intentionally NOT pushed to m_dynamic_pages — see the note above.
 }
 
 void PreferencesWindow::add_locale_section() {
@@ -447,6 +467,35 @@ void PreferencesWindow::add_privacy_section() {
         m_analytics.reset_anonymous_id();
         analytics::AnalyticsClient::instance().init(m_analytics);
         analytics::AnalyticsClient::instance().capture("analytics_id_reset");
+    });
+
+    // Reset every ENGINE parameter to its built-in default (dasher_reset_settings,
+    // DasherCore v0.1.6+; mirrors DasherApple #18 / Dasher-Windows). Scoped name:
+    // this does not touch GTK-side state (analytics opt-in/ID, dwell-to-click,
+    // canvas font). Irreversible + persists immediately, so confirm first —
+    // dwell-to-click makes accidental activation a real risk for our users
+    // (review feedback on #41).
+    auto* settings_reset_btn = Gtk::make_managed<Gtk::Button>("Reset engine settings to defaults");
+    settings_reset_btn->set_halign(Gtk::Align::START);
+    box->append(*settings_reset_btn);
+
+    settings_reset_btn->signal_clicked().connect([this]() {
+        auto dialog = Gtk::AlertDialog::create("Reset all engine settings to their built-in defaults?");
+        dialog->set_detail("Speed, alphabet, language model, colours and input options return to "
+                           "their defaults. This takes effect immediately and cannot be undone. "
+                           "Your analytics choice and accessibility options on this screen are "
+                           "not affected.");
+        dialog->set_buttons({"_Cancel", "_Reset"});
+        dialog->set_default_button(0);
+        dialog->set_cancel_button(0);
+        dialog->choose(*this, [this, dialog](const Glib::RefPtr<Gio::AsyncResult>& result) {
+            // Index into set_buttons; -1 (dismissed) also means cancel.
+            if (dialog->choose_finish(result) != 1) return;
+            m_bridge->reset_settings();
+            rebuild_sections();
+            OnSettingsReset.emit();
+            analytics::AnalyticsClient::instance().capture("settings_reset_defaults");
+        });
     });
 
     scrolled->set_child(*box);

@@ -81,7 +81,11 @@ std::string DasherBridge::get_output_text() const {
 }
 
 void DasherBridge::reset_output_text() {
-    if (m_ctx) dasher_reset_output_text(m_ctx);
+    if (!m_ctx) return;
+    dasher_reset_output_text(m_ctx);
+    // Also clear the rolling CPS/WPM window so typing-rate stats don't briefly
+    // show stale values after a reset (RFC 0012; mirrors Dasher-Windows #19).
+    reset_cps();
 }
 
 std::string DasherBridge::get_alphabet_id() const {
@@ -252,6 +256,18 @@ void DasherBridge::set_palette(const std::string& name) {
 
 void DasherBridge::save_settings() {
     if (m_ctx) dasher_save_settings(m_ctx);
+}
+
+void DasherBridge::reset_settings() {
+    if (!m_ctx) return;
+    // Reset fires parameter-change notifications so a live engine reconfigures
+    // itself; persist the defaults so they survive the next launch.
+    dasher_reset_settings(m_ctx);
+    dasher_save_settings(m_ctx);
+}
+
+bool DasherBridge::has_engine_error() const {
+    return m_ctx && dasher_has_engine_error(m_ctx) != 0;
 }
 
 int DasherBridge::set_locale(const std::string& locale) {

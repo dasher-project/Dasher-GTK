@@ -39,5 +39,8 @@ private:
 
     std::string m_output_buffer;
 
+    // RFC 0009 A2: report the engine's sticky error flag once per session.
+    bool m_engine_error_reported = false;
+
     void draw_dwell_indicator(const Cairo::RefPtr<Cairo::Context>& cr);
 };
