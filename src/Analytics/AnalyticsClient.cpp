@@ -36,7 +36,7 @@ std::once_flag g_curl_once;
 
 std::string os_version() {
 #if defined(__unix__) || defined(__APPLE__)
-    struct utsname u{};
+    struct utsname u {};
     if (uname(&u) == 0) return std::string(u.sysname) + " " + u.release;
 #endif
     return "unknown";
