@@ -23,7 +23,15 @@ namespace analytics {
 class AnalyticsClient {
   public:
     // GTK-specific default properties (RFC 0001 / analytics-events.json).
+    // The GTK frontend is multiplatform (Linux is primary, but Windows and macOS
+    // builds ship too) — report the host OS, don't assume Linux.
+#if defined(_WIN32)
+    static constexpr char kPlatform[] = "windows";
+#elif defined(__APPLE__)
+    static constexpr char kPlatform[] = "macos";
+#else
     static constexpr char kPlatform[] = "linux";
+#endif
     static constexpr char kAppVariant[] = "dasher-gtk";
     static constexpr char kPostHogHost[] = "https://eu.i.posthog.com";
     // Public PostHog project token, shared across all Dasher frontends. A phc_

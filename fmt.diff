@@ -1,0 +1,17 @@
+diff --git a/tests/test_analytics_client.cpp b/tests/test_analytics_client.cpp
+index 8ad70b7..c1f8c2d 100644
+--- a/tests/test_analytics_client.cpp
++++ b/tests/test_analytics_client.cpp
+@@ -42,8 +42,8 @@ TEST_CASE("$-prefixed boolean flags serialise as JSON booleans, everything else
+     std::map<std::string, std::string> props = {
+         {"$geoip_disable", "true"}, {"$os", "Linux"}, {"note", "true"}, {"$custom", "false"}};
+     std::string body = AnalyticsClient::build_capture_body("app_launched", props, "id", "tok", "ts");
+-    CHECK(body.find("\"$geoip_disable\":true") != std::string::npos);  // boolean, unquoted
+-    CHECK(body.find("\"$custom\":false") != std::string::npos);        // boolean, unquoted
+-    CHECK(body.find("\"$os\":\"Linux\"") != std::string::npos);        // $-key, non-bool value: string
+-    CHECK(body.find("\"note\":\"true\"") != std::string::npos);        // user data never becomes a boolean
++    CHECK(body.find("\"$geoip_disable\":true") != std::string::npos); // boolean, unquoted
++    CHECK(body.find("\"$custom\":false") != std::string::npos);       // boolean, unquoted
++    CHECK(body.find("\"$os\":\"Linux\"") != std::string::npos);       // $-key, non-bool value: string
++    CHECK(body.find("\"note\":\"true\"") != std::string::npos);       // user data never becomes a boolean
+ }

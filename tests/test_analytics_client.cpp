@@ -37,3 +37,13 @@ TEST_CASE("build_capture_body escapes special characters in property values") {
     CHECK(body.find("\\n") != std::string::npos);          // it was escaped
     CHECK(body.find("\\\"boom\\\"") != std::string::npos); // quotes escaped
 }
+
+TEST_CASE("$-prefixed boolean flags serialise as JSON booleans, everything else stays a string") {
+    std::map<std::string, std::string> props = {
+        {"$geoip_disable", "true"}, {"$os", "Linux"}, {"note", "true"}, {"$custom", "false"}};
+    std::string body = AnalyticsClient::build_capture_body("app_launched", props, "id", "tok", "ts");
+    CHECK(body.find("\"$geoip_disable\":true") != std::string::npos);  // boolean, unquoted
+    CHECK(body.find("\"$custom\":false") != std::string::npos);        // boolean, unquoted
+    CHECK(body.find("\"$os\":\"Linux\"") != std::string::npos);        // $-key, non-bool value: string
+    CHECK(body.find("\"note\":\"true\"") != std::string::npos);        // user data never becomes a boolean
+}
