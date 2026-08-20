@@ -42,6 +42,19 @@ std::string os_version() {
     return "unknown";
 }
 
+// Coarse OS name matching the $os values the official PostHog SDKs send, so OS
+// breakdowns treat this frontend like the SDK-backed ones. This raw-HTTP
+// transport sends no SDK context of its own.
+std::string os_name() {
+#if defined(_WIN32)
+    return "Windows";
+#elif defined(__APPLE__)
+    return "macOS";
+#else
+    return "Linux";
+#endif
+}
+
 std::string iso8601_now() {
     GDateTime* dt = g_date_time_new_now_utc();
     char* s = dt ? g_date_time_format_iso8601(dt) : nullptr;
@@ -96,6 +109,12 @@ std::map<std::string, std::string> AnalyticsClient::default_properties() const {
         {"app_variant", kAppVariant},
         {"app_version", DASHER_GTK_VERSION},
         {"os_version", os_version()},
+        {"$os", os_name()},
+        // RFC 0001 promises no location data. PostHog Cloud derives $geoip_* (city,
+        // postal code, lat/lon) from the client IP even with project IP
+        // anonymisation on — this per-event flag is the only Cloud-level control.
+        // Emitted as a JSON boolean by build_capture_body.
+        {"$geoip_disable", "true"},
     };
 }
 
@@ -175,7 +194,15 @@ std::string AnalyticsClient::build_capture_body(const std::string& event,
     bool first = true;
     for (const auto& kv : properties) {
         if (!first) body += ",";
-        body += "\"" + json_escape(kv.first) + "\":\"" + json_escape(kv.second) + "\"";
+        // PostHog control flags must be JSON booleans, not strings. Restricted
+        // to a known set of boolean control properties: a broad $-prefix check
+        // would retype textual fields such as $exception_type or
+        // $exception_message whose value happens to be exactly "true"/"false",
+        // so all other properties (user data included) stay strings.
+        const bool boolean_flag = kv.first == "$geoip_disable";
+        const bool as_bool = boolean_flag && (kv.second == "true" || kv.second == "false");
+        body += "\"" + json_escape(kv.first) + "\":";
+        body += as_bool ? kv.second : "\"" + json_escape(kv.second) + "\"";
         first = false;
     }
     body += "}}";

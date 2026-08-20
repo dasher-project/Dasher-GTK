@@ -1,14 +1,16 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Dasher Analytics Event Schema v1",
-  "description": "Published openly at https://github.com/dasher-project/Dasher-Windows. If it's not in this schema, it's not collected. All Dasher frontends (Windows, Apple, GTK) share the same PostHog project — events are distinguished by the default properties below.",
+  "description": "Published openly at https://github.com/dasher-project/Dasher-GTK. If it's not in this schema, it's not collected. All Dasher frontends (Windows, Apple, GTK) share the same PostHog project — events are distinguished by the default properties below.",
   "default_properties": {
     "description": "Automatically appended to every event from every frontend",
     "properties": {
-      "platform": { "type": "string", "examples": ["windows", "macos", "ios", "visionos", "linux"] },
+      "platform": { "type": "string", "examples": ["windows", "macos", "ios", "visionos", "linux"], "description": "GTK is multiplatform: host OS at compile time (linux on Linux builds, macos on macOS, windows on Windows)." },
       "app_variant": { "type": "string", "examples": ["dasher-windows", "dasher-mac", "dasher-ios", "dasher-gtk"] },
       "app_version": { "type": "string", "example": "0.1.0-preview9" },
-      "os_version": { "type": "string", "example": "Microsoft Windows 10.0.19045" }
+      "os_version": { "type": "string", "example": "Microsoft Windows 10.0.19045" },
+      "$os": { "type": "string", "examples": ["Linux", "Windows", "macOS"], "description": "The raw HTTP transport sends no SDK context, so $os is set explicitly — keeps OS breakdowns consistent with the Apple/Android SDKs." },
+      "$geoip_disable": { "type": "boolean", "const": true, "description": "Sent on every event (including crashes): PostHog Cloud must not derive location from the client IP (RFC 0001: no location data)." }
     }
   },
   "events": {
