@@ -36,7 +36,7 @@ std::once_flag g_curl_once;
 
 std::string os_version() {
 #if defined(__unix__) || defined(__APPLE__)
-    struct utsname u {};
+    struct utsname u{};
     if (uname(&u) == 0) return std::string(u.sysname) + " " + u.release;
 #endif
     return "unknown";
@@ -194,10 +194,13 @@ std::string AnalyticsClient::build_capture_body(const std::string& event,
     bool first = true;
     for (const auto& kv : properties) {
         if (!first) body += ",";
-        // PostHog control flags ($-prefixed, e.g. $geoip_disable) must be JSON
-        // booleans, not strings. Only exact "true"/"false" values on $-prefixed
-        // keys get this treatment so event data always round-trips as a string.
-        const bool as_bool = !kv.first.empty() && kv.first[0] == '$' && (kv.second == "true" || kv.second == "false");
+        // PostHog control flags must be JSON booleans, not strings. Restricted
+        // to a known set of boolean control properties: a broad $-prefix check
+        // would retype textual fields such as $exception_type or
+        // $exception_message whose value happens to be exactly "true"/"false",
+        // so all other properties (user data included) stay strings.
+        const bool boolean_flag = kv.first == "$geoip_disable";
+        const bool as_bool = boolean_flag && (kv.second == "true" || kv.second == "false");
         body += "\"" + json_escape(kv.first) + "\":";
         body += as_bool ? kv.second : "\"" + json_escape(kv.second) + "\"";
         first = false;

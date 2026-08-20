@@ -38,12 +38,20 @@ TEST_CASE("build_capture_body escapes special characters in property values") {
     CHECK(body.find("\\\"boom\\\"") != std::string::npos); // quotes escaped
 }
 
-TEST_CASE("$-prefixed boolean flags serialise as JSON booleans, everything else stays a string") {
-    std::map<std::string, std::string> props = {
-        {"$geoip_disable", "true"}, {"$os", "Linux"}, {"note", "true"}, {"$custom", "false"}};
+TEST_CASE("known boolean control flags serialise as JSON booleans, everything else stays a string") {
+    std::map<std::string, std::string> props = {{"$geoip_disable", "true"},
+                                                {"$os", "Linux"},
+                                                {"note", "true"},
+                                                {"$custom", "false"},
+                                                // textual $-prefixed fields whose value happens to look
+                                                // boolean must never be retyped (PostHog Error Tracking)
+                                                {"$exception_type", "true"},
+                                                {"$exception_message", "false"}};
     std::string body = AnalyticsClient::build_capture_body("app_launched", props, "id", "tok", "ts");
-    CHECK(body.find("\"$geoip_disable\":true") != std::string::npos);  // boolean, unquoted
-    CHECK(body.find("\"$custom\":false") != std::string::npos);        // boolean, unquoted
-    CHECK(body.find("\"$os\":\"Linux\"") != std::string::npos);        // $-key, non-bool value: string
-    CHECK(body.find("\"note\":\"true\"") != std::string::npos);        // user data never becomes a boolean
+    CHECK(body.find("\"$geoip_disable\":true") != std::string::npos);          // boolean, unquoted
+    CHECK(body.find("\"$os\":\"Linux\"") != std::string::npos);                // $-key, non-bool value: string
+    CHECK(body.find("\"note\":\"true\"") != std::string::npos);                // user data never becomes a boolean
+    CHECK(body.find("\"$custom\":\"false\"") != std::string::npos);            // unknown $-flag stays a string
+    CHECK(body.find("\"$exception_type\":\"true\"") != std::string::npos);     // textual field, not retyped
+    CHECK(body.find("\"$exception_message\":\"false\"") != std::string::npos); // textual field, not retyped
 }
