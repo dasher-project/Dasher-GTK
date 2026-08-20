@@ -12,12 +12,27 @@ git clone --recurse-submodules https://github.com/dasher-project/Dasher-GTK.git
 cd Dasher-GTK
 mkdir build && cd build
 cmake ..
-make -j$(nproc)
+cmake --build . --config Release --parallel
 ```
 
-The binary and runtime data are placed in `build/Dasher/`. Launch from there:
-`./Dasher/dasher` (the binary is lowercase `dasher` on Linux, `Dasher` on
-macOS/Windows).
+The runtime data is placed in `build/Dasher/`, and the working directory has to
+be that same directory when you start the app, or the engine resolves `Data/`
+against the wrong place and every letter box comes up the same size:
+
+```bash
+cd Dasher          # i.e. build/Dasher, not build/
+./dasher           # './Dasher' on macOS; '.\Release\Dasher.exe' on Windows
+```
+
+The binary is lowercase `dasher` on Linux, `Dasher` on macOS, and
+`Release\Dasher.exe` on Windows, where the Visual Studio generator adds a
+per-configuration subdirectory that the data files do not get.
+
+Or `python run.py`, which does the same and launches the result. It checks the
+system dependencies below, initialises submodules if you cloned without them,
+and starts the binary from the directory it needs to run in. `--build-only`,
+`--tests` and `--clean` do what they sound like. It is a convenience wrapper:
+CMake remains the build system, and CI does not use it.
 
 See the [build guide](https://dasher.at/developers/build-guides/gtk/) for
 platform-specific dependencies (GTK4, gtkmm, pkg-config).
