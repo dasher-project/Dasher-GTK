@@ -54,12 +54,30 @@ platform-specific dependencies (GTK4, gtkmm, pkg-config).
 | `Thirdparty/SDL/`  | **Submodule** — SDL3 (joystick/haptic input only)             |
 | `rust-tts-wrapper/` | **Submodule** — cross-platform TTS with C ABI                |
 | `Resources/`       | UI style, licenses                                             |
+| `InputFilterHierarchy.txt` | Reference notes: DasherCore's `CInputFilter` class tree and the parameters each filter reads |
 
 ## Code style
 
-- **clang-format** (`.clang-format`) — run `clang-format -i src/**/*.cpp src/**/*.h`
-  before committing. The config mirrors DasherCore's conventions (4-space indent,
-  120-column limit, LLVM base style).
+- **clang-format** (`.clang-format`) — CI checks only the lines your branch
+  touches, across both `src` and `tests`, so format the same scope before
+  pushing:
+
+  ```bash
+  git clang-format origin/main -- src tests
+  ```
+
+  The base is upstream's `main`, which is what CI compares against. The Quick
+  start clone above makes `origin` upstream; if you cloned your fork instead,
+  add the upstream remote once (`git remote add upstream
+  https://github.com/dasher-project/Dasher-GTK.git`), `git fetch upstream`, and
+  use `upstream/main` both here and in the Definition of Done.
+
+  Use `git clang-format`, not plain `clang-format -i` over a glob: the glob form
+  reformats whole files, which buries your change in unrelated churn, and
+  `src/**/*.cpp` only recurses when the shell has `globstar` enabled (bash leaves
+  it off by default, so it silently skips `src/main.cpp` and `src/MainWindow.*`).
+  The config mirrors DasherCore's conventions (4-space indent, 120-column limit,
+  LLVM base style).
 - **clang-tidy** (`.clang-tidy`) — bug-finding checks (bugprone-\*, cert-\*,
   clang-analyzer-\*, performance-\*). Run via
   `clang-tidy -p build/ src/your_file.cpp`.
@@ -132,7 +150,8 @@ green.
 
 ## Definition of Done
 
-- [ ] clang-format clean (`clang-format --dry-run -Werror src/**/*.cpp src/**/*.h`)
+- [ ] clang-format clean on the lines you touched
+      (`git clang-format --diff upstream/main -- src tests` reports nothing to change)
 - [ ] Builds on Linux (and ideally macOS/Windows)
 - [ ] No new clang-tidy warnings
 - [ ] Commits are signed off (DCO) — `git commit -s`

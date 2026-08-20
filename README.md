@@ -115,6 +115,10 @@ python run.py --tests         # build, then run the ctest suite
 python run.py --clean         # start the build directory over
 ```
 
+`--build-dir` (default `build`), `--build-type` (default `Release`) and `-j/--jobs`
+change where and how it builds; anything after a `--` separator is forwarded to
+Dasher itself.
+
 It checks for the system dependencies listed above and names the package to
 install when one is missing, initialises the submodules if you cloned without
 `--recursive`, falls back to `-DTTS_WRAPPER_FEATURES=cloud` when the
@@ -191,8 +195,9 @@ after building:
 
 ```
 build/Dasher/
-├── Dasher              # executable
-├── libdasher.dylib     # macOS (libdasher.so on Linux, dasher.dll on Windows)
+├── dasher              # executable (lowercase on Linux; `Dasher` on macOS)
+├── libdasher.so        # Linux (libdasher.dylib on macOS, dasher.dll on Windows)
+├── librust_tts_wrapper.so  # TTS wrapper, unless built without it
 ├── UIStyle.css
 ├── Data/
 │   ├── alphabet.*.xml  # alphabet definitions
@@ -214,10 +219,6 @@ rebuild if stale (`cmake --build build`).
 
 ### Known Issues
 
-- `bad_variant_access` / `std::get: wrong index for variant` warnings on startup
-  are non-fatal — the GTK UI queries some CAPI parameters with the wrong getter
-  type (string vs long); they don't affect functionality. Tracked in
-  [#17](../../issues/17).
 - **Keyboard mode** and **system Speech** aren't available in the Flatpak and
   AppImage builds. Both need host-level access the self-contained, sandboxed
   formats can't provide: `/dev/uinput` (via `ydotoold`) for `ydotool` keyboard
@@ -252,7 +253,7 @@ flatpak run org.alternativeinterface.dasher
 artifacts and attaches them to a new GitHub Release:
 
 ```sh
-git tag v0.2.3 && git push origin v0.2.3
+git tag v0.2.7 && git push origin v0.2.7
 ```
 
 ## Privacy & analytics
@@ -266,9 +267,14 @@ schema is published in [`analytics-events.json`](./analytics-events.json).
 - **Collected only after opt-in:** app launches, the input method / alphabet you
   select, which settings tab you open, and crash reports. Each event carries a
   random anonymous ID (resettable under Privacy) plus `platform`, `app_variant`,
-  `app_version`, and `os_version`.
+  `app_version`, `os_version`, and `$os`.
 - **Never collected:** the text you type, clipboard contents, canvas contents,
   your name / email / account, training text, or game-mode targets.
+- **Never located:** every event, crash reports included, sets `$geoip_disable`.
+  PostHog Cloud otherwise derives city, postal code and approximate coordinates
+  from the sending IP address *even with project-level IP anonymisation enabled*,
+  and this per-event flag is the only control that suppresses it — so no location
+  is ever derived from your connection (RFC 0001: no location data).
 - **Crash reports** capture the exception type and the last lines of the engine
   log, with home-directory paths and email addresses scrubbed before anything
   leaves your device. An uncaught C++ exception also carries its message and
