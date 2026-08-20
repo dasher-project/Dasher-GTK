@@ -151,7 +151,7 @@ green.
 ## Definition of Done
 
 - [ ] clang-format clean on the lines you touched
-      (`git clang-format --diff origin/main -- src tests` reports nothing to change)
+      (`git clang-format --diff upstream/main -- src tests` reports nothing to change)
 - [ ] Builds on Linux (and ideally macOS/Windows)
 - [ ] No new clang-tidy warnings
 - [ ] Commits are signed off (DCO) — `git commit -s`
