@@ -66,6 +66,12 @@ platform-specific dependencies (GTK4, gtkmm, pkg-config).
   git clang-format origin/main -- src tests
   ```
 
+  The base is upstream's `main`, which is what CI compares against. The Quick
+  start clone above makes `origin` upstream; if you cloned your fork instead,
+  add the upstream remote once (`git remote add upstream
+  https://github.com/dasher-project/Dasher-GTK.git`), `git fetch upstream`, and
+  use `upstream/main` both here and in the Definition of Done.
+
   Use `git clang-format`, not plain `clang-format -i` over a glob: the glob form
   reformats whole files, which buries your change in unrelated churn, and
   `src/**/*.cpp` only recurses when the shell has `globstar` enabled (bash leaves
