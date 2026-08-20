@@ -96,17 +96,55 @@ cmake ..
 cmake --build . --config Release --parallel
 ```
 
-The binary and all runtime files are placed in `build/Dasher/`.
+The runtime files are placed in `build/Dasher/`, and so is the binary, except
+on Windows, where the default generator is Visual Studio. That one picks the
+configuration at build time (hence `--config` above) and puts the executable in
+a per-configuration subdirectory, so it lands in `build/Dasher/Release/`. The
+data files are not per-configuration and stay in `build/Dasher/`, which is why
+the two part company there.
+
+#### Or use the launcher
+
+`run.py` does the above and launches the result, on Linux, macOS and Windows
+alike. It is a convenience wrapper, not a required part of the build:
+
+```sh
+python run.py                 # configure, build, then launch
+python run.py --build-only    # stop after the build
+python run.py --tests         # build, then run the ctest suite
+python run.py --clean         # start the build directory over
+```
+
+It checks for the system dependencies listed above and names the package to
+install when one is missing, initialises the submodules if you cloned without
+`--recursive`, falls back to `-DTTS_WRAPPER_FEATURES=cloud` when the
+speech-dispatcher headers are absent, and launches from the right working
+directory (see [Running](#running) for why that matters).
+
+If a submodule is checked out at a commit other than the one this repository
+records, the launcher says so and leaves it alone, since that is usually
+somebody testing against a different engine revision. `--sync-submodules`
+resets them to the recorded commits.
 
 ### Running
 
 Dasher must be launched from the `build/Dasher/` directory so it can find its
-data files. The binary is `Dasher` on macOS/Windows and lowercase `dasher` on
-Linux:
+data files. Started from anywhere else it comes up looking fine, but every
+letter box is the same size, because the language model found no training text.
+
+The binary is lowercase `dasher` on Linux and `Dasher` on macOS:
 
 ```sh
 cd build/Dasher
-./dasher      # 'Dasher' on macOS/Windows
+./dasher      # './Dasher' on macOS
+```
+
+On Windows it is `Dasher.exe`, one directory deeper, and the working directory
+still has to be `build/Dasher` for the data files:
+
+```pwsh
+cd build\Dasher
+.\Release\Dasher.exe
 ```
 
 ### Running the Tests
@@ -118,6 +156,11 @@ After configuring and building, run the suite with ctest:
 ```sh
 ctest --test-dir build --output-on-failure
 ```
+
+On Windows add `-C Release` (or whichever configuration you built), for the
+same reason `cmake --build` needs `--config`: a multi-config generator has no
+single configuration for ctest to assume, and without it the suite reports no
+tests found.
 
 CI runs these tests on every push as part of the multi-platform workflow.
 
@@ -135,6 +178,11 @@ submodule is present.
 Override the default feature set with `-DTTS_WRAPPER_FEATURES=...` at configure
 time — e.g. `-DTTS_WRAPPER_FEATURES=cloud` for a cloud-only build with no
 speech-dispatcher dependency (this is what the Flatpak uses).
+
+The feature set is decided at configure time and stored in the CMake cache, so
+installing `libspeechd-dev` after a cloud-only build does not change anything
+on its own: that build directory stays cloud-only until you reconfigure it from
+scratch (`run.py --clean`, or delete `build/`).
 
 ### Runtime Data Files
 
