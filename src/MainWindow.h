@@ -2,7 +2,7 @@
 
 #include "Engine/DasherBridge.h"
 #include "Output/DirectModeService.h"
-#include "Output/TtsService.h"
+#include "Output/TtsBackend.h"
 #include "UIComponents/ImageButton.h"
 #include "UIComponents/ImageToggleButton.h"
 #include "UIComponents/KeyboardSetupDialog.h"
@@ -70,7 +70,7 @@ protected:
     Gtk::Switch m_speech_switch;
 
     std::unique_ptr<DirectModeService> m_direct_mode;
-    std::unique_ptr<TtsService> m_tts;
+    std::unique_ptr<TtsBackend> m_tts;
     bool m_direct_mode_active = false;
 
     // Setup helper shown when Keyboard mode is enabled without ydotool (issue #38).

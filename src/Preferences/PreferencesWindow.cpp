@@ -1,6 +1,6 @@
 #include "PreferencesWindow.h"
 #include "Analytics/AnalyticsClient.h"
-#include "Output/TtsService.h"
+#include "Output/TtsBackend.h"
 #include "Input/DwellClickHandler.h"
 #include "UIComponents/PopoverMenuButtonInfo.h"
 #include <gtkmm/checkbutton.h>
@@ -232,7 +232,7 @@ void PreferencesWindow::add_speech_section() {
     speech_title->set_halign(Gtk::Align::START);
     speech_box->append(*speech_title);
 
-    auto tts = std::make_shared<TtsService>();
+    auto tts = std::make_shared<TtsBackend>();
     if (tts->is_available()) {
         auto engines = tts->get_engines();
         std::vector<Glib::ustring> engine_names;
