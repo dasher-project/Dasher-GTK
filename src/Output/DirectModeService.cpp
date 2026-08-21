@@ -72,7 +72,7 @@ bool DirectModeService::probe_ydotool() {
 bool DirectModeService::inject_text(const std::string& text) {
     if (!m_available || text.empty()) return m_available;
 
-    Job job;
+    DirectModeJob job;
     job.is_delete = false;
     job.text = text;
     {
@@ -86,7 +86,7 @@ bool DirectModeService::inject_text(const std::string& text) {
 bool DirectModeService::inject_delete(const std::string& deleted_text) {
     if (!m_available || deleted_text.empty()) return m_available;
 
-    Job job;
+    DirectModeJob job;
     job.is_delete = true;
     job.text = deleted_text;
     {
@@ -102,7 +102,7 @@ void DirectModeService::set_failure_callback(FailureCallback callback) {
     m_failure_callback = std::move(callback);
 }
 
-bool DirectModeService::run_job(const Job& job) {
+bool DirectModeService::run_job(const DirectModeJob& job) {
     if (job.is_delete) {
         for (int i = 0; i < utf8_length(job.text); i++) {
             if (!run_command("ydotool key 14:1 14:0 >/dev/null 2>&1")) return false;
@@ -124,7 +124,7 @@ bool DirectModeService::run_job(const Job& job) {
 
 void DirectModeService::worker_loop() {
     while (true) {
-        Job job;
+        DirectModeJob job;
         {
             std::unique_lock<std::mutex> lock(m_mutex);
             m_cv.wait(lock, [this]() { return m_stopping || !m_queue.empty(); });
@@ -140,7 +140,7 @@ void DirectModeService::worker_loop() {
             m_available = false;
             // Drop any queued jobs: they'd fail against a dead daemon anyway.
             std::unique_lock<std::mutex> lock(m_mutex);
-            std::queue<Job> empty;
+            std::queue<DirectModeJob> empty;
             std::swap(m_queue, empty);
             FailureCallback callback = m_failure_callback;
             lock.unlock();

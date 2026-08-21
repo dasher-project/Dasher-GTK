@@ -16,53 +16,56 @@
 // waiting on the ydotoold daemon round-trip must never happen on the GTK
 // frame loop (a slow daemon would hitch rendering on every character), and a
 // single queue keeps insert/delete ordering stable.
+// One queued keyboard-mode command: either text to type or text that was
+// deleted (one backspace per character). Namespace scope rather than a
+// nested private struct so clang-format versions agree on the layout.
+struct DirectModeJob {
+    bool is_delete = false;
+    std::string text;
+};
+
 class DirectModeService {
-public:
-  using FailureCallback = std::function<void()>;
+  public:
+    using FailureCallback = std::function<void()>;
 
-  DirectModeService();
-  ~DirectModeService();
+    DirectModeService();
+    ~DirectModeService();
 
-  DirectModeService(const DirectModeService&) = delete;
-  DirectModeService& operator=(const DirectModeService&) = delete;
+    DirectModeService(const DirectModeService&) = delete;
+    DirectModeService& operator=(const DirectModeService&) = delete;
 
-  // Queue `text` for injection into the focused window. Returns false when
-  // the service already knows injection is broken; a failure discovered
-  // later (mid-session daemon death) arrives via the failure callback.
-  bool inject_text(const std::string& text);
+    // Queue `text` for injection into the focused window. Returns false when
+    // the service already knows injection is broken; a failure discovered
+    // later (mid-session daemon death) arrives via the failure callback.
+    bool inject_text(const std::string& text);
 
-  // Queue one backspace per character (not byte) of `deleted_text`.
-  bool inject_delete(const std::string& deleted_text);
+    // Queue one backspace per character (not byte) of `deleted_text`.
+    bool inject_delete(const std::string& deleted_text);
 
-  bool is_available() const;
-  // Re-run the ydotool availability check (e.g. after the user installs it via
-  // the setup dialog, issue #38) and update the cached result.
-  bool recheck();
+    bool is_available() const;
+    // Re-run the ydotool availability check (e.g. after the user installs it via
+    // the setup dialog, issue #38) and update the cached result.
+    bool recheck();
 
-  // Called from the worker thread the first time an injection fails;
-  // receivers must marshal back to the UI thread (e.g. Glib::signal_idle).
-  void set_failure_callback(FailureCallback callback);
+    // Called from the worker thread the first time an injection fails;
+    // receivers must marshal back to the UI thread (e.g. Glib::signal_idle).
+    void set_failure_callback(FailureCallback callback);
 
-  // Number of UTF-8 code points in `text` (lead-byte count). Injected
-  // backspaces must match characters, or multibyte output over-deletes.
-  static int utf8_length(const std::string& text);
+    // Number of UTF-8 code points in `text` (lead-byte count). Injected
+    // backspaces must match characters, or multibyte output over-deletes.
+    static int utf8_length(const std::string& text);
 
-private:
-  struct Job {
-      bool is_delete = false;
-      std::string text;
-  };
-
+  private:
     // True when the ydotool binary exists AND the daemon answers. Arch-family
     // distros install the binary without enabling ydotoold, which previously
     // made is_available() lie — `which ydotool` alone is not enough.
     static bool probe_ydotool();
 
-    bool run_job(const Job& job);
+    bool run_job(const DirectModeJob& job);
     void worker_loop();
 
     std::atomic<bool> m_available{false};
-    std::queue<Job> m_queue;
+    std::queue<DirectModeJob> m_queue;
     std::mutex m_mutex;
     std::condition_variable m_cv;
     std::thread m_worker;
