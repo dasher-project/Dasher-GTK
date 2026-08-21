@@ -128,7 +128,10 @@ void DirectModeService::worker_loop() {
         {
             std::unique_lock<std::mutex> lock(m_mutex);
             m_cv.wait(lock, [this]() { return m_stopping || !m_queue.empty(); });
-            if (m_stopping && m_queue.empty()) return;
+            // On shutdown, abandon whatever is still queued: draining it would
+            // block the joining GTK main thread behind every remaining ydotool
+            // process. The join is then bounded by the one in-flight command.
+            if (m_stopping) return;
             job = std::move(m_queue.front());
             m_queue.pop();
         }
