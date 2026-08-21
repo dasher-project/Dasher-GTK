@@ -74,11 +74,10 @@ MainWindow::MainWindow()
     m_new_button.signal_clicked().connect([this]() {
         // Full reset: clear the text AND restart the model from the root so the
         // prediction context is dropped. reset_output_text() alone would keep
-        // the learned position (the canvas would resume mid-sentence).
+        // the learned position (the canvas would resume mid-sentence). The
+        // canvas shadow buffer clears itself via output event type 2
+        // (DasherCore v0.2.3).
         m_canvas.bridge->reset();
-        // The engine reset emits no output events, so the canvas's shadow
-        // buffer (and with it the output pane) would keep the stale text.
-        m_canvas.clear_output_buffer();
     });
 
     // Speed spinner: take the range from the engine manifest rather than the
@@ -111,9 +110,7 @@ MainWindow::MainWindow()
                 std::string contents(static_cast<const char*>(data), size);
                 stream->close();
                 m_canvas.bridge->reset_output_text();
-                // Keep the canvas shadow buffer in sync with the engine reset
-                // (see the New button above).
-                m_canvas.clear_output_buffer();
+                // Shadow buffer clears via output event 2 (DasherCore v0.2.3).
                 m_text_view.get_buffer()->set_text(contents);
             } catch (const Glib::Error& e) {
                 m_message_overlay.show_message("Failed to open: " + std::string(e.what()));
