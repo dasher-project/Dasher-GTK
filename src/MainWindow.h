@@ -76,6 +76,9 @@ protected:
     // Setup helper shown when Keyboard mode is enabled without ydotool (issue #38).
     std::unique_ptr<KeyboardSetupDialog> m_keyboard_setup_dialog;
     void show_keyboard_setup_dialog();
+    // Injection failed mid-session (daemon stopped, permissions lost): turn the
+    // mode off and tell the user why, instead of dropping output silently.
+    void handle_keyboard_mode_failure();
 
     PreferencesWindow m_preferences_window;
 

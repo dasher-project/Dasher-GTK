@@ -1,9 +1,28 @@
 #include "DirectModeService.h"
 #include <cstdlib>
 #include <cstring>
+#ifndef _WIN32
+#include <sys/wait.h>
+#endif
+
+namespace {
+
+// Run a shell command quietly and report whether it exited 0. std::system
+// returns a wait status on POSIX, not an exit code, so decode it (on Windows
+// it already is the exit code).
+bool run_command(const std::string& cmd) {
+    const int status = std::system(cmd.c_str());
+#ifdef _WIN32
+    return status == 0;
+#else
+    return WIFEXITED(status) && WEXITSTATUS(status) == 0;
+#endif
+}
+
+} // namespace
 
 DirectModeService::DirectModeService() {
-    m_available = check_ydotool_installed();
+    m_available = probe_ydotool();
 }
 
 bool DirectModeService::is_available() const {
@@ -11,25 +30,27 @@ bool DirectModeService::is_available() const {
 }
 
 bool DirectModeService::recheck() {
-    m_available = check_ydotool_installed();
+    m_available = probe_ydotool();
     return m_available;
 }
 
-bool DirectModeService::check_ydotool_installed() {
-    return std::system("which ydotool >/dev/null 2>&1") == 0;
+bool DirectModeService::probe_ydotool() {
+    // The binary alone isn't enough: ydotool talks to the ydotoold daemon over
+    // a socket, and distros like Arch install the binary without enabling the
+    // service. A relative move of (0, 0) exercises the whole path — socket,
+    // daemon, uinput permissions — without moving the pointer.
+    return run_command("which ydotool >/dev/null 2>&1") && run_command("ydotool mousemove 0 0 >/dev/null 2>&1");
 }
 
-void DirectModeService::inject_text(const std::string& text) {
-    if (!m_available || text.empty()) return;
+bool DirectModeService::inject_text(const std::string& text) {
+    if (!m_available || text.empty()) return m_available;
 
     if (text == "\n" || text == "\r") {
-        std::system("ydotool key 28:1 28:0 >/dev/null 2>&1");
-        return;
+        return run_command("ydotool key 28:1 28:0 >/dev/null 2>&1");
     }
 
     if (text == "\t") {
-        std::system("ydotool key 15:1 15:0 >/dev/null 2>&1");
-        return;
+        return run_command("ydotool key 15:1 15:0 >/dev/null 2>&1");
     }
 
     std::string escaped;
@@ -43,16 +64,32 @@ void DirectModeService::inject_text(const std::string& text) {
         }
     }
 
-    if (escaped.empty()) return;
+    if (escaped.empty()) return true;
 
-    std::string cmd = "ydotool type -- '" + escaped + "' >/dev/null 2>&1 &";
-    std::system(cmd.c_str());
+    // No `&` backgrounding: we need the exit status to tell the UI when
+    // injection broke mid-session (daemon stopped, permissions lost).
+    std::string cmd = "ydotool type -- '" + escaped + "' >/dev/null 2>&1";
+    const bool ok = run_command(cmd);
+    if (!ok) m_available = false;
+    return ok;
 }
 
-void DirectModeService::inject_delete(int count) {
-    if (!m_available || count <= 0) return;
+bool DirectModeService::inject_delete(const std::string& deleted_text) {
+    if (!m_available || deleted_text.empty()) return m_available;
 
-    for (int i = 0; i < count; i++) {
-        std::system("ydotool key 14:1 14:0 >/dev/null 2>&1");
+    for (int i = 0; i < utf8_length(deleted_text); i++) {
+        if (!run_command("ydotool key 14:1 14:0 >/dev/null 2>&1")) {
+            m_available = false;
+            return false;
+        }
     }
+    return true;
+}
+
+int DirectModeService::utf8_length(const std::string& text) {
+    int count = 0;
+    for (unsigned char c : text) {
+        if ((c & 0xC0) != 0x80) count++; // count UTF-8 lead bytes
+    }
+    return count;
 }

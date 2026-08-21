@@ -72,8 +72,23 @@ MainWindow::MainWindow()
     });
 
     m_new_button.signal_clicked().connect([this]() {
-        m_canvas.bridge->reset_output_text();
+        // Full reset: clear the text AND restart the model from the root so the
+        // prediction context is dropped. reset_output_text() alone would keep
+        // the learned position (the canvas would resume mid-sentence).
+        m_canvas.bridge->reset();
     });
+
+    // Speed spinner: take the range from the engine manifest rather than the
+    // previous hardcoded 20–400. Those are raw LP_MAX_BITRATE units (v5's
+    // MaxBitRateTimes100), so the old cap limited v5 users to "4.0" when v5
+    // itself allowed 0.1–8.0; the engine accepts 1–1000.
+    const auto speed_info = m_canvas.bridge->find_parameter_info("LP_MAX_BITRATE");
+    if (speed_info.key >= 0) {
+        m_speed_adjustment.set_range(speed_info.min_val, speed_info.max_val);
+        m_speed_adjustment.set_increments(speed_info.step, speed_info.step * 5);
+    }
+    m_speed_adjustment.set_tooltip_text("Maximum writing speed (×100, as in Dasher 5: 80 = 0.8, 500 = 5.0). "
+                                        "Raise this if Dasher feels slow.");
 
     m_open_button.signal_clicked().connect([this]() {
         auto dialog = Gtk::FileDialog::create();
@@ -178,6 +193,11 @@ MainWindow::MainWindow()
     m_direct_mode = std::make_unique<DirectModeService>();
     m_tts = std::make_unique<TtsService>();
     m_speech_switch.set_sensitive(m_tts->is_available());
+    // Always explain what the button does; the setup-helper note below replaces
+    // it when ydotool is missing ("I have no idea what the keyboard button
+    // does" — first-impressions feedback).
+    m_keyboard_button.set_tooltip_text("Keyboard mode: hide the output pane and type Dasher's text straight into "
+                                       "the app you are pointing at (needs ydotool)");
     // Keyboard mode stays clickable even without ydotool: clicking it opens the
     // setup helper (issue #38) rather than being a dead greyed-out button.
     if (!m_direct_mode->is_available()) {
@@ -261,17 +281,15 @@ MainWindow::MainWindow()
 
     m_canvas.OnOutputEvent.connect([this](int event_type, const std::string& text) {
         if (!m_direct_mode_active || text.empty()) return;
+        bool ok = true;
         if (event_type == 0) {
-            m_direct_mode->inject_text(text);
+            ok = m_direct_mode->inject_text(text);
         } else if (event_type == 1) {
-            int count = 0;
-            try {
-                count = static_cast<int>(text.size());
-            } catch (...) {
-                count = 1;
-            }
-            m_direct_mode->inject_delete(count);
+            // inject_delete counts UTF-8 characters, not bytes, so multibyte
+            // output doesn't over-delete.
+            ok = m_direct_mode->inject_delete(text);
         }
+        if (!ok) handle_keyboard_mode_failure();
     });
 
     m_side_panel.append(m_panel_bar);
@@ -343,4 +361,15 @@ void MainWindow::show_keyboard_setup_dialog() {
             *this, m_direct_mode.get(), [this]() { m_keyboard_button.set_active(true); });
     }
     m_keyboard_setup_dialog->present();
+}
+
+void MainWindow::handle_keyboard_mode_failure() {
+    m_direct_mode_active = false;
+    // Flipping the toggle runs the normal teardown path (restores the pane).
+    if (m_keyboard_button.get_active()) {
+        m_keyboard_button.set_active(false);
+    }
+    m_message_overlay.show_message("Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+                                   "service running? See the setup help on the Keyboard button for install "
+                                   "commands.");
 }
