@@ -174,6 +174,11 @@ RenderingCanvas::~RenderingCanvas() {
     }
 }
 
+void RenderingCanvas::clear_output_buffer() {
+    m_output_buffer.clear();
+    OnBufferChange.emit(m_output_buffer);
+}
+
 void RenderingCanvas::draw_dwell_indicator(const Cairo::RefPtr<Cairo::Context>& cr) {
     float progress = dwell_handler->get_progress();
     if (progress <= 0.0f) return;

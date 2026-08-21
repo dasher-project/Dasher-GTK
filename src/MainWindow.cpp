@@ -76,6 +76,9 @@ MainWindow::MainWindow()
         // prediction context is dropped. reset_output_text() alone would keep
         // the learned position (the canvas would resume mid-sentence).
         m_canvas.bridge->reset();
+        // The engine reset emits no output events, so the canvas's shadow
+        // buffer (and with it the output pane) would keep the stale text.
+        m_canvas.clear_output_buffer();
     });
 
     // Speed spinner: take the range from the engine manifest rather than the
@@ -108,6 +111,9 @@ MainWindow::MainWindow()
                 std::string contents(static_cast<const char*>(data), size);
                 stream->close();
                 m_canvas.bridge->reset_output_text();
+                // Keep the canvas shadow buffer in sync with the engine reset
+                // (see the New button above).
+                m_canvas.clear_output_buffer();
                 m_text_view.get_buffer()->set_text(contents);
             } catch (const Glib::Error& e) {
                 m_message_overlay.show_message("Failed to open: " + std::string(e.what()));
@@ -191,6 +197,11 @@ MainWindow::MainWindow()
     m_learning_switch.set_valign(Gtk::Align::CENTER);
 
     m_direct_mode = std::make_unique<DirectModeService>();
+    // Mid-session injection failures (daemon died, permissions lost) are
+    // reported from DirectModeService's worker thread; marshal to the GTK
+    // main loop before touching widgets.
+    m_direct_mode->set_failure_callback(
+        [this]() { Glib::signal_idle().connect_once([this]() { handle_keyboard_mode_failure(); }); });
     m_tts = std::make_unique<TtsService>();
     m_speech_switch.set_sensitive(m_tts->is_available());
     // Always explain what the button does; the setup-helper note below replaces

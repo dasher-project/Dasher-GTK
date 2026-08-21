@@ -24,7 +24,13 @@ public:
     sigc::signal<void(const std::string&)> OnBufferChange;
     sigc::signal<void(int, const std::string&)> OnOutputEvent;
 
-private:
+    // Clear the shadow output buffer and notify OnBufferChange subscribers.
+    // Needed after engine-side resets (dasher_reset / dasher_reset_output_text):
+    // those clear the engine's edit buffer without emitting output events, so
+    // the shadow buffer kept here would otherwise keep showing stale text.
+    void clear_output_buffer();
+
+  private:
     Glib::RefPtr<Gtk::EventControllerMotion> m_motion_controller;
     Glib::RefPtr<Gtk::GestureClick> m_primary_click;
     Glib::RefPtr<Gtk::GestureClick> m_secondary_click;
