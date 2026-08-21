@@ -12,7 +12,7 @@
 #include <memory>
 
 class RenderingCanvas : public Gtk::DrawingArea {
-public:
+  public:
     RenderingCanvas();
     ~RenderingCanvas() override;
 
@@ -24,7 +24,7 @@ public:
     sigc::signal<void(const std::string&)> OnBufferChange;
     sigc::signal<void(int, const std::string&)> OnOutputEvent;
 
-private:
+  private:
     Glib::RefPtr<Gtk::EventControllerMotion> m_motion_controller;
     Glib::RefPtr<Gtk::GestureClick> m_primary_click;
     Glib::RefPtr<Gtk::GestureClick> m_secondary_click;
