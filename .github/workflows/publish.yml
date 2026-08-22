@@ -19,6 +19,13 @@ jobs:
   flatpak:
     name: Flatpak (${{ matrix.arch }})
     runs-on: ubuntu-24.04
+    # The Flatpak legs download runtimes/SDK extensions from flathub's CDN,
+    # which is outside this repo's control: when flathub loses an object
+    # (see #52 — rust-stable//25.08 objects 404 repo-wide) every PR shows
+    # red through no fault of the diff. Keep PRs unblocked by that infra
+    # flakiness, but stay strictly blocking on main and release tags so a
+    # broken Flatpak can never ship silently.
+    continue-on-error: ${{ github.event_name == 'pull_request' }}
     strategy:
       fail-fast: false
       matrix:
