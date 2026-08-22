@@ -1,21 +1,95 @@
 #pragma once
 
+#include <atomic>
+#include <cstdint>
+#include <condition_variable>
+#include <functional>
+#include <mutex>
+#include <queue>
 #include <string>
+#include <thread>
+
+// Types Dasher's output into whichever window currently has keyboard focus,
+// via ydotool/uinput. Mirrors what Dasher-Windows does with SendInput and
+// Dasher-Apple with CGEvent posting.
+//
+// Commands run on a single worker thread: spawning a ydotool process and
+// waiting on the ydotoold daemon round-trip must never happen on the GTK
+// frame loop (a slow daemon would hitch rendering on every character), and a
+// single queue keeps insert/delete ordering stable.
+// One queued keyboard-mode command: either text to type or text that was
+// deleted (one backspace per character). Namespace scope rather than a
+// nested private struct so clang-format versions agree on the layout.
+struct DirectModeJob {
+    bool is_delete = false;
+    std::string text;
+    // Availability generation at enqueue time. A failure only counts against
+    // the verdict that was current when the job was queued: one queued before
+    // a successful recheck() (Retry) must not disable the recovered service.
+    uint64_t generation = 0;
+};
 
 class DirectModeService {
-public:
-    DirectModeService();
-    ~DirectModeService() = default;
+  public:
+    using FailureCallback = std::function<void()>;
 
-    void inject_text(const std::string& text);
-    void inject_delete(int count);
+    DirectModeService();
+    ~DirectModeService();
+
+    DirectModeService(const DirectModeService&) = delete;
+    DirectModeService& operator=(const DirectModeService&) = delete;
+
+    // Queue `text` for injection into the focused window. Returns false when
+    // the service already knows injection is broken; a failure discovered
+    // later (mid-session daemon death) arrives via the failure callback.
+    bool inject_text(const std::string& text);
+
+    // Queue one backspace per character (not byte) of `deleted_text`.
+    bool inject_delete(const std::string& deleted_text);
 
     bool is_available() const;
-    // Re-run the ydotool availability check (e.g. after the user installs it via
-    // the setup dialog, issue #38) and update the cached result.
+    // Re-run the ydotool availability check (e.g. after the user installs it
+    // via the setup dialog, issue #38) and update the cached result. The
+    // worker survives injection failures precisely so this can resume the
+    // service after a Retry — recheck() alone puts it back in business.
     bool recheck();
-    static bool check_ydotool_installed();
 
-private:
-    bool m_available = false;
+    // Called from the worker thread whenever an injection fails mid-session
+    // (daemon died, permissions lost). Receivers must marshal back to the UI
+    // thread (e.g. Glib::signal_idle) and be prepared for the call to race
+    // teardown — see MainWindow's alive-flag pattern.
+    void set_failure_callback(FailureCallback callback);
+
+    // Number of UTF-8 code points in `text` (lead-byte count). Injected
+    // backspaces must match characters, or multibyte output over-deletes.
+    static int utf8_length(const std::string& text);
+
+  private:
+    // True when the ydotool binary exists AND the daemon answers. Arch-family
+    // distros install the binary without enabling ydotoold, which previously
+    // made is_available() lie — `which ydotool` alone is not enough.
+    static bool probe_ydotool();
+
+    bool run_job(const DirectModeJob& job);
+    void worker_loop();
+
+    // Availability verdict generation, bumped by every recheck(). Jobs carry
+    // the generation they were enqueued under, so a failure is only honoured
+    // while that verdict is still current — an older job's late failure
+    // can't clobber a newer Retry's recovery. Guarded by m_mutex.
+    uint64_t m_generation = 0;
+
+    // Set by the destructor (alongside m_stopping) and checked between every
+    // backspace of a multi-character delete: without it, a large deletion
+    // queued at quit would run one 10-second-bounded command per character
+    // before the worker ever observed the stop, blocking join() for minutes.
+    std::atomic<bool> m_abort_jobs{false};
+
+    std::atomic<bool> m_available{false};
+    std::queue<DirectModeJob> m_queue;
+    std::mutex m_mutex;
+    std::condition_variable m_cv;
+    std::thread m_worker;
+    bool m_stopping = false;
+    FailureCallback m_failure_callback;
 };

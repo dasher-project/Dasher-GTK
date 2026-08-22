@@ -19,6 +19,16 @@ jobs:
   flatpak:
     name: Flatpak (${{ matrix.arch }})
     runs-on: ubuntu-24.04
+    # The Flatpak legs download runtimes/SDK extensions from flathub's CDN,
+    # which is outside this repo's control: when flathub loses an object
+    # (see #52 — rust-stable//25.08 objects 404 repo-wide since 2026-08-21)
+    # every PR shows red through no fault of the diff, and the leg builds
+    # nothing anyway. So: skip the legs on PR runs; keep them strictly
+    # blocking on main and release tags so a broken Flatpak can never ship
+    # silently; and let manual workflow_dispatch runs fail without marking
+    # the branch (they exist for experimenting with the packaging).
+    if: github.event_name != 'pull_request'
+    continue-on-error: ${{ github.event_name == 'workflow_dispatch' }}
     strategy:
       fail-fast: false
       matrix:

@@ -19,6 +19,8 @@ find_package(Threads REQUIRED)
 add_executable(dasher_unit_tests
     test_dwell_click_handler.cpp
     ${CMAKE_SOURCE_DIR}/src/Input/DwellClickHandler.cpp
+    test_direct_mode_service.cpp
+    ${CMAKE_SOURCE_DIR}/src/Output/DirectModeService.cpp
     test_pii_scrubber.cpp
     test_engine_log_ring_buffer.cpp
     test_crash_file_roundtrip.cpp

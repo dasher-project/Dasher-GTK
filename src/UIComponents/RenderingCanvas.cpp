@@ -108,6 +108,10 @@ RenderingCanvas::RenderingCanvas() {
                 m_output_buffer.compare(m_output_buffer.length() - len, len, text) == 0) {
                 m_output_buffer.erase(m_output_buffer.length() - len, len);
             }
+        } else if (event_type == 2) {
+            // Buffer cleared wholesale by the engine (reset, alphabet change —
+            // DasherCore v0.2.3). Deltas can't express this; drop the shadow.
+            m_output_buffer.clear();
         }
         OnBufferChange.emit(m_output_buffer);
         OnOutputEvent.emit(event_type, text);

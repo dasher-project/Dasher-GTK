@@ -88,6 +88,12 @@ void DasherBridge::reset_output_text() {
     reset_cps();
 }
 
+void DasherBridge::reset() {
+    if (!m_ctx) return;
+    dasher_reset(m_ctx);
+    // dasher_reset clears the engine's rate window itself; nothing extra to do.
+}
+
 std::string DasherBridge::get_alphabet_id() const {
     if (!m_ctx) return "";
     const char* id = dasher_get_alphabet_id(m_ctx);
@@ -175,6 +181,21 @@ int DasherBridge::find_parameter_key(const std::string& enum_key_name) const {
     // implementation detail of DasherCore and shift between releases, so callers
     // must never hardcode them. Returns -1 if the name is unknown.
     return dasher_find_parameter_key(enum_key_name.c_str());
+}
+
+DasherParameterInfo DasherBridge::find_parameter_info(const std::string& enum_key_name) const {
+    DasherParameterInfo not_found = {};
+    not_found.key = -1;
+
+    const int key = dasher_find_parameter_key(enum_key_name.c_str());
+    if (key < 0) return not_found;
+
+    const int count = get_parameter_count();
+    for (int i = 0; i < count; i++) {
+        DasherParameterInfo info = get_parameter_info(i);
+        if (info.key == key) return info;
+    }
+    return not_found;
 }
 
 int DasherBridge::get_parameter_count() const {

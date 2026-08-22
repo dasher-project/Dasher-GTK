@@ -72,8 +72,25 @@ MainWindow::MainWindow()
     });
 
     m_new_button.signal_clicked().connect([this]() {
-        m_canvas.bridge->reset_output_text();
+        // Full reset: clear the text AND restart the model from the root so the
+        // prediction context is dropped. reset_output_text() alone would keep
+        // the learned position (the canvas would resume mid-sentence). The
+        // canvas shadow buffer clears itself via output event type 2
+        // (DasherCore v0.2.3).
+        m_canvas.bridge->reset();
     });
+
+    // Speed spinner: take the range from the engine manifest rather than the
+    // previous hardcoded 20–400. Those are raw LP_MAX_BITRATE units (v5's
+    // MaxBitRateTimes100), so the old cap limited v5 users to "4.0" when v5
+    // itself allowed 0.1–8.0; the engine accepts 1–1000.
+    const auto speed_info = m_canvas.bridge->find_parameter_info("LP_MAX_BITRATE");
+    if (speed_info.key >= 0) {
+        m_speed_adjustment.set_range(speed_info.min_val, speed_info.max_val);
+        m_speed_adjustment.set_increments(speed_info.step, speed_info.step * 5);
+    }
+    m_speed_adjustment.set_tooltip_text("Maximum writing speed (×100, as in Dasher 5: 80 = 0.8, 500 = 5.0). "
+                                        "Raise this if Dasher feels slow.");
 
     m_open_button.signal_clicked().connect([this]() {
         auto dialog = Gtk::FileDialog::create();
@@ -93,6 +110,7 @@ MainWindow::MainWindow()
                 std::string contents(static_cast<const char*>(data), size);
                 stream->close();
                 m_canvas.bridge->reset_output_text();
+                // Shadow buffer clears via output event 2 (DasherCore v0.2.3).
                 m_text_view.get_buffer()->set_text(contents);
             } catch (const Glib::Error& e) {
                 m_message_overlay.show_message("Failed to open: " + std::string(e.what()));
@@ -176,8 +194,31 @@ MainWindow::MainWindow()
     m_learning_switch.set_valign(Gtk::Align::CENTER);
 
     m_direct_mode = std::make_unique<DirectModeService>();
+    // Mid-session injection failures (daemon died, permissions lost) are
+    // reported from DirectModeService's worker thread; marshal to the GTK
+    // main loop before touching widgets. The alive flag guards the race
+    // where the idle is queued while the window is being destroyed: the
+    // destructor clears the flag on this same (main) thread, so the check
+    // inside the idle is authoritative.
+    m_direct_mode->set_failure_callback([this, alive = m_ui_alive]() {
+        Glib::signal_idle().connect_once([this, alive]() {
+            if (!alive->load()) return;
+            // Input events outrank default-priority idles, so a Retry click
+            // can be dispatched between the failure notification being queued
+            // and this idle running. If the service recovered in between
+            // (Retry succeeded, generation moved on), the notification is
+            // stale — don't turn the freshly re-enabled mode off again.
+            if (m_direct_mode && m_direct_mode->is_available()) return;
+            handle_keyboard_mode_failure();
+        });
+    });
     m_tts = std::make_unique<TtsService>();
     m_speech_switch.set_sensitive(m_tts->is_available());
+    // Always explain what the button does; the setup-helper note below replaces
+    // it when ydotool is missing ("I have no idea what the keyboard button
+    // does" — first-impressions feedback).
+    m_keyboard_button.set_tooltip_text("Keyboard mode: hide the output pane and type Dasher's text straight into "
+                                       "the app you are pointing at (needs ydotool)");
     // Keyboard mode stays clickable even without ydotool: clicking it opens the
     // setup helper (issue #38) rather than being a dead greyed-out button.
     if (!m_direct_mode->is_available()) {
@@ -261,17 +302,15 @@ MainWindow::MainWindow()
 
     m_canvas.OnOutputEvent.connect([this](int event_type, const std::string& text) {
         if (!m_direct_mode_active || text.empty()) return;
+        bool ok = true;
         if (event_type == 0) {
-            m_direct_mode->inject_text(text);
+            ok = m_direct_mode->inject_text(text);
         } else if (event_type == 1) {
-            int count = 0;
-            try {
-                count = static_cast<int>(text.size());
-            } catch (...) {
-                count = 1;
-            }
-            m_direct_mode->inject_delete(count);
+            // inject_delete counts UTF-8 characters, not bytes, so multibyte
+            // output doesn't over-delete.
+            ok = m_direct_mode->inject_delete(text);
         }
+        if (!ok) handle_keyboard_mode_failure();
     });
 
     m_side_panel.append(m_panel_bar);
@@ -299,6 +338,13 @@ MainWindow::MainWindow()
     });
     capture_app_launched();      // no-op unless already opted in
     maybe_show_consent_dialog(); // first launch only
+}
+
+MainWindow::~MainWindow() {
+    // Retire cross-thread idles before any member (or widget) teardown: the
+    // DirectModeService worker's failure callback checks this flag inside its
+    // queued idle, so nothing reaches a half-destroyed window afterwards.
+    m_ui_alive->store(false);
 }
 
 void MainWindow::capture_app_launched() {
@@ -343,4 +389,15 @@ void MainWindow::show_keyboard_setup_dialog() {
             *this, m_direct_mode.get(), [this]() { m_keyboard_button.set_active(true); });
     }
     m_keyboard_setup_dialog->present();
+}
+
+void MainWindow::handle_keyboard_mode_failure() {
+    m_direct_mode_active = false;
+    // Flipping the toggle runs the normal teardown path (restores the pane).
+    if (m_keyboard_button.get_active()) {
+        m_keyboard_button.set_active(false);
+    }
+    m_message_overlay.show_message("Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+                                   "service running? See the setup help on the Keyboard button for install "
+                                   "commands.");
 }

@@ -60,9 +60,14 @@ Speech and Keyboard mode each depend on an external service:
 - **Keyboard mode** (types Dasher's output into other applications) uses
   [`ydotool`](https://github.com/ReimuNotMoe/ydotool). Install it and run the
   `ydotoold` daemon (it needs access to `/dev/uinput`); on Debian/Ubuntu that is
-  `sudo apt install ydotool`. Without it, clicking the Keyboard button (on the top
-  toolbar) opens a setup dialog with the install command for your distro and a
-  Retry, instead of enabling the mode.
+  `sudo apt install ydotool`, on Arch `sudo pacman -S ydotool` **plus**
+  `sudo systemctl enable --now ydotool` — the binary alone is not enough, Arch
+  does not enable the service for you. Availability is checked by probing the
+  daemon (a zero-length pointer move), and if injection fails mid-session the
+  mode turns itself off with a message rather than dropping output silently.
+  Clicking the Keyboard button (on the top toolbar) when ydotool isn't working
+  opens a setup dialog with the install command for your distro and a Retry,
+  instead of enabling the mode.
 
 **Dwell to click** (hover in place to click, under **Preferences → Input**) needs
 no external dependency.

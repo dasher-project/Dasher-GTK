@@ -43,6 +43,11 @@ public:
 
     std::string get_output_text() const;
     void reset_output_text();
+    // Full reset: clear the edit buffer AND restart the model from the root,
+    // i.e. drop the current context. "New" must use this — reset_output_text()
+    // alone keeps the learned position, so the canvas resumes mid-sentence
+    // (v5's New went through SetBuffer(0), which reset context too).
+    void reset();
 
     std::string get_alphabet_id() const;
     void set_alphabet_id(const std::string& id);
@@ -70,6 +75,13 @@ public:
     void set_string_parameter(int key, const std::string& value);
 
     int find_parameter_key(const std::string& enum_key_name) const;
+
+    // Manifest metadata (range, step, ...) for a parameter, looked up by its
+    // stable enum name. key is -1 when the name is unknown. Frontend controls
+    // should take their min/max from here rather than hardcoding, so widget
+    // ranges can't drift below what the engine (or a migrated v5 config)
+    // supports.
+    DasherParameterInfo find_parameter_info(const std::string& enum_key_name) const;
 
     int get_parameter_count() const;
     DasherParameterInfo get_parameter_info(int index) const;
