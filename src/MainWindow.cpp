@@ -203,6 +203,12 @@ MainWindow::MainWindow()
     m_direct_mode->set_failure_callback([this, alive = m_ui_alive]() {
         Glib::signal_idle().connect_once([this, alive]() {
             if (!alive->load()) return;
+            // Input events outrank default-priority idles, so a Retry click
+            // can be dispatched between the failure notification being queued
+            // and this idle running. If the service recovered in between
+            // (Retry succeeded, generation moved on), the notification is
+            // stale — don't turn the freshly re-enabled mode off again.
+            if (m_direct_mode && m_direct_mode->is_available()) return;
             handle_keyboard_mode_failure();
         });
     });

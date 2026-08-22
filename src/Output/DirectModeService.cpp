@@ -82,6 +82,9 @@ DirectModeService::~DirectModeService() {
         // Never fire into a half-destroyed owner.
         m_failure_callback = nullptr;
     }
+    // Interrupt multi-command jobs (per-character deletes) immediately;
+    // join() is then bounded by the single in-flight command's timeout.
+    m_abort_jobs = true;
     m_cv.notify_all();
     if (m_worker.joinable()) m_worker.join();
 }
@@ -151,6 +154,10 @@ void DirectModeService::set_failure_callback(FailureCallback callback) {
 bool DirectModeService::run_job(const DirectModeJob& job) {
     if (job.is_delete) {
         for (int i = 0; i < utf8_length(job.text); i++) {
+            // Abandon mid-delete on shutdown rather than running one bounded
+            // command per remaining character; returning true skips failure
+            // handling (the worker exits on m_stopping before the next job).
+            if (m_abort_jobs.load()) return true;
             if (!run_command("ydotool key 14:1 14:0 >/dev/null 2>&1")) return false;
         }
         return true;

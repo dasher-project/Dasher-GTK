@@ -79,6 +79,12 @@ class DirectModeService {
     // can't clobber a newer Retry's recovery. Guarded by m_mutex.
     uint64_t m_generation = 0;
 
+    // Set by the destructor (alongside m_stopping) and checked between every
+    // backspace of a multi-character delete: without it, a large deletion
+    // queued at quit would run one 10-second-bounded command per character
+    // before the worker ever observed the stop, blocking join() for minutes.
+    std::atomic<bool> m_abort_jobs{false};
+
     std::atomic<bool> m_available{false};
     std::queue<DirectModeJob> m_queue;
     std::mutex m_mutex;
