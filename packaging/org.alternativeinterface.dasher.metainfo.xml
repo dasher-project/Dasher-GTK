@@ -36,6 +36,26 @@
   </developer>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="0.2.6" date="2026-08-20">
+      <description>
+        <p>v5 parity fixes: New now fully resets the prediction context, the speed control accepts the full Dasher 5 range, and keyboard mode probes the ydotoold daemon, surfaces failures and deletes UTF-8-safely. Includes the DasherCore v0.2.3 engine with buffer-clear events.</p>
+      </description>
+    </release>
+    <release version="0.2.5" date="2026-07-25">
+      <description>
+        <p>Settings reorganisation (dwell, typing-rate, keyboard setup helper), aarch64 Flatpak and AppImage builds.</p>
+      </description>
+    </release>
+    <release version="0.2.4" date="2026-07-19">
+      <description>
+        <p>Publishing infrastructure: aarch64 legs for the Flatpak and AppImage pipelines.</p>
+      </description>
+    </release>
+    <release version="0.2.3" date="2026-07-19">
+      <description>
+        <p>Settings widgets select by parameter value type (fixes mistyped controls), DasherCore v0.1.8, README and contributing sweep.</p>
+      </description>
+    </release>
     <release version="0.2.2" date="2026-07-10">
       <description>
         <p>Linux Flatpak and AppImage packages now launch correctly (portable /app layout, library paths, and session-bus access). Updated the bundled TTS wrapper.</p>

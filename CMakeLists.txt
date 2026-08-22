@@ -143,9 +143,33 @@ ADD_Executable(Dasher
 	${GRESOURCE_C}
 )
 
-# Version string surfaced to analytics/crash reports as app_version. Keep in
-# sync with packaging/org.alternativeinterface.dasher.metainfo.xml releases.
-set(DASHER_GTK_VERSION "0.2.2" CACHE STRING "Dasher-GTK version string")
+# Version string surfaced to analytics/crash reports as app_version, and in
+# Preferences -> Privacy (RFC 0016). Derived from the most recent v* tag via
+# `git describe` so a tagged build always reports its tag and dev builds
+# report something like "0.2.2-5-g1a2b3c4" — no manual bumping, no drift
+# between the tag and what the app claims (it read a hardcoded "0.2.2" for
+# several releases). The CACHE default is the fallback for tarball builds
+# where no git metadata exists; keep it in sync with the latest tag. Also
+# keep packaging/org.alternativeinterface.dasher.metainfo.xml releases in
+# sync — validate-metadata.yml checks they agree on tag builds.
+find_program(GIT_EXECUTABLE git)
+if(GIT_EXECUTABLE)
+	execute_process(
+		COMMAND ${GIT_EXECUTABLE} describe --tags --match "v*" --dirty
+		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+		OUTPUT_VARIABLE GIT_DESCRIBE
+		OUTPUT_STRIP_TRAILING_WHITESPACE
+		ERROR_QUIET
+		RESULT_VARIABLE GIT_DESCRIBE_RESULT
+	)
+endif()
+set(DASHER_GTK_FALLBACK_VERSION "0.2.2" CACHE STRING "Dasher-GTK version when git metadata is absent (tarball builds)")
+if(GIT_DESCRIBE_RESULT EQUAL 0 AND GIT_DESCRIBE MATCHES "^v[0-9]")
+	string(REGEX REPLACE "^v" "" DASHER_GTK_VERSION "${GIT_DESCRIBE}")
+else()
+	set(DASHER_GTK_VERSION "${DASHER_GTK_FALLBACK_VERSION}")
+endif()
+message(STATUS "Dasher-GTK version: ${DASHER_GTK_VERSION}")
 target_compile_definitions(Dasher PRIVATE DASHER_GTK_VERSION="${DASHER_GTK_VERSION}")
 
 # Install as lowercase 'dasher' on Linux for desktop integration
