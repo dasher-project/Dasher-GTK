@@ -252,12 +252,12 @@ MainWindow::MainWindow()
 
     m_font_chooser.property_font_desc().signal_changed().connect([this]() {
         Pango::FontDescription font = m_font_chooser.get_font_desc();
-        m_canvas.renderer->set_font_family(font.get_family());
-        m_canvas.renderer->set_font_slant(getSlantFromPango(font.get_style()));
-        m_canvas.renderer->set_font_weight(
-            font.get_weight() == Pango::Weight::NORMAL
-                ? Cairo::ToyFontFace::Weight::NORMAL
-                : Cairo::ToyFontFace::Weight::BOLD);
+        const auto slant = getSlantFromPango(font.get_style());
+        const auto weight = font.get_weight() == Pango::Weight::NORMAL ? Cairo::ToyFontFace::Weight::NORMAL
+                                                                       : Cairo::ToyFontFace::Weight::BOLD;
+        // One call updates both the renderer's drawing font and the engine's
+        // label-measurement font, so layout and drawing can't diverge.
+        m_canvas.bridge->set_canvas_font(font.get_family(), slant, weight);
     });
 
     m_pane.set_start_child(m_message_overlay);
