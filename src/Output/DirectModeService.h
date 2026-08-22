@@ -23,6 +23,10 @@
 struct DirectModeJob {
     bool is_delete = false;
     std::string text;
+    // Availability generation at enqueue time. A failure only counts against
+    // the verdict that was current when the job was queued: one queued before
+    // a successful recheck() (Retry) must not disable the recovered service.
+    uint64_t generation = 0;
 };
 
 class DirectModeService {
@@ -69,10 +73,10 @@ class DirectModeService {
     bool run_job(const DirectModeJob& job);
     void worker_loop();
 
-    // Injected while the worker is mid-job. Recheck() bumps the generation so
-    // a failure result from an older attempt (e.g. one still completing when
-    // the user pressed Retry) can't clobber a newer availability verdict.
-    // Guarded by m_mutex.
+    // Availability verdict generation, bumped by every recheck(). Jobs carry
+    // the generation they were enqueued under, so a failure is only honoured
+    // while that verdict is still current — an older job's late failure
+    // can't clobber a newer Retry's recovery. Guarded by m_mutex.
     uint64_t m_generation = 0;
 
     std::atomic<bool> m_available{false};

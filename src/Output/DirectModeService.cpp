@@ -2,20 +2,54 @@
 #include <cstdlib>
 #include <cstring>
 #ifndef _WIN32
+#include <signal.h>
 #include <sys/wait.h>
+#include <unistd.h>
 #endif
 
 namespace {
 
-// Run a shell command quietly and report whether it exited 0. std::system
-// returns a wait status on POSIX, not an exit code, so decode it (on Windows
-// it already is the exit code). Blocking — only call from the worker thread
-// (or once at construction for the availability probe).
-bool run_command(const std::string& cmd) {
-    const int status = std::system(cmd.c_str());
+// Seconds a single ydotool invocation may run before we kill it. Bounding
+// every command bounds the worker's join() during shutdown too — a wedged
+// daemon must never be able to stop Dasher from exiting.
+constexpr int kCommandTimeoutSeconds = 10;
+
+// Run a shell command quietly and report whether it exited 0 within
+// timeout_seconds. On POSIX, fork/exec in its own process group and kill the
+// whole group on timeout (std::system would block forever on a hung child);
+// on Windows, where keyboard mode is unavailable anyway (no ydotool), the
+// plain system() call fails fast and is fine.
+bool run_command(const std::string& cmd, int timeout_seconds = kCommandTimeoutSeconds) {
 #ifdef _WIN32
-    return status == 0;
+    (void)timeout_seconds;
+    return std::system(cmd.c_str()) == 0;
 #else
+    pid_t pid = fork();
+    if (pid < 0) return false;
+    if (pid == 0) {
+        // Own process group so a timeout kill takes the shell AND the
+        // ydotool child, not just the shell.
+        setpgid(0, 0);
+        if (!freopen("/dev/null", "r", stdin)) _exit(127);
+        if (!freopen("/dev/null", "w", stdout)) _exit(127);
+        if (!freopen("/dev/null", "w", stderr)) _exit(127);
+        execl("/bin/sh", "sh", "-c", cmd.c_str(), static_cast<char*>(nullptr));
+        _exit(127); // exec failed
+    }
+
+    int status = 0;
+    const long deadline_us = static_cast<long>(timeout_seconds) * 1000000L;
+    long waited_us = 0;
+    while (waitpid(pid, &status, WNOHANG) == 0) {
+        if (waited_us >= deadline_us) {
+            kill(-pid, SIGKILL); // the whole group
+            kill(pid, SIGKILL);  // in case setpgid raced
+            waitpid(pid, &status, 0);
+            return false;
+        }
+        usleep(20 * 1000);
+        waited_us += 20 * 1000;
+    }
     return WIFEXITED(status) && WEXITSTATUS(status) == 0;
 #endif
 }
@@ -73,8 +107,10 @@ bool DirectModeService::probe_ydotool() {
     // The binary alone isn't enough: ydotool talks to the ydotoold daemon over
     // a socket, and distros like Arch install the binary without enabling the
     // service. A relative move of (0, 0) exercises the whole path — socket,
-    // daemon, uinput permissions — without moving the pointer.
-    return run_command("which ydotool >/dev/null 2>&1") && run_command("ydotool mousemove 0 0 >/dev/null 2>&1");
+    // daemon, uinput permissions — without moving the pointer. Tighter
+    // timeout than jobs: recheck() runs on the UI thread (Retry button), so a
+    // wedged daemon must not freeze the dialog for long.
+    return run_command("which ydotool >/dev/null 2>&1", 2) && run_command("ydotool mousemove 0 0 >/dev/null 2>&1", 5);
 }
 
 bool DirectModeService::inject_text(const std::string& text) {
@@ -85,6 +121,7 @@ bool DirectModeService::inject_text(const std::string& text) {
     job.text = text;
     {
         std::lock_guard<std::mutex> lock(m_mutex);
+        job.generation = m_generation;
         m_queue.push(std::move(job));
     }
     m_cv.notify_one();
@@ -99,6 +136,7 @@ bool DirectModeService::inject_delete(const std::string& deleted_text) {
     job.text = deleted_text;
     {
         std::lock_guard<std::mutex> lock(m_mutex);
+        job.generation = m_generation;
         m_queue.push(std::move(job));
     }
     m_cv.notify_one();
@@ -133,29 +171,28 @@ bool DirectModeService::run_job(const DirectModeJob& job) {
 void DirectModeService::worker_loop() {
     while (true) {
         DirectModeJob job;
-        uint64_t generation = 0;
         {
             std::unique_lock<std::mutex> lock(m_mutex);
             m_cv.wait(lock, [this]() { return m_stopping || !m_queue.empty(); });
             // On shutdown, abandon whatever is still queued: draining it would
             // block the joining GTK main thread behind every remaining ydotool
-            // process. The join is then bounded by the one in-flight command.
+            // process. The join is then bounded by the one in-flight command
+            // (run_command kills it after kCommandTimeoutSeconds).
             if (m_stopping) return;
             job = std::move(m_queue.front());
             m_queue.pop();
-            generation = m_generation;
         }
 
         if (!run_job(job)) {
-            // A failure only counts if no recheck() has happened since this
-            // job was picked up: with Retry succeeding mid-flight, an older
-            // job's late failure must not override the fresh recovery
-            // verdict or re-fire the failure callback.
+            // A failure only counts if the job was queued under the current
+            // availability verdict: jobs queued before a successful recheck()
+            // (Retry) carry an older generation and must not disable the
+            // recovered service or re-fire the failure callback.
             FailureCallback callback;
             bool stale = true;
             {
                 std::lock_guard<std::mutex> lock(m_mutex);
-                stale = generation != m_generation;
+                stale = job.generation != m_generation;
                 if (!stale) {
                     m_available = false;
                     // Drop any queued jobs (they'd fail against a dead daemon).
