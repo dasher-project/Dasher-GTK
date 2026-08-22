@@ -17,6 +17,8 @@
 #include "Analytics/AnalyticsSettings.h"
 #include <gtkmm/alertdialog.h>
 #include <gtkmm/window.h>
+#include <atomic>
+#include <memory>
 #include <gtkmm/box.h>
 #include <gtkmm/paned.h>
 #include <gtkmm/actionbar.h>
@@ -32,10 +34,11 @@
 #include <gtkmm/filefilter.h>
 
 class MainWindow : public Gtk::Window {
-public:
+  public:
     MainWindow();
+    ~MainWindow() override;
 
-protected:
+  protected:
     Gtk::Box m_main_box = Gtk::Box(Gtk::Orientation::VERTICAL);
     Gtk::Paned m_pane = Gtk::Paned(Gtk::Orientation::HORIZONTAL);
 
@@ -72,6 +75,12 @@ protected:
     std::unique_ptr<DirectModeService> m_direct_mode;
     std::unique_ptr<TtsService> m_tts;
     bool m_direct_mode_active = false;
+
+    // Cleared in the destructor before any teardown. Cross-thread callbacks
+    // (DirectModeService's failure callback runs on its worker) capture a
+    // shared copy and check it inside main-thread idles, so an idle queued
+    // during shutdown cannot touch a half-destroyed window.
+    std::shared_ptr<std::atomic<bool>> m_ui_alive = std::make_shared<std::atomic<bool>>(true);
 
     // Setup helper shown when Keyboard mode is enabled without ydotool (issue #38).
     std::unique_ptr<KeyboardSetupDialog> m_keyboard_setup_dialog;

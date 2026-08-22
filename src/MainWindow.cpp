@@ -196,9 +196,16 @@ MainWindow::MainWindow()
     m_direct_mode = std::make_unique<DirectModeService>();
     // Mid-session injection failures (daemon died, permissions lost) are
     // reported from DirectModeService's worker thread; marshal to the GTK
-    // main loop before touching widgets.
-    m_direct_mode->set_failure_callback(
-        [this]() { Glib::signal_idle().connect_once([this]() { handle_keyboard_mode_failure(); }); });
+    // main loop before touching widgets. The alive flag guards the race
+    // where the idle is queued while the window is being destroyed: the
+    // destructor clears the flag on this same (main) thread, so the check
+    // inside the idle is authoritative.
+    m_direct_mode->set_failure_callback([this, alive = m_ui_alive]() {
+        Glib::signal_idle().connect_once([this, alive]() {
+            if (!alive->load()) return;
+            handle_keyboard_mode_failure();
+        });
+    });
     m_tts = std::make_unique<TtsService>();
     m_speech_switch.set_sensitive(m_tts->is_available());
     // Always explain what the button does; the setup-helper note below replaces
@@ -325,6 +332,13 @@ MainWindow::MainWindow()
     });
     capture_app_launched();      // no-op unless already opted in
     maybe_show_consent_dialog(); // first launch only
+}
+
+MainWindow::~MainWindow() {
+    // Retire cross-thread idles before any member (or widget) teardown: the
+    // DirectModeService worker's failure callback checks this flag inside its
+    // queued idle, so nothing reaches a half-destroyed window afterwards.
+    m_ui_alive->store(false);
 }
 
 void MainWindow::capture_app_launched() {

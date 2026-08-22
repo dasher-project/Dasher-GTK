@@ -43,12 +43,16 @@ class DirectModeService {
     bool inject_delete(const std::string& deleted_text);
 
     bool is_available() const;
-    // Re-run the ydotool availability check (e.g. after the user installs it via
-    // the setup dialog, issue #38) and update the cached result.
+    // Re-run the ydotool availability check (e.g. after the user installs it
+    // via the setup dialog, issue #38) and update the cached result. The
+    // worker survives injection failures precisely so this can resume the
+    // service after a Retry — recheck() alone puts it back in business.
     bool recheck();
 
-    // Called from the worker thread the first time an injection fails;
-    // receivers must marshal back to the UI thread (e.g. Glib::signal_idle).
+    // Called from the worker thread whenever an injection fails mid-session
+    // (daemon died, permissions lost). Receivers must marshal back to the UI
+    // thread (e.g. Glib::signal_idle) and be prepared for the call to race
+    // teardown — see MainWindow's alive-flag pattern.
     void set_failure_callback(FailureCallback callback);
 
     // Number of UTF-8 code points in `text` (lead-byte count). Injected

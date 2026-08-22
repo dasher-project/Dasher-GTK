@@ -138,14 +138,21 @@ void DirectModeService::worker_loop() {
 
         if (!run_job(job)) {
             m_available = false;
-            // Drop any queued jobs: they'd fail against a dead daemon anyway.
-            std::unique_lock<std::mutex> lock(m_mutex);
-            std::queue<DirectModeJob> empty;
-            std::swap(m_queue, empty);
-            FailureCallback callback = m_failure_callback;
-            lock.unlock();
+            // Drop any queued jobs (they'd fail against a dead daemon) and grab
+            // the callback under one lock; never fire it while holding it.
+            FailureCallback callback;
+            {
+                std::lock_guard<std::mutex> lock(m_mutex);
+                std::queue<DirectModeJob> empty;
+                std::swap(m_queue, empty);
+                callback = m_failure_callback;
+            }
             if (callback) callback();
-            return;
+            // Do NOT exit: the worker must survive so a later recheck()
+            // (setup dialog Retry) can resume injection. With m_available
+            // false, inject_* stop queueing, so the loop parks on the
+            // condition variable until then.
+            continue;
         }
     }
 }
