@@ -1,6 +1,7 @@
 #pragma once
 
 #include <atomic>
+#include <cstdint>
 #include <condition_variable>
 #include <functional>
 #include <mutex>
@@ -67,6 +68,12 @@ class DirectModeService {
 
     bool run_job(const DirectModeJob& job);
     void worker_loop();
+
+    // Injected while the worker is mid-job. Recheck() bumps the generation so
+    // a failure result from an older attempt (e.g. one still completing when
+    // the user pressed Retry) can't clobber a newer availability verdict.
+    // Guarded by m_mutex.
+    uint64_t m_generation = 0;
 
     std::atomic<bool> m_available{false};
     std::queue<DirectModeJob> m_queue;

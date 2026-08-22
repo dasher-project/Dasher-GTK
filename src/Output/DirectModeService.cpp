@@ -57,8 +57,16 @@ bool DirectModeService::is_available() const {
 }
 
 bool DirectModeService::recheck() {
-    m_available = probe_ydotool();
-    return m_available;
+    // Probe outside the lock (it blocks on a process), then commit the verdict
+    // with a generation bump: any in-flight job from before this recheck that
+    // later reports failure is stale and must not clobber the new verdict.
+    const bool available = probe_ydotool();
+    {
+        std::lock_guard<std::mutex> lock(m_mutex);
+        m_available = available;
+        ++m_generation;
+    }
+    return available;
 }
 
 bool DirectModeService::probe_ydotool() {
@@ -125,6 +133,7 @@ bool DirectModeService::run_job(const DirectModeJob& job) {
 void DirectModeService::worker_loop() {
     while (true) {
         DirectModeJob job;
+        uint64_t generation = 0;
         {
             std::unique_lock<std::mutex> lock(m_mutex);
             m_cv.wait(lock, [this]() { return m_stopping || !m_queue.empty(); });
@@ -134,20 +143,28 @@ void DirectModeService::worker_loop() {
             if (m_stopping) return;
             job = std::move(m_queue.front());
             m_queue.pop();
+            generation = m_generation;
         }
 
         if (!run_job(job)) {
-            m_available = false;
-            // Drop any queued jobs (they'd fail against a dead daemon) and grab
-            // the callback under one lock; never fire it while holding it.
+            // A failure only counts if no recheck() has happened since this
+            // job was picked up: with Retry succeeding mid-flight, an older
+            // job's late failure must not override the fresh recovery
+            // verdict or re-fire the failure callback.
             FailureCallback callback;
+            bool stale = true;
             {
                 std::lock_guard<std::mutex> lock(m_mutex);
-                std::queue<DirectModeJob> empty;
-                std::swap(m_queue, empty);
-                callback = m_failure_callback;
+                stale = generation != m_generation;
+                if (!stale) {
+                    m_available = false;
+                    // Drop any queued jobs (they'd fail against a dead daemon).
+                    std::queue<DirectModeJob> empty;
+                    std::swap(m_queue, empty);
+                    callback = m_failure_callback;
+                }
             }
-            if (callback) callback();
+            if (!stale && callback) callback();
             // Do NOT exit: the worker must survive so a later recheck()
             // (setup dialog Retry) can resume injection. With m_available
             // false, inject_* stop queueing, so the loop parks on the
