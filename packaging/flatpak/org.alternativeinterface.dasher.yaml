@@ -78,6 +78,12 @@ modules:
     sources:
       - type: archive
         url: https://www.cairographics.org/releases/cairomm-1.18.0.tar.xz
+        # cairographics.org went dark for days in Aug 2026 (connection
+        # timeouts, repo-wide) — flatpak-builder falls back to mirror-urls
+        # when the primary host fails. The pkgsrc CDN copy is byte-identical
+        # (sha256 above). GNOME's mirror only carries cairomm <= 1.15.
+        mirror-urls:
+          - https://cdn.netbsd.org/pub/pkgsrc/distfiles/cairomm-1.18.0.tar.xz
         sha256: b81255394e3ea8e8aa887276d22afa8985fc8daef60692eb2407d23049f03cfb
       - type: archive
         url: https://download.gnome.org/sources/libsigc++/3.6/libsigc++-3.6.0.tar.xz
@@ -98,6 +104,12 @@ modules:
         dest: subprojects/libsigcplusplus
       - type: archive
         url: https://www.cairographics.org/releases/cairomm-1.18.0.tar.xz
+        # cairographics.org went dark for days in Aug 2026 (connection
+        # timeouts, repo-wide) — flatpak-builder falls back to mirror-urls
+        # when the primary host fails. The pkgsrc CDN copy is byte-identical
+        # (sha256 above). GNOME's mirror only carries cairomm <= 1.15.
+        mirror-urls:
+          - https://cdn.netbsd.org/pub/pkgsrc/distfiles/cairomm-1.18.0.tar.xz
         sha256: b81255394e3ea8e8aa887276d22afa8985fc8daef60692eb2407d23049f03cfb
         dest: subprojects/cairomm
       - type: archive
@@ -119,6 +131,12 @@ modules:
         dest: subprojects/libsigcplusplus
       - type: archive
         url: https://www.cairographics.org/releases/cairomm-1.18.0.tar.xz
+        # cairographics.org went dark for days in Aug 2026 (connection
+        # timeouts, repo-wide) — flatpak-builder falls back to mirror-urls
+        # when the primary host fails. The pkgsrc CDN copy is byte-identical
+        # (sha256 above). GNOME's mirror only carries cairomm <= 1.15.
+        mirror-urls:
+          - https://cdn.netbsd.org/pub/pkgsrc/distfiles/cairomm-1.18.0.tar.xz
         sha256: b81255394e3ea8e8aa887276d22afa8985fc8daef60692eb2407d23049f03cfb
         dest: subprojects/cairomm
       - type: archive
