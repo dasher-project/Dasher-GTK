@@ -11,12 +11,11 @@ public:
 
     void render(const DasherBridge::FrameResult& frame, const Cairo::RefPtr<Cairo::Context>& cr);
 
-    void set_font_family(const std::string& family);
-    void set_font_slant(Cairo::ToyFontFace::Slant slant);
-    void set_font_weight(Cairo::ToyFontFace::Weight weight);
+    // The canvas font lives on the bridge (single source of truth) so the
+    // engine's text-measurement callback and this renderer always agree;
+    // the renderer reads it per frame via the provided bridge.
+    void set_bridge(std::shared_ptr<DasherBridge> bridge);
 
-private:
-    std::string m_font_family;
-    Cairo::ToyFontFace::Slant m_font_slant;
-    Cairo::ToyFontFace::Weight m_font_weight;
+  private:
+    std::shared_ptr<DasherBridge> m_bridge;
 };

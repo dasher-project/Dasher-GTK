@@ -1,28 +1,22 @@
 #include "CommandRenderer.h"
 #include <dasher.h>
 
-CommandRenderer::CommandRenderer()
-    : m_font_family("Sans")
-    , m_font_slant(Cairo::ToyFontFace::Slant::NORMAL)
-    , m_font_weight(Cairo::ToyFontFace::Weight::NORMAL)
-{
-}
+CommandRenderer::CommandRenderer() = default;
 
-void CommandRenderer::set_font_family(const std::string& family) {
-    m_font_family = family;
-}
-
-void CommandRenderer::set_font_slant(Cairo::ToyFontFace::Slant slant) {
-    m_font_slant = slant;
-}
-
-void CommandRenderer::set_font_weight(Cairo::ToyFontFace::Weight weight) {
-    m_font_weight = weight;
+void CommandRenderer::set_bridge(std::shared_ptr<DasherBridge> bridge) {
+    m_bridge = std::move(bridge);
 }
 
 void CommandRenderer::render(const DasherBridge::FrameResult& frame, const Cairo::RefPtr<Cairo::Context>& cr) {
     const auto& cmds = frame.commands;
     const auto& strs = frame.strings;
+
+    // Drawing uses the bridge's canvas font — the same face the engine's
+    // text-measurement callback measures with (DasherBridge::set_canvas_font,
+    // DasherCore v0.2.4), so label layout and rendering cannot diverge.
+    const DasherBridge::CanvasFont font = m_bridge ? m_bridge->get_canvas_font()
+                                                   : DasherBridge::CanvasFont{"Sans", Cairo::ToyFontFace::Slant::NORMAL,
+                                                                              Cairo::ToyFontFace::Weight::NORMAL};
 
     const int CMD_SIZE = 6;
     int count = static_cast<int>(cmds.size()) / CMD_SIZE;
@@ -86,7 +80,7 @@ void CommandRenderer::render(const DasherBridge::FrameResult& frame, const Cairo
             const std::string& text = strs[d];
             if (text.empty()) break;
 
-            cr->select_font_face(m_font_family, m_font_slant, m_font_weight);
+            cr->select_font_face(font.family, font.slant, font.weight);
             cr->set_font_size(c);
 
             Cairo::TextExtents te;

@@ -48,6 +48,7 @@ RenderingCanvas::RenderingCanvas() {
     }
 
     renderer = std::make_unique<CommandRenderer>();
+    renderer->set_bridge(bridge);
     input_manager = std::make_unique<InputManager>(bridge);
     input_manager->activate();
     dwell_handler = std::make_unique<DwellClickHandler>();

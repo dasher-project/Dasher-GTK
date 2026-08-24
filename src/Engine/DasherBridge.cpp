@@ -21,6 +21,13 @@ DasherBridge::DasherBridge(const std::string& data_dir, const std::string& user_
         // report has useful engine context (RFC 0009); GLib still filters what
         // actually reaches stderr by domain/level at display time.
         dasher_set_log_callback(m_ctx, log_callback_trampoline, nullptr, /*min_level=*/1);
+
+        // Real text metrics for label layout (DasherCore v0.2.4 / issue #56):
+        // the engine previously estimated label width, and the estimate's error
+        // compounds down the label chain — deep-zoom text degenerated into
+        // jumbled overlaps. Measuring with the same Cairo toy font the canvas
+        // draws opcode-5 text with keeps layout and drawing in agreement.
+        dasher_set_text_size_callback(m_ctx, text_size_trampoline, this);
     }
 }
 
@@ -327,6 +334,40 @@ void DasherBridge::set_output_callback(std::function<void(int, const std::string
     if (m_ctx) {
         dasher_set_output_callback(m_ctx, output_callback_trampoline, this);
     }
+}
+
+void DasherBridge::set_canvas_font(const std::string& family, Cairo::ToyFontFace::Slant slant,
+                                   Cairo::ToyFontFace::Weight weight) {
+    m_canvas_font.family = family.empty() ? "Sans" : family;
+    m_canvas_font.slant = slant;
+    m_canvas_font.weight = weight;
+    // Cached engine measurements are font-relative: drop them so the next
+    // frame re-measures with the new font (DasherCore v0.2.4).
+    if (m_ctx) dasher_text_metrics_changed(m_ctx);
+}
+
+int DasherBridge::text_size_trampoline(const char* text, int font_size, int* out_width, int* out_height,
+                                       void* user_data) {
+    auto* self = static_cast<DasherBridge*>(user_data);
+    if (!self || !text || !out_width || !out_height || font_size <= 0) return 1;
+
+    // Mirror CommandRenderer's text path exactly: same Cairo toy font face
+    // and size it selects before show_text(), so the engine lays labels out
+    // with the widths this canvas actually draws. Uses the same cairomm
+    // calls the renderer uses, on a throwaway offscreen context.
+    const auto& cr = self->m_measure_context;
+    if (!cr) return 1;
+
+    cr->select_font_face(self->m_canvas_font.family, self->m_canvas_font.slant, self->m_canvas_font.weight);
+    cr->set_font_size(font_size);
+
+    Cairo::TextExtents extents;
+    cr->get_text_extents(text, extents);
+    *out_width = static_cast<int>(extents.x_advance);
+    // Height as the ink box: matches how the renderer vertically places text
+    // via y_bearing (baseline-relative), not a font-wide line height.
+    *out_height = static_cast<int>(extents.height);
+    return 0;
 }
 
 void DasherBridge::output_callback_trampoline(int event_type, const char* text, void* user_data) {

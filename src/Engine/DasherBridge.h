@@ -1,6 +1,9 @@
 #pragma once
 
 #include "dasher.h"
+#include <cairomm/context.h>
+#include <cairomm/surface.h>
+#include <cairomm/fontface.h>
 #include <functional>
 #include <string>
 #include <vector>
@@ -117,6 +120,17 @@ public:
 
     void set_output_callback(std::function<void(int, const std::string&)> callback);
 
+    // Canvas font, single source of truth for BOTH the engine's label
+    // measurement (text-size callback, DasherCore v0.2.4 / issue #56) and the
+    // renderer's opcode-5 text drawing, so layout and drawing cannot diverge.
+    struct CanvasFont {
+        std::string family;
+        Cairo::ToyFontFace::Slant slant;
+        Cairo::ToyFontFace::Weight weight;
+    };
+    void set_canvas_font(const std::string& family, Cairo::ToyFontFace::Slant slant, Cairo::ToyFontFace::Weight weight);
+    const CanvasFont& get_canvas_font() const { return m_canvas_font; }
+
     int64_t get_current_time_ms() const;
 
 private:
@@ -125,6 +139,14 @@ private:
 
     static void output_callback_trampoline(int event_type, const char* text, void* user_data);
     static void log_callback_trampoline(int level, const char* message, void* user_data);
+    static int text_size_trampoline(const char* text, int font_size, int* out_width, int* out_height, void* user_data);
+
+    // Font state shared with the renderer (get_canvas_font) and the
+    // measurement callback below.
+    CanvasFont m_canvas_font{"Sans", Cairo::ToyFontFace::Slant::NORMAL, Cairo::ToyFontFace::Weight::NORMAL};
+    // Offscreen context exclusively for cairo_text_extents; never drawn to.
+    Cairo::RefPtr<Cairo::Context> m_measure_context =
+        Cairo::Context::create(Cairo::ImageSurface::create(Cairo::Surface::Format::ARGB32, 1, 1));
 
     std::chrono::time_point<std::chrono::steady_clock> m_start_time;
 };
