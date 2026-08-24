@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Full history + tags so the version drift check can git-describe.
+          fetch-depth: 0
 
       - name: Install validators
         run: sudo apt-get update && sudo apt-get install -y desktop-file-utils appstream
@@ -19,3 +22,25 @@ jobs:
 
       - name: Validate AppStream metainfo
         run: appstreamcli validate --no-net packaging/org.alternativeinterface.dasher.metainfo.xml
+
+      # Version drift gate (RFC 0016): the app reports a git-derived version,
+      # so nothing forces a tag to match the metainfo's latest <release>. On
+      # v* tag pushes this fails the release early if they disagree; on branch
+      # builds it only warns (the newest tag may simply be ahead of docs while
+      # work continues).
+      - name: Check version consistency (tag ↔ metainfo)
+        run: |
+          set -e
+          describe="$(git describe --tags --match 'v*' 2>/dev/null || true)"
+          [ -n "$describe" ] || { echo "No v* tag reachable — skipping"; exit 0; }
+          tag_version="${describe%%-*}"; tag_version="${tag_version#v}"
+          meta_version="$(grep -m1 -oP '(?<=<release version=")[^"]+' packaging/org.alternativeinterface.dasher.metainfo.xml)"
+          echo "git: $tag_version  metainfo: $meta_version"
+          if [ "$tag_version" != "$meta_version" ]; then
+            if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+              echo "::error::Tag v$tag_version does not match the newest metainfo <release> ($meta_version). Add the release entry when tagging."
+              exit 1
+            else
+              echo "::warning::Newest v* tag (v$tag_version) is ahead of the metainfo's newest <release> ($meta_version) — add the entry when tagging."
+            fi
+          fi
