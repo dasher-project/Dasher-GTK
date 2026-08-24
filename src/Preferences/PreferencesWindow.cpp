@@ -498,6 +498,19 @@ void PreferencesWindow::add_privacy_section() {
         });
     });
 
+    // RFC 0016: the app version, so support conversations can start from
+    // "which build are you on?". Same constant the crash reporter sends, so
+    // the UI can never disagree with telemetry. Interim home: bottom of the
+    // Privacy tab, pending the About section (RFC 0006).
+#ifndef DASHER_GTK_VERSION
+#define DASHER_GTK_VERSION "0.0.0-dev"
+#endif
+    auto* version_label = Gtk::make_managed<Gtk::Label>(std::string("Dasher ") + DASHER_GTK_VERSION);
+    version_label->set_halign(Gtk::Align::START);
+    version_label->set_margin_top(12);
+    version_label->add_css_class("dim-label");
+    box->append(*version_label);
+
     scrolled->set_child(*box);
     m_stack.add(*scrolled, "privacy", "Privacy");
 }
