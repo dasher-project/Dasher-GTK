@@ -133,7 +133,18 @@ public:
 
     int64_t get_current_time_ms() const;
 
-private:
+    // Test seam: replace the text-measurement callback (the real one is
+    // registered in the constructor). Returns the previous trampoline state
+    // is not needed; tests only count calls. Also stops the canvas-font
+    // invalidations from interfering by leaving them as-is.
+    void set_text_size_callback_for_tests(int (*measure)(const std::string&, int, int*, int*));
+
+    // Test seam (EngineTimeline equivalent on Dasher-Windows): clamp a raw
+    // elapsed delta to the frame-loop invariant 1..50 ms. Public static so
+    // the unit tests can pin the contract without an engine.
+    static int64_t clamp_frame_delta_ms(int64_t raw_delta_ms);
+
+  private:
     dasher_ctx* m_ctx = nullptr;
     std::function<void(int, const std::string&)> m_output_callback;
 
@@ -148,5 +159,13 @@ private:
     Cairo::RefPtr<Cairo::Context> m_measure_context =
         Cairo::Context::create(Cairo::ImageSurface::create(Cairo::Surface::Format::ARGB32, 1, 1));
 
-    std::chrono::time_point<std::chrono::steady_clock> m_start_time;
+    mutable std::chrono::time_point<std::chrono::steady_clock> m_start_time;
+    // Engine-timeline state for the frame clamp (see clamp_frame_delta_ms):
+    // advances monotonically by clamped deltas, immune to main-loop stalls.
+    mutable int64_t m_engine_time_ms = 0;
+    mutable bool m_engine_time_started = false;
+
+    // Test seam target (see set_text_size_callback_for_tests): when set, the
+    // measurement trampoline delegates here instead of measuring with Cairo.
+    int (*m_test_measure)(const std::string&, int, int*, int*) = nullptr;
 };
