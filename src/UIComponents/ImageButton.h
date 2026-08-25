@@ -4,18 +4,19 @@
 #include "gtkmm/box.h"
 #include <gtkmm/button.h>
 #include <gtkmm/image.h>
-#include <gtkmm/icontheme.h>
+#include <gtkmm/iconpaintable.h>
+#include <giomm/file.h>
 
-// Toolbar button: icon beside label (horizontal). The previous vertical
-// icon-over-label stack needed ~72px of height that action bars don't have,
-// squashing every button into a thin strip; horizontal keeps one row.
-// If the icon name is missing from the current theme (e.g. XFCE themes lack
-// applications-system-symbolic) the icon is dropped and the label still
-// shows, instead of rendering a broken-image glyph.
+// Toolbar button: Lucide icon (bundled in the gresource, RFC 0002) beside the
+// label. Bundled SVGs are theme-independent — the previous theme-icon lookup
+// produced broken-image glyphs wherever a name was missing (e.g. XFCE themes
+// lack applications-system-symbolic) — and give GTK the same icon set
+// Dasher-Windows and Dasher-Apple already ship.
 class ImageButton : public Gtk::Button {
 
   public:
-    ImageButton(const Glib::ustring label, const Glib::ustring icon) : m_box(Gtk::Orientation::HORIZONTAL) {
+    // icon_name: a stem under /org/alternativeinterface/dasher/icons/
+    ImageButton(const Glib::ustring label, const Glib::ustring icon_name) : m_box(Gtk::Orientation::HORIZONTAL) {
         set_child(m_box);
         m_box.append(m_icon);
         m_box.append(m_label);
@@ -23,17 +24,13 @@ class ImageButton : public Gtk::Button {
         m_label.set_label(label);
         m_label.set_margin(2);
 
-        // Fallback chain: theme name -> generic preferences icon -> text-only.
-        std::vector<Glib::ustring> fallbacks;
-        if (icon.find("applications-system") != Glib::ustring::npos || icon.find("settings") != Glib::ustring::npos) {
-            fallbacks.push_back("preferences-system-symbolic");
-            fallbacks.push_back("emblem-system-symbolic");
-        }
-        auto paintable =
-            Gtk::IconTheme::get_for_display(get_display())->lookup_icon(icon, fallbacks, 24, get_scale_factor());
-        if (paintable) {
+        auto file =
+            Gio::File::create_for_uri("resource:///org/alternativeinterface/dasher/icons/" + icon_name + ".svg");
+        if (file->query_exists()) {
+            auto paintable = Gtk::IconPaintable::create(file, 24, get_scale_factor());
             m_icon.property_paintable() = paintable;
-            m_icon.set_margin(2);
+            m_icon.set_pixel_size(18);
+            m_icon.set_margin_end(4);
         } else {
             m_icon.set_visible(false);
         }

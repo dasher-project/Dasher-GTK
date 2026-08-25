@@ -120,6 +120,7 @@ file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS
 find_program(GLIB_COMPILE_RESOURCES NAMES glib-compile-resources REQUIRED)
 set(GRESOURCE_XML ${CMAKE_CURRENT_LIST_DIR}/src/dasher.gresource.xml)
 set(GRESOURCE_C ${CMAKE_BINARY_DIR}/dasher_resources.c)
+file(GLOB LUCIDE_ICONS ${CMAKE_CURRENT_LIST_DIR}/src/icons/*.svg)
 add_custom_command(
     OUTPUT ${GRESOURCE_C}
     COMMAND ${GLIB_COMPILE_RESOURCES}
@@ -127,8 +128,8 @@ add_custom_command(
             --sourcedir=${CMAKE_CURRENT_LIST_DIR}/src
             --generate-source
             ${GRESOURCE_XML}
-    DEPENDS ${GRESOURCE_XML} ${CMAKE_CURRENT_LIST_DIR}/src/UIStyle.css
-    COMMENT "Compiling GResource bundle (UIStyle.css)"
+    DEPENDS ${GRESOURCE_XML} ${CMAKE_CURRENT_LIST_DIR}/src/UIStyle.css ${LUCIDE_ICONS}
+    COMMENT "Compiling GResource bundle (UIStyle.css + Lucide icons)"
     VERBATIM
 )
 # A custom command's OUTPUT rule is only visible in the directory that

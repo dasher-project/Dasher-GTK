@@ -2,5 +2,11 @@
 <gresources>
   <gresource prefix="/org/alternativeinterface/dasher">
     <file>UIStyle.css</file>
+    <file alias="icons/file-plus.svg">icons/lucide-file-plus.svg</file>
+    <file alias="icons/folder-open.svg">icons/lucide-folder-open.svg</file>
+    <file alias="icons/save.svg">icons/lucide-save.svg</file>
+    <file alias="icons/gamepad-2.svg">icons/lucide-gamepad-2.svg</file>
+    <file alias="icons/keyboard.svg">icons/lucide-keyboard.svg</file>
+    <file alias="icons/settings.svg">icons/lucide-settings.svg</file>
   </gresource>
 </gresources>

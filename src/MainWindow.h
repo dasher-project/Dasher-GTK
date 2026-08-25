@@ -49,12 +49,12 @@ class MainWindow : public Gtk::Window {
     // ignored) and ActionBar's internal box isn't accessible from code, so
     // margins on each child are the only lever we have.
     void pack_bar_start(Gtk::ActionBar& bar, Gtk::Widget& child);
-    ImageButton m_new_button = ImageButton("New", "document-new-symbolic");
-    ImageButton m_open_button = ImageButton("Open", "document-open-symbolic");
-    ImageButton m_save_button = ImageButton("Save", "document-save-symbolic");
-    ImageButton m_play_button = ImageButton("Play", "input-gaming-symbolic");
-    ImageToggleButton m_keyboard_button = ImageToggleButton("Keyboard", "input-keyboard-symbolic");
-    ImageButton m_pref_button = ImageButton("Prefs", "applications-system-symbolic");
+    ImageButton m_new_button = ImageButton("New", "file-plus");
+    ImageButton m_open_button = ImageButton("Open", "folder-open");
+    ImageButton m_save_button = ImageButton("Save", "save");
+    ImageButton m_play_button = ImageButton("Play", "gamepad-2");
+    ImageToggleButton m_keyboard_button = ImageToggleButton("Keyboard", "keyboard");
+    ImageButton m_pref_button = ImageButton("Prefs", "settings");
 
     RenderingCanvas m_canvas;
     MessageOverlay m_message_overlay;
@@ -81,9 +81,6 @@ class MainWindow : public Gtk::Window {
     std::unique_ptr<DirectModeService> m_direct_mode;
     std::unique_ptr<TtsService> m_tts;
     bool m_direct_mode_active = false;
-
-    // Footer dropdowns populate on the canvas's first resize (engine realised).
-    bool m_footer_first_fill = false;
 
     // Cleared in the destructor before any teardown. Cross-thread callbacks
     // (DirectModeService's failure callback runs on its worker) capture a

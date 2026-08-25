@@ -24,6 +24,10 @@ class RenderingCanvas : public Gtk::DrawingArea {
     sigc::signal<void(const std::string&)> OnBufferChange;
     sigc::signal<void(int, const std::string&)> OnOutputEvent;
 
+    // Emitted once, after the engine has realised (first set_screen_size
+    // returned). Safe point to query permitted alphabet/palette lists.
+    sigc::signal<void()> OnEngineReady;
+
   private:
     Glib::RefPtr<Gtk::EventControllerMotion> m_motion_controller;
     Glib::RefPtr<Gtk::GestureClick> m_primary_click;
@@ -41,6 +45,7 @@ class RenderingCanvas : public Gtk::DrawingArea {
 
     // RFC 0009 A2: report the engine's sticky error flag once per session.
     bool m_engine_error_reported = false;
+    bool m_engine_ready_emitted = false;
 
     void draw_dwell_indicator(const Cairo::RefPtr<Cairo::Context>& cr);
 };

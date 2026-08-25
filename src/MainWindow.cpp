@@ -67,13 +67,11 @@ MainWindow::MainWindow()
         m_learning_switch.update_from_bridge();
         m_color_chooser.update_from_bridge();
     });
-    // The footer dropdowns are constructed before the engine realises (it
-    // realises when the canvas first gets a size), so their initial model is
-    // empty and they render blank. Re-populate both on the first resize.
-    m_footer_first_fill = true;
-    m_canvas.signal_resize().connect([this](int, int) {
-        if (!m_footer_first_fill) return;
-        m_footer_first_fill = false;
+    // The footer dropdowns are constructed before the engine realises, so
+    // their initial model is empty and they render blank. The canvas emits
+    // OnEngineReady once set_screen_size() has returned — after realisation —
+    // which is the first point the alphabet/palette lists actually exist.
+    m_canvas.OnEngineReady.connect([this]() {
         m_alphabet_chooser.update_from_bridge();
         m_color_chooser.update_from_bridge();
     });
@@ -251,12 +249,15 @@ MainWindow::MainWindow()
             return;
         }
         m_direct_mode_active = on;
-        if (m_direct_mode_active) {
-            m_pane.set_shrink_end_child(false);
-            m_pane.set_position(get_width() - 50);
-        } else {
+        // v5 behaviour: hide the editor entirely and let the canvas fill the
+        // window — Dasher becomes an on-screen keyboard (RFC 0015). Merely
+        // shrinking the pane left a 50px sliver and the text view visible.
+        m_side_panel.set_visible(!on);
+        if (!on) {
             m_pane.set_shrink_end_child(true);
             m_pane.set_position(get_width() * 2 / 3);
+        } else {
+            m_pane.set_shrink_end_child(false);
         }
     });
 
@@ -362,9 +363,9 @@ void MainWindow::capture_app_launched() {
 }
 
 void MainWindow::pack_bar_start(Gtk::ActionBar& bar, Gtk::Widget& child) {
-    // 6px either side = ~12px between neighbours; separators get a little
-    // more so groups read as groups.
-    const int margin = dynamic_cast<Gtk::Separator*>(&child) ? 8 : 6;
+    // 3px either side = ~6px between neighbours; separators a touch more so
+    // groups read as groups without eating the bar's width.
+    const int margin = dynamic_cast<Gtk::Separator*>(&child) ? 4 : 3;
     child.set_margin_start(margin);
     child.set_margin_end(margin);
     bar.pack_start(child);
