@@ -38,7 +38,7 @@
   <releases>
     <release version="0.2.7" date="2026-08-25">
       <description>
-        <p>Label layout now measures text with the real canvas font (DasherCore v0.2.4), fixing jumbled, overlapping letters when writing long sentences. The app version is shown in Preferences → Privacy and derives from the release tag everywhere. Flatpak builds gained a tarball mirror so outages on cairographics.org can't block releases.</p>
+        <p>Label layout now measures text with the real canvas font (DasherCore v0.2.4), fixing jumbled, overlapping letters when writing long sentences. The app version is shown in Preferences → Privacy and, on builds from a Git checkout, derives from the release tag. Flatpak builds gained a tarball mirror so outages on cairographics.org can't block releases.</p>
       </description>
     </release>
     <release version="0.2.6" date="2026-08-20">
