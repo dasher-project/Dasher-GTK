@@ -93,6 +93,13 @@ target_include_directories(engine_contract_tests PRIVATE
 add_dependencies(engine_contract_tests dasher dasher_gresource)
 target_link_libraries(engine_contract_tests PRIVATE doctest::doctest dasher ${GTK_LIBRARIES} ${GTKMM_LIBRARIES} Threads::Threads)
 target_link_directories(engine_contract_tests PRIVATE ${GTK_LIBRARY_DIRS} ${GTKMM_LIBRARY_DIRS})
+# Same MSVC ABI guard as dasher_unit_tests: the prebuilt gtkmm/sigc++ libs
+# use the release runtime; a debug-runtime test exe deadlocks loading them
+# (the Windows CI leg hung before producing any output until this).
+if(MSVC)
+    set_property(TARGET engine_contract_tests PROPERTY
+                 MSVC_RUNTIME_LIBRARY "MultiThreadedDLL")
+endif()
 if(CURL_FOUND)
     target_link_libraries(engine_contract_tests PRIVATE CURL::libcurl)
     target_compile_definitions(engine_contract_tests PRIVATE HAS_ANALYTICS_CURL)
