@@ -31,6 +31,9 @@
 #include <gtkmm/eventcontrollerkey.h>
 #include <gtkmm/fontdialog.h>
 #include <gtkmm/fontdialogbutton.h>
+#include <gtkmm/menubutton.h>
+#include <giomm/menu.h>
+#include <giomm/simpleactiongroup.h>
 #include <gtkmm/switch.h>
 #include <gtkmm/filedialog.h>
 #include <gtkmm/filefilter.h>
@@ -55,6 +58,16 @@ class MainWindow : public Gtk::Window {
     ImageButton m_open_button = ImageButton("Open", "folder-open");
     ImageButton m_save_button = ImageButton("Save", "save");
     ImageButton m_play_button = ImageButton("Play", "gamepad-2");
+    // Layout/output-mode menu (Apple's layoutPickerMenu / Windows' BtnMode):
+    // Right / Left / Bottom / Top / Keyboard — where the text pane sits, with
+    // Keyboard hiding it entirely for direct entry.
+    Gtk::MenuButton m_layout_button;
+    Glib::RefPtr<Gio::Menu> m_layout_menu = Gio::Menu::create();
+    Gtk::Label m_layout_label = Gtk::Label("Right side");
+    enum class PaneLayout { Right, Left, Bottom, Top, Keyboard };
+    PaneLayout m_pane_layout = PaneLayout::Right;
+    void set_pane_layout(PaneLayout layout);
+    // Legacy toggle target for the keyboard mode handlers.
     ImageToggleButton m_keyboard_button = ImageToggleButton("Keyboard", "keyboard");
     ImageButton m_pref_button = ImageButton("Prefs", "settings");
 
@@ -63,10 +76,10 @@ class MainWindow : public Gtk::Window {
 
     Gtk::Box m_side_panel = Gtk::Box(Gtk::Orientation::VERTICAL);
     Gtk::ActionBar m_panel_bar;
-    ImageButton m_copy_button = ImageButton("Copy", "edit-copy-symbolic");
-    ImageButton m_copyall_button = ImageButton("Copy all", "edit-select-all-symbolic");
-    ImageButton m_paste_button = ImageButton("Paste", "edit-paste-symbolic");
-    ImageButton m_read_button = ImageButton("Read", "audio-speakers-symbolic");
+    ImageButton m_copy_button = ImageButton("Copy", "copy");
+    ImageButton m_copyall_button = ImageButton("Copy all", "copy-all");
+    ImageButton m_paste_button = ImageButton("Paste", "paste");
+    ImageButton m_read_button = ImageButton("Read", "read");
     Gtk::TextView m_text_view;
 
     Gtk::ActionBar m_footer_bar;

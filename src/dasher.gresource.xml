@@ -8,5 +8,13 @@
     <file alias="icons/gamepad-2.svg">icons/lucide-gamepad-2.svg</file>
     <file alias="icons/keyboard.svg">icons/lucide-keyboard.svg</file>
     <file alias="icons/settings.svg">icons/lucide-settings.svg</file>
+    <file alias="icons/copy.svg">icons/lucide-copy.svg</file>
+    <file alias="icons/copy-all.svg">icons/lucide-clipboard-check.svg</file>
+    <file alias="icons/paste.svg">icons/lucide-clipboard.svg</file>
+    <file alias="icons/read.svg">icons/lucide-volume-2.svg</file>
+    <file alias="icons/panel-right.svg">icons/lucide-panel-right.svg</file>
+    <file alias="icons/panel-left.svg">icons/lucide-panel-left.svg</file>
+    <file alias="icons/panel-bottom.svg">icons/lucide-panel-bottom.svg</file>
+    <file alias="icons/panel-top.svg">icons/lucide-panel-top.svg</file>
   </gresource>
 </gresources>

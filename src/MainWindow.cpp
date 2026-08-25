@@ -42,7 +42,50 @@ MainWindow::MainWindow()
     pack_bar_start(m_header_bar, m_save_button);
     pack_bar_start(m_header_bar, *Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
     pack_bar_start(m_header_bar, m_play_button);
-    pack_bar_start(m_header_bar, m_keyboard_button);
+    // Layout menu replaces the bare Keyboard toggle (Apple layoutPickerMenu /
+    // Windows BtnMode): Right / Left / Bottom / Top / Keyboard.
+    m_layout_menu->append("Right side", "layout.right");
+    m_layout_menu->append("Left side", "layout.left");
+    m_layout_menu->append("Bottom", "layout.bottom");
+    m_layout_menu->append("Top", "layout.top");
+    m_layout_menu->append("_Keyboard", "layout.keyboard");
+    m_layout_button.set_menu_model(m_layout_menu);
+    {
+        auto* box = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::HORIZONTAL, 4);
+        auto icon = Gtk::IconPaintable::create(
+            Gio::File::create_for_uri("resource:///org/alternativeinterface/dasher/icons/panel-right.svg"), 24,
+            get_scale_factor());
+        auto* image = Gtk::make_managed<Gtk::Image>();
+        image->property_paintable() = icon;
+        image->set_pixel_size(18);
+        box->append(*image);
+        m_layout_label.set_valign(Gtk::Align::CENTER);
+        box->append(m_layout_label);
+        m_layout_button.set_child(*box);
+        m_layout_button.set_tooltip_text("Pane position and direct-entry mode");
+    }
+    pack_bar_start(m_header_bar, m_layout_button);
+    {
+        auto layout = Gio::SimpleActionGroup::create();
+        auto activate = [this](const Glib::ustring& name) {
+            if (name == "right")
+                set_pane_layout(PaneLayout::Right);
+            else if (name == "left")
+                set_pane_layout(PaneLayout::Left);
+            else if (name == "bottom")
+                set_pane_layout(PaneLayout::Bottom);
+            else if (name == "top")
+                set_pane_layout(PaneLayout::Top);
+            else
+                set_pane_layout(PaneLayout::Keyboard);
+        };
+        for (const char* n : {"right", "left", "bottom", "top", "keyboard"}) {
+            auto action = Gio::SimpleAction::create(n);
+            action->signal_activate().connect([activate, n](const Glib::VariantBase&) { activate(n); });
+            layout->add_action(action);
+        }
+        insert_action_group("layout", layout);
+    }
     pack_bar_start(m_header_bar, *Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
     pack_bar_start(m_header_bar, m_pref_button);
     m_header_bar.add_css_class("topbar");
@@ -510,6 +553,57 @@ void MainWindow::update_speed_display() {
     char buf[16];
     std::snprintf(buf, sizeof(buf), "%.1f", v5);
     m_speed_value_label.set_text(buf);
+}
+
+void MainWindow::set_pane_layout(PaneLayout layout) {
+    // Keyboard layout is just keyboard mode (which hides everything); the
+    // four pane layouts re-orient the canvas/text split and leave mode alone.
+    const bool keyboard = (layout == PaneLayout::Keyboard);
+    if (keyboard) {
+        if (!m_keyboard_button.get_active()) m_keyboard_button.set_active(true);
+        m_layout_label.set_text("Keyboard");
+        return;
+    }
+    if (m_keyboard_button.get_active()) m_keyboard_button.set_active(false);
+
+    m_pane_layout = layout;
+
+    // Re-order the main box for Top (bar, text, canvas, bar) and Bottom
+    // (bar, canvas, text, bar); Left/Right only flip the pane's orientation
+    // and child order. Re-ordering means removing and re-appending.
+    m_main_box.remove(m_pane);
+    switch (layout) {
+    case PaneLayout::Left:
+        m_pane.set_orientation(Gtk::Orientation::HORIZONTAL);
+        m_pane.set_start_child(m_side_panel);
+        m_pane.set_end_child(m_message_overlay);
+        m_layout_label.set_text("Left side");
+        break;
+    case PaneLayout::Bottom:
+        m_pane.set_orientation(Gtk::Orientation::VERTICAL);
+        m_pane.set_start_child(m_message_overlay);
+        m_pane.set_end_child(m_side_panel);
+        m_layout_label.set_text("Bottom");
+        break;
+    case PaneLayout::Top:
+        m_pane.set_orientation(Gtk::Orientation::VERTICAL);
+        m_pane.set_start_child(m_side_panel);
+        m_pane.set_end_child(m_message_overlay);
+        m_layout_label.set_text("Top");
+        break;
+    case PaneLayout::Right:
+    default:
+        m_pane.set_orientation(Gtk::Orientation::HORIZONTAL);
+        m_pane.set_start_child(m_message_overlay);
+        m_pane.set_end_child(m_side_panel);
+        m_layout_label.set_text("Right side");
+        break;
+    }
+    // Top: text above canvas => pane before... within a vertical main box the
+    // pane contains both; Top/Bottom differ by which pane child is first,
+    // handled above. Append the pane back in its (unchanged) slot.
+    m_main_box.append(m_pane);
+    m_side_panel.set_visible(true);
 }
 
 void MainWindow::set_keyboard_opacity(double v) {
