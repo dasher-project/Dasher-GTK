@@ -77,10 +77,18 @@ public:
         });
     }
 
-    // Re-select the engine's current palette (e.g. after reset-to-defaults).
-    // Mirrors the other Synced* widgets; setting the same row re-fires
-    // notify::selected, which re-sets the same palette — a no-op.
+    // Rebuild the palette list (e.g. once the engine has realised and the
+    // palettes have been scanned — the constructor may run before that, when
+    // the engine reports zero palettes) and re-select the engine's current
+    // palette.
     void update_from_bridge() {
+        palette_list->remove_all();
+        int count = m_bridge->get_palette_count();
+        for (int i = 0; i < count; i++) {
+            auto proxy = PaletteProxy::create(m_bridge->get_palette_name(i));
+            m_bridge->get_palette_preview_colors(i, proxy->preview_colors);
+            palette_list->append(proxy);
+        }
         std::string current = m_bridge->get_current_palette();
         for (guint i = 0; i < palette_list->get_n_items(); i++) {
             if (palette_list->get_item(i)->name == current) {

@@ -76,6 +76,9 @@ class MainWindow : public Gtk::Window {
     std::unique_ptr<TtsService> m_tts;
     bool m_direct_mode_active = false;
 
+    // Footer dropdowns populate on the canvas's first resize (engine realised).
+    bool m_footer_first_fill = false;
+
     // Cleared in the destructor before any teardown. Cross-thread callbacks
     // (DirectModeService's failure callback runs on its worker) capture a
     // shared copy and check it inside main-thread idles, so an idle queued

@@ -67,6 +67,16 @@ MainWindow::MainWindow()
         m_learning_switch.update_from_bridge();
         m_color_chooser.update_from_bridge();
     });
+    // The footer dropdowns are constructed before the engine realises (it
+    // realises when the canvas first gets a size), so their initial model is
+    // empty and they render blank. Re-populate both on the first resize.
+    m_footer_first_fill = true;
+    m_canvas.signal_resize().connect([this](int, int) {
+        if (!m_footer_first_fill) return;
+        m_footer_first_fill = false;
+        m_alphabet_chooser.update_from_bridge();
+        m_color_chooser.update_from_bridge();
+    });
     m_pref_button.signal_clicked().connect([this]() {
         m_preferences_window.set_visible(true);
     });
