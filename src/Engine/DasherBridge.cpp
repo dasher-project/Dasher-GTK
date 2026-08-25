@@ -346,10 +346,24 @@ void DasherBridge::set_canvas_font(const std::string& family, Cairo::ToyFontFace
     if (m_ctx) dasher_text_metrics_changed(m_ctx);
 }
 
+// Test seam: swap in an instrumented measurement callback (counting calls,
+// forcing failures) without touching the constructor's registration.
+void DasherBridge::set_text_size_callback_for_tests(int (*measure)(const std::string&, int, int*, int*)) {
+    m_test_measure = measure;
+    if (m_ctx) {
+        dasher_text_metrics_changed(m_ctx); // drop cached measurements
+    }
+}
+
 int DasherBridge::text_size_trampoline(const char* text, int font_size, int* out_width, int* out_height,
                                        void* user_data) {
     auto* self = static_cast<DasherBridge*>(user_data);
     if (!self || !text || !out_width || !out_height || font_size <= 0) return 1;
+
+    // Test seam: instrumented measurement wins when installed.
+    if (self->m_test_measure) {
+        return self->m_test_measure(text, font_size, out_width, out_height);
+    }
 
     // Mirror CommandRenderer's text path exactly: same Cairo toy font face
     // and size it selects before show_text(), so the engine lays labels out
@@ -405,7 +419,30 @@ void DasherBridge::log_callback_trampoline(int level, const char* message, void*
     analytics::engine_log_buffer().append(level, message ? message : "");
 }
 
+int64_t DasherBridge::clamp_frame_delta_ms(int64_t raw_delta_ms) {
+    // Frame-loop invariant (mirrors Dasher-Windows' EngineTimeline, #36): the
+    // engine must never see a time jump from a stalled main loop (window
+    // drag, modal dialog, machine load) — those produce zoom lurches. Real
+    // deltas while running smoothly; bounded to 50 ms when the loop stalls;
+    // at least 1 ms so the engine always advances.
+    if (raw_delta_ms < 1) return 1;
+    if (raw_delta_ms > 50) return 50;
+    return raw_delta_ms;
+}
+
 int64_t DasherBridge::get_current_time_ms() const {
-    return std::chrono::duration_cast<std::chrono::milliseconds>(
-        std::chrono::steady_clock::now() - m_start_time).count();
+    // Accumulate clamped deltas rather than reading the wall clock directly,
+    // so a stalled main loop costs the engine one 50 ms tick instead of a
+    // multi-second jump.
+    const auto now = std::chrono::steady_clock::now();
+    if (!m_engine_time_started) {
+        m_engine_time_started = true;
+        m_start_time = now;
+        m_engine_time_ms = 0;
+        return 0;
+    }
+    const int64_t raw = std::chrono::duration_cast<std::chrono::milliseconds>(now - m_start_time).count();
+    m_engine_time_ms += clamp_frame_delta_ms(raw);
+    m_start_time = now;
+    return m_engine_time_ms;
 }

@@ -70,6 +70,7 @@ public:
         }
 
         property_selected().signal_changed().connect([this]() {
+            if (m_refreshing) return; // model swap transiently selects row 0
             auto proxy = std::dynamic_pointer_cast<PaletteProxy>(get_selected_item());
             if (proxy) {
                 m_bridge->set_palette(proxy->name);
@@ -77,10 +78,19 @@ public:
         });
     }
 
-    // Re-select the engine's current palette (e.g. after reset-to-defaults).
-    // Mirrors the other Synced* widgets; setting the same row re-fires
-    // notify::selected, which re-sets the same palette — a no-op.
+    // Rebuild the palette list (e.g. once the engine has realised and the
+    // palettes have been scanned — the constructor may run before that, when
+    // the engine reports zero palettes) and re-select the engine's current
+    // palette.
     void update_from_bridge() {
+        m_refreshing = true;
+        palette_list->remove_all();
+        int count = m_bridge->get_palette_count();
+        for (int i = 0; i < count; i++) {
+            auto proxy = PaletteProxy::create(m_bridge->get_palette_name(i));
+            m_bridge->get_palette_preview_colors(i, proxy->preview_colors);
+            palette_list->append(proxy);
+        }
         std::string current = m_bridge->get_current_palette();
         for (guint i = 0; i < palette_list->get_n_items(); i++) {
             if (palette_list->get_item(i)->name == current) {
@@ -88,10 +98,12 @@ public:
                 break;
             }
         }
+        m_refreshing = false;
     }
 
 protected:
     std::shared_ptr<DasherBridge> m_bridge;
+    bool m_refreshing = false; // suppress the change handler during model swaps
     Glib::RefPtr<Gio::ListStore<PaletteProxy>> palette_list = Gio::ListStore<PaletteProxy>::create();
     Glib::RefPtr<Gtk::SignalListItemFactory> header_factory = Gtk::SignalListItemFactory::create();
     Glib::RefPtr<Gtk::SignalListItemFactory> list_factory = Gtk::SignalListItemFactory::create();

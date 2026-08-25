@@ -2,6 +2,8 @@
 
 #include "Engine/DasherBridge.h"
 #include "Output/DirectModeService.h"
+#include "Output/KeyboardWindowX11.h"
+#include "UiSettings.h"
 #include "Output/TtsService.h"
 #include "UIComponents/ImageButton.h"
 #include "UIComponents/ImageToggleButton.h"
@@ -21,6 +23,7 @@
 #include <memory>
 #include <gtkmm/box.h>
 #include <gtkmm/paned.h>
+#include <gtk/gtk.h> // gtk_paned_set_*_child(null) to detach on re-layout
 #include <gtkmm/actionbar.h>
 #include <gtkmm/label.h>
 #include <gtkmm/textview.h>
@@ -29,6 +32,9 @@
 #include <gtkmm/eventcontrollerkey.h>
 #include <gtkmm/fontdialog.h>
 #include <gtkmm/fontdialogbutton.h>
+#include <gtkmm/menubutton.h>
+#include <giomm/menu.h>
+#include <giomm/simpleactiongroup.h>
 #include <gtkmm/switch.h>
 #include <gtkmm/filedialog.h>
 #include <gtkmm/filefilter.h>
@@ -43,32 +49,55 @@ class MainWindow : public Gtk::Window {
     Gtk::Paned m_pane = Gtk::Paned(Gtk::Orientation::HORIZONTAL);
 
     Gtk::ActionBar m_header_bar;
-    ImageButton m_new_button = ImageButton("New", "document-new-symbolic");
-    ImageButton m_open_button = ImageButton("Open", "document-open-symbolic");
-    ImageButton m_save_button = ImageButton("Save", "document-save-symbolic");
-    ImageButton m_play_button = ImageButton("Play", "input-gaming-symbolic");
-    ImageToggleButton m_keyboard_button = ImageToggleButton("Keyboard", "input-keyboard-symbolic");
-    ImageButton m_pref_button = ImageButton("Prefs", "applications-system-symbolic");
+
+    // Pack a child into an ActionBar with breathing room around it. GTK4
+    // removed widget spacing from CSS (the `spacing` property is silently
+    // ignored) and ActionBar's internal box isn't accessible from code, so
+    // margins on each child are the only lever we have.
+    void pack_bar_start(Gtk::ActionBar& bar, Gtk::Widget& child);
+    ImageButton m_new_button = ImageButton("New", "file-plus");
+    ImageButton m_open_button = ImageButton("Open", "folder-open");
+    ImageButton m_save_button = ImageButton("Save", "save");
+    ImageButton m_play_button = ImageButton("Play", "gamepad-2");
+    // Layout/output-mode menu (Apple's layoutPickerMenu / Windows' BtnMode):
+    // Right / Left / Bottom / Top / Keyboard — where the text pane sits, with
+    // Keyboard hiding it entirely for direct entry.
+    Gtk::MenuButton m_layout_button;
+    Glib::RefPtr<Gio::Menu> m_layout_menu = Gio::Menu::create();
+    Gtk::Label m_layout_label = Gtk::Label("Right side");
+    enum class PaneLayout { Right, Left, Bottom, Top, Keyboard };
+    PaneLayout m_pane_layout = PaneLayout::Right;
+    void set_pane_layout(PaneLayout layout);
+    // Legacy toggle target for the keyboard mode handlers.
+    ImageToggleButton m_keyboard_button = ImageToggleButton("Keyboard", "keyboard");
+    ImageButton m_pref_button = ImageButton("Prefs", "settings");
 
     RenderingCanvas m_canvas;
     MessageOverlay m_message_overlay;
 
     Gtk::Box m_side_panel = Gtk::Box(Gtk::Orientation::VERTICAL);
     Gtk::ActionBar m_panel_bar;
-    ImageButton m_copy_button = ImageButton("Copy", "edit-copy-symbolic");
-    ImageButton m_copyall_button = ImageButton("Copy all", "edit-select-all-symbolic");
-    ImageButton m_paste_button = ImageButton("Paste", "edit-paste-symbolic");
-    ImageButton m_read_button = ImageButton("Read", "audio-speakers-symbolic");
+    ImageButton m_copy_button = ImageButton("Copy", "copy");
+    ImageButton m_copyall_button = ImageButton("Copy all", "copy-all");
+    ImageButton m_paste_button = ImageButton("Paste", "paste");
+    ImageButton m_read_button = ImageButton("Read", "read");
     Gtk::TextView m_text_view;
 
     Gtk::ActionBar m_footer_bar;
     SyncedStringDropdown m_alphabet_chooser;
-    SyncedSpinButton m_speed_adjustment;
+    // Speed control in the Windows bottom-bar style: "Speed  [–] 5.7 [+]"
+    // where the value is v5-style (raw LP_MAX_BITRATE / 100, e.g. 0.8,
+    // 5.0) — not the raw integer the engine stores.
+    Gtk::Label m_speed_label = Gtk::Label("Speed");
+    Gtk::Button m_speed_down_btn;
+    Gtk::Label m_speed_value_label;
+    Gtk::Button m_speed_up_btn;
+    double m_speed_step = 0.1; // in v5 units; re-derived from the manifest
     Gtk::Label m_learning_label = Gtk::Label("Learning");
     SyncedSwitch m_learning_switch;
-    SyncedColorDropdown m_color_chooser;
-    Glib::RefPtr<Gtk::FontDialog> m_font_dialog = Gtk::FontDialog::create();
-    Gtk::FontDialogButton m_font_chooser = Gtk::FontDialogButton(m_font_dialog);
+    Gtk::Label m_wpm_label;   // live "4.2 cps · 50 wpm" readout (RFC 0012)
+    double m_speed_min = 0.1; // v5 units; re-derived from the manifest
+    double m_speed_max = 10.0;
     Gtk::Label m_speech_label = Gtk::Label("Speech");
     Gtk::Switch m_speech_switch;
 
@@ -88,6 +117,23 @@ class MainWindow : public Gtk::Window {
     // Injection failed mid-session (daemon stopped, permissions lost): turn the
     // mode off and tell the user why, instead of dropping output silently.
     void handle_keyboard_mode_failure();
+
+    // Speed stepper helpers (Windows-style bottom bar). Raw engine units are
+    // LP_MAX_BITRATE (v5's ×100 scale); the UI shows the v5 value.
+    void nudge_speed(double delta_v5);
+    void update_speed_display();
+
+    // Keyboard-mode mini bar (like Dasher-Windows' KeyboardMiniBar): added as
+    // an overlay on the message overlay (itself a Gtk::Overlay), floating
+    // top-right, settings + exit. Visible only while keyboard mode is on.
+    Gtk::Box m_keyboard_minibar = Gtk::Box(Gtk::Orientation::HORIZONTAL, 2);
+    Gtk::Button m_minibar_settings_btn;
+    Gtk::Button m_minibar_exit_btn;
+
+    // RFC 0015 parity: keyboard-mode window opacity (persisted frontend-side).
+    ui::UiSettings m_ui_settings = ui::UiSettings::load();
+    double keyboard_opacity() const;
+    void set_keyboard_opacity(double v);
 
     PreferencesWindow m_preferences_window;
 

@@ -75,6 +75,45 @@ if(UNIX AND NOT APPLE)
     endif()
 endif()
 list(FILTER SOURCE_FILES EXCLUDE REGEX ".*/src/main\\.cpp$")
+# Engine-contract tests (GTK counterpart of Dasher-Windows' EngineCApiTests):
+# drive the real DasherCore through DasherBridge — fresh-user-dir creation
+# (DasherCore #59), probe-then-fetch permitted values (#58), text-size cache
+# (steady-state frames issue zero callbacks, #56/v0.2.4) and the frame-delta
+# clamp. Links DasherBridge + engine only (no GTK widgets), so no xvfb.
+add_executable(engine_contract_tests
+    test_engine_contract.cpp
+    ${CMAKE_SOURCE_DIR}/src/Engine/DasherBridge.cpp
+    ${CMAKE_SOURCE_DIR}/src/Analytics/EngineLogRingBuffer.cpp
+    ${CMAKE_BINARY_DIR}/dasher_resources.c
+)
+target_include_directories(engine_contract_tests SYSTEM PRIVATE ${GTK_INCLUDE_DIRS} ${GTKMM_INCLUDE_DIRS})
+target_include_directories(engine_contract_tests SYSTEM PRIVATE ${doctest_SOURCE_DIR}/doctest)
+target_include_directories(engine_contract_tests PRIVATE
+    ${CMAKE_SOURCE_DIR}/src/ ${CMAKE_SOURCE_DIR}/DasherCore/src/)
+add_dependencies(engine_contract_tests dasher dasher_gresource)
+target_link_libraries(engine_contract_tests PRIVATE doctest::doctest dasher ${GTK_LIBRARIES} ${GTKMM_LIBRARIES} Threads::Threads)
+target_link_directories(engine_contract_tests PRIVATE ${GTK_LIBRARY_DIRS} ${GTKMM_LIBRARY_DIRS})
+# Same MSVC ABI guard as dasher_unit_tests (prebuilt gtkmm/sigc++ use the
+# release runtime).
+if(MSVC)
+    set_property(TARGET engine_contract_tests PROPERTY
+                 MSVC_RUNTIME_LIBRARY "MultiThreadedDLL")
+endif()
+if(CURL_FOUND)
+    target_link_libraries(engine_contract_tests PRIVATE CURL::libcurl)
+    target_compile_definitions(engine_contract_tests PRIVATE HAS_ANALYTICS_CURL)
+endif()
+# Runs from the source root so the engine's relative "Data" path resolves —
+# same WORKING_DIRECTORY trick as prefs_rebuild_selftest.
+if(NOT MSVC)
+    add_test(NAME engine_contract_tests
+             COMMAND "$<TARGET_FILE:engine_contract_tests>"
+             WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+    # A hung engine call must fail the suite after a bound, not stall CI forever
+    # (the Windows leg sat in-progress for an hour on the first revision).
+    set_tests_properties(engine_contract_tests PROPERTIES TIMEOUT 120)
+endif()
+
 add_executable(prefs_rebuild_selftest
     test_prefs_rebuild_selftest.cpp
     ${SOURCE_FILES}

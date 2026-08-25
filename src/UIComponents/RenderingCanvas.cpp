@@ -121,6 +121,14 @@ RenderingCanvas::RenderingCanvas() {
     signal_resize().connect([this](int width, int height) {
         bridge->set_screen_size(width, height);
         input_manager->set_canvas_size(width, height);
+        // Fires after set_screen_size has returned, i.e. after the engine has
+        // actually realised (alphabets/palettes scanned, filters registered).
+        // Consumers querying permitted values on this signal can't race the
+        // realisation the way a plain resize handler can.
+        if (!m_engine_ready_emitted) {
+            m_engine_ready_emitted = true;
+            OnEngineReady.emit();
+        }
     });
 
     set_draw_func([this](const Cairo::RefPtr<Cairo::Context>& cr, int, int) {

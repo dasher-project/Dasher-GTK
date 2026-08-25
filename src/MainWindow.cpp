@@ -8,12 +8,6 @@
 #include <cstdio>
 #include <memory>
 
-static Cairo::ToyFontFace::Slant getSlantFromPango(Pango::Style s) {
-    if (s == Pango::Style::ITALIC) return Cairo::ToyFontFace::Slant::ITALIC;
-    if (s == Pango::Style::OBLIQUE) return Cairo::ToyFontFace::Slant::OBLIQUE;
-    return Cairo::ToyFontFace::Slant::NORMAL;
-}
-
 MainWindow::MainWindow()
     // Resolve parameter keys by their stable enum names rather than hardcoding
     // numeric indices: Dasher::Parameter values are an internal detail of
@@ -21,9 +15,8 @@ MainWindow::MainWindow()
     : m_alphabet_chooser(
           m_canvas.bridge->find_parameter_key("SP_ALPHABET_ID"), m_canvas.bridge,
           m_canvas.bridge->get_parameter_string_values(m_canvas.bridge->find_parameter_key("SP_ALPHABET_ID"))),
-      m_speed_adjustment(m_canvas.bridge->find_parameter_key("LP_MAX_BITRATE"), m_canvas.bridge, 20, 400, 5),
       m_learning_switch(m_canvas.bridge->find_parameter_key("BP_LM_ADAPTIVE"), m_canvas.bridge),
-      m_color_chooser(m_canvas.bridge), m_preferences_window(m_canvas.bridge, m_canvas.dwell_handler.get()) {
+      m_preferences_window(m_canvas.bridge, m_canvas.dwell_handler.get()) {
     Glib::RefPtr<Gtk::CssProvider> css = Gtk::CssProvider::create();
     // Load the stylesheet from the GResource bundle compiled into the binary
     // (see src/dasher.gresource.xml). Loading from a file path meant the CSS
@@ -44,28 +37,91 @@ MainWindow::MainWindow()
     m_message_overlay.set_child(m_canvas);
     m_message_overlay.ConnectToDasher(m_canvas.bridge);
 
-    m_header_bar.pack_start(m_new_button);
-    m_header_bar.pack_start(m_open_button);
-    m_header_bar.pack_start(m_save_button);
-    m_header_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
-    m_header_bar.pack_start(m_play_button);
-    m_header_bar.pack_start(m_keyboard_button);
-    m_header_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
-    m_header_bar.pack_start(m_pref_button);
+    pack_bar_start(m_header_bar, m_new_button);
+    pack_bar_start(m_header_bar, m_open_button);
+    pack_bar_start(m_header_bar, m_save_button);
+    pack_bar_start(m_header_bar, *Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
+    pack_bar_start(m_header_bar, m_play_button);
+    // Layout menu replaces the bare Keyboard toggle (Apple layoutPickerMenu /
+    // Windows BtnMode): Right / Left / Bottom / Top / Keyboard.
+    m_layout_menu->append("Right side", "layout.right");
+    m_layout_menu->append("Left side", "layout.left");
+    m_layout_menu->append("Bottom", "layout.bottom");
+    m_layout_menu->append("Top", "layout.top");
+    m_layout_menu->append("_Keyboard", "layout.keyboard");
+    m_layout_button.set_menu_model(m_layout_menu);
+    {
+        auto* box = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::HORIZONTAL, 4);
+        auto icon = Gtk::IconPaintable::create(
+            Gio::File::create_for_uri("resource:///org/alternativeinterface/dasher/icons/panel-right.svg"), 24,
+            get_scale_factor());
+        auto* image = Gtk::make_managed<Gtk::Image>();
+        image->property_paintable() = icon;
+        image->set_pixel_size(18);
+        box->append(*image);
+        m_layout_label.set_valign(Gtk::Align::CENTER);
+        box->append(m_layout_label);
+        m_layout_button.set_child(*box);
+        m_layout_button.set_tooltip_text("Pane position and direct-entry mode");
+    }
+    pack_bar_start(m_header_bar, m_layout_button);
+    {
+        auto layout = Gio::SimpleActionGroup::create();
+        auto activate = [this](const Glib::ustring& name) {
+            if (name == "right")
+                set_pane_layout(PaneLayout::Right);
+            else if (name == "left")
+                set_pane_layout(PaneLayout::Left);
+            else if (name == "bottom")
+                set_pane_layout(PaneLayout::Bottom);
+            else if (name == "top")
+                set_pane_layout(PaneLayout::Top);
+            else
+                set_pane_layout(PaneLayout::Keyboard);
+        };
+        for (const char* n : {"right", "left", "bottom", "top", "keyboard"}) {
+            auto action = Gio::SimpleAction::create(n);
+            action->signal_activate().connect([activate, n](const Glib::VariantBase&) { activate(n); });
+            layout->add_action(action);
+        }
+        insert_action_group("layout", layout);
+    }
+    pack_bar_start(m_header_bar, *Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
+    pack_bar_start(m_header_bar, m_pref_button);
     m_header_bar.add_css_class("topbar");
 
     m_preferences_window.signal_close_request().connect([this]() {
         m_preferences_window.set_visible(false);
         return true;
     }, false);
+    // RFC 0015: keyboard-mode opacity slider in Preferences → Output reads and
+    // writes MainWindow's persisted value (live while keyboard mode is on).
+    m_preferences_window.set_keyboard_opacity_access([this]() { return keyboard_opacity(); },
+                                                     [this](double v) { set_keyboard_opacity(v); });
+    // RFC 0006: appearance controls (palette + canvas font) live in
+    // Preferences → Customization, like Windows/Apple — not the footer. The
+    // font callback applies the picked family/style to renderer + engine.
+    m_preferences_window.set_appearance_handler([this](const Glib::ustring& family, bool italic, bool bold) {
+        const auto slant = italic ? Cairo::ToyFontFace::Slant::ITALIC : Cairo::ToyFontFace::Slant::NORMAL;
+        const auto weight = bold ? Cairo::ToyFontFace::Weight::BOLD : Cairo::ToyFontFace::Weight::NORMAL;
+        m_canvas.bridge->set_canvas_font(family, slant, weight);
+    });
     // Re-read footer widgets from the engine after "Reset engine settings to
     // defaults" (dasher_reset_settings fires change notifications, but nothing
     // pushes them into the synced widgets yet).
     m_preferences_window.OnSettingsReset.connect([this]() {
         m_alphabet_chooser.update_from_bridge();
-        m_speed_adjustment.update_from_bridge();
+        update_speed_display();
         m_learning_switch.update_from_bridge();
-        m_color_chooser.update_from_bridge();
+    });
+    // The footer dropdowns are constructed before the engine realises, so
+    // their initial model is empty and they render blank. The canvas emits
+    // OnEngineReady once set_screen_size() has returned — after realisation —
+    // which is the first point the alphabet/palette lists actually exist.
+    m_canvas.OnEngineReady.connect([this]() {
+        m_alphabet_chooser.update_from_bridge();
+        update_speed_display();
+        m_learning_switch.update_from_bridge();
     });
     m_pref_button.signal_clicked().connect([this]() {
         m_preferences_window.set_visible(true);
@@ -84,13 +140,29 @@ MainWindow::MainWindow()
     // previous hardcoded 20–400. Those are raw LP_MAX_BITRATE units (v5's
     // MaxBitRateTimes100), so the old cap limited v5 users to "4.0" when v5
     // itself allowed 0.1–8.0; the engine accepts 1–1000.
-    const auto speed_info = m_canvas.bridge->find_parameter_info("LP_MAX_BITRATE");
-    if (speed_info.key >= 0) {
-        m_speed_adjustment.set_range(speed_info.min_val, speed_info.max_val);
-        m_speed_adjustment.set_increments(speed_info.step, speed_info.step * 5);
+    // Speed stepper in the Windows bottom-bar style ("Speed [–] 5.7 [+]"),
+    // showing the v5-style value (raw LP_MAX_BITRATE / 100) instead of the
+    // raw integer. Steps and range come from the engine manifest, converted
+    // to v5 units.
+    {
+        const auto info = m_canvas.bridge->find_parameter_info("LP_MAX_BITRATE");
+        if (info.key >= 0 && info.max_val > info.min_val) {
+            m_speed_min = info.min_val / 100.0;
+            m_speed_max = info.max_val / 100.0;
+            m_speed_step = std::max(0.1, info.step / 100.0);
+        }
     }
-    m_speed_adjustment.set_tooltip_text("Maximum writing speed (×100, as in Dasher 5: 80 = 0.8, 500 = 5.0). "
-                                        "Raise this if Dasher feels slow.");
+    m_speed_down_btn.set_label("\u2212"); // proper minus sign
+    m_speed_up_btn.set_label("+");
+    m_speed_value_label.set_width_chars(4);
+    m_speed_value_label.set_halign(Gtk::Align::CENTER);
+    for (auto* btn : {&m_speed_down_btn, &m_speed_up_btn}) {
+        btn->set_valign(Gtk::Align::CENTER);
+        btn->set_tooltip_text("Maximum writing speed, Dasher 5 scale (1.0 = 100).");
+    }
+    m_speed_down_btn.signal_clicked().connect([this]() { nudge_speed(-m_speed_step); });
+    m_speed_up_btn.signal_clicked().connect([this]() { nudge_speed(+m_speed_step); });
+    update_speed_display();
 
     m_open_button.signal_clicked().connect([this]() {
         auto dialog = Gtk::FileDialog::create();
@@ -179,17 +251,23 @@ MainWindow::MainWindow()
     }, false);
     add_controller(event_controller);
 
-    m_footer_bar.pack_start(m_alphabet_chooser);
-    m_footer_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
-    m_footer_bar.pack_start(m_speed_adjustment);
-    m_footer_bar.pack_start(m_learning_label);
-    m_footer_bar.pack_start(m_learning_switch);
-    m_footer_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
-    m_footer_bar.pack_start(m_color_chooser);
-    m_footer_bar.pack_start(m_font_chooser);
-    m_footer_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
-    m_footer_bar.pack_start(m_speech_label);
-    m_footer_bar.pack_start(m_speech_switch);
+    pack_bar_start(m_footer_bar, m_alphabet_chooser);
+    pack_bar_start(m_footer_bar, *Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
+    m_speed_value_label.set_valign(Gtk::Align::CENTER);
+    m_speed_label.set_valign(Gtk::Align::CENTER);
+    pack_bar_start(m_footer_bar, m_speed_label);
+    pack_bar_start(m_footer_bar, m_speed_down_btn);
+    pack_bar_start(m_footer_bar, m_speed_value_label);
+    pack_bar_start(m_footer_bar, m_speed_up_btn);
+    pack_bar_start(m_footer_bar, m_learning_label);
+    pack_bar_start(m_footer_bar, m_learning_switch);
+    pack_bar_start(m_footer_bar, *Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
+    pack_bar_start(m_footer_bar, m_speech_label);
+    pack_bar_start(m_footer_bar, m_speech_switch);
+    // Colour palette and canvas-font pickers moved to Preferences ->
+    // Customization (RFC 0006; mirrors Dasher-Windows/Apple, which keep
+    // appearance settings in Settings, not the toolbar). Widgets stay
+    // members so the existing reset/refresh wiring keeps working.
     m_speech_switch.set_valign(Gtk::Align::CENTER);
     m_learning_switch.set_valign(Gtk::Align::CENTER);
 
@@ -241,34 +319,56 @@ MainWindow::MainWindow()
             return;
         }
         m_direct_mode_active = on;
-        if (m_direct_mode_active) {
+        // v5/Windows/Apple behaviour: hide the editor AND both tool bars —
+        // the canvas fills the window as an on-screen keyboard, with only a
+        // small floating mini bar (settings + exit) left (RFC 0015).
+        m_side_panel.set_visible(!on);
+        m_header_bar.set_visible(!on);
+        m_footer_bar.set_visible(!on);
+        m_keyboard_minibar.set_visible(on);
+        if (on) {
+            // Stay visible but never take keyboard focus, so injected text
+            // lands in the user's document, not in Dasher (v5's
+            // accept-focus-off + keep-above + stick, via Xlib since GTK4
+            // dropped the APIs). No-op on Wayland — see RFC 0015.
+            KeyboardWindowX11::engage(*this);
+            KeyboardWindowX11::set_opacity(*this, m_ui_settings.keyboard_opacity());
             m_pane.set_shrink_end_child(false);
-            m_pane.set_position(get_width() - 50);
         } else {
+            KeyboardWindowX11::release(*this);
             m_pane.set_shrink_end_child(true);
             m_pane.set_position(get_width() * 2 / 3);
         }
-    });
-
-    m_font_chooser.property_font_desc().signal_changed().connect([this]() {
-        Pango::FontDescription font = m_font_chooser.get_font_desc();
-        const auto slant = getSlantFromPango(font.get_style());
-        const auto weight = font.get_weight() == Pango::Weight::NORMAL ? Cairo::ToyFontFace::Weight::NORMAL
-                                                                       : Cairo::ToyFontFace::Weight::BOLD;
-        // One call updates both the renderer's drawing font and the engine's
-        // label-measurement font, so layout and drawing can't diverge.
-        m_canvas.bridge->set_canvas_font(font.get_family(), slant, weight);
     });
 
     m_pane.set_start_child(m_message_overlay);
     m_pane.set_resize_start_child(true);
     m_pane.set_end_child(m_side_panel);
 
-    m_panel_bar.pack_start(m_copy_button);
-    m_panel_bar.pack_start(m_copyall_button);
-    m_panel_bar.pack_start(m_paste_button);
-    m_panel_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
-    m_panel_bar.pack_start(m_read_button);
+    // Keyboard-mode mini bar (Dasher-Windows/Apple pattern): floating
+    // top-right over the canvas with settings + exit, visible only while
+    // keyboard mode is on and the main bars are hidden.
+    m_minibar_settings_btn.set_icon_name("settings");
+    m_minibar_settings_btn.set_tooltip_text("Settings");
+    m_minibar_settings_btn.set_valign(Gtk::Align::START);
+    m_minibar_settings_btn.signal_clicked().connect([this]() { m_preferences_window.set_visible(true); });
+    m_minibar_exit_btn.set_icon_name("keyboard");
+    m_minibar_exit_btn.set_tooltip_text("Exit keyboard mode");
+    m_minibar_exit_btn.set_valign(Gtk::Align::START);
+    m_minibar_exit_btn.signal_clicked().connect([this]() { m_keyboard_button.set_active(false); });
+    m_keyboard_minibar.append(m_minibar_settings_btn);
+    m_keyboard_minibar.append(m_minibar_exit_btn);
+    m_keyboard_minibar.set_halign(Gtk::Align::END);
+    m_keyboard_minibar.set_valign(Gtk::Align::START);
+    m_keyboard_minibar.set_margin(6);
+    m_keyboard_minibar.set_visible(false); // keyboard mode off at start
+    m_message_overlay.float_widget(m_keyboard_minibar);
+
+    pack_bar_start(m_panel_bar, m_copy_button);
+    pack_bar_start(m_panel_bar, m_copyall_button);
+    pack_bar_start(m_panel_bar, m_paste_button);
+    pack_bar_start(m_panel_bar, *Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
+    pack_bar_start(m_panel_bar, m_read_button);
     m_panel_bar.set_size_request(150, -1);
     m_panel_bar.add_css_class("topbar");
 
@@ -338,6 +438,26 @@ MainWindow::MainWindow()
     });
     capture_app_launched();      // no-op unless already opted in
     maybe_show_consent_dialog(); // first launch only
+
+    // Live typing-rate readout at the end of the footer (RFC 0012; Windows'
+    // right-aligned WpmLabel). Always shows the current rolling-window rate
+    // (0.0 at rest, keeping the last rate while paused, per the RFC) rather
+    // than hiding; the engine keeps a 5s window and ~2 Hz matches the
+    // Preferences readout.
+    m_wpm_label.set_text("0.0 cps \xc2\xb7 0 wpm");
+    m_wpm_label.add_css_class("dim-label");
+    m_wpm_label.set_valign(Gtk::Align::CENTER);
+    m_footer_bar.pack_end(m_wpm_label);
+    Glib::signal_timeout().connect(
+        [this]() -> bool {
+            const double cps = m_canvas.bridge->get_cps();
+            const double wpm = m_canvas.bridge->get_wpm();
+            char buf[48];
+            std::snprintf(buf, sizeof(buf), "%.1f cps \xc2\xb7 %d wpm", cps, static_cast<int>(std::lround(wpm)));
+            m_wpm_label.set_text(buf);
+            return true;
+        },
+        500);
 }
 
 MainWindow::~MainWindow() {
@@ -349,6 +469,15 @@ MainWindow::~MainWindow() {
 
 void MainWindow::capture_app_launched() {
     analytics::AnalyticsClient::instance().capture("app_launched", {{"locale", m_canvas.bridge->get_locale()}});
+}
+
+void MainWindow::pack_bar_start(Gtk::ActionBar& bar, Gtk::Widget& child) {
+    // 3px either side = ~6px between neighbours; separators a touch more so
+    // groups read as groups without eating the bar's width.
+    const int margin = dynamic_cast<Gtk::Separator*>(&child) ? 4 : 3;
+    child.set_margin_start(margin);
+    child.set_margin_end(margin);
+    bar.pack_start(child);
 }
 
 void MainWindow::maybe_show_consent_dialog() {
@@ -400,4 +529,89 @@ void MainWindow::handle_keyboard_mode_failure() {
     m_message_overlay.show_message("Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
                                    "service running? See the setup help on the Keyboard button for install "
                                    "commands.");
+}
+
+double MainWindow::keyboard_opacity() const {
+    return m_ui_settings.keyboard_opacity();
+}
+
+void MainWindow::nudge_speed(double delta_v5) {
+    const int bitrate_key = m_canvas.bridge->find_parameter_key("LP_MAX_BITRATE");
+    if (bitrate_key < 0) return;
+    const double current = m_canvas.bridge->get_long_parameter(bitrate_key) / 100.0;
+    double next = current + delta_v5;
+    if (next < m_speed_min) next = m_speed_min;
+    if (next > m_speed_max) next = m_speed_max;
+    m_canvas.bridge->set_long_parameter(bitrate_key, static_cast<long>(std::lround(next * 100.0)));
+    update_speed_display();
+}
+
+void MainWindow::update_speed_display() {
+    const int bitrate_key = m_canvas.bridge->find_parameter_key("LP_MAX_BITRATE");
+    if (bitrate_key < 0) return;
+    const double v5 = m_canvas.bridge->get_long_parameter(bitrate_key) / 100.0;
+    char buf[16];
+    std::snprintf(buf, sizeof(buf), "%.1f", v5);
+    m_speed_value_label.set_text(buf);
+}
+
+void MainWindow::set_pane_layout(PaneLayout layout) {
+    // Keyboard layout is just keyboard mode (which hides everything); the
+    // four pane layouts re-orient the canvas/text split and leave mode alone.
+    const bool keyboard = (layout == PaneLayout::Keyboard);
+    if (keyboard) {
+        if (!m_keyboard_button.get_active()) m_keyboard_button.set_active(true);
+        m_layout_label.set_text("Keyboard");
+        return;
+    }
+    if (m_keyboard_button.get_active()) m_keyboard_button.set_active(false);
+
+    m_pane_layout = layout;
+
+    // The main box order is fixed (header, pane, footer) — the footer never
+    // moves. Only the pane re-orients: start_child renders top (vertical) or
+    // left (horizontal), so the TEXT panel (m_side_panel) goes in start for
+    // Top/Left and in end for Bottom/Right. Swapping live children needs both
+    // slots cleared first, or GTK4 Paned keeps stale positions.
+    // Detach both children before re-seating them in the new slots; GTK
+    // keeps stale packing when the same widget moves between slots live.
+    gtk_paned_set_start_child(m_pane.gobj(), nullptr);
+    gtk_paned_set_end_child(m_pane.gobj(), nullptr);
+    switch (layout) {
+    case PaneLayout::Left:
+        m_pane.set_orientation(Gtk::Orientation::HORIZONTAL);
+        m_pane.set_start_child(m_side_panel);
+        m_pane.set_end_child(m_message_overlay);
+        m_layout_label.set_text("Left side");
+        break;
+    case PaneLayout::Bottom:
+        m_pane.set_orientation(Gtk::Orientation::VERTICAL);
+        m_pane.set_start_child(m_message_overlay);
+        m_pane.set_end_child(m_side_panel);
+        m_layout_label.set_text("Bottom");
+        break;
+    case PaneLayout::Top:
+        m_pane.set_orientation(Gtk::Orientation::VERTICAL);
+        m_pane.set_start_child(m_side_panel);
+        m_pane.set_end_child(m_message_overlay);
+        m_layout_label.set_text("Top");
+        break;
+    case PaneLayout::Right:
+    default:
+        m_pane.set_orientation(Gtk::Orientation::HORIZONTAL);
+        m_pane.set_start_child(m_message_overlay);
+        m_pane.set_end_child(m_side_panel);
+        m_layout_label.set_text("Right side");
+        break;
+    }
+    m_pane.set_position(get_width() / 3);
+    m_side_panel.set_visible(true);
+}
+
+void MainWindow::set_keyboard_opacity(double v) {
+    m_ui_settings.set_keyboard_opacity(v);
+    m_ui_settings.save();
+    if (m_direct_mode_active) {
+        KeyboardWindowX11::set_opacity(*this, v); // live, like Windows/Apple
+    }
 }

@@ -118,8 +118,22 @@ file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS
 # AppImage place the css in different locations relative to the executable, so
 # any file-path lookup was fragile; embedding removes the dependency entirely.
 find_program(GLIB_COMPILE_RESOURCES NAMES glib-compile-resources REQUIRED)
+
+# X11 (optional): keyboard mode uses it to make the window refuse keyboard
+# focus and stay on top while typing into other apps (v5 parity, RFC 0015).
+# Wayland has no equivalent for regular apps — there the mode works, but the
+# user must steer without clicking the canvas.
+find_package(X11)
+if(X11_FOUND)
+    set(DASHER_X11_LIBS X11::X11)
+    set(DASHER_X11_DEFS -DDASHER_HAVE_X11)
+else()
+    set(DASHER_X11_LIBS "")
+    set(DASHER_X11_DEFS "")
+endif()
 set(GRESOURCE_XML ${CMAKE_CURRENT_LIST_DIR}/src/dasher.gresource.xml)
 set(GRESOURCE_C ${CMAKE_BINARY_DIR}/dasher_resources.c)
+file(GLOB LUCIDE_ICONS ${CMAKE_CURRENT_LIST_DIR}/src/icons/*.svg)
 add_custom_command(
     OUTPUT ${GRESOURCE_C}
     COMMAND ${GLIB_COMPILE_RESOURCES}
@@ -127,8 +141,8 @@ add_custom_command(
             --sourcedir=${CMAKE_CURRENT_LIST_DIR}/src
             --generate-source
             ${GRESOURCE_XML}
-    DEPENDS ${GRESOURCE_XML} ${CMAKE_CURRENT_LIST_DIR}/src/UIStyle.css
-    COMMENT "Compiling GResource bundle (UIStyle.css)"
+    DEPENDS ${GRESOURCE_XML} ${CMAKE_CURRENT_LIST_DIR}/src/UIStyle.css ${LUCIDE_ICONS}
+    COMMENT "Compiling GResource bundle (UIStyle.css + Lucide icons)"
     VERBATIM
 )
 # A custom command's OUTPUT rule is only visible in the directory that
@@ -194,7 +208,8 @@ if(TARGET tts_wrapper)
 	add_dependencies(Dasher tts_wrapper)
 	target_compile_definitions(Dasher PRIVATE HAS_TTS)
 endif()
-target_link_libraries(Dasher PRIVATE dasher SDL3::SDL3 ${GTK_LIBRARIES} ${GTKMM_LIBRARIES})
+target_link_libraries(Dasher PRIVATE dasher SDL3::SDL3 ${GTK_LIBRARIES} ${GTKMM_LIBRARIES} ${DASHER_X11_LIBS})
+target_compile_definitions(Dasher PRIVATE ${DASHER_X11_DEFS})
 if(CURL_FOUND)
 	target_link_libraries(Dasher PRIVATE CURL::libcurl)
 	target_compile_definitions(Dasher PRIVATE HAS_ANALYTICS_CURL)

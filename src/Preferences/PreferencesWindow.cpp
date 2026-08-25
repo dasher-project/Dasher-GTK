@@ -63,7 +63,6 @@ PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge, Dwell
     set_child(m_layout);
     set_title("Dasher Preferences");
     set_default_size(600, 500);
-
     m_layout.append(m_sidebar);
     m_layout.append(m_stack);
     m_sidebar.set_stack(m_stack);
@@ -101,6 +100,16 @@ PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge, Dwell
             return true;
         },
         500);
+}
+
+void PreferencesWindow::set_keyboard_opacity_access(std::function<double()> get, std::function<void(double)> set) {
+    m_keyboard_opacity_get = std::move(get);
+    m_keyboard_opacity_set = std::move(set);
+}
+
+void PreferencesWindow::set_appearance_handler(
+    std::function<void(const Glib::ustring& family, bool italic, bool bold)> on_font_changed) {
+    m_on_font_changed = std::move(on_font_changed);
 }
 
 void PreferencesWindow::update_rate_readout() {
@@ -174,6 +183,32 @@ void PreferencesWindow::rebuild_sections() {
 
             section->append(*row);
         }
+        // Appearance controls (colour palette + canvas font) hosted here per
+        // RFC 0006 — the same placement Dasher-Windows and Dasher-Apple use —
+        // instead of the old footer-bar cluster. Owned by this window so the
+        // reset-rebuild can't tear them out from under anyone.
+        if (g.id == "customization") {
+            auto* row = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::HORIZONTAL, 12);
+            row->set_margin_top(4);
+            row->set_margin_bottom(4);
+
+            auto* palette = Gtk::make_managed<SyncedColorDropdown>(m_bridge);
+            m_reset_color_chooser = palette;
+            row->append(*palette);
+
+            auto* font_btn = Gtk::make_managed<Gtk::FontDialogButton>(Gtk::FontDialog::create());
+            m_reset_font_btn = font_btn;
+            font_btn->property_font_desc().signal_changed().connect([this, font_btn]() {
+                if (!m_on_font_changed) return;
+                Pango::FontDescription font = font_btn->get_font_desc();
+                const bool italic = font.get_style() != Pango::Style::NORMAL;
+                const bool bold = font.get_weight() != Pango::Weight::NORMAL;
+                m_on_font_changed(font.get_family(), italic, bold);
+            });
+            row->append(*font_btn);
+
+            section->append(*row);
+        }
         if (g.id == "output") {
             // Typing-rate readout, moved here from the footer (issue #35 / RFC 0012):
             // a live CPS/WPM value in subtle text, with a Reset that clears the
@@ -206,6 +241,46 @@ void PreferencesWindow::rebuild_sections() {
 
             section->append(*row);
             update_rate_readout();
+
+            // Keyboard-mode window opacity (RFC 0015 parity with
+            // Dasher-Windows' "Keyboard Mode Opacity" and Apple's directOpacity
+            // slider): live-updates the keyboard-mode window, persisted
+            // frontend-side. Only meaningful where the compositor supports it
+            // (X11); harmless elsewhere.
+            if (m_keyboard_opacity_get) {
+                auto* op_row = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::HORIZONTAL, 8);
+                op_row->set_margin_top(4);
+                op_row->set_margin_bottom(4);
+
+                auto* op_label = Gtk::make_managed<Gtk::Label>("Keyboard mode opacity");
+                op_label->set_halign(Gtk::Align::START);
+                op_label->set_hexpand(true);
+                op_row->append(*op_label);
+
+                auto* pct_label = Gtk::make_managed<Gtk::Label>("85%");
+                auto adj = Gtk::Adjustment::create(m_keyboard_opacity_get() * 100.0, 20.0, 100.0, 5.0, 10.0, 0.0);
+                auto* scale = Gtk::make_managed<Gtk::Scale>(adj, Gtk::Orientation::HORIZONTAL);
+                scale->set_hexpand(true);
+                scale->set_size_request(160, -1);
+                scale->set_draw_value(false);
+                scale->set_valign(Gtk::Align::CENTER);
+                op_row->append(*scale);
+                op_row->append(*pct_label);
+
+                scale->signal_value_changed().connect([this, adj, pct_label]() {
+                    const double pct = adj->get_value();
+                    char buf[8];
+                    std::snprintf(buf, sizeof(buf), "%d%%", static_cast<int>(pct));
+                    pct_label->set_text(buf);
+                    if (m_keyboard_opacity_set) m_keyboard_opacity_set(pct / 100.0);
+                });
+
+                op_row->append(*Gtk::make_managed<PopoverMenuButtonInfo>(
+                    "How opaque the Dasher window is in Keyboard mode, so it can overlay the app you are "
+                    "typing into. Applies live."));
+
+                section->append(*op_row);
+            }
         }
         scrolled->set_child(*section);
         scrolled->set_vexpand(true);
@@ -493,6 +568,11 @@ void PreferencesWindow::add_privacy_section() {
             if (dialog->choose_finish(result) != 1) return;
             m_bridge->reset_settings();
             rebuild_sections();
+            // The rebuild created fresh appearance widgets; sync them to the
+            // engine's reset palette now that sections exist again.
+            if (auto* palette = dynamic_cast<SyncedColorDropdown*>(m_reset_color_chooser)) {
+                palette->update_from_bridge();
+            }
             OnSettingsReset.emit();
             analytics::AnalyticsClient::instance().capture("settings_reset_defaults");
         });
