@@ -2,7 +2,15 @@
 
 #include <gtkmm/window.h>
 
-#ifdef DASHER_HAVE_X11
+// Double gate: our X11 find AND GDK actually built with the X11 backend.
+// macOS GTK is Quartz: Homebrew pulls in libx11 transitively, so the plain
+// DASHER_HAVE_X11 check passes there but gdk/x11 headers don't exist.
+// GDK_WINDOWING_X11 (gdkconfig.h) is only defined for X11 GDK builds.
+#if defined(DASHER_HAVE_X11) && defined(GDK_WINDOWING_X11)
+#define DASHER_KEYBOARD_X11
+#endif
+
+#ifdef DASHER_KEYBOARD_X11
 #include <gdk/x11/gdkx.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
@@ -109,7 +117,7 @@ void set_opacity(Gtk::Window& window, double opacity) {
 
 } // namespace KeyboardWindowX11
 
-#else // !DASHER_HAVE_X11
+#else // !DASHER_KEYBOARD_X11
 
 namespace KeyboardWindowX11 {
 
