@@ -31,7 +31,11 @@ jobs:
     name: Flatpak (${{ matrix.arch }})
     runs-on: ubuntu-24.04
     if: github.event_name != 'pull_request'
-    continue-on-error: ${{ github.event_name == 'workflow_dispatch' }}
+    # Manual dispatch is advisory except on tags: if someone experiments with
+    # the packaging via workflow_dispatch the run must not mark the branch
+    # red — but a dispatch against a v* tag feeds the release job, which
+    # must never publish from a failed packaging run.
+    continue-on-error: ${{ github.event_name == 'workflow_dispatch' && !startsWith(github.ref, 'refs/tags/v') }}
     strategy:
       fail-fast: false
       matrix:
@@ -93,7 +97,9 @@ jobs:
     name: AppImage (${{ matrix.arch }})
     runs-on: ubuntu-latest
     if: github.event_name != 'pull_request'
-    continue-on-error: ${{ github.event_name == 'workflow_dispatch' }}
+    # See flatpak above: dispatch is advisory except on tags, where the
+    # release job consumes the artifacts and must not publish failures.
+    continue-on-error: ${{ github.event_name == 'workflow_dispatch' && !startsWith(github.ref, 'refs/tags/v') }}
     strategy:
       fail-fast: false
       matrix:
