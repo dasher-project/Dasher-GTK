@@ -17,10 +17,15 @@
 // way and skips vacuously only when the Data tree is missing (CI always has
 // it; see tests/CMakeLists.txt WORKING_DIRECTORY).
 
+// On Windows, doctest's implementation drags in <windows.h>, whose macros
+// (IN, OUT, ...) collide with cairomm's Operator enum and friends. Parse the
+// GTK/Cairo headers first so they compile cleanly, then bring in doctest —
+// same ordering as test_dwell_click_handler.cpp.
+#include <glibmm/init.h>
+#include "Engine/DasherBridge.h"
+
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include <doctest/doctest.h>
-
-#include "Engine/DasherBridge.h"
 
 #include <filesystem>
 #include <map>
@@ -36,16 +41,14 @@ std::string find_data_dir() {
     // under DasherCore/Data/alphabets/, and the build tree flattens
     // DasherCore/Data into build/Dasher/Data with alphabet XMLs at the top
     // level. Either shape serves; the engine scans recursively.
-    const char* candidates[] = {"Data",           "Data/alphabets",
-                                "Dasher/Data",    "../Dasher/Data",
-                                "DasherCore/Data", "DasherCore/Data/alphabets"};
+    const char* candidates[] = {"Data",           "Data/alphabets",  "Dasher/Data",
+                                "../Dasher/Data", "DasherCore/Data", "DasherCore/Data/alphabets"};
     for (const char* candidate : candidates) {
         std::error_code ec;
         if (!std::filesystem::is_directory(candidate, ec)) continue;
         for (const auto& entry : std::filesystem::directory_iterator(candidate, ec)) {
             const std::string name = entry.path().filename().string();
-            if (name.rfind("alphabet.", 0) == 0 && name.size() > 4 &&
-                name.compare(name.size() - 4, 4, ".xml") == 0) {
+            if (name.rfind("alphabet.", 0) == 0 && name.size() > 4 && name.compare(name.size() - 4, 4, ".xml") == 0) {
                 // Return the Data root, not the alphabets subdir.
                 std::string dir(candidate);
                 if (dir.size() > 10 && dir.compare(dir.size() - 10, 10, "/alphabets") == 0) {
