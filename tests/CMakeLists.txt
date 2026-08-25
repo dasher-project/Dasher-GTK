@@ -113,9 +113,6 @@ if(NOT MSVC)
     # (the Windows leg sat in-progress for an hour on the first revision).
     set_tests_properties(engine_contract_tests PROPERTIES TIMEOUT 120)
 endif()
-# A hung engine call must fail the suite after a bound, not stall CI forever
-# (the Windows leg sat in-progress for an hour on the first revision).
-set_tests_properties(engine_contract_tests PROPERTIES TIMEOUT 120)
 
 add_executable(prefs_rebuild_selftest
     test_prefs_rebuild_selftest.cpp
