@@ -70,6 +70,7 @@ public:
         }
 
         property_selected().signal_changed().connect([this]() {
+            if (m_refreshing) return; // model swap transiently selects row 0
             auto proxy = std::dynamic_pointer_cast<PaletteProxy>(get_selected_item());
             if (proxy) {
                 m_bridge->set_palette(proxy->name);
@@ -82,6 +83,7 @@ public:
     // the engine reports zero palettes) and re-select the engine's current
     // palette.
     void update_from_bridge() {
+        m_refreshing = true;
         palette_list->remove_all();
         int count = m_bridge->get_palette_count();
         for (int i = 0; i < count; i++) {
@@ -96,10 +98,12 @@ public:
                 break;
             }
         }
+        m_refreshing = false;
     }
 
 protected:
     std::shared_ptr<DasherBridge> m_bridge;
+    bool m_refreshing = false; // suppress the change handler during model swaps
     Glib::RefPtr<Gio::ListStore<PaletteProxy>> palette_list = Gio::ListStore<PaletteProxy>::create();
     Glib::RefPtr<Gtk::SignalListItemFactory> header_factory = Gtk::SignalListItemFactory::create();
     Glib::RefPtr<Gtk::SignalListItemFactory> list_factory = Gtk::SignalListItemFactory::create();

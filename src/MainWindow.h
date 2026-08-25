@@ -2,6 +2,8 @@
 
 #include "Engine/DasherBridge.h"
 #include "Output/DirectModeService.h"
+#include "Output/KeyboardWindowX11.h"
+#include "UiSettings.h"
 #include "Output/TtsService.h"
 #include "UIComponents/ImageButton.h"
 #include "UIComponents/ImageToggleButton.h"
@@ -69,12 +71,19 @@ class MainWindow : public Gtk::Window {
 
     Gtk::ActionBar m_footer_bar;
     SyncedStringDropdown m_alphabet_chooser;
-    SyncedSpinButton m_speed_adjustment;
+    // Speed control in the Windows bottom-bar style: "Speed  [–] 5.7 [+]"
+    // where the value is v5-style (raw LP_MAX_BITRATE / 100, e.g. 0.8,
+    // 5.0) — not the raw integer the engine stores.
+    Gtk::Label m_speed_label = Gtk::Label("Speed");
+    Gtk::Button m_speed_down_btn;
+    Gtk::Label m_speed_value_label;
+    Gtk::Button m_speed_up_btn;
+    double m_speed_step = 0.1; // in v5 units; re-derived from the manifest
     Gtk::Label m_learning_label = Gtk::Label("Learning");
     SyncedSwitch m_learning_switch;
-    SyncedColorDropdown m_color_chooser;
-    Glib::RefPtr<Gtk::FontDialog> m_font_dialog = Gtk::FontDialog::create();
-    Gtk::FontDialogButton m_font_chooser = Gtk::FontDialogButton(m_font_dialog);
+    Gtk::Label m_wpm_label;   // live "4.2 cps · 50 wpm" readout (RFC 0012)
+    double m_speed_min = 0.1; // v5 units; re-derived from the manifest
+    double m_speed_max = 10.0;
     Gtk::Label m_speech_label = Gtk::Label("Speech");
     Gtk::Switch m_speech_switch;
 
@@ -94,6 +103,23 @@ class MainWindow : public Gtk::Window {
     // Injection failed mid-session (daemon stopped, permissions lost): turn the
     // mode off and tell the user why, instead of dropping output silently.
     void handle_keyboard_mode_failure();
+
+    // Speed stepper helpers (Windows-style bottom bar). Raw engine units are
+    // LP_MAX_BITRATE (v5's ×100 scale); the UI shows the v5 value.
+    void nudge_speed(double delta_v5);
+    void update_speed_display();
+
+    // Keyboard-mode mini bar (like Dasher-Windows' KeyboardMiniBar): added as
+    // an overlay on the message overlay (itself a Gtk::Overlay), floating
+    // top-right, settings + exit. Visible only while keyboard mode is on.
+    Gtk::Box m_keyboard_minibar = Gtk::Box(Gtk::Orientation::HORIZONTAL, 2);
+    Gtk::Button m_minibar_settings_btn;
+    Gtk::Button m_minibar_exit_btn;
+
+    // RFC 0015 parity: keyboard-mode window opacity (persisted frontend-side).
+    ui::UiSettings m_ui_settings = ui::UiSettings::load();
+    double keyboard_opacity() const;
+    void set_keyboard_opacity(double v);
 
     PreferencesWindow m_preferences_window;
 

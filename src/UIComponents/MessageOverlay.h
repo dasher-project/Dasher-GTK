@@ -53,6 +53,10 @@ public:
         });
     }
 
+    // Expose overlay parenting so the main window can float the keyboard-mode
+    // mini bar over the canvas (Gtk::Overlay::add_overlay is protected).
+    void float_widget(Gtk::Widget& widget) { add_overlay(widget); }
+
     void ConnectToDasher(std::shared_ptr<DasherBridge> bridge) {
         m_bridge = bridge;
     }
