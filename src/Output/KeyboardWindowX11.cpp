@@ -79,8 +79,7 @@ void set_net_state(Gtk::Window& window, const char* atom_name, bool add) {
     ev.xclient.data.l[2] = 0;
 
     const Window root = DefaultRootWindow(dpy);
-    XSendEvent(dpy, root, False,
-               SubstructureRedirectMask | SubstructureNotifyMask, &ev);
+    XSendEvent(dpy, root, False, SubstructureRedirectMask | SubstructureNotifyMask, &ev);
     XFlush(dpy);
 }
 
@@ -110,8 +109,8 @@ void set_opacity(Gtk::Window& window, double opacity) {
     if (opacity > 1.0) opacity = 1.0;
     // CARDINAL, 0xFFFFFFFF = fully opaque.
     const unsigned long value = static_cast<unsigned long>(opacity * 0xFFFFFFFFUL);
-    XChangeProperty(dpy, xid, XInternAtom(dpy, "_NET_WM_WINDOW_OPACITY", False), XA_CARDINAL, 32,
-                    PropModeReplace, reinterpret_cast<const unsigned char*>(&value), 1);
+    XChangeProperty(dpy, xid, XInternAtom(dpy, "_NET_WM_WINDOW_OPACITY", False), XA_CARDINAL, 32, PropModeReplace,
+                    reinterpret_cast<const unsigned char*>(&value), 1);
     XFlush(dpy);
 }
 
