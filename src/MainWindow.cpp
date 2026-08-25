@@ -568,10 +568,15 @@ void MainWindow::set_pane_layout(PaneLayout layout) {
 
     m_pane_layout = layout;
 
-    // Re-order the main box for Top (bar, text, canvas, bar) and Bottom
-    // (bar, canvas, text, bar); Left/Right only flip the pane's orientation
-    // and child order. Re-ordering means removing and re-appending.
-    m_main_box.remove(m_pane);
+    // The main box order is fixed (header, pane, footer) — the footer never
+    // moves. Only the pane re-orients: start_child renders top (vertical) or
+    // left (horizontal), so the TEXT panel (m_side_panel) goes in start for
+    // Top/Left and in end for Bottom/Right. Swapping live children needs both
+    // slots cleared first, or GTK4 Paned keeps stale positions.
+    // Detach both children before re-seating them in the new slots; GTK
+    // keeps stale packing when the same widget moves between slots live.
+    gtk_paned_set_start_child(m_pane.gobj(), nullptr);
+    gtk_paned_set_end_child(m_pane.gobj(), nullptr);
     switch (layout) {
     case PaneLayout::Left:
         m_pane.set_orientation(Gtk::Orientation::HORIZONTAL);
@@ -599,10 +604,7 @@ void MainWindow::set_pane_layout(PaneLayout layout) {
         m_layout_label.set_text("Right side");
         break;
     }
-    // Top: text above canvas => pane before... within a vertical main box the
-    // pane contains both; Top/Bottom differ by which pane child is first,
-    // handled above. Append the pane back in its (unchanged) slot.
-    m_main_box.append(m_pane);
+    m_pane.set_position(get_width() / 3);
     m_side_panel.set_visible(true);
 }
 

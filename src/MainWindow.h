@@ -23,6 +23,7 @@
 #include <memory>
 #include <gtkmm/box.h>
 #include <gtkmm/paned.h>
+#include <gtk/gtk.h> // gtk_paned_set_*_child(null) to detach on re-layout
 #include <gtkmm/actionbar.h>
 #include <gtkmm/label.h>
 #include <gtkmm/textview.h>
