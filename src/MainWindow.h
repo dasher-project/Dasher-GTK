@@ -43,6 +43,12 @@ class MainWindow : public Gtk::Window {
     Gtk::Paned m_pane = Gtk::Paned(Gtk::Orientation::HORIZONTAL);
 
     Gtk::ActionBar m_header_bar;
+
+    // Pack a child into an ActionBar with breathing room around it. GTK4
+    // removed widget spacing from CSS (the `spacing` property is silently
+    // ignored) and ActionBar's internal box isn't accessible from code, so
+    // margins on each child are the only lever we have.
+    void pack_bar_start(Gtk::ActionBar& bar, Gtk::Widget& child);
     ImageButton m_new_button = ImageButton("New", "document-new-symbolic");
     ImageButton m_open_button = ImageButton("Open", "document-open-symbolic");
     ImageButton m_save_button = ImageButton("Save", "document-save-symbolic");

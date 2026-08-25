@@ -44,14 +44,14 @@ MainWindow::MainWindow()
     m_message_overlay.set_child(m_canvas);
     m_message_overlay.ConnectToDasher(m_canvas.bridge);
 
-    m_header_bar.pack_start(m_new_button);
-    m_header_bar.pack_start(m_open_button);
-    m_header_bar.pack_start(m_save_button);
-    m_header_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
-    m_header_bar.pack_start(m_play_button);
-    m_header_bar.pack_start(m_keyboard_button);
-    m_header_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
-    m_header_bar.pack_start(m_pref_button);
+    pack_bar_start(m_header_bar, m_new_button);
+    pack_bar_start(m_header_bar, m_open_button);
+    pack_bar_start(m_header_bar, m_save_button);
+    pack_bar_start(m_header_bar, *Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
+    pack_bar_start(m_header_bar, m_play_button);
+    pack_bar_start(m_header_bar, m_keyboard_button);
+    pack_bar_start(m_header_bar, *Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
+    pack_bar_start(m_header_bar, m_pref_button);
     m_header_bar.add_css_class("topbar");
 
     m_preferences_window.signal_close_request().connect([this]() {
@@ -189,17 +189,17 @@ MainWindow::MainWindow()
     }, false);
     add_controller(event_controller);
 
-    m_footer_bar.pack_start(m_alphabet_chooser);
-    m_footer_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
-    m_footer_bar.pack_start(m_speed_adjustment);
-    m_footer_bar.pack_start(m_learning_label);
-    m_footer_bar.pack_start(m_learning_switch);
-    m_footer_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
-    m_footer_bar.pack_start(m_color_chooser);
-    m_footer_bar.pack_start(m_font_chooser);
-    m_footer_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
-    m_footer_bar.pack_start(m_speech_label);
-    m_footer_bar.pack_start(m_speech_switch);
+    pack_bar_start(m_footer_bar, m_alphabet_chooser);
+    pack_bar_start(m_footer_bar, *Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
+    pack_bar_start(m_footer_bar, m_speed_adjustment);
+    pack_bar_start(m_footer_bar, m_learning_label);
+    pack_bar_start(m_footer_bar, m_learning_switch);
+    pack_bar_start(m_footer_bar, *Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
+    pack_bar_start(m_footer_bar, m_color_chooser);
+    pack_bar_start(m_footer_bar, m_font_chooser);
+    pack_bar_start(m_footer_bar, *Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
+    pack_bar_start(m_footer_bar, m_speech_label);
+    pack_bar_start(m_footer_bar, m_speech_switch);
     m_speech_switch.set_valign(Gtk::Align::CENTER);
     m_learning_switch.set_valign(Gtk::Align::CENTER);
 
@@ -274,11 +274,11 @@ MainWindow::MainWindow()
     m_pane.set_resize_start_child(true);
     m_pane.set_end_child(m_side_panel);
 
-    m_panel_bar.pack_start(m_copy_button);
-    m_panel_bar.pack_start(m_copyall_button);
-    m_panel_bar.pack_start(m_paste_button);
-    m_panel_bar.pack_start(*Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
-    m_panel_bar.pack_start(m_read_button);
+    pack_bar_start(m_panel_bar, m_copy_button);
+    pack_bar_start(m_panel_bar, m_copyall_button);
+    pack_bar_start(m_panel_bar, m_paste_button);
+    pack_bar_start(m_panel_bar, *Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
+    pack_bar_start(m_panel_bar, m_read_button);
     m_panel_bar.set_size_request(150, -1);
     m_panel_bar.add_css_class("topbar");
 
@@ -359,6 +359,15 @@ MainWindow::~MainWindow() {
 
 void MainWindow::capture_app_launched() {
     analytics::AnalyticsClient::instance().capture("app_launched", {{"locale", m_canvas.bridge->get_locale()}});
+}
+
+void MainWindow::pack_bar_start(Gtk::ActionBar& bar, Gtk::Widget& child) {
+    // 6px either side = ~12px between neighbours; separators get a little
+    // more so groups read as groups.
+    const int margin = dynamic_cast<Gtk::Separator*>(&child) ? 8 : 6;
+    child.set_margin_start(margin);
+    child.set_margin_end(margin);
+    bar.pack_start(child);
 }
 
 void MainWindow::maybe_show_consent_dialog() {
