@@ -32,14 +32,17 @@ actionbar.topbar > revealer > box {
     background-color: @bg-light;
     min-height: 48px;
     padding: 4px 8px;
+    spacing: 12px;
 }
 
 /* Footer (status) bar gets the same treatment as the top bar: without an
    explicit min-height the actionbar collapses around its children and the
-   dropdowns/buttons squeeze into a strip. */
+   dropdowns/buttons squeeze into a strip. spacing puts air between the
+   controls (and around the separators), like the top bar. */
 actionbar > revealer > box {
     min-height: 44px;
     padding: 4px 8px;
+    spacing: 12px;
 }
 
 actionbar.topbar button {

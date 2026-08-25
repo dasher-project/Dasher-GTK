@@ -16,7 +16,9 @@ public:
         set_selected(find_index(m_bridge->get_string_parameter(m_key)));
 
         property_selected_item().signal_changed().connect([this]() {
-            Glib::ustring sel = get_selected_string();
+            auto item = std::dynamic_pointer_cast<Gtk::StringObject>(get_selected_item());
+            if (!item) return; // model just replaced; nothing selected yet
+            Glib::ustring sel = item->get_string();
             m_bridge->set_string_parameter(m_key, sel);
             OnSelectionChanged.emit(sel);
         });
