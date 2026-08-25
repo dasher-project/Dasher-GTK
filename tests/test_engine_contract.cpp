@@ -23,6 +23,7 @@
 #include "Engine/DasherBridge.h"
 
 #include <filesystem>
+#include <map>
 #include <fstream>
 #include <thread>
 
@@ -132,26 +133,29 @@ TEST_CASE("text-size callback is cached per label and size") {
 
     DasherBridge bridge(data, make_fresh_user_dir());
 
-    static int calls = 0;
-    calls = 0;
-    bridge.set_text_size_callback_for_tests(
-        [](const std::string& text, int font_size, int* w, int* h) {
-            calls++;
-            // Successful measurement (deterministic): the engine caches
-            // successes per label+size; failures are retried every frame by
-            // design, so a declining callback would (correctly) not cache.
-            *w = static_cast<int>(text.size()) * font_size / 2;
-            *h = font_size;
-            return 0;
-        });
+    // One static pair-counter for the whole test: the cache contract is
+    // that no (label, size) pair is measured twice - the tree may grow and
+    // present new labels (measured once each), so total counts are not
+    // stable across platforms.
+    using Pair = std::pair<std::string, int>;
+    static std::map<Pair, int> pair_counts;
+    pair_counts.clear();
+    bridge.set_text_size_callback_for_tests([](const std::string& text, int font_size, int* w, int* h) {
+        pair_counts[{text, font_size}]++;
+        *w = static_cast<int>(text.size()) * font_size / 2;
+        *h = font_size;
+        return 0;
+    });
     bridge.set_screen_size(800, 600);
 
-    // Warm-up frames populate the engine's label cache.
-    for (int i = 0; i < 10; i++) bridge.frame(i * 16);
-    const int after_warmup = calls;
-
-    // Steady state: many more frames with no zoom change => no new labels
-    // => no measurement callbacks.
-    for (int i = 10; i < 110; i++) bridge.frame(i * 16);
-    CHECK(after_warmup == calls);
+    // Warm-up + steady state: new labels may appear as the tree grows
+    // (measured once each); no pair may ever be measured twice.
+    for (int i = 0; i < 110; i++)
+        bridge.frame(i * 16);
+    int repeats = 0;
+    for (const auto& [pair, n] : pair_counts) {
+        if (n > 1) repeats++;
+    }
+    CHECK(repeats == 0);
+    CHECK(pair_counts.size() > 10); // the cache engaged on a real tree
 }
