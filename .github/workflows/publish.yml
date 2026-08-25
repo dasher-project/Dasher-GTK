@@ -16,9 +16,22 @@ jobs:
   # Two legs: x86_64 native, aarch64 via QEMU/binfmt. flathub serves both
   # runtimes natively, so the only arch-specific bit is the `--arch` flag
   # passed to flatpak-builder and the bundle filename.
+  #
+  # Packaging legs (this job + appimage below) run on main, tags and manual
+  # dispatch only — never on PRs (#60). Measured on a recent run: Flatpak
+  # x86_64 ~17 min and Flatpak aarch64 ~3h30 under QEMU, while every PR
+  # already gets full code verification from the dedicated workflows
+  # (multi-platform builds + ctest in cmake-multi-platform.yml, clang-format,
+  # dco, validate-metadata). Building distributable binaries per PR bought
+  # packaging-only signal at hours of wall time and heavy queued-runner use.
+  # A packaging regression surfaces on the main push that lands it, before
+  # any tagged release. workflow_dispatch stays non-blocking so the
+  # packaging can be exercised experimentally.
   flatpak:
     name: Flatpak (${{ matrix.arch }})
     runs-on: ubuntu-24.04
+    if: github.event_name != 'pull_request'
+    continue-on-error: ${{ github.event_name == 'workflow_dispatch' }}
     strategy:
       fail-fast: false
       matrix:
@@ -73,10 +86,14 @@ jobs:
   # ─── AppImage ─────────────────────────────────────────────────────────
   # x86_64 builds natively on the runner; aarch64 builds inside an
   # arm64v8/ubuntu:24.04 container under QEMU so all GTK / gtkmm / libcurl
-  # deps resolve as native arm64 packages.
+  # deps resolve as native arm64 packages. Skipped on PRs like flatpak
+  # above (#60): the aarch64 leg alone is ~35 min of emulation, and PR
+  # verification is fully covered by the code workflows.
   appimage:
     name: AppImage (${{ matrix.arch }})
     runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
+    continue-on-error: ${{ github.event_name == 'workflow_dispatch' }}
     strategy:
       fail-fast: false
       matrix:
