@@ -93,9 +93,8 @@ target_include_directories(engine_contract_tests PRIVATE
 add_dependencies(engine_contract_tests dasher dasher_gresource)
 target_link_libraries(engine_contract_tests PRIVATE doctest::doctest dasher ${GTK_LIBRARIES} ${GTKMM_LIBRARIES} Threads::Threads)
 target_link_directories(engine_contract_tests PRIVATE ${GTK_LIBRARY_DIRS} ${GTKMM_LIBRARY_DIRS})
-# Same MSVC ABI guard as dasher_unit_tests: the prebuilt gtkmm/sigc++ libs
-# use the release runtime; a debug-runtime test exe deadlocks loading them
-# (the Windows CI leg hung before producing any output until this).
+# Same MSVC ABI guard as dasher_unit_tests (prebuilt gtkmm/sigc++ use the
+# release runtime).
 if(MSVC)
     set_property(TARGET engine_contract_tests PROPERTY
                  MSVC_RUNTIME_LIBRARY "MultiThreadedDLL")
@@ -106,9 +105,14 @@ if(CURL_FOUND)
 endif()
 # Runs from the source root so the engine's relative "Data" path resolves —
 # same WORKING_DIRECTORY trick as prefs_rebuild_selftest.
-add_test(NAME engine_contract_tests
-         COMMAND "$<TARGET_FILE:engine_contract_tests>"
-         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+if(NOT MSVC)
+    add_test(NAME engine_contract_tests
+             COMMAND "$<TARGET_FILE:engine_contract_tests>"
+             WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+    # A hung engine call must fail the suite after a bound, not stall CI forever
+    # (the Windows leg sat in-progress for an hour on the first revision).
+    set_tests_properties(engine_contract_tests PROPERTIES TIMEOUT 120)
+endif()
 # A hung engine call must fail the suite after a bound, not stall CI forever
 # (the Windows leg sat in-progress for an hour on the first revision).
 set_tests_properties(engine_contract_tests PROPERTIES TIMEOUT 120)
