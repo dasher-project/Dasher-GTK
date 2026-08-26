@@ -36,6 +36,11 @@
   </developer>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="0.2.8" date="2026-08-26">
+      <description>
+        <p>Major usability release. New layout menu (text pane right, left, top, bottom, or keyboard mode) and Lucide icons across the toolbars. Keyboard mode gains v5/Windows/Apple parity: the editor hides, the window stays on top, refuses focus and types straight into the focused app, with an opacity slider. The footer is rebuilt Windows-style with a readable speed stepper (Dasher 5 scale), populated alphabet picker and a live typing-rate readout. Zooming is smoother via a clamped engine timeline, and label layout uses real font metrics (DasherCore v0.2.6).</p>
+      </description>
+    </release>
     <release version="0.2.7" date="2026-08-25">
       <description>
         <p>Label layout now measures text with the real canvas font (DasherCore v0.2.4), fixing jumbled, overlapping letters when writing long sentences. The app version is shown in Preferences → Privacy and, on builds from a Git checkout, derives from the release tag. Flatpak builds gained a tarball mirror so outages on cairographics.org can't block releases.</p>
