@@ -9,3 +9,6 @@
 [submodule "rust-tts-wrapper"]
 	path = rust-tts-wrapper
 	url = https://github.com/owenpkent/rust-tts-wrapper.git
+[submodule "shared-resources"]
+	path = shared-resources
+	url = https://github.com/dasher-project/dasher-shared-resources.git
