@@ -64,12 +64,6 @@ public:
     int enter_game_mode();
     void leave_game_mode();
     bool game_mode_active() const;
-    // Per-frame game state for the target overlay (cf. Dasher-Windows'
-    // SyncGameModeState).
-    std::string game_target_text() const;
-    int game_correct_count() const;
-    int game_target_length() const;
-    std::string game_wrong_text() const;
 
     int get_speed_percent() const;
     void set_speed_percent(int percent);
