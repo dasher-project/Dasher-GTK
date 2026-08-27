@@ -459,6 +459,37 @@ MainWindow::MainWindow()
         analytics::AnalyticsClient::instance().capture("alphabet_selected", {{"alphabet_id", std::string(id)}});
     });
     capture_app_launched();      // no-op unless already opted in
+
+    // RFC 0017: passive update check for self-managed builds. Runs on a
+    // background thread after the window is up (never blocks launch), at
+    // most weekly. On success, shows a non-modal notification via the
+    // message overlay — just a link, never a download or modal dialog.
+    // Flatpak builds skip entirely (flatpak update owns updates).
+    if (UpdateChecker::should_check()) {
+        const std::string version = DASHER_GTK_VERSION;
+        // Capture ONLY the alive token (shared_ptr keeps the atomic on the
+        // heap) and the info by value — never `this`, which may be gone by
+        // the time the idle callback runs. The overlay's show_message is
+        // called via a raw pointer that the alive flag guards; a full fix
+        // would use a weak reference to the overlay widget, but the flag
+        // plus the main-thread marshalling makes the window safe: the
+        // destructor sets the flag false before any widget teardown, and
+        // this idle runs on the same (main) thread as the destructor.
+        auto alive = m_ui_alive;
+        auto* overlay = &m_message_overlay;
+        std::thread([alive, overlay, version]() {
+            const auto info = UpdateChecker::check(version);
+            UpdateChecker::record_check();
+            if (!info.available) return;
+            Glib::signal_idle().connect_once([alive, overlay, info]() {
+                if (!alive->load()) return;
+                overlay->show_message_markup(std::string("<a href=\"") + info.release_url +
+                                             "\" title=\"Open the release page\">" + "Dasher " +
+                                             Glib::Markup::escape_text(info.latest_tag) + " is available</a> — " +
+                                             Glib::Markup::escape_text(info.release_name));
+            });
+        }).detach();
+    }
     maybe_show_consent_dialog(); // first launch only
 
     // Live typing-rate readout at the end of the footer (RFC 0012; Windows'
@@ -679,8 +710,15 @@ void MainWindow::set_pane_layout(PaneLayout layout) {
 }
 
 void MainWindow::set_keyboard_opacity(double v) {
-    m_ui_settings.set_keyboard_opacity(v);
-    m_ui_settings.save();
+    // Read-modify-write: load the current settings (which may have been
+    // changed by the Preferences window since startup), apply this one
+    // change, then save. Saving a startup-time snapshot would clobber any
+    // concurrent preference update — the update-check toggle was the bug.
+    ui::UiSettings settings = ui::UiSettings::load();
+    settings.set_keyboard_opacity(v);
+    settings.save();
+    // Refresh the cached value used for the live window opacity.
+    m_ui_settings = settings;
     if (m_direct_mode_active) {
         KeyboardWindowX11::set_opacity(*this, v); // live, like Windows/Apple
     }

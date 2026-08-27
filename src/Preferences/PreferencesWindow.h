@@ -3,6 +3,7 @@
 #include "Analytics/AnalyticsSettings.h"
 #include "Engine/DasherBridge.h"
 #include "SettingsSection.h"
+#include "UpdateChecker.h"
 #include "gtkmm/alertdialog.h"
 #include "gtkmm/box.h"
 #include "UIComponents/SyncedColorDropdown.h"
@@ -61,6 +62,12 @@ private:
     Gtk::Widget* m_reset_font_btn = nullptr;
     // Live CPS/WPM readout hosted in Settings -> Output (moved from the footer, issue #35).
     Gtk::Label* m_rate_value = nullptr;
+    // RFC 0017 update-check opt-out. The switch state comes from
+    // load_update_check_pref() (UiSettings) and saves via UiSettings —
+    // there is no cached member to drift out of sync with the persisted
+    // value (the original Greptile finding).
+    static bool load_update_check_pref();
+    void save_update_check_pref(bool enabled);
     analytics::AnalyticsSettings m_analytics = analytics::AnalyticsSettings::load();
     Gtk::Box m_layout = Gtk::Box(Gtk::Orientation::HORIZONTAL);
     Gtk::StackSidebar m_sidebar;
