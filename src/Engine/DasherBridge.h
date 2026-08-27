@@ -60,6 +60,11 @@ public:
     int get_language_model_id() const;
     void set_language_model_id(int model_id);
 
+    // Game mode (training): target text + correct/wrong tracking.
+    int enter_game_mode();
+    void leave_game_mode();
+    bool game_mode_active() const;
+
     int get_speed_percent() const;
     void set_speed_percent(int percent);
 

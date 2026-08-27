@@ -59,7 +59,7 @@ class MainWindow : public Gtk::Window {
     ImageButton m_new_button = ImageButton(_("New"), "file-plus");
     ImageButton m_open_button = ImageButton(_("Open"), "folder-open");
     ImageButton m_save_button = ImageButton(_("Save"), "save");
-    ImageButton m_play_button = ImageButton(_("Play"), "gamepad-2");
+    ImageButton m_play_button = ImageButton(_("Game"), "gamepad-2");
     // Layout/output-mode menu (Apple's layoutPickerMenu / Windows' BtnMode):
     // Right / Left / Bottom / Top / Keyboard — where the text pane sits, with
     // Keyboard hiding it entirely for direct entry.

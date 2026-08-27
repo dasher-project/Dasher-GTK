@@ -4,12 +4,23 @@
 #include <gtkmm/image.h>
 #include <gtkmm/label.h>
 #include <gtkmm/popover.h>
+#include <gtkmm/iconpaintable.h>
+#include <giomm/file.h>
 
+// Info icon with a hover popover explaining the setting. Uses the bundled
+// Lucide info icon (RFC 0002) — theme-icon names like help-about-symbolic
+// render as stars on XFCE and other themes, which reads as decoration.
 class PopoverMenuButtonInfo : public Gtk::Image {
 public:
     PopoverMenuButtonInfo(const Glib::ustring& text) : m_label(text) {
-        set_from_icon_name("help-about-symbolic");
-        set_name("InfoPopup");
+        auto file = Gio::File::create_for_uri("resource:///org/alternativeinterface/dasher/icons/info.svg");
+        if (file->query_exists()) {
+            auto paintable = Gtk::IconPaintable::create(file, 16, 1);
+            property_paintable() = paintable;
+            set_pixel_size(16);
+        } else {
+            set_from_icon_name("dialog-question-symbolic");
+        }
 
         m_popover.set_parent(*this);
         m_popover.set_child(m_label);

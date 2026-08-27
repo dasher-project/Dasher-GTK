@@ -43,6 +43,22 @@ MainWindow::MainWindow()
     pack_bar_start(m_header_bar, m_save_button);
     pack_bar_start(m_header_bar, *Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
     pack_bar_start(m_header_bar, m_play_button);
+    m_play_button.signal_clicked().connect([this]() {
+        // Game mode toggle (Windows/Apple parity): enter starts the training
+        // target from the engine's game-mode data; leave returns to normal.
+        if (m_canvas.bridge->game_mode_active()) {
+            m_canvas.bridge->leave_game_mode();
+            m_play_button.set_label(_("Game"));
+        } else {
+            const int rc = m_canvas.bridge->enter_game_mode();
+            if (rc == 0) {
+                m_play_button.set_label(_("Leave game"));
+            } else {
+                m_message_overlay.show_message(
+                    "No game text available. Add a training/gamemode file to your Dasher data directory.");
+            }
+        }
+    });
     // Layout menu replaces the bare Keyboard toggle (Apple layoutPickerMenu /
     // Windows BtnMode): Right / Left / Bottom / Top / Keyboard.
     m_layout_menu->append(_("Right side"), "layout.right");
@@ -125,7 +141,9 @@ MainWindow::MainWindow()
         m_learning_switch.update_from_bridge();
     });
     m_pref_button.signal_clicked().connect([this]() {
-        m_preferences_window.set_visible(true);
+        // present() brings the window forward AND focuses it, where
+        // set_visible(true) alone is a no-op if it's already visible behind.
+        m_preferences_window.present();
     });
 
     m_new_button.signal_clicked().connect([this]() {
@@ -352,7 +370,7 @@ MainWindow::MainWindow()
     m_minibar_settings_btn.set_icon_name("settings");
     m_minibar_settings_btn.set_tooltip_text(_("Settings"));
     m_minibar_settings_btn.set_valign(Gtk::Align::START);
-    m_minibar_settings_btn.signal_clicked().connect([this]() { m_preferences_window.set_visible(true); });
+    m_minibar_settings_btn.signal_clicked().connect([this]() { m_preferences_window.present(); });
     m_minibar_exit_btn.set_icon_name("keyboard");
     m_minibar_exit_btn.set_tooltip_text(_("Exit keyboard mode"));
     m_minibar_exit_btn.set_valign(Gtk::Align::START);

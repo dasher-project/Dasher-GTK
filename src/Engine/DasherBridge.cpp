@@ -131,6 +131,20 @@ void DasherBridge::set_language_model_id(int model_id) {
     if (m_ctx) dasher_set_language_model_id(m_ctx, model_id);
 }
 
+int DasherBridge::enter_game_mode() {
+    if (!m_ctx) return -1;
+    return dasher_enter_game_mode(m_ctx);
+}
+
+void DasherBridge::leave_game_mode() {
+    if (m_ctx) dasher_leave_game_mode(m_ctx);
+}
+
+bool DasherBridge::game_mode_active() const {
+    if (!m_ctx) return false;
+    return dasher_game_mode_active(m_ctx) != 0;
+}
+
 int DasherBridge::get_speed_percent() const {
     if (!m_ctx) return 100;
     return dasher_get_speed_percent(m_ctx);
