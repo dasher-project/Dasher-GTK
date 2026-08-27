@@ -710,8 +710,15 @@ void MainWindow::set_pane_layout(PaneLayout layout) {
 }
 
 void MainWindow::set_keyboard_opacity(double v) {
-    m_ui_settings.set_keyboard_opacity(v);
-    m_ui_settings.save();
+    // Read-modify-write: load the current settings (which may have been
+    // changed by the Preferences window since startup), apply this one
+    // change, then save. Saving a startup-time snapshot would clobber any
+    // concurrent preference update — the update-check toggle was the bug.
+    ui::UiSettings settings = ui::UiSettings::load();
+    settings.set_keyboard_opacity(v);
+    settings.save();
+    // Refresh the cached value used for the live window opacity.
+    m_ui_settings = settings;
     if (m_direct_mode_active) {
         KeyboardWindowX11::set_opacity(*this, v); // live, like Windows/Apple
     }
