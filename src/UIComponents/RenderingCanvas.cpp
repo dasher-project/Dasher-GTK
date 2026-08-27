@@ -5,6 +5,7 @@
 #include "Analytics/PiiScrubber.h"
 #include <gdkmm/frameclock.h>
 #include <gdk/gdkkeysyms.h>
+#include <glib.h>
 #include <glibmm/datetime.h>
 #include <cmath>
 
@@ -19,7 +20,19 @@ RenderingCanvas::RenderingCanvas() {
     set_valign(Gtk::Align::FILL);
     set_halign(Gtk::Align::FILL);
 
-    bridge = std::make_shared<DasherBridge>("Data", "");
+    // User-writable directory for settings, training deltas, and the
+    // settings-persisted state — kept strictly separate from the read-only
+    // data directory per DasherCore's CAPI contract. Without this, settings
+    // were written to Data/ and lost on every rebuild or reinstall (the same
+    // bug Android fixed in their #29).
+    std::string user_dir;
+    {
+        char* dir = g_build_filename(g_get_user_data_dir(), "dasher", nullptr);
+        g_mkdir_with_parents(dir, 0700);
+        user_dir = dir;
+        g_free(dir);
+    }
+    bridge = std::make_shared<DasherBridge>("Data", user_dir);
 
     auto locales = bridge->get_available_locales();
     auto* const* sys_langs = g_get_language_names();
