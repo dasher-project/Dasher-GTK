@@ -12,8 +12,10 @@
 #include <libintl.h>
 #include <locale.h>
 #include <climits>
-#include <unistd.h>
 #include <string>
+#ifndef _WIN32
+#include <unistd.h> // readlink, access — POSIX only
+#endif
 #else
 // Stubs so unwrapped builds still compile with _() in the sources.
 #define _(String) (String)
@@ -33,6 +35,8 @@
         setlocale(LC_ALL, "");
         {
             std::string domain_dir;
+#ifndef _WIN32
+            // POSIX: probe relative to the binary for dev and portable builds.
             char exe[PATH_MAX];
             const ssize_t n = readlink("/proc/self/exe", exe, sizeof(exe) - 1);
             if (n > 0) {
@@ -57,7 +61,8 @@
                     }
                 }
             }
-            // Compile-time install prefix (system installs, Flatpak)
+#endif
+            // Compile-time install prefix (system installs, Flatpak, Windows)
             if (domain_dir.empty()) {
                 domain_dir = LOCALEDIR;
             }
