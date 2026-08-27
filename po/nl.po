@@ -2,154 +2,55 @@
 # Copyright (C) 2026 The Dasher Project
 # This file is distributed under the same license as the dasher-gtk package.
 #
+# GENERATED from shared-resources/ui-strings.json — do not edit directly.
+# Edit the catalogue and run Scripts/generate-from-shared.py.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Project-Id-Version: dasher-gtk\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Dasher v6"
-msgstr "Dasher v6"
+msgid "%1$.1f cps · %2$d wpm"
+msgstr ""
 
-msgid "Right side"
-msgstr "Rechterkant"
-
-msgid "Left side"
-msgstr "Linkerzijde"
-
-msgid "Bottom"
-msgstr "Onderkant"
-
-msgid "Top"
-msgstr "Bovenkant"
-
-msgid "_Keyboard"
-msgstr "_Toetsenbord"
-
-msgid "Pane position and direct-entry mode"
-msgstr "Paneelpositie en directe invoermodus"
-
-msgid "Open Text File"
-msgstr "Tekstbestand openen"
-
-msgid "Text files"
-msgstr "Tekstbestanden"
-
-msgid "Failed to open: "
-msgstr "Kan niet openen:"
-
-msgid "Save Text File"
-msgstr "Tekstbestand opslaan"
-
-msgid "Saved: "
-msgstr "Opgeslagen:"
-
-msgid "Failed to save: "
-msgstr "Opslaan mislukt:"
-
-msgid "Click to set up keyboard mode (needs ydotool)"
-msgstr "Klik hier om de toetsenbordmodus in te stellen (hiervoor is ydotool nodig)."
-
-msgid "Settings"
-msgstr "Instellingen"
-
-msgid "Exit keyboard mode"
-msgstr "Toetsenbordmodus verlaten"
-
-msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
-msgstr "Toetsenbordmodus gestopt: ydotool kon geen tekst invoegen. Is ydotoold"
-
-msgid "Keyboard"
-msgstr "Toetsenbord"
-
-msgid "New"
-msgstr "Nieuw"
-
-msgid "Open"
-msgstr "Open"
-
-msgid "Save"
-msgstr "Redden"
-
-msgid "Play"
-msgstr "Toneelstuk"
-
-msgid "Prefs"
-msgstr "Voorkeuren"
-
-msgid "Copy"
-msgstr "Kopiëren"
-
-msgid "Copy all"
-msgstr "Alles kopiëren"
-
-msgid "Paste"
-msgstr "Plakken"
-
-msgid "Read"
-msgstr "Lezen"
-
-msgid "Speed"
-msgstr "Snelheid"
-
-msgid "Learning"
-msgstr "Leren"
-
-msgid "Speech"
-msgstr "Toespraak"
-
-msgid "Dasher Preferences"
-msgstr "Dasher-voorkeuren"
-
-msgid "<big><b>Dasher v6</b></big>\\n"
-msgstr "<big><b>Dasher v6</b></big>\\"
-
-msgid "GTK Edition"
-msgstr "GTK-editie"
+msgid "A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
+msgstr "Er is een crashrapport opgeslagen in ~/Library/Logs/DiagnosticReports/Dasher-*.ips. Als je dit rapport kunt delen via een GitHub-issue, helpt dat ons om de bug te verhelpen."
 
 msgid "About"
 msgstr "Over"
 
-msgid "Customization"
-msgstr "Aanpassing"
+msgid "Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
+msgstr "Accepteer hover-/aanwijzergebeurtenissen als Dasher-input. Schakel deze functie in voor oogtracking of externe aanwijzers."
 
-msgid "Input"
-msgstr "Invoer"
+msgid "Access"
+msgstr "Toegang"
 
-msgid "Language"
-msgstr "Taal"
+msgid "Accessibility Permission Required"
+msgstr "Toestemming voor toegankelijkheid vereist"
 
-msgid "Output"
-msgstr "Uitvoer"
+msgid "Adapt Speed Automatically"
+msgstr "Snelheid automatisch aanpassen"
 
-msgid "Game Mode"
-msgstr "Spelmodus"
+msgid "Advanced settings"
+msgstr "Geavanceerde instellingen"
 
-msgid "Dwell to click"
-msgstr "Blijf staan om te klikken"
+msgid "All Dasher settings will be restored to their default values. This cannot be undone."
+msgstr "Alle Dasher-instellingen worden teruggezet naar de standaardwaarden. Dit kan niet ongedaan worden gemaakt."
 
-msgid "Typing rate"
-msgstr "Typsnelheid"
+msgid "Alphabet"
+msgstr "Alfabet"
 
-msgid "Reset"
-msgstr "Reset"
+msgid "Help improve Dasher"
+msgstr "Help Dasher te verbeteren"
 
-msgid "Keyboard mode opacity"
-msgstr "Dekking van de toetsenbordmodus"
+msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
+msgstr ""
 
-msgid "<b>Speech Settings</b>"
-msgstr "<b>Spraakinstellingen</b>"
-
-msgid "<b>Language / Locale</b>"
-msgstr "<b>Taal / Locatie</b>"
-
-msgid "Locale"
-msgstr "Plaats"
-
-msgid "<b>Privacy</b>"
-msgstr "<b>Privacy</b>"
+msgid "Not now"
+msgstr "Nu niet"
 
 msgid "Share anonymous analytics and crash reports"
 msgstr "Deel anonieme analyses en crashrapporten."
@@ -157,29 +58,206 @@ msgstr "Deel anonieme analyses en crashrapporten."
 msgid "Reset analytics ID"
 msgstr "Analytische ID opnieuw instellen"
 
-msgid "Reset engine settings to defaults"
-msgstr "Zet de motorinstellingen terug naar de standaardwaarden."
+msgid "Help improve Dasher?"
+msgstr ""
 
-msgid "Reset all engine settings to their built-in defaults?"
-msgstr "Alle motorinstellingen terugzetten naar de standaardinstellingen?"
+msgid "Anonymous usage analytics"
+msgstr "Anonieme gebruiksanalyses"
+
+msgid "Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
+msgstr "Anonieme gebruiksstatistieken helpen ons te begrijpen hoe Dasher wordt gebruikt en crashes te verhelpen. Er wordt nooit getypte tekst, klembordinhoud of persoonlijke informatie verzameld. U kunt zich op elk gewenst moment afmelden via Instellingen → Privacy."
+
+msgid "App-Level Dwell to Select"
+msgstr "App-niveau verblijftijd om te selecteren"
+
+msgid "Dasher"
+msgstr ""
+
+msgid "Auto"
+msgstr ""
+
+msgid "Auto-Centre Target"
+msgstr ""
+
+msgid "Auto-select after fixating. Only enable if OS dwell is off."
+msgstr "Automatisch selecteren na fixatie. Alleen inschakelen als OS dwell is uitgeschakeld."
+
+msgid "Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
+msgstr "Automatisch selecteren na fixatie tijdens het knijpen. Alleen inschakelen als de 'dwell'-functie van het besturingssysteem is uitgeschakeld."
+
+msgid "Cancel"
+msgstr "Annuleren"
+
+msgid "Check Again"
+msgstr "Controleer het nogmaals"
+
+msgid "Choose..."
+msgstr "Kiezen..."
+
+msgid "Choose File..."
+msgstr "Kies een bestand..."
+
+msgid "Clear"
+msgstr "Duidelijk"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "Klik hier om de toetsenbordmodus in te stellen (hiervoor is ydotool nodig)."
+
+msgid "Close"
+msgstr "Dichtbij"
+
+msgid "Colour Theme"
+msgstr "Kleurenthema"
+
+msgid "contents or personal information is ever collected. You can change this any "
+msgstr ""
+
+msgid "Copied to clipboard."
+msgstr "Gekopieerd naar het klembord."
+
+msgid "Copy"
+msgstr "Kopiëren"
+
+msgid "Copy all"
+msgstr "Alles kopiëren"
+
+msgid "Copy All"
+msgstr "Alles kopiëren"
+
+msgid "Copy commands"
+msgstr "Kopieeropdrachten"
+
+msgid "Current Calibration"
+msgstr "Huidige kalibratie"
+
+msgid "Customization"
+msgstr "Aanpassing"
+
+msgid "Dark"
+msgstr "Donker"
 
 msgid "Dasher "
 msgstr "Dasher"
 
-msgid "Privacy"
-msgstr "Privacy"
+msgid "Dasher 5 data detected on this Mac."
+msgstr "Dasher 5-gegevens gedetecteerd op deze Mac."
 
-msgid "No settings available for this section."
-msgstr "Er zijn geen instellingen beschikbaar voor dit gedeelte."
+msgid "Dasher 5 settings imported successfully."
+msgstr "De Dasher 5-instellingen zijn succesvol geïmporteerd."
 
-msgid "Enable Keyboard Mode"
-msgstr "Toetsenbordmodus inschakelen"
+msgid "Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
+msgstr "Dasher functioneert ook als systeemtoetsenbord, zodat je in elke app kunt typen. Schakel het eenmalig in via de instellingen."
 
-msgid "<b>Keyboard mode isn't available in this build</b>"
-msgstr "<b>De toetsenbordmodus is niet beschikbaar in deze build</b>"
+msgid "Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
+msgstr "Dasher verzamelt anonieme analyses om het gebruik te begrijpen en crashes te verhelpen. Er wordt nooit getypte tekst, klembordinformatie of persoonlijke gegevens verzameld. Zie het open event schema op github.com/dasher-project/Dasher-Apple."
 
-msgid "Close"
-msgstr "Dichtbij"
+msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
+msgstr "Dasher verzamelt anonieme, privacyvriendelijke analyses om gebruikspatronen te begrijpen en crashes te verhelpen. Er wordt nooit getypte tekst, klembordinhoud of persoonlijke informatie verzameld.\n\nU kunt dit op elk moment wijzigen in Instellingen > Privacy."
+
+msgid "Dasher Keyboard"
+msgstr "Dasher-toetsenbord"
+
+msgid "Dasher keyboard"
+msgstr "Dasher-toetsenbord"
+
+msgid "Dasher needs accessibility access to send text to other applications."
+msgstr "Dasher heeft toegankelijkheidstoegang nodig om tekst naar andere applicaties te kunnen verzenden."
+
+msgid "Dasher Preferences"
+msgstr "Dasher-voorkeuren"
+
+msgid "Dasher quit unexpectedly"
+msgstr "Dasher nam onverwacht ontslag."
+
+msgid "Dasher v6"
+msgstr ""
+
+msgid "<big><b>Dasher v6</b></big>\n"
+msgstr "<big><b>Dasher v6</b></big>\n"
+
+msgid "Decrease Speed"
+msgstr "Verlaag de snelheid"
+
+msgid "Default"
+msgstr "Standaard"
+
+msgid "Diagnostics"
+msgstr "Diagnostiek"
+
+msgid "Direct Mode"
+msgstr "Directe modus"
+
+msgid "Done"
+msgstr "Klaar"
+
+msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
+msgstr ""
+
+msgid "Dwell to click"
+msgstr "Blijf staan om te klikken"
+
+msgid "Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
+msgstr "Schakel Dasher in via Instellingen → Algemeen → Toetsenbord → Toetsenborden en zet vervolgens 'Volledige toegang toestaan' aan, zodat Dasher kan spreken en leren."
+
+msgid "Enable tilt input first to access calibration."
+msgstr "Schakel eerst de kantelinput in om toegang te krijgen tot de kalibratie."
+
+msgid "Export Training Text"
+msgstr "Exporteer trainingstekst"
+
+msgid "Eye Gaze"
+msgstr "Oogcontact"
+
+msgid "Failed to open: "
+msgstr "Kan niet openen:"
+
+msgid "Failed to save: "
+msgstr "Opslaan mislukt:"
+
+msgid "Fast"
+msgstr "Snel"
+
+msgid "Flatpak or AppImage build can't provide.\n\n"
+msgstr ""
+
+msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
+msgstr "Met Full Access kan Dasher uitspreken wat je typt en je training onthouden. Het toetsenbord werkt nog steeds voor eenvoudige invoer, ook zonder Full Access."
+
+msgid "Game mode"
+msgstr "Spelmodus"
+
+msgid "Game Mode"
+msgstr "Spelmodus"
+
+msgid "Game Text File"
+msgstr "Speltekstbestand"
+
+msgid "Got it"
+msgstr "Begrepen."
+
+msgid "GTK Edition"
+msgstr "GTK-editie"
+
+msgid "Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
+msgstr "Met 'Importeren' wordt tekst aan het taalmodel toegevoegd (aanvulling op bestaande leergegevens). Met 'Exporteren' worden uw verzamelde trainingsgegevens opgeslagen voor back-up of overdracht. 'Resetten' verwijdert aangepaste trainingsgegevens; het model keert bij de volgende keer opstarten terug naar de ingebouwde standaardinstellingen."
+
+msgid "Import from Dasher 5"
+msgstr "Importeren vanuit Dasher 5"
+
+msgid "Import settings"
+msgstr "Importinstellingen"
+
+msgid "Import Training Text"
+msgstr "Trainingstekst importeren"
+
+msgid "Increase Speed"
+msgstr "Verhoog de snelheid"
+
+msgid "Input"
+msgstr "Invoer"
+
+msgid "Install Dasher via your package manager or build from source to use keyboard mode."
+msgstr ""
 
 msgid "<b>Install ydotool to use keyboard mode</b>"
 msgstr "<b>Installeer ydotool om de toetsenbordmodus te gebruiken</b>"
@@ -187,14 +265,383 @@ msgstr "<b>Installeer ydotool om de toetsenbordmodus te gebruiken</b>"
 msgid "isn't installed. Run these commands, then press Retry:"
 msgstr "is niet geïnstalleerd. Voer deze opdrachten uit en druk vervolgens op Opnieuw proberen:"
 
-msgid "Copy commands"
-msgstr "Kopieeropdrachten"
+msgid "Keyboard"
+msgstr ""
 
-msgid "Copied to clipboard."
-msgstr "Gekopieerd naar het klembord."
+msgid "_Keyboard"
+msgstr "_Toetsenbord"
+
+msgid "Type Dasher's output straight into the app you are pointing at"
+msgstr ""
+
+msgid "Exit keyboard mode"
+msgstr "Toetsenbordmodus verlaten"
+
+msgid "Keyboard mode: hide the output pane and type Dasher's text straight into "
+msgstr ""
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>De toetsenbordmodus is niet beschikbaar in deze build</b>"
+
+msgid "Keyboard mode opacity"
+msgstr "Dekking van de toetsenbordmodus"
+
+msgid "Keyboard mode stopped"
+msgstr ""
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "Toetsenbordmodus gestopt: ydotool kon geen tekst invoegen. Is ydotoold"
+
+msgid "Enable Keyboard Mode"
+msgstr "Toetsenbordmodus inschakelen"
+
+msgid "Keyboard mode types Dasher's output into other applications using ydotool, which "
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Language / Locale"
+msgstr ""
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>Taal / Locatie</b>"
+
+msgid "Bottom"
+msgstr "Onderkant"
+
+msgid "Pane position and direct-entry mode"
+msgstr "Paneelpositie en directe invoermodus"
+
+msgid "Left side"
+msgstr "Linkerzijde"
+
+msgid "Right side"
+msgstr "Rechterkant"
+
+msgid "Top"
+msgstr "Bovenkant"
+
+msgid "Learning"
+msgstr "Leren"
+
+msgid "Leave game mode"
+msgstr "Verlaat de spelmodus"
+
+msgid "Light"
+msgstr "Licht"
+
+msgid "Locale"
+msgstr "Plaats"
+
+msgid "Migration"
+msgstr "Migratie"
+
+msgid "Move your eyes while pinching to steer"
+msgstr "Beweeg je ogen terwijl je met je ogen knijpt om te sturen."
+
+msgid "New"
+msgstr "Nieuw"
+
+msgid "New Message"
+msgstr "Nieuw bericht"
+
+msgid "No Dasher 5 data found on this Mac."
+msgstr "Er zijn geen Dasher 5-gegevens gevonden op deze Mac."
+
+msgid "No settings available for this section."
+msgstr "Er zijn geen instellingen beschikbaar voor dit gedeelte."
+
+msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "Nothing to save"
+msgstr "Niets te redden"
+
+msgid "Nothing to share"
+msgstr "Niets te delen"
+
+msgid "OK"
+msgstr ""
+
+msgid "On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
+msgstr "Op visionOS begin je met typen door je vinger op het canvas te houden, rond te kijken terwijl je je vinger erop houdt om te sturen, en los te laten om te pauzeren. Het invoermodel is 'knijpen en kijken'."
+
+msgid "Open"
+msgstr ""
+
+msgid "Open..."
+msgstr ""
+
+msgid "Open failed"
+msgstr "Openen mislukt"
+
+msgid "Open Keyboard Settings"
+msgstr "Toetsenbordinstellingen openen"
+
+msgid "Open Settings"
+msgstr "Open instellingen"
+
+msgid "Open System Settings"
+msgstr "Open Systeeminstellingen"
+
+msgid "Open Text File"
+msgstr "Tekstbestand openen"
+
+msgid "Output"
+msgstr "Uitvoer"
+
+msgid "Output Font Size"
+msgstr "Uitvoer lettergrootte"
+
+msgid "Touch the canvas to start writing."
+msgstr "Raak het canvas aan om te beginnen met schrijven."
+
+msgid "Paste"
+msgstr "Plakken"
+
+msgid "Pause"
+msgstr "Pauze"
+
+msgid "Pause When Looking Away"
+msgstr "Pauzeer even als je wegkijkt."
+
+msgid "Pinch and hold anywhere on the canvas to start"
+msgstr "Knijp en houd ergens op het doek vast om te beginnen."
+
+msgid "Pinch and Look to Write"
+msgstr "Knijp en kijk om te schrijven"
+
+msgid "Game"
+msgstr ""
+
+msgid "Play"
+msgstr "Toneelstuk"
+
+msgid "Pointer Hover Input"
+msgstr "Invoer voor muisovergang"
+
+msgid "Preferences"
+msgstr ""
+
+msgid "Prefs"
+msgstr "Voorkeuren"
+
+msgid "Privacy"
+msgstr ""
+
+msgid "<b>Privacy</b>"
+msgstr ""
+
+msgid "Re-import from Dasher 5"
+msgstr "Opnieuw importeren vanuit Dasher 5"
+
+msgid "Read"
+msgstr "Lezen"
+
+msgid "Release the pinch to pause"
+msgstr "Laat los om te pauzeren"
+
+msgid "Reset"
+msgstr ""
+
+msgid "Reset All Settings to Defaults"
+msgstr "Alle instellingen terugzetten naar de standaardwaarden"
+
+msgid "Reset all settings to their defaults?"
+msgstr "Alle instellingen terugzetten naar de standaardwaarden?"
+
+msgid "Reset anonymous ID"
+msgstr "Anonieme ID opnieuw instellen"
+
+msgid "Reset engine settings to defaults"
+msgstr "Zet de motorinstellingen terug naar de standaardwaarden."
+
+msgid "Reset Settings"
+msgstr "Instellingen resetten"
+
+msgid "Reset to defaults"
+msgstr "Terugzetten naar standaardinstellingen"
+
+msgid "Reset Training Data"
+msgstr "Trainingsgegevens resetten"
+
+msgid "Reset Training Data?"
+msgstr "Trainingsgegevens resetten?"
+
+msgid "Restore all Dasher settings to their default values. This cannot be undone."
+msgstr "Alle Dasher-instellingen worden teruggezet naar de standaardwaarden. Deze wijziging is onomkeerbaar."
 
 msgid "Retry"
 msgstr "Opnieuw proberen"
 
+msgid "Save"
+msgstr "Redden"
+
+msgid "Save..."
+msgstr "Redden..."
+
+msgid "Save failed"
+msgstr "Opslaan mislukt"
+
+msgid "Save Text File"
+msgstr "Tekstbestand opslaan"
+
+msgid "Saved"
+msgstr "Opgeslagen"
+
+msgid "Saved: "
+msgstr "Opgeslagen:"
+
+msgid "Scan Speed"
+msgstr "Scansnelheid"
+
+msgid "service running? See the setup help on the Keyboard button for install commands."
+msgstr ""
+
+msgid "Settings"
+msgstr "Instellingen"
+
+msgid "Settings..."
+msgstr "Instellingen..."
+
+msgid "Reset all settings to defaults"
+msgstr "Alle instellingen terugzetten naar de standaardwaarden."
+
+msgid "Settings reset"
+msgstr "Instellingen resetten"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "Alle motorinstellingen terugzetten naar de standaardinstellingen?"
+
+msgid "Settings (speed, colours, control mode, language model)"
+msgstr "Instellingen (snelheid, kleuren, bedieningsmodus, taalmodel)"
+
+msgid "Share"
+msgstr "Deel"
+
+msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard "
+msgstr ""
+
+msgid "Show Input Debug Overlay"
+msgstr "Toon invoerfoutopsporingsoverlay"
+
+msgid "Show typing rate (WPM)"
+msgstr "Typsnelheid weergeven (WPM)"
+
+msgid "Size"
+msgstr "Maat"
+
+msgid "Skipped files"
+msgstr "Overgeslagen bestanden"
+
+msgid "Slow"
+msgstr "Langzaam"
+
+msgid "Speech"
+msgstr "Toespraak"
+
+msgid "Speech off"
+msgstr "Toespraak"
+
+msgid "Speech on"
+msgstr "Toespraak over"
+
+msgid "Speech Settings"
+msgstr ""
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>Spraakinstellingen</b>"
+
+msgid "Speed"
+msgstr "Snelheid"
+
+msgid "Speed "
+msgstr "Snelheid"
+
+msgid "Start Calibrating"
+msgstr "Beginnen met kalibreren"
+
+msgid "Start fresh"
+msgstr "Begin opnieuw"
+
+msgid "Stop"
+msgstr ""
+
+msgid "System"
+msgstr "Systeem"
+
+msgid "text"
+msgstr "tekst"
+
+msgid "Text files"
+msgstr "Tekstbestanden"
+
+msgid "the app you are pointing at (needs ydotool)"
+msgstr ""
+
+msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
+msgstr "De debug-overlay tekent een groen paneel linksboven in het canvas met live tellingen van aanraakgebeurtenissen en de laatst gerapporteerde (x, y)-coördinaten. Wanneer je knijpt en vasthoudt, zie je eerst touch.began en vervolgens touch.moved, waarbij de coördinaten veranderen terwijl je rondkijkt."
+
+msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
+msgstr "Hiermee worden uw verzamelde trainingsgegevens verwijderd. Het taalmodel zal bij de volgende keer opstarten terugkeren naar de ingebouwde standaardinstellingen. Deze wijziging kan niet ongedaan worden gemaakt."
+
+msgid "Tilt Calibration"
+msgstr "Kantelkalibratie"
+
+msgid "Tilt your device now..."
+msgstr "Kantel uw apparaat nu..."
+
+msgid "Tilt your device through its full range of motion during calibration."
+msgstr "Kantel uw apparaat tijdens de kalibratie door het volledige bewegingsbereik."
+
+msgid "time under Preferences → Privacy."
+msgstr ""
+
+msgid "Copy all text"
+msgstr ""
+
+msgid "Training"
+msgstr "Opleiding"
+
+msgid "Training Data"
+msgstr "Trainingsgegevens"
+
+msgid "Turbo"
+msgstr ""
+
+msgid "Typing into other applications needs access to /dev/uinput, which a sandboxed "
+msgstr ""
+
+msgid "Typing rate"
+msgstr "Typsnelheid"
+
+msgid "{cps} cps · {wpm} wpm"
+msgstr ""
+
+msgid "Use Dasher as your keyboard"
+msgstr "Gebruik Dasher als je toetsenbord."
+
+msgid "We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
+msgstr "We hebben je Dasher 5-configuratie op deze Mac gevonden. Je alfabet, kleuren, snelheidsinstellingen en aangepaste bestanden kunnen worden geïmporteerd in Dasher 6."
+
+msgid "What was found"
+msgstr "Wat werd gevonden?"
+
+msgid "X range:"
+msgstr "X-bereik:"
+
+msgid "Y range:"
+msgstr "Y-bereik:"
+
 msgid "ydotool found. Keyboard mode is ready."
 msgstr "ydotool gevonden. Toetsenbordmodus is gereed."
+
+msgid "ydotool still isn't available. Make sure it's installed and the ydotool service is running."
+msgstr ""
+
+msgid "You can import later in Settings > Privacy & Migration"
+msgstr "Je kunt de gegevens later importeren via Instellingen > Privacy en migratie."
+
+msgid "Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."
+msgstr "Je blik wordt alleen continu gevolgd zolang je knijpt en vasthoudt — zo werken alle visionOS-apps voor blikherkenning."

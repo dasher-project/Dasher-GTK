@@ -2,154 +2,55 @@
 # Copyright (C) 2026 The Dasher Project
 # This file is distributed under the same license as the dasher-gtk package.
 #
+# GENERATED from shared-resources/ui-strings.json — do not edit directly.
+# Edit the catalogue and run Scripts/generate-from-shared.py.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Project-Id-Version: dasher-gtk\n"
 "Language: zh-CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Dasher v6"
-msgstr "Dasher v6"
+msgid "%1$.1f cps · %2$d wpm"
+msgstr ""
 
-msgid "Right side"
-msgstr "右侧"
-
-msgid "Left side"
-msgstr "左侧"
-
-msgid "Bottom"
-msgstr "底部"
-
-msgid "Top"
-msgstr "顶部"
-
-msgid "_Keyboard"
-msgstr "_键盘"
-
-msgid "Pane position and direct-entry mode"
-msgstr "窗格位置和直接进入模式"
-
-msgid "Open Text File"
-msgstr "打开文本文件"
-
-msgid "Text files"
-msgstr "文本文件"
-
-msgid "Failed to open: "
-msgstr "打开失败："
-
-msgid "Save Text File"
-msgstr "保存文本文件"
-
-msgid "Saved: "
-msgstr "已保存："
-
-msgid "Failed to save: "
-msgstr "保存失败："
-
-msgid "Click to set up keyboard mode (needs ydotool)"
-msgstr "点击设置键盘模式（需要 ydotool）"
-
-msgid "Settings"
-msgstr "设置"
-
-msgid "Exit keyboard mode"
-msgstr "退出键盘模式"
-
-msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
-msgstr "键盘模式已停止：ydotool 无法注入文本。ydotoold 是否已停止？"
-
-msgid "Keyboard"
-msgstr "键盘"
-
-msgid "New"
-msgstr "新的"
-
-msgid "Open"
-msgstr "打开"
-
-msgid "Save"
-msgstr "节省"
-
-msgid "Play"
-msgstr "玩"
-
-msgid "Prefs"
-msgstr "偏好"
-
-msgid "Copy"
-msgstr "复制"
-
-msgid "Copy all"
-msgstr "全部复制"
-
-msgid "Paste"
-msgstr "粘贴"
-
-msgid "Read"
-msgstr "读"
-
-msgid "Speed"
-msgstr "速度"
-
-msgid "Learning"
-msgstr "学习"
-
-msgid "Speech"
-msgstr "演讲"
-
-msgid "Dasher Preferences"
-msgstr "冲锋者偏好"
-
-msgid "<big><b>Dasher v6</b></big>\\n"
-msgstr "<big><b>Dasher v6</b></big>\\"
-
-msgid "GTK Edition"
-msgstr "GTK版"
+msgid "A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
+msgstr "崩溃报告已保存到 ~/Library/Logs/DiagnosticReports/Dasher-*.ips。如果您可以在 GitHub 问题中分享它，它将帮助我们修复该错误。"
 
 msgid "About"
 msgstr "关于"
 
-msgid "Customization"
-msgstr "定制"
+msgid "Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
+msgstr "接受悬停/指针事件作为 Dasher 输入。启用眼动追踪或外部指针。"
 
-msgid "Input"
-msgstr "输入"
+msgid "Access"
+msgstr "使用权"
 
-msgid "Language"
-msgstr "语言"
+msgid "Accessibility Permission Required"
+msgstr "需要无障碍许可"
 
-msgid "Output"
-msgstr "输出"
+msgid "Adapt Speed Automatically"
+msgstr "自动适应速度"
 
-msgid "Game Mode"
-msgstr "游戏模式"
+msgid "Advanced settings"
+msgstr "高级设置"
 
-msgid "Dwell to click"
-msgstr "停留点击"
+msgid "All Dasher settings will be restored to their default values. This cannot be undone."
+msgstr "所有 Dasher 设置都将恢复为默认值。此操作无法撤消。"
 
-msgid "Typing rate"
-msgstr "打字速度"
+msgid "Alphabet"
+msgstr "字母"
 
-msgid "Reset"
-msgstr "重置"
+msgid "Help improve Dasher"
+msgstr "帮助改进 Dasher"
 
-msgid "Keyboard mode opacity"
-msgstr "键盘模式不透明度"
+msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
+msgstr ""
 
-msgid "<b>Speech Settings</b>"
-msgstr "<b>语音设置</b>"
-
-msgid "<b>Language / Locale</b>"
-msgstr "<b>语言/地区</b>"
-
-msgid "Locale"
-msgstr "本地化"
-
-msgid "<b>Privacy</b>"
-msgstr "<b>隐私</b>"
+msgid "Not now"
+msgstr "现在不要"
 
 msgid "Share anonymous analytics and crash reports"
 msgstr "分享匿名分析和崩溃报告"
@@ -157,29 +58,206 @@ msgstr "分享匿名分析和崩溃报告"
 msgid "Reset analytics ID"
 msgstr "重置分析 ID"
 
-msgid "Reset engine settings to defaults"
-msgstr "将引擎设置重置为默认值"
+msgid "Help improve Dasher?"
+msgstr ""
 
-msgid "Reset all engine settings to their built-in defaults?"
-msgstr "将所有引擎设置重置为内置默认值？"
+msgid "Anonymous usage analytics"
+msgstr "匿名使用分析"
+
+msgid "Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
+msgstr "匿名使用情况分析有助于我们了解 Dasher 的使用方式并修复崩溃问题。我们绝不会收集任何您输入的文本、剪贴板内容或个人信息。您可以随时在“设置”→“隐私”中选择退出。"
+
+msgid "App-Level Dwell to Select"
+msgstr "应用程序级停留选择"
+
+msgid "Dasher"
+msgstr ""
+
+msgid "Auto"
+msgstr "汽车"
+
+msgid "Auto-Centre Target"
+msgstr "自动居中目标"
+
+msgid "Auto-select after fixating. Only enable if OS dwell is off."
+msgstr "固定后自动选择。仅当操作系统停留关闭时才启用。"
+
+msgid "Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
+msgstr "捏合时注视后自动选择。仅当操作系统停留关闭时才启用。"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Check Again"
+msgstr "再次检查"
+
+msgid "Choose..."
+msgstr "选择..."
+
+msgid "Choose File..."
+msgstr "选择文件..."
+
+msgid "Clear"
+msgstr "清除"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "点击设置键盘模式（需要 ydotool）"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Colour Theme"
+msgstr "颜色主题"
+
+msgid "contents or personal information is ever collected. You can change this any "
+msgstr ""
+
+msgid "Copied to clipboard."
+msgstr "已复制到剪贴板。"
+
+msgid "Copy"
+msgstr "复制"
+
+msgid "Copy all"
+msgstr "全部复制"
+
+msgid "Copy All"
+msgstr "全部复制"
+
+msgid "Copy commands"
+msgstr "复制命令"
+
+msgid "Current Calibration"
+msgstr "电流校准"
+
+msgid "Customization"
+msgstr "定制"
+
+msgid "Dark"
+msgstr "黑暗的"
 
 msgid "Dasher "
 msgstr "冲锋者"
 
-msgid "Privacy"
-msgstr "隐私"
+msgid "Dasher 5 data detected on this Mac."
+msgstr "在此 Mac 上检测到 Dasher 5 数据。"
 
-msgid "No settings available for this section."
-msgstr "此部分暂无设置选项。"
+msgid "Dasher 5 settings imported successfully."
+msgstr "Dasher 5 设置已成功导入。"
 
-msgid "Enable Keyboard Mode"
-msgstr "启用键盘模式"
+msgid "Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
+msgstr "Dasher 还可以用作系统键盘，因此您可以在任何应用程序中书写。在“设置”中启用一次。"
 
-msgid "<b>Keyboard mode isn't available in this build</b>"
-msgstr "<b>此版本不支持键盘模式</b>"
+msgid "Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
+msgstr "Dasher 收集匿名分析以了解使用情况并修复崩溃。不会收集任何键入的文本、剪贴板或个人信息。请参阅 github.com/dasher-project/Dasher-Apple 上的开放事件架构。"
 
-msgid "Close"
-msgstr "关闭"
+msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
+msgstr "Dasher 收集匿名、尊重隐私的分析，以了解使用模式并修复崩溃。不会收集任何键入的文本、剪贴板内容或个人信息。\n\n您可以随时在“设置”>“隐私”中更改此设置。"
+
+msgid "Dasher Keyboard"
+msgstr "短跑键盘"
+
+msgid "Dasher keyboard"
+msgstr "短跑键盘"
+
+msgid "Dasher needs accessibility access to send text to other applications."
+msgstr "Dasher 需要辅助访问权限才能将文本发送到其他应用程序。"
+
+msgid "Dasher Preferences"
+msgstr "冲锋者偏好"
+
+msgid "Dasher quit unexpectedly"
+msgstr "Dasher 意外退出"
+
+msgid "Dasher v6"
+msgstr ""
+
+msgid "<big><b>Dasher v6</b></big>\n"
+msgstr "<big><b>Dasher v6</b></big>\n"
+
+msgid "Decrease Speed"
+msgstr "降低速度"
+
+msgid "Default"
+msgstr "默认"
+
+msgid "Diagnostics"
+msgstr "诊断"
+
+msgid "Direct Mode"
+msgstr "直接模式"
+
+msgid "Done"
+msgstr "完毕"
+
+msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
+msgstr ""
+
+msgid "Dwell to click"
+msgstr "停留点击"
+
+msgid "Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
+msgstr "在“设置”→“常规”→“键盘”→“键盘”下启用 Dasher，然后打开“允许完全访问”，以便 Dasher 可以说话和学习。"
+
+msgid "Enable tilt input first to access calibration."
+msgstr "首先启用倾斜输入以访问校准。"
+
+msgid "Export Training Text"
+msgstr "导出培训文本"
+
+msgid "Eye Gaze"
+msgstr "目光凝视"
+
+msgid "Failed to open: "
+msgstr "打开失败："
+
+msgid "Failed to save: "
+msgstr "保存失败："
+
+msgid "Fast"
+msgstr "快速地"
+
+msgid "Flatpak or AppImage build can't provide.\n\n"
+msgstr ""
+
+msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
+msgstr "完全访问权限可让 Dasher 说出您所写的内容并记住您的训练。没有它，键盘仍然可以进行基本输入。"
+
+msgid "Game mode"
+msgstr "游戏模式"
+
+msgid "Game Mode"
+msgstr "游戏模式"
+
+msgid "Game Text File"
+msgstr "游戏文本文件"
+
+msgid "Got it"
+msgstr "知道了"
+
+msgid "GTK Edition"
+msgstr "GTK版"
+
+msgid "Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
+msgstr "导入将文本添加到语言模型中（附加到现有学习中）。导出保存您积累的训练数据以供备份或传输。重置会删除自定义训练数据——模型在下次启动时返回到其内置默认值。"
+
+msgid "Import from Dasher 5"
+msgstr "从 Dasher 5 导入"
+
+msgid "Import settings"
+msgstr "导入设置"
+
+msgid "Import Training Text"
+msgstr "导入训练文本"
+
+msgid "Increase Speed"
+msgstr "提高速度"
+
+msgid "Input"
+msgstr "输入"
+
+msgid "Install Dasher via your package manager or build from source to use keyboard mode."
+msgstr ""
 
 msgid "<b>Install ydotool to use keyboard mode</b>"
 msgstr "安装 ydotool 以使用键盘模式。"
@@ -187,14 +265,383 @@ msgstr "安装 ydotool 以使用键盘模式。"
 msgid "isn't installed. Run these commands, then press Retry:"
 msgstr "未安装。请运行以下命令，然后按“重试”："
 
-msgid "Copy commands"
-msgstr "复制命令"
+msgid "Keyboard"
+msgstr ""
 
-msgid "Copied to clipboard."
-msgstr "已复制到剪贴板。"
+msgid "_Keyboard"
+msgstr "_键盘"
+
+msgid "Type Dasher's output straight into the app you are pointing at"
+msgstr ""
+
+msgid "Exit keyboard mode"
+msgstr "退出键盘模式"
+
+msgid "Keyboard mode: hide the output pane and type Dasher's text straight into "
+msgstr ""
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>此版本不支持键盘模式</b>"
+
+msgid "Keyboard mode opacity"
+msgstr "键盘模式不透明度"
+
+msgid "Keyboard mode stopped"
+msgstr ""
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "键盘模式已停止：ydotool 无法注入文本。ydotoold 是否已停止？"
+
+msgid "Enable Keyboard Mode"
+msgstr "启用键盘模式"
+
+msgid "Keyboard mode types Dasher's output into other applications using ydotool, which "
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Language / Locale"
+msgstr ""
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>语言/地区</b>"
+
+msgid "Bottom"
+msgstr "底部"
+
+msgid "Pane position and direct-entry mode"
+msgstr "窗格位置和直接进入模式"
+
+msgid "Left side"
+msgstr "左侧"
+
+msgid "Right side"
+msgstr "右侧"
+
+msgid "Top"
+msgstr "顶部"
+
+msgid "Learning"
+msgstr "学习"
+
+msgid "Leave game mode"
+msgstr "退出游戏模式"
+
+msgid "Light"
+msgstr "光"
+
+msgid "Locale"
+msgstr "本地化"
+
+msgid "Migration"
+msgstr "迁移"
+
+msgid "Move your eyes while pinching to steer"
+msgstr "移动眼睛，同时捏住转向"
+
+msgid "New"
+msgstr "新的"
+
+msgid "New Message"
+msgstr "新消息"
+
+msgid "No Dasher 5 data found on this Mac."
+msgstr "在此 Mac 上找不到 Dasher 5 数据。"
+
+msgid "No settings available for this section."
+msgstr "此部分暂无设置选项。"
+
+msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "Nothing to save"
+msgstr "已无可挽救"
+
+msgid "Nothing to share"
+msgstr "没什么可分享的"
+
+msgid "OK"
+msgstr "好的"
+
+msgid "On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
+msgstr "在 VisionOS 上，捏住画布即可开始书写，捏合时环顾四周即可转向，松开即可暂停。输入模型是捏看式的。"
+
+msgid "Open"
+msgstr "打开"
+
+msgid "Open..."
+msgstr "打开..."
+
+msgid "Open failed"
+msgstr "打开失败"
+
+msgid "Open Keyboard Settings"
+msgstr "打开键盘设置"
+
+msgid "Open Settings"
+msgstr "打开设置"
+
+msgid "Open System Settings"
+msgstr "打开系统设置"
+
+msgid "Open Text File"
+msgstr "打开文本文件"
+
+msgid "Output"
+msgstr "输出"
+
+msgid "Output Font Size"
+msgstr "输出字体大小"
+
+msgid "Touch the canvas to start writing."
+msgstr "点击画布开始书写。"
+
+msgid "Paste"
+msgstr "粘贴"
+
+msgid "Pause"
+msgstr "暂停"
+
+msgid "Pause When Looking Away"
+msgstr "目光移开时暂停"
+
+msgid "Pinch and hold anywhere on the canvas to start"
+msgstr "捏住画布上的任意位置即可开始"
+
+msgid "Pinch and Look to Write"
+msgstr "捏捏并看着写"
+
+msgid "Game"
+msgstr ""
+
+msgid "Play"
+msgstr "玩"
+
+msgid "Pointer Hover Input"
+msgstr "指针悬停输入"
+
+msgid "Preferences"
+msgstr ""
+
+msgid "Prefs"
+msgstr "偏好"
+
+msgid "Privacy"
+msgstr "隐私"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>隐私</b>"
+
+msgid "Re-import from Dasher 5"
+msgstr "从 Dasher 5 重新导入"
+
+msgid "Read"
+msgstr "读"
+
+msgid "Release the pinch to pause"
+msgstr "松开捏合即可暂停"
+
+msgid "Reset"
+msgstr "重置"
+
+msgid "Reset All Settings to Defaults"
+msgstr "将所有设置重置为默认值"
+
+msgid "Reset all settings to their defaults?"
+msgstr "将所有设置重置为默认值？"
+
+msgid "Reset anonymous ID"
+msgstr "重置匿名ID"
+
+msgid "Reset engine settings to defaults"
+msgstr "将引擎设置重置为默认值"
+
+msgid "Reset Settings"
+msgstr "重置设置"
+
+msgid "Reset to defaults"
+msgstr "重置为默认值"
+
+msgid "Reset Training Data"
+msgstr "重置训练数据"
+
+msgid "Reset Training Data?"
+msgstr "重置训练数据？"
+
+msgid "Restore all Dasher settings to their default values. This cannot be undone."
+msgstr "将所有 Dasher 设置恢复为默认值。此操作无法撤消。"
 
 msgid "Retry"
 msgstr "重试"
 
+msgid "Save"
+msgstr "节省"
+
+msgid "Save..."
+msgstr "节省..."
+
+msgid "Save failed"
+msgstr "保存失败"
+
+msgid "Save Text File"
+msgstr "保存文本文件"
+
+msgid "Saved"
+msgstr "已保存"
+
+msgid "Saved: "
+msgstr "已保存："
+
+msgid "Scan Speed"
+msgstr "扫描速度"
+
+msgid "service running? See the setup help on the Keyboard button for install commands."
+msgstr ""
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Settings..."
+msgstr "设置..."
+
+msgid "Reset all settings to defaults"
+msgstr "将所有设置重置为默认值"
+
+msgid "Settings reset"
+msgstr "设置重置"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "将所有引擎设置重置为内置默认值？"
+
+msgid "Settings (speed, colours, control mode, language model)"
+msgstr "设置（速度、颜色、控制模式、语言模型）"
+
+msgid "Share"
+msgstr "分享"
+
+msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard "
+msgstr ""
+
+msgid "Show Input Debug Overlay"
+msgstr "显示输入调试覆盖"
+
+msgid "Show typing rate (WPM)"
+msgstr "显示打字速度 (WPM)"
+
+msgid "Size"
+msgstr "尺寸"
+
+msgid "Skipped files"
+msgstr "跳过的文件"
+
+msgid "Slow"
+msgstr "慢的"
+
+msgid "Speech"
+msgstr "演讲"
+
+msgid "Speech off"
+msgstr "演讲结束"
+
+msgid "Speech on"
+msgstr "演讲内容"
+
+msgid "Speech Settings"
+msgstr ""
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>语音设置</b>"
+
+msgid "Speed"
+msgstr "速度"
+
+msgid "Speed "
+msgstr "速度"
+
+msgid "Start Calibrating"
+msgstr "开始校准"
+
+msgid "Start fresh"
+msgstr "重新开始"
+
+msgid "Stop"
+msgstr "停止"
+
+msgid "System"
+msgstr "系统"
+
+msgid "text"
+msgstr "文本"
+
+msgid "Text files"
+msgstr "文本文件"
+
+msgid "the app you are pointing at (needs ydotool)"
+msgstr ""
+
+msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
+msgstr "调试覆盖层在画布的左上角绘制一个绿色面板，显示实时触摸事件计数和最后报告的 (x, y)。当您捏住并按住时，您应该会看到 touch.began 然后 touch.moved ，并且当您环顾四周时，坐标会发生变化。"
+
+msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
+msgstr "这将删除您积累的训练数据。语言模型将在下次启动时恢复为内置默认值。此操作无法撤消。"
+
+msgid "Tilt Calibration"
+msgstr "倾斜校准"
+
+msgid "Tilt your device now..."
+msgstr "现在倾斜您的设备..."
+
+msgid "Tilt your device through its full range of motion during calibration."
+msgstr "在校准过程中，在整个运动范围内倾斜您的设备。"
+
+msgid "time under Preferences → Privacy."
+msgstr ""
+
+msgid "Copy all text"
+msgstr ""
+
+msgid "Training"
+msgstr "训练"
+
+msgid "Training Data"
+msgstr "训练数据"
+
+msgid "Turbo"
+msgstr "涡轮"
+
+msgid "Typing into other applications needs access to /dev/uinput, which a sandboxed "
+msgstr ""
+
+msgid "Typing rate"
+msgstr "打字速度"
+
+msgid "{cps} cps · {wpm} wpm"
+msgstr ""
+
+msgid "Use Dasher as your keyboard"
+msgstr "使用 Dasher 作为键盘"
+
+msgid "We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
+msgstr "我们在这台 Mac 上找到了您的 Dasher 5 配置。您的字母表、颜色、速度设置和自定义文件都可以导入到 Dasher 6 中。"
+
+msgid "What was found"
+msgstr "发现了什么"
+
+msgid "X range:"
+msgstr "X范围："
+
+msgid "Y range:"
+msgstr "Y范围："
+
 msgid "ydotool found. Keyboard mode is ready."
 msgstr "已找到 ydotool。键盘模式已准备就绪。"
+
+msgid "ydotool still isn't available. Make sure it's installed and the ydotool service is running."
+msgstr ""
+
+msgid "You can import later in Settings > Privacy & Migration"
+msgstr "您可以稍后在“设置”>“隐私和迁移”中导入"
+
+msgid "Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."
+msgstr "仅当您捏捏并按住时，才会持续跟踪您的视线 - 这就是所有visionOS 视线应用程序的工作原理。"

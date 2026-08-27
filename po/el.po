@@ -2,154 +2,55 @@
 # Copyright (C) 2026 The Dasher Project
 # This file is distributed under the same license as the dasher-gtk package.
 #
+# GENERATED from shared-resources/ui-strings.json — do not edit directly.
+# Edit the catalogue and run Scripts/generate-from-shared.py.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Project-Id-Version: dasher-gtk\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Dasher v6"
-msgstr "Dasher v6"
+msgid "%1$.1f cps · %2$d wpm"
+msgstr "%1$.1f cpm · %2$d wpm"
 
-msgid "Right side"
-msgstr "Δεξιά πλευρά"
-
-msgid "Left side"
-msgstr "Αριστερή πλευρά"
-
-msgid "Bottom"
-msgstr "Κάτω μέρος"
-
-msgid "Top"
-msgstr "Κορυφή"
-
-msgid "_Keyboard"
-msgstr "Πλήκτρα"
-
-msgid "Pane position and direct-entry mode"
-msgstr "Θέση υαλοπίνακα και λειτουργία άμεσης εισόδου"
-
-msgid "Open Text File"
-msgstr "Άνοιγμα αρχείου κειμένου"
-
-msgid "Text files"
-msgstr "Αρχεία κειμένου"
-
-msgid "Failed to open: "
-msgstr ": Αποτυχία ανοίγματος του :"
-
-msgid "Save Text File"
-msgstr "Αποθήκευση αρχείου κειμένου"
-
-msgid "Saved: "
-msgstr "Αποθηκεύτηκε"
-
-msgid "Failed to save: "
-msgstr "Αποτυχία αποθήκευσης :"
-
-msgid "Click to set up keyboard mode (needs ydotool)"
-msgstr "Κάντε κλικ για να ρυθμίσετε τη λειτουργία πληκτρολογίου (χρειάζεται ydotool)"
-
-msgid "Settings"
-msgstr "Ρυθμίσεις"
-
-msgid "Exit keyboard mode"
-msgstr "Λειτουργία πλήκτρων"
-
-msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
-msgstr "Η λειτουργία πληκτρολογίου σταμάτησε: το ydotool δεν μπόρεσε να εισάγει κείμενο. Είναι το ydotoold"
-
-msgid "Keyboard"
-msgstr "Πληκτρολόγιο"
-
-msgid "New"
-msgstr "Νέα"
-
-msgid "Open"
-msgstr "Άνοιγμα"
-
-msgid "Save"
-msgstr "Αποθήκευση"
-
-msgid "Play"
-msgstr "Αναπαραγωγή"
-
-msgid "Prefs"
-msgstr "Προτιμήσεις"
-
-msgid "Copy"
-msgstr "Αντιγραφή"
-
-msgid "Copy all"
-msgstr "Αντιγραφή όλων"
-
-msgid "Paste"
-msgstr "Πάστα"
-
-msgid "Read"
-msgstr "Αναγνωσμένο"
-
-msgid "Speed"
-msgstr "Ταχύτητα"
-
-msgid "Learning"
-msgstr "Μάθηση"
-
-msgid "Speech"
-msgstr "Ομιλία"
-
-msgid "Dasher Preferences"
-msgstr "Προτιμήσεις Dasher"
-
-msgid "<big><b>Dasher v6</b></big>\\n"
-msgstr "<big><b>Dasher v6</b></big>\\"
-
-msgid "GTK Edition"
-msgstr "Έκδοση GTK"
+msgid "A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
+msgstr "Μια αναφορά σφάλματος αποθηκεύτηκε στο ~/Library/Logs/DiagnosticReports/Dasher-*.ips. Αν μπορείτε να την κοινοποιήσετε σε ένα πρόβλημα του GitHub, θα μας βοηθήσει να διορθώσουμε το σφάλμα."
 
 msgid "About"
 msgstr "Σχετικά"
 
-msgid "Customization"
-msgstr "Προσαρμογή"
+msgid "Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
+msgstr "Αποδοχή συμβάντων κατάδειξης/δείκτη ως είσοδο Dasher. Ενεργοποίηση για παρακολούθηση ματιών ή εξωτερικούς δείκτες."
 
-msgid "Input"
-msgstr "Εισαγωγή"
+msgid "Access"
+msgstr "Πρόσβαση"
 
-msgid "Language"
-msgstr "Γλώσσα"
+msgid "Accessibility Permission Required"
+msgstr "Απαιτείται άδεια προσβασιμότητας"
 
-msgid "Output"
-msgstr "Τιμή εξόδου"
+msgid "Adapt Speed Automatically"
+msgstr "Αυτόματη προσαρμογή ταχύτητας"
 
-msgid "Game Mode"
-msgstr "Λειτουργία παιχνιδιού"
+msgid "Advanced settings"
+msgstr "Προηγμένες ρυθμίσεις"
 
-msgid "Dwell to click"
-msgstr "Συγκεντρωθείτε για να κάνετε κλικ"
+msgid "All Dasher settings will be restored to their default values. This cannot be undone."
+msgstr "Όλες οι ρυθμίσεις του Dasher θα επανέλθουν στις προεπιλεγμένες τιμές τους. Αυτή η ενέργεια δεν μπορεί να αναιρεθεί."
 
-msgid "Typing rate"
-msgstr "Ρυθμός πληκτρολόγησης"
+msgid "Alphabet"
+msgstr "Αλφάβητο"
 
-msgid "Reset"
-msgstr "Επαναφορά"
+msgid "Help improve Dasher"
+msgstr "Βοηθήστε στη βελτίωση του Dasher"
 
-msgid "Keyboard mode opacity"
-msgstr "Αδιαφάνεια λειτουργίας πληκτρολογίου"
+msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
+msgstr ""
 
-msgid "<b>Speech Settings</b>"
-msgstr "Ρυθμίσεις ομιλίας"
-
-msgid "<b>Language / Locale</b>"
-msgstr "<b>Γλώσσα / Τοπικές ρυθμίσεις</b>"
-
-msgid "Locale"
-msgstr "Τοποθεσία"
-
-msgid "<b>Privacy</b>"
-msgstr "<b>Απόρρητο</b>"
+msgid "Not now"
+msgstr "Όχι τώρα"
 
 msgid "Share anonymous analytics and crash reports"
 msgstr "Κοινοποίηση ανώνυμων αναλυτικών στοιχείων και αναφορών σφαλμάτων"
@@ -157,29 +58,206 @@ msgstr "Κοινοποίηση ανώνυμων αναλυτικών στοιχ�
 msgid "Reset analytics ID"
 msgstr "Επαναφορά αναγνωριστικού αναλυτικών στοιχείων"
 
-msgid "Reset engine settings to defaults"
-msgstr "Επαναφορά ρυθμίσεων κινητήρα στις προεπιλογές"
+msgid "Help improve Dasher?"
+msgstr ""
 
-msgid "Reset all engine settings to their built-in defaults?"
-msgstr "Επαναφέρετε όλες τις ρυθμίσεις του κινητήρα στις ενσωματωμένες προεπιλογές τους;"
+msgid "Anonymous usage analytics"
+msgstr "Ανώνυμα αναλυτικά στοιχεία χρήσης"
+
+msgid "Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
+msgstr "Τα ανώνυμα αναλυτικά στοιχεία χρήσης μας βοηθούν να κατανοήσουμε πώς χρησιμοποιείται το Dasher και να διορθώσουμε σφάλματα. Δεν συλλέγεται ποτέ πληκτρολογημένο κείμενο, περιεχόμενο προχείρου ή προσωπικά στοιχεία. Μπορείτε να εξαιρεθείτε οποιαδήποτε στιγμή από τις Ρυθμίσεις → Απόρρητο."
+
+msgid "App-Level Dwell to Select"
+msgstr "Παραμονή σε επίπεδο εφαρμογής για επιλογή"
+
+msgid "Dasher"
+msgstr ""
+
+msgid "Auto"
+msgstr "Αυτο"
+
+msgid "Auto-Centre Target"
+msgstr "Αυτόματο κεντράρισμα στόχου"
+
+msgid "Auto-select after fixating. Only enable if OS dwell is off."
+msgstr "Αυτόματη επιλογή μετά τη σταθεροποίηση. Ενεργοποίηση μόνο εάν η παραμονή στο λειτουργικό σύστημα είναι απενεργοποιημένη."
+
+msgid "Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
+msgstr "Αυτόματη επιλογή αφού εστιάσετε το βλέμμα σας ενώ τσίμπημα. Ενεργοποιήστε την μόνο εάν η παραμονή στο λειτουργικό σύστημα είναι απενεργοποιημένη."
+
+msgid "Cancel"
+msgstr "Ματαίωση"
+
+msgid "Check Again"
+msgstr "Έλεγχος ξανά"
+
+msgid "Choose..."
+msgstr "Επιλέγω..."
+
+msgid "Choose File..."
+msgstr "Επιλέξτε Αρχείο..."
+
+msgid "Clear"
+msgstr "Σαφής"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "Κάντε κλικ για να ρυθμίσετε τη λειτουργία πληκτρολογίου (χρειάζεται ydotool)"
+
+msgid "Close"
+msgstr "Κλείσιμο"
+
+msgid "Colour Theme"
+msgstr "Θέμα χρώματος"
+
+msgid "contents or personal information is ever collected. You can change this any "
+msgstr ""
+
+msgid "Copied to clipboard."
+msgstr "Αντιγράφηκε στο Πρόχειρο."
+
+msgid "Copy"
+msgstr "Αντιγραφή"
+
+msgid "Copy all"
+msgstr "Αντιγραφή όλων"
+
+msgid "Copy All"
+msgstr "Αντιγραφή όλων"
+
+msgid "Copy commands"
+msgstr "Αντιγραφή εντολών"
+
+msgid "Current Calibration"
+msgstr "Βαθμονόμηση ρεύματος"
+
+msgid "Customization"
+msgstr "Προσαρμογή"
+
+msgid "Dark"
+msgstr "Σκοτάδι"
 
 msgid "Dasher "
 msgstr "Dasher"
 
-msgid "Privacy"
-msgstr "Μυστικότητα"
+msgid "Dasher 5 data detected on this Mac."
+msgstr "Εντοπίστηκαν δεδομένα Dasher 5 σε αυτόν τον Mac."
 
-msgid "No settings available for this section."
-msgstr "Δεν υπάρχουν διαθέσιμες ρυθμίσεις για αυτήν την ενότητα."
+msgid "Dasher 5 settings imported successfully."
+msgstr "Οι ρυθμίσεις του Dasher 5 εισήχθησαν με επιτυχία."
 
-msgid "Enable Keyboard Mode"
-msgstr "Ενεργοποίηση λειτουργίας πληκτρολογίου"
+msgid "Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
+msgstr "Το Dasher λειτουργεί επίσης ως πληκτρολόγιο συστήματος, επομένως μπορείτε να γράφετε σε οποιαδήποτε εφαρμογή. Ενεργοποιήστε το μία φορά στις Ρυθμίσεις."
 
-msgid "<b>Keyboard mode isn't available in this build</b>"
-msgstr "<b>Η λειτουργία πληκτρολογίου δεν είναι διαθέσιμη σε αυτήν την έκδοση</b>"
+msgid "Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
+msgstr "Το Dasher συλλέγει ανώνυμα αναλυτικά στοιχεία για την κατανόηση της χρήσης και την επιδιόρθωση σφαλμάτων. Δεν συλλέγεται ποτέ πληκτρολογημένο κείμενο, πρόχειρο ή προσωπικές πληροφορίες. Δείτε το σχήμα ανοιχτού συμβάντος στη διεύθυνση github.com/dasher-project/Dasher-Apple."
 
-msgid "Close"
-msgstr "Κλείσιμο"
+msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
+msgstr "Το Dasher συλλέγει ανώνυμα, σεβόμενα την ιδιωτικότητα αναλυτικά στοιχεία για να κατανοήσει τα πρότυπα χρήσης και να διορθώσει σφάλματα. Δεν συλλέγεται ποτέ πληκτρολογημένο κείμενο, περιεχόμενο προχείρου ή προσωπικά στοιχεία.\n\nΜπορείτε να το αλλάξετε αυτό οποιαδήποτε στιγμή στις Ρυθμίσεις > Απόρρητο."
+
+msgid "Dasher Keyboard"
+msgstr "Πληκτρολόγιο Dasher"
+
+msgid "Dasher keyboard"
+msgstr "Πληκτρολόγιο Dasher"
+
+msgid "Dasher needs accessibility access to send text to other applications."
+msgstr "Το Dasher χρειάζεται πρόσβαση προσβασιμότητας για να στείλει κείμενο σε άλλες εφαρμογές."
+
+msgid "Dasher Preferences"
+msgstr "Προτιμήσεις Dasher"
+
+msgid "Dasher quit unexpectedly"
+msgstr "Ο Ντάσερ παραιτήθηκε απροσδόκητα."
+
+msgid "Dasher v6"
+msgstr ""
+
+msgid "<big><b>Dasher v6</b></big>\n"
+msgstr "<big><b>Dasher v6</b></big>\n"
+
+msgid "Decrease Speed"
+msgstr "Μείωση ταχύτητας"
+
+msgid "Default"
+msgstr "Αθέτηση"
+
+msgid "Diagnostics"
+msgstr "Διαγνωστικά"
+
+msgid "Direct Mode"
+msgstr "Άμεση λειτουργία"
+
+msgid "Done"
+msgstr "Γινώμενος"
+
+msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
+msgstr ""
+
+msgid "Dwell to click"
+msgstr "Συγκεντρωθείτε για να κάνετε κλικ"
+
+msgid "Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
+msgstr "Ενεργοποιήστε το Dasher στις Ρυθμίσεις → Γενικά → Πληκτρολόγιο → Πληκτρολόγια και, στη συνέχεια, ενεργοποιήστε την επιλογή Να επιτρέπεται η πλήρης πρόσβαση, ώστε το Dasher να μπορεί να μιλάει και να μαθαίνει."
+
+msgid "Enable tilt input first to access calibration."
+msgstr "Ενεργοποιήστε πρώτα την εισαγωγή κλίσης για να αποκτήσετε πρόσβαση στη βαθμονόμηση."
+
+msgid "Export Training Text"
+msgstr "Εξαγωγή κειμένου εκπαίδευσης"
+
+msgid "Eye Gaze"
+msgstr "Βλέμμα"
+
+msgid "Failed to open: "
+msgstr ": Αποτυχία ανοίγματος του :"
+
+msgid "Failed to save: "
+msgstr "Αποτυχία αποθήκευσης :"
+
+msgid "Fast"
+msgstr "Γρήγορα"
+
+msgid "Flatpak or AppImage build can't provide.\n\n"
+msgstr ""
+
+msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
+msgstr "Η πλήρης πρόσβαση επιτρέπει στον Dasher να εκφωνεί ό,τι γράφετε και να θυμάται την εκπαίδευσή σας. Το πληκτρολόγιο εξακολουθεί να λειτουργεί για βασική εισαγωγή χωρίς αυτήν."
+
+msgid "Game mode"
+msgstr "Λειτουργία παιχνιδιού"
+
+msgid "Game Mode"
+msgstr "Λειτουργία παιχνιδιού"
+
+msgid "Game Text File"
+msgstr "Αρχείο κειμένου παιχνιδιού"
+
+msgid "Got it"
+msgstr "Το κατάλαβα"
+
+msgid "GTK Edition"
+msgstr "Έκδοση GTK"
+
+msgid "Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
+msgstr "Η εισαγωγή προσθέτει κείμενο στο μοντέλο γλώσσας (προστίθεται στην υπάρχουσα εκμάθηση). Η εξαγωγή αποθηκεύει τα συσσωρευμένα δεδομένα εκπαίδευσης για δημιουργία αντιγράφων ασφαλείας ή μεταφορά. Η επαναφορά διαγράφει τα προσαρμοσμένα δεδομένα εκπαίδευσης — το μοντέλο επιστρέφει στις ενσωματωμένες προεπιλογές του στην επόμενη εκκίνηση."
+
+msgid "Import from Dasher 5"
+msgstr "Εισαγωγή από το Dasher 5"
+
+msgid "Import settings"
+msgstr "Εισαγωγή ρυθμίσεων"
+
+msgid "Import Training Text"
+msgstr "Εισαγωγή κειμένου εκπαίδευσης"
+
+msgid "Increase Speed"
+msgstr "Αύξηση ταχύτητας"
+
+msgid "Input"
+msgstr "Εισαγωγή"
+
+msgid "Install Dasher via your package manager or build from source to use keyboard mode."
+msgstr ""
 
 msgid "<b>Install ydotool to use keyboard mode</b>"
 msgstr "<b>Εγκαταστήστε το ydotool για να χρησιμοποιήσετε τη λειτουργία πληκτρολογίου</b>"
@@ -187,14 +265,383 @@ msgstr "<b>Εγκαταστήστε το ydotool για να χρησιμοπο�
 msgid "isn't installed. Run these commands, then press Retry:"
 msgstr "δεν έχει εγκατασταθεί. Εκτελέστε αυτές τις εντολές και, στη συνέχεια, πατήστε Επανάληψη:"
 
-msgid "Copy commands"
-msgstr "Αντιγραφή εντολών"
+msgid "Keyboard"
+msgstr ""
 
-msgid "Copied to clipboard."
-msgstr "Αντιγράφηκε στο Πρόχειρο."
+msgid "_Keyboard"
+msgstr "Πλήκτρα"
+
+msgid "Type Dasher's output straight into the app you are pointing at"
+msgstr ""
+
+msgid "Exit keyboard mode"
+msgstr "Λειτουργία πλήκτρων"
+
+msgid "Keyboard mode: hide the output pane and type Dasher's text straight into "
+msgstr ""
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>Η λειτουργία πληκτρολογίου δεν είναι διαθέσιμη σε αυτήν την έκδοση</b>"
+
+msgid "Keyboard mode opacity"
+msgstr "Αδιαφάνεια λειτουργίας πληκτρολογίου"
+
+msgid "Keyboard mode stopped"
+msgstr ""
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "Η λειτουργία πληκτρολογίου σταμάτησε: το ydotool δεν μπόρεσε να εισάγει κείμενο. Είναι το ydotoold"
+
+msgid "Enable Keyboard Mode"
+msgstr "Ενεργοποίηση λειτουργίας πληκτρολογίου"
+
+msgid "Keyboard mode types Dasher's output into other applications using ydotool, which "
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Language / Locale"
+msgstr ""
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>Γλώσσα / Τοπικές ρυθμίσεις</b>"
+
+msgid "Bottom"
+msgstr "Κάτω μέρος"
+
+msgid "Pane position and direct-entry mode"
+msgstr "Θέση υαλοπίνακα και λειτουργία άμεσης εισόδου"
+
+msgid "Left side"
+msgstr "Αριστερή πλευρά"
+
+msgid "Right side"
+msgstr "Δεξιά πλευρά"
+
+msgid "Top"
+msgstr "Κορυφή"
+
+msgid "Learning"
+msgstr "Μάθηση"
+
+msgid "Leave game mode"
+msgstr "Έξοδος από τη λειτουργία παιχνιδιού"
+
+msgid "Light"
+msgstr "Φως"
+
+msgid "Locale"
+msgstr "Τοποθεσία"
+
+msgid "Migration"
+msgstr "Μετανάστευση"
+
+msgid "Move your eyes while pinching to steer"
+msgstr "Κουνήστε τα μάτια σας ενώ τσιμπάτε για να οδηγήσετε"
+
+msgid "New"
+msgstr "Νέα"
+
+msgid "New Message"
+msgstr "Νέο μήνυμα"
+
+msgid "No Dasher 5 data found on this Mac."
+msgstr "Δεν βρέθηκαν δεδομένα Dasher 5 σε αυτόν τον Mac."
+
+msgid "No settings available for this section."
+msgstr "Δεν υπάρχουν διαθέσιμες ρυθμίσεις για αυτήν την ενότητα."
+
+msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "Nothing to save"
+msgstr "Δεν υπάρχει τίποτα για αποθήκευση"
+
+msgid "Nothing to share"
+msgstr "Δεν υπάρχει τίποτα για κοινή χρήση"
+
+msgid "OK"
+msgstr "ΕΝΤΑΞΕΙ"
+
+msgid "On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
+msgstr "Στο visionOS, κρατήστε πατημένο το δάχτυλο στον καμβά για να ξεκινήσετε να γράφετε, κοιτάξτε γύρω σας ενώ τραβάτε το δάχτυλο για να κατευθύνετε και αφήστε το για παύση. Το μοντέλο εισαγωγής είναι με το δάχτυλο και το δάχτυλο."
+
+msgid "Open"
+msgstr "Άνοιγμα"
+
+msgid "Open..."
+msgstr "Ανοιχτό..."
+
+msgid "Open failed"
+msgstr "Το άνοιγμα απέτυχε"
+
+msgid "Open Keyboard Settings"
+msgstr "Άνοιγμα ρυθμίσεων πληκτρολογίου"
+
+msgid "Open Settings"
+msgstr "Άνοιγμα Ρυθμίσεων"
+
+msgid "Open System Settings"
+msgstr "Άνοιγμα ρυθμίσεων συστήματος"
+
+msgid "Open Text File"
+msgstr "Άνοιγμα αρχείου κειμένου"
+
+msgid "Output"
+msgstr "Τιμή εξόδου"
+
+msgid "Output Font Size"
+msgstr "Μέγεθος γραμματοσειράς εξόδου"
+
+msgid "Touch the canvas to start writing."
+msgstr "Αγγίξτε τον καμβά για να ξεκινήσετε να γράφετε."
+
+msgid "Paste"
+msgstr "Πάστα"
+
+msgid "Pause"
+msgstr "Παύση"
+
+msgid "Pause When Looking Away"
+msgstr "Παύση όταν κοιτάτε αλλού"
+
+msgid "Pinch and hold anywhere on the canvas to start"
+msgstr "Τσιμπήστε και κρατήστε πατημένο οπουδήποτε στον καμβά για να ξεκινήσετε"
+
+msgid "Pinch and Look to Write"
+msgstr "Τσιμπήστε και κοιτάξτε για να γράψετε"
+
+msgid "Game"
+msgstr ""
+
+msgid "Play"
+msgstr "Αναπαραγωγή"
+
+msgid "Pointer Hover Input"
+msgstr "Είσοδος δείκτη με αιώρηση"
+
+msgid "Preferences"
+msgstr ""
+
+msgid "Prefs"
+msgstr "Προτιμήσεις"
+
+msgid "Privacy"
+msgstr "Μυστικότητα"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>Απόρρητο</b>"
+
+msgid "Re-import from Dasher 5"
+msgstr "Επανεισαγωγή από το Dasher 5"
+
+msgid "Read"
+msgstr "Αναγνωσμένο"
+
+msgid "Release the pinch to pause"
+msgstr "Αφήστε το τσίμπημα για παύση"
+
+msgid "Reset"
+msgstr "Επαναφορά"
+
+msgid "Reset All Settings to Defaults"
+msgstr "Επαναφορά όλων των ρυθμίσεων στις προεπιλογές"
+
+msgid "Reset all settings to their defaults?"
+msgstr "Επαναφορά όλων των ρυθμίσεων στις προεπιλογές τους;"
+
+msgid "Reset anonymous ID"
+msgstr "Επαναφορά ανώνυμου αναγνωριστικού"
+
+msgid "Reset engine settings to defaults"
+msgstr "Επαναφορά ρυθμίσεων κινητήρα στις προεπιλογές"
+
+msgid "Reset Settings"
+msgstr "Επαναφορά ρυθμίσεων"
+
+msgid "Reset to defaults"
+msgstr "Επαναφορά στις προεπιλογές"
+
+msgid "Reset Training Data"
+msgstr "Επαναφορά δεδομένων εκπαίδευσης"
+
+msgid "Reset Training Data?"
+msgstr "Επαναφορά δεδομένων εκπαίδευσης;"
+
+msgid "Restore all Dasher settings to their default values. This cannot be undone."
+msgstr "Επαναφέρετε όλες τις ρυθμίσεις του Dasher στις προεπιλεγμένες τιμές τους. Αυτή η ενέργεια δεν μπορεί να αναιρεθεί."
 
 msgid "Retry"
 msgstr "Επανάληψη"
 
+msgid "Save"
+msgstr "Αποθήκευση"
+
+msgid "Save..."
+msgstr "Εκτός..."
+
+msgid "Save failed"
+msgstr "Η αποθήκευση απέτυχε."
+
+msgid "Save Text File"
+msgstr "Αποθήκευση αρχείου κειμένου"
+
+msgid "Saved"
+msgstr "Αποθηκεύτηκε"
+
+msgid "Saved: "
+msgstr "Αποθηκεύτηκε"
+
+msgid "Scan Speed"
+msgstr "Ταχύτητα σάρωσης"
+
+msgid "service running? See the setup help on the Keyboard button for install commands."
+msgstr ""
+
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+msgid "Settings..."
+msgstr "Ρυθμίσεις..."
+
+msgid "Reset all settings to defaults"
+msgstr "Επαναφορά όλων των ρυθμίσεων στις προεπιλογές"
+
+msgid "Settings reset"
+msgstr "Επαναφορά ρυθμίσεων"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "Επαναφέρετε όλες τις ρυθμίσεις του κινητήρα στις ενσωματωμένες προεπιλογές τους;"
+
+msgid "Settings (speed, colours, control mode, language model)"
+msgstr "Ρυθμίσεις (ταχύτητα, χρώματα, λειτουργία ελέγχου, μοντέλο γλώσσας)"
+
+msgid "Share"
+msgstr "Μερίδιο"
+
+msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard "
+msgstr ""
+
+msgid "Show Input Debug Overlay"
+msgstr "Εμφάνιση επικάλυψης εντοπισμού σφαλμάτων εισόδου"
+
+msgid "Show typing rate (WPM)"
+msgstr "Εμφάνιση ρυθμού πληκτρολόγησης (WPM)"
+
+msgid "Size"
+msgstr "Μέγεθος"
+
+msgid "Skipped files"
+msgstr "Παραλειφθέντα αρχεία"
+
+msgid "Slow"
+msgstr "Αργός"
+
+msgid "Speech"
+msgstr "Ομιλία"
+
+msgid "Speech off"
+msgstr "Απενεργοποίηση ομιλίας"
+
+msgid "Speech on"
+msgstr "Ομιλία στο"
+
+msgid "Speech Settings"
+msgstr ""
+
+msgid "<b>Speech Settings</b>"
+msgstr "Ρυθμίσεις ομιλίας"
+
+msgid "Speed"
+msgstr "Ταχύτητα"
+
+msgid "Speed "
+msgstr "Ταχύτητα"
+
+msgid "Start Calibrating"
+msgstr "Έναρξη βαθμονόμησης"
+
+msgid "Start fresh"
+msgstr "Ξεκινήστε από την αρχή"
+
+msgid "Stop"
+msgstr "Στάση"
+
+msgid "System"
+msgstr "Σύστημα"
+
+msgid "text"
+msgstr "κείμενο"
+
+msgid "Text files"
+msgstr "Αρχεία κειμένου"
+
+msgid "the app you are pointing at (needs ydotool)"
+msgstr ""
+
+msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
+msgstr "Η επικάλυψη εντοπισμού σφαλμάτων σχεδιάζει ένα πράσινο πλαίσιο επάνω αριστερά στον καμβά που δείχνει τον αριθμό των ζωντανών συμβάντων αφής και το τελευταίο που αναφέρθηκε (x, y). Όταν τραβάτε παρατεταμένα τα δάχτυλα, θα πρέπει να δείτε το touch.began και στη συνέχεια το touch.move με μεταβαλλόμενες συντεταγμένες καθώς κοιτάτε τριγύρω."
+
+msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
+msgstr "Αυτό διαγράφει τα συσσωρευμένα δεδομένα εκπαίδευσης. Το μοντέλο γλώσσας θα επιστρέψει στις ενσωματωμένες προεπιλογές στην επόμενη εκκίνηση. Αυτή η ενέργεια δεν μπορεί να αναιρεθεί."
+
+msgid "Tilt Calibration"
+msgstr "Βαθμονόμηση κλίσης"
+
+msgid "Tilt your device now..."
+msgstr "Γείρετε τη συσκευή σας τώρα..."
+
+msgid "Tilt your device through its full range of motion during calibration."
+msgstr "Γείρετε τη συσκευή σας σε όλο το εύρος κίνησής της κατά τη διάρκεια της βαθμονόμησης."
+
+msgid "time under Preferences → Privacy."
+msgstr ""
+
+msgid "Copy all text"
+msgstr ""
+
+msgid "Training"
+msgstr "Εκπαίδευση"
+
+msgid "Training Data"
+msgstr "Δεδομένα Εκπαίδευσης"
+
+msgid "Turbo"
+msgstr "Τούρμπο"
+
+msgid "Typing into other applications needs access to /dev/uinput, which a sandboxed "
+msgstr ""
+
+msgid "Typing rate"
+msgstr "Ρυθμός πληκτρολόγησης"
+
+msgid "{cps} cps · {wpm} wpm"
+msgstr ""
+
+msgid "Use Dasher as your keyboard"
+msgstr "Χρησιμοποιήστε το Dasher ως πληκτρολόγιό σας"
+
+msgid "We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
+msgstr "Βρήκαμε τη διαμόρφωση του Dasher 5 σε αυτόν τον Mac. Το αλφάβητο, τα χρώματα, οι ρυθμίσεις ταχύτητας και τα προσαρμοσμένα αρχεία σας μπορούν να εισαχθούν στο Dasher 6."
+
+msgid "What was found"
+msgstr "Τι βρέθηκε"
+
+msgid "X range:"
+msgstr "Εύρος Χ:"
+
+msgid "Y range:"
+msgstr "Εύρος Y:"
+
 msgid "ydotool found. Keyboard mode is ready."
 msgstr "βρέθηκε το ydotool. Η λειτουργία πληκτρολογίου είναι έτοιμη."
+
+msgid "ydotool still isn't available. Make sure it's installed and the ydotool service is running."
+msgstr ""
+
+msgid "You can import later in Settings > Privacy & Migration"
+msgstr "Μπορείτε να κάνετε εισαγωγή αργότερα στις Ρυθμίσεις > Απόρρητο και μετεγκατάσταση"
+
+msgid "Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."
+msgstr "Το βλέμμα σας παρακολουθείται συνεχώς μόνο όταν το πιέζετε παρατεταμένα — έτσι λειτουργούν όλες οι εφαρμογές βλέμματος visionOS."

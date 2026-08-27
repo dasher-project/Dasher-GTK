@@ -2,154 +2,55 @@
 # Copyright (C) 2026 The Dasher Project
 # This file is distributed under the same license as the dasher-gtk package.
 #
+# GENERATED from shared-resources/ui-strings.json — do not edit directly.
+# Edit the catalogue and run Scripts/generate-from-shared.py.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Project-Id-Version: dasher-gtk\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Dasher v6"
-msgstr "แดชเชอร์ v6"
+msgid "%1$.1f cps · %2$d wpm"
+msgstr ""
 
-msgid "Right side"
-msgstr "ด้านขวา"
-
-msgid "Left side"
-msgstr "ด้านซ้าย"
-
-msgid "Bottom"
-msgstr "ด้านล่าง"
-
-msgid "Top"
-msgstr "สูงสุด"
-
-msgid "_Keyboard"
-msgstr "_แป้นพิมพ์"
-
-msgid "Pane position and direct-entry mode"
-msgstr "ตำแหน่งบานหน้าต่างและโหมดการป้อนข้อมูลโดยตรง"
-
-msgid "Open Text File"
-msgstr "เปิดไฟล์ข้อความ"
-
-msgid "Text files"
-msgstr "ไฟล์ข้อความ"
-
-msgid "Failed to open: "
-msgstr "ไม่สามารถเปิดได้:"
-
-msgid "Save Text File"
-msgstr "บันทึกไฟล์ข้อความ"
-
-msgid "Saved: "
-msgstr "บันทึกแล้ว:"
-
-msgid "Failed to save: "
-msgstr "บันทึกไม่สำเร็จ:"
-
-msgid "Click to set up keyboard mode (needs ydotool)"
-msgstr "คลิกเพื่อตั้งค่าโหมดแป้นพิมพ์ (ต้องใช้ ydotool)"
-
-msgid "Settings"
-msgstr "การตั้งค่า"
-
-msgid "Exit keyboard mode"
-msgstr "ออกจากโหมดแป้นพิมพ์"
-
-msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
-msgstr "โหมดแป้นพิมพ์หยุดทำงาน: ydotool ไม่สามารถแทรกข้อความได้ ydotoold ทำงานอยู่หรือไม่"
-
-msgid "Keyboard"
-msgstr "แป้นพิมพ์"
-
-msgid "New"
-msgstr "ใหม่"
-
-msgid "Open"
-msgstr "เปิด"
-
-msgid "Save"
-msgstr "บันทึก"
-
-msgid "Play"
-msgstr "เล่น"
-
-msgid "Prefs"
-msgstr "การตั้งค่า"
-
-msgid "Copy"
-msgstr "สำเนา"
-
-msgid "Copy all"
-msgstr "คัดลอกทั้งหมด"
-
-msgid "Paste"
-msgstr "แปะ"
-
-msgid "Read"
-msgstr "อ่าน"
-
-msgid "Speed"
-msgstr "ความเร็ว"
-
-msgid "Learning"
-msgstr "การเรียนรู้"
-
-msgid "Speech"
-msgstr "คำพูด"
-
-msgid "Dasher Preferences"
-msgstr "การตั้งค่า Dasher"
-
-msgid "<big><b>Dasher v6</b></big>\\n"
-msgstr "<big><b>แดชเชอร์ เวอร์ชัน 6</b></big>\\"
-
-msgid "GTK Edition"
-msgstr "รุ่น GTK"
+msgid "A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
+msgstr "รายงานข้อผิดพลาดถูกบันทึกไว้ที่ ~/Library/Logs/DiagnosticReports/Dasher-*.ips หากคุณสามารถแชร์รายงานนี้ใน GitHub issue จะช่วยให้เราแก้ไขข้อผิดพลาดได้ง่ายขึ้น"
 
 msgid "About"
 msgstr "เกี่ยวกับ"
 
-msgid "Customization"
-msgstr "การปรับแต่ง"
+msgid "Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
+msgstr "รับเหตุการณ์การวางเมาส์เหนือวัตถุ/การชี้เมาส์เป็นอินพุตของ Dasher เปิดใช้งานสำหรับการติดตามสายตาหรือตัวชี้ภายนอก"
 
-msgid "Input"
-msgstr "ป้อนข้อมูล"
+msgid "Access"
+msgstr "เข้าถึง"
 
-msgid "Language"
-msgstr "ภาษา"
+msgid "Accessibility Permission Required"
+msgstr "ต้องได้รับอนุญาตในการเข้าถึง"
 
-msgid "Output"
-msgstr "เอาต์พุต"
+msgid "Adapt Speed Automatically"
+msgstr "ปรับความเร็วอัตโนมัติ"
 
-msgid "Game Mode"
-msgstr "โหมดเกม"
+msgid "Advanced settings"
+msgstr "การตั้งค่าขั้นสูง"
 
-msgid "Dwell to click"
-msgstr "เลื่อนเพื่อคลิก"
+msgid "All Dasher settings will be restored to their default values. This cannot be undone."
+msgstr "การตั้งค่า Dasher ทั้งหมดจะถูกคืนค่าเป็นค่าเริ่มต้น การเปลี่ยนแปลงนี้ไม่สามารถย้อนกลับได้"
 
-msgid "Typing rate"
-msgstr "อัตราการพิมพ์"
+msgid "Alphabet"
+msgstr "ตัวอักษร"
 
-msgid "Reset"
-msgstr "รีเซ็ต"
+msgid "Help improve Dasher"
+msgstr "ช่วยปรับปรุง Dasher ให้ดียิ่งขึ้น"
 
-msgid "Keyboard mode opacity"
-msgstr "ความทึบแสงของโหมดแป้นพิมพ์"
+msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
+msgstr ""
 
-msgid "<b>Speech Settings</b>"
-msgstr "<b>การตั้งค่าเสียง</b>"
-
-msgid "<b>Language / Locale</b>"
-msgstr "<b>ภาษา / สถานที่ตั้ง</b>"
-
-msgid "Locale"
-msgstr "ท้องถิ่น"
-
-msgid "<b>Privacy</b>"
-msgstr "<b>ความเป็นส่วนตัว</b>"
+msgid "Not now"
+msgstr "ไม่ใช่ตอนนี้"
 
 msgid "Share anonymous analytics and crash reports"
 msgstr "แบ่งปันข้อมูลวิเคราะห์และรายงานข้อผิดพลาดแบบไม่ระบุตัวตน"
@@ -157,29 +58,206 @@ msgstr "แบ่งปันข้อมูลวิเคราะห์แล
 msgid "Reset analytics ID"
 msgstr "รีเซ็ต ID การวิเคราะห์"
 
-msgid "Reset engine settings to defaults"
-msgstr "รีเซ็ตการตั้งค่าเครื่องยนต์เป็นค่าเริ่มต้น"
+msgid "Help improve Dasher?"
+msgstr ""
 
-msgid "Reset all engine settings to their built-in defaults?"
-msgstr "รีเซ็ตการตั้งค่าเครื่องยนต์ทั้งหมดกลับไปเป็นค่าเริ่มต้นหรือไม่?"
+msgid "Anonymous usage analytics"
+msgstr "การวิเคราะห์การใช้งานแบบไม่ระบุตัวตน"
+
+msgid "Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
+msgstr "การวิเคราะห์การใช้งานแบบไม่ระบุตัวตนช่วยให้เราเข้าใจวิธีการใช้งาน Dasher และแก้ไขข้อผิดพลาด เราจะไม่เก็บรวบรวมข้อความที่พิมพ์ เนื้อหาในคลิปบอร์ด หรือข้อมูลส่วนบุคคลใดๆ คุณสามารถยกเลิกการใช้งานได้ทุกเมื่อใน การตั้งค่า → ความเป็นส่วนตัว"
+
+msgid "App-Level Dwell to Select"
+msgstr "การเลือกเวลาพักระดับแอป"
+
+msgid "Dasher"
+msgstr ""
+
+msgid "Auto"
+msgstr "อัตโนมัติ"
+
+msgid "Auto-Centre Target"
+msgstr "ออโต้เซ็นเตอร์ ทาร์เก็ต"
+
+msgid "Auto-select after fixating. Only enable if OS dwell is off."
+msgstr "เลือกอัตโนมัติหลังจากตรึงภาพแล้ว เปิดใช้งานเฉพาะเมื่อปิดโหมดพักหน้าจอของระบบปฏิบัติการเท่านั้น"
+
+msgid "Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
+msgstr "เลือกอัตโนมัติหลังจากจ้องมองโดยใช้การบีบนิ้ว เปิดใช้งานเฉพาะเมื่อปิดการตั้งค่าการพักหน้าจอของระบบปฏิบัติการเท่านั้น"
+
+msgid "Cancel"
+msgstr "ยกเลิก"
+
+msgid "Check Again"
+msgstr "ตรวจสอบอีกครั้ง"
+
+msgid "Choose..."
+msgstr "เลือก..."
+
+msgid "Choose File..."
+msgstr "เลือกไฟล์..."
+
+msgid "Clear"
+msgstr "ชัดเจน"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "คลิกเพื่อตั้งค่าโหมดแป้นพิมพ์ (ต้องใช้ ydotool)"
+
+msgid "Close"
+msgstr "ปิด"
+
+msgid "Colour Theme"
+msgstr "ธีมสี"
+
+msgid "contents or personal information is ever collected. You can change this any "
+msgstr ""
+
+msgid "Copied to clipboard."
+msgstr "คัดลอกไปยังคลิปบอร์ดแล้ว"
+
+msgid "Copy"
+msgstr "สำเนา"
+
+msgid "Copy all"
+msgstr "คัดลอกทั้งหมด"
+
+msgid "Copy All"
+msgstr "คัดลอกทั้งหมด"
+
+msgid "Copy commands"
+msgstr "คัดลอกคำสั่ง"
+
+msgid "Current Calibration"
+msgstr "การสอบเทียบกระแสไฟฟ้า"
+
+msgid "Customization"
+msgstr "การปรับแต่ง"
+
+msgid "Dark"
+msgstr "มืด"
 
 msgid "Dasher "
 msgstr "แดชเชอร์"
 
-msgid "Privacy"
-msgstr "ความเป็นส่วนตัว"
+msgid "Dasher 5 data detected on this Mac."
+msgstr "ตรวจพบข้อมูล Dasher 5 บนเครื่อง Mac นี้"
 
-msgid "No settings available for this section."
-msgstr "ไม่มีการตั้งค่าใดๆ สำหรับส่วนนี้"
+msgid "Dasher 5 settings imported successfully."
+msgstr "นำเข้าการตั้งค่า Dasher 5 สำเร็จแล้ว"
 
-msgid "Enable Keyboard Mode"
-msgstr "เปิดใช้งานโหมดแป้นพิมพ์"
+msgid "Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
+msgstr "Dasher ยังทำหน้าที่เป็นแป้นพิมพ์ของระบบ คุณจึงสามารถพิมพ์ในแอปพลิเคชันใดก็ได้ เพียงเปิดใช้งานครั้งเดียวในเมนูการตั้งค่า"
 
-msgid "<b>Keyboard mode isn't available in this build</b>"
-msgstr "<b>โหมดแป้นพิมพ์ไม่พร้อมใช้งานในเวอร์ชันนี้</b>"
+msgid "Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
+msgstr "Dasher รวบรวมข้อมูลวิเคราะห์แบบไม่ระบุตัวตนเพื่อทำความเข้าใจการใช้งานและแก้ไขข้อผิดพลาด ไม่มีการเก็บข้อความที่พิมพ์ ข้อมูลในคลิปบอร์ด หรือข้อมูลส่วนบุคคลใดๆ ดูรายละเอียดโครงสร้างเหตุการณ์แบบเปิดได้ที่ github.com/dasher-project/Dasher-Apple"
 
-msgid "Close"
-msgstr "ปิด"
+msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
+msgstr "Dasher รวบรวมข้อมูลวิเคราะห์แบบไม่ระบุตัวตนและเคารพความเป็นส่วนตัว เพื่อทำความเข้าใจรูปแบบการใช้งานและแก้ไขข้อผิดพลาด ไม่มีการเก็บข้อความที่พิมพ์ เนื้อหาในคลิปบอร์ด หรือข้อมูลส่วนบุคคลใดๆ ทั้งสิ้น\n\nคุณสามารถเปลี่ยนแปลงการตั้งค่านี้ได้ตลอดเวลาใน การตั้งค่า > ความเป็นส่วนตัว"
+
+msgid "Dasher Keyboard"
+msgstr "คีย์บอร์ดแดชเชอร์"
+
+msgid "Dasher keyboard"
+msgstr "แป้นพิมพ์แดชเชอร์"
+
+msgid "Dasher needs accessibility access to send text to other applications."
+msgstr "Dasher จำเป็นต้องได้รับสิทธิ์การเข้าถึงเพื่อส่งข้อความไปยังแอปพลิเคชันอื่น"
+
+msgid "Dasher Preferences"
+msgstr "การตั้งค่า Dasher"
+
+msgid "Dasher quit unexpectedly"
+msgstr "แดชเชอร์ลาออกอย่างไม่คาดคิด"
+
+msgid "Dasher v6"
+msgstr "แดชเชอร์ v6"
+
+msgid "<big><b>Dasher v6</b></big>\n"
+msgstr "<big><b>แดชเชอร์ เวอร์ชัน 6</b></big>\n"
+
+msgid "Decrease Speed"
+msgstr "ลดความเร็ว"
+
+msgid "Default"
+msgstr "ค่าเริ่มต้น"
+
+msgid "Diagnostics"
+msgstr "การวินิจฉัยโรค"
+
+msgid "Direct Mode"
+msgstr "โหมดโดยตรง"
+
+msgid "Done"
+msgstr "เสร็จแล้ว"
+
+msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
+msgstr ""
+
+msgid "Dwell to click"
+msgstr "เลื่อนเพื่อคลิก"
+
+msgid "Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
+msgstr "เปิดใช้งาน Dasher ในการตั้งค่า → ทั่วไป → แป้นพิมพ์ → แป้นพิมพ์ จากนั้นเปิด \"อนุญาตการเข้าถึงแบบเต็ม\" เพื่อให้ Dasher สามารถพูดและเรียนรู้ได้"
+
+msgid "Enable tilt input first to access calibration."
+msgstr "เปิดใช้งานการป้อนข้อมูลการเอียงก่อนเพื่อเข้าถึงการปรับเทียบ"
+
+msgid "Export Training Text"
+msgstr "ข้อความฝึกอบรมการส่งออก"
+
+msgid "Eye Gaze"
+msgstr "การจ้องมองด้วยสายตา"
+
+msgid "Failed to open: "
+msgstr "ไม่สามารถเปิดได้:"
+
+msgid "Failed to save: "
+msgstr "บันทึกไม่สำเร็จ:"
+
+msgid "Fast"
+msgstr "เร็ว"
+
+msgid "Flatpak or AppImage build can't provide.\n\n"
+msgstr ""
+
+msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
+msgstr "การเข้าถึงแบบเต็มรูปแบบช่วยให้ Dasher สามารถอ่านสิ่งที่คุณเขียนและจดจำการฝึกฝนของคุณได้ แป้นพิมพ์ยังคงใช้งานได้สำหรับการป้อนข้อมูลพื้นฐานโดยไม่ต้องใช้ฟังก์ชันนี้"
+
+msgid "Game mode"
+msgstr "โหมดเกม"
+
+msgid "Game Mode"
+msgstr "โหมดเกม"
+
+msgid "Game Text File"
+msgstr "ไฟล์ข้อความเกม"
+
+msgid "Got it"
+msgstr "เข้าใจแล้ว"
+
+msgid "GTK Edition"
+msgstr "รุ่น GTK"
+
+msgid "Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
+msgstr "การนำเข้า (Import) จะเพิ่มข้อความลงในแบบจำลองภาษา (ต่อท้ายข้อมูลการเรียนรู้ที่มีอยู่แล้ว) การส่งออก (Export) จะบันทึกข้อมูลการฝึกอบรมที่คุณสะสมไว้เพื่อสำรองข้อมูลหรือถ่ายโอน การรีเซ็ต (Reset) จะลบข้อมูลการฝึกอบรมที่กำหนดเอง — แบบจำลองจะกลับไปใช้ค่าเริ่มต้นในครั้งถัดไป"
+
+msgid "Import from Dasher 5"
+msgstr "นำเข้าจาก Dasher 5"
+
+msgid "Import settings"
+msgstr "การตั้งค่าการนำเข้า"
+
+msgid "Import Training Text"
+msgstr "นำเข้าข้อความฝึกอบรม"
+
+msgid "Increase Speed"
+msgstr "เพิ่มความเร็ว"
+
+msgid "Input"
+msgstr "ป้อนข้อมูล"
+
+msgid "Install Dasher via your package manager or build from source to use keyboard mode."
+msgstr ""
 
 msgid "<b>Install ydotool to use keyboard mode</b>"
 msgstr "<b>ติดตั้ง ydotool เพื่อใช้งานโหมดแป้นพิมพ์</b>"
@@ -187,14 +265,383 @@ msgstr "<b>ติดตั้ง ydotool เพื่อใช้งานโห
 msgid "isn't installed. Run these commands, then press Retry:"
 msgstr "ยังไม่ได้ติดตั้ง เรียกใช้คำสั่งเหล่านี้ แล้วกด ลองใหม่:"
 
-msgid "Copy commands"
-msgstr "คัดลอกคำสั่ง"
+msgid "Keyboard"
+msgstr ""
 
-msgid "Copied to clipboard."
-msgstr "คัดลอกไปยังคลิปบอร์ดแล้ว"
+msgid "_Keyboard"
+msgstr "_แป้นพิมพ์"
+
+msgid "Type Dasher's output straight into the app you are pointing at"
+msgstr ""
+
+msgid "Exit keyboard mode"
+msgstr "ออกจากโหมดแป้นพิมพ์"
+
+msgid "Keyboard mode: hide the output pane and type Dasher's text straight into "
+msgstr ""
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>โหมดแป้นพิมพ์ไม่พร้อมใช้งานในเวอร์ชันนี้</b>"
+
+msgid "Keyboard mode opacity"
+msgstr "ความทึบแสงของโหมดแป้นพิมพ์"
+
+msgid "Keyboard mode stopped"
+msgstr ""
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "โหมดแป้นพิมพ์หยุดทำงาน: ydotool ไม่สามารถแทรกข้อความได้ ydotoold ทำงานอยู่หรือไม่"
+
+msgid "Enable Keyboard Mode"
+msgstr "เปิดใช้งานโหมดแป้นพิมพ์"
+
+msgid "Keyboard mode types Dasher's output into other applications using ydotool, which "
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Language / Locale"
+msgstr ""
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>ภาษา / สถานที่ตั้ง</b>"
+
+msgid "Bottom"
+msgstr "ด้านล่าง"
+
+msgid "Pane position and direct-entry mode"
+msgstr "ตำแหน่งบานหน้าต่างและโหมดการป้อนข้อมูลโดยตรง"
+
+msgid "Left side"
+msgstr "ด้านซ้าย"
+
+msgid "Right side"
+msgstr "ด้านขวา"
+
+msgid "Top"
+msgstr "สูงสุด"
+
+msgid "Learning"
+msgstr "การเรียนรู้"
+
+msgid "Leave game mode"
+msgstr "ออกจากโหมดเกม"
+
+msgid "Light"
+msgstr "แสงสว่าง"
+
+msgid "Locale"
+msgstr "ท้องถิ่น"
+
+msgid "Migration"
+msgstr "การย้ายถิ่นฐาน"
+
+msgid "Move your eyes while pinching to steer"
+msgstr "ขยับดวงตาไปพร้อมกับบีบนิ้วเพื่อบังคับทิศทาง"
+
+msgid "New"
+msgstr "ใหม่"
+
+msgid "New Message"
+msgstr "ข้อความใหม่"
+
+msgid "No Dasher 5 data found on this Mac."
+msgstr "ไม่พบข้อมูล Dasher 5 บนเครื่อง Mac นี้"
+
+msgid "No settings available for this section."
+msgstr "ไม่มีการตั้งค่าใดๆ สำหรับส่วนนี้"
+
+msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "Nothing to save"
+msgstr "ไม่มีอะไรให้เก็บ"
+
+msgid "Nothing to share"
+msgstr "ไม่มีอะไรจะแบ่งปัน"
+
+msgid "OK"
+msgstr "ตกลง"
+
+msgid "On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
+msgstr "ใน visionOS ให้ใช้นิ้วบีบและค้างไว้บนพื้นที่ทำงานเพื่อเริ่มเขียน มองไปรอบๆ ขณะบีบนิ้วเพื่อบังคับทิศทาง และปล่อยเพื่อหยุดชั่วคราว รูปแบบการป้อนข้อมูลคือการบีบนิ้วและมองไปรอบๆ"
+
+msgid "Open"
+msgstr "เปิด"
+
+msgid "Open..."
+msgstr "เปิด..."
+
+msgid "Open failed"
+msgstr "การเปิดล้มเหลว"
+
+msgid "Open Keyboard Settings"
+msgstr "เปิดการตั้งค่าแป้นพิมพ์"
+
+msgid "Open Settings"
+msgstr "เปิดการตั้งค่า"
+
+msgid "Open System Settings"
+msgstr "เปิดการตั้งค่าระบบ"
+
+msgid "Open Text File"
+msgstr "เปิดไฟล์ข้อความ"
+
+msgid "Output"
+msgstr "เอาต์พุต"
+
+msgid "Output Font Size"
+msgstr "ขนาดตัวอักษรที่แสดงผล"
+
+msgid "Touch the canvas to start writing."
+msgstr "แตะที่ผืนผ้าใบเพื่อเริ่มเขียน"
+
+msgid "Paste"
+msgstr "แปะ"
+
+msgid "Pause"
+msgstr "หยุดชั่วคราว"
+
+msgid "Pause When Looking Away"
+msgstr "หยุดชั่วคราวเมื่อหันหน้าไปทางอื่น"
+
+msgid "Pinch and hold anywhere on the canvas to start"
+msgstr "บีบและกดค้างไว้ที่ใดก็ได้บนผืนผ้าใบเพื่อเริ่มต้น"
+
+msgid "Pinch and Look to Write"
+msgstr "บีบและมองเพื่อเขียน"
+
+msgid "Game"
+msgstr ""
+
+msgid "Play"
+msgstr "เล่น"
+
+msgid "Pointer Hover Input"
+msgstr "อินพุตเมื่อวางเมาส์เหนือตัวชี้"
+
+msgid "Preferences"
+msgstr ""
+
+msgid "Prefs"
+msgstr "การตั้งค่า"
+
+msgid "Privacy"
+msgstr "ความเป็นส่วนตัว"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>ความเป็นส่วนตัว</b>"
+
+msgid "Re-import from Dasher 5"
+msgstr "นำเข้าใหม่จาก Dasher 5"
+
+msgid "Read"
+msgstr "อ่าน"
+
+msgid "Release the pinch to pause"
+msgstr "ปล่อยนิ้วเพื่อหยุดชั่วคราว"
+
+msgid "Reset"
+msgstr "รีเซ็ต"
+
+msgid "Reset All Settings to Defaults"
+msgstr "รีเซ็ตการตั้งค่าทั้งหมดเป็นค่าเริ่มต้น"
+
+msgid "Reset all settings to their defaults?"
+msgstr "ต้องการรีเซ็ตการตั้งค่าทั้งหมดกลับไปเป็นค่าเริ่มต้นหรือไม่?"
+
+msgid "Reset anonymous ID"
+msgstr "รีเซ็ต ID นิรนาม"
+
+msgid "Reset engine settings to defaults"
+msgstr "รีเซ็ตการตั้งค่าเครื่องยนต์เป็นค่าเริ่มต้น"
+
+msgid "Reset Settings"
+msgstr "รีเซ็ตการตั้งค่า"
+
+msgid "Reset to defaults"
+msgstr "รีเซ็ตเป็นการตั้งค่าเริ่มต้น"
+
+msgid "Reset Training Data"
+msgstr "รีเซ็ตข้อมูลการฝึกอบรม"
+
+msgid "Reset Training Data?"
+msgstr "รีเซ็ตข้อมูลการฝึกอบรมหรือไม่?"
+
+msgid "Restore all Dasher settings to their default values. This cannot be undone."
+msgstr "คืนค่าการตั้งค่า Dasher ทั้งหมดกลับเป็นค่าเริ่มต้น การดำเนินการนี้ไม่สามารถย้อนกลับได้"
 
 msgid "Retry"
 msgstr "ลองใหม่อีกครั้ง"
 
+msgid "Save"
+msgstr "บันทึก"
+
+msgid "Save..."
+msgstr "บันทึก..."
+
+msgid "Save failed"
+msgstr "การบันทึกล้มเหลว"
+
+msgid "Save Text File"
+msgstr "บันทึกไฟล์ข้อความ"
+
+msgid "Saved"
+msgstr "บันทึกแล้ว"
+
+msgid "Saved: "
+msgstr "บันทึกแล้ว:"
+
+msgid "Scan Speed"
+msgstr "ความเร็วในการสแกน"
+
+msgid "service running? See the setup help on the Keyboard button for install commands."
+msgstr ""
+
+msgid "Settings"
+msgstr "การตั้งค่า"
+
+msgid "Settings..."
+msgstr "การตั้งค่า..."
+
+msgid "Reset all settings to defaults"
+msgstr "รีเซ็ตการตั้งค่าทั้งหมดเป็นค่าเริ่มต้น"
+
+msgid "Settings reset"
+msgstr "รีเซ็ตการตั้งค่า"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "รีเซ็ตการตั้งค่าเครื่องยนต์ทั้งหมดกลับไปเป็นค่าเริ่มต้นหรือไม่?"
+
+msgid "Settings (speed, colours, control mode, language model)"
+msgstr "การตั้งค่า (ความเร็ว สี โหมดควบคุม รูปแบบภาษา)"
+
+msgid "Share"
+msgstr "แบ่งปัน"
+
+msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard "
+msgstr ""
+
+msgid "Show Input Debug Overlay"
+msgstr "แสดงโอเวอร์เลย์ดีบักอินพุต"
+
+msgid "Show typing rate (WPM)"
+msgstr "แสดงอัตราการพิมพ์ (คำต่อนาที)"
+
+msgid "Size"
+msgstr "ขนาด"
+
+msgid "Skipped files"
+msgstr "ไฟล์ที่ข้ามไป"
+
+msgid "Slow"
+msgstr "ช้า"
+
+msgid "Speech"
+msgstr "คำพูด"
+
+msgid "Speech off"
+msgstr "ปิดการพูด"
+
+msgid "Speech on"
+msgstr "สุนทรพจน์เกี่ยวกับ"
+
+msgid "Speech Settings"
+msgstr ""
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>การตั้งค่าเสียง</b>"
+
+msgid "Speed"
+msgstr "ความเร็ว"
+
+msgid "Speed "
+msgstr "ความเร็ว "
+
+msgid "Start Calibrating"
+msgstr "เริ่มการปรับเทียบ"
+
+msgid "Start fresh"
+msgstr "เริ่มต้นใหม่"
+
+msgid "Stop"
+msgstr "หยุด"
+
+msgid "System"
+msgstr "ระบบ"
+
+msgid "text"
+msgstr "ข้อความ"
+
+msgid "Text files"
+msgstr "ไฟล์ข้อความ"
+
+msgid "the app you are pointing at (needs ydotool)"
+msgstr ""
+
+msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
+msgstr "หน้าต่างดีบักจะแสดงแผงสีเขียวที่มุมซ้ายบนของพื้นที่แสดงผล โดยแสดงจำนวนการสัมผัสแบบเรียลไทม์และตำแหน่งล่าสุดที่รายงาน (x, y) เมื่อคุณบีบนิ้วค้างไว้ คุณจะเห็น touch.began จากนั้น touch.moved พร้อมพิกัดที่เปลี่ยนแปลงไปตามการมองไปรอบๆ"
+
+msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
+msgstr "การดำเนินการนี้จะลบข้อมูลการฝึกอบรมที่คุณสะสมไว้ โมเดลภาษาจะกลับไปใช้ค่าเริ่มต้นเมื่อเปิดใช้งานครั้งถัดไป การดำเนินการนี้ไม่สามารถย้อนกลับได้"
+
+msgid "Tilt Calibration"
+msgstr "การสอบเทียบความเอียง"
+
+msgid "Tilt your device now..."
+msgstr "เอียงอุปกรณ์ของคุณตอนนี้..."
+
+msgid "Tilt your device through its full range of motion during calibration."
+msgstr "ระหว่างการปรับเทียบ ให้เอียงอุปกรณ์ของคุณให้สุดช่วงการเคลื่อนไหว"
+
+msgid "time under Preferences → Privacy."
+msgstr ""
+
+msgid "Copy all text"
+msgstr ""
+
+msgid "Training"
+msgstr "การฝึกอบรม"
+
+msgid "Training Data"
+msgstr "ข้อมูลการฝึกอบรม"
+
+msgid "Turbo"
+msgstr "เทอร์โบ"
+
+msgid "Typing into other applications needs access to /dev/uinput, which a sandboxed "
+msgstr ""
+
+msgid "Typing rate"
+msgstr "อัตราการพิมพ์"
+
+msgid "{cps} cps · {wpm} wpm"
+msgstr ""
+
+msgid "Use Dasher as your keyboard"
+msgstr "ใช้ Dasher เป็นแป้นพิมพ์ของคุณ"
+
+msgid "We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
+msgstr "เราพบการตั้งค่า Dasher 5 ของคุณบน Mac เครื่องนี้แล้ว คุณสามารถนำเข้าตัวอักษร สี การตั้งค่าความเร็ว และไฟล์ที่กำหนดเองของคุณไปยัง Dasher 6 ได้"
+
+msgid "What was found"
+msgstr "สิ่งที่พบ"
+
+msgid "X range:"
+msgstr "ช่วง X:"
+
+msgid "Y range:"
+msgstr "ช่วง Y:"
+
 msgid "ydotool found. Keyboard mode is ready."
 msgstr "พบ ydotool แล้ว โหมดแป้นพิมพ์พร้อมใช้งาน"
+
+msgid "ydotool still isn't available. Make sure it's installed and the ydotool service is running."
+msgstr ""
+
+msgid "You can import later in Settings > Privacy & Migration"
+msgstr "คุณสามารถนำเข้าในภายหลังได้ที่ การตั้งค่า > ความเป็นส่วนตัวและการย้ายข้อมูล"
+
+msgid "Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."
+msgstr "ระบบจะติดตามการมองของคุณอย่างต่อเนื่องเฉพาะขณะที่คุณบีบนิ้วค้างไว้เท่านั้น ซึ่งเป็นวิธีการทำงานของแอปที่ใช้การมองตามระบบ visionOS ทั้งหมด"

@@ -2,154 +2,55 @@
 # Copyright (C) 2026 The Dasher Project
 # This file is distributed under the same license as the dasher-gtk package.
 #
+# GENERATED from shared-resources/ui-strings.json — do not edit directly.
+# Edit the catalogue and run Scripts/generate-from-shared.py.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Project-Id-Version: dasher-gtk\n"
 "Language: zu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Dasher v6"
-msgstr "I-Dasher v6"
+msgid "%1$.1f cps · %2$d wpm"
+msgstr ""
 
-msgid "Right side"
-msgstr "Uhlangothi lwesokudla"
-
-msgid "Left side"
-msgstr "Uhlangothi lwesobunxele"
-
-msgid "Bottom"
-msgstr "Ngaphansi"
-
-msgid "Top"
-msgstr "Phezulu"
-
-msgid "_Keyboard"
-msgstr "_Ikhibhodi"
-
-msgid "Pane position and direct-entry mode"
-msgstr "Indawo yephaneli kanye nemodi yokungena ngqo"
-
-msgid "Open Text File"
-msgstr "Vula Ifayela Lombhalo"
-
-msgid "Text files"
-msgstr "Amafayela ombhalo"
-
-msgid "Failed to open: "
-msgstr "Yehlulekile ukuvula:"
-
-msgid "Save Text File"
-msgstr "Londoloza Ifayela Lombhalo"
-
-msgid "Saved: "
-msgstr "Kulondoloziwe:"
-
-msgid "Failed to save: "
-msgstr "Yehlulekile ukulondoloza:"
-
-msgid "Click to set up keyboard mode (needs ydotool)"
-msgstr "Chofoza ukuze usethe imodi yekhibhodi (idinga i-ydotool)"
-
-msgid "Settings"
-msgstr "Izilungiselelo"
-
-msgid "Exit keyboard mode"
-msgstr "Phuma kwimodi yekhibhodi"
-
-msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
-msgstr "Imodi yekhibhodi imile: i-ydotool ayikwazanga ukufaka umbhalo. Ingabe i-ydotoold"
-
-msgid "Keyboard"
-msgstr "Ikhibhodi"
-
-msgid "New"
-msgstr "Okusha"
-
-msgid "Open"
-msgstr "Vula"
-
-msgid "Save"
-msgstr "Londoloza"
-
-msgid "Play"
-msgstr "Dlala"
-
-msgid "Prefs"
-msgstr "Okuthandwayo"
-
-msgid "Copy"
-msgstr "Kopisha"
-
-msgid "Copy all"
-msgstr "Kopisha konke"
-
-msgid "Paste"
-msgstr "Namathisela"
-
-msgid "Read"
-msgstr "Funda"
-
-msgid "Speed"
-msgstr "Isivinini"
-
-msgid "Learning"
-msgstr "Ukufunda"
-
-msgid "Speech"
-msgstr "Inkulumo"
-
-msgid "Dasher Preferences"
-msgstr "Izintandokazi ze-Dasher"
-
-msgid "<big><b>Dasher v6</b></big>\\n"
-msgstr "<big><b>I-Dasher v6</b></big>\\"
-
-msgid "GTK Edition"
-msgstr "Uhlelo lwe-GTK"
+msgid "A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
+msgstr "Umbiko wokuphahlazeka ulondolozwe ku-~/Library/Logs/DiagnosticReports/Dasher-*.ips. Uma ungawabelana ngawo enkingeni ye-GitHub, uyasisiza ukulungisa iphutha."
 
 msgid "About"
 msgstr "Mayelana"
 
-msgid "Customization"
-msgstr "Ukwenza ngokwezifiso"
+msgid "Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
+msgstr "Yamukela imicimbi ye-hover/pointer njengokufaka kwe-Dasher. Nika amandla ukulandelela amehlo noma izikhombisi zangaphandle."
 
-msgid "Input"
-msgstr "Okokufaka"
+msgid "Access"
+msgstr "Ukufinyelela"
 
-msgid "Language"
-msgstr "Ulimi"
+msgid "Accessibility Permission Required"
+msgstr "Imvume Yokufinyeleleka Iyadingeka"
 
-msgid "Output"
-msgstr "Umphumela"
+msgid "Adapt Speed Automatically"
+msgstr "Lungisa Isivinini Ngokuzenzakalelayo"
 
-msgid "Game Mode"
-msgstr "Imodi Yomdlalo"
+msgid "Advanced settings"
+msgstr "Izilungiselelo ezithuthukisiwe"
 
-msgid "Dwell to click"
-msgstr "Hlala ukuze uchofoze"
+msgid "All Dasher settings will be restored to their default values. This cannot be undone."
+msgstr "Zonke izilungiselelo ze-Dasher zizobuyiselwa kumanani azo azenzakalelayo. Lokhu akukwazi ukuhlehliswa."
 
-msgid "Typing rate"
-msgstr "Izinga lokuthayipha"
+msgid "Alphabet"
+msgstr "Izinhlamvu zamagama"
 
-msgid "Reset"
-msgstr "Setha kabusha"
+msgid "Help improve Dasher"
+msgstr "Siza ukuthuthukisa i-Dasher"
 
-msgid "Keyboard mode opacity"
-msgstr "Ukungacaci kwemodi yekhibhodi"
+msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
+msgstr ""
 
-msgid "<b>Speech Settings</b>"
-msgstr "<b>Izilungiselelo Zenkulumo</b>"
-
-msgid "<b>Language / Locale</b>"
-msgstr "<b>Ulimi / Indawo</b>"
-
-msgid "Locale"
-msgstr "Indawo"
-
-msgid "<b>Privacy</b>"
-msgstr "<b>Ubumfihlo</b>"
+msgid "Not now"
+msgstr "Hhayi manje"
 
 msgid "Share anonymous analytics and crash reports"
 msgstr "Yabelana ngokuhlaziywa okungaziwa kanye nemibiko yokuphahlazeka"
@@ -157,29 +58,206 @@ msgstr "Yabelana ngokuhlaziywa okungaziwa kanye nemibiko yokuphahlazeka"
 msgid "Reset analytics ID"
 msgstr "Setha kabusha i-ID yokuhlaziya"
 
-msgid "Reset engine settings to defaults"
-msgstr "Setha kabusha izilungiselelo zenjini zibe okuzenzakalelayo"
+msgid "Help improve Dasher?"
+msgstr ""
 
-msgid "Reset all engine settings to their built-in defaults?"
-msgstr "Setha kabusha zonke izilungiselelo zenjini zibe okuzenzakalelayo kwazo okwakhelwe ngaphakathi?"
+msgid "Anonymous usage analytics"
+msgstr "Ukuhlaziywa kokusetshenziswa okungaziwa"
+
+msgid "Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
+msgstr "Ukuhlaziywa kokusetshenziswa okungaziwa kusisiza siqonde ukuthi i-Dasher isetshenziswa kanjani futhi silungise ukuphahlazeka. Akukho mbhalo othayishiwe, okuqukethwe kwebhodi lokunamathisela, noma ulwazi lomuntu siqu oluqoqwayo. Khetha ukuphuma noma nini kuzilungiselelo → Ubumfihlo."
+
+msgid "App-Level Dwell to Select"
+msgstr "Hlala ku-App-Level ukuze Ukhethe"
+
+msgid "Dasher"
+msgstr ""
+
+msgid "Auto"
+msgstr "Okuzenzakalelayo"
+
+msgid "Auto-Centre Target"
+msgstr "I-Auto-Centre Target"
+
+msgid "Auto-select after fixating. Only enable if OS dwell is off."
+msgstr "Khetha ngokuzenzakalelayo ngemva kokulungisa. Vumela kuphela uma i-OS dwell ivaliwe."
+
+msgid "Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
+msgstr "Khetha ngokuzenzakalelayo ngemva kokulungisa amehlo akho ngenkathi ucindezela. Vumela kuphela uma i-OS dwell ivaliwe."
+
+msgid "Cancel"
+msgstr "Khansela"
+
+msgid "Check Again"
+msgstr "Hlola Futhi"
+
+msgid "Choose..."
+msgstr "Khetha..."
+
+msgid "Choose File..."
+msgstr "Khetha Ifayela..."
+
+msgid "Clear"
+msgstr "Sula"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "Chofoza ukuze usethe imodi yekhibhodi (idinga i-ydotool)"
+
+msgid "Close"
+msgstr "Vala"
+
+msgid "Colour Theme"
+msgstr "Itimu Yombala"
+
+msgid "contents or personal information is ever collected. You can change this any "
+msgstr ""
+
+msgid "Copied to clipboard."
+msgstr "Kukopishwe ebhodini lokunamathisela."
+
+msgid "Copy"
+msgstr "Kopisha"
+
+msgid "Copy all"
+msgstr "Kopisha konke"
+
+msgid "Copy All"
+msgstr "Kopisha Konke"
+
+msgid "Copy commands"
+msgstr "Kopisha imiyalo"
+
+msgid "Current Calibration"
+msgstr "Ukulinganisa Kwamanje"
+
+msgid "Customization"
+msgstr "Ukwenza ngokwezifiso"
+
+msgid "Dark"
+msgstr "Okumnyama"
 
 msgid "Dasher "
 msgstr "I-Dasher"
 
-msgid "Privacy"
-msgstr "Ubumfihlo"
+msgid "Dasher 5 data detected on this Mac."
+msgstr "Idatha ye-Dasher 5 itholakele kule Mac."
 
-msgid "No settings available for this section."
-msgstr "Azikho izilungiselelo ezitholakalayo zalesi sigaba."
+msgid "Dasher 5 settings imported successfully."
+msgstr "Izilungiselelo ze-Dasher 5 zingeniswe ngempumelelo."
 
-msgid "Enable Keyboard Mode"
-msgstr "Nika amandla imodi yekhibhodi"
+msgid "Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
+msgstr "I-Dasher isebenza futhi njengekhibhodi yesistimu, ngakho-ke ungabhala kunoma yiluphi uhlelo lokusebenza. Lunike amandla kanye kuzilungiselelo."
 
-msgid "<b>Keyboard mode isn't available in this build</b>"
-msgstr "<b>Imodi yekhibhodi ayitholakali kulesi sakhiwo</b>"
+msgid "Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
+msgstr "I-Dasher iqoqa ukuhlaziya okungaziwa ukuze iqonde ukusetshenziswa nokulungisa ukuphahlazeka. Akukho mbhalo othayishiwe, ibhodi lokunamathisela, noma ulwazi lomuntu siqu oluqoqwayo. Bheka uhlelo lomcimbi oluvulekile ku-github.com/dasher-project/Dasher-Apple."
 
-msgid "Close"
-msgstr "Vala"
+msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
+msgstr "I-Dasher iqoqa ukuhlaziya okungaziwa, okuhlonipha ubumfihlo ukuze iqonde amaphethini okusetshenziswa futhi ilungise ukuphahlazeka. Akukho mbhalo othayishiwe, okuqukethwe kwebhodi lokunamathisela, noma ulwazi lomuntu siqu oluqoqwayo.\n\nUngashintsha lokhu noma nini kuzilungiselelo > Ubumfihlo."
+
+msgid "Dasher Keyboard"
+msgstr "Ikhibhodi ye-Dasher"
+
+msgid "Dasher keyboard"
+msgstr "Ikhibhodi ye-Dasher"
+
+msgid "Dasher needs accessibility access to send text to other applications."
+msgstr "I-Dasher idinga ukufinyelela kokufinyelela ukuze ithumele umbhalo kwezinye izinhlelo zokusebenza."
+
+msgid "Dasher Preferences"
+msgstr "Izintandokazi ze-Dasher"
+
+msgid "Dasher quit unexpectedly"
+msgstr "UDasher uyeke ngokungalindelekile"
+
+msgid "Dasher v6"
+msgstr "I-Dasher v6"
+
+msgid "<big><b>Dasher v6</b></big>\n"
+msgstr "<big><b>I-Dasher v6</b></big>\n"
+
+msgid "Decrease Speed"
+msgstr "Yehlisa Isivinini"
+
+msgid "Default"
+msgstr "Okuzenzakalelayo"
+
+msgid "Diagnostics"
+msgstr "Ukuxilongwa"
+
+msgid "Direct Mode"
+msgstr "Imodi Eqondile"
+
+msgid "Done"
+msgstr "Kuqediwe"
+
+msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
+msgstr ""
+
+msgid "Dwell to click"
+msgstr "Hlala ukuze uchofoze"
+
+msgid "Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
+msgstr "Nika amandla i-Dasher ngaphansi kwezilungiselelo → Okuvamile → Ikhibhodi → Amakhibhodi, bese uvula i-Vumela Ukufinyelela Okugcwele ukuze i-Dasher ikwazi ukukhuluma nokufunda."
+
+msgid "Enable tilt input first to access calibration."
+msgstr "Nika amandla okokufaka kokuthambekela kuqala ukuze ufinyelele ekulinganisweni."
+
+msgid "Export Training Text"
+msgstr "Thumela Umbhalo Wokuqeqesha"
+
+msgid "Eye Gaze"
+msgstr "Ukubuka Kwamehlo"
+
+msgid "Failed to open: "
+msgstr "Yehlulekile ukuvula:"
+
+msgid "Failed to save: "
+msgstr "Yehlulekile ukulondoloza:"
+
+msgid "Fast"
+msgstr "Okusheshayo"
+
+msgid "Flatpak or AppImage build can't provide.\n\n"
+msgstr ""
+
+msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
+msgstr "Ukufinyelela Okugcwele kuvumela i-Dasher ukuthi ikhulume lokho okubhalayo futhi ikhumbule ukuqeqeshwa kwakho. Ikhibhodi isasebenza ekungeneni okuyisisekelo ngaphandle kwayo."
+
+msgid "Game mode"
+msgstr "Imodi yegeyimu"
+
+msgid "Game Mode"
+msgstr "Imodi Yomdlalo"
+
+msgid "Game Text File"
+msgstr "Ifayela Lombhalo Lomdlalo"
+
+msgid "Got it"
+msgstr "Ngiyitholile"
+
+msgid "GTK Edition"
+msgstr "Uhlelo lwe-GTK"
+
+msgid "Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
+msgstr "Ukungenisa kunezela umbhalo kumodeli yolimi (kunezela ekufundeni okukhona). Ukuthumela ngaphandle kulondoloza idatha yakho yokuqeqesha eqoqwe ukuze igcinwe noma idluliselwe. Ukusetha kabusha kususa idatha yokuqeqesha ngokwezifiso — imodeli ibuyela kokuzenzakalelayo kwayo okwakhelwe ngaphakathi ekuqalisweni okulandelayo."
+
+msgid "Import from Dasher 5"
+msgstr "Ngenisa kusuka ku-Dasher 5"
+
+msgid "Import settings"
+msgstr "Ngenisa izilungiselelo"
+
+msgid "Import Training Text"
+msgstr "Ngenisa Umbhalo Wokuqeqesha"
+
+msgid "Increase Speed"
+msgstr "Khulisa isivinini"
+
+msgid "Input"
+msgstr "Okokufaka"
+
+msgid "Install Dasher via your package manager or build from source to use keyboard mode."
+msgstr ""
 
 msgid "<b>Install ydotool to use keyboard mode</b>"
 msgstr "<b>Faka i-ydotool ukuze usebenzise imodi yekhibhodi</b>"
@@ -187,14 +265,383 @@ msgstr "<b>Faka i-ydotool ukuze usebenzise imodi yekhibhodi</b>"
 msgid "isn't installed. Run these commands, then press Retry:"
 msgstr "ayifakiwe. Sebenzisa le miyalo, bese ucindezela u-Retry:"
 
-msgid "Copy commands"
-msgstr "Kopisha imiyalo"
+msgid "Keyboard"
+msgstr ""
 
-msgid "Copied to clipboard."
-msgstr "Kukopishwe ebhodini lokunamathisela."
+msgid "_Keyboard"
+msgstr "_Ikhibhodi"
+
+msgid "Type Dasher's output straight into the app you are pointing at"
+msgstr ""
+
+msgid "Exit keyboard mode"
+msgstr "Phuma kwimodi yekhibhodi"
+
+msgid "Keyboard mode: hide the output pane and type Dasher's text straight into "
+msgstr ""
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>Imodi yekhibhodi ayitholakali kulesi sakhiwo</b>"
+
+msgid "Keyboard mode opacity"
+msgstr "Ukungacaci kwemodi yekhibhodi"
+
+msgid "Keyboard mode stopped"
+msgstr ""
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "Imodi yekhibhodi imile: i-ydotool ayikwazanga ukufaka umbhalo. Ingabe i-ydotoold"
+
+msgid "Enable Keyboard Mode"
+msgstr "Nika amandla imodi yekhibhodi"
+
+msgid "Keyboard mode types Dasher's output into other applications using ydotool, which "
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Language / Locale"
+msgstr ""
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>Ulimi / Indawo</b>"
+
+msgid "Bottom"
+msgstr "Ngaphansi"
+
+msgid "Pane position and direct-entry mode"
+msgstr "Indawo yephaneli kanye nemodi yokungena ngqo"
+
+msgid "Left side"
+msgstr "Uhlangothi lwesobunxele"
+
+msgid "Right side"
+msgstr "Uhlangothi lwesokudla"
+
+msgid "Top"
+msgstr "Phezulu"
+
+msgid "Learning"
+msgstr "Ukufunda"
+
+msgid "Leave game mode"
+msgstr "Shiya imodi yomdlalo"
+
+msgid "Light"
+msgstr "Ukukhanya"
+
+msgid "Locale"
+msgstr "Indawo"
+
+msgid "Migration"
+msgstr "Ukufuduka"
+
+msgid "Move your eyes while pinching to steer"
+msgstr "Hambisa amehlo akho ngenkathi ucindezela ukuze uqondise"
+
+msgid "New"
+msgstr "Okusha"
+
+msgid "New Message"
+msgstr "Umlayezo Omusha"
+
+msgid "No Dasher 5 data found on this Mac."
+msgstr "Akukho datha ye-Dasher 5 etholakele kule Mac."
+
+msgid "No settings available for this section."
+msgstr "Azikho izilungiselelo ezitholakalayo zalesi sigaba."
+
+msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "Nothing to save"
+msgstr "Akukho okufanele kulondolozwe"
+
+msgid "Nothing to share"
+msgstr "Akukho ongakwabelana ngakho"
+
+msgid "OK"
+msgstr "KULUNGILE"
+
+msgid "On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
+msgstr "Ku-visionOS, cindezela bese ubamba ku-canvas ukuze uqale ukubhala, bheka nxazonke ngenkathi ucindezela ukuze uqondise, bese udedela ukuze ume isikhashana. Imodeli yokufaka i-pinch-and-look."
+
+msgid "Open"
+msgstr "Vula"
+
+msgid "Open..."
+msgstr "Vula..."
+
+msgid "Open failed"
+msgstr "Ukuvula kwehlulekile"
+
+msgid "Open Keyboard Settings"
+msgstr "Vula Izilungiselelo Zekhibhodi"
+
+msgid "Open Settings"
+msgstr "Vula Izilungiselelo"
+
+msgid "Open System Settings"
+msgstr "Vula Izilungiselelo Zesistimu"
+
+msgid "Open Text File"
+msgstr "Vula Ifayela Lombhalo"
+
+msgid "Output"
+msgstr "Umphumela"
+
+msgid "Output Font Size"
+msgstr "Usayizi Wefonti Yokukhipha"
+
+msgid "Touch the canvas to start writing."
+msgstr "Thinta ikhanvasi ukuze uqale ukubhala."
+
+msgid "Paste"
+msgstr "Namathisela"
+
+msgid "Pause"
+msgstr "Misa isikhashana"
+
+msgid "Pause When Looking Away"
+msgstr "Misa isikhashana uma ubheka kude"
+
+msgid "Pinch and hold anywhere on the canvas to start"
+msgstr "Cindezela bese ubamba noma kuphi kukhanvasi ukuze uqale"
+
+msgid "Pinch and Look to Write"
+msgstr "Cindezela bese ubheka ukuthi ubhale ini"
+
+msgid "Game"
+msgstr ""
+
+msgid "Play"
+msgstr "Dlala"
+
+msgid "Pointer Hover Input"
+msgstr "Okokufaka Kokuhambisa Ngesikhombisi"
+
+msgid "Preferences"
+msgstr ""
+
+msgid "Prefs"
+msgstr "Okuthandwayo"
+
+msgid "Privacy"
+msgstr "Ubumfihlo"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>Ubumfihlo</b>"
+
+msgid "Re-import from Dasher 5"
+msgstr "Ngenisa kabusha kusuka ku-Dasher 5"
+
+msgid "Read"
+msgstr "Funda"
+
+msgid "Release the pinch to pause"
+msgstr "Khulula ukuncinza ukuze umise okwesikhashana"
+
+msgid "Reset"
+msgstr "Setha kabusha"
+
+msgid "Reset All Settings to Defaults"
+msgstr "Setha kabusha Zonke Izilungiselelo zibe Okuzenzakalelayo"
+
+msgid "Reset all settings to their defaults?"
+msgstr "Setha kabusha zonke izilungiselelo zibe okuzenzakalelayo kwazo?"
+
+msgid "Reset anonymous ID"
+msgstr "Setha kabusha i-ID engaziwa"
+
+msgid "Reset engine settings to defaults"
+msgstr "Setha kabusha izilungiselelo zenjini zibe okuzenzakalelayo"
+
+msgid "Reset Settings"
+msgstr "Setha kabusha izilungiselelo"
+
+msgid "Reset to defaults"
+msgstr "Setha kabusha kube okuzenzakalelayo"
+
+msgid "Reset Training Data"
+msgstr "Setha kabusha idatha yokuqeqesha"
+
+msgid "Reset Training Data?"
+msgstr "Setha kabusha idatha yokuqeqesha?"
+
+msgid "Restore all Dasher settings to their default values. This cannot be undone."
+msgstr "Buyisela zonke izilungiselelo ze-Dasher kumanani azo azenzakalelayo. Lokhu akukwazi ukuhlehliswa."
 
 msgid "Retry"
 msgstr "Zama futhi"
 
+msgid "Save"
+msgstr "Londoloza"
+
+msgid "Save..."
+msgstr "Londoloza..."
+
+msgid "Save failed"
+msgstr "Ukulondoloza kwehlulekile"
+
+msgid "Save Text File"
+msgstr "Londoloza Ifayela Lombhalo"
+
+msgid "Saved"
+msgstr "Kulondoloziwe"
+
+msgid "Saved: "
+msgstr "Kulondoloziwe:"
+
+msgid "Scan Speed"
+msgstr "Isivinini Sokuskena"
+
+msgid "service running? See the setup help on the Keyboard button for install commands."
+msgstr ""
+
+msgid "Settings"
+msgstr "Izilungiselelo"
+
+msgid "Settings..."
+msgstr "Izilungiselelo..."
+
+msgid "Reset all settings to defaults"
+msgstr "Setha kabusha zonke izilungiselelo zibe okuzenzakalelayo"
+
+msgid "Settings reset"
+msgstr "Setha kabusha izilungiselelo"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "Setha kabusha zonke izilungiselelo zenjini zibe okuzenzakalelayo kwazo okwakhelwe ngaphakathi?"
+
+msgid "Settings (speed, colours, control mode, language model)"
+msgstr "Izilungiselelo (isivinini, imibala, imodi yokulawula, imodeli yolimi)"
+
+msgid "Share"
+msgstr "Yabelana"
+
+msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard "
+msgstr ""
+
+msgid "Show Input Debug Overlay"
+msgstr "Bonisa i-Input Debug Overlay"
+
+msgid "Show typing rate (WPM)"
+msgstr "Khombisa izinga lokuthayipha (WPM)"
+
+msgid "Size"
+msgstr "Usayizi"
+
+msgid "Skipped files"
+msgstr "Amafayela eqiwe"
+
+msgid "Slow"
+msgstr "Kancane kancane"
+
+msgid "Speech"
+msgstr "Inkulumo"
+
+msgid "Speech off"
+msgstr "Inkulumo ivaliwe"
+
+msgid "Speech on"
+msgstr "Inkulumo ivuliwe"
+
+msgid "Speech Settings"
+msgstr ""
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>Izilungiselelo Zenkulumo</b>"
+
+msgid "Speed"
+msgstr "Isivinini"
+
+msgid "Speed "
+msgstr "Isivinini"
+
+msgid "Start Calibrating"
+msgstr "Qala Ukulinganisa"
+
+msgid "Start fresh"
+msgstr "Qala kabusha"
+
+msgid "Stop"
+msgstr "Ima"
+
+msgid "System"
+msgstr "Uhlelo"
+
+msgid "text"
+msgstr "umbhalo"
+
+msgid "Text files"
+msgstr "Amafayela ombhalo"
+
+msgid "the app you are pointing at (needs ydotool)"
+msgstr ""
+
+msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
+msgstr "Isembozo sokulungisa amaphutha sidweba iphaneli eluhlaza phezulu kwesobunxele sekhanvasi ekhombisa ukubalwa kwemicimbi yokuthinta bukhoma kanye nokugcina okubikiwe (x, y). Uma ucindezela futhi ubamba, kufanele ubone ukuthi i-touch.began iqala bese kuthi i-touch.moved ngokushintsha ama-coordinates njengoba ubheka nxazonke."
+
+msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
+msgstr "Lokhu kususa idatha yakho yokuqeqesha eqoqwe. Imodeli yolimi izobuyela kokuzenzakalelayo okwakhelwe ngaphakathi ekuqalisweni okulandelayo. Lokhu akukwazi ukuhlehliswa."
+
+msgid "Tilt Calibration"
+msgstr "Ukulinganisa Ukuthambekela"
+
+msgid "Tilt your device now..."
+msgstr "Tshekisa idivayisi yakho manje..."
+
+msgid "Tilt your device through its full range of motion during calibration."
+msgstr "Tshekisa idivayisi yakho phakathi nobubanzi bayo obuphelele bokunyakaza ngesikhathi sokulinganisa."
+
+msgid "time under Preferences → Privacy."
+msgstr ""
+
+msgid "Copy all text"
+msgstr ""
+
+msgid "Training"
+msgstr "Ukuqeqeshwa"
+
+msgid "Training Data"
+msgstr "Idatha Yokuqeqesha"
+
+msgid "Turbo"
+msgstr "I-Turbo"
+
+msgid "Typing into other applications needs access to /dev/uinput, which a sandboxed "
+msgstr ""
+
+msgid "Typing rate"
+msgstr "Izinga lokuthayipha"
+
+msgid "{cps} cps · {wpm} wpm"
+msgstr ""
+
+msgid "Use Dasher as your keyboard"
+msgstr "Sebenzisa i-Dasher njengekhibhodi yakho"
+
+msgid "We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
+msgstr "Sithole ukucushwa kwe-Dasher 5 yakho kule Mac. Izinhlamvu zakho, imibala, izilungiselelo zesivinini, namafayela enziwe ngokwezifiso kungangeniswa ku-Dasher 6."
+
+msgid "What was found"
+msgstr "Lokho okutholiwe"
+
+msgid "X range:"
+msgstr "Ububanzi buka-X:"
+
+msgid "Y range:"
+msgstr "Ububanzi buka-Y:"
+
 msgid "ydotool found. Keyboard mode is ready."
 msgstr "i-ydotool itholakele. Imodi yekhibhodi isilungile."
+
+msgid "ydotool still isn't available. Make sure it's installed and the ydotool service is running."
+msgstr ""
+
+msgid "You can import later in Settings > Privacy & Migration"
+msgstr "Ungangenisa kamuva kuzilungiselelo > Ubumfihlo kanye nokufuduka"
+
+msgid "Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."
+msgstr "Ukubuka kwakho kulandelwa njalo kuphela ngenkathi ucindezela futhi ubamba — yile ndlela zonke izinhlelo zokusebenza ze-visionOS gaze ezisebenza ngayo."
