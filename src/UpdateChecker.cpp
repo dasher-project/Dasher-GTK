@@ -141,10 +141,10 @@ UpdateChecker::UpdateInfo UpdateChecker::check(const std::string& current_versio
     if (is_managed_build()) return info;
 
 #ifdef HAS_ANALYTICS_CURL
-    const std::string url = "https://api.github.com/repos/" + std::string(kRepoOwner) + "/" +
-                             std::string(kRepoName) + "/releases?per_page=1";
-    const std::string release_page = "https://github.com/" + std::string(kRepoOwner) + "/" +
-                                      std::string(kRepoName) + "/releases/latest";
+    const std::string url = "https://api.github.com/repos/" + std::string(kRepoOwner) + "/" + std::string(kRepoName) +
+                            "/releases?per_page=1";
+    const std::string release_page =
+        "https://github.com/" + std::string(kRepoOwner) + "/" + std::string(kRepoName) + "/releases/latest";
 
     CURL* curl = curl_easy_init();
     if (!curl) return info;
