@@ -3,6 +3,7 @@
 #include "Analytics/AnalyticsSettings.h"
 #include "Engine/DasherBridge.h"
 #include "SettingsSection.h"
+#include "UpdateChecker.h"
 #include "gtkmm/alertdialog.h"
 #include "gtkmm/box.h"
 #include "UIComponents/SyncedColorDropdown.h"
@@ -61,6 +62,9 @@ private:
     Gtk::Widget* m_reset_font_btn = nullptr;
     // Live CPS/WPM readout hosted in Settings -> Output (moved from the footer, issue #35).
     Gtk::Label* m_rate_value = nullptr;
+    // RFC 0017 update-check opt-out (persisted to update-check.conf)
+    bool m_update_checks_enabled = true;
+    void save_update_check_pref(bool enabled);
     analytics::AnalyticsSettings m_analytics = analytics::AnalyticsSettings::load();
     Gtk::Box m_layout = Gtk::Box(Gtk::Orientation::HORIZONTAL);
     Gtk::StackSidebar m_sidebar;

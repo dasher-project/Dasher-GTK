@@ -459,6 +459,26 @@ MainWindow::MainWindow()
         analytics::AnalyticsClient::instance().capture("alphabet_selected", {{"alphabet_id", std::string(id)}});
     });
     capture_app_launched();      // no-op unless already opted in
+
+    // RFC 0017: passive update check for self-managed builds. Runs on a
+    // background thread after the window is up (never blocks launch), at
+    // most weekly. On success, shows a non-modal notification via the
+    // message overlay — just a link, never a download or modal dialog.
+    // Flatpak builds skip entirely (flatpak update owns updates).
+    if (UpdateChecker::should_check()) {
+        const std::string version = DASHER_GTK_VERSION;
+        std::thread([this, version]() {
+            const auto info = UpdateChecker::check(version);
+            UpdateChecker::record_check();
+            if (!info.available) return;
+            Glib::signal_idle().connect_once([this, info]() {
+                if (!m_ui_alive->load()) return;
+                m_message_overlay.show_message(std::string("Dasher ") + info.latest_tag + " is available — " +
+                                                   info.release_url,
+                                               /*timed=*/false);
+            });
+        }).detach();
+    }
     maybe_show_consent_dialog(); // first launch only
 
     // Live typing-rate readout at the end of the footer (RFC 0012; Windows'

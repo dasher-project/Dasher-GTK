@@ -1,6 +1,7 @@
 #include "PreferencesWindow.h"
 #include "i18n.h"
 #include <cstdlib>
+#include <fstream>
 #ifdef ENABLE_NLS
 #include <locale.h>
 #endif
@@ -110,6 +111,36 @@ PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge, Dwell
 void PreferencesWindow::set_keyboard_opacity_access(std::function<double()> get, std::function<void(double)> set) {
     m_keyboard_opacity_get = std::move(get);
     m_keyboard_opacity_set = std::move(set);
+}
+
+void PreferencesWindow::save_update_check_pref(bool enabled) {
+    // Simple append to the update-check state file; the checker reads
+    // "enabled=false" to suppress all future checks.
+    if (!enabled) {
+        const char* dir_c = g_get_user_config_dir();
+        char* dir = g_build_filename(dir_c, "dasher", nullptr);
+        g_mkdir_with_parents(dir, 0700);
+        char* path = g_build_filename(dir, "update-check.conf", nullptr);
+        std::ofstream f(path);
+        if (f.is_open()) {
+            f << "enabled=false\n";
+        }
+        g_free(dir);
+        g_free(path);
+    } else {
+        // Remove the enabled=false line by rewriting without it
+        const char* dir_c = g_get_user_config_dir();
+        char* path = g_build_filename(dir_c, "dasher", "update-check.conf", nullptr);
+        std::ifstream in(path);
+        std::string content, line;
+        while (std::getline(in, line)) {
+            if (line.rfind("enabled=", 0) != 0) content += line + "\n";
+        }
+        in.close();
+        std::ofstream out(path);
+        if (out.is_open()) out << content;
+        g_free(path);
+    }
 }
 
 void PreferencesWindow::set_appearance_handler(
@@ -536,8 +567,29 @@ void PreferencesWindow::add_privacy_section() {
 
     auto* reset_btn = Gtk::make_managed<Gtk::Button>(_("Reset analytics ID"));
     reset_btn->set_halign(Gtk::Align::START);
-    reset_btn->set_sensitive(m_analytics.opted_in());
+    reset_btn->set_sensitive(false);
     box->append(*reset_btn);
+
+    // RFC 0017: update check opt-out (only shown for self-managed builds —
+    // Flatpak/store builds skip the check entirely).
+    if (!UpdateChecker::is_managed_build()) {
+        auto* update_row = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::HORIZONTAL, 8);
+        update_row->set_margin_top(4);
+        update_row->set_margin_bottom(4);
+        auto* update_label = Gtk::make_managed<Gtk::Label>(_("Check for updates"));
+        update_label->set_halign(Gtk::Align::START);
+        update_label->set_hexpand(true);
+        update_row->append(*update_label);
+        auto* update_switch = Gtk::make_managed<Gtk::Switch>();
+        update_switch->set_active(m_update_checks_enabled);
+        update_switch->set_valign(Gtk::Align::CENTER);
+        update_row->append(*update_switch);
+        update_switch->property_active().signal_changed().connect([this, update_switch]() {
+            m_update_checks_enabled = update_switch->get_active();
+            save_update_check_pref(m_update_checks_enabled);
+        });
+        box->append(*update_row);
+    }
 
     opt_in->signal_toggled().connect([this, opt_in, reset_btn]() {
         bool on = opt_in->get_active();

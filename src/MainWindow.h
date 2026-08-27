@@ -5,6 +5,7 @@
 #include "Output/DirectModeService.h"
 #include "Output/KeyboardWindowX11.h"
 #include "UiSettings.h"
+#include "UpdateChecker.h"
 #include "Output/TtsService.h"
 #include "UIComponents/ImageButton.h"
 #include "UIComponents/ImageToggleButton.h"
