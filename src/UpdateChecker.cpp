@@ -92,69 +92,43 @@ bool UpdateChecker::is_managed_build() {
 bool UpdateChecker::should_check() {
     if (is_managed_build()) return false;
 
+    // The enabled flag lives in ui.conf (main-thread UiSettings), separate
+    // from this file's timestamp — so the background thread's writes here
+    // can never race the preferences toggle.
+    const ui::UiSettings settings = ui::UiSettings::load();
+    if (!settings.update_checks_enabled()) return false;
+
     const std::string state = read_file(get_state_path());
     if (state.empty()) return true; // never checked
 
-    // State file format: "last_check=<epoch>\nskip=<version>\nenabled=<true|false>"
-    std::string skip_version;
+    // State file format: "last_check=<epoch>\nskip=<version>" (the enabled
+    // flag used to live here too; it moved to ui.conf to eliminate the
+    // read-modify-write race with the preferences toggle).
     long last_check = 0;
-    bool enabled = true;
     std::istringstream iss(state);
     std::string line;
     while (std::getline(iss, line)) {
         if (line.rfind("last_check=", 0) == 0) {
             last_check = std::atol(line.substr(11).c_str());
-        } else if (line.rfind("skip=", 0) == 0) {
-            skip_version = line.substr(5);
-        } else if (line.rfind("enabled=", 0) == 0) {
-            enabled = line.substr(8) == "true";
         }
     }
 
-    if (!enabled) return false;
-
-    // Check interval
     const auto now = std::chrono::system_clock::now().time_since_epoch();
     const long now_s = static_cast<long>(std::chrono::duration_cast<std::chrono::seconds>(now).count());
-    if (now_s - last_check < kCheckIntervalHours * 3600) {
-        return false; // checked recently
-    }
-
-    // If the user skipped this specific version, don't nag (but still
-    // allow a future version to trigger the notification)
-    // (skip_version check happens in the caller against the fetched tag)
-
-    return true;
+    return now_s - last_check >= kCheckIntervalHours * 3600;
 }
 
 void UpdateChecker::record_check(const std::string& skipped_version) {
+    // Writes only the timestamp and skip-version. The enabled flag lives in
+    // ui.conf (UiSettings) so there is no read-modify-write race here —
+    // the preferences toggle on the main thread and this background write
+    // touch separate files.
     const auto now = std::chrono::system_clock::now().time_since_epoch();
     const long now_s = static_cast<long>(std::chrono::duration_cast<std::chrono::seconds>(now).count());
-
-    // Read the existing state so we don't clobber enabled=false or a
-    // previously-skipped version when the launch-time check records its
-    // timestamp (a user may have toggled the setting while the request
-    // was in flight).
-    const std::string existing = read_file(get_state_path());
-    std::string enabled_line, skip_line;
-    {
-        std::istringstream iss(existing);
-        std::string line;
-        while (std::getline(iss, line)) {
-            if (line.rfind("enabled=", 0) == 0)
-                enabled_line = line;
-            else if (line.rfind("skip=", 0) == 0)
-                skip_line = line;
-        }
-    }
-
     std::ostringstream ss;
     ss << "last_check=" << now_s << "\n";
-    if (!enabled_line.empty()) ss << enabled_line << "\n";
     if (!skipped_version.empty()) {
         ss << "skip=" << skipped_version << "\n";
-    } else if (!skip_line.empty()) {
-        ss << skip_line << "\n";
     }
     write_file(get_state_path(), ss.str());
 }

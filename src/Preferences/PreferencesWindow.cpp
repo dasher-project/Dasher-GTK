@@ -1,5 +1,6 @@
 #include "PreferencesWindow.h"
 #include "i18n.h"
+#include "UiSettings.h"
 #include <cstdlib>
 #include <fstream>
 #ifdef ENABLE_NLS
@@ -109,54 +110,15 @@ PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge, Dwell
 }
 
 bool PreferencesWindow::load_update_check_pref() {
-    // Read the persisted enabled state (same file the checker uses).
-    const char* dir_c = g_get_user_config_dir();
-    char* path = g_build_filename(dir_c, "dasher", "update-check.conf", nullptr);
-    std::ifstream in(path);
-    std::string line;
-    bool enabled = true;
-    while (std::getline(in, line)) {
-        if (line.rfind("enabled=", 0) == 0) {
-            enabled = line.substr(8) == "true";
-        }
-    }
-    g_free(path);
-    return enabled;
+    // The enabled flag lives in ui.conf (UiSettings) — the same source the
+    // launch-time check reads — so the switch always shows the real
+    // effective preference.
+    return ui::UiSettings::load().update_checks_enabled();
 }
 
 void PreferencesWindow::set_keyboard_opacity_access(std::function<double()> get, std::function<void(double)> set) {
     m_keyboard_opacity_get = std::move(get);
     m_keyboard_opacity_set = std::move(set);
-}
-
-void PreferencesWindow::save_update_check_pref(bool enabled) {
-    // Simple append to the update-check state file; the checker reads
-    // "enabled=false" to suppress all future checks.
-    if (!enabled) {
-        const char* dir_c = g_get_user_config_dir();
-        char* dir = g_build_filename(dir_c, "dasher", nullptr);
-        g_mkdir_with_parents(dir, 0700);
-        char* path = g_build_filename(dir, "update-check.conf", nullptr);
-        std::ofstream f(path);
-        if (f.is_open()) {
-            f << "enabled=false\n";
-        }
-        g_free(dir);
-        g_free(path);
-    } else {
-        // Remove the enabled=false line by rewriting without it
-        const char* dir_c = g_get_user_config_dir();
-        char* path = g_build_filename(dir_c, "dasher", "update-check.conf", nullptr);
-        std::ifstream in(path);
-        std::string content, line;
-        while (std::getline(in, line)) {
-            if (line.rfind("enabled=", 0) != 0) content += line + "\n";
-        }
-        in.close();
-        std::ofstream out(path);
-        if (out.is_open()) out << content;
-        g_free(path);
-    }
 }
 
 void PreferencesWindow::set_appearance_handler(
@@ -601,8 +563,9 @@ void PreferencesWindow::add_privacy_section() {
         update_switch->set_valign(Gtk::Align::CENTER);
         update_row->append(*update_switch);
         update_switch->property_active().signal_changed().connect([this, update_switch]() {
-            m_update_checks_enabled = update_switch->get_active();
-            save_update_check_pref(m_update_checks_enabled);
+            ui::UiSettings settings = ui::UiSettings::load();
+            settings.set_update_checks_enabled(update_switch->get_active());
+            settings.save();
         });
         box->append(*update_row);
     }
