@@ -211,7 +211,7 @@ if(GIT_EXECUTABLE)
 		RESULT_VARIABLE GIT_DESCRIBE_RESULT
 	)
 endif()
-set(DASHER_GTK_FALLBACK_VERSION "0.2.8" CACHE STRING "Dasher-GTK version when git metadata is absent (tarball builds)")
+set(DASHER_GTK_FALLBACK_VERSION "0.2.9" CACHE STRING "Dasher-GTK version when git metadata is absent (tarball builds)")
 if(GIT_DESCRIBE_RESULT EQUAL 0 AND GIT_DESCRIBE MATCHES "^v[0-9]")
 	string(REGEX REPLACE "^v" "" DASHER_GTK_VERSION "${GIT_DESCRIBE}")
 else()

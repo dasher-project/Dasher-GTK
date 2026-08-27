@@ -36,6 +36,11 @@
   </developer>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="0.2.9" date="2026-08-27">
+      <description>
+        <p>Dasher now speaks 32 languages. The UI — toolbar, settings, dialogs, tooltips — localises across every locale DasherCore supports, from a single shared translation catalogue. Also: game mode with a readable target overlay, the settings window comes forward on re-open, info icons are proper Lucide glyphs, and the engine timeline is clamped for smooth zooming (DasherCore v0.2.9: restart drift and steering drift fixed).</p>
+      </description>
+    </release>
     <release version="0.2.8" date="2026-08-26">
       <description>
         <p>Major usability release. New layout menu (text pane right, left, top, bottom, or keyboard mode) and Lucide icons across the toolbars. Keyboard mode gains v5/Windows/Apple parity: the editor hides, the window stays on top, refuses focus and types straight into the focused app, with an opacity slider. The footer is rebuilt Windows-style with a readable speed stepper (Dasher 5 scale), populated alphabet picker and a live typing-rate readout. Zooming is smoother via a clamped engine timeline, and label layout uses real font metrics (DasherCore v0.2.6).</p>
