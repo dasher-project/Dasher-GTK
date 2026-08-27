@@ -154,11 +154,12 @@ UpdateChecker::UpdateInfo UpdateChecker::check(const std::string& current_versio
     curl_easy_setopt(curl, CURLOPT_TIMEOUT, kHttpTimeoutSeconds);
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
     curl_easy_setopt(curl, CURLOPT_USERAGENT, "Dasher-GTK/" DASHER_GTK_VERSION);
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, +[](void* ptr, size_t size, size_t nmemb, void* userdata) -> size_t {
-        auto* buf = static_cast<std::string*>(userdata);
-        buf->append(static_cast<char*>(ptr), size * nmemb);
-        return size * nmemb;
-    });
+    curl_easy_setopt(
+        curl, CURLOPT_WRITEFUNCTION, +[](void* ptr, size_t size, size_t nmemb, void* userdata) -> size_t {
+            auto* buf = static_cast<std::string*>(userdata);
+            buf->append(static_cast<char*>(ptr), size * nmemb);
+            return size * nmemb;
+        });
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
 
     const CURLcode rc = curl_easy_perform(curl);
