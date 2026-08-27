@@ -15,7 +15,7 @@ class UpdateChecker {
         bool available = false;
         std::string latest_tag; // e.g. "v0.3.0"
         std::string current_version;
-        std::string release_url; // link to the GitHub release page
+        std::string release_url;  // link to the GitHub release page
         std::string release_name; // human-readable title
     };
 
