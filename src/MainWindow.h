@@ -97,6 +97,7 @@ class MainWindow : public Gtk::Window {
     Gtk::Label m_learning_label = Gtk::Label(_("Learning"));
     SyncedSwitch m_learning_switch;
     Gtk::Label m_wpm_label;   // live "4.2 cps · 50 wpm" readout (RFC 0012)
+    Gtk::Label m_game_target_label; // game mode target overlay (Windows parity)
     double m_speed_min = 0.1; // v5 units; re-derived from the manifest
     double m_speed_max = 10.0;
     Gtk::Label m_speech_label = Gtk::Label(_("Speech"));
@@ -123,6 +124,9 @@ class MainWindow : public Gtk::Window {
     // LP_MAX_BITRATE (v5's ×100 scale); the UI shows the v5 value.
     void nudge_speed(double delta_v5);
     void update_speed_display();
+
+    // Game mode target overlay (Windows parity — SyncGameModeState).
+    void update_game_target();
 
     // Keyboard-mode mini bar (like Dasher-Windows' KeyboardMiniBar): added as
     // an overlay on the message overlay (itself a Gtk::Overlay), floating
