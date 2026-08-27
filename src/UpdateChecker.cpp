@@ -130,10 +130,31 @@ bool UpdateChecker::should_check() {
 void UpdateChecker::record_check(const std::string& skipped_version) {
     const auto now = std::chrono::system_clock::now().time_since_epoch();
     const long now_s = static_cast<long>(std::chrono::duration_cast<std::chrono::seconds>(now).count());
+
+    // Read the existing state so we don't clobber enabled=false or a
+    // previously-skipped version when the launch-time check records its
+    // timestamp (a user may have toggled the setting while the request
+    // was in flight).
+    const std::string existing = read_file(get_state_path());
+    std::string enabled_line, skip_line;
+    {
+        std::istringstream iss(existing);
+        std::string line;
+        while (std::getline(iss, line)) {
+            if (line.rfind("enabled=", 0) == 0)
+                enabled_line = line;
+            else if (line.rfind("skip=", 0) == 0)
+                skip_line = line;
+        }
+    }
+
     std::ostringstream ss;
     ss << "last_check=" << now_s << "\n";
+    if (!enabled_line.empty()) ss << enabled_line << "\n";
     if (!skipped_version.empty()) {
         ss << "skip=" << skipped_version << "\n";
+    } else if (!skip_line.empty()) {
+        ss << skip_line << "\n";
     }
     write_file(get_state_path(), ss.str());
 }

@@ -62,8 +62,11 @@ private:
     Gtk::Widget* m_reset_font_btn = nullptr;
     // Live CPS/WPM readout hosted in Settings -> Output (moved from the footer, issue #35).
     Gtk::Label* m_rate_value = nullptr;
-    // RFC 0017 update-check opt-out (persisted to update-check.conf)
+    // RFC 0017 update-check opt-out (persisted to update-check.conf).
+    // Initialised from the persisted state so the switch shows the real
+    // effective preference (Greptile: "Persisted state displays incorrectly").
     bool m_update_checks_enabled = true;
+    static bool load_update_check_pref();
     void save_update_check_pref(bool enabled);
     analytics::AnalyticsSettings m_analytics = analytics::AnalyticsSettings::load();
     Gtk::Box m_layout = Gtk::Box(Gtk::Orientation::HORIZONTAL);

@@ -37,6 +37,14 @@ public:
         set_reveal_child(true);
     }
 
+    // Reveal with Pango markup — enables <a href="..."> links that GTK
+    // makes clickable and opens in the default browser (RFC 0017 update
+    // notifications use this so the release URL is actionable).
+    void reveal_markup(const std::string& markup) {
+        m_label.set_markup(markup);
+        set_reveal_child(true);
+    }
+
 private:
     Gtk::Box m_box;
     Gtk::Label m_label;

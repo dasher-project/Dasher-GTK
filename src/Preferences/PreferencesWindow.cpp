@@ -108,6 +108,22 @@ PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge, Dwell
         500);
 }
 
+bool PreferencesWindow::load_update_check_pref() {
+    // Read the persisted enabled state (same file the checker uses).
+    const char* dir_c = g_get_user_config_dir();
+    char* path = g_build_filename(dir_c, "dasher", "update-check.conf", nullptr);
+    std::ifstream in(path);
+    std::string line;
+    bool enabled = true;
+    while (std::getline(in, line)) {
+        if (line.rfind("enabled=", 0) == 0) {
+            enabled = line.substr(8) == "true";
+        }
+    }
+    g_free(path);
+    return enabled;
+}
+
 void PreferencesWindow::set_keyboard_opacity_access(std::function<double()> get, std::function<void(double)> set) {
     m_keyboard_opacity_get = std::move(get);
     m_keyboard_opacity_set = std::move(set);
@@ -581,7 +597,7 @@ void PreferencesWindow::add_privacy_section() {
         update_label->set_hexpand(true);
         update_row->append(*update_label);
         auto* update_switch = Gtk::make_managed<Gtk::Switch>();
-        update_switch->set_active(m_update_checks_enabled);
+        update_switch->set_active(load_update_check_pref());
         update_switch->set_valign(Gtk::Align::CENTER);
         update_row->append(*update_switch);
         update_switch->property_active().signal_changed().connect([this, update_switch]() {

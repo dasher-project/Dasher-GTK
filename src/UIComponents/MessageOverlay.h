@@ -41,7 +41,11 @@ public:
                 if (m.widget) continue;
                 for (auto* p : slots) {
                     if (!p->get_reveal_child() && !p->get_child_revealed()) {
-                        p->reveal(m.text);
+                        if (m.is_markup) {
+                            p->reveal_markup(m.text);
+                        } else {
+                            p->reveal(m.text);
+                        }
                         m.start_time = std::chrono::steady_clock::now();
                         m.widget = p;
                         m_box.reorder_child_at_start(*p);
@@ -65,6 +69,12 @@ public:
         messages.push_back({text, timed, std::chrono::steady_clock::now(), nullptr});
     }
 
+    // Show a message with Pango markup (clickable <a href> links).
+    // Untimed — persistent until the user dismisses.
+    void show_message_markup(const std::string& markup) {
+        messages.push_back({markup, false, std::chrono::steady_clock::now(), nullptr, true});
+    }
+
 private:
     void erase_message(PopoverBox* box) {
         messages.erase(std::remove_if(messages.begin(), messages.end(),
@@ -76,6 +86,7 @@ private:
         bool timed;
         std::chrono::time_point<std::chrono::steady_clock> start_time;
         PopoverBox* widget = nullptr;
+        bool is_markup = false;
     };
 
     std::shared_ptr<DasherBridge> m_bridge;

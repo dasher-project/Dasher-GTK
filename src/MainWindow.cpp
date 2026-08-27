@@ -467,15 +467,26 @@ MainWindow::MainWindow()
     // Flatpak builds skip entirely (flatpak update owns updates).
     if (UpdateChecker::should_check()) {
         const std::string version = DASHER_GTK_VERSION;
-        std::thread([this, version]() {
+        // Capture ONLY the alive token (shared_ptr keeps the atomic on the
+        // heap) and the info by value — never `this`, which may be gone by
+        // the time the idle callback runs. The overlay's show_message is
+        // called via a raw pointer that the alive flag guards; a full fix
+        // would use a weak reference to the overlay widget, but the flag
+        // plus the main-thread marshalling makes the window safe: the
+        // destructor sets the flag false before any widget teardown, and
+        // this idle runs on the same (main) thread as the destructor.
+        auto alive = m_ui_alive;
+        auto* overlay = &m_message_overlay;
+        std::thread([alive, overlay, version]() {
             const auto info = UpdateChecker::check(version);
             UpdateChecker::record_check();
             if (!info.available) return;
-            Glib::signal_idle().connect_once([this, info]() {
-                if (!m_ui_alive->load()) return;
-                m_message_overlay.show_message(std::string("Dasher ") + info.latest_tag + " is available — " +
-                                                   info.release_url,
-                                               /*timed=*/false);
+            Glib::signal_idle().connect_once([alive, overlay, info]() {
+                if (!alive->load()) return;
+                overlay->show_message_markup(std::string("<a href=\"") + info.release_url +
+                                             "\" title=\"Open the release page\">" + "Dasher " +
+                                             Glib::Markup::escape_text(info.latest_tag) + " is available</a> — " +
+                                             Glib::Markup::escape_text(info.release_name));
             });
         }).detach();
     }
