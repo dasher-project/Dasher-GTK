@@ -29,6 +29,20 @@ cp "$BUILD_DIR/Dasher/dasher" "$APPDIR/usr/bin/"
 cp "$BUILD_DIR/Dasher/libdasher.so" "$APPDIR/usr/bin/" 2>/dev/null || true
 cp "$BUILD_DIR/Dasher/librust_tts_wrapper.so" "$APPDIR/usr/bin/" 2>/dev/null || true
 
+# Translations: .mo files compiled by CMake at build/po/<locale>/LC_MESSAGES/.
+# main.cpp probes <binary>/../share/locale/ for AppImage runs, so install
+# them at usr/share/locale/<locale>/LC_MESSAGES/ (the gettext standard path).
+if [ -d "$BUILD_DIR/po" ]; then
+  for mo in "$BUILD_DIR"/po/*/LC_MESSAGES/dasher-gtk.mo; do
+    [ -f "$mo" ] || continue
+    loc_dir=$(dirname "$(dirname "$mo")")
+    locale_name=$(basename "$loc_dir")
+    mkdir -p "$APPDIR/usr/share/locale/$locale_name/LC_MESSAGES"
+    cp "$mo" "$APPDIR/usr/share/locale/$locale_name/LC_MESSAGES/"
+  done
+  echo "Installed $(ls "$APPDIR/usr/share/locale" 2>/dev/null | wc -l) locale catalogs"
+fi
+
 # Runtime data into share/dasher/ (AppRun will cd here so ./Data resolves).
 # UIStyle.css is compiled into the binary as a GResource, so it is not copied.
 cp -r "$BUILD_DIR/Dasher/Data" "$APPDIR/usr/share/dasher/"
