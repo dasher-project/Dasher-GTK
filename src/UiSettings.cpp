@@ -25,15 +25,16 @@ UiSettings UiSettings::load(const std::string& path) {
     if (g_key_file_load_from_file(kf, path.c_str(), G_KEY_FILE_NONE, nullptr)) {
         double v = g_key_file_get_double(kf, kGroup, "keyboard_opacity", nullptr);
         if (v >= 0.2 && v <= 1.0) s.m_keyboard_opacity = v;
+        // Use the return value directly — g_key_file_get_boolean returns
+        // FALSE both for a valid `false` and for a missing key. Only
+        // fall back to the default when the key genuinely doesn't exist.
         GError* err = nullptr;
-        if (g_key_file_get_boolean(kf, kGroup, "update_checks_enabled", &err)) {
-            s.m_update_checks_enabled = true;
-        } else {
-            if (err && err->code == G_KEY_FILE_ERROR_INVALID_VALUE) {
-                s.m_update_checks_enabled = false;
-            }
-            g_clear_error(&err);
+        const gboolean enabled = g_key_file_get_boolean(kf, kGroup, "update_checks_enabled", &err);
+        if (err == nullptr) {
+            s.m_update_checks_enabled = (enabled == TRUE);
         }
+        // Key missing or unreadable — keep the default (true)
+        g_clear_error(&err);
     }
     g_key_file_free(kf);
     return s;
