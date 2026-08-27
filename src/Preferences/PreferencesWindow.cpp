@@ -498,11 +498,7 @@ void PreferencesWindow::add_locale_section() {
         // RFC 0003 "two layers, one locale": switching the engine's locale
         // also switches the gettext LC_MESSAGES category so the chrome
         // follows. A full UI refresh (rebuild) picks up the new strings.
-#ifdef _WIN32
-        _putenv_s("LANGUAGE", locales[idx].code.c_str());
-#else
         setenv("LANGUAGE", locales[idx].code.c_str(), 1);
-#endif
         setlocale(LC_ALL, locales[idx].code.c_str());
 #endif
         rebuild_sections();

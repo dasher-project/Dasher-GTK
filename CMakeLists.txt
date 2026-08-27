@@ -133,8 +133,6 @@ find_package(X11)
 find_program(XGETTEXT_EXECUTABLE xgettext)
 find_program(MSGFMT_EXECUTABLE msgfmt)
 set(GETTEXT_PACKAGE "dasher-gtk")
-# Set before any install() references it (fresh-configure ordering).
-set(CMAKE_INSTALL_LOCALEDIR "share/locale" CACHE STRING "Locale install dir (relative to prefix)")
 if(MSGFMT_EXECUTABLE)
 	file(GLOB PO_FILES ${CMAKE_CURRENT_LIST_DIR}/po/*.po)
 	set(MO_FILES)
@@ -148,13 +146,12 @@ if(MSGFMT_EXECUTABLE)
 			COMMENT "Compiling ${Locale} translation"
 			VERBATIM)
 		list(APPEND MO_FILES ${MO})
-		# The locale subdirectory must be part of the install path: gettext
-		# searches <dir>/<locale>/LC_MESSAGES/<domain>.mo, so the .mo for
-		# French must land at share/locale/fr/LC_MESSAGES/dasher-gtk.mo.
-		install(FILES ${MO}
-			DESTINATION ${CMAKE_INSTALL_LOCALEDIR}/${Locale}/LC_MESSAGES)
+		install(FILES ${MO} DESTINATION ${CMAKE_INSTALL_LOCALEDIR}/LC_MESSAGES)
 	endforeach()
 	add_custom_target(translations ALL DEPENDS ${MO_FILES})
+	set(CMAKE_INSTALL_LOCALEDIR "share/locale" CACHE STRING "Locale install dir (relative to prefix)")
+	# Re-run bindtextdomain against the build dir so dev builds pick up .mo
+	# without installing (the "." fallback in main.cpp covers this).
 else()
 	message(STATUS "gettext msgfmt not found — UI chrome will be English only")
 endif()

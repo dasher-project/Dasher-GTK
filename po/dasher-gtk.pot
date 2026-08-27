@@ -1,0 +1,312 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the dasher-gtk package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-27 09:20+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/MainWindow.cpp:30
+msgid "Dasher v6"
+msgstr ""
+
+#: src/MainWindow.cpp:48 src/MainWindow.cpp:605 src/MainWindow.h:68
+msgid "Right side"
+msgstr ""
+
+#: src/MainWindow.cpp:49 src/MainWindow.cpp:586
+msgid "Left side"
+msgstr ""
+
+#: src/MainWindow.cpp:50 src/MainWindow.cpp:592
+msgid "Bottom"
+msgstr ""
+
+#: src/MainWindow.cpp:51 src/MainWindow.cpp:598
+msgid "Top"
+msgstr ""
+
+#: src/MainWindow.cpp:52
+msgid "_Keyboard"
+msgstr ""
+
+#: src/MainWindow.cpp:66
+msgid "Pane position and direct-entry mode"
+msgstr ""
+
+#: src/MainWindow.cpp:170
+msgid "Open Text File"
+msgstr ""
+
+#: src/MainWindow.cpp:172 src/MainWindow.cpp:198
+msgid "Text files"
+msgstr ""
+
+#: src/MainWindow.cpp:189
+msgid "Failed to open: "
+msgstr ""
+
+#: src/MainWindow.cpp:196
+msgid "Save Text File"
+msgstr ""
+
+#: src/MainWindow.cpp:210
+msgid "Saved: "
+msgstr ""
+
+#: src/MainWindow.cpp:212
+msgid "Failed to save: "
+msgstr ""
+
+#: src/MainWindow.cpp:304
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr ""
+
+#: src/MainWindow.cpp:310
+msgid ""
+"No speech engine available. Build with the system TTS feature, or set up a "
+"cloud voice in Preferences."
+msgstr ""
+
+#: src/MainWindow.cpp:353
+msgid "Settings"
+msgstr ""
+
+#: src/MainWindow.cpp:357
+msgid "Exit keyboard mode"
+msgstr ""
+
+#: src/MainWindow.cpp:531
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr ""
+
+#: src/MainWindow.cpp:532
+msgid ""
+"service running? See the setup help on the Keyboard button for install "
+"commands."
+msgstr ""
+
+#: src/MainWindow.cpp:565 src/MainWindow.h:73
+msgid "Keyboard"
+msgstr ""
+
+#: src/MainWindow.h:59
+msgid "New"
+msgstr ""
+
+#: src/MainWindow.h:60
+msgid "Open"
+msgstr ""
+
+#: src/MainWindow.h:61
+msgid "Save"
+msgstr ""
+
+#: src/MainWindow.h:62
+msgid "Play"
+msgstr ""
+
+#: src/MainWindow.h:74
+msgid "Prefs"
+msgstr ""
+
+#: src/MainWindow.h:81
+msgid "Copy"
+msgstr ""
+
+#: src/MainWindow.h:82
+msgid "Copy all"
+msgstr ""
+
+#: src/MainWindow.h:83
+msgid "Paste"
+msgstr ""
+
+#: src/MainWindow.h:84
+msgid "Read"
+msgstr ""
+
+#: src/MainWindow.h:92
+msgid "Speed"
+msgstr ""
+
+#: src/MainWindow.h:97
+msgid "Learning"
+msgstr ""
+
+#: src/MainWindow.h:102 src/Preferences/PreferencesWindow.cpp:462
+msgid "Speech"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:69
+msgid "Dasher Preferences"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:84
+msgid "<big><b>Dasher v6</b></big>\n"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:84
+msgid "GTK Edition"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:88
+msgid "About"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:155
+msgid "Customization"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:156
+msgid "Input"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:157
+msgid "Language"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:158
+msgid "Output"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:159
+msgid "Game Mode"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:174
+msgid "Dwell to click"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:225
+msgid "Typing rate"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:235
+msgid "Reset"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:260
+msgid "Keyboard mode opacity"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:311
+msgid "<b>Speech Settings</b>"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:472
+msgid "<b>Language / Locale</b>"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:508
+msgid "Locale"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:517
+msgid "<b>Privacy</b>"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:529
+msgid "Share anonymous analytics and crash reports"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:533
+msgid "Reset analytics ID"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:564
+msgid "Reset engine settings to defaults"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:569
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:599
+msgid "Dasher "
+msgstr ""
+
+#: src/Preferences/PreferencesWindow.cpp:606
+msgid "Privacy"
+msgstr ""
+
+#: src/Preferences/SettingsSection.h:89
+msgid "No settings available for this section."
+msgstr ""
+
+#: src/UIComponents/KeyboardSetupDialog.h:29
+msgid "Enable Keyboard Mode"
+msgstr ""
+
+#: src/UIComponents/KeyboardSetupDialog.h:82
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr ""
+
+#: src/UIComponents/KeyboardSetupDialog.h:87
+msgid ""
+"Typing into other applications needs access to /dev/uinput, which a "
+"sandboxed "
+msgstr ""
+
+#: src/UIComponents/KeyboardSetupDialog.h:88
+msgid ""
+"Flatpak or AppImage build can't provide.\n"
+"\n"
+msgstr ""
+
+#: src/UIComponents/KeyboardSetupDialog.h:89
+msgid ""
+"Install Dasher via your package manager or build from source to use keyboard "
+"mode."
+msgstr ""
+
+#: src/UIComponents/KeyboardSetupDialog.h:95
+msgid "Close"
+msgstr ""
+
+#: src/UIComponents/KeyboardSetupDialog.h:103
+msgid "<b>Install ydotool to use keyboard mode</b>"
+msgstr ""
+
+#: src/UIComponents/KeyboardSetupDialog.h:108
+msgid ""
+"Keyboard mode types Dasher's output into other applications using ydotool, "
+"which "
+msgstr ""
+
+#: src/UIComponents/KeyboardSetupDialog.h:109
+msgid "isn't installed. Run these commands, then press Retry:"
+msgstr ""
+
+#: src/UIComponents/KeyboardSetupDialog.h:135
+msgid "Copy commands"
+msgstr ""
+
+#: src/UIComponents/KeyboardSetupDialog.h:138
+msgid "Copied to clipboard."
+msgstr ""
+
+#: src/UIComponents/KeyboardSetupDialog.h:142
+msgid "Retry"
+msgstr ""
+
+#: src/UIComponents/KeyboardSetupDialog.h:152
+msgid "ydotool found. Keyboard mode is ready."
+msgstr ""
+
+#: src/UIComponents/KeyboardSetupDialog.h:157
+msgid ""
+"ydotool still isn't available. Make sure it's installed and the ydotool "
+"service is running."
+msgstr ""
