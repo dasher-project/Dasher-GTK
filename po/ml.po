@@ -1,0 +1,200 @@
+# ml translation for dasher-gtk.
+# Copyright (C) 2026 The Dasher Project
+# This file is distributed under the same license as the dasher-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Language: ml\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Dasher v6"
+msgstr "ഡാഷർ v6"
+
+msgid "Right side"
+msgstr "വലതുവശം"
+
+msgid "Left side"
+msgstr "ഇടതുവശം"
+
+msgid "Bottom"
+msgstr "അടിത്തട്ട്"
+
+msgid "Top"
+msgstr "മുകളിൽ"
+
+msgid "_Keyboard"
+msgstr "_കീബോർഡ്"
+
+msgid "Pane position and direct-entry mode"
+msgstr "പാൻ സ്ഥാനവും ഡയറക്ട്-എൻട്രി മോഡും"
+
+msgid "Open Text File"
+msgstr "ടെക്സ്റ്റ് ഫയൽ തുറക്കുക"
+
+msgid "Text files"
+msgstr "ടെക്സ്റ്റ് ഫയലുകൾ"
+
+msgid "Failed to open: "
+msgstr "തുറക്കുന്നതിൽ പരാജയപ്പെട്ടു:"
+
+msgid "Save Text File"
+msgstr "ടെക്സ്റ്റ് ഫയൽ സംരക്ഷിക്കുക"
+
+msgid "Saved: "
+msgstr "സംരക്ഷിച്ചു:"
+
+msgid "Failed to save: "
+msgstr "സംരക്ഷിക്കുന്നതിൽ പരാജയപ്പെട്ടു:"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "കീബോർഡ് മോഡ് സജ്ജീകരിക്കാൻ ക്ലിക്ക് ചെയ്യുക (ydotool ആവശ്യമാണ്)"
+
+msgid "Settings"
+msgstr "ക്രമീകരണങ്ങൾ"
+
+msgid "Exit keyboard mode"
+msgstr "കീബോർഡ് മോഡിൽ നിന്ന് പുറത്തുകടക്കുക"
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "കീബോർഡ് മോഡ് നിർത്തി: ydotool-ന് ടെക്സ്റ്റ് കുത്തിവയ്ക്കാൻ കഴിഞ്ഞില്ല. ydotoold ആണോ?"
+
+msgid "Keyboard"
+msgstr "കീബോർഡ്"
+
+msgid "New"
+msgstr "പുതിയത്"
+
+msgid "Open"
+msgstr "തുറക്കുക"
+
+msgid "Save"
+msgstr "രക്ഷിക്കും"
+
+msgid "Play"
+msgstr "കളിക്കുക"
+
+msgid "Prefs"
+msgstr "മുൻഗണനകൾ"
+
+msgid "Copy"
+msgstr "പകർത്തുക"
+
+msgid "Copy all"
+msgstr "എല്ലാം പകർത്തുക"
+
+msgid "Paste"
+msgstr "ഒട്ടിക്കുക"
+
+msgid "Read"
+msgstr "വായിക്കുക"
+
+msgid "Speed"
+msgstr "വേഗത"
+
+msgid "Learning"
+msgstr "പഠനം"
+
+msgid "Speech"
+msgstr "പ്രസംഗം"
+
+msgid "Dasher Preferences"
+msgstr "ഡാഷർ മുൻഗണനകൾ"
+
+msgid "<big><b>Dasher v6</b></big>\\n"
+msgstr "<big><b>ഡാഷർ v6</b></big>\\"
+
+msgid "GTK Edition"
+msgstr "ജിടികെ പതിപ്പ്"
+
+msgid "About"
+msgstr "കുറിച്ച്"
+
+msgid "Customization"
+msgstr "ഇഷ്ടാനുസൃതമാക്കൽ"
+
+msgid "Input"
+msgstr "ഇൻപുട്ട്"
+
+msgid "Language"
+msgstr "ഭാഷ"
+
+msgid "Output"
+msgstr "ഔട്ട്പുട്ട്"
+
+msgid "Game Mode"
+msgstr "ഗെയിം മോഡ്"
+
+msgid "Dwell to click"
+msgstr "ക്ലിക്ക് ചെയ്യാൻ താമസിക്കുക"
+
+msgid "Typing rate"
+msgstr "ടൈപ്പിംഗ് നിരക്ക്"
+
+msgid "Reset"
+msgstr "റീസെറ്റ്"
+
+msgid "Keyboard mode opacity"
+msgstr "കീബോർഡ് മോഡ് അതാര്യത"
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>സംഭാഷണ ക്രമീകരണങ്ങൾ</b>"
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>ഭാഷ / ഭാഷ</b>"
+
+msgid "Locale"
+msgstr "സ്ഥലം"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>സ്വകാര്യത</b>"
+
+msgid "Share anonymous analytics and crash reports"
+msgstr "അജ്ഞാത വിശകലനങ്ങളും ക്രാഷ് റിപ്പോർട്ടുകളും പങ്കിടുക"
+
+msgid "Reset analytics ID"
+msgstr "അനലിറ്റിക്സ് ഐഡി പുനഃസജ്ജമാക്കുക"
+
+msgid "Reset engine settings to defaults"
+msgstr "എഞ്ചിൻ ക്രമീകരണങ്ങൾ ഡിഫോൾട്ടുകളിലേക്ക് പുനഃസജ്ജമാക്കുക"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "എല്ലാ എഞ്ചിൻ ക്രമീകരണങ്ങളും അവയുടെ ബിൽറ്റ്-ഇൻ ഡിഫോൾട്ടുകളിലേക്ക് പുനഃസജ്ജമാക്കണോ?"
+
+msgid "Dasher "
+msgstr "ഡാഷർ"
+
+msgid "Privacy"
+msgstr "സ്വകാര്യത"
+
+msgid "No settings available for this section."
+msgstr "ഈ വിഭാഗത്തിന് ക്രമീകരണങ്ങളൊന്നും ലഭ്യമല്ല."
+
+msgid "Enable Keyboard Mode"
+msgstr "കീബോർഡ് മോഡ് പ്രവർത്തനക്ഷമമാക്കുക"
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>ഈ ബിൽഡിൽ കീബോർഡ് മോഡ് ലഭ്യമല്ല</b>"
+
+msgid "Close"
+msgstr "അടയ്ക്കുക"
+
+msgid "<b>Install ydotool to use keyboard mode</b>"
+msgstr "<b>കീബോർഡ് മോഡ് ഉപയോഗിക്കാൻ ydotool ഇൻസ്റ്റാൾ ചെയ്യുക</b>"
+
+msgid "isn't installed. Run these commands, then press Retry:"
+msgstr "ഇൻസ്റ്റാൾ ചെയ്തിട്ടില്ല. ഈ കമാൻഡുകൾ പ്രവർത്തിപ്പിക്കുക, തുടർന്ന് വീണ്ടും ശ്രമിക്കുക അമർത്തുക:"
+
+msgid "Copy commands"
+msgstr "കമാൻഡുകൾ പകർത്തുക"
+
+msgid "Copied to clipboard."
+msgstr "ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി."
+
+msgid "Retry"
+msgstr "വീണ്ടും ശ്രമിക്കുക"
+
+msgid "ydotool found. Keyboard mode is ready."
+msgstr "ydotool കണ്ടെത്തി. കീബോർഡ് മോഡ് തയ്യാറാണ്."

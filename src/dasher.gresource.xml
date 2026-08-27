@@ -16,5 +16,6 @@
     <file alias="icons/panel-left.svg">icons/lucide-panel-left.svg</file>
     <file alias="icons/panel-bottom.svg">icons/lucide-panel-bottom.svg</file>
     <file alias="icons/panel-top.svg">icons/lucide-panel-top.svg</file>
+    <file alias="icons/info.svg">icons/lucide-info.svg</file>
   </gresource>
 </gresources>

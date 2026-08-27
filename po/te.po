@@ -1,0 +1,200 @@
+# te translation for dasher-gtk.
+# Copyright (C) 2026 The Dasher Project
+# This file is distributed under the same license as the dasher-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Language: te\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Dasher v6"
+msgstr "డాషర్ v6"
+
+msgid "Right side"
+msgstr "కుడి వైపు"
+
+msgid "Left side"
+msgstr "ఎడమ వైపు"
+
+msgid "Bottom"
+msgstr "దిగువన"
+
+msgid "Top"
+msgstr "టాప్"
+
+msgid "_Keyboard"
+msgstr "కీబోర్డ్"
+
+msgid "Pane position and direct-entry mode"
+msgstr "ప్యానెల్ స్థానం మరియు డైరెక్ట్-ఎంట్రీ మోడ్"
+
+msgid "Open Text File"
+msgstr "టెక్స్ట్ ఫైల్‌ను తెరవండి"
+
+msgid "Text files"
+msgstr "టెక్స్ట్ ఫైల్స్"
+
+msgid "Failed to open: "
+msgstr "తెరవడంలో విఫలమైంది:"
+
+msgid "Save Text File"
+msgstr "టెక్స్ట్ ఫైల్‌ను సేవ్ చేయండి"
+
+msgid "Saved: "
+msgstr "సేవ్ చేయబడింది:"
+
+msgid "Failed to save: "
+msgstr "సేవ్ చేయడంలో విఫలమైంది:"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "కీబోర్డ్ మోడ్‌ను సెటప్ చేయడానికి క్లిక్ చేయండి (ydotool అవసరం)"
+
+msgid "Settings"
+msgstr "సెట్టింగ్‌లు"
+
+msgid "Exit keyboard mode"
+msgstr "కీబోర్డ్ మోడ్ నుండి నిష్క్రమించండి"
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "కీబోర్డ్ మోడ్ నిలిపివేయబడింది: ydotool టెక్స్ట్‌ను ఇంజెక్ట్ చేయలేకపోయింది. ydotool పాతదా?"
+
+msgid "Keyboard"
+msgstr "కీబోర్డ్"
+
+msgid "New"
+msgstr "కొత్త"
+
+msgid "Open"
+msgstr "తెరవండి"
+
+msgid "Save"
+msgstr "సేవ్ చేయండి"
+
+msgid "Play"
+msgstr "ఆట"
+
+msgid "Prefs"
+msgstr "ప్రాధాన్యతలు"
+
+msgid "Copy"
+msgstr "కాపీ"
+
+msgid "Copy all"
+msgstr "అన్నింటినీ కాపీ చేయండి"
+
+msgid "Paste"
+msgstr "పేస్ట్"
+
+msgid "Read"
+msgstr "చదవండి"
+
+msgid "Speed"
+msgstr "వేగం"
+
+msgid "Learning"
+msgstr "నేర్చుకోవడం"
+
+msgid "Speech"
+msgstr "ప్రసంగం"
+
+msgid "Dasher Preferences"
+msgstr "డాషర్ ప్రాధాన్యతలు"
+
+msgid "<big><b>Dasher v6</b></big>\\n"
+msgstr "<big><b>డాషర్ v6</b></big>\\"
+
+msgid "GTK Edition"
+msgstr "GTK ఎడిషన్"
+
+msgid "About"
+msgstr "గురించి"
+
+msgid "Customization"
+msgstr "అనుకూలీకరణ"
+
+msgid "Input"
+msgstr "ఇన్‌పుట్"
+
+msgid "Language"
+msgstr "భాష"
+
+msgid "Output"
+msgstr "అవుట్‌పుట్"
+
+msgid "Game Mode"
+msgstr "గేమ్ మోడ్"
+
+msgid "Dwell to click"
+msgstr "క్లిక్ చేయడానికి డ్వెల్ చేయండి"
+
+msgid "Typing rate"
+msgstr "టైపింగ్ రేటు"
+
+msgid "Reset"
+msgstr "రీసెట్"
+
+msgid "Keyboard mode opacity"
+msgstr "కీబోర్డ్ మోడ్ అస్పష్టత"
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>స్పీచ్ సెట్టింగ్‌లు</b>"
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>భాష / స్థానికత</b>"
+
+msgid "Locale"
+msgstr "స్థానిక"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>గోప్యత</b>"
+
+msgid "Share anonymous analytics and crash reports"
+msgstr "అనామక విశ్లేషణలు మరియు క్రాష్ నివేదికలను పంచుకోండి"
+
+msgid "Reset analytics ID"
+msgstr "అనలిటిక్స్ IDని రీసెట్ చేయండి"
+
+msgid "Reset engine settings to defaults"
+msgstr "ఇంజిన్ సెట్టింగ్‌లను డిఫాల్ట్‌లకు రీసెట్ చేయండి"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "అన్ని ఇంజిన్ సెట్టింగ్‌లను వాటి అంతర్నిర్మిత డిఫాల్ట్‌లకు రీసెట్ చేయాలా?"
+
+msgid "Dasher "
+msgstr "డాషర్"
+
+msgid "Privacy"
+msgstr "గోప్యత"
+
+msgid "No settings available for this section."
+msgstr "ఈ విభాగానికి ఎలాంటి సెట్టింగ్‌లు అందుబాటులో లేవు."
+
+msgid "Enable Keyboard Mode"
+msgstr "కీబోర్డ్ మోడ్‌ను ప్రారంభించండి"
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>ఈ బిల్డ్‌లో కీబోర్డ్ మోడ్ అందుబాటులో లేదు</b>"
+
+msgid "Close"
+msgstr "మూసివేయండి"
+
+msgid "<b>Install ydotool to use keyboard mode</b>"
+msgstr "<b>కీబోర్డ్ మోడ్‌ను ఉపయోగించడానికి ydotoolను ఇన్‌స్టాల్ చేయండి</b>"
+
+msgid "isn't installed. Run these commands, then press Retry:"
+msgstr "ఇన్‌స్టాల్ చేయబడలేదు. ఈ కమాండ్‌లను రన్ చేసి, ఆ తర్వాత రీట్రై నొక్కండి:"
+
+msgid "Copy commands"
+msgstr "కాపీ ఆదేశాలు"
+
+msgid "Copied to clipboard."
+msgstr "క్లిప్‌బోర్డ్‌కు కాపీ చేయబడింది."
+
+msgid "Retry"
+msgstr "మళ్ళీ ప్రయత్నించండి"
+
+msgid "ydotool found. Keyboard mode is ready."
+msgstr "ydotool కనుగొనబడింది. కీబోర్డ్ మోడ్ సిద్ధంగా ఉంది."

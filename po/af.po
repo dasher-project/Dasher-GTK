@@ -1,0 +1,200 @@
+# af translation for dasher-gtk.
+# Copyright (C) 2026 The Dasher Project
+# This file is distributed under the same license as the dasher-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Language: af\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Dasher v6"
+msgstr "Dashers V6"
+
+msgid "Right side"
+msgstr "Regterkant"
+
+msgid "Left side"
+msgstr "Linkerkant"
+
+msgid "Bottom"
+msgstr "Onderkant"
+
+msgid "Top"
+msgstr "Bo"
+
+msgid "_Keyboard"
+msgstr "Sleutelbord"
+
+msgid "Pane position and direct-entry mode"
+msgstr "Paneelposisie en direkte toegangsmodus"
+
+msgid "Open Text File"
+msgstr "Open Teks Lêer"
+
+msgid "Text files"
+msgstr "BeeldeName"
+
+msgid "Failed to open: "
+msgstr "Kon nie spel open nie: %s"
+
+msgid "Save Text File"
+msgstr "Stoor Teks Lêer"
+
+msgid "Saved: "
+msgstr "Gebêre"
+
+msgid "Failed to save: "
+msgstr "Kon nie spel stoor nie: %s"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "Klik om sleutelbordmodus op te stel (benodig ydotool)"
+
+msgid "Settings"
+msgstr "Instellings"
+
+msgid "Exit keyboard mode"
+msgstr "Verlaat sleutelbordmodus"
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "Sleutelbordmodus gestop: ydotool kon nie teks inspuit nie. Is die ydotoold"
+
+msgid "Keyboard"
+msgstr "Sleutelbord"
+
+msgid "New"
+msgstr "New"
+
+msgid "Open"
+msgstr "Oop"
+
+msgid "Save"
+msgstr "Laai af"
+
+msgid "Play"
+msgstr "Speel"
+
+msgid "Prefs"
+msgstr "Voorkeure"
+
+msgid "Copy"
+msgstr "Kopie"
+
+msgid "Copy all"
+msgstr "kopieer alles"
+
+msgid "Paste"
+msgstr "Plak"
+
+msgid "Read"
+msgstr "Ry"
+
+msgid "Speed"
+msgstr "Spoed"
+
+msgid "Learning"
+msgstr "Leer"
+
+msgid "Speech"
+msgstr "Spraak"
+
+msgid "Dasher Preferences"
+msgstr "Dasher-voorkeure"
+
+msgid "<big><b>Dasher v6</b></big>\\n"
+msgstr "<big><b>Dasher v6</b></big>\\"
+
+msgid "GTK Edition"
+msgstr "GTK-uitgawe"
+
+msgid "About"
+msgstr "About"
+
+msgid "Customization"
+msgstr "Aanpassing"
+
+msgid "Input"
+msgstr "Invoer"
+
+msgid "Language"
+msgstr "Taal"
+
+msgid "Output"
+msgstr "Afvoer"
+
+msgid "Game Mode"
+msgstr "one"
+
+msgid "Dwell to click"
+msgstr "Kliek om te kliek"
+
+msgid "Typing rate"
+msgstr "Te tik Tempo"
+
+msgid "Reset"
+msgstr "Herstel"
+
+msgid "Keyboard mode opacity"
+msgstr "Sleutelbordmodus ondeursigtigheid"
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>Spraakinstellings</b>"
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>Taal / Plaaslike</b>"
+
+msgid "Locale"
+msgstr "Lokalisering"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>Privaatheid</b>"
+
+msgid "Share anonymous analytics and crash reports"
+msgstr "Deel anonieme analise en ongeluk verslae"
+
+msgid "Reset analytics ID"
+msgstr "Stel analitiese ID terug"
+
+msgid "Reset engine settings to defaults"
+msgstr "Herstel enjin instellings na verstek"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "Herstel alle enjininstellings na hul ingeboude standaard?"
+
+msgid "Dasher "
+msgstr "Dasher"
+
+msgid "Privacy"
+msgstr "Privaatheid"
+
+msgid "No settings available for this section."
+msgstr "Geen instellings beskikbaar vir hierdie afdeling nie."
+
+msgid "Enable Keyboard Mode"
+msgstr "Aktiveer sleutelbord"
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>Sleutelbordmodus is nie in hierdie gebou beskikbaar nie</b>"
+
+msgid "Close"
+msgstr "Maak toe"
+
+msgid "<b>Install ydotool to use keyboard mode</b>"
+msgstr "<b>Installeer ydotool om sleutelbordmodus te gebruik</b>"
+
+msgid "isn't installed. Run these commands, then press Retry:"
+msgstr "is nie geïnstalleer. Begin hierdie opdragte, dan druk Herprobeer:"
+
+msgid "Copy commands"
+msgstr "Kopieer opdragte"
+
+msgid "Copied to clipboard."
+msgstr "Knyp gekopiëerde aan knipbord"
+
+msgid "Retry"
+msgstr "Herprobeer"
+
+msgid "ydotool found. Keyboard mode is ready."
+msgstr "ydotool gevind. Sleutelbord modus is gereed."

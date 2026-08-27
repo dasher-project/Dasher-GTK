@@ -124,6 +124,40 @@ find_program(GLIB_COMPILE_RESOURCES NAMES glib-compile-resources REQUIRED)
 # Wayland has no equivalent for regular apps — there the mode works, but the
 # user must steer without clicking the canvas.
 find_package(X11)
+
+# ── i18n (RFC 0003): gettext for the UI chrome ────────────────────────────
+# Compiles po/*.po → po/*.mo at build time. The .mo files land in the build
+# tree's locale layout so running from the build dir finds them via the "."
+# fallback bindtextdomain() in main.cpp; the install rule puts them under
+# <prefix>/share/locale for packaged builds.
+find_program(XGETTEXT_EXECUTABLE xgettext)
+find_program(MSGFMT_EXECUTABLE msgfmt)
+set(GETTEXT_PACKAGE "dasher-gtk")
+# Set before any install() references it (fresh-configure ordering).
+set(CMAKE_INSTALL_LOCALEDIR "share/locale" CACHE STRING "Locale install dir (relative to prefix)")
+if(MSGFMT_EXECUTABLE)
+	file(GLOB PO_FILES ${CMAKE_CURRENT_LIST_DIR}/po/*.po)
+	set(MO_FILES)
+	foreach(PO ${PO_FILES})
+		get_filename_component(Locale ${PO} NAME_WE)
+		set(MO ${CMAKE_CURRENT_BINARY_DIR}/po/${Locale}/LC_MESSAGES/${GETTEXT_PACKAGE}.mo)
+		add_custom_command(OUTPUT ${MO}
+			COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/po/${Locale}/LC_MESSAGES
+			COMMAND ${MSGFMT_EXECUTABLE} -o ${MO} ${PO}
+			DEPENDS ${PO}
+			COMMENT "Compiling ${Locale} translation"
+			VERBATIM)
+		list(APPEND MO_FILES ${MO})
+		# The locale subdirectory must be part of the install path: gettext
+		# searches <dir>/<locale>/LC_MESSAGES/<domain>.mo, so the .mo for
+		# French must land at share/locale/fr/LC_MESSAGES/dasher-gtk.mo.
+		install(FILES ${MO}
+			DESTINATION ${CMAKE_INSTALL_LOCALEDIR}/${Locale}/LC_MESSAGES)
+	endforeach()
+	add_custom_target(translations ALL DEPENDS ${MO_FILES})
+else()
+	message(STATUS "gettext msgfmt not found — UI chrome will be English only")
+endif()
 if(X11_FOUND)
     set(DASHER_X11_LIBS X11::X11)
     set(DASHER_X11_DEFS -DDASHER_HAVE_X11)
@@ -185,6 +219,10 @@ else()
 endif()
 message(STATUS "Dasher-GTK version: ${DASHER_GTK_VERSION}")
 target_compile_definitions(Dasher PRIVATE DASHER_GTK_VERSION="${DASHER_GTK_VERSION}")
+if(MSGFMT_EXECUTABLE)
+	target_compile_definitions(Dasher PRIVATE ENABLE_NLS GETTEXT_PACKAGE="${GETTEXT_PACKAGE}" LOCALEDIR="${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LOCALEDIR}")
+	add_dependencies(Dasher translations)
+endif()
 
 # Install as lowercase 'dasher' on Linux for desktop integration
 if(UNIX AND NOT APPLE)

@@ -131,6 +131,42 @@ void DasherBridge::set_language_model_id(int model_id) {
     if (m_ctx) dasher_set_language_model_id(m_ctx, model_id);
 }
 
+int DasherBridge::enter_game_mode() {
+    if (!m_ctx) return -1;
+    return dasher_enter_game_mode(m_ctx);
+}
+
+void DasherBridge::leave_game_mode() {
+    if (m_ctx) dasher_leave_game_mode(m_ctx);
+}
+
+bool DasherBridge::game_mode_active() const {
+    if (!m_ctx) return false;
+    return dasher_game_mode_active(m_ctx) != 0;
+}
+
+std::string DasherBridge::game_target_text() const {
+    if (!m_ctx) return "";
+    const char* text = dasher_game_get_target_text(m_ctx);
+    return text ? text : "";
+}
+
+int DasherBridge::game_correct_count() const {
+    if (!m_ctx) return 0;
+    return dasher_game_get_correct_count(m_ctx);
+}
+
+int DasherBridge::game_target_length() const {
+    if (!m_ctx) return 0;
+    return dasher_game_get_target_length(m_ctx);
+}
+
+std::string DasherBridge::game_wrong_text() const {
+    if (!m_ctx) return "";
+    const char* text = dasher_game_get_wrong_text(m_ctx);
+    return text ? text : "";
+}
+
 int DasherBridge::get_speed_percent() const {
     if (!m_ctx) return 100;
     return dasher_get_speed_percent(m_ctx);

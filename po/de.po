@@ -1,0 +1,200 @@
+# de translation for dasher-gtk.
+# Copyright (C) 2026 The Dasher Project
+# This file is distributed under the same license as the dasher-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Dasher v6"
+msgstr "Dasher v6"
+
+msgid "Right side"
+msgstr "Rechte Seite"
+
+msgid "Left side"
+msgstr "Linke Seite"
+
+msgid "Bottom"
+msgstr "Unten"
+
+msgid "Top"
+msgstr "Spitze"
+
+msgid "_Keyboard"
+msgstr "Tastatur"
+
+msgid "Pane position and direct-entry mode"
+msgstr "Scheibenposition und Direkteingangsmodus"
+
+msgid "Open Text File"
+msgstr "Textdatei öffnen"
+
+msgid "Text files"
+msgstr "Textdateien"
+
+msgid "Failed to open: "
+msgstr "Öffnen fehlgeschlagen"
+
+msgid "Save Text File"
+msgstr "Speicher als Text Datei"
+
+msgid "Saved: "
+msgstr "Gespeichert:"
+
+msgid "Failed to save: "
+msgstr "Speichern fehlgeschlagen."
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "Klicken Sie hier, um den Tastaturmodus einzurichten (benötigt ydotool)"
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Exit keyboard mode"
+msgstr "Tastaturmodus beenden"
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "Tastaturmodus gestoppt: ydotool konnte keinen Text injizieren. Ist der ydotoold"
+
+msgid "Keyboard"
+msgstr "Tastatur"
+
+msgid "New"
+msgstr "Neu"
+
+msgid "Open"
+msgstr "auf"
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Play"
+msgstr "Spielen"
+
+msgid "Prefs"
+msgstr "Prefs"
+
+msgid "Copy"
+msgstr "Ausfertigung"
+
+msgid "Copy all"
+msgstr "Alles kopieren"
+
+msgid "Paste"
+msgstr "Paste"
+
+msgid "Read"
+msgstr "Ablesen"
+
+msgid "Speed"
+msgstr "Geschwindigkeit"
+
+msgid "Learning"
+msgstr "Lernen"
+
+msgid "Speech"
+msgstr "Rede"
+
+msgid "Dasher Preferences"
+msgstr "Dasher-Einstellungen"
+
+msgid "<big><b>Dasher v6</b></big>\\n"
+msgstr "<big><b>Dasher v6</b></big>\\"
+
+msgid "GTK Edition"
+msgstr "GTK Edition"
+
+msgid "About"
+msgstr "Über"
+
+msgid "Customization"
+msgstr "Anpassung"
+
+msgid "Input"
+msgstr "Eingang"
+
+msgid "Language"
+msgstr "Sprache"
+
+msgid "Output"
+msgstr "Leistung"
+
+msgid "Game Mode"
+msgstr "Spielmodus"
+
+msgid "Dwell to click"
+msgstr "Verweilen zum Klicken"
+
+msgid "Typing rate"
+msgstr "Tippgeschwindigkeit"
+
+msgid "Reset"
+msgstr "Zurücksetzen"
+
+msgid "Keyboard mode opacity"
+msgstr "Deckkraft im Tastaturmodus"
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>Spracheinstellungen</b>"
+
+msgid "<b>Language / Locale</b>"
+msgstr "Sprache lokal"
+
+msgid "Locale"
+msgstr "Locale (auch: Gebietsschema)"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>Datenschutz</b>"
+
+msgid "Share anonymous analytics and crash reports"
+msgstr "Anonyme Analysen und Absturzberichte teilen"
+
+msgid "Reset analytics ID"
+msgstr "Auswertungen zurücksetzen"
+
+msgid "Reset engine settings to defaults"
+msgstr "Motoreinstellungen auf Standardeinstellungen zurücksetzen"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "Alle Motoreinstellungen auf ihre eingebauten Standardeinstellungen zurücksetzen?"
+
+msgid "Dasher "
+msgstr "Dasher"
+
+msgid "Privacy"
+msgstr "Privatsphäre"
+
+msgid "No settings available for this section."
+msgstr "Für diesen Abschnitt sind keine Einstellungen verfügbar."
+
+msgid "Enable Keyboard Mode"
+msgstr "Tastaturmodus aktivieren"
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>Der Tastaturmodus ist in diesem Build nicht verfügbar</b>"
+
+msgid "Close"
+msgstr "Schließen"
+
+msgid "<b>Install ydotool to use keyboard mode</b>"
+msgstr "<b>Installieren Sie ydotool, um den Tastaturmodus zu verwenden</b>"
+
+msgid "isn't installed. Run these commands, then press Retry:"
+msgstr "ist nicht installiert. Führen Sie diese Befehle aus und drücken Sie dann Wiederholen:"
+
+msgid "Copy commands"
+msgstr "Befehle kopieren"
+
+msgid "Copied to clipboard."
+msgstr "In die Zwischenablage kopiert."
+
+msgid "Retry"
+msgstr "Erneut versuchen"
+
+msgid "ydotool found. Keyboard mode is ready."
+msgstr "ydotool gefunden. Der Tastaturmodus ist bereit."

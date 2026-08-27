@@ -1,0 +1,200 @@
+# ur translation for dasher-gtk.
+# Copyright (C) 2026 The Dasher Project
+# This file is distributed under the same license as the dasher-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Language: ur\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Dasher v6"
+msgstr "ڈیشر v6"
+
+msgid "Right side"
+msgstr "دائیں طرف"
+
+msgid "Left side"
+msgstr "بائیں طرف"
+
+msgid "Bottom"
+msgstr "نیچے"
+
+msgid "Top"
+msgstr "اوپر"
+
+msgid "_Keyboard"
+msgstr "_کی بورڈ"
+
+msgid "Pane position and direct-entry mode"
+msgstr "پین کی پوزیشن اور ڈائریکٹ انٹری موڈ"
+
+msgid "Open Text File"
+msgstr "ٹیکسٹ فائل کھولیں۔"
+
+msgid "Text files"
+msgstr "ٹیکسٹ فائلیں"
+
+msgid "Failed to open: "
+msgstr "کھولنے میں ناکام:"
+
+msgid "Save Text File"
+msgstr "ٹیکسٹ فائل کو محفوظ کریں۔"
+
+msgid "Saved: "
+msgstr "محفوظ کیا گیا:"
+
+msgid "Failed to save: "
+msgstr "محفوظ کرنے میں ناکام:"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "کی بورڈ وضع ترتیب دینے کے لیے کلک کریں (ydotool کی ضرورت ہے)"
+
+msgid "Settings"
+msgstr "ترتیبات"
+
+msgid "Exit keyboard mode"
+msgstr "کی بورڈ وضع سے باہر نکلیں۔"
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "کی بورڈ موڈ رک گیا: ydotool ٹیکسٹ انجیکشن نہیں کر سکا۔ ydotoold ہے"
+
+msgid "Keyboard"
+msgstr "کی بورڈ"
+
+msgid "New"
+msgstr "نیا"
+
+msgid "Open"
+msgstr "کھولیں۔"
+
+msgid "Save"
+msgstr "محفوظ کریں۔"
+
+msgid "Play"
+msgstr "کھیلیں"
+
+msgid "Prefs"
+msgstr "Prefs"
+
+msgid "Copy"
+msgstr "کاپی"
+
+msgid "Copy all"
+msgstr "سب کاپی کریں۔"
+
+msgid "Paste"
+msgstr "چسپاں کریں۔"
+
+msgid "Read"
+msgstr "پڑھیں"
+
+msgid "Speed"
+msgstr "رفتار"
+
+msgid "Learning"
+msgstr "سیکھنا"
+
+msgid "Speech"
+msgstr "تقریر"
+
+msgid "Dasher Preferences"
+msgstr "ڈیشر کی ترجیحات"
+
+msgid "<big><b>Dasher v6</b></big>\\n"
+msgstr "<big><b>Dasher v6</b></big>\\"
+
+msgid "GTK Edition"
+msgstr "جی ٹی کے ایڈیشن"
+
+msgid "About"
+msgstr "کے بارے میں"
+
+msgid "Customization"
+msgstr "حسب ضرورت"
+
+msgid "Input"
+msgstr "ان پٹ"
+
+msgid "Language"
+msgstr "زبان"
+
+msgid "Output"
+msgstr "آؤٹ پٹ"
+
+msgid "Game Mode"
+msgstr "گیم موڈ"
+
+msgid "Dwell to click"
+msgstr "کلک کرنے کے لئے رہنا"
+
+msgid "Typing rate"
+msgstr "ٹائپنگ کی شرح"
+
+msgid "Reset"
+msgstr "دوبارہ ترتیب دیں۔"
+
+msgid "Keyboard mode opacity"
+msgstr "کی بورڈ موڈ کی دھندلاپن"
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>تقریر کی ترتیبات</b>"
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>زبان / لوکیل</b>"
+
+msgid "Locale"
+msgstr "لوکیل"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>رازداری</b>"
+
+msgid "Share anonymous analytics and crash reports"
+msgstr "گمنام تجزیات اور کریش رپورٹس کا اشتراک کریں۔"
+
+msgid "Reset analytics ID"
+msgstr "تجزیاتی ID کو دوبارہ ترتیب دیں۔"
+
+msgid "Reset engine settings to defaults"
+msgstr "انجن کی ترتیبات کو ڈیفالٹس پر دوبارہ ترتیب دیں۔"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "انجن کی تمام ترتیبات کو ان کے پہلے سے طے شدہ ڈیفالٹس پر ری سیٹ کریں؟"
+
+msgid "Dasher "
+msgstr "ڈیشر"
+
+msgid "Privacy"
+msgstr "رازداری"
+
+msgid "No settings available for this section."
+msgstr "اس سیکشن کے لیے کوئی ترتیبات دستیاب نہیں ہیں۔"
+
+msgid "Enable Keyboard Mode"
+msgstr "کی بورڈ وضع کو فعال کریں۔"
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>اس تعمیر میں کی بورڈ وضع دستیاب نہیں ہے</b>"
+
+msgid "Close"
+msgstr "بند"
+
+msgid "<b>Install ydotool to use keyboard mode</b>"
+msgstr "<b>کی بورڈ موڈ استعمال کرنے کے لیے ydotool انسٹال کریں</b>"
+
+msgid "isn't installed. Run these commands, then press Retry:"
+msgstr "انسٹال نہیں ہے۔ ان کمانڈز کو چلائیں، پھر دوبارہ کوشش کریں دبائیں:"
+
+msgid "Copy commands"
+msgstr "کمانڈز کاپی کریں۔"
+
+msgid "Copied to clipboard."
+msgstr "کلپ بورڈ پر کاپی ہو گیا۔"
+
+msgid "Retry"
+msgstr "دوبارہ کوشش کریں۔"
+
+msgid "ydotool found. Keyboard mode is ready."
+msgstr "ydotool ملا۔ کی بورڈ وضع تیار ہے۔"

@@ -1,0 +1,13 @@
+# List of source files containing translatable strings (RFC 0003).
+# Used by xgettext to regenerate dasher-gtk.pot:
+#   xgettext --files-from=POTFILES.in --directory=.. --output=dasher-gtk.pot \
+#     --keyword=_ --keyword=C_:1c,2 --from-code=UTF-8 --add-comments=TRANSLATORS:
+src/MainWindow.cpp
+src/MainWindow.h
+src/Preferences/PreferencesWindow.cpp
+src/Preferences/SettingsSection.h
+src/UIComponents/ImageButton.h
+src/UIComponents/ImageToggleButton.h
+src/UIComponents/KeyboardSetupDialog.h
+src/UIComponents/MessageOverlay.h
+src/main.cpp

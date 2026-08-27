@@ -1,4 +1,9 @@
 #include "PreferencesWindow.h"
+#include "i18n.h"
+#include <cstdlib>
+#ifdef ENABLE_NLS
+#include <locale.h>
+#endif
 #include "Analytics/AnalyticsClient.h"
 #include "Output/TtsService.h"
 #include "Input/DwellClickHandler.h"
@@ -61,7 +66,7 @@ static std::string prettify_key(const std::string& key) {
 PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge, DwellClickHandler* dwell_handler)
     : m_bridge(bridge), m_dwell_handler(dwell_handler) {
     set_child(m_layout);
-    set_title("Dasher Preferences");
+    set_title(_("Dasher Preferences"));
     set_default_size(600, 500);
     m_layout.append(m_sidebar);
     m_layout.append(m_stack);
@@ -76,11 +81,11 @@ PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge, Dwell
     auto* help_box = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::VERTICAL, 8);
     help_box->set_margin(12);
     auto* about = Gtk::make_managed<Gtk::Label>("");
-    about->set_markup("<big><b>Dasher v6</b></big>\nGTK Edition — CAPI Architecture");
+    about->set_markup(std::string(_("<big><b>Dasher v6</b></big>\n")) + _("GTK Edition"));
     about->set_justify(Gtk::Justification::CENTER);
     help_box->append(*about);
     scrolled_help->set_child(*help_box);
-    m_stack.add(*scrolled_help, "help", "About");
+    m_stack.add(*scrolled_help, "help", _("About"));
 
     // Record which settings tab the user opens (opt-in gated in AnalyticsClient).
     m_stack.property_visible_child().signal_changed().connect([this]() {
@@ -147,11 +152,11 @@ void PreferencesWindow::rebuild_sections() {
     };
 
     std::vector<GroupDef> groups = {
-        {"customization", "Customization", "Customization"},
-        {"input", "Input", "Input"},
-        {"language", "Language", "Language"},
-        {"output", "Output", "Output"},
-        {"gamemode", "Game Mode", "Game Mode"},
+        {"customization", _("Customization"), _("Customization")},
+        {"input", _("Input"), _("Input")},
+        {"language", _("Language"), _("Language")},
+        {"output", _("Output"), _("Output")},
+        {"gamemode", _("Game Mode"), _("Game Mode")},
     };
 
     for (auto& g : groups) {
@@ -166,7 +171,7 @@ void PreferencesWindow::rebuild_sections() {
             row->set_margin_top(4);
             row->set_margin_bottom(4);
 
-            auto* name_label = Gtk::make_managed<Gtk::Label>("Dwell to click");
+            auto* name_label = Gtk::make_managed<Gtk::Label>(_("Dwell to click"));
             name_label->set_halign(Gtk::Align::START);
             name_label->set_hexpand(true);
             row->append(*name_label);
@@ -217,7 +222,7 @@ void PreferencesWindow::rebuild_sections() {
             row->set_margin_top(4);
             row->set_margin_bottom(4);
 
-            auto* name_label = Gtk::make_managed<Gtk::Label>("Typing rate");
+            auto* name_label = Gtk::make_managed<Gtk::Label>(_("Typing rate"));
             name_label->set_halign(Gtk::Align::START);
             name_label->set_hexpand(true);
             row->append(*name_label);
@@ -227,7 +232,7 @@ void PreferencesWindow::rebuild_sections() {
             m_rate_value->set_valign(Gtk::Align::CENTER);
             row->append(*m_rate_value);
 
-            auto* reset_btn = Gtk::make_managed<Gtk::Button>("Reset");
+            auto* reset_btn = Gtk::make_managed<Gtk::Button>(_("Reset"));
             reset_btn->set_valign(Gtk::Align::CENTER);
             reset_btn->signal_clicked().connect([this]() {
                 m_bridge->reset_cps();
@@ -252,7 +257,7 @@ void PreferencesWindow::rebuild_sections() {
                 op_row->set_margin_top(4);
                 op_row->set_margin_bottom(4);
 
-                auto* op_label = Gtk::make_managed<Gtk::Label>("Keyboard mode opacity");
+                auto* op_label = Gtk::make_managed<Gtk::Label>(_("Keyboard mode opacity"));
                 op_label->set_halign(Gtk::Align::START);
                 op_label->set_hexpand(true);
                 op_row->append(*op_label);
@@ -303,7 +308,7 @@ void PreferencesWindow::add_speech_section() {
     speech_box->set_margin(12);
 
     auto* speech_title = Gtk::make_managed<Gtk::Label>("");
-    speech_title->set_markup("<b>Speech Settings</b>");
+    speech_title->set_markup(_("<b>Speech Settings</b>"));
     speech_title->set_halign(Gtk::Align::START);
     speech_box->append(*speech_title);
 
@@ -454,7 +459,7 @@ void PreferencesWindow::add_speech_section() {
     }
 
     scrolled_speech->set_child(*speech_box);
-    m_stack.add(*scrolled_speech, "speech", "Speech");
+    m_stack.add(*scrolled_speech, "speech", _("Speech"));
     // Intentionally NOT pushed to m_dynamic_pages — see the note above.
 }
 
@@ -464,7 +469,7 @@ void PreferencesWindow::add_locale_section() {
     box->set_margin(12);
 
     auto* title = Gtk::make_managed<Gtk::Label>("");
-    title->set_markup("<b>Language / Locale</b>");
+    title->set_markup(_("<b>Language / Locale</b>"));
     title->set_halign(Gtk::Align::START);
     box->append(*title);
 
@@ -487,14 +492,24 @@ void PreferencesWindow::add_locale_section() {
 
     dropdown->property_selected().signal_changed().connect([this, dropdown, locales]() {
         guint idx = dropdown->get_selected();
-        if (idx < locales.size()) {
-            m_bridge->set_locale(locales[idx].code);
-            rebuild_sections();
-        }
+        if (idx >= locales.size()) return;
+        m_bridge->set_locale(locales[idx].code);
+#ifdef ENABLE_NLS
+        // RFC 0003 "two layers, one locale": switching the engine's locale
+        // also switches the gettext LC_MESSAGES category so the chrome
+        // follows. A full UI refresh (rebuild) picks up the new strings.
+#ifdef _WIN32
+        _putenv_s("LANGUAGE", locales[idx].code.c_str());
+#else
+        setenv("LANGUAGE", locales[idx].code.c_str(), 1);
+#endif
+        setlocale(LC_ALL, locales[idx].code.c_str());
+#endif
+        rebuild_sections();
     });
 
     scrolled->set_child(*box);
-    m_stack.add(*scrolled, "locale", "Locale");
+    m_stack.add(*scrolled, "locale", _("Locale"));
 }
 
 void PreferencesWindow::add_privacy_section() {
@@ -503,7 +518,7 @@ void PreferencesWindow::add_privacy_section() {
     box->set_margin(12);
 
     auto* title = Gtk::make_managed<Gtk::Label>("");
-    title->set_markup("<b>Privacy</b>");
+    title->set_markup(_("<b>Privacy</b>"));
     title->set_halign(Gtk::Align::START);
     box->append(*title);
 
@@ -515,11 +530,11 @@ void PreferencesWindow::add_privacy_section() {
     blurb->set_xalign(0.0f);
     box->append(*blurb);
 
-    auto* opt_in = Gtk::make_managed<Gtk::CheckButton>("Share anonymous analytics and crash reports");
+    auto* opt_in = Gtk::make_managed<Gtk::CheckButton>(_("Share anonymous analytics and crash reports"));
     opt_in->set_active(m_analytics.opted_in());
     box->append(*opt_in);
 
-    auto* reset_btn = Gtk::make_managed<Gtk::Button>("Reset analytics ID");
+    auto* reset_btn = Gtk::make_managed<Gtk::Button>(_("Reset analytics ID"));
     reset_btn->set_halign(Gtk::Align::START);
     reset_btn->set_sensitive(m_analytics.opted_in());
     box->append(*reset_btn);
@@ -550,12 +565,12 @@ void PreferencesWindow::add_privacy_section() {
     // canvas font). Irreversible + persists immediately, so confirm first —
     // dwell-to-click makes accidental activation a real risk for our users
     // (review feedback on #41).
-    auto* settings_reset_btn = Gtk::make_managed<Gtk::Button>("Reset engine settings to defaults");
+    auto* settings_reset_btn = Gtk::make_managed<Gtk::Button>(_("Reset engine settings to defaults"));
     settings_reset_btn->set_halign(Gtk::Align::START);
     box->append(*settings_reset_btn);
 
     settings_reset_btn->signal_clicked().connect([this]() {
-        auto dialog = Gtk::AlertDialog::create("Reset all engine settings to their built-in defaults?");
+        auto dialog = Gtk::AlertDialog::create(_("Reset all engine settings to their built-in defaults?"));
         dialog->set_detail("Speed, alphabet, language model, colours and input options return to "
                            "their defaults. This takes effect immediately and cannot be undone. "
                            "Your analytics choice and accessibility options on this screen are "
@@ -585,12 +600,12 @@ void PreferencesWindow::add_privacy_section() {
 #ifndef DASHER_GTK_VERSION
 #define DASHER_GTK_VERSION "0.0.0-dev"
 #endif
-    auto* version_label = Gtk::make_managed<Gtk::Label>(std::string("Dasher ") + DASHER_GTK_VERSION);
+    auto* version_label = Gtk::make_managed<Gtk::Label>(std::string(_("Dasher ")) + DASHER_GTK_VERSION);
     version_label->set_halign(Gtk::Align::START);
     version_label->set_margin_top(12);
     version_label->add_css_class("dim-label");
     box->append(*version_label);
 
     scrolled->set_child(*box);
-    m_stack.add(*scrolled, "privacy", "Privacy");
+    m_stack.add(*scrolled, "privacy", _("Privacy"));
 }

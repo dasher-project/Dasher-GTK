@@ -1,0 +1,200 @@
+# zu translation for dasher-gtk.
+# Copyright (C) 2026 The Dasher Project
+# This file is distributed under the same license as the dasher-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Language: zu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Dasher v6"
+msgstr "I-Dasher v6"
+
+msgid "Right side"
+msgstr "Uhlangothi lwesokudla"
+
+msgid "Left side"
+msgstr "Uhlangothi lwesobunxele"
+
+msgid "Bottom"
+msgstr "Ngaphansi"
+
+msgid "Top"
+msgstr "Phezulu"
+
+msgid "_Keyboard"
+msgstr "_Ikhibhodi"
+
+msgid "Pane position and direct-entry mode"
+msgstr "Indawo yephaneli kanye nemodi yokungena ngqo"
+
+msgid "Open Text File"
+msgstr "Vula Ifayela Lombhalo"
+
+msgid "Text files"
+msgstr "Amafayela ombhalo"
+
+msgid "Failed to open: "
+msgstr "Yehlulekile ukuvula:"
+
+msgid "Save Text File"
+msgstr "Londoloza Ifayela Lombhalo"
+
+msgid "Saved: "
+msgstr "Kulondoloziwe:"
+
+msgid "Failed to save: "
+msgstr "Yehlulekile ukulondoloza:"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "Chofoza ukuze usethe imodi yekhibhodi (idinga i-ydotool)"
+
+msgid "Settings"
+msgstr "Izilungiselelo"
+
+msgid "Exit keyboard mode"
+msgstr "Phuma kwimodi yekhibhodi"
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "Imodi yekhibhodi imile: i-ydotool ayikwazanga ukufaka umbhalo. Ingabe i-ydotoold"
+
+msgid "Keyboard"
+msgstr "Ikhibhodi"
+
+msgid "New"
+msgstr "Okusha"
+
+msgid "Open"
+msgstr "Vula"
+
+msgid "Save"
+msgstr "Londoloza"
+
+msgid "Play"
+msgstr "Dlala"
+
+msgid "Prefs"
+msgstr "Okuthandwayo"
+
+msgid "Copy"
+msgstr "Kopisha"
+
+msgid "Copy all"
+msgstr "Kopisha konke"
+
+msgid "Paste"
+msgstr "Namathisela"
+
+msgid "Read"
+msgstr "Funda"
+
+msgid "Speed"
+msgstr "Isivinini"
+
+msgid "Learning"
+msgstr "Ukufunda"
+
+msgid "Speech"
+msgstr "Inkulumo"
+
+msgid "Dasher Preferences"
+msgstr "Izintandokazi ze-Dasher"
+
+msgid "<big><b>Dasher v6</b></big>\\n"
+msgstr "<big><b>I-Dasher v6</b></big>\\"
+
+msgid "GTK Edition"
+msgstr "Uhlelo lwe-GTK"
+
+msgid "About"
+msgstr "Mayelana"
+
+msgid "Customization"
+msgstr "Ukwenza ngokwezifiso"
+
+msgid "Input"
+msgstr "Okokufaka"
+
+msgid "Language"
+msgstr "Ulimi"
+
+msgid "Output"
+msgstr "Umphumela"
+
+msgid "Game Mode"
+msgstr "Imodi Yomdlalo"
+
+msgid "Dwell to click"
+msgstr "Hlala ukuze uchofoze"
+
+msgid "Typing rate"
+msgstr "Izinga lokuthayipha"
+
+msgid "Reset"
+msgstr "Setha kabusha"
+
+msgid "Keyboard mode opacity"
+msgstr "Ukungacaci kwemodi yekhibhodi"
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>Izilungiselelo Zenkulumo</b>"
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>Ulimi / Indawo</b>"
+
+msgid "Locale"
+msgstr "Indawo"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>Ubumfihlo</b>"
+
+msgid "Share anonymous analytics and crash reports"
+msgstr "Yabelana ngokuhlaziywa okungaziwa kanye nemibiko yokuphahlazeka"
+
+msgid "Reset analytics ID"
+msgstr "Setha kabusha i-ID yokuhlaziya"
+
+msgid "Reset engine settings to defaults"
+msgstr "Setha kabusha izilungiselelo zenjini zibe okuzenzakalelayo"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "Setha kabusha zonke izilungiselelo zenjini zibe okuzenzakalelayo kwazo okwakhelwe ngaphakathi?"
+
+msgid "Dasher "
+msgstr "I-Dasher"
+
+msgid "Privacy"
+msgstr "Ubumfihlo"
+
+msgid "No settings available for this section."
+msgstr "Azikho izilungiselelo ezitholakalayo zalesi sigaba."
+
+msgid "Enable Keyboard Mode"
+msgstr "Nika amandla imodi yekhibhodi"
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>Imodi yekhibhodi ayitholakali kulesi sakhiwo</b>"
+
+msgid "Close"
+msgstr "Vala"
+
+msgid "<b>Install ydotool to use keyboard mode</b>"
+msgstr "<b>Faka i-ydotool ukuze usebenzise imodi yekhibhodi</b>"
+
+msgid "isn't installed. Run these commands, then press Retry:"
+msgstr "ayifakiwe. Sebenzisa le miyalo, bese ucindezela u-Retry:"
+
+msgid "Copy commands"
+msgstr "Kopisha imiyalo"
+
+msgid "Copied to clipboard."
+msgstr "Kukopishwe ebhodini lokunamathisela."
+
+msgid "Retry"
+msgstr "Zama futhi"
+
+msgid "ydotool found. Keyboard mode is ready."
+msgstr "i-ydotool itholakele. Imodi yekhibhodi isilungile."

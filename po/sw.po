@@ -1,0 +1,200 @@
+# sw translation for dasher-gtk.
+# Copyright (C) 2026 The Dasher Project
+# This file is distributed under the same license as the dasher-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Language: sw\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Dasher v6"
+msgstr "Dasher v6"
+
+msgid "Right side"
+msgstr "Upande wa kulia"
+
+msgid "Left side"
+msgstr "Upande wa kushoto"
+
+msgid "Bottom"
+msgstr "Chini"
+
+msgid "Top"
+msgstr "Juu"
+
+msgid "_Keyboard"
+msgstr "Kibodi _"
+
+msgid "Pane position and direct-entry mode"
+msgstr "Nafasi ya kidirisha na hali ya kuingia moja kwa moja"
+
+msgid "Open Text File"
+msgstr "Fungua Faili ya Maandishi"
+
+msgid "Text files"
+msgstr "Faili za maandishi"
+
+msgid "Failed to open: "
+msgstr "Imeshindwa kufungua:"
+
+msgid "Save Text File"
+msgstr "Hifadhi Faili ya Maandishi"
+
+msgid "Saved: "
+msgstr "Imehifadhiwa:"
+
+msgid "Failed to save: "
+msgstr "Imeshindwa kuhifadhi:"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "Bofya ili kuweka hali ya kibodi (inahitaji ydotool)"
+
+msgid "Settings"
+msgstr "Mipangilio"
+
+msgid "Exit keyboard mode"
+msgstr "Toka kwenye hali ya kibodi"
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "Hali ya kibodi imesimama: ydotool haikuweza kuingiza maandishi. Je, ydotoold ni"
+
+msgid "Keyboard"
+msgstr "Kibodi"
+
+msgid "New"
+msgstr "Mpya"
+
+msgid "Open"
+msgstr "Fungua"
+
+msgid "Save"
+msgstr "Hifadhi"
+
+msgid "Play"
+msgstr "Cheza"
+
+msgid "Prefs"
+msgstr "Mapendeleo"
+
+msgid "Copy"
+msgstr "Nakili"
+
+msgid "Copy all"
+msgstr "Nakili zote"
+
+msgid "Paste"
+msgstr "Bandika"
+
+msgid "Read"
+msgstr "Soma"
+
+msgid "Speed"
+msgstr "Kasi"
+
+msgid "Learning"
+msgstr "Kujifunza"
+
+msgid "Speech"
+msgstr "Hotuba"
+
+msgid "Dasher Preferences"
+msgstr "Mapendeleo ya Dasher"
+
+msgid "<big><b>Dasher v6</b></big>\\n"
+msgstr "<big><b>Desher v6</b></big>\\"
+
+msgid "GTK Edition"
+msgstr "Toleo la GTK"
+
+msgid "About"
+msgstr "Kuhusu"
+
+msgid "Customization"
+msgstr "Ubinafsishaji"
+
+msgid "Input"
+msgstr "Ingizo"
+
+msgid "Language"
+msgstr "Lugha"
+
+msgid "Output"
+msgstr "Matokeo"
+
+msgid "Game Mode"
+msgstr "Hali ya Mchezo"
+
+msgid "Dwell to click"
+msgstr "Kaa ili kubofya"
+
+msgid "Typing rate"
+msgstr "Kiwango cha kuandika"
+
+msgid "Reset"
+msgstr "Weka upya"
+
+msgid "Keyboard mode opacity"
+msgstr "Hali ya kufifia ya kibodi"
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>Mipangilio ya Hotuba</b>"
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>Lugha / Eneo</b>"
+
+msgid "Locale"
+msgstr "Eneo"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>Faragha</b>"
+
+msgid "Share anonymous analytics and crash reports"
+msgstr "Shiriki uchanganuzi usiojulikana na ripoti za kuacha kufanya kazi"
+
+msgid "Reset analytics ID"
+msgstr "Weka upya kitambulisho cha uchanganuzi"
+
+msgid "Reset engine settings to defaults"
+msgstr "Weka upya mipangilio ya injini hadi chaguo-msingi"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "Ungependa kuweka upya mipangilio yote ya injini hadi kwenye chaguo-msingi zake zilizojengewa ndani?"
+
+msgid "Dasher "
+msgstr "Kiashiria"
+
+msgid "Privacy"
+msgstr "Faragha"
+
+msgid "No settings available for this section."
+msgstr "Hakuna mipangilio inayopatikana kwa sehemu hii."
+
+msgid "Enable Keyboard Mode"
+msgstr "Washa Hali ya Kibodi"
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>Hali ya kibodi haipatikani katika muundo huu</b>"
+
+msgid "Close"
+msgstr "Funga"
+
+msgid "<b>Install ydotool to use keyboard mode</b>"
+msgstr "<b>Sakinisha ydotool ili kutumia hali ya kibodi</b>"
+
+msgid "isn't installed. Run these commands, then press Retry:"
+msgstr "haijasakinishwa. Endesha amri hizi, kisha bonyeza Jaribu Tena:"
+
+msgid "Copy commands"
+msgstr "Nakili amri"
+
+msgid "Copied to clipboard."
+msgstr "Imenakiliwa kwenye ubao wa kunakili."
+
+msgid "Retry"
+msgstr "Jaribu tena"
+
+msgid "ydotool found. Keyboard mode is ready."
+msgstr "ydotool imepatikana. Hali ya kibodi iko tayari."

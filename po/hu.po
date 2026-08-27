@@ -1,0 +1,200 @@
+# hu translation for dasher-gtk.
+# Copyright (C) 2026 The Dasher Project
+# This file is distributed under the same license as the dasher-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Dasher v6"
+msgstr "Dasher v6"
+
+msgid "Right side"
+msgstr "Jobb oldal"
+
+msgid "Left side"
+msgstr "Bal oldal"
+
+msgid "Bottom"
+msgstr "Alsó"
+
+msgid "Top"
+msgstr "Felső"
+
+msgid "_Keyboard"
+msgstr "Billentyűzet"
+
+msgid "Pane position and direct-entry mode"
+msgstr "Az ablaktábla pozíciója és közvetlen belépési üzemmódja"
+
+msgid "Open Text File"
+msgstr "Szövegfájl megnyitása"
+
+msgid "Text files"
+msgstr "Szövegfájlok"
+
+msgid "Failed to open: "
+msgstr "Nem nyílt meg"
+
+msgid "Save Text File"
+msgstr "Mentés szöveges fájlba"
+
+msgid "Saved: "
+msgstr "Elmentve:"
+
+msgid "Failed to save: "
+msgstr "Sikertelen mentés:"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "Kattintson a billentyűzet mód beállításához (ydotool szükséges)"
+
+msgid "Settings"
+msgstr "Beállítások"
+
+msgid "Exit keyboard mode"
+msgstr "Billentyűzetes mód"
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "A billentyűzet mód leállt: az ydotool nem tudott szöveget befecskendezni. Az ydotoold"
+
+msgid "Keyboard"
+msgstr "Billentyűzet"
+
+msgid "New"
+msgstr "Új"
+
+msgid "Open"
+msgstr "Nyitva"
+
+msgid "Save"
+msgstr "Mentés"
+
+msgid "Play"
+msgstr "Játék"
+
+msgid "Prefs"
+msgstr "Prefs"
+
+msgid "Copy"
+msgstr "Másolja"
+
+msgid "Copy all"
+msgstr "Mindet másolja"
+
+msgid "Paste"
+msgstr "Paszta"
+
+msgid "Read"
+msgstr "Elolvas"
+
+msgid "Speed"
+msgstr "Sebesség"
+
+msgid "Learning"
+msgstr "Tanulás"
+
+msgid "Speech"
+msgstr "Beszéd"
+
+msgid "Dasher Preferences"
+msgstr "Dasher beállításai"
+
+msgid "<big><b>Dasher v6</b></big>\\n"
+msgstr "<big><b>Dasher v6</b></big>\\"
+
+msgid "GTK Edition"
+msgstr "GTK Edition"
+
+msgid "About"
+msgstr "Névjegy"
+
+msgid "Customization"
+msgstr "Testreszabás"
+
+msgid "Input"
+msgstr "Bemenet"
+
+msgid "Language"
+msgstr "Nyelv"
+
+msgid "Output"
+msgstr "Output"
+
+msgid "Game Mode"
+msgstr "Játék üzemmód"
+
+msgid "Dwell to click"
+msgstr "Dwell to click"
+
+msgid "Typing rate"
+msgstr "Gépelési sebesség"
+
+msgid "Reset"
+msgstr "Visszaállítás"
+
+msgid "Keyboard mode opacity"
+msgstr "Billentyűzet mód átlátszósága"
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>Beszédbeállítások</b>"
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>Nyelv /Terület</b>"
+
+msgid "Locale"
+msgstr "Helyi"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>Adatvédelem</b>"
+
+msgid "Share anonymous analytics and crash reports"
+msgstr "Anonim elemzések és hibajelentések megosztása"
+
+msgid "Reset analytics ID"
+msgstr "Elemzési azonosító visszaállítása"
+
+msgid "Reset engine settings to defaults"
+msgstr "Motorbeállítások alapértelmezéseinek visszaállítása"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "Visszaállítja az összes motorbeállítást a beépített alapértékekre?"
+
+msgid "Dasher "
+msgstr "Dasher"
+
+msgid "Privacy"
+msgstr "Magánélet"
+
+msgid "No settings available for this section."
+msgstr "Ehhez a szakaszhoz nem érhetők el beállítások."
+
+msgid "Enable Keyboard Mode"
+msgstr "A billentyűzet használata"
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>A billentyűzet mód nem érhető el ebben az összeállításban</b>"
+
+msgid "Close"
+msgstr "Bezárás"
+
+msgid "<b>Install ydotool to use keyboard mode</b>"
+msgstr "<b>Telepítse az ydotool eszközt a billentyűzet mód használatához</b>"
+
+msgid "isn't installed. Run these commands, then press Retry:"
+msgstr "nincs telepítve. Futtassa ezeket a parancsokat, majd nyomja meg az Újra gombot:"
+
+msgid "Copy commands"
+msgstr "Parancsok másolása"
+
+msgid "Copied to clipboard."
+msgstr "Vágólapra másolva"
+
+msgid "Retry"
+msgstr "Újrapróbálkozás"
+
+msgid "ydotool found. Keyboard mode is ready."
+msgstr "ydotool található. A billentyűzet mód készen áll."

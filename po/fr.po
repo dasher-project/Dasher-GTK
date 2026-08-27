@@ -1,0 +1,249 @@
+# French translation for dasher-gtk.
+# Copyright (C) 2026 The Dasher Project
+# This file is distributed under the same license as the dasher-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Report-Msgid-Bugs-To: willwade@gmail.com\n"
+"PO-Revision-Date: 2026-08-27 10:00+0000\n"
+"Last-Translator: Dasher Project\n"
+"Language-Team: fr\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Dasher v6"
+msgstr "Dasher v6"
+
+msgid "Right side"
+msgstr "Côté droit"
+
+msgid "Left side"
+msgstr "Côté gauche"
+
+msgid "Bottom"
+msgstr "Bas"
+
+msgid "Top"
+msgstr "Haut"
+
+msgid "_Keyboard"
+msgstr "_Clavier"
+
+msgid "Pane position and direct-entry mode"
+msgstr "Position du volet et mode de saisie directe"
+
+msgid "Open Text File"
+msgstr "Ouvrir un fichier texte"
+
+msgid "Text files"
+msgstr "Fichiers texte"
+
+msgid "Failed to open: "
+msgstr "Échec de l'ouverture : "
+
+msgid "Save Text File"
+msgstr "Enregistrer le fichier texte"
+
+msgid "Saved: "
+msgstr "Enregistré : "
+
+msgid "Failed to save: "
+msgstr "Échec de l'enregistrement : "
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "Cliquez pour configurer le mode clavier (nécessite ydotool)"
+
+msgid "Keyboard mode: hide the output pane and type Dasher's text straight into "
+msgstr "Mode clavier : masquer le volet de sortie et saisir directement le texte de Dasher dans "
+
+msgid "the app you are pointing at (needs ydotool)"
+msgstr "l'application pointée (nécessite ydotool)"
+
+msgid "Settings"
+msgstr "Paramètres"
+
+msgid "Exit keyboard mode"
+msgstr "Quitter le mode clavier"
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "Mode clavier arrêté : ydotool n'a pas pu injecter le texte. Le service ydotoold "
+
+msgid "service running? See the setup help on the Keyboard button for install commands."
+msgstr "est-il en cours d'exécution ? Consultez l'aide sur le bouton Clavier pour les commandes d'installation."
+
+msgid "Keyboard"
+msgstr "Clavier"
+
+msgid "New"
+msgstr "Nouveau"
+
+msgid "Open"
+msgstr "Ouvrir"
+
+msgid "Save"
+msgstr "Enregistrer"
+
+msgid "Play"
+msgstr "Jouer"
+
+msgid "Prefs"
+msgstr "Préf."
+
+msgid "Copy"
+msgstr "Copier"
+
+msgid "Copy all"
+msgstr "Tout copier"
+
+msgid "Paste"
+msgstr "Coller"
+
+msgid "Read"
+msgstr "Lire"
+
+msgid "Speed"
+msgstr "Vitesse"
+
+msgid "Learning"
+msgstr "Apprentissage"
+
+msgid "Speech"
+msgstr "Synthèse vocale"
+
+msgid "Dasher Preferences"
+msgstr "Préférences Dasher"
+
+msgid "<big><b>Dasher v6</b></big>\n"
+msgstr "<big><b>Dasher v6</b></big>\n"
+
+msgid "GTK Edition"
+msgstr "Édition GTK"
+
+msgid "About"
+msgstr "À propos"
+
+msgid "Customization"
+msgstr "Personnalisation"
+
+msgid "Input"
+msgstr "Saisie"
+
+msgid "Language"
+msgstr "Langue"
+
+msgid "Output"
+msgstr "Sortie"
+
+msgid "Game Mode"
+msgstr "Mode jeu"
+
+msgid "Dwell to click"
+msgstr "Stationnement pour cliquer"
+
+msgid "Typing rate"
+msgstr "Vitesse de frappe"
+
+msgid "Reset"
+msgstr "Réinitialiser"
+
+msgid "Keyboard mode opacity"
+msgstr "Opacité du mode clavier"
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>Paramètres de synthèse vocale</b>"
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>Langue / Paramètres régionaux</b>"
+
+msgid "Locale"
+msgstr "Langue"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>Confidentialité</b>"
+
+msgid "Share anonymous analytics and crash reports"
+msgstr "Partager des statistiques anonymes et des rapports de plantage"
+
+msgid "Reset analytics ID"
+msgstr "Réinitialiser l'identifiant analytique"
+
+msgid "Reset engine settings to defaults"
+msgstr "Réinitialiser les paramètres du moteur"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "Réinitialiser tous les paramètres du moteur à leurs valeurs par défaut ?"
+
+msgid "Dasher "
+msgstr "Dasher "
+
+msgid "Privacy"
+msgstr "Confidentialité"
+
+msgid "No settings available for this section."
+msgstr "Aucun paramètre disponible pour cette section."
+
+msgid "Enable Keyboard Mode"
+msgstr "Activer le mode clavier"
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>Le mode clavier n'est pas disponible dans cette version</b>"
+
+msgid "Typing into other applications needs access to /dev/uinput, which a sandboxed "
+msgstr "La saisie dans d'autres applications nécessite l'accès à /dev/uinput, ce qu'un "
+
+msgid "Flatpak or AppImage build can't provide.\n\n"
+msgstr "Flatpak ou AppImage ne peut pas fournir.\n\n"
+
+msgid "Install Dasher via your package manager or build from source to use keyboard mode."
+msgstr "Installez Dasher via votre gestionnaire de paquets ou compilez depuis les sources pour utiliser le mode clavier."
+
+msgid "Close"
+msgstr "Fermer"
+
+msgid "<b>Install ydotool to use keyboard mode</b>"
+msgstr "<b>Installez ydotool pour utiliser le mode clavier</b>"
+
+msgid "Keyboard mode types Dasher's output into other applications using ydotool, which "
+msgstr "Le mode clavier saisit la sortie de Dasher dans d'autres applications via ydotool, qui "
+
+msgid "isn't installed. Run these commands, then press Retry:"
+msgstr "n'est pas installé. Exécutez ces commandes, puis appuyez sur Réessayer :"
+
+msgid "Copy commands"
+msgstr "Copier les commandes"
+
+msgid "Copied to clipboard."
+msgstr "Copié dans le presse-papiers."
+
+msgid "Retry"
+msgstr "Réessayer"
+
+msgid "ydotool found. Keyboard mode is ready."
+msgstr "ydotool trouvé. Le mode clavier est prêt."
+
+msgid "ydotool still isn't available. Make sure it's installed and the ydotool service is running."
+msgstr "ydotool n'est toujours pas disponible. Vérifiez qu'il est installé et que le service ydotool est en cours d'exécution."
+
+msgid "Help improve Dasher?"
+msgstr "Aider à améliorer Dasher ?"
+
+msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard "
+msgstr "Partager des statistiques d'utilisation anonymes et des rapports de plantage ? Aucun texte saisi, aucun "
+
+msgid "contents or personal information is ever collected. You can change this any "
+msgstr "contenu du presse-papiers ni information personnelle n'est collecté. Vous pouvez modifier ce choix à tout "
+
+msgid "time under Preferences → Privacy."
+msgstr "moment dans Préférences → Confidentialité."
+
+msgid "Not now"
+msgstr "Pas maintenant"
+
+msgid "Help improve Dasher"
+msgstr "Aider à améliorer Dasher"
+
+msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr "Aucun moteur de synthèse vocale disponible. Compilez avec la fonction TTS système ou configurez une voix cloud dans les Préférences."

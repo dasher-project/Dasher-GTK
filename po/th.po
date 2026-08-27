@@ -1,0 +1,200 @@
+# th translation for dasher-gtk.
+# Copyright (C) 2026 The Dasher Project
+# This file is distributed under the same license as the dasher-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Language: th\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Dasher v6"
+msgstr "แดชเชอร์ v6"
+
+msgid "Right side"
+msgstr "ด้านขวา"
+
+msgid "Left side"
+msgstr "ด้านซ้าย"
+
+msgid "Bottom"
+msgstr "ด้านล่าง"
+
+msgid "Top"
+msgstr "สูงสุด"
+
+msgid "_Keyboard"
+msgstr "_แป้นพิมพ์"
+
+msgid "Pane position and direct-entry mode"
+msgstr "ตำแหน่งบานหน้าต่างและโหมดการป้อนข้อมูลโดยตรง"
+
+msgid "Open Text File"
+msgstr "เปิดไฟล์ข้อความ"
+
+msgid "Text files"
+msgstr "ไฟล์ข้อความ"
+
+msgid "Failed to open: "
+msgstr "ไม่สามารถเปิดได้:"
+
+msgid "Save Text File"
+msgstr "บันทึกไฟล์ข้อความ"
+
+msgid "Saved: "
+msgstr "บันทึกแล้ว:"
+
+msgid "Failed to save: "
+msgstr "บันทึกไม่สำเร็จ:"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "คลิกเพื่อตั้งค่าโหมดแป้นพิมพ์ (ต้องใช้ ydotool)"
+
+msgid "Settings"
+msgstr "การตั้งค่า"
+
+msgid "Exit keyboard mode"
+msgstr "ออกจากโหมดแป้นพิมพ์"
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "โหมดแป้นพิมพ์หยุดทำงาน: ydotool ไม่สามารถแทรกข้อความได้ ydotoold ทำงานอยู่หรือไม่"
+
+msgid "Keyboard"
+msgstr "แป้นพิมพ์"
+
+msgid "New"
+msgstr "ใหม่"
+
+msgid "Open"
+msgstr "เปิด"
+
+msgid "Save"
+msgstr "บันทึก"
+
+msgid "Play"
+msgstr "เล่น"
+
+msgid "Prefs"
+msgstr "การตั้งค่า"
+
+msgid "Copy"
+msgstr "สำเนา"
+
+msgid "Copy all"
+msgstr "คัดลอกทั้งหมด"
+
+msgid "Paste"
+msgstr "แปะ"
+
+msgid "Read"
+msgstr "อ่าน"
+
+msgid "Speed"
+msgstr "ความเร็ว"
+
+msgid "Learning"
+msgstr "การเรียนรู้"
+
+msgid "Speech"
+msgstr "คำพูด"
+
+msgid "Dasher Preferences"
+msgstr "การตั้งค่า Dasher"
+
+msgid "<big><b>Dasher v6</b></big>\\n"
+msgstr "<big><b>แดชเชอร์ เวอร์ชัน 6</b></big>\\"
+
+msgid "GTK Edition"
+msgstr "รุ่น GTK"
+
+msgid "About"
+msgstr "เกี่ยวกับ"
+
+msgid "Customization"
+msgstr "การปรับแต่ง"
+
+msgid "Input"
+msgstr "ป้อนข้อมูล"
+
+msgid "Language"
+msgstr "ภาษา"
+
+msgid "Output"
+msgstr "เอาต์พุต"
+
+msgid "Game Mode"
+msgstr "โหมดเกม"
+
+msgid "Dwell to click"
+msgstr "เลื่อนเพื่อคลิก"
+
+msgid "Typing rate"
+msgstr "อัตราการพิมพ์"
+
+msgid "Reset"
+msgstr "รีเซ็ต"
+
+msgid "Keyboard mode opacity"
+msgstr "ความทึบแสงของโหมดแป้นพิมพ์"
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>การตั้งค่าเสียง</b>"
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>ภาษา / สถานที่ตั้ง</b>"
+
+msgid "Locale"
+msgstr "ท้องถิ่น"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>ความเป็นส่วนตัว</b>"
+
+msgid "Share anonymous analytics and crash reports"
+msgstr "แบ่งปันข้อมูลวิเคราะห์และรายงานข้อผิดพลาดแบบไม่ระบุตัวตน"
+
+msgid "Reset analytics ID"
+msgstr "รีเซ็ต ID การวิเคราะห์"
+
+msgid "Reset engine settings to defaults"
+msgstr "รีเซ็ตการตั้งค่าเครื่องยนต์เป็นค่าเริ่มต้น"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "รีเซ็ตการตั้งค่าเครื่องยนต์ทั้งหมดกลับไปเป็นค่าเริ่มต้นหรือไม่?"
+
+msgid "Dasher "
+msgstr "แดชเชอร์"
+
+msgid "Privacy"
+msgstr "ความเป็นส่วนตัว"
+
+msgid "No settings available for this section."
+msgstr "ไม่มีการตั้งค่าใดๆ สำหรับส่วนนี้"
+
+msgid "Enable Keyboard Mode"
+msgstr "เปิดใช้งานโหมดแป้นพิมพ์"
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>โหมดแป้นพิมพ์ไม่พร้อมใช้งานในเวอร์ชันนี้</b>"
+
+msgid "Close"
+msgstr "ปิด"
+
+msgid "<b>Install ydotool to use keyboard mode</b>"
+msgstr "<b>ติดตั้ง ydotool เพื่อใช้งานโหมดแป้นพิมพ์</b>"
+
+msgid "isn't installed. Run these commands, then press Retry:"
+msgstr "ยังไม่ได้ติดตั้ง เรียกใช้คำสั่งเหล่านี้ แล้วกด ลองใหม่:"
+
+msgid "Copy commands"
+msgstr "คัดลอกคำสั่ง"
+
+msgid "Copied to clipboard."
+msgstr "คัดลอกไปยังคลิปบอร์ดแล้ว"
+
+msgid "Retry"
+msgstr "ลองใหม่อีกครั้ง"
+
+msgid "ydotool found. Keyboard mode is ready."
+msgstr "พบ ydotool แล้ว โหมดแป้นพิมพ์พร้อมใช้งาน"
