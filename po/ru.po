@@ -2,154 +2,55 @@
 # Copyright (C) 2026 The Dasher Project
 # This file is distributed under the same license as the dasher-gtk package.
 #
+# GENERATED from shared-resources/ui-strings.json — do not edit directly.
+# Edit the catalogue and run Scripts/generate-from-shared.py.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Project-Id-Version: dasher-gtk\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Dasher v6"
-msgstr "Dasher v6"
+msgid "%1$.1f cps · %2$d wpm"
+msgstr ""
 
-msgid "Right side"
-msgstr "Правая сторона"
-
-msgid "Left side"
-msgstr "Левая сторона"
-
-msgid "Bottom"
-msgstr "Нижний"
-
-msgid "Top"
-msgstr "Вершина"
-
-msgid "_Keyboard"
-msgstr "_Клавиатура"
-
-msgid "Pane position and direct-entry mode"
-msgstr "Положение панели и режим прямого ввода"
-
-msgid "Open Text File"
-msgstr "Открыть текстовый файл"
-
-msgid "Text files"
-msgstr "Текстовые файлы"
-
-msgid "Failed to open: "
-msgstr "Не удалось открыть:"
-
-msgid "Save Text File"
-msgstr "Сохранить текстовый файл"
-
-msgid "Saved: "
-msgstr "Сохранено:"
-
-msgid "Failed to save: "
-msgstr "Сохранение не удалось:"
-
-msgid "Click to set up keyboard mode (needs ydotool)"
-msgstr "Нажмите, чтобы настроить режим клавиатуры (требуется ydotool)"
-
-msgid "Settings"
-msgstr "Настройки"
-
-msgid "Exit keyboard mode"
-msgstr "Выход из режима клавиатуры"
-
-msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
-msgstr "Режим клавиатуры остановлен: ydotool не удалось внедрить текст. Является ли ydotool неисправным?"
-
-msgid "Keyboard"
-msgstr "Клавиатура"
-
-msgid "New"
-msgstr "Новый"
-
-msgid "Open"
-msgstr "Открыть"
-
-msgid "Save"
-msgstr "Сохранять"
-
-msgid "Play"
-msgstr "Играть"
-
-msgid "Prefs"
-msgstr "Настройки"
-
-msgid "Copy"
-msgstr "Копия"
-
-msgid "Copy all"
-msgstr "Скопировать все"
-
-msgid "Paste"
-msgstr "Вставить"
-
-msgid "Read"
-msgstr "Читать"
-
-msgid "Speed"
-msgstr "Скорость"
-
-msgid "Learning"
-msgstr "Обучение"
-
-msgid "Speech"
-msgstr "Речь"
-
-msgid "Dasher Preferences"
-msgstr "Настройки Dasher"
-
-msgid "<big><b>Dasher v6</b></big>\\n"
-msgstr "<big><b>Dasher v6</b></big>\\"
-
-msgid "GTK Edition"
-msgstr "GTK Edition"
+msgid "A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
+msgstr "Отчет о сбое сохранен в ~/Library/Logs/DiagnosticReports/Dasher-*.ips. Если вы можете поделиться им в сообщении об ошибке на GitHub, это поможет нам исправить ошибку."
 
 msgid "About"
 msgstr "О"
 
-msgid "Customization"
-msgstr "Настройка"
+msgid "Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
+msgstr "Принимайте события наведения курсора/указания в качестве входных данных Dasher. Включите эту функцию для отслеживания взгляда или использования внешних указателей."
 
-msgid "Input"
-msgstr "Вход"
+msgid "Access"
+msgstr "Доступ"
 
-msgid "Language"
-msgstr "Язык"
+msgid "Accessibility Permission Required"
+msgstr "Требуется разрешение на доступность."
 
-msgid "Output"
-msgstr "Выход"
+msgid "Adapt Speed Automatically"
+msgstr "Автоматическая регулировка скорости"
 
-msgid "Game Mode"
-msgstr "Игровой режим"
+msgid "Advanced settings"
+msgstr "Расширенные настройки"
 
-msgid "Dwell to click"
-msgstr "Дождитесь клика"
+msgid "All Dasher settings will be restored to their default values. This cannot be undone."
+msgstr "Все настройки Dasher будут восстановлены до значений по умолчанию. Это действие необратимо."
 
-msgid "Typing rate"
-msgstr "Скорость печати"
+msgid "Alphabet"
+msgstr "Алфавит"
 
-msgid "Reset"
-msgstr "Перезагрузить"
+msgid "Help improve Dasher"
+msgstr "Помогите улучшить Daher"
 
-msgid "Keyboard mode opacity"
-msgstr "Прозрачность режима клавиатуры"
+msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
+msgstr ""
 
-msgid "<b>Speech Settings</b>"
-msgstr "<b>Настройки речи</b>"
-
-msgid "<b>Language / Locale</b>"
-msgstr "<b>Язык / Регион</b>"
-
-msgid "Locale"
-msgstr "Местоположение"
-
-msgid "<b>Privacy</b>"
-msgstr "<b>Конфиденциальность</b>"
+msgid "Not now"
+msgstr "Не сейчас"
 
 msgid "Share anonymous analytics and crash reports"
 msgstr "Делитесь анонимными аналитическими данными и отчетами о сбоях."
@@ -157,29 +58,206 @@ msgstr "Делитесь анонимными аналитическими да�
 msgid "Reset analytics ID"
 msgstr "Сбросить идентификатор аналитики"
 
-msgid "Reset engine settings to defaults"
-msgstr "Сбросить настройки двигателя до значений по умолчанию."
+msgid "Help improve Dasher?"
+msgstr ""
 
-msgid "Reset all engine settings to their built-in defaults?"
-msgstr "Сбросить все настройки двигателя до значений по умолчанию?"
+msgid "Anonymous usage analytics"
+msgstr "Анонимная аналитика использования"
+
+msgid "Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
+msgstr "Анонимная аналитика использования помогает нам понять, как используется Dasher, и устранить сбои. Никакой набранный текст, содержимое буфера обмена или личная информация никогда не собираются. Вы можете отказаться от сбора данных в любое время в разделе «Настройки» → «Конфиденциальность»."
+
+msgid "App-Level Dwell to Select"
+msgstr "Выбор на уровне приложения"
+
+msgid "Dasher"
+msgstr ""
+
+msgid "Auto"
+msgstr "Авто"
+
+msgid "Auto-Centre Target"
+msgstr "Автоматическое центрирование цели"
+
+msgid "Auto-select after fixating. Only enable if OS dwell is off."
+msgstr "Автоматический выбор после фиксации взгляда. Включается только в том случае, если функция задержки в ОС отключена."
+
+msgid "Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
+msgstr "Автоматический выбор после фиксации взгляда при масштабировании. Включается только в том случае, если параметр «Задержка» в ОС отключен."
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Check Again"
+msgstr "Проверьте еще раз."
+
+msgid "Choose..."
+msgstr "Выбирать..."
+
+msgid "Choose File..."
+msgstr "Выберите Файл..."
+
+msgid "Clear"
+msgstr "Прозрачный"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "Нажмите, чтобы настроить режим клавиатуры (требуется ydotool)"
+
+msgid "Close"
+msgstr "Закрывать"
+
+msgid "Colour Theme"
+msgstr "Цветовая тема"
+
+msgid "contents or personal information is ever collected. You can change this any "
+msgstr ""
+
+msgid "Copied to clipboard."
+msgstr "Скопировано в буфер обмена."
+
+msgid "Copy"
+msgstr "Копия"
+
+msgid "Copy all"
+msgstr "Скопировать все"
+
+msgid "Copy All"
+msgstr "Скопировать все"
+
+msgid "Copy commands"
+msgstr "Копировать команды"
+
+msgid "Current Calibration"
+msgstr "Текущая калибровка"
+
+msgid "Customization"
+msgstr "Настройка"
+
+msgid "Dark"
+msgstr "Темный"
 
 msgid "Dasher "
 msgstr "Дэшер"
 
-msgid "Privacy"
-msgstr "Конфиденциальность"
+msgid "Dasher 5 data detected on this Mac."
+msgstr "На этом Mac обнаружены данные Dasher 5."
 
-msgid "No settings available for this section."
-msgstr "Настройки для этого раздела отсутствуют."
+msgid "Dasher 5 settings imported successfully."
+msgstr "Настройки Dasher 5 успешно импортированы."
 
-msgid "Enable Keyboard Mode"
-msgstr "Включить режим клавиатуры"
+msgid "Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
+msgstr "Dasher также работает как системная клавиатура, поэтому вы можете писать в любом приложении. Включите её один раз в настройках."
 
-msgid "<b>Keyboard mode isn't available in this build</b>"
-msgstr "<b>Режим клавиатуры недоступен в этой сборке</b>"
+msgid "Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
+msgstr "Dasher собирает анонимные аналитические данные для анализа использования и устранения сбоев. Никакой набранный текст, данные из буфера обмена или личная информация никогда не собираются. Ознакомиться с открытой схемой событий можно по адресу github.com/dasher-project/Dasher-Apple."
 
-msgid "Close"
-msgstr "Закрывать"
+msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
+msgstr "Dasher собирает анонимные, конфиденциальные аналитические данные для понимания моделей использования и устранения сбоев. Никакой набранный текст, содержимое буфера обмена или личная информация никогда не собираются.\n\nВы можете изменить это в любое время в разделе «Настройки» > «Конфиденциальность»."
+
+msgid "Dasher Keyboard"
+msgstr "Клавиатура Daher"
+
+msgid "Dasher keyboard"
+msgstr "Клавиатура Daher"
+
+msgid "Dasher needs accessibility access to send text to other applications."
+msgstr "Для отправки текстовых сообщений в другие приложения Daher требует наличия специальных прав."
+
+msgid "Dasher Preferences"
+msgstr "Настройки Dasher"
+
+msgid "Dasher quit unexpectedly"
+msgstr "Дэшер неожиданно уволился."
+
+msgid "Dasher v6"
+msgstr ""
+
+msgid "<big><b>Dasher v6</b></big>\n"
+msgstr "<big><b>Dasher v6</b></big>\n"
+
+msgid "Decrease Speed"
+msgstr "Снизьте скорость"
+
+msgid "Default"
+msgstr "По умолчанию"
+
+msgid "Diagnostics"
+msgstr "Диагностика"
+
+msgid "Direct Mode"
+msgstr "Прямой режим"
+
+msgid "Done"
+msgstr "Сделанный"
+
+msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
+msgstr ""
+
+msgid "Dwell to click"
+msgstr "Дождитесь клика"
+
+msgid "Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
+msgstr "Включите Dasher в разделе «Настройки» → «Общие» → «Клавиатура» → «Клавиатуры», затем включите параметр «Разрешить полный доступ», чтобы Dasher мог говорить и учиться."
+
+msgid "Enable tilt input first to access calibration."
+msgstr "Для доступа к калибровке сначала включите ввод данных о наклоне."
+
+msgid "Export Training Text"
+msgstr "экспорт учебного текста"
+
+msgid "Eye Gaze"
+msgstr "Взгляд"
+
+msgid "Failed to open: "
+msgstr "Не удалось открыть:"
+
+msgid "Failed to save: "
+msgstr "Сохранение не удалось:"
+
+msgid "Fast"
+msgstr "Быстрый"
+
+msgid "Flatpak or AppImage build can't provide.\n\n"
+msgstr ""
+
+msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
+msgstr "Функция Full Access позволяет Dasher озвучивать написанный текст и запоминать ваши инструкции. Клавиатура по-прежнему работает для базового ввода без этой функции."
+
+msgid "Game mode"
+msgstr "Игровой режим"
+
+msgid "Game Mode"
+msgstr "Игровой режим"
+
+msgid "Game Text File"
+msgstr "Текстовый файл игры"
+
+msgid "Got it"
+msgstr "Понятно"
+
+msgid "GTK Edition"
+msgstr ""
+
+msgid "Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
+msgstr "Функция «Импорт» добавляет текст в языковую модель (дополняет существующее обучение). Функция «Экспорт» сохраняет накопленные обучающие данные для резервного копирования или переноса. Функция «Сброс» удаляет пользовательские обучающие данные — при следующем запуске модель возвращается к своим встроенным настройкам по умолчанию."
+
+msgid "Import from Dasher 5"
+msgstr "Импорт из Dasher 5"
+
+msgid "Import settings"
+msgstr "Импорт настроек"
+
+msgid "Import Training Text"
+msgstr "Импорт обучающего текста"
+
+msgid "Increase Speed"
+msgstr "Увеличьте скорость"
+
+msgid "Input"
+msgstr "Вход"
+
+msgid "Install Dasher via your package manager or build from source to use keyboard mode."
+msgstr ""
 
 msgid "<b>Install ydotool to use keyboard mode</b>"
 msgstr "<b>Установите ydotool для использования режима клавиатуры</b>"
@@ -187,14 +265,383 @@ msgstr "<b>Установите ydotool для использования реж
 msgid "isn't installed. Run these commands, then press Retry:"
 msgstr "не установлен. Выполните следующие команды, затем нажмите «Повторить»:"
 
-msgid "Copy commands"
-msgstr "Копировать команды"
+msgid "Keyboard"
+msgstr ""
 
-msgid "Copied to clipboard."
-msgstr "Скопировано в буфер обмена."
+msgid "_Keyboard"
+msgstr "_Клавиатура"
+
+msgid "Type Dasher's output straight into the app you are pointing at"
+msgstr ""
+
+msgid "Exit keyboard mode"
+msgstr "Выход из режима клавиатуры"
+
+msgid "Keyboard mode: hide the output pane and type Dasher's text straight into "
+msgstr ""
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>Режим клавиатуры недоступен в этой сборке</b>"
+
+msgid "Keyboard mode opacity"
+msgstr "Прозрачность режима клавиатуры"
+
+msgid "Keyboard mode stopped"
+msgstr ""
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "Режим клавиатуры остановлен: ydotool не удалось внедрить текст. Является ли ydotool неисправным?"
+
+msgid "Enable Keyboard Mode"
+msgstr "Включить режим клавиатуры"
+
+msgid "Keyboard mode types Dasher's output into other applications using ydotool, which "
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Language / Locale"
+msgstr ""
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>Язык / Регион</b>"
+
+msgid "Bottom"
+msgstr "Нижний"
+
+msgid "Pane position and direct-entry mode"
+msgstr "Положение панели и режим прямого ввода"
+
+msgid "Left side"
+msgstr "Левая сторона"
+
+msgid "Right side"
+msgstr "Правая сторона"
+
+msgid "Top"
+msgstr "Вершина"
+
+msgid "Learning"
+msgstr "Обучение"
+
+msgid "Leave game mode"
+msgstr "Выйти из игрового режима"
+
+msgid "Light"
+msgstr "Свет"
+
+msgid "Locale"
+msgstr "Местоположение"
+
+msgid "Migration"
+msgstr "Миграция"
+
+msgid "Move your eyes while pinching to steer"
+msgstr "Перемещайте глаза, одновременно используя жест масштабирования для управления."
+
+msgid "New"
+msgstr "Новый"
+
+msgid "New Message"
+msgstr "Новое сообщение"
+
+msgid "No Dasher 5 data found on this Mac."
+msgstr "Данные Dasher 5 на этом Mac не найдены."
+
+msgid "No settings available for this section."
+msgstr "Настройки для этого раздела отсутствуют."
+
+msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "Nothing to save"
+msgstr "Сохранить нечего"
+
+msgid "Nothing to share"
+msgstr "Нечем поделиться"
+
+msgid "OK"
+msgstr "ХОРОШО"
+
+msgid "On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
+msgstr "В visionOS для начала письма сведите пальцы и удерживайте их на холсте, для управления движением — осматривайтесь, сжимая пальцы, а для паузы отпустите. Модель ввода — «сведите пальцы и посмотрите»."
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "Open..."
+msgstr "Открыть..."
+
+msgid "Open failed"
+msgstr "Открыть не удалось"
+
+msgid "Open Keyboard Settings"
+msgstr "Откройте настройки клавиатуры"
+
+msgid "Open Settings"
+msgstr "Откройте настройки"
+
+msgid "Open System Settings"
+msgstr "Откройте системные настройки"
+
+msgid "Open Text File"
+msgstr "Открыть текстовый файл"
+
+msgid "Output"
+msgstr "Выход"
+
+msgid "Output Font Size"
+msgstr "Размер шрифта при выводе"
+
+msgid "Touch the canvas to start writing."
+msgstr "Коснитесь холста, чтобы начать писать."
+
+msgid "Paste"
+msgstr "Вставить"
+
+msgid "Pause"
+msgstr "Пауза"
+
+msgid "Pause When Looking Away"
+msgstr "Сделайте паузу, когда отводите взгляд."
+
+msgid "Pinch and hold anywhere on the canvas to start"
+msgstr "Для начала сожмите и удерживайте любую точку на холсте."
+
+msgid "Pinch and Look to Write"
+msgstr "Используйте жест «щипок» и «посмотри», чтобы писать."
+
+msgid "Game"
+msgstr ""
+
+msgid "Play"
+msgstr "Играть"
+
+msgid "Pointer Hover Input"
+msgstr "Ввод при наведении указателя"
+
+msgid "Preferences"
+msgstr ""
+
+msgid "Prefs"
+msgstr "Настройки"
+
+msgid "Privacy"
+msgstr "Конфиденциальность"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>Конфиденциальность</b>"
+
+msgid "Re-import from Dasher 5"
+msgstr "Повторный импорт из Dasher 5"
+
+msgid "Read"
+msgstr "Читать"
+
+msgid "Release the pinch to pause"
+msgstr "Отпустите щипок, чтобы поставить на паузу."
+
+msgid "Reset"
+msgstr "Перезагрузить"
+
+msgid "Reset All Settings to Defaults"
+msgstr "Сбросить все настройки до значений по умолчанию"
+
+msgid "Reset all settings to their defaults?"
+msgstr "Сбросить все настройки до значений по умолчанию?"
+
+msgid "Reset anonymous ID"
+msgstr "Сбросить анонимный идентификатор"
+
+msgid "Reset engine settings to defaults"
+msgstr "Сбросить настройки двигателя до значений по умолчанию."
+
+msgid "Reset Settings"
+msgstr "Сбросить настройки"
+
+msgid "Reset to defaults"
+msgstr "Сбросить до значений по умолчанию"
+
+msgid "Reset Training Data"
+msgstr "Сбросить обучающие данные"
+
+msgid "Reset Training Data?"
+msgstr "Сбросить обучающие данные?"
+
+msgid "Restore all Dasher settings to their default values. This cannot be undone."
+msgstr "Восстановите все настройки Dasher до значений по умолчанию. Это действие необратимо."
 
 msgid "Retry"
 msgstr "Повторить попытку"
 
+msgid "Save"
+msgstr "Сохранять"
+
+msgid "Save..."
+msgstr "Сохранять..."
+
+msgid "Save failed"
+msgstr "Сохранение не удалось"
+
+msgid "Save Text File"
+msgstr "Сохранить текстовый файл"
+
+msgid "Saved"
+msgstr "Сохранено"
+
+msgid "Saved: "
+msgstr "Сохранено:"
+
+msgid "Scan Speed"
+msgstr "Скорость сканирования"
+
+msgid "service running? See the setup help on the Keyboard button for install commands."
+msgstr ""
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Settings..."
+msgstr "Настройки..."
+
+msgid "Reset all settings to defaults"
+msgstr "Сбросить все настройки до значений по умолчанию."
+
+msgid "Settings reset"
+msgstr "Сброс настроек"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "Сбросить все настройки двигателя до значений по умолчанию?"
+
+msgid "Settings (speed, colours, control mode, language model)"
+msgstr "Настройки (скорость, цвета, режим управления, языковая модель)"
+
+msgid "Share"
+msgstr "Делиться"
+
+msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard "
+msgstr ""
+
+msgid "Show Input Debug Overlay"
+msgstr "Показать отладочное наложение ввода"
+
+msgid "Show typing rate (WPM)"
+msgstr "Показать скорость печати (слов в минуту)"
+
+msgid "Size"
+msgstr "Размер"
+
+msgid "Skipped files"
+msgstr "Пропущенные файлы"
+
+msgid "Slow"
+msgstr "Медленный"
+
+msgid "Speech"
+msgstr "Речь"
+
+msgid "Speech off"
+msgstr "Речь отключена"
+
+msgid "Speech on"
+msgstr "Речь о"
+
+msgid "Speech Settings"
+msgstr ""
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>Настройки речи</b>"
+
+msgid "Speed"
+msgstr "Скорость"
+
+msgid "Speed "
+msgstr "Скорость "
+
+msgid "Start Calibrating"
+msgstr "Начать калибровку"
+
+msgid "Start fresh"
+msgstr "Начните все заново"
+
+msgid "Stop"
+msgstr "Останавливаться"
+
+msgid "System"
+msgstr "Система"
+
+msgid "text"
+msgstr "текст"
+
+msgid "Text files"
+msgstr "Текстовые файлы"
+
+msgid "the app you are pointing at (needs ydotool)"
+msgstr ""
+
+msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
+msgstr "Всплывающее окно отладки отображает зеленую панель в левом верхнем углу холста, показывающую количество событий касания в реальном времени и последнее зарегистрированное событие (x, y). При нажатии и удержании жеста «щипок» вы должны увидеть touch.began, затем touch.moved с изменяющимися координатами по мере того, как вы осматриваетесь."
+
+msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
+msgstr "Это удалит ваши накопленные обучающие данные. При следующем запуске языковая модель вернется к встроенным настройкам по умолчанию. Это действие необратимо."
+
+msgid "Tilt Calibration"
+msgstr "Калибровка наклона"
+
+msgid "Tilt your device now..."
+msgstr "Наклоните устройство прямо сейчас..."
+
+msgid "Tilt your device through its full range of motion during calibration."
+msgstr "Во время калибровки наклоняйте устройство в полном диапазоне его движений."
+
+msgid "time under Preferences → Privacy."
+msgstr ""
+
+msgid "Copy all text"
+msgstr ""
+
+msgid "Training"
+msgstr "Обучение"
+
+msgid "Training Data"
+msgstr "обучающие данные"
+
+msgid "Turbo"
+msgstr "Турбо"
+
+msgid "Typing into other applications needs access to /dev/uinput, which a sandboxed "
+msgstr ""
+
+msgid "Typing rate"
+msgstr "Скорость печати"
+
+msgid "{cps} cps · {wpm} wpm"
+msgstr ""
+
+msgid "Use Dasher as your keyboard"
+msgstr "Используйте Dasher в качестве клавиатуры."
+
+msgid "We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
+msgstr "Мы нашли конфигурацию Dasher 5 на этом Mac. Ваш алфавит, цвета, настройки скорости и пользовательские файлы можно импортировать в Dasher 6."
+
+msgid "What was found"
+msgstr "Что было найдено"
+
+msgid "X range:"
+msgstr "Диапазон X:"
+
+msgid "Y range:"
+msgstr "Диапазон Y:"
+
 msgid "ydotool found. Keyboard mode is ready."
 msgstr "Инструмент ydotool найден. Режим клавиатуры готов."
+
+msgid "ydotool still isn't available. Make sure it's installed and the ydotool service is running."
+msgstr ""
+
+msgid "You can import later in Settings > Privacy & Migration"
+msgstr "Импорт можно осуществить позже в разделе «Настройки» > «Конфиденциальность и миграция»."
+
+msgid "Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."
+msgstr "Ваш взгляд непрерывно отслеживается только во время сжатия и удержания пальца — так работают все приложения VisionOS для отслеживания взгляда."

@@ -2,154 +2,55 @@
 # Copyright (C) 2026 The Dasher Project
 # This file is distributed under the same license as the dasher-gtk package.
 #
+# GENERATED from shared-resources/ui-strings.json — do not edit directly.
+# Edit the catalogue and run Scripts/generate-from-shared.py.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Project-Id-Version: dasher-gtk\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Dasher v6"
-msgstr "Dasher v6"
+msgid "%1$.1f cps · %2$d wpm"
+msgstr ""
 
-msgid "Right side"
-msgstr "Pravá strana"
-
-msgid "Left side"
-msgstr "Levá strana"
-
-msgid "Bottom"
-msgstr "Dno"
-
-msgid "Top"
-msgstr "Nahoře"
-
-msgid "_Keyboard"
-msgstr "Klávesnice"
-
-msgid "Pane position and direct-entry mode"
-msgstr "Poloha panelu a režim přímého vstupu"
-
-msgid "Open Text File"
-msgstr "Otevřete textový soubor."
-
-msgid "Text files"
-msgstr "Textové soubory"
-
-msgid "Failed to open: "
-msgstr "Nepodařilo se otevřít"
-
-msgid "Save Text File"
-msgstr "Uložit textový soubor"
-
-msgid "Saved: "
-msgstr "Uloženo:"
-
-msgid "Failed to save: "
-msgstr "Uložení se nezdařilo"
-
-msgid "Click to set up keyboard mode (needs ydotool)"
-msgstr "Kliknutím nastavíte režim klávesnice (potřebuje ydotool)"
-
-msgid "Settings"
-msgstr "Nastavení"
-
-msgid "Exit keyboard mode"
-msgstr "Ukončit režim klávesnice"
-
-msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
-msgstr "Režim klávesnice zastaven: ydotool nemohl vložit text. Je ydotoold"
-
-msgid "Keyboard"
-msgstr "Klávesnice"
-
-msgid "New"
-msgstr "Nový"
-
-msgid "Open"
-msgstr "Otevřít"
-
-msgid "Save"
-msgstr "Uložit"
-
-msgid "Play"
-msgstr "Zahrajte si"
-
-msgid "Prefs"
-msgstr "Prefs"
-
-msgid "Copy"
-msgstr "Kopírování"
-
-msgid "Copy all"
-msgstr "Kopírovat vše"
-
-msgid "Paste"
-msgstr "Pasta"
-
-msgid "Read"
-msgstr "Přečteno"
-
-msgid "Speed"
-msgstr "Rychlost"
-
-msgid "Learning"
-msgstr "Učení"
-
-msgid "Speech"
-msgstr "Řeč"
-
-msgid "Dasher Preferences"
-msgstr "Předvolby pomlčky"
-
-msgid "<big><b>Dasher v6</b></big>\\n"
-msgstr "<big><b>Dasher v6</b></big>\\"
-
-msgid "GTK Edition"
-msgstr "GTK Edition"
+msgid "A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
+msgstr "Zpráva o pádu byla uložena do souboru ~/Library/Logs/DiagnosticReports/Dasher-*.ips. Pokud ji můžete sdílet v rámci problému na GitHubu, pomůže nám to chybu opravit."
 
 msgid "About"
 msgstr "O nás"
 
-msgid "Customization"
-msgstr "Přizpůsobení"
+msgid "Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
+msgstr "Přijímat události najetí myší/ukazatele jako vstup Dasheru. Povolit pro sledování očí nebo externí ukazatele."
 
-msgid "Input"
-msgstr "Vstup"
+msgid "Access"
+msgstr "Přístup"
 
-msgid "Language"
-msgstr "Jazyk"
+msgid "Accessibility Permission Required"
+msgstr "Vyžadováno oprávnění přístupnosti"
 
-msgid "Output"
-msgstr "Výstup"
+msgid "Adapt Speed Automatically"
+msgstr "Automaticky přizpůsobit rychlost"
 
-msgid "Game Mode"
-msgstr "Režim Hry"
+msgid "Advanced settings"
+msgstr "Pokročilá nastavení"
 
-msgid "Dwell to click"
-msgstr "Klepněte na tlačítko Dwell"
+msgid "All Dasher settings will be restored to their default values. This cannot be undone."
+msgstr "Všechna nastavení Dasheru budou obnovena na výchozí hodnoty. Tuto akci nelze vrátit zpět."
 
-msgid "Typing rate"
-msgstr "Rychlost psaní"
+msgid "Alphabet"
+msgstr "Abeceda"
 
-msgid "Reset"
-msgstr "Obnovit"
+msgid "Help improve Dasher"
+msgstr "Pomozte vylepšit Dasher"
 
-msgid "Keyboard mode opacity"
-msgstr "Neprůhlednost režimu klávesnice"
+msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
+msgstr ""
 
-msgid "<b>Speech Settings</b>"
-msgstr "<b>Nastavení řeči</b>"
-
-msgid "<b>Language / Locale</b>"
-msgstr "Jazyková lokalita"
-
-msgid "Locale"
-msgstr "Lokalita"
-
-msgid "<b>Privacy</b>"
-msgstr "<b>Soukromí</b>"
+msgid "Not now"
+msgstr "Teď ne"
 
 msgid "Share anonymous analytics and crash reports"
 msgstr "Sdílejte anonymní analýzy a zprávy o selhání"
@@ -157,29 +58,206 @@ msgstr "Sdílejte anonymní analýzy a zprávy o selhání"
 msgid "Reset analytics ID"
 msgstr "Resetovat ID analýzy"
 
-msgid "Reset engine settings to defaults"
-msgstr "Resetovat nastavení motoru na výchozí"
+msgid "Help improve Dasher?"
+msgstr ""
 
-msgid "Reset all engine settings to their built-in defaults?"
-msgstr "Obnovit všechna nastavení motoru na jejich vestavěné výchozí hodnoty?"
+msgid "Anonymous usage analytics"
+msgstr "Anonymní analýzy užívání"
+
+msgid "Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
+msgstr "Anonymní analýzy používání nám pomáhají pochopit, jak se Dasher používá, a opravit pády. Nikdy se neshromažďuje žádný napsaný text, obsah schránky ani osobní údaje. Můžete se kdykoli odhlásit v Nastavení → Soukromí."
+
+msgid "App-Level Dwell to Select"
+msgstr "Setrvání na úrovni aplikace pro výběr"
+
+msgid "Dasher"
+msgstr ""
+
+msgid "Auto"
+msgstr ""
+
+msgid "Auto-Centre Target"
+msgstr "Automatické centrování cíle"
+
+msgid "Auto-select after fixating. Only enable if OS dwell is off."
+msgstr "Automatický výběr po fixaci. Povolit pouze v případě, že je vypnuta prodleva operačního systému."
+
+msgid "Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
+msgstr "Automatický výběr po upoutání pozornosti během sevření prstů. Povolit pouze v případě, že je vypnuta prodleva v režimu OS."
+
+msgid "Cancel"
+msgstr "Zrušit"
+
+msgid "Check Again"
+msgstr "Zkontrolujte znovu"
+
+msgid "Choose..."
+msgstr "Vybrat..."
+
+msgid "Choose File..."
+msgstr "Vyberte soubor..."
+
+msgid "Clear"
+msgstr "Jasný"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "Kliknutím nastavíte režim klávesnice (potřebuje ydotool)"
+
+msgid "Close"
+msgstr "Zavřít"
+
+msgid "Colour Theme"
+msgstr "Barevné téma"
+
+msgid "contents or personal information is ever collected. You can change this any "
+msgstr ""
+
+msgid "Copied to clipboard."
+msgstr "Zkopírováno do schránky"
+
+msgid "Copy"
+msgstr "Kopírování"
+
+msgid "Copy all"
+msgstr "Kopírovat vše"
+
+msgid "Copy All"
+msgstr "Kopírovat vše"
+
+msgid "Copy commands"
+msgstr "Kopírovat příkazy"
+
+msgid "Current Calibration"
+msgstr "Kalibrace proudu"
+
+msgid "Customization"
+msgstr "Přizpůsobení"
+
+msgid "Dark"
+msgstr "Tmavý"
 
 msgid "Dasher "
 msgstr "Dasher"
 
-msgid "Privacy"
-msgstr "Soukromí"
+msgid "Dasher 5 data detected on this Mac."
+msgstr "Na tomto Macu byla nalezena data z Dasheru 5."
 
-msgid "No settings available for this section."
-msgstr "Pro tuto sekci nejsou k dispozici žádná nastavení."
+msgid "Dasher 5 settings imported successfully."
+msgstr "Nastavení Dasheru 5 bylo úspěšně importováno."
 
-msgid "Enable Keyboard Mode"
-msgstr "Povolit režim klávesnice"
+msgid "Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
+msgstr "Dasher funguje také jako systémová klávesnice, takže můžete psát v jakékoli aplikaci. Povolte ji jednou v Nastavení."
 
-msgid "<b>Keyboard mode isn't available in this build</b>"
-msgstr "<b>Režim klávesnice není v této sestavě k dispozici</b>"
+msgid "Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
+msgstr "Dasher shromažďuje anonymní analytické údaje, aby pochopil používání a opravil pády. Nikdy se neshromažďuje žádný text na počítači, schránka ani osobní údaje. Schéma otevřených událostí naleznete na adrese github.com/dasher-project/Dasher-Apple."
 
-msgid "Close"
-msgstr "Zavřít"
+msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
+msgstr "Dasher shromažďuje anonymní analytické údaje respektující soukromí, aby pochopil vzorce používání a opravil pády. Nikdy se neshromažďuje žádný psaný text, obsah schránky ani osobní údaje.\n\nToto nastavení můžete kdykoli změnit v Nastavení > Soukromí."
+
+msgid "Dasher Keyboard"
+msgstr "Klávesnice Dasher"
+
+msgid "Dasher keyboard"
+msgstr "Klávesnice Dasher"
+
+msgid "Dasher needs accessibility access to send text to other applications."
+msgstr "Dasher potřebuje přístup k přístupu, aby mohl posílat textové zprávy do jiných aplikací."
+
+msgid "Dasher Preferences"
+msgstr "Předvolby pomlčky"
+
+msgid "Dasher quit unexpectedly"
+msgstr "Dasher nečekaně odešel"
+
+msgid "Dasher v6"
+msgstr ""
+
+msgid "<big><b>Dasher v6</b></big>\n"
+msgstr "<big><b>Dasher v6</b></big>\n"
+
+msgid "Decrease Speed"
+msgstr "Snížení rychlosti"
+
+msgid "Default"
+msgstr "Výchozí"
+
+msgid "Diagnostics"
+msgstr "Diagnostika"
+
+msgid "Direct Mode"
+msgstr "Přímý režim"
+
+msgid "Done"
+msgstr "Hotovo"
+
+msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
+msgstr ""
+
+msgid "Dwell to click"
+msgstr "Klepněte na tlačítko Dwell"
+
+msgid "Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
+msgstr "Povolte Dasher v Nastavení → Obecné → Klávesnice → Klávesnice a poté zapněte Povolit plný přístup, aby Dasher mohl mluvit a učit se."
+
+msgid "Enable tilt input first to access calibration."
+msgstr "Pro přístup ke kalibraci nejprve povolte vstup náklonu."
+
+msgid "Export Training Text"
+msgstr "Exportovat školicí text"
+
+msgid "Eye Gaze"
+msgstr "Pohled do očí"
+
+msgid "Failed to open: "
+msgstr "Nepodařilo se otevřít"
+
+msgid "Failed to save: "
+msgstr "Uložení se nezdařilo"
+
+msgid "Fast"
+msgstr "Rychle"
+
+msgid "Flatpak or AppImage build can't provide.\n\n"
+msgstr ""
+
+msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
+msgstr "Plný přístup umožňuje Dasheru číst, co píšete, a pamatovat si váš trénink. Klávesnice funguje pro základní zadávání i bez ní."
+
+msgid "Game mode"
+msgstr "Herní režim"
+
+msgid "Game Mode"
+msgstr "Režim Hry"
+
+msgid "Game Text File"
+msgstr "Textový soubor hry"
+
+msgid "Got it"
+msgstr "Rozumím"
+
+msgid "GTK Edition"
+msgstr ""
+
+msgid "Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
+msgstr "Import přidá text do jazykového modelu (připojí se k existujícímu učení). Export uloží nashromážděná tréninková data pro zálohování nebo přenos. Obnovení odstraní vlastní tréninková data – model se při dalším spuštění vrátí k výchozím nastavením."
+
+msgid "Import from Dasher 5"
+msgstr "Import z Dasheru 5"
+
+msgid "Import settings"
+msgstr "Nastavení importu"
+
+msgid "Import Training Text"
+msgstr "Importovat školicí text"
+
+msgid "Increase Speed"
+msgstr "Zvýšit rychlost"
+
+msgid "Input"
+msgstr "Vstup"
+
+msgid "Install Dasher via your package manager or build from source to use keyboard mode."
+msgstr ""
 
 msgid "<b>Install ydotool to use keyboard mode</b>"
 msgstr "<b>Nainstalujte ydotool pro použití režimu klávesnice</b>"
@@ -187,14 +265,383 @@ msgstr "<b>Nainstalujte ydotool pro použití režimu klávesnice</b>"
 msgid "isn't installed. Run these commands, then press Retry:"
 msgstr "není nainstalován. Spusťte tyto příkazy a stiskněte Opakovat:"
 
-msgid "Copy commands"
-msgstr "Kopírovat příkazy"
+msgid "Keyboard"
+msgstr ""
 
-msgid "Copied to clipboard."
-msgstr "Zkopírováno do schránky"
+msgid "_Keyboard"
+msgstr "Klávesnice"
+
+msgid "Type Dasher's output straight into the app you are pointing at"
+msgstr ""
+
+msgid "Exit keyboard mode"
+msgstr "Ukončit režim klávesnice"
+
+msgid "Keyboard mode: hide the output pane and type Dasher's text straight into "
+msgstr ""
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>Režim klávesnice není v této sestavě k dispozici</b>"
+
+msgid "Keyboard mode opacity"
+msgstr "Neprůhlednost režimu klávesnice"
+
+msgid "Keyboard mode stopped"
+msgstr ""
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "Režim klávesnice zastaven: ydotool nemohl vložit text. Je ydotoold"
+
+msgid "Enable Keyboard Mode"
+msgstr "Povolit režim klávesnice"
+
+msgid "Keyboard mode types Dasher's output into other applications using ydotool, which "
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Language / Locale"
+msgstr ""
+
+msgid "<b>Language / Locale</b>"
+msgstr "Jazyková lokalita"
+
+msgid "Bottom"
+msgstr "Dno"
+
+msgid "Pane position and direct-entry mode"
+msgstr "Poloha panelu a režim přímého vstupu"
+
+msgid "Left side"
+msgstr "Levá strana"
+
+msgid "Right side"
+msgstr "Pravá strana"
+
+msgid "Top"
+msgstr "Nahoře"
+
+msgid "Learning"
+msgstr "Učení"
+
+msgid "Leave game mode"
+msgstr "Opustit herní režim"
+
+msgid "Light"
+msgstr "Světlo"
+
+msgid "Locale"
+msgstr "Lokalita"
+
+msgid "Migration"
+msgstr "Migrace"
+
+msgid "Move your eyes while pinching to steer"
+msgstr "Pohybujte očima při sevření prstů pro řízení"
+
+msgid "New"
+msgstr "Nový"
+
+msgid "New Message"
+msgstr "Nová zpráva"
+
+msgid "No Dasher 5 data found on this Mac."
+msgstr "Na tomto Macu nebyla nalezena žádná data pro Dasher 5."
+
+msgid "No settings available for this section."
+msgstr "Pro tuto sekci nejsou k dispozici žádná nastavení."
+
+msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "Nothing to save"
+msgstr "Nic k uložení"
+
+msgid "Nothing to share"
+msgstr "Nic ke sdílení"
+
+msgid "OK"
+msgstr ""
+
+msgid "On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
+msgstr "V systému VisionOS začněte psát stisknutím a podržením prstů na plátně, při stisknutí a stisknutí prstů se rozhlédněte pro řízení a uvolněním prstů pozastavte psaní. Model vstupu je se stisknutím a pohledem."
+
+msgid "Open"
+msgstr "Otevřít"
+
+msgid "Open..."
+msgstr "OTEVŘENO..."
+
+msgid "Open failed"
+msgstr "Otevřít se nezdařilo"
+
+msgid "Open Keyboard Settings"
+msgstr "Otevřít nastavení klávesnice"
+
+msgid "Open Settings"
+msgstr "Otevřít Nastavení"
+
+msgid "Open System Settings"
+msgstr "Otevřít Nastavení systému"
+
+msgid "Open Text File"
+msgstr "Otevřete textový soubor."
+
+msgid "Output"
+msgstr "Výstup"
+
+msgid "Output Font Size"
+msgstr "Velikost výstupního písma"
+
+msgid "Touch the canvas to start writing."
+msgstr "Dotkněte se plátna a začněte psát."
+
+msgid "Paste"
+msgstr "Pasta"
+
+msgid "Pause"
+msgstr "Pauza"
+
+msgid "Pause When Looking Away"
+msgstr "Pauza při odvracení pohledu"
+
+msgid "Pinch and hold anywhere on the canvas to start"
+msgstr "Spusťte stisknutím a podržením libovolného místa na plátně."
+
+msgid "Pinch and Look to Write"
+msgstr "Štípnutí a pohled pro psaní"
+
+msgid "Game"
+msgstr ""
+
+msgid "Play"
+msgstr "Zahrajte si"
+
+msgid "Pointer Hover Input"
+msgstr "Vstup při najetí kurzoru"
+
+msgid "Preferences"
+msgstr ""
+
+msgid "Prefs"
+msgstr ""
+
+msgid "Privacy"
+msgstr "Soukromí"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>Soukromí</b>"
+
+msgid "Re-import from Dasher 5"
+msgstr "Znovu importovat z Dasheru 5"
+
+msgid "Read"
+msgstr "Přečteno"
+
+msgid "Release the pinch to pause"
+msgstr "Uvolněním prstů pozastavíte"
+
+msgid "Reset"
+msgstr "Obnovit"
+
+msgid "Reset All Settings to Defaults"
+msgstr "Obnovit všechna nastavení na výchozí hodnoty"
+
+msgid "Reset all settings to their defaults?"
+msgstr "Obnovit všechna nastavení na výchozí hodnoty?"
+
+msgid "Reset anonymous ID"
+msgstr "Obnovit anonymní ID"
+
+msgid "Reset engine settings to defaults"
+msgstr "Resetovat nastavení motoru na výchozí"
+
+msgid "Reset Settings"
+msgstr "Obnovit nastavení"
+
+msgid "Reset to defaults"
+msgstr "Obnovit na výchozí nastavení"
+
+msgid "Reset Training Data"
+msgstr "Resetovat tréninková data"
+
+msgid "Reset Training Data?"
+msgstr "Resetovat tréninková data?"
+
+msgid "Restore all Dasher settings to their default values. This cannot be undone."
+msgstr "Obnovit všechna nastavení Dasheru na výchozí hodnoty. Tuto akci nelze vrátit zpět."
 
 msgid "Retry"
 msgstr "Zkusit znovu"
 
+msgid "Save"
+msgstr "Uložit"
+
+msgid "Save..."
+msgstr "Uložit..."
+
+msgid "Save failed"
+msgstr "Uložení se nezdařilo"
+
+msgid "Save Text File"
+msgstr "Uložit textový soubor"
+
+msgid "Saved"
+msgstr "Uloženo"
+
+msgid "Saved: "
+msgstr "Uloženo:"
+
+msgid "Scan Speed"
+msgstr "Rychlost skenování"
+
+msgid "service running? See the setup help on the Keyboard button for install commands."
+msgstr ""
+
+msgid "Settings"
+msgstr "Nastavení"
+
+msgid "Settings..."
+msgstr "Nastavení..."
+
+msgid "Reset all settings to defaults"
+msgstr "Obnovit všechna nastavení na výchozí hodnoty"
+
+msgid "Settings reset"
+msgstr "Obnovení nastavení"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "Obnovit všechna nastavení motoru na jejich vestavěné výchozí hodnoty?"
+
+msgid "Settings (speed, colours, control mode, language model)"
+msgstr "Nastavení (rychlost, barvy, režim ovládání, jazykový model)"
+
+msgid "Share"
+msgstr "Podíl"
+
+msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard "
+msgstr ""
+
+msgid "Show Input Debug Overlay"
+msgstr "Zobrazit překryvné ladění vstupu"
+
+msgid "Show typing rate (WPM)"
+msgstr "Zobrazit rychlost psaní (WPM)"
+
+msgid "Size"
+msgstr "Velikost"
+
+msgid "Skipped files"
+msgstr "Přeskočené soubory"
+
+msgid "Slow"
+msgstr "Pomalý"
+
+msgid "Speech"
+msgstr "Řeč"
+
+msgid "Speech off"
+msgstr "Řeč vypnuta"
+
+msgid "Speech on"
+msgstr "Projev na"
+
+msgid "Speech Settings"
+msgstr ""
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>Nastavení řeči</b>"
+
+msgid "Speed"
+msgstr "Rychlost"
+
+msgid "Speed "
+msgstr "Rychlost"
+
+msgid "Start Calibrating"
+msgstr "Zahájení kalibrace"
+
+msgid "Start fresh"
+msgstr "Začněte znovu"
+
+msgid "Stop"
+msgstr "Zastávka"
+
+msgid "System"
+msgstr "Systém"
+
+msgid "text"
+msgstr ""
+
+msgid "Text files"
+msgstr "Textové soubory"
+
+msgid "the app you are pointing at (needs ydotool)"
+msgstr ""
+
+msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
+msgstr "Ladicí překryv nakreslí v levém horním rohu plátna zelený panel zobrazující počet událostí dotyku v reálném čase a poslední hlášenou hodnotu (x, y). Když stisknete a podržíte prsty, měli byste vidět touch.began a poté touch.moved se měnícími souřadnicemi, jak se rozhlížíte."
+
+msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
+msgstr "Tímto se smažou nashromážděná trénovací data. Jazykový model se při dalším spuštění vrátí k výchozím nastavením. Tuto akci nelze vrátit zpět."
+
+msgid "Tilt Calibration"
+msgstr "Kalibrace náklonu"
+
+msgid "Tilt your device now..."
+msgstr "Nakloňte zařízení nyní..."
+
+msgid "Tilt your device through its full range of motion during calibration."
+msgstr "Během kalibrace naklánějte zařízení v celém rozsahu jeho pohybu."
+
+msgid "time under Preferences → Privacy."
+msgstr ""
+
+msgid "Copy all text"
+msgstr ""
+
+msgid "Training"
+msgstr "Výcvik"
+
+msgid "Training Data"
+msgstr "Trénovací data"
+
+msgid "Turbo"
+msgstr ""
+
+msgid "Typing into other applications needs access to /dev/uinput, which a sandboxed "
+msgstr ""
+
+msgid "Typing rate"
+msgstr "Rychlost psaní"
+
+msgid "{cps} cps · {wpm} wpm"
+msgstr ""
+
+msgid "Use Dasher as your keyboard"
+msgstr "Používejte Dasher jako klávesnici"
+
+msgid "We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
+msgstr "Na tomto Macu jsme našli vaši konfiguraci Dasheru 5. Vaši abecedu, barvy, nastavení rychlosti a vlastní soubory lze importovat do Dasheru 6."
+
+msgid "What was found"
+msgstr "Co bylo nalezeno"
+
+msgid "X range:"
+msgstr "Rozsah X:"
+
+msgid "Y range:"
+msgstr "Rozsah Y:"
+
 msgid "ydotool found. Keyboard mode is ready."
 msgstr "ydotool nalezen. Režim klávesnice je připraven."
+
+msgid "ydotool still isn't available. Make sure it's installed and the ydotool service is running."
+msgstr ""
+
+msgid "You can import later in Settings > Privacy & Migration"
+msgstr "Importovat můžete později v Nastavení > Soukromí a migrace"
+
+msgid "Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."
+msgstr "Váš pohled je nepřetržitě sledován pouze během sevření a podržení prstů – takto fungují všechny aplikace pro sledování pohledu VisionOS."

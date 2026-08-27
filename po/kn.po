@@ -2,154 +2,55 @@
 # Copyright (C) 2026 The Dasher Project
 # This file is distributed under the same license as the dasher-gtk package.
 #
+# GENERATED from shared-resources/ui-strings.json — do not edit directly.
+# Edit the catalogue and run Scripts/generate-from-shared.py.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Project-Id-Version: dasher-gtk\n"
 "Language: kn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Dasher v6"
-msgstr "Dasher v6"
+msgid "%1$.1f cps · %2$d wpm"
+msgstr ""
 
-msgid "Right side"
-msgstr "ಬಲಭಾಗ"
-
-msgid "Left side"
-msgstr "ಎಡಭಾಗ"
-
-msgid "Bottom"
-msgstr "ಕೆಳಭಾಗ"
-
-msgid "Top"
-msgstr "ಟಾಪ್"
-
-msgid "_Keyboard"
-msgstr "ಕೀಲಿಮಣೆ"
-
-msgid "Pane position and direct-entry mode"
-msgstr "ಪೇನ್ ಸ್ಥಾನ ಮತ್ತು ಡೈರೆಕ್ಟ್-ಎಂಟ್ರಿ ಮೋಡ್"
-
-msgid "Open Text File"
-msgstr "ಪಠ್ಯ ಫೈಲ್ ತೆರೆಯಿರಿ"
-
-msgid "Text files"
-msgstr "ಪಠ್ಯ ಕಡತಗಳುComment"
-
-msgid "Failed to open: "
-msgstr "ತೆರೆಯಲು ವಿಫಲವಾಗಿದೆ:"
-
-msgid "Save Text File"
-msgstr "ಪಠ್ಯ ಫೈಲ್ ಉಳಿಸಿ"
-
-msgid "Saved: "
-msgstr "ಉಳಿಸಲಾಗಿದೆ"
-
-msgid "Failed to save: "
-msgstr "ಉಳಿಸಲು <x id=\"1\"/>ವಿಫಲವಾಗಿದೆ."
-
-msgid "Click to set up keyboard mode (needs ydotool)"
-msgstr "ಕೀಬೋರ್ಡ್ ಮೋಡ್ ಹೊಂದಿಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ (ydotool ಅಗತ್ಯವಿದೆ)"
-
-msgid "Settings"
-msgstr "ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
-
-msgid "Exit keyboard mode"
-msgstr "ಕೀಬೋರ್ಡ್ ಮೋಡ್‌ನಿಂದ ನಿರ್ಗಮಿಸಿ"
-
-msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
-msgstr "ಕೀಬೋರ್ಡ್ ಮೋಡ್ ನಿಲ್ಲಿಸಲಾಗಿದೆ: ydotool ಪಠ್ಯವನ್ನು ಚುಚ್ಚಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ydotoold ಆಗಿದೆಯೇ?"
-
-msgid "Keyboard"
-msgstr "ಕೀಬೋರ್ಡ್"
-
-msgid "New"
-msgstr "ಹೊಸ"
-
-msgid "Open"
-msgstr "ತೆರೆ"
-
-msgid "Save"
-msgstr "ಉಳಿಸಿ"
-
-msgid "Play"
-msgstr "ಪ್ಲೇ"
-
-msgid "Prefs"
-msgstr "ಪೂರ್ವಭಾವಿಗಳು"
-
-msgid "Copy"
-msgstr "à²à²²à²¾à²¯à²¿à²¸à³"
-
-msgid "Copy all"
-msgstr "ಎಲ್ಲವನ್ನೂ ನಕಲಿಸಿ"
-
-msgid "Paste"
-msgstr "ಅಂಟಿಸಿ"
-
-msgid "Read"
-msgstr "ಓದು, @ item: intext Access permission, concatenated"
-
-msgid "Speed"
-msgstr "ವೇಗ"
-
-msgid "Learning"
-msgstr "ಕಲಿಕೆ"
-
-msgid "Speech"
-msgstr "ಭಾಷಣ"
-
-msgid "Dasher Preferences"
-msgstr "Dasher ಆದ್ಯತೆಗಳು"
-
-msgid "<big><b>Dasher v6</b></big>\\n"
-msgstr "<big><b>Dasher v6</b></big>\\"
-
-msgid "GTK Edition"
-msgstr "GTK ಆವೃತ್ತಿ"
+msgid "A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
+msgstr "ಕ್ರ್ಯಾಶ್ ವರದಿಯನ್ನು ~/Library/Logs/DiagnosticReports/Dasher-*.ips ಗೆ ಉಳಿಸಲಾಗಿದೆ. ನೀವು ಅದನ್ನು GitHub ಸಮಸ್ಯೆಯಲ್ಲಿ ಹಂಚಿಕೊಳ್ಳಲು ಸಾಧ್ಯವಾದರೆ, ಅದು ದೋಷವನ್ನು ಸರಿಪಡಿಸಲು ನಮಗೆ ಸಹಾಯ ಮಾಡುತ್ತದೆ."
 
 msgid "About"
 msgstr "ಕುರಿತಾಗಿ"
 
-msgid "Customization"
-msgstr "ಗ್ರಾಹಕೀಕರಣ"
+msgid "Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
+msgstr "ಡ್ಯಾಷರ್ ಇನ್‌ಪುಟ್ ಆಗಿ ಹೋವರ್/ಪಾಯಿಂಟರ್ ಈವೆಂಟ್‌ಗಳನ್ನು ಸ್ವೀಕರಿಸಿ. ಕಣ್ಣಿನ ಟ್ರ್ಯಾಕಿಂಗ್ ಅಥವಾ ಬಾಹ್ಯ ಪಾಯಿಂಟರ್‌ಗಳಿಗಾಗಿ ಸಕ್ರಿಯಗೊಳಿಸಿ."
 
-msgid "Input"
-msgstr "ಇನ್ಪುಟ್"
+msgid "Access"
+msgstr "ಪ್ರವೇಶ"
 
-msgid "Language"
-msgstr "ಭಾಷೆ"
+msgid "Accessibility Permission Required"
+msgstr "ಪ್ರವೇಶಿಸುವಿಕೆ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ"
 
-msgid "Output"
-msgstr "ಪ್ರದಾನ (ಔಟ್ ಪುಟ್)"
+msgid "Adapt Speed Automatically"
+msgstr "ವೇಗವನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಹೊಂದಿಸಿ"
 
-msgid "Game Mode"
-msgstr "ಗೇಮ್ ಮೋಡ್"
+msgid "Advanced settings"
+msgstr "ಸುಧಾರಿತ ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
 
-msgid "Dwell to click"
-msgstr "ಕ್ಲಿಕ್ ಮಾಡಲು ವಾಸಿಸು (Dwell)"
+msgid "All Dasher settings will be restored to their default values. This cannot be undone."
+msgstr "ಎಲ್ಲಾ ಡ್ಯಾಷರ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಅವುಗಳ ಡೀಫಾಲ್ಟ್ ಮೌಲ್ಯಗಳಿಗೆ ಮರುಸ್ಥಾಪಿಸಲಾಗುತ್ತದೆ. ಇದನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ."
 
-msgid "Typing rate"
-msgstr "ಟೈಪಿಂಗ್ ದರ"
+msgid "Alphabet"
+msgstr "ವರ್ಣಮಾಲೆ"
 
-msgid "Reset"
-msgstr "ಮರುಹೊಂದಿಸಿ"
+msgid "Help improve Dasher"
+msgstr "ಡ್ಯಾಷರ್ ಸುಧಾರಿಸಲು ಸಹಾಯ ಮಾಡಿ"
 
-msgid "Keyboard mode opacity"
-msgstr "ಕೀಬೋರ್ಡ್ ಮೋಡ್ ಅಪಾರದರ್ಶಕತೆ"
+msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
+msgstr ""
 
-msgid "<b>Speech Settings</b>"
-msgstr "<b>ಭಾಷಣ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</b>"
-
-msgid "<b>Language / Locale</b>"
-msgstr "<b>ಭಾಷೆ / ಸ್ಥಳ</b>"
-
-msgid "Locale"
-msgstr "ಪ್ರಾದೇಶಿಕ"
-
-msgid "<b>Privacy</b>"
-msgstr "<b>ಗೌಪ್ಯತೆ</b>"
+msgid "Not now"
+msgstr "ಈಗಲ್ಲ"
 
 msgid "Share anonymous analytics and crash reports"
 msgstr "ಅನಾಮಧೇಯ ವಿಶ್ಲೇಷಣೆಗಳು ಮತ್ತು ಕ್ರ್ಯಾಶ್ ವರದಿಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಿ"
@@ -157,29 +58,206 @@ msgstr "ಅನಾಮಧೇಯ ವಿಶ್ಲೇಷಣೆಗಳು ಮತ್ತ�
 msgid "Reset analytics ID"
 msgstr "ಅನಾಲಿಟಿಕ್ಸ್ ಐಡಿಯನ್ನು ಮರುಹೊಂದಿಸಿ"
 
-msgid "Reset engine settings to defaults"
-msgstr "ಎಂಜಿನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಡೀಫಾಲ್ಟ್‌ಗಳಿಗೆ ಮರುಹೊಂದಿಸಿ"
+msgid "Help improve Dasher?"
+msgstr ""
 
-msgid "Reset all engine settings to their built-in defaults?"
-msgstr "ಎಲ್ಲಾ ಎಂಜಿನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಅವುಗಳ ಅಂತರ್ನಿರ್ಮಿತ ಡೀಫಾಲ್ಟ್‌ಗಳಿಗೆ ಮರುಹೊಂದಿಸುವುದೇ?"
+msgid "Anonymous usage analytics"
+msgstr "ಅನಾಮಧೇಯ ಬಳಕೆಯ ವಿಶ್ಲೇಷಣೆ"
+
+msgid "Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
+msgstr "ಅನಾಮಧೇಯ ಬಳಕೆಯ ವಿಶ್ಲೇಷಣೆಯು ಡ್ಯಾಷರ್ ಅನ್ನು ಹೇಗೆ ಬಳಸಲಾಗುತ್ತದೆ ಎಂಬುದನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ಮತ್ತು ಕ್ರ್ಯಾಶ್‌ಗಳನ್ನು ಸರಿಪಡಿಸಲು ನಮಗೆ ಸಹಾಯ ಮಾಡುತ್ತದೆ. ಟೈಪ್ ಮಾಡಿದ ಪಠ್ಯ, ಕ್ಲಿಪ್‌ಬೋರ್ಡ್ ವಿಷಯಗಳು ಅಥವಾ ವೈಯಕ್ತಿಕ ಮಾಹಿತಿಯನ್ನು ಎಂದಿಗೂ ಸಂಗ್ರಹಿಸಲಾಗುವುದಿಲ್ಲ. ಸೆಟ್ಟಿಂಗ್‌ಗಳು → ಗೌಪ್ಯತೆಯಲ್ಲಿ ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ಆಯ್ಕೆಯಿಂದ ಹೊರಗುಳಿಯಿರಿ."
+
+msgid "App-Level Dwell to Select"
+msgstr "ಆಯ್ಕೆ ಮಾಡಲು ಅಪ್ಲಿಕೇಶನ್-ಮಟ್ಟದ ಡ್ವೆಲ್"
+
+msgid "Dasher"
+msgstr ""
+
+msgid "Auto"
+msgstr "ಆಟೋ"
+
+msgid "Auto-Centre Target"
+msgstr "ಆಟೋ-ಸೆಂಟರ್ ಗುರಿ"
+
+msgid "Auto-select after fixating. Only enable if OS dwell is off."
+msgstr "ಸರಿಪಡಿಸಿದ ನಂತರ ಸ್ವಯಂ-ಆಯ್ಕೆ ಮಾಡಿ. OS dwell ಆಫ್ ಆಗಿದ್ದರೆ ಮಾತ್ರ ಸಕ್ರಿಯಗೊಳಿಸಿ."
+
+msgid "Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
+msgstr "ಪಿಂಚ್ ಮಾಡುವಾಗ ನಿಮ್ಮ ನೋಟವನ್ನು ಸರಿಪಡಿಸಿದ ನಂತರ ಸ್ವಯಂ-ಆಯ್ಕೆ ಮಾಡಿ. OS ಡ್ವೆಲ್ ಆಫ್ ಆಗಿದ್ದರೆ ಮಾತ್ರ ಸಕ್ರಿಯಗೊಳಿಸಿ."
+
+msgid "Cancel"
+msgstr "ರದ್ದುಮಾಡಿ"
+
+msgid "Check Again"
+msgstr "ಮತ್ತೊಮ್ಮೆ ಪರಿಶೀಲಿಸಿ"
+
+msgid "Choose..."
+msgstr "ಆರಿಸಿ..."
+
+msgid "Choose File..."
+msgstr "ಫೈಲ್ ಆಯ್ಕೆಮಾಡಿ..."
+
+msgid "Clear"
+msgstr "ಸ್ಪಷ್ಟ"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "ಕೀಬೋರ್ಡ್ ಮೋಡ್ ಹೊಂದಿಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ (ydotool ಅಗತ್ಯವಿದೆ)"
+
+msgid "Close"
+msgstr "ಮುಚ್ಚಿ"
+
+msgid "Colour Theme"
+msgstr "ಬಣ್ಣದ ಥೀಮ್"
+
+msgid "contents or personal information is ever collected. You can change this any "
+msgstr ""
+
+msgid "Copied to clipboard."
+msgstr "ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ನಕಲಿಸಲಾಗಿದೆ"
+
+msgid "Copy"
+msgstr "à²à²²à²¾à²¯à²¿à²¸à³"
+
+msgid "Copy all"
+msgstr "ಎಲ್ಲವನ್ನೂ ನಕಲಿಸಿ"
+
+msgid "Copy All"
+msgstr "ಎಲ್ಲವನ್ನೂ ನಕಲಿಸಿ"
+
+msgid "Copy commands"
+msgstr "ಆದೇಶಗಳನ್ನು ನಕಲಿಸಿ"
+
+msgid "Current Calibration"
+msgstr "ಪ್ರಸ್ತುತ ಮಾಪನಾಂಕ ನಿರ್ಣಯ"
+
+msgid "Customization"
+msgstr "ಗ್ರಾಹಕೀಕರಣ"
+
+msgid "Dark"
+msgstr "ಕತ್ತಲೆ"
 
 msgid "Dasher "
 msgstr "ದಾಶರ್"
 
-msgid "Privacy"
-msgstr "ಗೌಪ್ಯತೆ"
+msgid "Dasher 5 data detected on this Mac."
+msgstr "ಈ Mac ನಲ್ಲಿ Dasher 5 ಡೇಟಾ ಪತ್ತೆಯಾಗಿದೆ."
 
-msgid "No settings available for this section."
-msgstr "ಈ ವಿಭಾಗಕ್ಕೆ ಯಾವುದೇ ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಲಭ್ಯವಿಲ್ಲ."
+msgid "Dasher 5 settings imported successfully."
+msgstr "ಡ್ಯಾಷರ್ 5 ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಆಮದು ಮಾಡಿಕೊಳ್ಳಲಾಗಿದೆ."
 
-msgid "Enable Keyboard Mode"
-msgstr "ಕೀಬೋರ್ಡ್ ಮೋಡ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ"
+msgid "Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
+msgstr "ಡ್ಯಾಷರ್ ಸಿಸ್ಟಮ್ ಕೀಬೋರ್ಡ್ ಆಗಿಯೂ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ, ಆದ್ದರಿಂದ ನೀವು ಯಾವುದೇ ಅಪ್ಲಿಕೇಶನ್‌ನಲ್ಲಿ ಬರೆಯಬಹುದು. ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಒಮ್ಮೆ ಅದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ."
 
-msgid "<b>Keyboard mode isn't available in this build</b>"
-msgstr "<b>ಈ ಬಿಲ್ಡ್‌ನಲ್ಲಿ ಕೀಬೋರ್ಡ್ ಮೋಡ್ ಲಭ್ಯವಿಲ್ಲ.</b>"
+msgid "Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
+msgstr "ಬಳಕೆಯನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ಮತ್ತು ಕ್ರ್ಯಾಶ್‌ಗಳನ್ನು ಸರಿಪಡಿಸಲು ಡ್ಯಾಷರ್ ಅನಾಮಧೇಯ ವಿಶ್ಲೇಷಣೆಯನ್ನು ಸಂಗ್ರಹಿಸುತ್ತದೆ. ಟೈಪ್ ಮಾಡಿದ ಪಠ್ಯ, ಕ್ಲಿಪ್‌ಬೋರ್ಡ್ ಅಥವಾ ವೈಯಕ್ತಿಕ ಮಾಹಿತಿಯನ್ನು ಎಂದಿಗೂ ಸಂಗ್ರಹಿಸಲಾಗುವುದಿಲ್ಲ. github.com/dasher-project/Dasher-Apple ನಲ್ಲಿ ತೆರೆದ ಈವೆಂಟ್ ಸ್ಕೀಮಾವನ್ನು ನೋಡಿ."
 
-msgid "Close"
-msgstr "ಮುಚ್ಚಿ"
+msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
+msgstr "ಬಳಕೆಯ ಮಾದರಿಗಳನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ಮತ್ತು ಕ್ರ್ಯಾಶ್‌ಗಳನ್ನು ಸರಿಪಡಿಸಲು ಡ್ಯಾಷರ್ ಅನಾಮಧೇಯ, ಗೌಪ್ಯತೆಯನ್ನು ಗೌರವಿಸುವ ವಿಶ್ಲೇಷಣೆಗಳನ್ನು ಸಂಗ್ರಹಿಸುತ್ತದೆ. ಟೈಪ್ ಮಾಡಿದ ಪಠ್ಯ, ಕ್ಲಿಪ್‌ಬೋರ್ಡ್ ವಿಷಯಗಳು ಅಥವಾ ವೈಯಕ್ತಿಕ ಮಾಹಿತಿಯನ್ನು ಎಂದಿಗೂ ಸಂಗ್ರಹಿಸಲಾಗುವುದಿಲ್ಲ.\n\nನೀವು ಇದನ್ನು ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ಸೆಟ್ಟಿಂಗ್‌ಗಳು > ಗೌಪ್ಯತೆಯಲ್ಲಿ ಬದಲಾಯಿಸಬಹುದು."
+
+msgid "Dasher Keyboard"
+msgstr "ಡ್ಯಾಷರ್ ಕೀಬೋರ್ಡ್"
+
+msgid "Dasher keyboard"
+msgstr "ಡ್ಯಾಷರ್ ಕೀಬೋರ್ಡ್"
+
+msgid "Dasher needs accessibility access to send text to other applications."
+msgstr "ಇತರ ಅಪ್ಲಿಕೇಶನ್‌ಗಳಿಗೆ ಪಠ್ಯವನ್ನು ಕಳುಹಿಸಲು ಡ್ಯಾಷರ್‌ಗೆ ಪ್ರವೇಶದ ಪ್ರವೇಶದ ಅಗತ್ಯವಿದೆ."
+
+msgid "Dasher Preferences"
+msgstr "Dasher ಆದ್ಯತೆಗಳು"
+
+msgid "Dasher quit unexpectedly"
+msgstr "ಡ್ಯಾಷರ್ ಅನಿರೀಕ್ಷಿತವಾಗಿ ತ್ಯಜಿಸಿದೆ"
+
+msgid "Dasher v6"
+msgstr ""
+
+msgid "<big><b>Dasher v6</b></big>\n"
+msgstr "<big><b>Dasher v6</b></big>\n"
+
+msgid "Decrease Speed"
+msgstr "ವೇಗ ಕಡಿಮೆ ಮಾಡಿ"
+
+msgid "Default"
+msgstr "ಡೀಫಾಲ್ಟ್"
+
+msgid "Diagnostics"
+msgstr "ರೋಗನಿರ್ಣಯ"
+
+msgid "Direct Mode"
+msgstr "ನೇರ ಮೋಡ್"
+
+msgid "Done"
+msgstr "ಮುಗಿದಿದೆ"
+
+msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
+msgstr ""
+
+msgid "Dwell to click"
+msgstr "ಕ್ಲಿಕ್ ಮಾಡಲು ವಾಸಿಸು (Dwell)"
+
+msgid "Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
+msgstr "ಸೆಟ್ಟಿಂಗ್‌ಗಳು → ಸಾಮಾನ್ಯ → ಕೀಬೋರ್ಡ್ → ಕೀಬೋರ್ಡ್‌ಗಳು ಅಡಿಯಲ್ಲಿ ಡ್ಯಾಷರ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ, ನಂತರ ಡ್ಯಾಷರ್ ಮಾತನಾಡಲು ಮತ್ತು ಕಲಿಯಲು ಪೂರ್ಣ ಪ್ರವೇಶವನ್ನು ಅನುಮತಿಸಿ ಆನ್ ಮಾಡಿ."
+
+msgid "Enable tilt input first to access calibration."
+msgstr "ಮಾಪನಾಂಕ ನಿರ್ಣಯವನ್ನು ಪ್ರವೇಶಿಸಲು ಮೊದಲು ಟಿಲ್ಟ್ ಇನ್‌ಪುಟ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ."
+
+msgid "Export Training Text"
+msgstr "ತರಬೇತಿ ಪಠ್ಯವನ್ನು ರಫ್ತು ಮಾಡಿ"
+
+msgid "Eye Gaze"
+msgstr "ಕಣ್ಣಿನ ನೋಟ"
+
+msgid "Failed to open: "
+msgstr "ತೆರೆಯಲು ವಿಫಲವಾಗಿದೆ:"
+
+msgid "Failed to save: "
+msgstr "ಉಳಿಸಲು <x id=\"1\"/>ವಿಫಲವಾಗಿದೆ."
+
+msgid "Fast"
+msgstr "ವೇಗವಾಗಿ"
+
+msgid "Flatpak or AppImage build can't provide.\n\n"
+msgstr ""
+
+msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
+msgstr "ಪೂರ್ಣ ಪ್ರವೇಶವು ಡ್ಯಾಶರ್‌ಗೆ ನೀವು ಬರೆಯುವುದನ್ನು ಮಾತನಾಡಲು ಮತ್ತು ನಿಮ್ಮ ತರಬೇತಿಯನ್ನು ನೆನಪಿಟ್ಟುಕೊಳ್ಳಲು ಅನುಮತಿಸುತ್ತದೆ. ಕೀಬೋರ್ಡ್ ಇಲ್ಲದೆಯೂ ಸಹ ಮೂಲಭೂತ ಪ್ರವೇಶಕ್ಕಾಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ."
+
+msgid "Game mode"
+msgstr "ಆಟದ ಮೋಡ್"
+
+msgid "Game Mode"
+msgstr "ಗೇಮ್ ಮೋಡ್"
+
+msgid "Game Text File"
+msgstr "ಆಟದ ಪಠ್ಯ ಫೈಲ್"
+
+msgid "Got it"
+msgstr "ಅರ್ಥವಾಯಿತು"
+
+msgid "GTK Edition"
+msgstr "GTK ಆವೃತ್ತಿ"
+
+msgid "Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
+msgstr "ಆಮದು ಭಾಷಾ ಮಾದರಿಗೆ ಪಠ್ಯವನ್ನು ಸೇರಿಸುತ್ತದೆ (ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಕಲಿಕೆಗೆ ಸೇರಿಸುತ್ತದೆ). ರಫ್ತು ನಿಮ್ಮ ಸಂಗ್ರಹವಾದ ತರಬೇತಿ ಡೇಟಾವನ್ನು ಬ್ಯಾಕಪ್ ಅಥವಾ ವರ್ಗಾವಣೆಗಾಗಿ ಉಳಿಸುತ್ತದೆ. ಮರುಹೊಂದಿಸುವಿಕೆಯು ಕಸ್ಟಮ್ ತರಬೇತಿ ಡೇಟಾವನ್ನು ಅಳಿಸುತ್ತದೆ - ಮುಂದಿನ ಉಡಾವಣೆಯಲ್ಲಿ ಮಾದರಿಯು ಅದರ ಅಂತರ್ನಿರ್ಮಿತ ಡೀಫಾಲ್ಟ್‌ಗಳಿಗೆ ಮರಳುತ್ತದೆ."
+
+msgid "Import from Dasher 5"
+msgstr "ಡ್ಯಾಷರ್ 5 ರಿಂದ ಆಮದು ಮಾಡಿ"
+
+msgid "Import settings"
+msgstr "ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಆಮದು ಮಾಡಿ"
+
+msgid "Import Training Text"
+msgstr "ತರಬೇತಿ ಪಠ್ಯವನ್ನು ಆಮದು ಮಾಡಿ"
+
+msgid "Increase Speed"
+msgstr "ವೇಗ ಹೆಚ್ಚಿಸಿ"
+
+msgid "Input"
+msgstr "ಇನ್ಪುಟ್"
+
+msgid "Install Dasher via your package manager or build from source to use keyboard mode."
+msgstr ""
 
 msgid "<b>Install ydotool to use keyboard mode</b>"
 msgstr "<b>ಕೀಬೋರ್ಡ್ ಮೋಡ್ ಬಳಸಲು ydotool ಅನ್ನು ಸ್ಥಾಪಿಸಿ</b>"
@@ -187,14 +265,383 @@ msgstr "<b>ಕೀಬೋರ್ಡ್ ಮೋಡ್ ಬಳಸಲು ydotool ಅನ�
 msgid "isn't installed. Run these commands, then press Retry:"
 msgstr "ಸ್ಥಾಪಿಸಲಾಗಿಲ್ಲ. ಈ ಆಜ್ಞೆಗಳನ್ನು ರನ್ ಮಾಡಿ, ನಂತರ ಮರುಪ್ರಯತ್ನಿಸಿ ಒತ್ತಿರಿ:"
 
-msgid "Copy commands"
-msgstr "ಆದೇಶಗಳನ್ನು ನಕಲಿಸಿ"
+msgid "Keyboard"
+msgstr ""
 
-msgid "Copied to clipboard."
-msgstr "ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ನಕಲಿಸಲಾಗಿದೆ"
+msgid "_Keyboard"
+msgstr "ಕೀಲಿಮಣೆ"
+
+msgid "Type Dasher's output straight into the app you are pointing at"
+msgstr ""
+
+msgid "Exit keyboard mode"
+msgstr "ಕೀಬೋರ್ಡ್ ಮೋಡ್‌ನಿಂದ ನಿರ್ಗಮಿಸಿ"
+
+msgid "Keyboard mode: hide the output pane and type Dasher's text straight into "
+msgstr ""
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>ಈ ಬಿಲ್ಡ್‌ನಲ್ಲಿ ಕೀಬೋರ್ಡ್ ಮೋಡ್ ಲಭ್ಯವಿಲ್ಲ.</b>"
+
+msgid "Keyboard mode opacity"
+msgstr "ಕೀಬೋರ್ಡ್ ಮೋಡ್ ಅಪಾರದರ್ಶಕತೆ"
+
+msgid "Keyboard mode stopped"
+msgstr ""
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "ಕೀಬೋರ್ಡ್ ಮೋಡ್ ನಿಲ್ಲಿಸಲಾಗಿದೆ: ydotool ಪಠ್ಯವನ್ನು ಚುಚ್ಚಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ydotoold ಆಗಿದೆಯೇ?"
+
+msgid "Enable Keyboard Mode"
+msgstr "ಕೀಬೋರ್ಡ್ ಮೋಡ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ"
+
+msgid "Keyboard mode types Dasher's output into other applications using ydotool, which "
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Language / Locale"
+msgstr ""
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>ಭಾಷೆ / ಸ್ಥಳ</b>"
+
+msgid "Bottom"
+msgstr "ಕೆಳಭಾಗ"
+
+msgid "Pane position and direct-entry mode"
+msgstr "ಪೇನ್ ಸ್ಥಾನ ಮತ್ತು ಡೈರೆಕ್ಟ್-ಎಂಟ್ರಿ ಮೋಡ್"
+
+msgid "Left side"
+msgstr "ಎಡಭಾಗ"
+
+msgid "Right side"
+msgstr "ಬಲಭಾಗ"
+
+msgid "Top"
+msgstr "ಟಾಪ್"
+
+msgid "Learning"
+msgstr "ಕಲಿಕೆ"
+
+msgid "Leave game mode"
+msgstr "ಆಟದ ಮೋಡ್ ಅನ್ನು ಬಿಡಿ"
+
+msgid "Light"
+msgstr "ಬೆಳಕು"
+
+msgid "Locale"
+msgstr "ಪ್ರಾದೇಶಿಕ"
+
+msgid "Migration"
+msgstr "ವಲಸೆ"
+
+msgid "Move your eyes while pinching to steer"
+msgstr "ಸ್ಟಿಯರ್ ಮಾಡಲು ಚಿವುಟುವಾಗ ನಿಮ್ಮ ಕಣ್ಣುಗಳನ್ನು ಸರಿಸಿ."
+
+msgid "New"
+msgstr "ಹೊಸ"
+
+msgid "New Message"
+msgstr "ಹೊಸ ಸಂದೇಶ"
+
+msgid "No Dasher 5 data found on this Mac."
+msgstr "ಈ Mac ನಲ್ಲಿ ಯಾವುದೇ Dasher 5 ಡೇಟಾ ಕಂಡುಬಂದಿಲ್ಲ."
+
+msgid "No settings available for this section."
+msgstr "ಈ ವಿಭಾಗಕ್ಕೆ ಯಾವುದೇ ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಲಭ್ಯವಿಲ್ಲ."
+
+msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "Nothing to save"
+msgstr "ಉಳಿಸಲು ಏನೂ ಇಲ್ಲ."
+
+msgid "Nothing to share"
+msgstr "ಹಂಚಿಕೊಳ್ಳಲು ಏನೂ ಇಲ್ಲ"
+
+msgid "OK"
+msgstr "ಸರಿ"
+
+msgid "On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
+msgstr "ವಿಷನ್ಓಎಸ್‌ನಲ್ಲಿ, ಬರೆಯಲು ಪ್ರಾರಂಭಿಸಲು ಕ್ಯಾನ್ವಾಸ್ ಅನ್ನು ಪಿಂಚ್ ಮಾಡಿ ಮತ್ತು ಹಿಡಿದುಕೊಳ್ಳಿ, ಸ್ಟಿಯರ್ ಮಾಡಲು ಪಿಂಚ್ ಮಾಡುವಾಗ ಸುತ್ತಲೂ ನೋಡಿ ಮತ್ತು ವಿರಾಮಗೊಳಿಸಲು ಬಿಡುಗಡೆ ಮಾಡಿ. ಇನ್‌ಪುಟ್ ಮಾದರಿ ಪಿಂಚ್-ಅಂಡ್-ಲುಕ್ ಆಗಿದೆ."
+
+msgid "Open"
+msgstr "ತೆರೆ"
+
+msgid "Open..."
+msgstr "ತೆರೆಯಿರಿ..."
+
+msgid "Open failed"
+msgstr "ತೆರೆಯುವಿಕೆ ವಿಫಲವಾಗಿದೆ"
+
+msgid "Open Keyboard Settings"
+msgstr "ಕೀಬೋರ್ಡ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆರೆಯಿರಿ"
+
+msgid "Open Settings"
+msgstr "ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆರೆಯಿರಿ"
+
+msgid "Open System Settings"
+msgstr "ಸಿಸ್ಟಂ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆರೆಯಿರಿ"
+
+msgid "Open Text File"
+msgstr "ಪಠ್ಯ ಫೈಲ್ ತೆರೆಯಿರಿ"
+
+msgid "Output"
+msgstr "ಪ್ರದಾನ (ಔಟ್ ಪುಟ್)"
+
+msgid "Output Font Size"
+msgstr "ಔಟ್‌ಪುಟ್ ಫಾಂಟ್ ಗಾತ್ರ"
+
+msgid "Touch the canvas to start writing."
+msgstr "ಬರೆಯಲು ಪ್ರಾರಂಭಿಸಲು ಕ್ಯಾನ್ವಾಸ್ ಅನ್ನು ಸ್ಪರ್ಶಿಸಿ."
+
+msgid "Paste"
+msgstr "ಅಂಟಿಸಿ"
+
+msgid "Pause"
+msgstr "ವಿರಾಮಗೊಳಿಸಿ"
+
+msgid "Pause When Looking Away"
+msgstr "ದೂರ ನೋಡುವಾಗ ವಿರಾಮಗೊಳಿಸಿ"
+
+msgid "Pinch and hold anywhere on the canvas to start"
+msgstr "ಪ್ರಾರಂಭಿಸಲು ಕ್ಯಾನ್ವಾಸ್‌ನಲ್ಲಿ ಎಲ್ಲಿಯಾದರೂ ಪಿಂಚ್ ಮಾಡಿ ಮತ್ತು ಹಿಡಿದುಕೊಳ್ಳಿ"
+
+msgid "Pinch and Look to Write"
+msgstr "ಬರೆಯಲು ಪಿಂಚ್ ಮಾಡಿ ನೋಡಿ"
+
+msgid "Game"
+msgstr ""
+
+msgid "Play"
+msgstr "ಪ್ಲೇ"
+
+msgid "Pointer Hover Input"
+msgstr "ಪಾಯಿಂಟರ್ ಹೋವರ್ ಇನ್‌ಪುಟ್"
+
+msgid "Preferences"
+msgstr ""
+
+msgid "Prefs"
+msgstr "ಪೂರ್ವಭಾವಿಗಳು"
+
+msgid "Privacy"
+msgstr "ಗೌಪ್ಯತೆ"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>ಗೌಪ್ಯತೆ</b>"
+
+msgid "Re-import from Dasher 5"
+msgstr "ಡ್ಯಾಷರ್ 5 ರಿಂದ ಮರು-ಆಮದು ಮಾಡಿ"
+
+msgid "Read"
+msgstr "ಓದು, @ item: intext Access permission, concatenated"
+
+msgid "Release the pinch to pause"
+msgstr "ವಿರಾಮಗೊಳಿಸಲು ಪಿಂಚ್ ಅನ್ನು ಬಿಡುಗಡೆ ಮಾಡಿ"
+
+msgid "Reset"
+msgstr "ಮರುಹೊಂದಿಸಿ"
+
+msgid "Reset All Settings to Defaults"
+msgstr "ಎಲ್ಲಾ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಡೀಫಾಲ್ಟ್‌ಗಳಿಗೆ ಮರುಹೊಂದಿಸಿ"
+
+msgid "Reset all settings to their defaults?"
+msgstr "ಎಲ್ಲಾ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಅವುಗಳ ಡೀಫಾಲ್ಟ್‌ಗಳಿಗೆ ಮರುಹೊಂದಿಸುವುದೇ?"
+
+msgid "Reset anonymous ID"
+msgstr "ಅನಾಮಧೇಯ ID ಯನ್ನು ಮರುಹೊಂದಿಸಿ"
+
+msgid "Reset engine settings to defaults"
+msgstr "ಎಂಜಿನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಡೀಫಾಲ್ಟ್‌ಗಳಿಗೆ ಮರುಹೊಂದಿಸಿ"
+
+msgid "Reset Settings"
+msgstr "ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಮರುಹೊಂದಿಸಿ"
+
+msgid "Reset to defaults"
+msgstr "ಡೀಫಾಲ್ಟ್‌ಗಳಿಗೆ ಮರುಹೊಂದಿಸಿ"
+
+msgid "Reset Training Data"
+msgstr "ತರಬೇತಿ ಡೇಟಾವನ್ನು ಮರುಹೊಂದಿಸಿ"
+
+msgid "Reset Training Data?"
+msgstr "ತರಬೇತಿ ಡೇಟಾವನ್ನು ಮರುಹೊಂದಿಸುವುದೇ?"
+
+msgid "Restore all Dasher settings to their default values. This cannot be undone."
+msgstr "ಎಲ್ಲಾ ಡ್ಯಾಷರ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಅವುಗಳ ಡೀಫಾಲ್ಟ್ ಮೌಲ್ಯಗಳಿಗೆ ಮರುಸ್ಥಾಪಿಸಿ. ಇದನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ."
 
 msgid "Retry"
 msgstr "ಪುನಃ ಪ್ರಯತ್ನಿಸು"
 
+msgid "Save"
+msgstr "ಉಳಿಸಿ"
+
+msgid "Save..."
+msgstr "ಉಳಿಸಿ..."
+
+msgid "Save failed"
+msgstr "ಉಳಿಸುವಿಕೆ ವಿಫಲವಾಗಿದೆ"
+
+msgid "Save Text File"
+msgstr "ಪಠ್ಯ ಫೈಲ್ ಉಳಿಸಿ"
+
+msgid "Saved"
+msgstr "ಉಳಿಸಲಾಗಿದೆ"
+
+msgid "Saved: "
+msgstr "ಉಳಿಸಲಾಗಿದೆ"
+
+msgid "Scan Speed"
+msgstr "ಸ್ಕ್ಯಾನ್ ವೇಗ"
+
+msgid "service running? See the setup help on the Keyboard button for install commands."
+msgstr ""
+
+msgid "Settings"
+msgstr "ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
+
+msgid "Settings..."
+msgstr "ಸೆಟ್ಟಿಂಗ್‌ಗಳು..."
+
+msgid "Reset all settings to defaults"
+msgstr "ಎಲ್ಲಾ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಡೀಫಾಲ್ಟ್‌ಗಳಿಗೆ ಮರುಹೊಂದಿಸಿ"
+
+msgid "Settings reset"
+msgstr "ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಮರುಹೊಂದಿಸಲಾಗಿದೆ"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "ಎಲ್ಲಾ ಎಂಜಿನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಅವುಗಳ ಅಂತರ್ನಿರ್ಮಿತ ಡೀಫಾಲ್ಟ್‌ಗಳಿಗೆ ಮರುಹೊಂದಿಸುವುದೇ?"
+
+msgid "Settings (speed, colours, control mode, language model)"
+msgstr "ಸೆಟ್ಟಿಂಗ್‌ಗಳು (ವೇಗ, ಬಣ್ಣಗಳು, ನಿಯಂತ್ರಣ ಮೋಡ್, ಭಾಷಾ ಮಾದರಿ)"
+
+msgid "Share"
+msgstr "ಹಂಚಿ"
+
+msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard "
+msgstr ""
+
+msgid "Show Input Debug Overlay"
+msgstr "ಇನ್‌ಪುಟ್ ಡೀಬಗ್ ಓವರ್‌ಲೇ ತೋರಿಸಿ"
+
+msgid "Show typing rate (WPM)"
+msgstr "ಟೈಪಿಂಗ್ ದರ (WPM) ತೋರಿಸಿ"
+
+msgid "Size"
+msgstr "ಗಾತ್ರ"
+
+msgid "Skipped files"
+msgstr "ಬಿಟ್ಟುಬಿಟ್ಟ ಫೈಲ್‌ಗಳು"
+
+msgid "Slow"
+msgstr "ನಿಧಾನ"
+
+msgid "Speech"
+msgstr "ಭಾಷಣ"
+
+msgid "Speech off"
+msgstr "ಭಾಷಣ ಆಫ್ ಆಗಿದೆ"
+
+msgid "Speech on"
+msgstr "ಭಾಷಣ ಆನ್ ಆಗಿದೆ"
+
+msgid "Speech Settings"
+msgstr ""
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>ಭಾಷಣ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</b>"
+
+msgid "Speed"
+msgstr "ವೇಗ"
+
+msgid "Speed "
+msgstr "ವೇಗ"
+
+msgid "Start Calibrating"
+msgstr "ಮಾಪನಾಂಕ ನಿರ್ಣಯಿಸಲು ಪ್ರಾರಂಭಿಸಿ"
+
+msgid "Start fresh"
+msgstr "ಹೊಸದಾಗಿ ಪ್ರಾರಂಭಿಸಿ"
+
+msgid "Stop"
+msgstr "ನಿಲ್ಲಿಸಿ"
+
+msgid "System"
+msgstr "ವ್ಯವಸ್ಥೆ"
+
+msgid "text"
+msgstr "ಪಠ್ಯ"
+
+msgid "Text files"
+msgstr "ಪಠ್ಯ ಕಡತಗಳುComment"
+
+msgid "the app you are pointing at (needs ydotool)"
+msgstr ""
+
+msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
+msgstr "ಡೀಬಗ್ ಓವರ್‌ಲೇ ಕ್ಯಾನ್ವಾಸ್‌ನ ಮೇಲಿನ ಎಡಭಾಗದಲ್ಲಿ ಹಸಿರು ಫಲಕವನ್ನು ಚಿತ್ರಿಸುತ್ತದೆ, ಇದು ಲೈವ್ ಟಚ್ ಈವೆಂಟ್ ಎಣಿಕೆಗಳು ಮತ್ತು ಕೊನೆಯದಾಗಿ ವರದಿ ಮಾಡಲಾದ (x, y) ಅನ್ನು ತೋರಿಸುತ್ತದೆ. ನೀವು ಪಿಂಚ್ ಮಾಡಿ ಹಿಡಿದಿಟ್ಟುಕೊಂಡಾಗ, ನೀವು ಸುತ್ತಲೂ ನೋಡುವಾಗ ಬದಲಾಗುತ್ತಿರುವ ನಿರ್ದೇಶಾಂಕಗಳೊಂದಿಗೆ touch.began ಅನ್ನು ನಂತರ touch.moved ಅನ್ನು ನೋಡಬೇಕು."
+
+msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
+msgstr "ಇದು ನಿಮ್ಮ ಸಂಗ್ರಹವಾದ ತರಬೇತಿ ಡೇಟಾವನ್ನು ಅಳಿಸುತ್ತದೆ. ಮುಂದಿನ ಉಡಾವಣೆಯಲ್ಲಿ ಭಾಷಾ ಮಾದರಿಯು ಅಂತರ್ನಿರ್ಮಿತ ಡೀಫಾಲ್ಟ್‌ಗಳಿಗೆ ಹಿಂತಿರುಗುತ್ತದೆ. ಇದನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ."
+
+msgid "Tilt Calibration"
+msgstr "ಟಿಲ್ಟ್ ಮಾಪನಾಂಕ ನಿರ್ಣಯ"
+
+msgid "Tilt your device now..."
+msgstr "ನಿಮ್ಮ ಸಾಧನವನ್ನು ಈಗ ಓರೆಯಾಗಿಸಿ..."
+
+msgid "Tilt your device through its full range of motion during calibration."
+msgstr "ಮಾಪನಾಂಕ ನಿರ್ಣಯದ ಸಮಯದಲ್ಲಿ ನಿಮ್ಮ ಸಾಧನವನ್ನು ಅದರ ಪೂರ್ಣ ವ್ಯಾಪ್ತಿಯ ಚಲನೆಯ ಮೂಲಕ ಓರೆಯಾಗಿಸಿ."
+
+msgid "time under Preferences → Privacy."
+msgstr ""
+
+msgid "Copy all text"
+msgstr ""
+
+msgid "Training"
+msgstr "ತರಬೇತಿ"
+
+msgid "Training Data"
+msgstr "ತರಬೇತಿ ಡೇಟಾ"
+
+msgid "Turbo"
+msgstr "ಟರ್ಬೊ"
+
+msgid "Typing into other applications needs access to /dev/uinput, which a sandboxed "
+msgstr ""
+
+msgid "Typing rate"
+msgstr "ಟೈಪಿಂಗ್ ದರ"
+
+msgid "{cps} cps · {wpm} wpm"
+msgstr ""
+
+msgid "Use Dasher as your keyboard"
+msgstr "ಡ್ಯಾಷರ್ ಅನ್ನು ನಿಮ್ಮ ಕೀಬೋರ್ಡ್ ಆಗಿ ಬಳಸಿ"
+
+msgid "We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
+msgstr "ಈ Mac ನಲ್ಲಿ ನಿಮ್ಮ Dasher 5 ಕಾನ್ಫಿಗರೇಶನ್ ನಮಗೆ ಕಂಡುಬಂದಿದೆ. ನಿಮ್ಮ ವರ್ಣಮಾಲೆ, ಬಣ್ಣಗಳು, ವೇಗ ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಮತ್ತು ಕಸ್ಟಮ್ ಫೈಲ್‌ಗಳನ್ನು Dasher 6 ಗೆ ಆಮದು ಮಾಡಿಕೊಳ್ಳಬಹುದು."
+
+msgid "What was found"
+msgstr "ಏನು ಸಿಕ್ಕಿತು?"
+
+msgid "X range:"
+msgstr "X ಶ್ರೇಣಿ:"
+
+msgid "Y range:"
+msgstr "Y ಶ್ರೇಣಿ:"
+
 msgid "ydotool found. Keyboard mode is ready."
 msgstr "ydotool ಕಂಡುಬಂದಿದೆ. ಕೀಬೋರ್ಡ್ ಮೋಡ್ ಸಿದ್ಧವಾಗಿದೆ."
+
+msgid "ydotool still isn't available. Make sure it's installed and the ydotool service is running."
+msgstr ""
+
+msgid "You can import later in Settings > Privacy & Migration"
+msgstr "ನೀವು ನಂತರ ಸೆಟ್ಟಿಂಗ್‌ಗಳು > ಗೌಪ್ಯತೆ ಮತ್ತು ವಲಸೆಯಲ್ಲಿ ಆಮದು ಮಾಡಿಕೊಳ್ಳಬಹುದು."
+
+msgid "Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."
+msgstr "ನೀವು ಪಿಂಚ್ ಮಾಡಿ ಹಿಡಿದಿಟ್ಟುಕೊಳ್ಳುವಾಗ ಮಾತ್ರ ನಿಮ್ಮ ನೋಟವನ್ನು ನಿರಂತರವಾಗಿ ಟ್ರ್ಯಾಕ್ ಮಾಡಲಾಗುತ್ತದೆ - ಎಲ್ಲಾ ವಿಷನ್ಓಎಸ್ ಗೇಜ್ ಅಪ್ಲಿಕೇಶನ್‌ಗಳು ಹೀಗೆಯೇ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತವೆ."

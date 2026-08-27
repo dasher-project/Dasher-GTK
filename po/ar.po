@@ -2,154 +2,55 @@
 # Copyright (C) 2026 The Dasher Project
 # This file is distributed under the same license as the dasher-gtk package.
 #
+# GENERATED from shared-resources/ui-strings.json — do not edit directly.
+# Edit the catalogue and run Scripts/generate-from-shared.py.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Project-Id-Version: dasher-gtk\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Dasher v6"
-msgstr "Dasher v6"
+msgid "%1$.1f cps · %2$d wpm"
+msgstr "0.1f نبضة في الثانية · d كلمة في الدقيقة"
 
-msgid "Right side"
-msgstr "الجانب الأيمن"
-
-msgid "Left side"
-msgstr "الجانب الأيسر"
-
-msgid "Bottom"
-msgstr "قاع"
-
-msgid "Top"
-msgstr "قمة"
-
-msgid "_Keyboard"
-msgstr "كيبورد"
-
-msgid "Pane position and direct-entry mode"
-msgstr "موضع الجزء ووضع الدخول المباشر"
-
-msgid "Open Text File"
-msgstr "فتح ملف نصي"
-
-msgid "Text files"
-msgstr "ملفات نصية"
-
-msgid "Failed to open: "
-msgstr "فشل في الفتح@ title Title of a list of documents that are open"
-
-msgid "Save Text File"
-msgstr "حفظ ملف نصي"
-
-msgid "Saved: "
-msgstr "تم الحفظ:"
-
-msgid "Failed to save: "
-msgstr "فشلت عملية الحفظ"
-
-msgid "Click to set up keyboard mode (needs ydotool)"
-msgstr "انقر لإعداد وضع لوحة المفاتيح (يحتاج إلى ydotool)"
-
-msgid "Settings"
-msgstr "إعدادات"
-
-msgid "Exit keyboard mode"
-msgstr "الخروج من وضع لوحة المفاتيح"
-
-msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
-msgstr "توقف وضع لوحة المفاتيح: تعذر على ydotool إدخال النص. هل ydotoold"
-
-msgid "Keyboard"
-msgstr "لوحة المفاتيح"
-
-msgid "New"
-msgstr "جديد"
-
-msgid "Open"
-msgstr "مصدر مفتوح"
-
-msgid "Save"
-msgstr "[ترجمة المصطلح: Save]"
-
-msgid "Play"
-msgstr "اللعب"
-
-msgid "Prefs"
-msgstr "التفضيلات"
-
-msgid "Copy"
-msgstr "[ترجمة المصطلح: Copy]"
-
-msgid "Copy all"
-msgstr "نسخ الكل"
-
-msgid "Paste"
-msgstr "لصق"
-
-msgid "Read"
-msgstr "اقرأ"
-
-msgid "Speed"
-msgstr "سرعة"
-
-msgid "Learning"
-msgstr "تعلُّم"
-
-msgid "Speech"
-msgstr "خطاب"
-
-msgid "Dasher Preferences"
-msgstr "تفضيلات Dasher"
-
-msgid "<big><b>Dasher v6</b></big>\\n"
-msgstr "<big><b>Dasher v6</b></big>\\"
-
-msgid "GTK Edition"
-msgstr "إصدار جي تي كيه"
+msgid "A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
+msgstr "تم حفظ تقرير الأعطال في المسار ~/Library/Logs/DiagnosticReports/Dasher-*.ips. إذا أمكنك مشاركته في مشكلة على GitHub، فسيساعدنا ذلك في إصلاح الخلل."
 
 msgid "About"
 msgstr "من نحن"
 
-msgid "Customization"
-msgstr "التخصيص"
+msgid "Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
+msgstr "قبول أحداث التمرير/المؤشر كمدخلات لـ Dasher. تفعيل خاصية تتبع العين أو المؤشرات الخارجية."
 
-msgid "Input"
-msgstr "مدخل"
+msgid "Access"
+msgstr "وصول"
 
-msgid "Language"
-msgstr "لغة"
+msgid "Accessibility Permission Required"
+msgstr "يلزم الحصول على إذن الوصول"
 
-msgid "Output"
-msgstr "المخرجات"
+msgid "Adapt Speed Automatically"
+msgstr "ضبط السرعة تلقائيًا"
 
-msgid "Game Mode"
-msgstr "نمط اللعب"
+msgid "Advanced settings"
+msgstr "الإعدادات المتقدمة"
 
-msgid "Dwell to click"
-msgstr "اسكن للنقر"
+msgid "All Dasher settings will be restored to their default values. This cannot be undone."
+msgstr "ستتم استعادة جميع إعدادات Dasher إلى قيمها الافتراضية. لا يمكن التراجع عن هذا الإجراء."
 
-msgid "Typing rate"
-msgstr "معدل الطباعة"
+msgid "Alphabet"
+msgstr "الأبجدية"
 
-msgid "Reset"
-msgstr "إعادة ضبط"
+msgid "Help improve Dasher"
+msgstr "ساعد في تحسين تطبيق Dasher"
 
-msgid "Keyboard mode opacity"
-msgstr "شفافية وضع لوحة المفاتيح"
+msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
+msgstr ""
 
-msgid "<b>Speech Settings</b>"
-msgstr "<b>إعدادات الكلام</b>"
-
-msgid "<b>Language / Locale</b>"
-msgstr "اللغة المحلية"
-
-msgid "Locale"
-msgstr "موقع"
-
-msgid "<b>Privacy</b>"
-msgstr "<b>الخصوصية</b>"
+msgid "Not now"
+msgstr "ليس الآن"
 
 msgid "Share anonymous analytics and crash reports"
 msgstr "مشاركة التحليلات المجهولة الهوية وتقارير الأعطال"
@@ -157,29 +58,206 @@ msgstr "مشاركة التحليلات المجهولة الهوية وتقار
 msgid "Reset analytics ID"
 msgstr "إعادة تعيين التحليلات"
 
-msgid "Reset engine settings to defaults"
-msgstr "بازنشانی تنظیمات به حالت پیش فرض"
+msgid "Help improve Dasher?"
+msgstr ""
 
-msgid "Reset all engine settings to their built-in defaults?"
-msgstr "هل تريد إعادة تعيين جميع إعدادات المحرك إلى الإعدادات الافتراضية المضمنة ؟"
+msgid "Anonymous usage analytics"
+msgstr "تحليلات الاستخدام المجهولة"
+
+msgid "Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
+msgstr "تساعدنا تحليلات الاستخدام المجهولة على فهم كيفية استخدام تطبيق Dasher وإصلاح الأعطال. لا يتم جمع أي نصوص مكتوبة أو محتويات الحافظة أو معلومات شخصية على الإطلاق. يمكنك إلغاء الاشتراك في أي وقت من خلال الإعدادات ← الخصوصية."
+
+msgid "App-Level Dwell to Select"
+msgstr "تحديد مستوى التطبيق"
+
+msgid "Dasher"
+msgstr ""
+
+msgid "Auto"
+msgstr "آلي"
+
+msgid "Auto-Centre Target"
+msgstr "مركز السيارات تارجت"
+
+msgid "Auto-select after fixating. Only enable if OS dwell is off."
+msgstr "يتم التحديد التلقائي بعد التثبيت. يتم التفعيل فقط في حالة إيقاف تشغيل خاصية \"التوقف المؤقت\" في نظام التشغيل."
+
+msgid "Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
+msgstr "يتم التحديد التلقائي بعد تثبيت النظر أثناء الضغط بإصبعين. فعّل هذه الخاصية فقط إذا كانت خاصية \"التوقف المؤقت\" في نظام التشغيل معطلة."
+
+msgid "Cancel"
+msgstr "يلغي"
+
+msgid "Check Again"
+msgstr "تحقق مرة أخرى"
+
+msgid "Choose..."
+msgstr "يختار..."
+
+msgid "Choose File..."
+msgstr "اختر ملفًا..."
+
+msgid "Clear"
+msgstr "واضح"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "انقر لإعداد وضع لوحة المفاتيح (يحتاج إلى ydotool)"
+
+msgid "Close"
+msgstr "خاتمة"
+
+msgid "Colour Theme"
+msgstr "نظام الألوان"
+
+msgid "contents or personal information is ever collected. You can change this any "
+msgstr ""
+
+msgid "Copied to clipboard."
+msgstr "منسوخة إلى الحافظة."
+
+msgid "Copy"
+msgstr "[ترجمة المصطلح: Copy]"
+
+msgid "Copy all"
+msgstr "نسخ الكل"
+
+msgid "Copy All"
+msgstr "نسخ الكل"
+
+msgid "Copy commands"
+msgstr "نسخ الأوامر"
+
+msgid "Current Calibration"
+msgstr "معايرة التيار"
+
+msgid "Customization"
+msgstr "التخصيص"
+
+msgid "Dark"
+msgstr "مظلم"
 
 msgid "Dasher "
 msgstr "شخص أنيق"
 
-msgid "Privacy"
-msgstr "خصوصية"
+msgid "Dasher 5 data detected on this Mac."
+msgstr "تم اكتشاف بيانات Dasher 5 على هذا الجهاز Mac."
 
-msgid "No settings available for this section."
-msgstr "لا توجد إعدادات متاحة لهذا القسم."
+msgid "Dasher 5 settings imported successfully."
+msgstr "تم استيراد إعدادات Dasher 5 بنجاح."
 
-msgid "Enable Keyboard Mode"
-msgstr "تمكين وضع لوحة المفاتيح"
+msgid "Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
+msgstr "يعمل تطبيق Dasher أيضًا كلوحة مفاتيح نظام، لذا يمكنك الكتابة في أي تطبيق. قم بتفعيله مرة واحدة من الإعدادات."
 
-msgid "<b>Keyboard mode isn't available in this build</b>"
-msgstr "<b>وضع لوحة المفاتيح غير متوفر في هذا الإصدار</b>"
+msgid "Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
+msgstr "يجمع تطبيق Dasher بيانات تحليلية مجهولة المصدر لفهم الاستخدام وإصلاح الأعطال. لا يتم جمع أي نصوص مكتوبة أو بيانات من الحافظة أو معلومات شخصية على الإطلاق. اطلع على مخطط الأحداث المفتوح على github.com/dasher-project/Dasher-Apple."
 
-msgid "Close"
-msgstr "خاتمة"
+msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
+msgstr "يجمع تطبيق Dasher بيانات تحليلية مجهولة المصدر تحترم الخصوصية لفهم أنماط الاستخدام وإصلاح الأعطال. لا يتم جمع أي نصوص مكتوبة أو محتويات الحافظة أو معلومات شخصية على الإطلاق.\n\nيمكنك تغيير هذا الإعداد في أي وقت من خلال الإعدادات > الخصوصية."
+
+msgid "Dasher Keyboard"
+msgstr "لوحة مفاتيح داشر"
+
+msgid "Dasher keyboard"
+msgstr "لوحة مفاتيح داشر"
+
+msgid "Dasher needs accessibility access to send text to other applications."
+msgstr "يحتاج تطبيق Dasher إلى إمكانية الوصول لذوي الاحتياجات الخاصة لإرسال الرسائل النصية إلى التطبيقات الأخرى."
+
+msgid "Dasher Preferences"
+msgstr "تفضيلات Dasher"
+
+msgid "Dasher quit unexpectedly"
+msgstr "استقال داشر بشكل غير متوقع"
+
+msgid "Dasher v6"
+msgstr ""
+
+msgid "<big><b>Dasher v6</b></big>\n"
+msgstr "<big><b>Dasher v6</b></big>\n"
+
+msgid "Decrease Speed"
+msgstr "تقليل السرعة"
+
+msgid "Default"
+msgstr "تقصير"
+
+msgid "Diagnostics"
+msgstr "التشخيص"
+
+msgid "Direct Mode"
+msgstr "الوضع المباشر"
+
+msgid "Done"
+msgstr "منتهي"
+
+msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
+msgstr ""
+
+msgid "Dwell to click"
+msgstr "اسكن للنقر"
+
+msgid "Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
+msgstr "قم بتمكين Dasher من خلال الإعدادات → عام → لوحة المفاتيح → لوحات المفاتيح، ثم قم بتشغيل السماح بالوصول الكامل حتى يتمكن Dasher من التحدث والتعلم."
+
+msgid "Enable tilt input first to access calibration."
+msgstr "قم بتمكين إدخال الإمالة أولاً للوصول إلى المعايرة."
+
+msgid "Export Training Text"
+msgstr "تصدير نص التدريب"
+
+msgid "Eye Gaze"
+msgstr "نظرة العين"
+
+msgid "Failed to open: "
+msgstr "فشل في الفتح@ title Title of a list of documents that are open"
+
+msgid "Failed to save: "
+msgstr "فشلت عملية الحفظ"
+
+msgid "Fast"
+msgstr "سريع"
+
+msgid "Flatpak or AppImage build can't provide.\n\n"
+msgstr ""
+
+msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
+msgstr "تتيح لك خاصية الوصول الكامل في برنامج داشر نطق ما تكتبه وحفظ تدريبك. ولا يزال بإمكانك استخدام لوحة المفاتيح لإدخال البيانات الأساسية بدونها."
+
+msgid "Game mode"
+msgstr "وضع اللعب"
+
+msgid "Game Mode"
+msgstr "نمط اللعب"
+
+msgid "Game Text File"
+msgstr "ملف نص اللعبة"
+
+msgid "Got it"
+msgstr "فهمتها"
+
+msgid "GTK Edition"
+msgstr "إصدار جي تي كيه"
+
+msgid "Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
+msgstr "تُضيف خاصية الاستيراد نصًا إلى نموذج اللغة (تُلحقه بالتعلم الحالي). تحفظ خاصية التصدير بيانات التدريب المتراكمة لعمل نسخة احتياطية أو نقلها. تُحذف خاصية إعادة الضبط بيانات التدريب المخصصة، ويعود النموذج إلى إعداداته الافتراضية المدمجة عند التشغيل التالي."
+
+msgid "Import from Dasher 5"
+msgstr "استيراد من داشر 5"
+
+msgid "Import settings"
+msgstr "استيراد الإعدادات"
+
+msgid "Import Training Text"
+msgstr "استيراد نص التدريب"
+
+msgid "Increase Speed"
+msgstr "زيادة السرعة"
+
+msgid "Input"
+msgstr "مدخل"
+
+msgid "Install Dasher via your package manager or build from source to use keyboard mode."
+msgstr ""
 
 msgid "<b>Install ydotool to use keyboard mode</b>"
 msgstr "<b>تثبيت ydotool لاستخدام وضع لوحة المفاتيح</b>"
@@ -187,14 +265,383 @@ msgstr "<b>تثبيت ydotool لاستخدام وضع لوحة المفاتيح<
 msgid "isn't installed. Run these commands, then press Retry:"
 msgstr "غير مثبت. قم بتشغيل هذه الأوامر، ثم اضغط على إعادة المحاولة:"
 
-msgid "Copy commands"
-msgstr "نسخ الأوامر"
+msgid "Keyboard"
+msgstr ""
 
-msgid "Copied to clipboard."
-msgstr "منسوخة إلى الحافظة."
+msgid "_Keyboard"
+msgstr "كيبورد"
+
+msgid "Type Dasher's output straight into the app you are pointing at"
+msgstr ""
+
+msgid "Exit keyboard mode"
+msgstr "الخروج من وضع لوحة المفاتيح"
+
+msgid "Keyboard mode: hide the output pane and type Dasher's text straight into "
+msgstr ""
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>وضع لوحة المفاتيح غير متوفر في هذا الإصدار</b>"
+
+msgid "Keyboard mode opacity"
+msgstr "شفافية وضع لوحة المفاتيح"
+
+msgid "Keyboard mode stopped"
+msgstr ""
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "توقف وضع لوحة المفاتيح: تعذر على ydotool إدخال النص. هل ydotoold"
+
+msgid "Enable Keyboard Mode"
+msgstr "تمكين وضع لوحة المفاتيح"
+
+msgid "Keyboard mode types Dasher's output into other applications using ydotool, which "
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Language / Locale"
+msgstr ""
+
+msgid "<b>Language / Locale</b>"
+msgstr "اللغة المحلية"
+
+msgid "Bottom"
+msgstr "قاع"
+
+msgid "Pane position and direct-entry mode"
+msgstr "موضع الجزء ووضع الدخول المباشر"
+
+msgid "Left side"
+msgstr "الجانب الأيسر"
+
+msgid "Right side"
+msgstr "الجانب الأيمن"
+
+msgid "Top"
+msgstr "قمة"
+
+msgid "Learning"
+msgstr "تعلُّم"
+
+msgid "Leave game mode"
+msgstr "الخروج من وضع اللعبة"
+
+msgid "Light"
+msgstr "ضوء"
+
+msgid "Locale"
+msgstr "موقع"
+
+msgid "Migration"
+msgstr "الهجرة"
+
+msgid "Move your eyes while pinching to steer"
+msgstr "حرك عينيك أثناء الضغط على زر التكبير/التصغير للتوجيه"
+
+msgid "New"
+msgstr "جديد"
+
+msgid "New Message"
+msgstr "رسالة جديدة"
+
+msgid "No Dasher 5 data found on this Mac."
+msgstr "لم يتم العثور على بيانات Dasher 5 على هذا الجهاز Mac."
+
+msgid "No settings available for this section."
+msgstr "لا توجد إعدادات متاحة لهذا القسم."
+
+msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "Nothing to save"
+msgstr "لا يوجد شيء للحفظ"
+
+msgid "Nothing to share"
+msgstr "لا يوجد ما يُشارك."
+
+msgid "OK"
+msgstr "نعم"
+
+msgid "On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
+msgstr "في نظام visionOS، اضغط بإصبعين على لوحة الرسم لبدء الكتابة، وانظر حولك أثناء الضغط للتوجيه، ثم ارفع إصبعيك للتوقف مؤقتًا. نموذج الإدخال هو الضغط والنظر."
+
+msgid "Open"
+msgstr "مصدر مفتوح"
+
+msgid "Open..."
+msgstr "يفتح..."
+
+msgid "Open failed"
+msgstr "فشل الفتح"
+
+msgid "Open Keyboard Settings"
+msgstr "افتح إعدادات لوحة المفاتيح"
+
+msgid "Open Settings"
+msgstr "افتح الإعدادات"
+
+msgid "Open System Settings"
+msgstr "افتح إعدادات النظام"
+
+msgid "Open Text File"
+msgstr "فتح ملف نصي"
+
+msgid "Output"
+msgstr "المخرجات"
+
+msgid "Output Font Size"
+msgstr "حجم خط الإخراج"
+
+msgid "Touch the canvas to start writing."
+msgstr "المس اللوحة لبدء الكتابة."
+
+msgid "Paste"
+msgstr "لصق"
+
+msgid "Pause"
+msgstr "يوقف"
+
+msgid "Pause When Looking Away"
+msgstr "توقف مؤقتًا عند النظر بعيدًا"
+
+msgid "Pinch and hold anywhere on the canvas to start"
+msgstr "اضغط مع الاستمرار في الضغط في أي مكان على اللوحة للبدء"
+
+msgid "Pinch and Look to Write"
+msgstr "اضغط وانظر للكتابة"
+
+msgid "Game"
+msgstr ""
+
+msgid "Play"
+msgstr "اللعب"
+
+msgid "Pointer Hover Input"
+msgstr "إدخال تحريك المؤشر"
+
+msgid "Preferences"
+msgstr ""
+
+msgid "Prefs"
+msgstr "التفضيلات"
+
+msgid "Privacy"
+msgstr "خصوصية"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>الخصوصية</b>"
+
+msgid "Re-import from Dasher 5"
+msgstr "إعادة الاستيراد من Dasher 5"
+
+msgid "Read"
+msgstr "اقرأ"
+
+msgid "Release the pinch to pause"
+msgstr "حرر الضغطة للتوقف مؤقتًا"
+
+msgid "Reset"
+msgstr "إعادة ضبط"
+
+msgid "Reset All Settings to Defaults"
+msgstr "إعادة ضبط جميع الإعدادات إلى الوضع الافتراضي"
+
+msgid "Reset all settings to their defaults?"
+msgstr "هل تريد إعادة ضبط جميع الإعدادات إلى قيمها الافتراضية؟"
+
+msgid "Reset anonymous ID"
+msgstr "إعادة تعيين المعرف المجهول"
+
+msgid "Reset engine settings to defaults"
+msgstr "بازنشانی تنظیمات به حالت پیش فرض"
+
+msgid "Reset Settings"
+msgstr "إعادة ضبط الإعدادات"
+
+msgid "Reset to defaults"
+msgstr "إعادة ضبط الإعدادات الافتراضية"
+
+msgid "Reset Training Data"
+msgstr "إعادة ضبط بيانات التدريب"
+
+msgid "Reset Training Data?"
+msgstr "إعادة ضبط بيانات التدريب؟"
+
+msgid "Restore all Dasher settings to their default values. This cannot be undone."
+msgstr "أعد ضبط جميع إعدادات Dasher إلى قيمها الافتراضية. لا يمكن التراجع عن هذا الإجراء."
 
 msgid "Retry"
 msgstr "أعد المحاولة"
 
+msgid "Save"
+msgstr "[ترجمة المصطلح: Save]"
+
+msgid "Save..."
+msgstr "يحفظ..."
+
+msgid "Save failed"
+msgstr "فشلت عملية الحفظ"
+
+msgid "Save Text File"
+msgstr "حفظ ملف نصي"
+
+msgid "Saved"
+msgstr "أنقذ"
+
+msgid "Saved: "
+msgstr "تم الحفظ:"
+
+msgid "Scan Speed"
+msgstr "سرعة المسح"
+
+msgid "service running? See the setup help on the Keyboard button for install commands."
+msgstr ""
+
+msgid "Settings"
+msgstr "إعدادات"
+
+msgid "Settings..."
+msgstr "إعدادات..."
+
+msgid "Reset all settings to defaults"
+msgstr "إعادة ضبط جميع الإعدادات إلى الوضع الافتراضي"
+
+msgid "Settings reset"
+msgstr "إعادة ضبط الإعدادات"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "هل تريد إعادة تعيين جميع إعدادات المحرك إلى الإعدادات الافتراضية المضمنة ؟"
+
+msgid "Settings (speed, colours, control mode, language model)"
+msgstr "الإعدادات (السرعة، الألوان، وضع التحكم، نموذج اللغة)"
+
+msgid "Share"
+msgstr "يشارك"
+
+msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard "
+msgstr ""
+
+msgid "Show Input Debug Overlay"
+msgstr "عرض طبقة تصحيح الأخطاء للإدخال"
+
+msgid "Show typing rate (WPM)"
+msgstr "عرض معدل الكتابة (كلمة في الدقيقة)"
+
+msgid "Size"
+msgstr "مقاس"
+
+msgid "Skipped files"
+msgstr "الملفات المتخطاة"
+
+msgid "Slow"
+msgstr "بطيء"
+
+msgid "Speech"
+msgstr "خطاب"
+
+msgid "Speech off"
+msgstr "توقف عن الكلام"
+
+msgid "Speech on"
+msgstr "خطاب حول"
+
+msgid "Speech Settings"
+msgstr ""
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>إعدادات الكلام</b>"
+
+msgid "Speed"
+msgstr "سرعة"
+
+msgid "Speed "
+msgstr "سرعة "
+
+msgid "Start Calibrating"
+msgstr "ابدأ المعايرة"
+
+msgid "Start fresh"
+msgstr "ابدأ من جديد"
+
+msgid "Stop"
+msgstr "قف"
+
+msgid "System"
+msgstr "نظام"
+
+msgid "text"
+msgstr "نص"
+
+msgid "Text files"
+msgstr "ملفات نصية"
+
+msgid "the app you are pointing at (needs ydotool)"
+msgstr ""
+
+msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
+msgstr "تعرض نافذة تصحيح الأخطاء لوحة خضراء أعلى يسار اللوحة، تُظهر عدد أحداث اللمس المباشرة وآخر إحداثيات (س، ص). عند الضغط مع الاستمرار، سترى touch.began ثم touch.moved مع تغير الإحداثيات أثناء تحريك المؤشر."
+
+msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
+msgstr "سيؤدي هذا إلى حذف بيانات التدريب المتراكمة. سيعود نموذج اللغة إلى الإعدادات الافتراضية المدمجة عند التشغيل التالي. لا يمكن التراجع عن هذا الإجراء."
+
+msgid "Tilt Calibration"
+msgstr "معايرة الميل"
+
+msgid "Tilt your device now..."
+msgstr "قم بإمالة جهازك الآن..."
+
+msgid "Tilt your device through its full range of motion during calibration."
+msgstr "قم بإمالة جهازك عبر نطاق حركته الكامل أثناء المعايرة."
+
+msgid "time under Preferences → Privacy."
+msgstr ""
+
+msgid "Copy all text"
+msgstr ""
+
+msgid "Training"
+msgstr "تمرين"
+
+msgid "Training Data"
+msgstr "بيانات التدريب"
+
+msgid "Turbo"
+msgstr "توربيني"
+
+msgid "Typing into other applications needs access to /dev/uinput, which a sandboxed "
+msgstr ""
+
+msgid "Typing rate"
+msgstr "معدل الطباعة"
+
+msgid "{cps} cps · {wpm} wpm"
+msgstr ""
+
+msgid "Use Dasher as your keyboard"
+msgstr "استخدم داشر كلوحة مفاتيح"
+
+msgid "We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
+msgstr "لقد وجدنا إعدادات برنامج Dasher 5 الخاصة بك على هذا الجهاز. يمكنك استيراد حروفك الأبجدية وألوانك وإعدادات السرعة وملفاتك المخصصة إلى برنامج Dasher 6."
+
+msgid "What was found"
+msgstr "ما تم العثور عليه"
+
+msgid "X range:"
+msgstr "نطاق X:"
+
+msgid "Y range:"
+msgstr "نطاق Y:"
+
 msgid "ydotool found. Keyboard mode is ready."
 msgstr "تم العثور على ydotool. وضع لوحة المفاتيح جاهز."
+
+msgid "ydotool still isn't available. Make sure it's installed and the ydotool service is running."
+msgstr ""
+
+msgid "You can import later in Settings > Privacy & Migration"
+msgstr "يمكنك الاستيراد لاحقًا من خلال الإعدادات > الخصوصية والترحيل"
+
+msgid "Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."
+msgstr "يتم تتبع نظرتك باستمرار فقط أثناء الضغط والضغط - هذه هي الطريقة التي تعمل بها جميع تطبيقات تتبع النظر في نظام visionOS."

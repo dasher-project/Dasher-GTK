@@ -2,154 +2,55 @@
 # Copyright (C) 2026 The Dasher Project
 # This file is distributed under the same license as the dasher-gtk package.
 #
+# GENERATED from shared-resources/ui-strings.json — do not edit directly.
+# Edit the catalogue and run Scripts/generate-from-shared.py.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Project-Id-Version: dasher-gtk\n"
 "Language: bn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Dasher v6"
-msgstr "ড্যাশার v6"
+msgid "%1$.1f cps · %2$d wpm"
+msgstr ""
 
-msgid "Right side"
-msgstr "ডান দিকে"
-
-msgid "Left side"
-msgstr "বাম দিকে"
-
-msgid "Bottom"
-msgstr "নীচে"
-
-msgid "Top"
-msgstr "শীর্ষ"
-
-msgid "_Keyboard"
-msgstr "কিবোর্ড"
-
-msgid "Pane position and direct-entry mode"
-msgstr "পেইন পজিশন এবং ডাইরেক্ট-এন্ট্রি মোড"
-
-msgid "Open Text File"
-msgstr "টেক্সট ফাইল খুলুন"
-
-msgid "Text files"
-msgstr "টেক্সট ফাইল"
-
-msgid "Failed to open: "
-msgstr "প্যারেন্ট ফোল্ডারে স্থানান্তর করুন"
-
-msgid "Save Text File"
-msgstr "টেক্সট ফাইল সংরক্ষণ করুন"
-
-msgid "Saved: "
-msgstr "সংরক্ষণ হয়েছে"
-
-msgid "Failed to save: "
-msgstr "সংরক্ষণ করতে ব্যর্থ হয়েছে"
-
-msgid "Click to set up keyboard mode (needs ydotool)"
-msgstr "কীবোর্ড মোড সেট আপ করতে ক্লিক করুন (ydotool প্রয়োজন)"
-
-msgid "Settings"
-msgstr "সেটিংস"
-
-msgid "Exit keyboard mode"
-msgstr "কীবোর্ড মোড থেকে প্রস্থান করুন"
-
-msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
-msgstr "কীবোর্ড মোড বন্ধ করা হয়েছে: ydotool টেক্সট ইনজেক্ট করতে পারেনি । ydotoold কি"
-
-msgid "Keyboard"
-msgstr "কিবোর্ড"
-
-msgid "New"
-msgstr "নতুন"
-
-msgid "Open"
-msgstr "খুলুন"
-
-msgid "Save"
-msgstr "সংরক্ষণ করুন"
-
-msgid "Play"
-msgstr "খেলা"
-
-msgid "Prefs"
-msgstr "Prefs"
-
-msgid "Copy"
-msgstr "কপি করুন"
-
-msgid "Copy all"
-msgstr "সব কপি করুন"
-
-msgid "Paste"
-msgstr "পেস্ট"
-
-msgid "Read"
-msgstr "পড়া"
-
-msgid "Speed"
-msgstr "গতি"
-
-msgid "Learning"
-msgstr "শিক্ষা"
-
-msgid "Speech"
-msgstr "বক্তৃতা"
-
-msgid "Dasher Preferences"
-msgstr "Dasher পছন্দসমূহ"
-
-msgid "<big><b>Dasher v6</b></big>\\n"
-msgstr "<big><b>ড্যাশার v6</b></big>\\"
-
-msgid "GTK Edition"
-msgstr "GTK সংস্করণ"
+msgid "A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
+msgstr "একটি ক্র্যাশ রিপোর্ট ~/Library/Logs/DiagnosticReports/Dasher-*.ips-এ সংরক্ষিত হয়েছে। আপনি যদি এটি একটি গিটহাব ইস্যু-তে শেয়ার করেন, তবে তা আমাদের বাগটি সমাধান করতে সাহায্য করবে।"
 
 msgid "About"
 msgstr "সম্বন্ধে"
 
-msgid "Customization"
-msgstr "কাস্টমাইজেশন"
+msgid "Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
+msgstr "হোভার/পয়েন্টার ইভেন্টগুলোকে ড্যাশার ইনপুট হিসেবে গ্রহণ করুন। আই ট্র্যাকিং বা এক্সটার্নাল পয়েন্টারের জন্য এটি সক্রিয় করুন।"
 
-msgid "Input"
-msgstr "ইনপুট"
+msgid "Access"
+msgstr "অ্যাক্সেস"
 
-msgid "Language"
-msgstr "ভাষা"
+msgid "Accessibility Permission Required"
+msgstr "প্রবেশগম্যতার অনুমতি প্রয়োজন"
 
-msgid "Output"
-msgstr "আউটপুট"
+msgid "Adapt Speed Automatically"
+msgstr "স্বয়ংক্রিয়ভাবে গতি সামঞ্জস্য করুন"
 
-msgid "Game Mode"
-msgstr "গেম মোড"
+msgid "Advanced settings"
+msgstr "উন্নত সেটিংস"
 
-msgid "Dwell to click"
-msgstr "ক্লিক করতে বসুন"
+msgid "All Dasher settings will be restored to their default values. This cannot be undone."
+msgstr "ড্যাশার-এর সমস্ত সেটিংস তাদের ডিফল্ট মানে পুনরুদ্ধার করা হবে। এটি পূর্বাবস্থায় ফেরানো যাবে না।"
 
-msgid "Typing rate"
-msgstr "টাইপ করার হার"
+msgid "Alphabet"
+msgstr "বর্ণমালা"
 
-msgid "Reset"
-msgstr "রিসেট"
+msgid "Help improve Dasher"
+msgstr "ড্যাশারকে উন্নত করতে সাহায্য করুন"
 
-msgid "Keyboard mode opacity"
-msgstr "কীবোর্ড মোডের অস্বচ্ছতা"
+msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
+msgstr ""
 
-msgid "<b>Speech Settings</b>"
-msgstr "<b>স্পিচ সেটিংস</b>"
-
-msgid "<b>Language / Locale</b>"
-msgstr "<b>ভাষা / স্থানীয়</b>"
-
-msgid "Locale"
-msgstr "লোকাল"
-
-msgid "<b>Privacy</b>"
-msgstr "<b>গোপনীয়তা</b>"
+msgid "Not now"
+msgstr "এখন নয়"
 
 msgid "Share anonymous analytics and crash reports"
 msgstr "বেনামী বিশ্লেষণ এবং ক্র্যাশ রিপোর্ট শেয়ার করুন"
@@ -157,29 +58,206 @@ msgstr "বেনামী বিশ্লেষণ এবং ক্র্যা
 msgid "Reset analytics ID"
 msgstr "বিশ্লেষণ আইডি রিসেট করুন"
 
-msgid "Reset engine settings to defaults"
-msgstr "ইঞ্জিন সেটিংস ডিফল্টে রিসেট করুন"
+msgid "Help improve Dasher?"
+msgstr ""
 
-msgid "Reset all engine settings to their built-in defaults?"
-msgstr "সমস্ত ইঞ্জিন সেটিংস তাদের বিল্ট-ইন ডিফল্টে রিসেট করবেন?"
+msgid "Anonymous usage analytics"
+msgstr "বেনামী ব্যবহার বিশ্লেষণ"
+
+msgid "Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
+msgstr "বেনামী ব্যবহার বিশ্লেষণ আমাদের বুঝতে সাহায্য করে যে ড্যাশার কীভাবে ব্যবহৃত হচ্ছে এবং ক্র্যাশ ঠিক করতে সহায়তা করে। টাইপ করা কোনো লেখা, ক্লিপবোর্ডের বিষয়বস্তু বা ব্যক্তিগত তথ্য কখনোই সংগ্রহ করা হয় না। সেটিংস → গোপনীয়তা-তে গিয়ে যেকোনো সময় এটি থেকে বেরিয়ে আসুন।"
+
+msgid "App-Level Dwell to Select"
+msgstr "অ্যাপ-স্তরে নির্বাচন করতে থাকুন"
+
+msgid "Dasher"
+msgstr ""
+
+msgid "Auto"
+msgstr "অটো"
+
+msgid "Auto-Centre Target"
+msgstr "অটো-সেন্টার টার্গেট"
+
+msgid "Auto-select after fixating. Only enable if OS dwell is off."
+msgstr "দৃষ্টি নিবদ্ধ করার পর স্বয়ংক্রিয়ভাবে নির্বাচিত হবে। শুধুমাত্র OS ডুয়েল বন্ধ থাকলেই এটি সক্রিয় করুন।"
+
+msgid "Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
+msgstr "পিঞ্চ করার সময় দৃষ্টি স্থির রাখলে স্বয়ংক্রিয়ভাবে নির্বাচন হবে। শুধুমাত্র OS dwell বন্ধ থাকলেই এটি সক্রিয় করুন।"
+
+msgid "Cancel"
+msgstr "বাতিল করুন"
+
+msgid "Check Again"
+msgstr "আবার পরীক্ষা করুন"
+
+msgid "Choose..."
+msgstr "বেছে নিন..."
+
+msgid "Choose File..."
+msgstr "ফাইল নির্বাচন করুন..."
+
+msgid "Clear"
+msgstr "পরিষ্কার"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "কীবোর্ড মোড সেট আপ করতে ক্লিক করুন (ydotool প্রয়োজন)"
+
+msgid "Close"
+msgstr "বন্ধ করুন"
+
+msgid "Colour Theme"
+msgstr "রঙের থিম"
+
+msgid "contents or personal information is ever collected. You can change this any "
+msgstr ""
+
+msgid "Copied to clipboard."
+msgstr "ক্লিপবোর্ড-এ কপি করা হয়েছে"
+
+msgid "Copy"
+msgstr "কপি করুন"
+
+msgid "Copy all"
+msgstr "সব কপি করুন"
+
+msgid "Copy All"
+msgstr "সব কপি করুন"
+
+msgid "Copy commands"
+msgstr "কমান্ড কপি করুন"
+
+msgid "Current Calibration"
+msgstr "বর্তমান ক্রমাঙ্কন"
+
+msgid "Customization"
+msgstr "কাস্টমাইজেশন"
+
+msgid "Dark"
+msgstr "অন্ধকার"
 
 msgid "Dasher "
 msgstr "Dasher"
 
-msgid "Privacy"
-msgstr "গোপনীয়তা"
+msgid "Dasher 5 data detected on this Mac."
+msgstr "এই ম্যাক-এ ড্যাশার ৫ ডেটা শনাক্ত করা হয়েছে।"
 
-msgid "No settings available for this section."
-msgstr "এই বিভাগের জন্য কোনও সেটিংস উপলব্ধ নেই ।"
+msgid "Dasher 5 settings imported successfully."
+msgstr "ড্যাশার ৫-এর সেটিংস সফলভাবে ইম্পোর্ট করা হয়েছে।"
 
-msgid "Enable Keyboard Mode"
-msgstr "ডান বাটন:"
+msgid "Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
+msgstr "ড্যাশার সিস্টেম কিবোর্ড হিসেবেও কাজ করে, ফলে আপনি যেকোনো অ্যাপে লিখতে পারবেন। সেটিংস থেকে এটি একবার চালু করুন।"
 
-msgid "<b>Keyboard mode isn't available in this build</b>"
-msgstr "<b>এই বিল্ডে কীবোর্ড মোড উপলভ্য নয়</b>"
+msgid "Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
+msgstr "ড্যাশার ব্যবহার বুঝতে এবং ক্র্যাশ ঠিক করতে বেনামী অ্যানালিটিক্স সংগ্রহ করে। টাইপ করা কোনো টেক্সট, ক্লিপবোর্ড বা ব্যক্তিগত তথ্য কখনোই সংগ্রহ করা হয় না। ওপেন ইভেন্ট স্কিমাটি github.com/dasher-project/Dasher-Apple-এ দেখুন।"
 
-msgid "Close"
-msgstr "বন্ধ করুন"
+msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
+msgstr "ড্যাশার ব্যবহারের ধরণ বুঝতে এবং ক্র্যাশ ঠিক করতে বেনামী ও গোপনীয়তা রক্ষাকারী অ্যানালিটিক্স সংগ্রহ করে। টাইপ করা কোনো লেখা, ক্লিপবোর্ডের বিষয়বস্তু বা ব্যক্তিগত তথ্য কখনোই সংগ্রহ করা হয় না।\n\nআপনি সেটিংস > গোপনীয়তা-তে গিয়ে যেকোনো সময় এটি পরিবর্তন করতে পারেন।"
+
+msgid "Dasher Keyboard"
+msgstr "ড্যাশার কীবোর্ড"
+
+msgid "Dasher keyboard"
+msgstr "ড্যাশার কিবোর্ড"
+
+msgid "Dasher needs accessibility access to send text to other applications."
+msgstr "অন্যান্য অ্যাপ্লিকেশনে টেক্সট পাঠাতে ড্যাশারের অ্যাক্সেসিবিলিটি অ্যাক্সেস প্রয়োজন।"
+
+msgid "Dasher Preferences"
+msgstr "Dasher পছন্দসমূহ"
+
+msgid "Dasher quit unexpectedly"
+msgstr "ড্যাশার অপ্রত্যাশিতভাবে পদত্যাগ করেছে"
+
+msgid "Dasher v6"
+msgstr "ড্যাশার v6"
+
+msgid "<big><b>Dasher v6</b></big>\n"
+msgstr "<big><b>ড্যাশার v6</b></big>\n"
+
+msgid "Decrease Speed"
+msgstr "গতি কমানো"
+
+msgid "Default"
+msgstr "ডিফল্ট"
+
+msgid "Diagnostics"
+msgstr "ডায়াগনস্টিকস"
+
+msgid "Direct Mode"
+msgstr "সরাসরি মোড"
+
+msgid "Done"
+msgstr "সম্পন্ন হয়েছে"
+
+msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
+msgstr ""
+
+msgid "Dwell to click"
+msgstr "ক্লিক করতে বসুন"
+
+msgid "Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
+msgstr "সেটিংস → সাধারণ → কীবোর্ড → কীবোর্ডস-এ গিয়ে ড্যাশার সক্রিয় করুন, তারপর সম্পূর্ণ অ্যাক্সেসের অনুমতি দিন (Allow Full Access) চালু করুন, যাতে ড্যাশার কথা বলতে ও শিখতে পারে।"
+
+msgid "Enable tilt input first to access calibration."
+msgstr "ক্যালিব্রেশন অ্যাক্সেস করতে প্রথমে টিল্ট ইনপুট সক্রিয় করুন।"
+
+msgid "Export Training Text"
+msgstr "রপ্তানি প্রশিক্ষণ পাঠ্য"
+
+msgid "Eye Gaze"
+msgstr "চোখের দৃষ্টি"
+
+msgid "Failed to open: "
+msgstr "প্যারেন্ট ফোল্ডারে স্থানান্তর করুন"
+
+msgid "Failed to save: "
+msgstr "সংরক্ষণ করতে ব্যর্থ হয়েছে"
+
+msgid "Fast"
+msgstr "দ্রুত"
+
+msgid "Flatpak or AppImage build can't provide.\n\n"
+msgstr ""
+
+msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
+msgstr "ফুল অ্যাক্সেস ড্যাশারকে আপনার লেখা কথা বলতে এবং আপনার প্রশিক্ষণ মনে রাখতে সাহায্য করে। এটি ছাড়াও, সাধারণ এন্ট্রির জন্য কিবোর্ড কাজ করে।"
+
+msgid "Game mode"
+msgstr "গেম মোড"
+
+msgid "Game Mode"
+msgstr "গেম মোড"
+
+msgid "Game Text File"
+msgstr "গেম টেক্সট ফাইল"
+
+msgid "Got it"
+msgstr "বুঝেছি।"
+
+msgid "GTK Edition"
+msgstr "GTK সংস্করণ"
+
+msgid "Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
+msgstr "ইম্পোর্ট ল্যাঙ্গুয়েজ মডেলে টেক্সট যোগ করে (বিদ্যমান লার্নিং-এর সাথে যুক্ত করে)। এক্সপোর্ট আপনার সংগৃহীত ট্রেনিং ডেটা ব্যাকআপ বা স্থানান্তরের জন্য সংরক্ষণ করে। রিসেট কাস্টম ট্রেনিং ডেটা মুছে দেয় — পরবর্তীবার চালু করলে মডেলটি তার বিল্ট-ইন ডিফল্ট সেটিংসে ফিরে আসে।"
+
+msgid "Import from Dasher 5"
+msgstr "ড্যাশার ৫ থেকে আমদানি করুন"
+
+msgid "Import settings"
+msgstr "সেটিংস আমদানি করুন"
+
+msgid "Import Training Text"
+msgstr "প্রশিক্ষণ পাঠ্য আমদানি করুন"
+
+msgid "Increase Speed"
+msgstr "গতি বাড়ান"
+
+msgid "Input"
+msgstr "ইনপুট"
+
+msgid "Install Dasher via your package manager or build from source to use keyboard mode."
+msgstr ""
 
 msgid "<b>Install ydotool to use keyboard mode</b>"
 msgstr "<b>কীবোর্ড মোড ব্যবহার করতে ydotool ইনস্টল করুন</b>"
@@ -187,14 +265,383 @@ msgstr "<b>কীবোর্ড মোড ব্যবহার করতে yd
 msgid "isn't installed. Run these commands, then press Retry:"
 msgstr "ইনস্টল করা নেই । এই কমান্ডগুলি চালান, তারপরে আবার চেষ্টা করুন টিপুন:"
 
-msgid "Copy commands"
-msgstr "কমান্ড কপি করুন"
+msgid "Keyboard"
+msgstr ""
 
-msgid "Copied to clipboard."
-msgstr "ক্লিপবোর্ড-এ কপি করা হয়েছে"
+msgid "_Keyboard"
+msgstr "কিবোর্ড"
+
+msgid "Type Dasher's output straight into the app you are pointing at"
+msgstr ""
+
+msgid "Exit keyboard mode"
+msgstr "কীবোর্ড মোড থেকে প্রস্থান করুন"
+
+msgid "Keyboard mode: hide the output pane and type Dasher's text straight into "
+msgstr ""
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>এই বিল্ডে কীবোর্ড মোড উপলভ্য নয়</b>"
+
+msgid "Keyboard mode opacity"
+msgstr "কীবোর্ড মোডের অস্বচ্ছতা"
+
+msgid "Keyboard mode stopped"
+msgstr ""
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "কীবোর্ড মোড বন্ধ করা হয়েছে: ydotool টেক্সট ইনজেক্ট করতে পারেনি । ydotoold কি"
+
+msgid "Enable Keyboard Mode"
+msgstr "ডান বাটন:"
+
+msgid "Keyboard mode types Dasher's output into other applications using ydotool, which "
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Language / Locale"
+msgstr ""
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>ভাষা / স্থানীয়</b>"
+
+msgid "Bottom"
+msgstr "নীচে"
+
+msgid "Pane position and direct-entry mode"
+msgstr "পেইন পজিশন এবং ডাইরেক্ট-এন্ট্রি মোড"
+
+msgid "Left side"
+msgstr "বাম দিকে"
+
+msgid "Right side"
+msgstr "ডান দিকে"
+
+msgid "Top"
+msgstr "শীর্ষ"
+
+msgid "Learning"
+msgstr "শিক্ষা"
+
+msgid "Leave game mode"
+msgstr "গেম মোড ত্যাগ করুন"
+
+msgid "Light"
+msgstr "আলো"
+
+msgid "Locale"
+msgstr "লোকাল"
+
+msgid "Migration"
+msgstr "অভিবাসন"
+
+msgid "Move your eyes while pinching to steer"
+msgstr "চালনা করার জন্য চিমটি কাটার সাথে সাথে চোখ নাড়াচাড়া করুন।"
+
+msgid "New"
+msgstr "নতুন"
+
+msgid "New Message"
+msgstr "নতুন বার্তা"
+
+msgid "No Dasher 5 data found on this Mac."
+msgstr "এই ম্যাক-এ কোনো ড্যাশার ৫ ডেটা পাওয়া যায়নি।"
+
+msgid "No settings available for this section."
+msgstr "এই বিভাগের জন্য কোনও সেটিংস উপলব্ধ নেই ।"
+
+msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "Nothing to save"
+msgstr "বাঁচানোর কিছুই নেই"
+
+msgid "Nothing to share"
+msgstr "শেয়ার করার মতো কিছুই নেই"
+
+msgid "OK"
+msgstr "ঠিক আছে"
+
+msgid "On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
+msgstr "ভিশনওএস-এ, লেখা শুরু করতে ক্যানভাসের উপর পিঞ্চ করে ধরে রাখুন, দিক পরিবর্তন করতে পিঞ্চ করার সময় চারপাশে তাকান এবং বিরতি দিতে ছেড়ে দিন। এর ইনপুট মডেলটি হলো পিঞ্চ-অ্যান্ড-লুক।"
+
+msgid "Open"
+msgstr "খুলুন"
+
+msgid "Open..."
+msgstr "খোলা..."
+
+msgid "Open failed"
+msgstr "খুলতে ব্যর্থ হয়েছে"
+
+msgid "Open Keyboard Settings"
+msgstr "কীবোর্ড সেটিংস খুলুন"
+
+msgid "Open Settings"
+msgstr "সেটিংস খুলুন"
+
+msgid "Open System Settings"
+msgstr "সিস্টেম সেটিংস খুলুন"
+
+msgid "Open Text File"
+msgstr "টেক্সট ফাইল খুলুন"
+
+msgid "Output"
+msgstr "আউটপুট"
+
+msgid "Output Font Size"
+msgstr "আউটপুট ফন্ট সাইজ"
+
+msgid "Touch the canvas to start writing."
+msgstr "লেখা শুরু করতে ক্যানভাসটি স্পর্শ করুন।"
+
+msgid "Paste"
+msgstr "পেস্ট"
+
+msgid "Pause"
+msgstr "বিরতি"
+
+msgid "Pause When Looking Away"
+msgstr "অন্যদিকে তাকানোর সময় থামুন"
+
+msgid "Pinch and hold anywhere on the canvas to start"
+msgstr "শুরু করতে ক্যানভাসের যেকোনো জায়গায় চিমটি দিয়ে ধরে রাখুন।"
+
+msgid "Pinch and Look to Write"
+msgstr "লেখার জন্য চিমটি দিন এবং দেখুন"
+
+msgid "Game"
+msgstr ""
+
+msgid "Play"
+msgstr "খেলা"
+
+msgid "Pointer Hover Input"
+msgstr "পয়েন্টার হোভার ইনপুট"
+
+msgid "Preferences"
+msgstr ""
+
+msgid "Prefs"
+msgstr ""
+
+msgid "Privacy"
+msgstr "গোপনীয়তা"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>গোপনীয়তা</b>"
+
+msgid "Re-import from Dasher 5"
+msgstr "ড্যাশার ৫ থেকে পুনরায় আমদানি করুন"
+
+msgid "Read"
+msgstr "পড়া"
+
+msgid "Release the pinch to pause"
+msgstr "থামানোর জন্য চিমটি ছেড়ে দিন।"
+
+msgid "Reset"
+msgstr "রিসেট"
+
+msgid "Reset All Settings to Defaults"
+msgstr "সমস্ত সেটিংস ডিফল্টে রিসেট করুন"
+
+msgid "Reset all settings to their defaults?"
+msgstr "সমস্ত সেটিংস ডিফল্টে রিসেট করবেন?"
+
+msgid "Reset anonymous ID"
+msgstr "বেনামী আইডি রিসেট করুন"
+
+msgid "Reset engine settings to defaults"
+msgstr "ইঞ্জিন সেটিংস ডিফল্টে রিসেট করুন"
+
+msgid "Reset Settings"
+msgstr "সেটিংস রিসেট করুন"
+
+msgid "Reset to defaults"
+msgstr "ডিফল্টে রিসেট করুন"
+
+msgid "Reset Training Data"
+msgstr "প্রশিক্ষণ ডেটা রিসেট করুন"
+
+msgid "Reset Training Data?"
+msgstr "প্রশিক্ষণ ডেটা রিসেট করবেন?"
+
+msgid "Restore all Dasher settings to their default values. This cannot be undone."
+msgstr "ড্যাশার-এর সমস্ত সেটিংস ডিফল্ট মানে পুনরুদ্ধার করুন। এটি পূর্বাবস্থায় ফেরানো যাবে না।"
 
 msgid "Retry"
 msgstr "পুনরায় চেষ্টা করুন"
 
+msgid "Save"
+msgstr "সংরক্ষণ করুন"
+
+msgid "Save..."
+msgstr "সংরক্ষণ করুন..."
+
+msgid "Save failed"
+msgstr "সংরক্ষণ ব্যর্থ হয়েছে"
+
+msgid "Save Text File"
+msgstr "টেক্সট ফাইল সংরক্ষণ করুন"
+
+msgid "Saved"
+msgstr "সংরক্ষিত"
+
+msgid "Saved: "
+msgstr "সংরক্ষণ হয়েছে"
+
+msgid "Scan Speed"
+msgstr "স্ক্যান গতি"
+
+msgid "service running? See the setup help on the Keyboard button for install commands."
+msgstr ""
+
+msgid "Settings"
+msgstr "সেটিংস"
+
+msgid "Settings..."
+msgstr "সেটিংস..."
+
+msgid "Reset all settings to defaults"
+msgstr "সমস্ত সেটিংস ডিফল্টে রিসেট করুন"
+
+msgid "Settings reset"
+msgstr "সেটিংস রিসেট করা হয়েছে"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "সমস্ত ইঞ্জিন সেটিংস তাদের বিল্ট-ইন ডিফল্টে রিসেট করবেন?"
+
+msgid "Settings (speed, colours, control mode, language model)"
+msgstr "সেটিংস (গতি, রং, নিয়ন্ত্রণ মোড, ভাষা মডেল)"
+
+msgid "Share"
+msgstr "শেয়ার"
+
+msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard "
+msgstr ""
+
+msgid "Show Input Debug Overlay"
+msgstr "ইনপুট ডিবাগ ওভারলে দেখান"
+
+msgid "Show typing rate (WPM)"
+msgstr "টাইপিং রেট (WPM) দেখান"
+
+msgid "Size"
+msgstr "আকার"
+
+msgid "Skipped files"
+msgstr "বাদ দেওয়া ফাইলগুলি"
+
+msgid "Slow"
+msgstr "ধীর"
+
+msgid "Speech"
+msgstr "বক্তৃতা"
+
+msgid "Speech off"
+msgstr "বক্তৃতা বন্ধ"
+
+msgid "Speech on"
+msgstr "বক্তৃতা"
+
+msgid "Speech Settings"
+msgstr ""
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>স্পিচ সেটিংস</b>"
+
+msgid "Speed"
+msgstr "গতি"
+
+msgid "Speed "
+msgstr "গতি"
+
+msgid "Start Calibrating"
+msgstr "ক্যালিব্রেশন শুরু করুন"
+
+msgid "Start fresh"
+msgstr "নতুন করে শুরু করুন"
+
+msgid "Stop"
+msgstr "থামুন"
+
+msgid "System"
+msgstr "সিস্টেম"
+
+msgid "text"
+msgstr "পাঠ্য"
+
+msgid "Text files"
+msgstr "টেক্সট ফাইল"
+
+msgid "the app you are pointing at (needs ydotool)"
+msgstr ""
+
+msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
+msgstr "ডিবাগ ওভারলে ক্যানভাসের উপরের-বামে একটি সবুজ প্যানেল প্রদর্শন করে, যেখানে লাইভ টাচ ইভেন্টের সংখ্যা এবং সর্বশেষ রিপোর্ট করা (x, y) স্থানাঙ্ক দেখা যায়। যখন আপনি পিঞ্চ করে ধরে রাখবেন, তখন চারপাশে তাকানোর সাথে সাথে স্থানাঙ্ক পরিবর্তন হতে থাকবে এবং তারপরে touch.began ও touch.moved লেখাটি দেখতে পাবেন।"
+
+msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
+msgstr "এটি আপনার সঞ্চিত প্রশিক্ষণ ডেটা মুছে দেবে। পরবর্তীবার চালু করলে ল্যাঙ্গুয়েজ মডেলটি তার অন্তর্নির্মিত ডিফল্ট সেটিংসে ফিরে আসবে। এটি পূর্বাবস্থায় ফেরানো যাবে না।"
+
+msgid "Tilt Calibration"
+msgstr "টিল্ট ক্যালিব্রেশন"
+
+msgid "Tilt your device now..."
+msgstr "এখন আপনার ডিভাইসটি কাত করুন..."
+
+msgid "Tilt your device through its full range of motion during calibration."
+msgstr "ক্যালিব্রেশনের সময় আপনার ডিভাইসটিকে এর সম্পূর্ণ গতিসীমা জুড়ে কাত করুন।"
+
+msgid "time under Preferences → Privacy."
+msgstr ""
+
+msgid "Copy all text"
+msgstr ""
+
+msgid "Training"
+msgstr "প্রশিক্ষণ"
+
+msgid "Training Data"
+msgstr "প্রশিক্ষণ ডেটা"
+
+msgid "Turbo"
+msgstr "টার্বো"
+
+msgid "Typing into other applications needs access to /dev/uinput, which a sandboxed "
+msgstr ""
+
+msgid "Typing rate"
+msgstr "টাইপ করার হার"
+
+msgid "{cps} cps · {wpm} wpm"
+msgstr ""
+
+msgid "Use Dasher as your keyboard"
+msgstr "আপনার কিবোর্ড হিসেবে ড্যাশার ব্যবহার করুন"
+
+msgid "We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
+msgstr "আমরা এই ম্যাকটিতে আপনার Dasher 5 কনফিগারেশনটি খুঁজে পেয়েছি। আপনার অ্যালফাবেট, রং, স্পিড সেটিংস এবং কাস্টম ফাইলগুলো Dasher 6-এ ইম্পোর্ট করা যাবে।"
+
+msgid "What was found"
+msgstr "যা পাওয়া গেল"
+
+msgid "X range:"
+msgstr "X পরিসর:"
+
+msgid "Y range:"
+msgstr "Y পরিসর:"
+
 msgid "ydotool found. Keyboard mode is ready."
 msgstr "ydotool পাওয়া গেছে । কীবোর্ড মোড প্রস্তুত ।"
+
+msgid "ydotool still isn't available. Make sure it's installed and the ydotool service is running."
+msgstr ""
+
+msgid "You can import later in Settings > Privacy & Migration"
+msgstr "আপনি পরে সেটিংস > গোপনীয়তা ও মাইগ্রেশন-এ ইম্পোর্ট করতে পারবেন।"
+
+msgid "Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."
+msgstr "শুধুমাত্র পিঞ্চ করে ধরে রাখলেই আপনার দৃষ্টি অবিচ্ছিন্নভাবে ট্র্যাক করা হয় — ভিশনওএস-এর সমস্ত গেজ অ্যাপ এভাবেই কাজ করে।"
