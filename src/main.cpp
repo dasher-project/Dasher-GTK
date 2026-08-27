@@ -11,6 +11,9 @@
 #ifdef ENABLE_NLS
 #include <libintl.h>
 #include <locale.h>
+#include <climits>
+#include <unistd.h>
+#include <string>
 #else
 // Stubs so unwrapped builds still compile with _() in the sources.
 #define _(String) (String)
@@ -20,14 +23,34 @@
     int main(int argc, char* argv[]) {
         // RFC 0003: bind the gettext domain before any widget is built, so the
         // UI chrome localises alongside the engine strings (which go through
-        // dasher_set_locale). LOCALEDIR is injected by CMake from the install
-        // prefix; the dev/build-tree lookup covers running from the build dir.
+        // dasher_set_locale). bindtextdomain keeps ONE binding per domain (the
+        // last call wins — it does not accumulate fallbacks), so pick the
+        // first directory that actually contains a catalog: the build tree
+        // (relative to this binary) for dev runs, else the install prefix.
 #ifdef ENABLE_NLS
         setlocale(LC_ALL, "");
-        bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
-        bindtextdomain(GETTEXT_PACKAGE, ".");
-        bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
-        textdomain(GETTEXT_PACKAGE);
+        {
+            std::string domain_dir = LOCALEDIR; // installed default
+            // Running from build/Dasher/ → catalogs are at build/po/
+            char exe[PATH_MAX];
+            const ssize_t n = readlink("/proc/self/exe", exe, sizeof(exe) - 1);
+            if (n > 0) {
+                exe[n] = '\0';
+                std::string dir(exe);
+                const auto slash = dir.find_last_of('/');
+                if (slash != std::string::npos) {
+                    dir.resize(slash);
+                    const std::string build_po = dir + "/../po";
+                    const std::string catalog = build_po + "/fr/LC_MESSAGES/" GETTEXT_PACKAGE ".mo";
+                    if (access(catalog.c_str(), R_OK) == 0) {
+                        domain_dir = build_po;
+                    }
+                }
+            }
+            bindtextdomain(GETTEXT_PACKAGE, domain_dir.c_str());
+            bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
+            textdomain(GETTEXT_PACKAGE);
+        }
 #endif
 
         // Install crash handlers before anything else can fault, then report any
