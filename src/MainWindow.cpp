@@ -6,6 +6,7 @@
 #include <pangomm/fontdescription.h>
 #include <glibmm/main.h>
 #include <cmath>
+#include <glibmm/markup.h>
 #include <cstdio>
 #include <memory>
 
@@ -49,10 +50,12 @@ MainWindow::MainWindow()
         if (m_canvas.bridge->game_mode_active()) {
             m_canvas.bridge->leave_game_mode();
             m_play_button.set_label(_("Game"));
+            m_game_target_label.set_visible(false);
         } else {
             const int rc = m_canvas.bridge->enter_game_mode();
             if (rc == 0) {
                 m_play_button.set_label(_("Leave game"));
+                update_game_target();
             } else {
                 m_message_overlay.show_message(
                     "No game text available. Add a training/gamemode file to your Dasher data directory.");
@@ -467,6 +470,20 @@ MainWindow::MainWindow()
     m_wpm_label.add_css_class("dim-label");
     m_wpm_label.set_valign(Gtk::Align::CENTER);
     m_footer_bar.pack_end(m_wpm_label);
+
+    // Game mode target overlay (Windows parity — SyncGameModeState): styled
+    // label floating at the top of the canvas showing the target sentence
+    // with the correct prefix, wrong text in brackets, remaining text, and
+    // live WPM. Visible only while game mode is active.
+    m_game_target_label.set_visible(false);
+    m_game_target_label.set_halign(Gtk::Align::CENTER);
+    m_game_target_label.set_valign(Gtk::Align::START);
+    m_game_target_label.set_margin_top(8);
+    m_game_target_label.set_use_markup(true);
+    m_game_target_label.set_wrap(true);
+    m_game_target_label.set_max_width_chars(60);
+    m_game_target_label.set_name("GameTargetLabel");
+    m_message_overlay.float_widget(m_game_target_label);
     Glib::signal_timeout().connect(
         [this]() -> bool {
             const double cps = m_canvas.bridge->get_cps();
@@ -474,9 +491,43 @@ MainWindow::MainWindow()
             char buf[48];
             std::snprintf(buf, sizeof(buf), "%.1f cps \xc2\xb7 %d wpm", cps, static_cast<int>(std::lround(wpm)));
             m_wpm_label.set_text(buf);
+            update_game_target();
             return true;
         },
         500);
+}
+
+void MainWindow::update_game_target() {
+    if (!m_canvas.bridge->game_mode_active()) {
+        m_game_target_label.set_visible(false);
+        return;
+    }
+
+    const std::string target = m_canvas.bridge->game_target_text();
+    const int correct = m_canvas.bridge->game_correct_count();
+    const std::string wrong = m_canvas.bridge->game_wrong_text();
+    const int total = m_canvas.bridge->game_target_length();
+
+    if (target.empty() || total < 0) {
+        m_game_target_label.set_visible(false);
+        return;
+    }
+
+    // Build the display: green correct prefix, red wrong in brackets,
+    // normal remaining, WPM on a second line. Pango markup.
+    const int safe_correct = std::min(correct, static_cast<int>(target.size()));
+    const std::string correct_part = Glib::Markup::escape_text(target.substr(0, safe_correct));
+    const std::string wrong_part = Glib::Markup::escape_text(wrong);
+    const std::string remaining = Glib::Markup::escape_text(target.substr(safe_correct));
+
+    const double wpm = m_canvas.bridge->get_wpm();
+    char wpm_line[32];
+    std::snprintf(wpm_line, sizeof(wpm_line), "%d wpm", static_cast<int>(std::llround(wpm)));
+
+    m_game_target_label.set_markup(std::string("<span foreground='#4ade80' weight='bold'>") + correct_part +
+                                   "</span><span foreground='#f87171'>[" + wrong_part + "]</span>" + remaining +
+                                   "\n<span size='smaller' foreground='#aaa'>" + wpm_line + "</span>");
+    m_game_target_label.set_visible(true);
 }
 
 MainWindow::~MainWindow() {

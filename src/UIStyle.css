@@ -74,3 +74,13 @@ textview.dasher-output {
     font-size: 14pt;
     padding: 8px;
 }
+
+/* Game mode target overlay: readable text over the canvas with a subtle
+   background so it doesn't fight the zooming letters behind it. */
+#GameTargetLabel {
+    background-color: alpha(black, 0.75);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14pt;
+}
