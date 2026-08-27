@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Output/DirectModeService.h"
+#include "i18n.h"
 #include <gdkmm/clipboard.h>
 #include <gtkmm/box.h>
 #include <gtkmm/button.h>
@@ -12,6 +13,7 @@
 #include <functional>
 #include <string>
 #include <utility>
+#include <string>
 
 // Shown when the user enables Keyboard mode but ydotool is missing (issue #38).
 // Instead of a dead greyed-out button, this guides the user through installing
@@ -24,7 +26,7 @@ class KeyboardSetupDialog : public Gtk::Window {
         : m_service(service), m_on_available(std::move(on_available)), m_box(Gtk::Orientation::VERTICAL, 12) {
         set_transient_for(parent);
         set_modal(true);
-        set_title("Enable Keyboard Mode");
+        set_title(_("Enable Keyboard Mode"));
         set_default_size(460, -1);
         set_hide_on_close(true);
 
@@ -77,20 +79,20 @@ class KeyboardSetupDialog : public Gtk::Window {
 
     void build_sandbox_message() {
         auto* title = Gtk::make_managed<Gtk::Label>();
-        title->set_markup("<b>Keyboard mode isn't available in this build</b>");
+        title->set_markup(_("<b>Keyboard mode isn't available in this build</b>"));
         title->set_halign(Gtk::Align::START);
         m_box.append(*title);
 
         auto* body = Gtk::make_managed<Gtk::Label>(
-            "Typing into other applications needs access to /dev/uinput, which a sandboxed "
-            "Flatpak or AppImage build can't provide.\n\n"
-            "Install Dasher via your package manager or build from source to use keyboard mode.");
+            std::string(_("Typing into other applications needs access to /dev/uinput, which a sandboxed ")) +
+            _("Flatpak or AppImage build can't provide.\n\n") +
+            _("Install Dasher via your package manager or build from source to use keyboard mode."));
         body->set_wrap(true);
         body->set_halign(Gtk::Align::START);
         body->set_xalign(0.0f);
         m_box.append(*body);
 
-        auto* close = Gtk::make_managed<Gtk::Button>("Close");
+        auto* close = Gtk::make_managed<Gtk::Button>(_("Close"));
         close->set_halign(Gtk::Align::END);
         close->signal_clicked().connect([this]() { set_visible(false); });
         m_box.append(*close);
@@ -98,13 +100,13 @@ class KeyboardSetupDialog : public Gtk::Window {
 
     void build_install_guide() {
         auto* title = Gtk::make_managed<Gtk::Label>();
-        title->set_markup("<b>Install ydotool to use keyboard mode</b>");
+        title->set_markup(_("<b>Install ydotool to use keyboard mode</b>"));
         title->set_halign(Gtk::Align::START);
         m_box.append(*title);
 
         auto* body = Gtk::make_managed<Gtk::Label>(
-            "Keyboard mode types Dasher's output into other applications using ydotool, which "
-            "isn't installed. Run these commands, then press Retry:");
+            std::string(_("Keyboard mode types Dasher's output into other applications using ydotool, which ")) +
+            _("isn't installed. Run these commands, then press Retry:"));
         body->set_wrap(true);
         body->set_halign(Gtk::Align::START);
         body->set_xalign(0.0f);
@@ -130,14 +132,14 @@ class KeyboardSetupDialog : public Gtk::Window {
         auto* buttons = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::HORIZONTAL, 8);
         buttons->set_halign(Gtk::Align::END);
 
-        auto* copy = Gtk::make_managed<Gtk::Button>("Copy commands");
+        auto* copy = Gtk::make_managed<Gtk::Button>(_("Copy commands"));
         copy->signal_clicked().connect([this]() {
             get_clipboard()->set_text(m_command);
-            m_status.set_text("Copied to clipboard.");
+            m_status.set_text(_("Copied to clipboard."));
         });
         buttons->append(*copy);
 
-        auto* retry = Gtk::make_managed<Gtk::Button>("Retry");
+        auto* retry = Gtk::make_managed<Gtk::Button>(_("Retry"));
         retry->add_css_class("suggested-action");
         retry->signal_clicked().connect([this]() { on_retry(); });
         buttons->append(*retry);
@@ -147,12 +149,12 @@ class KeyboardSetupDialog : public Gtk::Window {
 
     void on_retry() {
         if (m_service && m_service->recheck()) {
-            m_status.set_text("ydotool found. Keyboard mode is ready.");
+            m_status.set_text(_("ydotool found. Keyboard mode is ready."));
             if (m_on_available) m_on_available();
             set_visible(false);
         } else {
             m_status.set_text(
-                "ydotool still isn't available. Make sure it's installed and the ydotool service is running.");
+                _("ydotool still isn't available. Make sure it's installed and the ydotool service is running."));
         }
     }
 

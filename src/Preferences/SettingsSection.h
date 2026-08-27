@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Engine/DasherBridge.h"
+#include "i18n.h"
 #include "UIComponents/SyncedSwitch.h"
 #include "UIComponents/SyncedSlider.h"
 #include "UIComponents/SyncedSpinButton.h"
@@ -85,7 +86,7 @@ public:
         }
 
         if (get_first_child() == nullptr) {
-            append(*Gtk::make_managed<Gtk::Label>("No settings available for this section."));
+            append(*Gtk::make_managed<Gtk::Label>(_("No settings available for this section.")));
         }
     }
 

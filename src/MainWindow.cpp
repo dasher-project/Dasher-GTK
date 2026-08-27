@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 #include "dasher.h"
+#include "i18n.h"
 #include <cairomm/fontface.h>
 #include <gdkmm/display.h>
 #include <pangomm/fontdescription.h>
@@ -26,7 +27,7 @@ MainWindow::MainWindow()
     css->load_from_resource("/org/alternativeinterface/dasher/UIStyle.css");
     get_style_context()->add_provider_for_display(Gdk::Display::get_default(), css, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-    set_title("Dasher v6");
+    set_title(_("Dasher v6"));
     set_default_size(900, 600);
 
     set_child(m_main_box);
@@ -44,11 +45,11 @@ MainWindow::MainWindow()
     pack_bar_start(m_header_bar, m_play_button);
     // Layout menu replaces the bare Keyboard toggle (Apple layoutPickerMenu /
     // Windows BtnMode): Right / Left / Bottom / Top / Keyboard.
-    m_layout_menu->append("Right side", "layout.right");
-    m_layout_menu->append("Left side", "layout.left");
-    m_layout_menu->append("Bottom", "layout.bottom");
-    m_layout_menu->append("Top", "layout.top");
-    m_layout_menu->append("_Keyboard", "layout.keyboard");
+    m_layout_menu->append(_("Right side"), "layout.right");
+    m_layout_menu->append(_("Left side"), "layout.left");
+    m_layout_menu->append(_("Bottom"), "layout.bottom");
+    m_layout_menu->append(_("Top"), "layout.top");
+    m_layout_menu->append(_("_Keyboard"), "layout.keyboard");
     m_layout_button.set_menu_model(m_layout_menu);
     {
         auto* box = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::HORIZONTAL, 4);
@@ -62,7 +63,7 @@ MainWindow::MainWindow()
         m_layout_label.set_valign(Gtk::Align::CENTER);
         box->append(m_layout_label);
         m_layout_button.set_child(*box);
-        m_layout_button.set_tooltip_text("Pane position and direct-entry mode");
+        m_layout_button.set_tooltip_text(_("Pane position and direct-entry mode"));
     }
     pack_bar_start(m_header_bar, m_layout_button);
     {
@@ -166,9 +167,9 @@ MainWindow::MainWindow()
 
     m_open_button.signal_clicked().connect([this]() {
         auto dialog = Gtk::FileDialog::create();
-        dialog->set_title("Open Text File");
+        dialog->set_title(_("Open Text File"));
         auto filter = Gtk::FileFilter::create();
-        filter->set_name("Text files");
+        filter->set_name(_("Text files"));
         filter->add_mime_type("text/plain");
         dialog->set_default_filter(filter);
         dialog->open(*this, [this, dialog](Glib::RefPtr<Gio::AsyncResult>& result) {
@@ -185,16 +186,16 @@ MainWindow::MainWindow()
                 // Shadow buffer clears via output event 2 (DasherCore v0.2.3).
                 m_text_view.get_buffer()->set_text(contents);
             } catch (const Glib::Error& e) {
-                m_message_overlay.show_message("Failed to open: " + std::string(e.what()));
+                m_message_overlay.show_message(std::string(_("Failed to open: ")) + std::string(e.what()));
             }
         });
     });
 
     m_save_button.signal_clicked().connect([this]() {
         auto dialog = Gtk::FileDialog::create();
-        dialog->set_title("Save Text File");
+        dialog->set_title(_("Save Text File"));
         auto filter = Gtk::FileFilter::create();
-        filter->set_name("Text files");
+        filter->set_name(_("Text files"));
         filter->add_mime_type("text/plain");
         dialog->set_default_filter(filter);
         dialog->save(*this, [this, dialog](Glib::RefPtr<Gio::AsyncResult>& result) {
@@ -206,9 +207,9 @@ MainWindow::MainWindow()
                 auto stream = file->replace();
                 stream->write(text);
                 stream->close();
-                m_message_overlay.show_message("Saved: " + file->get_basename(), true);
+                m_message_overlay.show_message(std::string(_("Saved: ")) + file->get_basename(), true);
             } catch (const Glib::Error& e) {
-                m_message_overlay.show_message("Failed to save: " + std::string(e.what()));
+                m_message_overlay.show_message(std::string(_("Failed to save: ")) + std::string(e.what()));
             }
         });
     });
@@ -300,13 +301,13 @@ MainWindow::MainWindow()
     // Keyboard mode stays clickable even without ydotool: clicking it opens the
     // setup helper (issue #38) rather than being a dead greyed-out button.
     if (!m_direct_mode->is_available()) {
-        m_keyboard_button.set_tooltip_text("Click to set up keyboard mode (needs ydotool)");
+        m_keyboard_button.set_tooltip_text(_("Click to set up keyboard mode (needs ydotool)"));
     }
     if (!m_tts->is_available()) {
         // The switch itself is insensitive, so tooltip the (sensitive) label
         // beside it, otherwise GTK never shows the hint.
-        m_speech_label.set_tooltip_text(
-            "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences.");
+        m_speech_label.set_tooltip_text(_(
+            "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."));
     }
 
     m_keyboard_button.signal_toggled().connect([this]() {
@@ -349,11 +350,11 @@ MainWindow::MainWindow()
     // top-right over the canvas with settings + exit, visible only while
     // keyboard mode is on and the main bars are hidden.
     m_minibar_settings_btn.set_icon_name("settings");
-    m_minibar_settings_btn.set_tooltip_text("Settings");
+    m_minibar_settings_btn.set_tooltip_text(_("Settings"));
     m_minibar_settings_btn.set_valign(Gtk::Align::START);
     m_minibar_settings_btn.signal_clicked().connect([this]() { m_preferences_window.set_visible(true); });
     m_minibar_exit_btn.set_icon_name("keyboard");
-    m_minibar_exit_btn.set_tooltip_text("Exit keyboard mode");
+    m_minibar_exit_btn.set_tooltip_text(_("Exit keyboard mode"));
     m_minibar_exit_btn.set_valign(Gtk::Align::START);
     m_minibar_exit_btn.signal_clicked().connect([this]() { m_keyboard_button.set_active(false); });
     m_keyboard_minibar.append(m_minibar_settings_btn);
@@ -526,9 +527,9 @@ void MainWindow::handle_keyboard_mode_failure() {
     if (m_keyboard_button.get_active()) {
         m_keyboard_button.set_active(false);
     }
-    m_message_overlay.show_message("Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
-                                   "service running? See the setup help on the Keyboard button for install "
-                                   "commands.");
+    m_message_overlay.show_message(
+        std::string(_("Keyboard mode stopped: ydotool could not inject text. Is the ydotoold ")) +
+        _("service running? See the setup help on the Keyboard button for install commands."));
 }
 
 double MainWindow::keyboard_opacity() const {
@@ -561,7 +562,7 @@ void MainWindow::set_pane_layout(PaneLayout layout) {
     const bool keyboard = (layout == PaneLayout::Keyboard);
     if (keyboard) {
         if (!m_keyboard_button.get_active()) m_keyboard_button.set_active(true);
-        m_layout_label.set_text("Keyboard");
+        m_layout_label.set_text(_("Keyboard"));
         return;
     }
     if (m_keyboard_button.get_active()) m_keyboard_button.set_active(false);
@@ -582,26 +583,26 @@ void MainWindow::set_pane_layout(PaneLayout layout) {
         m_pane.set_orientation(Gtk::Orientation::HORIZONTAL);
         m_pane.set_start_child(m_side_panel);
         m_pane.set_end_child(m_message_overlay);
-        m_layout_label.set_text("Left side");
+        m_layout_label.set_text(_("Left side"));
         break;
     case PaneLayout::Bottom:
         m_pane.set_orientation(Gtk::Orientation::VERTICAL);
         m_pane.set_start_child(m_message_overlay);
         m_pane.set_end_child(m_side_panel);
-        m_layout_label.set_text("Bottom");
+        m_layout_label.set_text(_("Bottom"));
         break;
     case PaneLayout::Top:
         m_pane.set_orientation(Gtk::Orientation::VERTICAL);
         m_pane.set_start_child(m_side_panel);
         m_pane.set_end_child(m_message_overlay);
-        m_layout_label.set_text("Top");
+        m_layout_label.set_text(_("Top"));
         break;
     case PaneLayout::Right:
     default:
         m_pane.set_orientation(Gtk::Orientation::HORIZONTAL);
         m_pane.set_start_child(m_message_overlay);
         m_pane.set_end_child(m_side_panel);
-        m_layout_label.set_text("Right side");
+        m_layout_label.set_text(_("Right side"));
         break;
     }
     m_pane.set_position(get_width() / 3);
