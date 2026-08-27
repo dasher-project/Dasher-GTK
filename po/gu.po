@@ -1,0 +1,200 @@
+# gu translation for dasher-gtk.
+# Copyright (C) 2026 The Dasher Project
+# This file is distributed under the same license as the dasher-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Language: gu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Dasher v6"
+msgstr "ડેશર v6"
+
+msgid "Right side"
+msgstr "જમણી બાજુ"
+
+msgid "Left side"
+msgstr "ડાબી બાજુ"
+
+msgid "Bottom"
+msgstr "નીચે"
+
+msgid "Top"
+msgstr "ટોચ"
+
+msgid "_Keyboard"
+msgstr "કીબોર્ડ"
+
+msgid "Pane position and direct-entry mode"
+msgstr "પેન પોઝિશન અને ડાયરેક્ટ-એન્ટ્રી મોડ"
+
+msgid "Open Text File"
+msgstr "text-tool-action"
+
+msgid "Text files"
+msgstr "લખાણ ફાઇલો"
+
+msgid "Failed to open: "
+msgstr "ફાઈલ ખોલવામાં નિષ્ફળ"
+
+msgid "Save Text File"
+msgstr "લખાણ ફાઈલ સંગ્રહો"
+
+msgid "Saved: "
+msgstr "સંગ્રહ થયેલ છે"
+
+msgid "Failed to save: "
+msgstr "રમત સંગ્રહવામાં અસમર્થ"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "કીબોર્ડ મોડ સેટ કરવા માટે ક્લિક કરો (ydotool ની જરૂર છે)"
+
+msgid "Settings"
+msgstr "સેટિંગ્સ"
+
+msgid "Exit keyboard mode"
+msgstr "કીબોર્ડ મોડમાંથી બહાર નીકળો"
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "કીબોર્ડ મોડ બંધ થઈ ગયું: ydotool લખાણ ઇન્જેક્ટ કરી શક્યું નથી. શું ydotoold છે"
+
+msgid "Keyboard"
+msgstr "કીબોર્ડ"
+
+msgid "New"
+msgstr "નવું"
+
+msgid "Open"
+msgstr "ઓપન"
+
+msgid "Save"
+msgstr "સેવ કરો"
+
+msgid "Play"
+msgstr "A button on a Remote Control"
+
+msgid "Prefs"
+msgstr "પસંદગીઓ"
+
+msgid "Copy"
+msgstr "નકલ કરો"
+
+msgid "Copy all"
+msgstr "<- બધા ની નકલ કરો"
+
+msgid "Paste"
+msgstr "પેસ્ટ કરો"
+
+msgid "Read"
+msgstr "વાંચો"
+
+msgid "Speed"
+msgstr "ઝડપ"
+
+msgid "Learning"
+msgstr "શીખવું"
+
+msgid "Speech"
+msgstr "ભાષણ"
+
+msgid "Dasher Preferences"
+msgstr "ડેશરની પસંદગીઓ"
+
+msgid "<big><b>Dasher v6</b></big>\\n"
+msgstr "<big><b>ડેશર v6</b></big>\\"
+
+msgid "GTK Edition"
+msgstr "GTK આવૃત્તિ"
+
+msgid "About"
+msgstr "માહિતી"
+
+msgid "Customization"
+msgstr "કસ્ટમાઇઝેશન"
+
+msgid "Input"
+msgstr "ઇનપુટ"
+
+msgid "Language"
+msgstr "ભાષા"
+
+msgid "Output"
+msgstr "આઉટપુટ"
+
+msgid "Game Mode"
+msgstr "ગેમ મોડ"
+
+msgid "Dwell to click"
+msgstr "ક્લિક કરવા માટે નિવાસ કરો"
+
+msgid "Typing rate"
+msgstr "લખવાનો દર"
+
+msgid "Reset"
+msgstr "રીસેટ"
+
+msgid "Keyboard mode opacity"
+msgstr "કીબોર્ડ મોડ અપારદર્શકતા"
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>ભાષણ સેટિંગ્સ</b>"
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>ભાષા / લોકેલ</b>"
+
+msgid "Locale"
+msgstr "કેલેન્ડર સિસ્ટમ"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>ગોપનીયતા</b>"
+
+msgid "Share anonymous analytics and crash reports"
+msgstr "અનામી એનાલિટિક્સ અને ક્રેશ રિપોર્ટ્સ શેર કરો"
+
+msgid "Reset analytics ID"
+msgstr "એનાલિટિક્સ ID રીસેટ કરો"
+
+msgid "Reset engine settings to defaults"
+msgstr "એન્જિન સેટિંગ્સને ડિફોલ્ટ્સ પર રીસેટ કરો"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "બધા એન્જિન સેટિંગ્સને તેમના બિલ્ટ-ઇન ડિફોલ્ટ્સ પર રીસેટ કરો?"
+
+msgid "Dasher "
+msgstr "ડેશર"
+
+msgid "Privacy"
+msgstr "ગોપનીયતા"
+
+msgid "No settings available for this section."
+msgstr "આ વિભાગ માટે કોઈ સેટિંગ્સ ઉપલબ્ધ નથી."
+
+msgid "Enable Keyboard Mode"
+msgstr "કીબોર્ડ મોડ સક્ષમ કરો"
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>આ બિલ્ડમાં કીબોર્ડ મોડ ઉપલબ્ધ નથી</b>"
+
+msgid "Close"
+msgstr "બંધ કરો"
+
+msgid "<b>Install ydotool to use keyboard mode</b>"
+msgstr "<b>કીબોર્ડ મોડનો ઉપયોગ કરવા માટે ydotool ઇન્સ્ટોલ કરો</b>"
+
+msgid "isn't installed. Run these commands, then press Retry:"
+msgstr "ઇન્સ્ટોલ કરેલું નથી. આ આદેશો ચલાવો, પછી ફરીથી પ્રયાસ કરો દબાવો:"
+
+msgid "Copy commands"
+msgstr "આદેશોની નકલ કરો"
+
+msgid "Copied to clipboard."
+msgstr "ક્લિપબોર્ડ પર કૉપિ કર્યું."
+
+msgid "Retry"
+msgstr "રીટ્રાય"
+
+msgid "ydotool found. Keyboard mode is ready."
+msgstr "ydotool મળી ગયું. કીબોર્ડ મોડ તૈયાર છે."

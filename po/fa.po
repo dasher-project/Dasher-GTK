@@ -1,0 +1,200 @@
+# fa translation for dasher-gtk.
+# Copyright (C) 2026 The Dasher Project
+# This file is distributed under the same license as the dasher-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Dasher v6"
+msgstr "داشر نسخه ۶"
+
+msgid "Right side"
+msgstr "سمت راست"
+
+msgid "Left side"
+msgstr "سمت چپ"
+
+msgid "Bottom"
+msgstr "پایین"
+
+msgid "Top"
+msgstr "بالا"
+
+msgid "_Keyboard"
+msgstr "صفحه‌کلید"
+
+msgid "Pane position and direct-entry mode"
+msgstr "مدخل مستقیم"
+
+msgid "Open Text File"
+msgstr "باز کردن فایل متنی"
+
+msgid "Text files"
+msgstr "پرونده‌های متنی"
+
+msgid "Failed to open: "
+msgstr "پرونده باز نشد"
+
+msgid "Save Text File"
+msgstr "ذخیره فایل متنی"
+
+msgid "Saved: "
+msgstr "ذخیره شده"
+
+msgid "Failed to save: "
+msgstr "ذخیره ناموفق بود"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "برای تنظیم حالت صفحه‌کلید کلیک کنید (به ydotool نیاز دارد)"
+
+msgid "Settings"
+msgstr "تنظیمات"
+
+msgid "Exit keyboard mode"
+msgstr "سودهی برای حالت صفحه کلید"
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "حالت صفحه کلید متوقف شد: ydotool نتوانست متن را تزریق کند. آیا ydotool قدیمی است؟"
+
+msgid "Keyboard"
+msgstr "کیبورد"
+
+msgid "New"
+msgstr "جدید"
+
+msgid "Open"
+msgstr "باز کردن"
+
+msgid "Save"
+msgstr "ذخیره"
+
+msgid "Play"
+msgstr "شروع"
+
+msgid "Prefs"
+msgstr "مقدماتی"
+
+msgid "Copy"
+msgstr "کپی"
+
+msgid "Copy all"
+msgstr "همه را کپی کنید"
+
+msgid "Paste"
+msgstr "چسباندن"
+
+msgid "Read"
+msgstr "خواندن"
+
+msgid "Speed"
+msgstr "سرعت"
+
+msgid "Learning"
+msgstr "یادگیری"
+
+msgid "Speech"
+msgstr "گفتار"
+
+msgid "Dasher Preferences"
+msgstr "ترجیحات دَشر"
+
+msgid "<big><b>Dasher v6</b></big>\\n"
+msgstr "<big><b>داشر نسخه ۶</b></big> \\"
+
+msgid "GTK Edition"
+msgstr "نسخه GTK"
+
+msgid "About"
+msgstr "درباره"
+
+msgid "Customization"
+msgstr "سفارشی سازی"
+
+msgid "Input"
+msgstr "ورودی"
+
+msgid "Language"
+msgstr "زبان"
+
+msgid "Output"
+msgstr "برون داد"
+
+msgid "Game Mode"
+msgstr "حالت بازی"
+
+msgid "Dwell to click"
+msgstr "برای کلیک کردن، مکث کنید"
+
+msgid "Typing rate"
+msgstr "نرخ تایپ"
+
+msgid "Reset"
+msgstr "تنظیم مجدد"
+
+msgid "Keyboard mode opacity"
+msgstr "کدورت حالت صفحه کلید"
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>تنظیمات گفتار</b>"
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>زبان / منطقه</b>"
+
+msgid "Locale"
+msgstr "محل"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>حریم خصوصی</b>"
+
+msgid "Share anonymous analytics and crash reports"
+msgstr "اشتراک‌گذاری گزارش‌های تحلیلی و خرابی ناشناس"
+
+msgid "Reset analytics ID"
+msgstr "برای بازنشانی فیلتر تجزیه و تحلیل ، روی دکمه کلیک کنید"
+
+msgid "Reset engine settings to defaults"
+msgstr "بازگردانی تنظیمات به پیش فرض"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "تمام تنظیمات موتور را به پیش‌فرض‌های داخلی‌شان برگردانید؟"
+
+msgid "Dasher "
+msgstr "دَشِر"
+
+msgid "Privacy"
+msgstr "حریم خصوصی"
+
+msgid "No settings available for this section."
+msgstr "تنظیماتی برای این بخش وجود ندارد."
+
+msgid "Enable Keyboard Mode"
+msgstr "فعال کردن حالت صفحه کلید"
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>حالت صفحه‌کلید در این بیلد در دسترس نیست</b>"
+
+msgid "Close"
+msgstr "بستن"
+
+msgid "<b>Install ydotool to use keyboard mode</b>"
+msgstr "<b>برای استفاده از حالت کیبورد، ydotool را نصب کنید</b>"
+
+msgid "isn't installed. Run these commands, then press Retry:"
+msgstr "نصب نشده است. این دستورات را اجرا کنید، سپس دوباره امتحان کنید:"
+
+msgid "Copy commands"
+msgstr "کپی کردن دستورات"
+
+msgid "Copied to clipboard."
+msgstr "در کلیپ بورد کپی شد."
+
+msgid "Retry"
+msgstr "تلاش مجدد"
+
+msgid "ydotool found. Keyboard mode is ready."
+msgstr "ابزار ydotool پیدا شد. حالت صفحه کلید آماده است."

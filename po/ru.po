@@ -1,0 +1,200 @@
+# ru translation for dasher-gtk.
+# Copyright (C) 2026 The Dasher Project
+# This file is distributed under the same license as the dasher-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Dasher v6"
+msgstr "Dasher v6"
+
+msgid "Right side"
+msgstr "Правая сторона"
+
+msgid "Left side"
+msgstr "Левая сторона"
+
+msgid "Bottom"
+msgstr "Нижний"
+
+msgid "Top"
+msgstr "Вершина"
+
+msgid "_Keyboard"
+msgstr "_Клавиатура"
+
+msgid "Pane position and direct-entry mode"
+msgstr "Положение панели и режим прямого ввода"
+
+msgid "Open Text File"
+msgstr "Открыть текстовый файл"
+
+msgid "Text files"
+msgstr "Текстовые файлы"
+
+msgid "Failed to open: "
+msgstr "Не удалось открыть:"
+
+msgid "Save Text File"
+msgstr "Сохранить текстовый файл"
+
+msgid "Saved: "
+msgstr "Сохранено:"
+
+msgid "Failed to save: "
+msgstr "Сохранение не удалось:"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "Нажмите, чтобы настроить режим клавиатуры (требуется ydotool)"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Exit keyboard mode"
+msgstr "Выход из режима клавиатуры"
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "Режим клавиатуры остановлен: ydotool не удалось внедрить текст. Является ли ydotool неисправным?"
+
+msgid "Keyboard"
+msgstr "Клавиатура"
+
+msgid "New"
+msgstr "Новый"
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "Save"
+msgstr "Сохранять"
+
+msgid "Play"
+msgstr "Играть"
+
+msgid "Prefs"
+msgstr "Настройки"
+
+msgid "Copy"
+msgstr "Копия"
+
+msgid "Copy all"
+msgstr "Скопировать все"
+
+msgid "Paste"
+msgstr "Вставить"
+
+msgid "Read"
+msgstr "Читать"
+
+msgid "Speed"
+msgstr "Скорость"
+
+msgid "Learning"
+msgstr "Обучение"
+
+msgid "Speech"
+msgstr "Речь"
+
+msgid "Dasher Preferences"
+msgstr "Настройки Dasher"
+
+msgid "<big><b>Dasher v6</b></big>\\n"
+msgstr "<big><b>Dasher v6</b></big>\\"
+
+msgid "GTK Edition"
+msgstr "GTK Edition"
+
+msgid "About"
+msgstr "О"
+
+msgid "Customization"
+msgstr "Настройка"
+
+msgid "Input"
+msgstr "Вход"
+
+msgid "Language"
+msgstr "Язык"
+
+msgid "Output"
+msgstr "Выход"
+
+msgid "Game Mode"
+msgstr "Игровой режим"
+
+msgid "Dwell to click"
+msgstr "Дождитесь клика"
+
+msgid "Typing rate"
+msgstr "Скорость печати"
+
+msgid "Reset"
+msgstr "Перезагрузить"
+
+msgid "Keyboard mode opacity"
+msgstr "Прозрачность режима клавиатуры"
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>Настройки речи</b>"
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>Язык / Регион</b>"
+
+msgid "Locale"
+msgstr "Местоположение"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>Конфиденциальность</b>"
+
+msgid "Share anonymous analytics and crash reports"
+msgstr "Делитесь анонимными аналитическими данными и отчетами о сбоях."
+
+msgid "Reset analytics ID"
+msgstr "Сбросить идентификатор аналитики"
+
+msgid "Reset engine settings to defaults"
+msgstr "Сбросить настройки двигателя до значений по умолчанию."
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "Сбросить все настройки двигателя до значений по умолчанию?"
+
+msgid "Dasher "
+msgstr "Дэшер"
+
+msgid "Privacy"
+msgstr "Конфиденциальность"
+
+msgid "No settings available for this section."
+msgstr "Настройки для этого раздела отсутствуют."
+
+msgid "Enable Keyboard Mode"
+msgstr "Включить режим клавиатуры"
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>Режим клавиатуры недоступен в этой сборке</b>"
+
+msgid "Close"
+msgstr "Закрывать"
+
+msgid "<b>Install ydotool to use keyboard mode</b>"
+msgstr "<b>Установите ydotool для использования режима клавиатуры</b>"
+
+msgid "isn't installed. Run these commands, then press Retry:"
+msgstr "не установлен. Выполните следующие команды, затем нажмите «Повторить»:"
+
+msgid "Copy commands"
+msgstr "Копировать команды"
+
+msgid "Copied to clipboard."
+msgstr "Скопировано в буфер обмена."
+
+msgid "Retry"
+msgstr "Повторить попытку"
+
+msgid "ydotool found. Keyboard mode is ready."
+msgstr "Инструмент ydotool найден. Режим клавиатуры готов."

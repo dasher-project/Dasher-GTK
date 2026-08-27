@@ -1,0 +1,200 @@
+# el translation for dasher-gtk.
+# Copyright (C) 2026 The Dasher Project
+# This file is distributed under the same license as the dasher-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Dasher v6"
+msgstr "Dasher v6"
+
+msgid "Right side"
+msgstr "Δεξιά πλευρά"
+
+msgid "Left side"
+msgstr "Αριστερή πλευρά"
+
+msgid "Bottom"
+msgstr "Κάτω μέρος"
+
+msgid "Top"
+msgstr "Κορυφή"
+
+msgid "_Keyboard"
+msgstr "Πλήκτρα"
+
+msgid "Pane position and direct-entry mode"
+msgstr "Θέση υαλοπίνακα και λειτουργία άμεσης εισόδου"
+
+msgid "Open Text File"
+msgstr "Άνοιγμα αρχείου κειμένου"
+
+msgid "Text files"
+msgstr "Αρχεία κειμένου"
+
+msgid "Failed to open: "
+msgstr ": Αποτυχία ανοίγματος του :"
+
+msgid "Save Text File"
+msgstr "Αποθήκευση αρχείου κειμένου"
+
+msgid "Saved: "
+msgstr "Αποθηκεύτηκε"
+
+msgid "Failed to save: "
+msgstr "Αποτυχία αποθήκευσης :"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "Κάντε κλικ για να ρυθμίσετε τη λειτουργία πληκτρολογίου (χρειάζεται ydotool)"
+
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+msgid "Exit keyboard mode"
+msgstr "Λειτουργία πλήκτρων"
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "Η λειτουργία πληκτρολογίου σταμάτησε: το ydotool δεν μπόρεσε να εισάγει κείμενο. Είναι το ydotoold"
+
+msgid "Keyboard"
+msgstr "Πληκτρολόγιο"
+
+msgid "New"
+msgstr "Νέα"
+
+msgid "Open"
+msgstr "Άνοιγμα"
+
+msgid "Save"
+msgstr "Αποθήκευση"
+
+msgid "Play"
+msgstr "Αναπαραγωγή"
+
+msgid "Prefs"
+msgstr "Προτιμήσεις"
+
+msgid "Copy"
+msgstr "Αντιγραφή"
+
+msgid "Copy all"
+msgstr "Αντιγραφή όλων"
+
+msgid "Paste"
+msgstr "Πάστα"
+
+msgid "Read"
+msgstr "Αναγνωσμένο"
+
+msgid "Speed"
+msgstr "Ταχύτητα"
+
+msgid "Learning"
+msgstr "Μάθηση"
+
+msgid "Speech"
+msgstr "Ομιλία"
+
+msgid "Dasher Preferences"
+msgstr "Προτιμήσεις Dasher"
+
+msgid "<big><b>Dasher v6</b></big>\\n"
+msgstr "<big><b>Dasher v6</b></big>\\"
+
+msgid "GTK Edition"
+msgstr "Έκδοση GTK"
+
+msgid "About"
+msgstr "Σχετικά"
+
+msgid "Customization"
+msgstr "Προσαρμογή"
+
+msgid "Input"
+msgstr "Εισαγωγή"
+
+msgid "Language"
+msgstr "Γλώσσα"
+
+msgid "Output"
+msgstr "Τιμή εξόδου"
+
+msgid "Game Mode"
+msgstr "Λειτουργία παιχνιδιού"
+
+msgid "Dwell to click"
+msgstr "Συγκεντρωθείτε για να κάνετε κλικ"
+
+msgid "Typing rate"
+msgstr "Ρυθμός πληκτρολόγησης"
+
+msgid "Reset"
+msgstr "Επαναφορά"
+
+msgid "Keyboard mode opacity"
+msgstr "Αδιαφάνεια λειτουργίας πληκτρολογίου"
+
+msgid "<b>Speech Settings</b>"
+msgstr "Ρυθμίσεις ομιλίας"
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>Γλώσσα / Τοπικές ρυθμίσεις</b>"
+
+msgid "Locale"
+msgstr "Τοποθεσία"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>Απόρρητο</b>"
+
+msgid "Share anonymous analytics and crash reports"
+msgstr "Κοινοποίηση ανώνυμων αναλυτικών στοιχείων και αναφορών σφαλμάτων"
+
+msgid "Reset analytics ID"
+msgstr "Επαναφορά αναγνωριστικού αναλυτικών στοιχείων"
+
+msgid "Reset engine settings to defaults"
+msgstr "Επαναφορά ρυθμίσεων κινητήρα στις προεπιλογές"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "Επαναφέρετε όλες τις ρυθμίσεις του κινητήρα στις ενσωματωμένες προεπιλογές τους;"
+
+msgid "Dasher "
+msgstr "Dasher"
+
+msgid "Privacy"
+msgstr "Μυστικότητα"
+
+msgid "No settings available for this section."
+msgstr "Δεν υπάρχουν διαθέσιμες ρυθμίσεις για αυτήν την ενότητα."
+
+msgid "Enable Keyboard Mode"
+msgstr "Ενεργοποίηση λειτουργίας πληκτρολογίου"
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>Η λειτουργία πληκτρολογίου δεν είναι διαθέσιμη σε αυτήν την έκδοση</b>"
+
+msgid "Close"
+msgstr "Κλείσιμο"
+
+msgid "<b>Install ydotool to use keyboard mode</b>"
+msgstr "<b>Εγκαταστήστε το ydotool για να χρησιμοποιήσετε τη λειτουργία πληκτρολογίου</b>"
+
+msgid "isn't installed. Run these commands, then press Retry:"
+msgstr "δεν έχει εγκατασταθεί. Εκτελέστε αυτές τις εντολές και, στη συνέχεια, πατήστε Επανάληψη:"
+
+msgid "Copy commands"
+msgstr "Αντιγραφή εντολών"
+
+msgid "Copied to clipboard."
+msgstr "Αντιγράφηκε στο Πρόχειρο."
+
+msgid "Retry"
+msgstr "Επανάληψη"
+
+msgid "ydotool found. Keyboard mode is ready."
+msgstr "βρέθηκε το ydotool. Η λειτουργία πληκτρολογίου είναι έτοιμη."

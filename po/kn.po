@@ -1,0 +1,200 @@
+# kn translation for dasher-gtk.
+# Copyright (C) 2026 The Dasher Project
+# This file is distributed under the same license as the dasher-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Language: kn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Dasher v6"
+msgstr "Dasher v6"
+
+msgid "Right side"
+msgstr "ಬಲಭಾಗ"
+
+msgid "Left side"
+msgstr "ಎಡಭಾಗ"
+
+msgid "Bottom"
+msgstr "ಕೆಳಭಾಗ"
+
+msgid "Top"
+msgstr "ಟಾಪ್"
+
+msgid "_Keyboard"
+msgstr "ಕೀಲಿಮಣೆ"
+
+msgid "Pane position and direct-entry mode"
+msgstr "ಪೇನ್ ಸ್ಥಾನ ಮತ್ತು ಡೈರೆಕ್ಟ್-ಎಂಟ್ರಿ ಮೋಡ್"
+
+msgid "Open Text File"
+msgstr "ಪಠ್ಯ ಫೈಲ್ ತೆರೆಯಿರಿ"
+
+msgid "Text files"
+msgstr "ಪಠ್ಯ ಕಡತಗಳುComment"
+
+msgid "Failed to open: "
+msgstr "ತೆರೆಯಲು ವಿಫಲವಾಗಿದೆ:"
+
+msgid "Save Text File"
+msgstr "ಪಠ್ಯ ಫೈಲ್ ಉಳಿಸಿ"
+
+msgid "Saved: "
+msgstr "ಉಳಿಸಲಾಗಿದೆ"
+
+msgid "Failed to save: "
+msgstr "ಉಳಿಸಲು <x id=\"1\"/>ವಿಫಲವಾಗಿದೆ."
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "ಕೀಬೋರ್ಡ್ ಮೋಡ್ ಹೊಂದಿಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ (ydotool ಅಗತ್ಯವಿದೆ)"
+
+msgid "Settings"
+msgstr "ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
+
+msgid "Exit keyboard mode"
+msgstr "ಕೀಬೋರ್ಡ್ ಮೋಡ್‌ನಿಂದ ನಿರ್ಗಮಿಸಿ"
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "ಕೀಬೋರ್ಡ್ ಮೋಡ್ ನಿಲ್ಲಿಸಲಾಗಿದೆ: ydotool ಪಠ್ಯವನ್ನು ಚುಚ್ಚಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ydotoold ಆಗಿದೆಯೇ?"
+
+msgid "Keyboard"
+msgstr "ಕೀಬೋರ್ಡ್"
+
+msgid "New"
+msgstr "ಹೊಸ"
+
+msgid "Open"
+msgstr "ತೆರೆ"
+
+msgid "Save"
+msgstr "ಉಳಿಸಿ"
+
+msgid "Play"
+msgstr "ಪ್ಲೇ"
+
+msgid "Prefs"
+msgstr "ಪೂರ್ವಭಾವಿಗಳು"
+
+msgid "Copy"
+msgstr "à²à²²à²¾à²¯à²¿à²¸à³"
+
+msgid "Copy all"
+msgstr "ಎಲ್ಲವನ್ನೂ ನಕಲಿಸಿ"
+
+msgid "Paste"
+msgstr "ಅಂಟಿಸಿ"
+
+msgid "Read"
+msgstr "ಓದು, @ item: intext Access permission, concatenated"
+
+msgid "Speed"
+msgstr "ವೇಗ"
+
+msgid "Learning"
+msgstr "ಕಲಿಕೆ"
+
+msgid "Speech"
+msgstr "ಭಾಷಣ"
+
+msgid "Dasher Preferences"
+msgstr "Dasher ಆದ್ಯತೆಗಳು"
+
+msgid "<big><b>Dasher v6</b></big>\\n"
+msgstr "<big><b>Dasher v6</b></big>\\"
+
+msgid "GTK Edition"
+msgstr "GTK ಆವೃತ್ತಿ"
+
+msgid "About"
+msgstr "ಕುರಿತಾಗಿ"
+
+msgid "Customization"
+msgstr "ಗ್ರಾಹಕೀಕರಣ"
+
+msgid "Input"
+msgstr "ಇನ್ಪುಟ್"
+
+msgid "Language"
+msgstr "ಭಾಷೆ"
+
+msgid "Output"
+msgstr "ಪ್ರದಾನ (ಔಟ್ ಪುಟ್)"
+
+msgid "Game Mode"
+msgstr "ಗೇಮ್ ಮೋಡ್"
+
+msgid "Dwell to click"
+msgstr "ಕ್ಲಿಕ್ ಮಾಡಲು ವಾಸಿಸು (Dwell)"
+
+msgid "Typing rate"
+msgstr "ಟೈಪಿಂಗ್ ದರ"
+
+msgid "Reset"
+msgstr "ಮರುಹೊಂದಿಸಿ"
+
+msgid "Keyboard mode opacity"
+msgstr "ಕೀಬೋರ್ಡ್ ಮೋಡ್ ಅಪಾರದರ್ಶಕತೆ"
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>ಭಾಷಣ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</b>"
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>ಭಾಷೆ / ಸ್ಥಳ</b>"
+
+msgid "Locale"
+msgstr "ಪ್ರಾದೇಶಿಕ"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>ಗೌಪ್ಯತೆ</b>"
+
+msgid "Share anonymous analytics and crash reports"
+msgstr "ಅನಾಮಧೇಯ ವಿಶ್ಲೇಷಣೆಗಳು ಮತ್ತು ಕ್ರ್ಯಾಶ್ ವರದಿಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಿ"
+
+msgid "Reset analytics ID"
+msgstr "ಅನಾಲಿಟಿಕ್ಸ್ ಐಡಿಯನ್ನು ಮರುಹೊಂದಿಸಿ"
+
+msgid "Reset engine settings to defaults"
+msgstr "ಎಂಜಿನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಡೀಫಾಲ್ಟ್‌ಗಳಿಗೆ ಮರುಹೊಂದಿಸಿ"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "ಎಲ್ಲಾ ಎಂಜಿನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಅವುಗಳ ಅಂತರ್ನಿರ್ಮಿತ ಡೀಫಾಲ್ಟ್‌ಗಳಿಗೆ ಮರುಹೊಂದಿಸುವುದೇ?"
+
+msgid "Dasher "
+msgstr "ದಾಶರ್"
+
+msgid "Privacy"
+msgstr "ಗೌಪ್ಯತೆ"
+
+msgid "No settings available for this section."
+msgstr "ಈ ವಿಭಾಗಕ್ಕೆ ಯಾವುದೇ ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಲಭ್ಯವಿಲ್ಲ."
+
+msgid "Enable Keyboard Mode"
+msgstr "ಕೀಬೋರ್ಡ್ ಮೋಡ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ"
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>ಈ ಬಿಲ್ಡ್‌ನಲ್ಲಿ ಕೀಬೋರ್ಡ್ ಮೋಡ್ ಲಭ್ಯವಿಲ್ಲ.</b>"
+
+msgid "Close"
+msgstr "ಮುಚ್ಚಿ"
+
+msgid "<b>Install ydotool to use keyboard mode</b>"
+msgstr "<b>ಕೀಬೋರ್ಡ್ ಮೋಡ್ ಬಳಸಲು ydotool ಅನ್ನು ಸ್ಥಾಪಿಸಿ</b>"
+
+msgid "isn't installed. Run these commands, then press Retry:"
+msgstr "ಸ್ಥಾಪಿಸಲಾಗಿಲ್ಲ. ಈ ಆಜ್ಞೆಗಳನ್ನು ರನ್ ಮಾಡಿ, ನಂತರ ಮರುಪ್ರಯತ್ನಿಸಿ ಒತ್ತಿರಿ:"
+
+msgid "Copy commands"
+msgstr "ಆದೇಶಗಳನ್ನು ನಕಲಿಸಿ"
+
+msgid "Copied to clipboard."
+msgstr "ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ನಕಲಿಸಲಾಗಿದೆ"
+
+msgid "Retry"
+msgstr "ಪುನಃ ಪ್ರಯತ್ನಿಸು"
+
+msgid "ydotool found. Keyboard mode is ready."
+msgstr "ydotool ಕಂಡುಬಂದಿದೆ. ಕೀಬೋರ್ಡ್ ಮೋಡ್ ಸಿದ್ಧವಾಗಿದೆ."

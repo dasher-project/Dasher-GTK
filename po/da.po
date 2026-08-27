@@ -1,0 +1,200 @@
+# da translation for dasher-gtk.
+# Copyright (C) 2026 The Dasher Project
+# This file is distributed under the same license as the dasher-gtk package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dasher-gtk 0.2.9\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Dasher v6"
+msgstr "Dasher v6"
+
+msgid "Right side"
+msgstr "Højre side"
+
+msgid "Left side"
+msgstr "Venstre side"
+
+msgid "Bottom"
+msgstr "Bund"
+
+msgid "Top"
+msgstr "Top"
+
+msgid "_Keyboard"
+msgstr "Tastatur"
+
+msgid "Pane position and direct-entry mode"
+msgstr "Rudeposition og direkte indgangstilstand"
+
+msgid "Open Text File"
+msgstr "Åbn tekstfil"
+
+msgid "Text files"
+msgstr "Tekstfiler"
+
+msgid "Failed to open: "
+msgstr "Afslutning mislykkedes"
+
+msgid "Save Text File"
+msgstr "Gem tekstfil"
+
+msgid "Saved: "
+msgstr "Gemt"
+
+msgid "Failed to save: "
+msgstr "Fejl - blev ikke demt"
+
+msgid "Click to set up keyboard mode (needs ydotool)"
+msgstr "Klik for at konfigurere tastaturtilstand (har brug for ydotool)"
+
+msgid "Settings"
+msgstr "Indstillinger"
+
+msgid "Exit keyboard mode"
+msgstr "Afslut tastaturtilstand"
+
+msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "Tastaturtilstand stoppet: ydotool kunne ikke injicere tekst. Er ydotoold"
+
+msgid "Keyboard"
+msgstr "Tastatur"
+
+msgid "New"
+msgstr "Ny"
+
+msgid "Open"
+msgstr "Åbn"
+
+msgid "Save"
+msgstr "Gem"
+
+msgid "Play"
+msgstr "Afspil"
+
+msgid "Prefs"
+msgstr "Præferencer"
+
+msgid "Copy"
+msgstr "Kopi"
+
+msgid "Copy all"
+msgstr "Kopier alt"
+
+msgid "Paste"
+msgstr "Indsæt"
+
+msgid "Read"
+msgstr "Læs"
+
+msgid "Speed"
+msgstr "Hastighed"
+
+msgid "Learning"
+msgstr "Læring"
+
+msgid "Speech"
+msgstr "Tale"
+
+msgid "Dasher Preferences"
+msgstr "Dasher-præferencer"
+
+msgid "<big><b>Dasher v6</b></big>\\n"
+msgstr "<big><b>Dasher</b></big> v6\\"
+
+msgid "GTK Edition"
+msgstr "GTK-udgave"
+
+msgid "About"
+msgstr "Om"
+
+msgid "Customization"
+msgstr "Tilpasning"
+
+msgid "Input"
+msgstr "Input"
+
+msgid "Language"
+msgstr "Sprog"
+
+msgid "Output"
+msgstr "Udgang"
+
+msgid "Game Mode"
+msgstr "Spiltilstand"
+
+msgid "Dwell to click"
+msgstr "Dvæl ved at klikke"
+
+msgid "Typing rate"
+msgstr "Skrivehastighed"
+
+msgid "Reset"
+msgstr "Nulstil"
+
+msgid "Keyboard mode opacity"
+msgstr "Tastaturtilstand opacitet"
+
+msgid "<b>Speech Settings</b>"
+msgstr "<b>Taleindstillinger</b>"
+
+msgid "<b>Language / Locale</b>"
+msgstr "<b>Sprog/lokalitet</b>"
+
+msgid "Locale"
+msgstr "Lokalitet"
+
+msgid "<b>Privacy</b>"
+msgstr "<b>Privatliv</b>"
+
+msgid "Share anonymous analytics and crash reports"
+msgstr "Del anonyme analyser og ulykkesrapporter"
+
+msgid "Reset analytics ID"
+msgstr "Nulstil analysen"
+
+msgid "Reset engine settings to defaults"
+msgstr "Nulstil motorindstillinger til standardindstillinger"
+
+msgid "Reset all engine settings to their built-in defaults?"
+msgstr "Nulstil alle motorindstillinger til deres indbyggede standardindstillinger?"
+
+msgid "Dasher "
+msgstr "Dasher"
+
+msgid "Privacy"
+msgstr "Privatliv"
+
+msgid "No settings available for this section."
+msgstr "Der er ingen tilgængelige indstillinger for dette afsnit."
+
+msgid "Enable Keyboard Mode"
+msgstr "Aktiver tastaturtilstand"
+
+msgid "<b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>Tastaturtilstand er ikke tilgængelig i dette build</b>"
+
+msgid "Close"
+msgstr "Luk"
+
+msgid "<b>Install ydotool to use keyboard mode</b>"
+msgstr "<b>Installer ydotool for at bruge tastaturtilstand</b>"
+
+msgid "isn't installed. Run these commands, then press Retry:"
+msgstr "er ikke installeret. Kør disse kommandoer, og tryk derefter på Prøv igen:"
+
+msgid "Copy commands"
+msgstr "Kopier kommandoer"
+
+msgid "Copied to clipboard."
+msgstr "Kopieret til udklipsholder."
+
+msgid "Retry"
+msgstr "Prøv igen"
+
+msgid "ydotool found. Keyboard mode is ready."
+msgstr "ydotool fundet. Tastaturtilstand er klar."
