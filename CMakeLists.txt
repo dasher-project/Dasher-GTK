@@ -148,8 +148,11 @@ if(MSGFMT_EXECUTABLE)
 			COMMENT "Compiling ${Locale} translation"
 			VERBATIM)
 		list(APPEND MO_FILES ${MO})
+		# The locale subdirectory must be part of the install path: gettext
+		# searches <dir>/<locale>/LC_MESSAGES/<domain>.mo, so the .mo for
+		# French must land at share/locale/fr/LC_MESSAGES/dasher-gtk.mo.
 		install(FILES ${MO}
-			DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LOCALEDIR}/LC_MESSAGES)
+			DESTINATION ${CMAKE_INSTALL_LOCALEDIR}/${Locale}/LC_MESSAGES)
 	endforeach()
 	add_custom_target(translations ALL DEPENDS ${MO_FILES})
 else()

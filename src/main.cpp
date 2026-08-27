@@ -25,27 +25,41 @@
         // UI chrome localises alongside the engine strings (which go through
         // dasher_set_locale). bindtextdomain keeps ONE binding per domain (the
         // last call wins — it does not accumulate fallbacks), so pick the
-        // first directory that actually contains a catalog: the build tree
-        // (relative to this binary) for dev runs, else the install prefix.
+        // first directory that actually contains a catalog:
+        //   1. build tree: <binary>/../po/ (dev runs from build/Dasher/)
+        //   2. AppImage/portable install: <binary>/../share/locale/
+        //   3. compile-time LOCALEDIR (system installs)
 #ifdef ENABLE_NLS
         setlocale(LC_ALL, "");
         {
-            std::string domain_dir = LOCALEDIR; // installed default
-            // Running from build/Dasher/ → catalogs are at build/po/
+            std::string domain_dir;
             char exe[PATH_MAX];
             const ssize_t n = readlink("/proc/self/exe", exe, sizeof(exe) - 1);
             if (n > 0) {
                 exe[n] = '\0';
-                std::string dir(exe);
-                const auto slash = dir.find_last_of('/');
+                std::string bin_dir(exe);
+                const auto slash = bin_dir.find_last_of('/');
                 if (slash != std::string::npos) {
-                    dir.resize(slash);
-                    const std::string build_po = dir + "/../po";
-                    const std::string catalog = build_po + "/fr/LC_MESSAGES/" GETTEXT_PACKAGE ".mo";
-                    if (access(catalog.c_str(), R_OK) == 0) {
+                    bin_dir.resize(slash);
+                    // Dev: build tree catalogs at build/po/<locale>/LC_MESSAGES/
+                    const std::string build_po = bin_dir + "/../po";
+                    const std::string po_catalog = build_po + "/fr/LC_MESSAGES/" GETTEXT_PACKAGE ".mo";
+                    if (access(po_catalog.c_str(), R_OK) == 0) {
                         domain_dir = build_po;
                     }
+                    // AppImage / portable: <binary>/../share/locale/<locale>/LC_MESSAGES/
+                    if (domain_dir.empty()) {
+                        const std::string share_locale = bin_dir + "/../share/locale";
+                        const std::string share_catalog = share_locale + "/fr/LC_MESSAGES/" GETTEXT_PACKAGE ".mo";
+                        if (access(share_catalog.c_str(), R_OK) == 0) {
+                            domain_dir = share_locale;
+                        }
+                    }
                 }
+            }
+            // Compile-time install prefix (system installs, Flatpak)
+            if (domain_dir.empty()) {
+                domain_dir = LOCALEDIR;
             }
             bindtextdomain(GETTEXT_PACKAGE, domain_dir.c_str());
             bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
