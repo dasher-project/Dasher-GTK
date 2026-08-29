@@ -1,4 +1,5 @@
 #include "CommandRenderer.h"
+#include "Engine/CanvasText.h"
 #include <dasher.h>
 
 CommandRenderer::CommandRenderer() = default;
@@ -80,14 +81,9 @@ void CommandRenderer::render(const DasherBridge::FrameResult& frame, const Cairo
             const std::string& text = strs[d];
             if (text.empty()) break;
 
-            cr->select_font_face(font.family, font.slant, font.weight);
-            cr->set_font_size(c);
-
-            Cairo::TextExtents te;
-            cr->get_text_extents(text, te);
-            cr->begin_new_path();
-            cr->move_to(a - te.x_bearing, b - te.y_bearing);
-            cr->show_text(text);
+            // Pango with per-glyph fallback (v5 behaviour): non-Latin labels
+            // render from installed fonts instead of Cairo-toy tofu boxes.
+            CanvasText::draw(cr, font, text, c, static_cast<double>(a), static_cast<double>(b));
             break;
         }
 

@@ -1,4 +1,5 @@
 #include "DasherBridge.h"
+#include "Engine/CanvasText.h"
 #include "Analytics/EngineLogRingBuffer.h"
 #include <cstring>
 #include <iostream>
@@ -401,23 +402,13 @@ int DasherBridge::text_size_trampoline(const char* text, int font_size, int* out
         return self->m_test_measure(text, font_size, out_width, out_height);
     }
 
-    // Mirror CommandRenderer's text path exactly: same Cairo toy font face
-    // and size it selects before show_text(), so the engine lays labels out
-    // with the widths this canvas actually draws. Uses the same cairomm
-    // calls the renderer uses, on a throwaway offscreen context.
+    // Pango-backed measurement (CanvasText) — the same path CommandRenderer
+    // draws with, per-glyph fallback included, so the engine lays labels out
+    // with the widths this canvas actually draws for EVERY script.
     const auto& cr = self->m_measure_context;
     if (!cr) return 1;
 
-    cr->select_font_face(self->m_canvas_font.family, self->m_canvas_font.slant, self->m_canvas_font.weight);
-    cr->set_font_size(font_size);
-
-    Cairo::TextExtents extents;
-    cr->get_text_extents(text, extents);
-    *out_width = static_cast<int>(extents.x_advance);
-    // Height as the ink box: matches how the renderer vertically places text
-    // via y_bearing (baseline-relative), not a font-wide line height.
-    *out_height = static_cast<int>(extents.height);
-    return 0;
+    return CanvasText::measure(cr, self->m_canvas_font, text, font_size, *out_width, *out_height) ? 0 : 1;
 }
 
 void DasherBridge::output_callback_trampoline(int event_type, const char* text, void* user_data) {

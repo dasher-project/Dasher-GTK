@@ -83,6 +83,7 @@ list(FILTER SOURCE_FILES EXCLUDE REGEX ".*/src/main\\.cpp$")
 add_executable(engine_contract_tests
     test_engine_contract.cpp
     ${CMAKE_SOURCE_DIR}/src/Engine/DasherBridge.cpp
+    ${CMAKE_SOURCE_DIR}/src/Engine/CanvasText.cpp
     ${CMAKE_SOURCE_DIR}/src/Analytics/EngineLogRingBuffer.cpp
     ${CMAKE_BINARY_DIR}/dasher_resources.c
 )
