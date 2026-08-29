@@ -65,10 +65,14 @@ bool measure(const Cairo::RefPtr<Cairo::Context>& cr, const DasherBridge::Canvas
 
     auto layout = make_layout(cr, font, text, font_size);
 
+    // Width from LOGICAL extents (advance), height from INK — exactly the
+    // old Cairo-toy contract (x_advance for width, extents.height for
+    // height). The engine lays labels out by advance; ink width would
+    // under-report strings whose bearings differ from their advance (e.g.
+    // trailing spaces, marks) and cause overlaps at deep zoom.
+    const Pango::Rectangle logical = layout->get_logical_extents();
     const Pango::Rectangle ink = layout->get_ink_extents();
-    // Advance width, ink height — the metrics contract the engine's label
-    // layout was tuned against (see the old Cairo-toy measurement).
-    out_width = (ink.get_width() + PANGO_SCALE / 2) / PANGO_SCALE;
+    out_width = (logical.get_width() + PANGO_SCALE / 2) / PANGO_SCALE;
     out_height = (ink.get_height() + PANGO_SCALE / 2) / PANGO_SCALE;
     return true;
 }
