@@ -21,12 +21,12 @@
 namespace CanvasText {
 
 /** Draw `text` with the top-left of its ink box at (x, y). */
-void draw(const Cairo::RefPtr<Cairo::Context>& cr, const DasherBridge::CanvasFont& font,
-          const std::string& text, int font_size, double x, double y);
+void draw(const Cairo::RefPtr<Cairo::Context>& cr, const DasherBridge::CanvasFont& font, const std::string& text,
+          int font_size, double x, double y);
 
 /** Ink-box extents of `text` — the same metrics the old Cairo-toy path
  *  measured (advance width, ink height). Returns false when unmeasurable. */
-bool measure(const Cairo::RefPtr<Cairo::Context>& cr, const DasherBridge::CanvasFont& font,
-             const std::string& text, int font_size, int& out_width, int& out_height);
+bool measure(const Cairo::RefPtr<Cairo::Context>& cr, const DasherBridge::CanvasFont& font, const std::string& text,
+             int font_size, int& out_width, int& out_height);
 
 } // namespace CanvasText
