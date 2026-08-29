@@ -31,9 +31,8 @@ Pango::FontDescription make_font_description(const DasherBridge::CanvasFont& fon
     return desc;
 }
 
-Glib::RefPtr<Pango::Layout> make_layout(const Cairo::RefPtr<Cairo::Context>& cr,
-                                        const DasherBridge::CanvasFont& font, const std::string& text,
-                                        int font_size) {
+Glib::RefPtr<Pango::Layout> make_layout(const Cairo::RefPtr<Cairo::Context>& cr, const DasherBridge::CanvasFont& font,
+                                        const std::string& text, int font_size) {
     auto layout = Pango::Layout::create(cr);
     layout->set_font_description(make_font_description(font, font_size));
     layout->set_text(text);
@@ -44,8 +43,8 @@ Glib::RefPtr<Pango::Layout> make_layout(const Cairo::RefPtr<Cairo::Context>& cr,
 
 namespace CanvasText {
 
-void draw(const Cairo::RefPtr<Cairo::Context>& cr, const DasherBridge::CanvasFont& font,
-          const std::string& text, int font_size, double x, double y) {
+void draw(const Cairo::RefPtr<Cairo::Context>& cr, const DasherBridge::CanvasFont& font, const std::string& text,
+          int font_size, double x, double y) {
     if (!cr || text.empty()) return;
 
     auto layout = make_layout(cr, font, text, font_size);
@@ -59,8 +58,8 @@ void draw(const Cairo::RefPtr<Cairo::Context>& cr, const DasherBridge::CanvasFon
     layout->show_in_cairo_context(cr);
 }
 
-bool measure(const Cairo::RefPtr<Cairo::Context>& cr, const DasherBridge::CanvasFont& font,
-             const std::string& text, int font_size, int& out_width, int& out_height) {
+bool measure(const Cairo::RefPtr<Cairo::Context>& cr, const DasherBridge::CanvasFont& font, const std::string& text,
+             int font_size, int& out_width, int& out_height) {
     if (!cr || text.empty() || font_size <= 0) return false;
 
     auto layout = make_layout(cr, font, text, font_size);
