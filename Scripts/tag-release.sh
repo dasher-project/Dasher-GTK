@@ -88,6 +88,16 @@ if [[ $do_push -eq 1 ]]; then
     [[ "$(git rev-parse main)" == "$(git rev-parse origin/main)" ]] ||
         die "origin/main moved since the check — re-run on the new main"
     git push origin "refs/tags/$version"
+    # The verify-then-push window can never be fully closed from a client
+    # (review finding), but it can be made self-healing: re-check AFTER the
+    # push lands and roll the tag back if main moved underneath us. Anything
+    # that still slips through is rejected server-side — the publish gate
+    # requires the tag to point at origin/main's tip.
+    git fetch origin main --quiet
+    if [[ "$(git rev-parse main)" != "$(git rev-parse origin/main)" ]]; then
+        git push origin ":refs/tags/$version"
+        die "origin/main moved during the push — deleted the stale remote tag; re-run on the new main"
+    fi
     pushed=1
     echo "Pushed $version."
 else
