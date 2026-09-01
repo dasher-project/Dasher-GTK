@@ -8,11 +8,11 @@ namespace ui {
 // position members only restore under X11 — Wayland compositors place
 // windows themselves and clients cannot override that (by design).
 struct WindowGeometry {
-    bool valid = false;      // any usable field was persisted
+    bool valid = false; // any usable field was persisted
     bool has_position = false;
     int x = 0, y = 0;
     int w = 0, h = 0;
-    bool maximized = false;  // normal mode only
+    bool maximized = false; // normal mode only
 };
 
 // Frontend-local UI preferences that aren't engine parameters, persisted to

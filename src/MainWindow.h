@@ -97,9 +97,9 @@ class MainWindow : public Gtk::Window {
     double m_speed_step = 0.1; // in v5 units; re-derived from the manifest
     Gtk::Label m_learning_label = Gtk::Label(_("Learning"));
     SyncedSwitch m_learning_switch;
-    Gtk::Label m_wpm_label;   // live "4.2 cps · 50 wpm" readout (RFC 0012)
+    Gtk::Label m_wpm_label;         // live "4.2 cps · 50 wpm" readout (RFC 0012)
     Gtk::Label m_game_target_label; // game mode target overlay (Windows parity)
-    double m_speed_min = 0.1; // v5 units; re-derived from the manifest
+    double m_speed_min = 0.1;       // v5 units; re-derived from the manifest
     double m_speed_max = 10.0;
     Gtk::Label m_speech_label = Gtk::Label(_("Speech"));
     Gtk::Switch m_speech_switch;

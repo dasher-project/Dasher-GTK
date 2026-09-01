@@ -22,8 +22,8 @@ int get_int_or(GKeyFile* kf, const char* key, bool& found) {
 
 // Valid sizes only: reject the degenerate (0/-1) values a failed or partial
 // save would produce.
-WindowGeometry load_geometry(GKeyFile* kf, const char* px, const char* py, const char* pw,
-                             const char* ph, const char* pmax, bool with_maximized) {
+WindowGeometry load_geometry(GKeyFile* kf, const char* px, const char* py, const char* pw, const char* ph,
+                             const char* pmax, bool with_maximized) {
     WindowGeometry g;
     bool found = false;
     const int w = get_int_or(kf, pw, found);
@@ -52,8 +52,8 @@ WindowGeometry load_geometry(GKeyFile* kf, const char* px, const char* py, const
     return g;
 }
 
-void save_geometry(GKeyFile* kf, const WindowGeometry& g, const char* px, const char* py,
-                   const char* pw, const char* ph, const char* pmax, bool with_maximized) {
+void save_geometry(GKeyFile* kf, const WindowGeometry& g, const char* px, const char* py, const char* pw,
+                   const char* ph, const char* pmax, bool with_maximized) {
     if (!g.valid) return;
     g_key_file_set_integer(kf, kGroup, pw, g.w);
     g_key_file_set_integer(kf, kGroup, ph, g.h);
@@ -94,8 +94,8 @@ UiSettings UiSettings::load(const std::string& path) {
         // Key missing or unreadable — keep the default (true)
         g_clear_error(&err);
 
-        s.m_window_geometry = load_geometry(kf, "window_x", "window_y", "window_w", "window_h",
-                                            "window_maximized", /*with_maximized=*/true);
+        s.m_window_geometry = load_geometry(kf, "window_x", "window_y", "window_w", "window_h", "window_maximized",
+                                            /*with_maximized=*/true);
         s.m_keyboard_geometry = load_geometry(kf, "kb_x", "kb_y", "kb_w", "kb_h", nullptr,
                                               /*with_maximized=*/false);
     }
@@ -107,8 +107,8 @@ void UiSettings::save() const {
     GKeyFile* kf = g_key_file_new();
     g_key_file_set_double(kf, kGroup, "keyboard_opacity", m_keyboard_opacity);
     g_key_file_set_boolean(kf, kGroup, "update_checks_enabled", m_update_checks_enabled);
-    save_geometry(kf, m_window_geometry, "window_x", "window_y", "window_w", "window_h",
-                  "window_maximized", /*with_maximized=*/true);
+    save_geometry(kf, m_window_geometry, "window_x", "window_y", "window_w", "window_h", "window_maximized",
+                  /*with_maximized=*/true);
     save_geometry(kf, m_keyboard_geometry, "kb_x", "kb_y", "kb_w", "kb_h", nullptr,
                   /*with_maximized=*/false);
     // First run writes before anything else has created the config dir, and

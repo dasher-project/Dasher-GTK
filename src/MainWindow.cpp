@@ -28,7 +28,8 @@ MainWindow::MainWindow()
     // (Flatpak/AppImage), whose CWD isn't the source tree, silently fell back
     // to unstyled default GTK. Embedding it removes any CWD/layout dependency.
     css->load_from_resource("/org/alternativeinterface/dasher/UIStyle.css");
-    get_style_context()->add_provider_for_display(Gdk::Display::get_default(), css, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+    get_style_context()->add_provider_for_display(Gdk::Display::get_default(), css,
+                                                  GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
     set_title(_("Dasher v6"));
     set_default_size(900, 600);
@@ -46,8 +47,7 @@ MainWindow::MainWindow()
                     // After map the surface exists; defer one idle so the WM
                     // has finished its own initial placement.
                     Glib::signal_idle().connect_once([this, saved]() {
-                        if (geometry_on_any_monitor(saved))
-                            WindowPlacementX11::move_to(*this, saved.x, saved.y);
+                        if (geometry_on_any_monitor(saved)) WindowPlacementX11::move_to(*this, saved.x, saved.y);
                     });
                 });
             }
@@ -133,10 +133,12 @@ MainWindow::MainWindow()
     pack_bar_start(m_header_bar, m_pref_button);
     m_header_bar.add_css_class("topbar");
 
-    m_preferences_window.signal_close_request().connect([this]() {
-        m_preferences_window.set_visible(false);
-        return true;
-    }, false);
+    m_preferences_window.signal_close_request().connect(
+        [this]() {
+            m_preferences_window.set_visible(false);
+            return true;
+        },
+        false);
     // RFC 0015: keyboard-mode opacity slider in Preferences → Output reads and
     // writes MainWindow's persisted value (live while keyboard mode is on).
     m_preferences_window.set_keyboard_opacity_access([this]() { return keyboard_opacity(); },
@@ -259,41 +261,45 @@ MainWindow::MainWindow()
     });
 
     auto event_controller = Gtk::EventControllerKey::create();
-    event_controller->signal_key_pressed().connect([this](guint keyval, guint, Gdk::ModifierType) {
-        std::string key_name = gdk_keyval_name(keyval);
-        if (key_name == "space") {
-            m_canvas.bridge->key_event(0, 1);
-            return true;
-        }
-        if (key_name == "Return" || key_name == "KP_Enter") {
-            m_canvas.bridge->key_event(0, 1);
-            return true;
-        }
-        if (keyval >= GDK_KEY_1 && keyval <= GDK_KEY_4) {
-            m_canvas.bridge->key_event(keyval - GDK_KEY_1 + 1, 1);
-            return true;
-        }
-        if (keyval >= GDK_KEY_F1 && keyval <= GDK_KEY_F4) {
-            m_canvas.bridge->key_event(keyval - GDK_KEY_F1 + 1, 1);
-            return true;
-        }
-        return false;
-    }, false);
-    event_controller->signal_key_released().connect([this](guint keyval, guint, Gdk::ModifierType) {
-        std::string key_name = gdk_keyval_name(keyval);
-        if (key_name == "space" || key_name == "Return" || key_name == "KP_Enter") {
-            m_canvas.bridge->key_event(0, 0);
-            return;
-        }
-        if (keyval >= GDK_KEY_1 && keyval <= GDK_KEY_4) {
-            m_canvas.bridge->key_event(keyval - GDK_KEY_1 + 1, 0);
-            return;
-        }
-        if (keyval >= GDK_KEY_F1 && keyval <= GDK_KEY_F4) {
-            m_canvas.bridge->key_event(keyval - GDK_KEY_F1 + 1, 0);
-            return;
-        }
-    }, false);
+    event_controller->signal_key_pressed().connect(
+        [this](guint keyval, guint, Gdk::ModifierType) {
+            std::string key_name = gdk_keyval_name(keyval);
+            if (key_name == "space") {
+                m_canvas.bridge->key_event(0, 1);
+                return true;
+            }
+            if (key_name == "Return" || key_name == "KP_Enter") {
+                m_canvas.bridge->key_event(0, 1);
+                return true;
+            }
+            if (keyval >= GDK_KEY_1 && keyval <= GDK_KEY_4) {
+                m_canvas.bridge->key_event(keyval - GDK_KEY_1 + 1, 1);
+                return true;
+            }
+            if (keyval >= GDK_KEY_F1 && keyval <= GDK_KEY_F4) {
+                m_canvas.bridge->key_event(keyval - GDK_KEY_F1 + 1, 1);
+                return true;
+            }
+            return false;
+        },
+        false);
+    event_controller->signal_key_released().connect(
+        [this](guint keyval, guint, Gdk::ModifierType) {
+            std::string key_name = gdk_keyval_name(keyval);
+            if (key_name == "space" || key_name == "Return" || key_name == "KP_Enter") {
+                m_canvas.bridge->key_event(0, 0);
+                return;
+            }
+            if (keyval >= GDK_KEY_1 && keyval <= GDK_KEY_4) {
+                m_canvas.bridge->key_event(keyval - GDK_KEY_1 + 1, 0);
+                return;
+            }
+            if (keyval >= GDK_KEY_F1 && keyval <= GDK_KEY_F4) {
+                m_canvas.bridge->key_event(keyval - GDK_KEY_F1 + 1, 0);
+                return;
+            }
+        },
+        false);
     add_controller(event_controller);
 
     pack_bar_start(m_footer_bar, m_alphabet_chooser);
@@ -485,12 +491,8 @@ MainWindow::MainWindow()
     m_text_view.set_margin(5);
     m_text_view.add_css_class("dasher-output");
 
-    m_paste_button.signal_clicked().connect([this]() {
-        m_text_view.activate_action("clipboard.paste");
-    });
-    m_copy_button.signal_clicked().connect([this]() {
-        m_text_view.activate_action("clipboard.copy");
-    });
+    m_paste_button.signal_clicked().connect([this]() { m_text_view.activate_action("clipboard.paste"); });
+    m_copy_button.signal_clicked().connect([this]() { m_text_view.activate_action("clipboard.copy"); });
     m_copyall_button.signal_clicked().connect([this]() {
         m_text_view.activate_action("selection.select-all");
         m_text_view.activate_action("clipboard.copy");
@@ -501,7 +503,7 @@ MainWindow::MainWindow()
     m_alphabet_chooser.OnSelectionChanged.connect([](Glib::ustring id) {
         analytics::AnalyticsClient::instance().capture("alphabet_selected", {{"alphabet_id", std::string(id)}});
     });
-    capture_app_launched();      // no-op unless already opted in
+    capture_app_launched(); // no-op unless already opted in
 
     // RFC 0017: passive update check for self-managed builds. Runs on a
     // background thread after the window is up (never blocks launch), at

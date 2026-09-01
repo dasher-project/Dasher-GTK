@@ -127,8 +127,7 @@ bool query(Gtk::Window& window, int& x, int& y) {
     Window child = None;
     // Translate the client window's origin into root coordinates — the same
     // coordinate space the WM placed it in, so saving and restoring round-trips.
-    if (!XTranslateCoordinates(dpy, xid, DefaultRootWindow(dpy), 0, 0, &dest_x, &dest_y, &child))
-        return false;
+    if (!XTranslateCoordinates(dpy, xid, DefaultRootWindow(dpy), 0, 0, &dest_x, &dest_y, &child)) return false;
     x = dest_x;
     y = dest_y;
     return true;
@@ -170,7 +169,9 @@ void set_opacity(Gtk::Window&, double) {}
 
 namespace WindowPlacementX11 {
 
-bool query(Gtk::Window&, int&, int&) { return false; }
+bool query(Gtk::Window&, int&, int&) {
+    return false;
+}
 void move_to(Gtk::Window&, int, int, int, int) {}
 void resize(Gtk::Window&, int, int) {}
 
