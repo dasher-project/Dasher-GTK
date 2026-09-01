@@ -1,0 +1,118 @@
+#!/usr/bin/env bash
+# Tag a Dasher-GTK release — with the checks that are easy to forget.
+#
+# The tag-vs-metainfo consistency check (validate-metadata.yml) hard-fails a
+# tag push when packaging/org.alternativeinterface.dasher.metainfo.xml doesn't
+# carry a matching <release> entry, and publish.yml refuses to ship packages
+# from such a tag. This script makes the mistake impossible to make quietly:
+# it refuses to tag unless the entry is already in place (plus the usual
+# release hygiene).
+#
+# Usage: Scripts/tag-release.sh [--push] v0.2.12
+#
+# --push pushes the tag in the same breath as the final freshness check,
+# closing the (small) window where origin/main could advance between the
+# check and a separately-typed `git push` (review finding). The publish
+# workflow additionally refuses tags that don't point at origin/main's tip,
+# so the server side has the last word regardless.
+set -euo pipefail
+
+die() { echo "error: $*" >&2; exit 1; }
+
+do_push=0
+if [[ "${1:-}" == "--push" ]]; then do_push=1; shift; fi
+[[ $# -eq 1 ]] || die "usage: $0 [--push] vX.Y.Z"
+version="$1"
+[[ "$version" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || die "version must look like v0.2.12, got '$version'"
+bare="${version#v}"
+metainfo="packaging/org.alternativeinterface.dasher.metainfo.xml"
+
+# 1. Run from the repo root (script may be invoked from anywhere)
+root="$(git rev-parse --show-toplevel 2>/dev/null)" || die "not a git checkout"
+cd "$root"
+
+# 2. On main, clean tree
+branch="$(git rev-parse --abbrev-ref HEAD)"
+[[ "$branch" == "main" ]] || die "on branch '$branch' — tag releases from main"
+[[ -z "$(git status --porcelain --untracked-files=no)" ]] || die "working tree has uncommitted changes"
+
+# 2b. Local main is current — a stale local main tags the wrong source and
+# the tag push publishes it (review finding: exactly this happened the day
+# this script was written, so it's a real failure mode, not theoretical).
+git fetch origin main --quiet
+local_sha="$(git rev-parse main)"
+remote_sha="$(git rev-parse origin/main)"
+[[ "$local_sha" == "$remote_sha" ]] ||
+    die "local main ($(git rev-parse --short main)) is not origin/main ($(git rev-parse --short origin/main)) — pull/rebase first"
+
+# 3. Tag not already taken — locally AND remotely. A stranded remote tag
+# (e.g. a rollback that couldn't complete) must be caught here with the fix
+# in hand, not discovered at push time (review finding).
+git rev-parse -q --verify "refs/tags/$version" >/dev/null && die "tag $version already exists locally (git tag -d $version if it's a leftover)"
+git fetch origin --tags --quiet
+git rev-parse -q --verify "refs/tags/$version" >/dev/null && die "tag $version already exists on the remote — delete it (git push origin :refs/tags/$version) or re-point it deliberately"
+
+# 4. Metainfo carries this release entry (the one everyone forgets)
+[[ -f "$metainfo" ]] || die "$metainfo not found"
+newest="$(grep -m1 -oP '(?<=<release version=")[^"]+' "$metainfo")"
+[[ "$newest" == "$bare" ]] || die "newest metainfo <release> is '$newest', expected '$bare'.
+Add the entry to $metainfo (top of <releases>), commit, then re-run. See
+README § Packaging & releases — 'Cutting a release'."
+
+# 5. Submodule pinned to a DasherCore tag, not a floating commit
+sub_desc="$(git -C DasherCore describe --tags --exact-match 2>/dev/null || true)"
+[[ -n "$sub_desc" ]] || die "DasherCore submodule is not pinned at a tag ($(git -C DasherCore describe --tags --always 2>/dev/null || echo 'unknown')). Tag DasherCore first and bump the pin."
+
+echo "✓ branch main, tree clean"
+echo "✓ tag $version is free"
+echo "✓ metainfo has <release version=\"$bare\">"
+echo "✓ DasherCore pinned at $sub_desc"
+
+# A failed check after tag creation must not strand an unpushed local tag
+# (the next invocation would die on "tag already exists" until someone
+# deleted it by hand) — remove it on any non-push exit.
+tag_created=0
+pushed=0
+cleanup() {
+    if [[ $tag_created -eq 1 && $pushed -eq 0 ]]; then
+        git tag -d "$version" >/dev/null 2>&1 || true
+        echo "note: removed the unpushed local tag $version (a check failed after tagging)" >&2
+    fi
+}
+trap cleanup EXIT
+
+git tag -a "$version" -m "Dasher-GTK $version"
+tag_created=1
+echo "Tagged $version at $(git rev-parse --short HEAD)."
+
+if [[ $do_push -eq 1 ]]; then
+    # Re-verify currency immediately before the push — the comparison at the
+    # top could be stale by now (review finding: "remote main can advance").
+    git fetch origin main --quiet
+    [[ "$(git rev-parse main)" == "$(git rev-parse origin/main)" ]] ||
+        die "origin/main moved since the check — re-run on the new main"
+    git push origin "refs/tags/$version"
+    # The tag is on the remote now: the EXIT trap must never delete the local
+    # copy out from under it. From here only the explicit rollback manages tags.
+    pushed=1
+    #
+    # The verify-then-push window can never be fully closed from a client, but
+    # it can self-heal: re-check AFTER the push lands and roll the tag back if
+    # main moved underneath us. Every failure path says exactly what state the
+    # remote is in and how to fix it — no silent strandings (review finding).
+    if ! git fetch origin main --quiet; then
+        die "pushed $version but couldn't re-verify freshness (network). If origin/main moved, delete the tag: git push origin :refs/tags/$version"
+    fi
+    if [[ "$(git rev-parse main)" != "$(git rev-parse origin/main)" ]]; then
+        if git push origin ":refs/tags/$version"; then
+            pushed=0 # remote rolled back; let the EXIT trap drop the local copy too
+            die "origin/main moved during the push — rolled the remote tag back; re-run on the new main"
+        fi
+        die "origin/main moved during the push AND the rollback failed — delete the remote tag manually: git push origin :refs/tags/$version"
+    fi
+    echo "Pushed $version."
+else
+    echo "Push it: git push origin $version (or re-run with --push)"
+    # Not a failure: the caller chose create-only, so keep the tag.
+    pushed=1
+fi
