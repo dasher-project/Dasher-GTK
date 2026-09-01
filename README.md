@@ -254,12 +254,31 @@ flatpak run org.alternativeinterface.dasher
 
 **AppImage** — `bash packaging/build-appimage.sh` produces `Dasher-x86_64.AppImage`.
 
-**Cutting a release** — push a `v*` tag; the publish workflow builds both
-artifacts and attaches them to a new GitHub Release:
+**Cutting a release** — a `v*` tag push makes the publish workflow build both
+artifacts and attach them to a new GitHub Release. Two things must be true
+before you tag, or CI refuses the release:
+
+1. **The metainfo carries this release's entry** — add a
+   `<release version="…">` block at the top of `<releases>` in
+   [`packaging/org.alternativeinterface.dasher.metainfo.xml`](packaging/org.alternativeinterface.dasher.metainfo.xml)
+   and merge it. The validate workflow fails the tag push on a mismatch, and
+   the publish workflow's release job hard-gates on the same check — a tag
+   without its entry will not ship packages (that gate exists because
+   v0.2.10 shipped with the check red).
+2. **The DasherCore submodule is pinned at an upstream tag**, not a floating
+   commit — tag DasherCore first and bump the pin.
+
+The safe path is the helper, which enforces both plus the usual hygiene
+(clean tree, on `main`, tag not taken) and refuses to tag otherwise:
 
 ```sh
-git tag v0.2.7 && git push origin v0.2.7
+Scripts/tag-release.sh v0.2.12        # creates the annotated tag
+git push origin v0.2.12
 ```
+
+If a bad tag already went out: add the missing metainfo entry, merge, then
+delete and re-push the tag — validate re-runs green and the publish workflow
+updates the existing release in place.
 
 ## Privacy & analytics
 
