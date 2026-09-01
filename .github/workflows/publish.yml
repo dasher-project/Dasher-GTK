@@ -43,7 +43,11 @@ jobs:
         with:
           fetch-depth: 0
       - name: Check tag freshness (tag == origin/main tip)
-        if: github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
+        # Push-only: a workflow_dispatch against an existing v* tag is a
+        # deliberate rebuild/repair — main has usually advanced since the
+        # tag, and that must not block it (review finding). The anti-mistake
+        # check is for new tag pushes, where staleness means a mistake.
+        if: github.event_name == 'push' && github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
         run: |
           set -e
           git fetch origin main --quiet

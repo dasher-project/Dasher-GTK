@@ -35,7 +35,9 @@ jobs:
       # tag pointing anywhere else is a stale-local-main mistake. Failing
       # here, within a minute of the push, makes delete-and-re-push cheap.
       - name: Check tag freshness (tag == origin/main tip)
-        if: github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
+        # Push-only, matching publish.yml's tag-sanity gate: dispatches
+        # against existing tags are deliberate rebuilds and must not warn.
+        if: github.event_name == 'push' && github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
         run: |
           set -e
           git fetch origin main --quiet
