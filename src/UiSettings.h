@@ -4,6 +4,17 @@
 
 namespace ui {
 
+// Per-mode window geometry (issue #74). Size restores everywhere; the
+// position members only restore under X11 — Wayland compositors place
+// windows themselves and clients cannot override that (by design).
+struct WindowGeometry {
+    bool valid = false;      // any usable field was persisted
+    bool has_position = false;
+    int x = 0, y = 0;
+    int w = 0, h = 0;
+    bool maximized = false;  // normal mode only
+};
+
 // Frontend-local UI preferences that aren't engine parameters, persisted to
 // <XDG_CONFIG_HOME>/dasher/ui.conf (same directory as analytics.conf).
 // Main-thread only — the update checker's background thread writes its own
@@ -27,12 +38,22 @@ class UiSettings {
     bool update_checks_enabled() const { return m_update_checks_enabled; }
     void set_update_checks_enabled(bool v);
 
+    // Window geometry, saved per mode: quitting while parked in keyboard
+    // mode must not poison the normal-mode restore with mini-bar bounds
+    // (issue #74).
+    WindowGeometry window_geometry() const { return m_window_geometry; }
+    void set_window_geometry(const WindowGeometry& g) { m_window_geometry = g; }
+    WindowGeometry keyboard_geometry() const { return m_keyboard_geometry; }
+    void set_keyboard_geometry(const WindowGeometry& g) { m_keyboard_geometry = g; }
+
     static std::string default_path();
 
   private:
     std::string m_path;
     double m_keyboard_opacity = 0.85;
     bool m_update_checks_enabled = true;
+    WindowGeometry m_window_geometry;
+    WindowGeometry m_keyboard_geometry;
 };
 
 } // namespace ui

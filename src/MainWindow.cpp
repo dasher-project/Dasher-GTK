@@ -3,6 +3,8 @@
 #include "i18n.h"
 #include <cairomm/fontface.h>
 #include <gdkmm/display.h>
+#include <gdkmm/monitor.h>
+#include <giomm/listmodel.h>
 #include <pangomm/fontdescription.h>
 #include <glibmm/main.h>
 #include <cmath>
@@ -30,6 +32,27 @@ MainWindow::MainWindow()
 
     set_title(_("Dasher v6"));
     set_default_size(900, 600);
+
+    // Restore the saved normal-mode geometry (issue #74): size + maximized
+    // pre-map, position after map (X11 only — under Wayland the compositor
+    // places the window and we must not fight it).
+    {
+        const auto saved = m_ui_settings.window_geometry();
+        if (saved.valid) {
+            set_default_size(saved.w, saved.h);
+            if (saved.maximized) maximize();
+            if (saved.has_position) {
+                signal_map().connect([this, saved]() {
+                    // After map the surface exists; defer one idle so the WM
+                    // has finished its own initial placement.
+                    Glib::signal_idle().connect_once([this, saved]() {
+                        if (geometry_on_any_monitor(saved))
+                            WindowPlacementX11::move_to(*this, saved.x, saved.y);
+                    });
+                });
+            }
+        }
+    }
 
     set_child(m_main_box);
     m_main_box.append(m_header_bar);
@@ -340,6 +363,11 @@ MainWindow::MainWindow()
             show_keyboard_setup_dialog();
             return;
         }
+        // Capture the LEAVING mode's geometry before any layout change, so
+        // per-mode bounds round-trip exactly (issue #74).
+        ui::WindowGeometry leaving;
+        capture_geometry(leaving); // still the old mode's size here
+
         m_direct_mode_active = on;
         // v5/Windows/Apple behaviour: hide the editor AND both tool bars —
         // the canvas fills the window as an on-screen keyboard, with only a
@@ -348,6 +376,21 @@ MainWindow::MainWindow()
         m_header_bar.set_visible(!on);
         m_footer_bar.set_visible(!on);
         m_keyboard_minibar.set_visible(on);
+
+        // Persist the leaving mode's bounds, then restore the entering
+        // mode's saved placement (where the user last parked it).
+        {
+            ui::UiSettings settings = ui::UiSettings::load();
+            if (on)
+                settings.set_window_geometry(leaving);
+            else
+                settings.set_keyboard_geometry(leaving);
+            settings.save();
+            m_ui_settings = settings;
+        }
+        const auto entering = on ? m_ui_settings.keyboard_geometry() : m_ui_settings.window_geometry();
+        if (entering.valid) apply_geometry(entering, /*live=*/true);
+
         if (on) {
             // Stay visible but never take keyboard focus, so injected text
             // lands in the user's document, not in Dasher (v5's
@@ -722,4 +765,79 @@ void MainWindow::set_keyboard_opacity(double v) {
     if (m_direct_mode_active) {
         KeyboardWindowX11::set_opacity(*this, v); // live, like Windows/Apple
     }
+}
+
+// ── Saved window geometry (issue #74) ─────────────────────────────────────
+
+void MainWindow::capture_geometry(ui::WindowGeometry& g) {
+    const int w = get_width();
+    const int h = get_height();
+    if (w < 50 || h < 50) return; // not mapped yet / degenerate
+    g.w = w;
+    g.h = h;
+    g.valid = true;
+    g.maximized = is_maximized();
+    // Position via XLib (GTK4 removed gtk_window_get_position). Off X11 the
+    // window keeps its size memory but not its placement — Wayland compositors
+    // own positioning anyway.
+    int x = 0, y = 0;
+    if (WindowPlacementX11::query(*this, x, y)) {
+        g.x = x;
+        g.y = y;
+        g.has_position = true;
+    }
+}
+
+void MainWindow::save_geometry_for_current_mode() {
+    ui::WindowGeometry g;
+    capture_geometry(g);
+    if (!g.valid) return;
+    ui::UiSettings settings = ui::UiSettings::load();
+    if (m_direct_mode_active)
+        settings.set_keyboard_geometry(g);
+    else
+        settings.set_window_geometry(g);
+    settings.save();
+    m_ui_settings = settings;
+}
+
+bool MainWindow::geometry_on_any_monitor(const ui::WindowGeometry& g) {
+    // Guard against restoring onto a disconnected monitor: require the
+    // window's centre to land inside a connected monitor.
+    auto display = Gdk::Display::get_default();
+    if (!display) return false;
+    const int cx = g.x + g.w / 2;
+    const int cy = g.y + g.h / 2;
+    auto monitors = display->get_monitors();
+    if (!monitors) return false;
+    const guint n = monitors->get_n_items();
+    for (guint i = 0; i < n; i++) {
+        auto monitor = std::dynamic_pointer_cast<Gdk::Monitor>(monitors->get_object(i));
+        if (!monitor) continue;
+        Gdk::Rectangle bounds;
+        monitor->get_geometry(bounds);
+        if (cx >= bounds.get_x() && cx < bounds.get_x() + bounds.get_width() && cy >= bounds.get_y() &&
+            cy < bounds.get_y() + bounds.get_height())
+            return true;
+    }
+    return false;
+}
+
+void MainWindow::apply_geometry(const ui::WindowGeometry& g, bool live) {
+    if (live) {
+        // Mapped window: X11 configure request (no-op under Wayland).
+        if (g.has_position && geometry_on_any_monitor(g))
+            WindowPlacementX11::move_to(*this, g.x, g.y, g.w, g.h);
+        else
+            WindowPlacementX11::resize(*this, g.w, g.h);
+        return;
+    }
+    // Pre-map: default size (and the caller handles maximize).
+    set_default_size(g.w, g.h);
+}
+
+bool MainWindow::on_close_request() {
+    // Last chance to persist where the user left the window (issue #74).
+    save_geometry_for_current_mode();
+    return Gtk::Window::on_close_request(); // false = allow the close
 }

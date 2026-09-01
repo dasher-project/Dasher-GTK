@@ -141,6 +141,15 @@ class MainWindow : public Gtk::Window {
     double keyboard_opacity() const;
     void set_keyboard_opacity(double v);
 
+    // Saved window geometry, per mode (issue #74): the window comes back
+    // where the user left it. Size restores on all backends; position only
+    // under X11 (Wayland compositors place windows themselves).
+    void capture_geometry(ui::WindowGeometry& g);
+    void save_geometry_for_current_mode();
+    void apply_geometry(const ui::WindowGeometry& g, bool live);
+    bool geometry_on_any_monitor(const ui::WindowGeometry& g);
+    bool on_close_request() override;
+
     PreferencesWindow m_preferences_window;
 
     // Frontend analytics consent; drives the first-run opt-in prompt below.

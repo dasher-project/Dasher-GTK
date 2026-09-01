@@ -116,6 +116,48 @@ void set_opacity(Gtk::Window& window, double opacity) {
 
 } // namespace KeyboardWindowX11
 
+namespace WindowPlacementX11 {
+
+bool query(Gtk::Window& window, int& x, int& y) {
+    Display* dpy = x11_display_of(window);
+    const Window xid = x11_window_of(window);
+    if (!dpy || xid == None) return false;
+
+    int dest_x = 0, dest_y = 0;
+    Window child = None;
+    // Translate the client window's origin into root coordinates — the same
+    // coordinate space the WM placed it in, so saving and restoring round-trips.
+    if (!XTranslateCoordinates(dpy, xid, DefaultRootWindow(dpy), 0, 0, &dest_x, &dest_y, &child))
+        return false;
+    x = dest_x;
+    y = dest_y;
+    return true;
+}
+
+void move_to(Gtk::Window& window, int x, int y, int w, int h) {
+    Display* dpy = x11_display_of(window);
+    const Window xid = x11_window_of(window);
+    if (!dpy || xid == None) return;
+
+    // A direct XMoveResizeWindow on a mapped window is a configure request;
+    // EWMH-compliant WMs honour it (this is what xdotool/mwmctrl do).
+    if (w > 0 && h > 0)
+        XMoveResizeWindow(dpy, xid, x, y, static_cast<unsigned int>(w), static_cast<unsigned int>(h));
+    else
+        XMoveWindow(dpy, xid, x, y);
+    XFlush(dpy);
+}
+
+void resize(Gtk::Window& window, int w, int h) {
+    Display* dpy = x11_display_of(window);
+    const Window xid = x11_window_of(window);
+    if (!dpy || xid == None || w <= 0 || h <= 0) return;
+    XResizeWindow(dpy, xid, static_cast<unsigned int>(w), static_cast<unsigned int>(h));
+    XFlush(dpy);
+}
+
+} // namespace WindowPlacementX11
+
 #else // !DASHER_KEYBOARD_X11
 
 namespace KeyboardWindowX11 {
@@ -125,5 +167,13 @@ void release(Gtk::Window&) {}
 void set_opacity(Gtk::Window&, double) {}
 
 } // namespace KeyboardWindowX11
+
+namespace WindowPlacementX11 {
+
+bool query(Gtk::Window&, int&, int&) { return false; }
+void move_to(Gtk::Window&, int, int, int, int) {}
+void resize(Gtk::Window&, int, int) {}
+
+} // namespace WindowPlacementX11
 
 #endif
