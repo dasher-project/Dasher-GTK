@@ -36,6 +36,16 @@
   </developer>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="0.2.11" date="2026-09-01">
+      <description>
+        <p>The window now remembers where you left it: size, position and maximized state persist between runs, separately for normal and keyboard mode — quit while parked in keyboard mode and the full window comes back exactly as it was. Live mode switches restore each mode's saved placement, with maximized state reconciled. DasherCore v0.2.17 underneath (direct-mode regression guard, ScanFiles/Realize error latching, on top of v0.2.16's input-filter persistence fix).</p>
+      </description>
+    </release>
+    <release version="0.2.10" date="2026-08-30">
+      <description>
+        <p>Engine update: 150 alphabets now ship real training data (56 Tatoeba corpora via WorldAlphabets), the chosen input filter survives a restart, and a UTF-8 crash in the English settings description is fixed (DasherCore v0.2.14 → v0.2.16).</p>
+      </description>
+    </release>
     <release version="0.2.9" date="2026-08-27">
       <description>
         <p>Dasher now speaks 32 languages. The UI — toolbar, settings, dialogs, tooltips — localises across every locale DasherCore supports, from a single shared translation catalogue. Also: game mode with a readable target overlay, the settings window comes forward on re-open, info icons are proper Lucide glyphs, and the engine timeline is clamped for smooth zooming (DasherCore v0.2.9: restart drift and steering drift fixed).</p>
