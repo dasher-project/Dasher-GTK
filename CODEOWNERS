@@ -1,8 +1,8 @@
 # Default owner — all paths not matched below
-* @PapeCoding
+* @willwade
 
 # DasherCore submodule — do not edit in this repo
-/DasherCore/ @PapeCoding
+/DasherCore/ @willwade
 
 # Build system
-/CMakeLists.txt @PapeCoding
+/CMakeLists.txt @willwade
