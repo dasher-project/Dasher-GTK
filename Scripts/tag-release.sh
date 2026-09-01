@@ -64,9 +64,6 @@ echo "✓ tag $version is free"
 echo "✓ metainfo has <release version=\"$bare\">"
 echo "✓ DasherCore pinned at $sub_desc"
 
-git tag -a "$version" -m "Dasher-GTK $version"
-echo "Tagged $version at $(git rev-parse --short HEAD)."
-
 # A failed check after tag creation must not strand an unpushed local tag
 # (the next invocation would die on "tag already exists" until someone
 # deleted it by hand) — remove it on any non-push exit.
