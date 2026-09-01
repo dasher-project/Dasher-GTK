@@ -272,9 +272,12 @@ The safe path is the helper, which enforces both plus the usual hygiene
 (clean tree, on `main`, tag not taken) and refuses to tag otherwise:
 
 ```sh
-Scripts/tag-release.sh v0.2.12        # creates the annotated tag
-git push origin v0.2.12
+Scripts/tag-release.sh --push v0.2.12 # verifies, tags, pushes
 ```
+
+The publish workflow's release job independently refuses tags that don't
+point at `origin/main`'s tip, so a stale-local-main tag can't ship even if
+the local checks were somehow bypassed.
 
 If a bad tag already went out: add the missing metainfo entry, merge, then
 delete and re-push the tag — validate re-runs green and the publish workflow

@@ -202,6 +202,18 @@ jobs:
             echo "::error::Tag v$tag_version has no matching metainfo <release> entry (newest: $meta_version). Add the entry, merge, delete and re-push the tag. Scripts/tag-release.sh enforces this locally."
             exit 1
           fi
+          # Server-side freshness: our release process tags merged main, so a
+          # tag pointing anywhere else is a stale-local-main mistake (the
+          # client-side script checks this too, but the server has the last
+          # word). Re-fetch with enough history to see origin/main's tip.
+          git fetch origin main --quiet
+          tip="$(git rev-parse origin/main)"
+          tagged="${GITHUB_SHA}"
+          echo "tagged: $tagged  origin/main: $tip"
+          if [ "$tagged" != "$tip" ]; then
+            echo "::error::Tag does not point at origin/main's tip — tagged a stale or non-main revision. Re-tag on current main (Scripts/tag-release.sh --push)."
+            exit 1
+          fi
 
       - uses: actions/download-artifact@v4
         name: Dasher-flatpak-x86_64

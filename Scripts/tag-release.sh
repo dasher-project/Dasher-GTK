@@ -8,12 +8,20 @@
 # it refuses to tag unless the entry is already in place (plus the usual
 # release hygiene).
 #
-# Usage: Scripts/tag-release.sh v0.2.12
+# Usage: Scripts/tag-release.sh [--push] v0.2.12
+#
+# --push pushes the tag in the same breath as the final freshness check,
+# closing the (small) window where origin/main could advance between the
+# check and a separately-typed `git push` (review finding). The publish
+# workflow additionally refuses tags that don't point at origin/main's tip,
+# so the server side has the last word regardless.
 set -euo pipefail
 
 die() { echo "error: $*" >&2; exit 1; }
 
-[[ $# -eq 1 ]] || die "usage: $0 vX.Y.Z"
+do_push=0
+if [[ "${1:-}" == "--push" ]]; then do_push=1; shift; fi
+[[ $# -eq 1 ]] || die "usage: $0 [--push] vX.Y.Z"
 version="$1"
 [[ "$version" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || die "version must look like v0.2.12, got '$version'"
 bare="${version#v}"
@@ -58,4 +66,15 @@ echo "✓ DasherCore pinned at $sub_desc"
 
 git tag -a "$version" -m "Dasher-GTK $version"
 echo "Tagged $version at $(git rev-parse --short HEAD)."
-echo "Push it: git push origin $version"
+
+if [[ $do_push -eq 1 ]]; then
+    # Re-verify currency immediately before the push — the comparison at the
+    # top could be stale by now (review finding: "remote main can advance").
+    git fetch origin main --quiet
+    [[ "$(git rev-parse main)" == "$(git rev-parse origin/main)" ]] ||
+        die "origin/main moved since the check — re-run on the new main"
+    git push origin "refs/tags/$version"
+    echo "Pushed $version."
+else
+    echo "Push it: git push origin $version (or re-run with --push)"
+fi
