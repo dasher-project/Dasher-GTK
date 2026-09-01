@@ -27,8 +27,36 @@ jobs:
   # A packaging regression surfaces on the main push that lands it, before
   # any tagged release. workflow_dispatch stays non-blocking so the
   # packaging can be exercised experimentally.
+  # ─── Tag sanity (push-time gate) ───────────────────────────────────────
+  # Freshness enforcement must live HERE, not in validate-metadata.yml: that
+  # workflow fails independently and nothing in this file observes it, so a
+  # stale tag would still build and ship (review finding). This job runs in
+  # seconds at push time and the artifact jobs depend on it — a stale tag
+  # never starts a build (and unlike a check in the release job, a main that
+  # advances during a long build can't invalidate an already-valid tag).
+  tag-sanity:
+    name: Tag sanity (freshness at push time)
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+      - name: Check tag freshness (tag == origin/main tip)
+        if: github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
+        run: |
+          set -e
+          git fetch origin main --quiet
+          tip="$(git rev-parse origin/main)"
+          echo "tagged: $GITHUB_SHA  origin/main: $tip"
+          if [ "$GITHUB_SHA" != "$tip" ]; then
+            echo "::error::Tag does not point at origin/main's tip — stale local main? Delete the tag and re-tag on current main (Scripts/tag-release.sh --push verifies this)."
+            exit 1
+          fi
+
   flatpak:
     name: Flatpak (${{ matrix.arch }})
+    needs: [tag-sanity]
     runs-on: ubuntu-24.04
     if: github.event_name != 'pull_request'
     # Manual dispatch is advisory except on tags: if someone experiments with
@@ -95,6 +123,7 @@ jobs:
   # verification is fully covered by the code workflows.
   appimage:
     name: AppImage (${{ matrix.arch }})
+    needs: [tag-sanity]
     runs-on: ubuntu-latest
     if: github.event_name != 'pull_request'
     # See flatpak above: dispatch is advisory except on tags, where the

@@ -275,10 +275,11 @@ The safe path is the helper, which enforces both plus the usual hygiene
 Scripts/tag-release.sh --push v0.2.12 # verifies, tags, pushes
 ```
 
-The validate workflow checks tag freshness (the tag must point at
-`origin/main`'s tip) within a minute of the push — deliberately at push
-time, not after the artifact builds, so a bad tag costs a delete-and-re-push
-rather than a wasted build.
+Freshness is enforced by the publish workflow's `tag-sanity` job, which
+runs within seconds of the tag push and gates both artifact builds — a tag
+that doesn't point at `origin/main`'s tip never starts a build. (The
+validate workflow repeats the check as an early warning, but the
+enforcement lives in publish, where failure actually blocks the release.)
 
 If a bad tag already went out: add the missing metainfo entry, merge, then
 delete and re-push the tag — validate re-runs green and the publish workflow
