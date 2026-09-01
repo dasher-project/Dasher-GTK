@@ -45,8 +45,12 @@ remote_sha="$(git rev-parse origin/main)"
 [[ "$local_sha" == "$remote_sha" ]] ||
     die "local main ($(git rev-parse --short main)) is not origin/main ($(git rev-parse --short origin/main)) — pull/rebase first"
 
-# 3. Tag not already taken
-git rev-parse -q --verify "refs/tags/$version" >/dev/null && die "tag $version already exists"
+# 3. Tag not already taken — locally AND remotely. A stranded remote tag
+# (e.g. a rollback that couldn't complete) must be caught here with the fix
+# in hand, not discovered at push time (review finding).
+git rev-parse -q --verify "refs/tags/$version" >/dev/null && die "tag $version already exists locally (git tag -d $version if it's a leftover)"
+git fetch origin --tags --quiet
+git rev-parse -q --verify "refs/tags/$version" >/dev/null && die "tag $version already exists on the remote — delete it (git push origin :refs/tags/$version) or re-point it deliberately"
 
 # 4. Metainfo carries this release entry (the one everyone forgets)
 [[ -f "$metainfo" ]] || die "$metainfo not found"
@@ -88,17 +92,24 @@ if [[ $do_push -eq 1 ]]; then
     [[ "$(git rev-parse main)" == "$(git rev-parse origin/main)" ]] ||
         die "origin/main moved since the check — re-run on the new main"
     git push origin "refs/tags/$version"
-    # The verify-then-push window can never be fully closed from a client
-    # (review finding), but it can be made self-healing: re-check AFTER the
-    # push lands and roll the tag back if main moved underneath us. Anything
-    # that still slips through is rejected server-side — the publish gate
-    # requires the tag to point at origin/main's tip.
-    git fetch origin main --quiet
-    if [[ "$(git rev-parse main)" != "$(git rev-parse origin/main)" ]]; then
-        git push origin ":refs/tags/$version"
-        die "origin/main moved during the push — deleted the stale remote tag; re-run on the new main"
-    fi
+    # The tag is on the remote now: the EXIT trap must never delete the local
+    # copy out from under it. From here only the explicit rollback manages tags.
     pushed=1
+    #
+    # The verify-then-push window can never be fully closed from a client, but
+    # it can self-heal: re-check AFTER the push lands and roll the tag back if
+    # main moved underneath us. Every failure path says exactly what state the
+    # remote is in and how to fix it — no silent strandings (review finding).
+    if ! git fetch origin main --quiet; then
+        die "pushed $version but couldn't re-verify freshness (network). If origin/main moved, delete the tag: git push origin :refs/tags/$version"
+    fi
+    if [[ "$(git rev-parse main)" != "$(git rev-parse origin/main)" ]]; then
+        if git push origin ":refs/tags/$version"; then
+            pushed=0 # remote rolled back; let the EXIT trap drop the local copy too
+            die "origin/main moved during the push — rolled the remote tag back; re-run on the new main"
+        fi
+        die "origin/main moved during the push AND the rollback failed — delete the remote tag manually: git push origin :refs/tags/$version"
+    fi
     echo "Pushed $version."
 else
     echo "Push it: git push origin $version (or re-run with --push)"

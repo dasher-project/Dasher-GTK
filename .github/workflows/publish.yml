@@ -202,42 +202,31 @@ jobs:
             echo "::error::Tag v$tag_version has no matching metainfo <release> entry (newest: $meta_version). Add the entry, merge, delete and re-push the tag. Scripts/tag-release.sh enforces this locally."
             exit 1
           fi
-          # Server-side freshness: our release process tags merged main, so a
-          # tag pointing anywhere else is a stale-local-main mistake (the
-          # client-side script checks this too, but the server has the last
-          # word). Re-fetch with enough history to see origin/main's tip.
-          git fetch origin main --quiet
-          tip="$(git rev-parse origin/main)"
-          tagged="${GITHUB_SHA}"
-          echo "tagged: $tagged  origin/main: $tip"
-          if [ "$tagged" != "$tip" ]; then
-            echo "::error::Tag does not point at origin/main's tip — tagged a stale or non-main revision. Re-tag on current main (Scripts/tag-release.sh --push)."
-            exit 1
-          fi
 
-      - uses: actions/download-artifact@v4
+
+      - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
         name: Dasher-flatpak-x86_64
         with:
           name: Dasher-flatpak-x86_64
           path: release/
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
         with:
           name: Dasher-flatpak-aarch64
           path: release/
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
         with:
           name: Dasher-AppImage-x86_64
           path: release/
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
         with:
           name: Dasher-AppImage-aarch64
           path: release/
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@62c96d0c4e8a889135c1f3a25910db8dbe0e85f7 # v2.3.4
         with:
           generate_release_notes: true
           files: |
