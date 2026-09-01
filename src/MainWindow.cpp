@@ -395,7 +395,13 @@ MainWindow::MainWindow()
             m_ui_settings = settings;
         }
         const auto entering = on ? m_ui_settings.keyboard_geometry() : m_ui_settings.window_geometry();
-        if (entering.valid) apply_geometry(entering, /*live=*/true);
+        if (entering.valid) {
+            apply_geometry(entering, /*live=*/true);
+            // Returning to a normal-mode window that was maximized when the
+            // user left it: apply_geometry dropped the (possibly keyboard-
+            // mode) maximization to apply saved bounds — put it back.
+            if (!on && entering.maximized) maximize();
+        }
 
         if (on) {
             // Stay visible but never take keyboard focus, so injected text
@@ -827,11 +833,19 @@ bool MainWindow::geometry_on_any_monitor(const ui::WindowGeometry& g) {
 
 void MainWindow::apply_geometry(const ui::WindowGeometry& g, bool live) {
     if (live) {
-        // Mapped window: X11 configure request (no-op under Wayland).
+        // A maximized window ignores configure requests — drop to floating
+        // before applying saved bounds. Callers re-maximize afterwards when
+        // the saved state says so (the keyboard slot never is).
+        if (is_maximized()) unmaximize();
         if (g.has_position && geometry_on_any_monitor(g))
             WindowPlacementX11::move_to(*this, g.x, g.y, g.w, g.h);
         else
             WindowPlacementX11::resize(*this, g.w, g.h);
+        // Off X11 (Wayland) the helpers are no-ops and live programmatic
+        // resize isn't possible, but a default-size change still applies to
+        // a window GTK hasn't user-resized — best effort beats silently
+        // keeping the leaving mode's dimensions.
+        set_default_size(g.w, g.h);
         return;
     }
     // Pre-map: default size (and the caller handles maximize).
