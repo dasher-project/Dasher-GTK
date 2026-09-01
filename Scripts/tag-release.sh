@@ -28,6 +28,15 @@ branch="$(git rev-parse --abbrev-ref HEAD)"
 [[ "$branch" == "main" ]] || die "on branch '$branch' — tag releases from main"
 [[ -z "$(git status --porcelain --untracked-files=no)" ]] || die "working tree has uncommitted changes"
 
+# 2b. Local main is current — a stale local main tags the wrong source and
+# the tag push publishes it (review finding: exactly this happened the day
+# this script was written, so it's a real failure mode, not theoretical).
+git fetch origin main --quiet
+local_sha="$(git rev-parse main)"
+remote_sha="$(git rev-parse origin/main)"
+[[ "$local_sha" == "$remote_sha" ]] ||
+    die "local main ($(git rev-parse --short main)) is not origin/main ($(git rev-parse --short origin/main)) — pull/rebase first"
+
 # 3. Tag not already taken
 git rev-parse -q --verify "refs/tags/$version" >/dev/null && die "tag $version already exists"
 

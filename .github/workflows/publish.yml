@@ -189,8 +189,9 @@ jobs:
       # Hard gate: never ship packages from a tag whose metainfo release entry
       # is missing (validate-metadata.yml flags these, but it runs as a
       # separate workflow — v0.2.10 shipped with a red validate before this
-      # gate existed).
-      - uses: actions/checkout@v4
+      # gate existed). Pinned by SHA: this job holds the contents:write token,
+      # and the checkout runs before the gate (review finding).
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Verify tag ↔ metainfo consistency
         run: |
           set -e
