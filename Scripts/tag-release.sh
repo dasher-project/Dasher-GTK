@@ -67,6 +67,23 @@ echo "✓ DasherCore pinned at $sub_desc"
 git tag -a "$version" -m "Dasher-GTK $version"
 echo "Tagged $version at $(git rev-parse --short HEAD)."
 
+# A failed check after tag creation must not strand an unpushed local tag
+# (the next invocation would die on "tag already exists" until someone
+# deleted it by hand) — remove it on any non-push exit.
+tag_created=0
+pushed=0
+cleanup() {
+    if [[ $tag_created -eq 1 && $pushed -eq 0 ]]; then
+        git tag -d "$version" >/dev/null 2>&1 || true
+        echo "note: removed the unpushed local tag $version (a check failed after tagging)" >&2
+    fi
+}
+trap cleanup EXIT
+
+git tag -a "$version" -m "Dasher-GTK $version"
+tag_created=1
+echo "Tagged $version at $(git rev-parse --short HEAD)."
+
 if [[ $do_push -eq 1 ]]; then
     # Re-verify currency immediately before the push — the comparison at the
     # top could be stale by now (review finding: "remote main can advance").
@@ -74,7 +91,10 @@ if [[ $do_push -eq 1 ]]; then
     [[ "$(git rev-parse main)" == "$(git rev-parse origin/main)" ]] ||
         die "origin/main moved since the check — re-run on the new main"
     git push origin "refs/tags/$version"
+    pushed=1
     echo "Pushed $version."
 else
     echo "Push it: git push origin $version (or re-run with --push)"
+    # Not a failure: the caller chose create-only, so keep the tag.
+    pushed=1
 fi
