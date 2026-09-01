@@ -30,3 +30,22 @@ void release(Gtk::Window& window);
 void set_opacity(Gtk::Window& window, double opacity);
 
 } // namespace KeyboardWindowX11
+
+// X11 window placement for saved-geometry restore (issue #74): GTK4 removed
+// gtk_window_move()/resize(), so restoring a window's position (and live
+// per-mode resizing) goes through XLib — the same route the keyboard-mode
+// properties use. All functions are no-ops off X11; under Wayland compositors
+// place windows themselves and clients cannot override that (by design).
+namespace WindowPlacementX11 {
+
+// True and fills x/y with the window's current root coordinates.
+bool query(Gtk::Window& window, int& x, int& y);
+
+// Move (and optionally resize, when w/h > 0) a mapped window. Honoured by
+// EWMH-compliant window managers as a configure request.
+void move_to(Gtk::Window& window, int x, int y, int w = 0, int h = 0);
+
+// Resize a mapped window in place, leaving its position alone.
+void resize(Gtk::Window& window, int w, int h);
+
+} // namespace WindowPlacementX11

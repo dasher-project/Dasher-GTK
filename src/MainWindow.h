@@ -97,9 +97,9 @@ class MainWindow : public Gtk::Window {
     double m_speed_step = 0.1; // in v5 units; re-derived from the manifest
     Gtk::Label m_learning_label = Gtk::Label(_("Learning"));
     SyncedSwitch m_learning_switch;
-    Gtk::Label m_wpm_label;   // live "4.2 cps · 50 wpm" readout (RFC 0012)
+    Gtk::Label m_wpm_label;         // live "4.2 cps · 50 wpm" readout (RFC 0012)
     Gtk::Label m_game_target_label; // game mode target overlay (Windows parity)
-    double m_speed_min = 0.1; // v5 units; re-derived from the manifest
+    double m_speed_min = 0.1;       // v5 units; re-derived from the manifest
     double m_speed_max = 10.0;
     Gtk::Label m_speech_label = Gtk::Label(_("Speech"));
     Gtk::Switch m_speech_switch;
@@ -140,6 +140,15 @@ class MainWindow : public Gtk::Window {
     ui::UiSettings m_ui_settings = ui::UiSettings::load();
     double keyboard_opacity() const;
     void set_keyboard_opacity(double v);
+
+    // Saved window geometry, per mode (issue #74): the window comes back
+    // where the user left it. Size restores on all backends; position only
+    // under X11 (Wayland compositors place windows themselves).
+    void capture_geometry(ui::WindowGeometry& g);
+    void save_geometry_for_current_mode();
+    void apply_geometry(const ui::WindowGeometry& g, bool live);
+    bool geometry_on_any_monitor(const ui::WindowGeometry& g);
+    bool on_close_request() override;
 
     PreferencesWindow m_preferences_window;
 

@@ -3,6 +3,8 @@
 #include "i18n.h"
 #include <cairomm/fontface.h>
 #include <gdkmm/display.h>
+#include <gdkmm/monitor.h>
+#include <giomm/listmodel.h>
 #include <pangomm/fontdescription.h>
 #include <glibmm/main.h>
 #include <cmath>
@@ -26,10 +28,31 @@ MainWindow::MainWindow()
     // (Flatpak/AppImage), whose CWD isn't the source tree, silently fell back
     // to unstyled default GTK. Embedding it removes any CWD/layout dependency.
     css->load_from_resource("/org/alternativeinterface/dasher/UIStyle.css");
-    get_style_context()->add_provider_for_display(Gdk::Display::get_default(), css, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+    get_style_context()->add_provider_for_display(Gdk::Display::get_default(), css,
+                                                  GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
     set_title(_("Dasher v6"));
     set_default_size(900, 600);
+
+    // Restore the saved normal-mode geometry (issue #74): size + maximized
+    // pre-map, position after map (X11 only — under Wayland the compositor
+    // places the window and we must not fight it).
+    {
+        const auto saved = m_ui_settings.window_geometry();
+        if (saved.valid) {
+            set_default_size(saved.w, saved.h);
+            if (saved.maximized) maximize();
+            if (saved.has_position) {
+                signal_map().connect([this, saved]() {
+                    // After map the surface exists; defer one idle so the WM
+                    // has finished its own initial placement.
+                    Glib::signal_idle().connect_once([this, saved]() {
+                        if (geometry_on_any_monitor(saved)) WindowPlacementX11::move_to(*this, saved.x, saved.y);
+                    });
+                });
+            }
+        }
+    }
 
     set_child(m_main_box);
     m_main_box.append(m_header_bar);
@@ -110,10 +133,12 @@ MainWindow::MainWindow()
     pack_bar_start(m_header_bar, m_pref_button);
     m_header_bar.add_css_class("topbar");
 
-    m_preferences_window.signal_close_request().connect([this]() {
-        m_preferences_window.set_visible(false);
-        return true;
-    }, false);
+    m_preferences_window.signal_close_request().connect(
+        [this]() {
+            m_preferences_window.set_visible(false);
+            return true;
+        },
+        false);
     // RFC 0015: keyboard-mode opacity slider in Preferences → Output reads and
     // writes MainWindow's persisted value (live while keyboard mode is on).
     m_preferences_window.set_keyboard_opacity_access([this]() { return keyboard_opacity(); },
@@ -236,41 +261,45 @@ MainWindow::MainWindow()
     });
 
     auto event_controller = Gtk::EventControllerKey::create();
-    event_controller->signal_key_pressed().connect([this](guint keyval, guint, Gdk::ModifierType) {
-        std::string key_name = gdk_keyval_name(keyval);
-        if (key_name == "space") {
-            m_canvas.bridge->key_event(0, 1);
-            return true;
-        }
-        if (key_name == "Return" || key_name == "KP_Enter") {
-            m_canvas.bridge->key_event(0, 1);
-            return true;
-        }
-        if (keyval >= GDK_KEY_1 && keyval <= GDK_KEY_4) {
-            m_canvas.bridge->key_event(keyval - GDK_KEY_1 + 1, 1);
-            return true;
-        }
-        if (keyval >= GDK_KEY_F1 && keyval <= GDK_KEY_F4) {
-            m_canvas.bridge->key_event(keyval - GDK_KEY_F1 + 1, 1);
-            return true;
-        }
-        return false;
-    }, false);
-    event_controller->signal_key_released().connect([this](guint keyval, guint, Gdk::ModifierType) {
-        std::string key_name = gdk_keyval_name(keyval);
-        if (key_name == "space" || key_name == "Return" || key_name == "KP_Enter") {
-            m_canvas.bridge->key_event(0, 0);
-            return;
-        }
-        if (keyval >= GDK_KEY_1 && keyval <= GDK_KEY_4) {
-            m_canvas.bridge->key_event(keyval - GDK_KEY_1 + 1, 0);
-            return;
-        }
-        if (keyval >= GDK_KEY_F1 && keyval <= GDK_KEY_F4) {
-            m_canvas.bridge->key_event(keyval - GDK_KEY_F1 + 1, 0);
-            return;
-        }
-    }, false);
+    event_controller->signal_key_pressed().connect(
+        [this](guint keyval, guint, Gdk::ModifierType) {
+            std::string key_name = gdk_keyval_name(keyval);
+            if (key_name == "space") {
+                m_canvas.bridge->key_event(0, 1);
+                return true;
+            }
+            if (key_name == "Return" || key_name == "KP_Enter") {
+                m_canvas.bridge->key_event(0, 1);
+                return true;
+            }
+            if (keyval >= GDK_KEY_1 && keyval <= GDK_KEY_4) {
+                m_canvas.bridge->key_event(keyval - GDK_KEY_1 + 1, 1);
+                return true;
+            }
+            if (keyval >= GDK_KEY_F1 && keyval <= GDK_KEY_F4) {
+                m_canvas.bridge->key_event(keyval - GDK_KEY_F1 + 1, 1);
+                return true;
+            }
+            return false;
+        },
+        false);
+    event_controller->signal_key_released().connect(
+        [this](guint keyval, guint, Gdk::ModifierType) {
+            std::string key_name = gdk_keyval_name(keyval);
+            if (key_name == "space" || key_name == "Return" || key_name == "KP_Enter") {
+                m_canvas.bridge->key_event(0, 0);
+                return;
+            }
+            if (keyval >= GDK_KEY_1 && keyval <= GDK_KEY_4) {
+                m_canvas.bridge->key_event(keyval - GDK_KEY_1 + 1, 0);
+                return;
+            }
+            if (keyval >= GDK_KEY_F1 && keyval <= GDK_KEY_F4) {
+                m_canvas.bridge->key_event(keyval - GDK_KEY_F1 + 1, 0);
+                return;
+            }
+        },
+        false);
     add_controller(event_controller);
 
     pack_bar_start(m_footer_bar, m_alphabet_chooser);
@@ -340,6 +369,11 @@ MainWindow::MainWindow()
             show_keyboard_setup_dialog();
             return;
         }
+        // Capture the LEAVING mode's geometry before any layout change, so
+        // per-mode bounds round-trip exactly (issue #74).
+        ui::WindowGeometry leaving;
+        capture_geometry(leaving); // still the old mode's size here
+
         m_direct_mode_active = on;
         // v5/Windows/Apple behaviour: hide the editor AND both tool bars —
         // the canvas fills the window as an on-screen keyboard, with only a
@@ -348,6 +382,21 @@ MainWindow::MainWindow()
         m_header_bar.set_visible(!on);
         m_footer_bar.set_visible(!on);
         m_keyboard_minibar.set_visible(on);
+
+        // Persist the leaving mode's bounds, then restore the entering
+        // mode's saved placement (where the user last parked it).
+        {
+            ui::UiSettings settings = ui::UiSettings::load();
+            if (on)
+                settings.set_window_geometry(leaving);
+            else
+                settings.set_keyboard_geometry(leaving);
+            settings.save();
+            m_ui_settings = settings;
+        }
+        const auto entering = on ? m_ui_settings.keyboard_geometry() : m_ui_settings.window_geometry();
+        if (entering.valid) apply_geometry(entering, /*live=*/true);
+
         if (on) {
             // Stay visible but never take keyboard focus, so injected text
             // lands in the user's document, not in Dasher (v5's
@@ -442,12 +491,8 @@ MainWindow::MainWindow()
     m_text_view.set_margin(5);
     m_text_view.add_css_class("dasher-output");
 
-    m_paste_button.signal_clicked().connect([this]() {
-        m_text_view.activate_action("clipboard.paste");
-    });
-    m_copy_button.signal_clicked().connect([this]() {
-        m_text_view.activate_action("clipboard.copy");
-    });
+    m_paste_button.signal_clicked().connect([this]() { m_text_view.activate_action("clipboard.paste"); });
+    m_copy_button.signal_clicked().connect([this]() { m_text_view.activate_action("clipboard.copy"); });
     m_copyall_button.signal_clicked().connect([this]() {
         m_text_view.activate_action("selection.select-all");
         m_text_view.activate_action("clipboard.copy");
@@ -458,7 +503,7 @@ MainWindow::MainWindow()
     m_alphabet_chooser.OnSelectionChanged.connect([](Glib::ustring id) {
         analytics::AnalyticsClient::instance().capture("alphabet_selected", {{"alphabet_id", std::string(id)}});
     });
-    capture_app_launched();      // no-op unless already opted in
+    capture_app_launched(); // no-op unless already opted in
 
     // RFC 0017: passive update check for self-managed builds. Runs on a
     // background thread after the window is up (never blocks launch), at
@@ -722,4 +767,79 @@ void MainWindow::set_keyboard_opacity(double v) {
     if (m_direct_mode_active) {
         KeyboardWindowX11::set_opacity(*this, v); // live, like Windows/Apple
     }
+}
+
+// ── Saved window geometry (issue #74) ─────────────────────────────────────
+
+void MainWindow::capture_geometry(ui::WindowGeometry& g) {
+    const int w = get_width();
+    const int h = get_height();
+    if (w < 50 || h < 50) return; // not mapped yet / degenerate
+    g.w = w;
+    g.h = h;
+    g.valid = true;
+    g.maximized = is_maximized();
+    // Position via XLib (GTK4 removed gtk_window_get_position). Off X11 the
+    // window keeps its size memory but not its placement — Wayland compositors
+    // own positioning anyway.
+    int x = 0, y = 0;
+    if (WindowPlacementX11::query(*this, x, y)) {
+        g.x = x;
+        g.y = y;
+        g.has_position = true;
+    }
+}
+
+void MainWindow::save_geometry_for_current_mode() {
+    ui::WindowGeometry g;
+    capture_geometry(g);
+    if (!g.valid) return;
+    ui::UiSettings settings = ui::UiSettings::load();
+    if (m_direct_mode_active)
+        settings.set_keyboard_geometry(g);
+    else
+        settings.set_window_geometry(g);
+    settings.save();
+    m_ui_settings = settings;
+}
+
+bool MainWindow::geometry_on_any_monitor(const ui::WindowGeometry& g) {
+    // Guard against restoring onto a disconnected monitor: require the
+    // window's centre to land inside a connected monitor.
+    auto display = Gdk::Display::get_default();
+    if (!display) return false;
+    const int cx = g.x + g.w / 2;
+    const int cy = g.y + g.h / 2;
+    auto monitors = display->get_monitors();
+    if (!monitors) return false;
+    const guint n = monitors->get_n_items();
+    for (guint i = 0; i < n; i++) {
+        auto monitor = std::dynamic_pointer_cast<Gdk::Monitor>(monitors->get_object(i));
+        if (!monitor) continue;
+        Gdk::Rectangle bounds;
+        monitor->get_geometry(bounds);
+        if (cx >= bounds.get_x() && cx < bounds.get_x() + bounds.get_width() && cy >= bounds.get_y() &&
+            cy < bounds.get_y() + bounds.get_height())
+            return true;
+    }
+    return false;
+}
+
+void MainWindow::apply_geometry(const ui::WindowGeometry& g, bool live) {
+    if (live) {
+        // Mapped window: X11 configure request (no-op under Wayland).
+        if (g.has_position && geometry_on_any_monitor(g))
+            WindowPlacementX11::move_to(*this, g.x, g.y, g.w, g.h);
+        else
+            WindowPlacementX11::resize(*this, g.w, g.h);
+        return;
+    }
+    // Pre-map: default size (and the caller handles maximize).
+    set_default_size(g.w, g.h);
+}
+
+bool MainWindow::on_close_request() {
+    // Last chance to persist where the user left the window (issue #74).
+    save_geometry_for_current_mode();
+    return Gtk::Window::on_close_request(); // false = allow the close
 }
