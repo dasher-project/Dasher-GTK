@@ -36,6 +36,11 @@
   </developer>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="0.2.12" date="2026-09-01">
+      <description>
+        <p>Engine update: colour palettes that omit label sequences (the dark companions among them) now inherit their parent palette's label colours, so node labels stay legible on every palette instead of falling back to defaults (DasherCore v0.2.18).</p>
+      </description>
+    </release>
     <release version="0.2.11" date="2026-09-01">
       <description>
         <p>The window now remembers where you left it: size, position and maximized state persist between runs, separately for normal and keyboard mode — quit while parked in keyboard mode and the full window comes back exactly as it was. Live mode switches restore each mode's saved placement, with maximized state reconciled. DasherCore v0.2.17 underneath (direct-mode regression guard, ScanFiles/Realize error latching, on top of v0.2.16's input-filter persistence fix).</p>
