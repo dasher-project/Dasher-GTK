@@ -7,7 +7,9 @@
 #include <giomm/listmodel.h>
 #include <pangomm/fontdescription.h>
 #include <glibmm/main.h>
+#include <algorithm>
 #include <cmath>
+#include <optional>
 #include <glibmm/markup.h>
 #include <cstdio>
 #include <memory>
@@ -47,7 +49,9 @@ MainWindow::MainWindow()
                     // After map the surface exists; defer one idle so the WM
                     // has finished its own initial placement.
                     Glib::signal_idle().connect_once([this, saved]() {
-                        if (geometry_on_any_monitor(saved)) WindowPlacementX11::move_to(*this, saved.x, saved.y);
+                        auto clamped = saved;
+                        clamp_geometry_to_monitor(clamped);
+                        WindowPlacementX11::move_to(*this, clamped.x, clamped.y);
                     });
                 });
             }
@@ -803,35 +807,58 @@ void MainWindow::save_geometry_for_current_mode() {
     m_ui_settings = settings;
 }
 
-bool MainWindow::geometry_on_any_monitor(const ui::WindowGeometry& g) {
-    // Guard against restoring onto a disconnected monitor: require the
-    // window's centre to land inside a connected monitor.
+void MainWindow::clamp_geometry_to_monitor(ui::WindowGeometry& g) {
+    // Guard against restoring onto a disconnected monitor or an off-screen
+    // position (Dasher-GTK #80: a saved geometry whose window hangs off the
+    // bottom of a small display was silently skipped and the app came back
+    // at the WM's default placement — "doesn't remember"). Clamp to the
+    // nearest monitor so the restore always lands somewhere reachable.
     auto display = Gdk::Display::get_default();
-    if (!display) return false;
+    if (!display) return;
+    auto monitors = display->get_monitors();
+    if (!monitors) return;
+
     const int cx = g.x + g.w / 2;
     const int cy = g.y + g.h / 2;
-    auto monitors = display->get_monitors();
-    if (!monitors) return false;
+
+    // The monitor whose bounds contain the centre, else the nearest one.
+    std::optional<Gdk::Rectangle> best;
+    long best_dist = -1;
     const guint n = monitors->get_n_items();
     for (guint i = 0; i < n; i++) {
         auto monitor = std::dynamic_pointer_cast<Gdk::Monitor>(monitors->get_object(i));
         if (!monitor) continue;
         Gdk::Rectangle bounds;
         monitor->get_geometry(bounds);
-        if (cx >= bounds.get_x() && cx < bounds.get_x() + bounds.get_width() && cy >= bounds.get_y() &&
-            cy < bounds.get_y() + bounds.get_height())
-            return true;
+        const bool inside = cx >= bounds.get_x() && cx < bounds.get_x() + bounds.get_width() && cy >= bounds.get_y() &&
+                            cy < bounds.get_y() + bounds.get_height();
+        if (inside) return; // centre already on a live monitor
+        const long dx = std::max({bounds.get_x() - cx, 0, cx - (bounds.get_x() + bounds.get_width())});
+        const long dy = std::max({bounds.get_y() - cy, 0, cy - (bounds.get_y() + bounds.get_height())});
+        const long dist = dx * dx + dy * dy;
+        if (best_dist < 0 || dist < best_dist) {
+            best_dist = dist;
+            best = bounds;
+        }
     }
-    return false;
+    if (!best) return;
+
+    // Slide the position so the centre lands inside the nearest monitor;
+    // the size is untouched (the WM still enforces its own limits).
+    g.x = std::clamp(cx, best->get_x(), best->get_x() + best->get_width() - 1) - g.w / 2;
+    g.y = std::clamp(cy, best->get_y(), best->get_y() + best->get_height() - 1) - g.h / 2;
 }
 
 void MainWindow::apply_geometry(const ui::WindowGeometry& g, bool live) {
     if (live) {
         // Mapped window: X11 configure request (no-op under Wayland).
-        if (g.has_position && geometry_on_any_monitor(g))
-            WindowPlacementX11::move_to(*this, g.x, g.y, g.w, g.h);
-        else
+        if (g.has_position) {
+            auto clamped = g;
+            clamp_geometry_to_monitor(clamped);
+            WindowPlacementX11::move_to(*this, clamped.x, clamped.y, clamped.w, clamped.h);
+        } else {
             WindowPlacementX11::resize(*this, g.w, g.h);
+        }
         return;
     }
     // Pre-map: default size (and the caller handles maximize).

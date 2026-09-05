@@ -147,7 +147,9 @@ class MainWindow : public Gtk::Window {
     void capture_geometry(ui::WindowGeometry& g);
     void save_geometry_for_current_mode();
     void apply_geometry(const ui::WindowGeometry& g, bool live);
-    bool geometry_on_any_monitor(const ui::WindowGeometry& g);
+    // Slide an off-monitor position onto the nearest live monitor (no-op
+    // when the geometry's centre is already on one).
+    void clamp_geometry_to_monitor(ui::WindowGeometry& g);
     bool on_close_request() override;
 
     PreferencesWindow m_preferences_window;
