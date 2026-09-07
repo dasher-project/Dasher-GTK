@@ -92,8 +92,7 @@ MainWindow::MainWindow()
     : m_alphabet_chooser(
           m_canvas.bridge->find_parameter_key("SP_ALPHABET_ID"), m_canvas.bridge,
           m_canvas.bridge->get_parameter_string_values(m_canvas.bridge->find_parameter_key("SP_ALPHABET_ID"))),
-      m_learning_switch(m_canvas.bridge->find_parameter_key("BP_LM_ADAPTIVE"), m_canvas.bridge),
-      m_preferences_window(m_canvas.bridge, m_canvas.dwell_handler.get()) {
+      m_learning_switch(m_canvas.bridge->find_parameter_key("BP_LM_ADAPTIVE"), m_canvas.bridge) {
     Glib::RefPtr<Gtk::CssProvider> css = Gtk::CssProvider::create();
     // Load the stylesheet from the GResource bundle compiled into the binary
     // (see src/dasher.gresource.xml). Loading from a file path meant the CSS
@@ -208,32 +207,6 @@ MainWindow::MainWindow()
     pack_bar_start(m_header_bar, m_pref_button);
     m_header_bar.add_css_class("topbar");
 
-    m_preferences_window.signal_close_request().connect(
-        [this]() {
-            m_preferences_window.set_visible(false);
-            return true;
-        },
-        false);
-    // RFC 0015: keyboard-mode opacity slider in Preferences → Output reads and
-    // writes MainWindow's persisted value (live while keyboard mode is on).
-    m_preferences_window.set_keyboard_opacity_access([this]() { return keyboard_opacity(); },
-                                                     [this](double v) { set_keyboard_opacity(v); });
-    // RFC 0006: appearance controls (palette + canvas font) live in
-    // Preferences → Customization, like Windows/Apple — not the footer. The
-    // font callback applies the picked family/style to renderer + engine.
-    m_preferences_window.set_appearance_handler([this](const Glib::ustring& family, bool italic, bool bold) {
-        const auto slant = italic ? Cairo::ToyFontFace::Slant::ITALIC : Cairo::ToyFontFace::Slant::NORMAL;
-        const auto weight = bold ? Cairo::ToyFontFace::Weight::BOLD : Cairo::ToyFontFace::Weight::NORMAL;
-        m_canvas.bridge->set_canvas_font(family, slant, weight);
-    });
-    // Re-read footer widgets from the engine after "Reset engine settings to
-    // defaults" (dasher_reset_settings fires change notifications, but nothing
-    // pushes them into the synced widgets yet).
-    m_preferences_window.OnSettingsReset.connect([this]() {
-        m_alphabet_chooser.update_from_bridge();
-        update_speed_display();
-        m_learning_switch.update_from_bridge();
-    });
     // The footer dropdowns are constructed before the engine realises, so
     // their initial model is empty and they render blank. The canvas emits
     // OnEngineReady once set_screen_size() has returned — after realisation —
@@ -246,7 +219,7 @@ MainWindow::MainWindow()
     m_pref_button.signal_clicked().connect([this]() {
         // present() brings the window forward AND focuses it, where
         // set_visible(true) alone is a no-op if it's already visible behind.
-        m_preferences_window.present();
+        preferences_window().present();
     });
 
     m_new_button.signal_clicked().connect([this]() {
@@ -536,7 +509,7 @@ MainWindow::MainWindow()
     m_minibar_settings_btn.set_icon_name("settings");
     m_minibar_settings_btn.set_tooltip_text(_("Settings"));
     m_minibar_settings_btn.set_valign(Gtk::Align::START);
-    m_minibar_settings_btn.signal_clicked().connect([this]() { m_preferences_window.present(); });
+    m_minibar_settings_btn.signal_clicked().connect([this]() { preferences_window().present(); });
     m_minibar_exit_btn.set_icon_name("keyboard");
     m_minibar_exit_btn.set_tooltip_text(_("Exit keyboard mode"));
     m_minibar_exit_btn.set_valign(Gtk::Align::START);
@@ -892,6 +865,45 @@ void MainWindow::set_pane_layout(PaneLayout layout) {
     }
     m_pane.set_position(get_width() / 3);
     m_side_panel.set_visible(true);
+}
+
+PreferencesWindow& MainWindow::preferences_window() {
+    // First open: build now. By the time a user clicks Prefs the engine has
+    // long realised, so the palette/parameter tables are full and this first
+    // build is the only one — section order stays the constructor order and
+    // every engine-fed list is populated (the eager-construction bug: lists
+    // built pre-realise came up empty and had to be rebuilt, which re-ordered
+    // the sidebar pages).
+    if (!m_preferences_window) {
+        m_preferences_window = std::make_unique<PreferencesWindow>(m_canvas.bridge, m_canvas.dwell_handler.get());
+        m_preferences_window->signal_close_request().connect(
+            [this]() {
+                m_preferences_window->set_visible(false);
+                return true;
+            },
+            false);
+        // RFC 0015: keyboard-mode opacity slider in Preferences → Output reads
+        // and writes MainWindow's persisted value (live while keyboard mode on).
+        m_preferences_window->set_keyboard_opacity_access([this]() { return keyboard_opacity(); },
+                                                          [this](double v) { set_keyboard_opacity(v); });
+        // RFC 0006: appearance controls (palette + canvas font) live in
+        // Preferences → Customization. The font callback applies the picked
+        // family/style to renderer + engine.
+        m_preferences_window->set_appearance_handler([this](const Glib::ustring& family, bool italic, bool bold) {
+            const auto slant = italic ? Cairo::ToyFontFace::Slant::ITALIC : Cairo::ToyFontFace::Slant::NORMAL;
+            const auto weight = bold ? Cairo::ToyFontFace::Weight::BOLD : Cairo::ToyFontFace::Weight::NORMAL;
+            m_canvas.bridge->set_canvas_font(family, slant, weight);
+        });
+        // Re-read footer widgets after "Reset engine settings to defaults"
+        // (dasher_reset_settings fires change notifications, but nothing pushes
+        // them into the synced widgets yet).
+        m_preferences_window->OnSettingsReset.connect([this]() {
+            m_alphabet_chooser.update_from_bridge();
+            update_speed_display();
+            m_learning_switch.update_from_bridge();
+        });
+    }
+    return *m_preferences_window;
 }
 
 void MainWindow::set_keyboard_opacity(double v) {

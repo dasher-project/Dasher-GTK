@@ -23,29 +23,32 @@ class DwellClickHandler;
 class PrefsRebuildSelftest;
 
 class PreferencesWindow : public Gtk::Window {
-public:
-  // dwell_handler is owned by the canvas (may be null); the Input section hosts
-  // its on/off toggle, which used to live in the footer bar (issue #35).
-  PreferencesWindow(std::shared_ptr<DasherBridge> bridge, DwellClickHandler* dwell_handler = nullptr);
+  public:
+    // dwell_handler is owned by the canvas (may be null); the Input section hosts
+    // its on/off toggle, which used to live in the footer bar (issue #35).
+    PreferencesWindow(std::shared_ptr<DasherBridge> bridge, DwellClickHandler* dwell_handler = nullptr);
 
-  // Keyboard-mode window opacity (RFC 0015 parity with Windows/Apple):
-  // getter returns the persisted value; setter persists + applies live.
-  void set_keyboard_opacity_access(std::function<double()> get, std::function<void(double)> set);
+    // Keyboard-mode window opacity (RFC 0015 parity with Windows/Apple):
+    // getter returns the persisted value; setter persists + applies live.
+    void set_keyboard_opacity_access(std::function<double()> get, std::function<void(double)> set);
 
-  // Build the appearance controls (colour palette + canvas font) into the
-  // Customization tab, owned by this window (RFC 0006; Dasher-Windows/Apple
-  // placement). on_font_changed fires when the user picks a canvas font —
-  // MainWindow applies it to the renderer/engine there. The colour dropdown
-  // drives the bridge directly.
-  void set_appearance_handler(std::function<void(const Glib::ustring& family, bool italic, bool bold)> on_font_changed);
+    // Build the appearance controls (colour palette + canvas font) into the
+    // Customization tab, owned by this window (RFC 0006; Dasher-Windows/Apple
+    // placement). on_font_changed fires when the user picks a canvas font —
+    // MainWindow applies it to the renderer/engine there. The colour dropdown
+    // drives the bridge directly.
+    void
+    set_appearance_handler(std::function<void(const Glib::ustring& family, bool italic, bool bold)> on_font_changed);
 
-  // Emitted after "Reset engine settings to defaults" so footer-bar widgets
-  // (speed/alphabet/learning/colour) can re-read from the engine.
-  sigc::signal<void()> OnSettingsReset;
+    // Emitted after "Reset engine settings to defaults" so footer-bar widgets
+    // (speed/alphabet/learning/colour) can re-read from the engine.
+    sigc::signal<void()> OnSettingsReset;
 
-  friend class ::PrefsRebuildSelftest;
-
-private:
+    // Rebuild the dynamic sections. Public for MainWindow's OnEngineReady:
+    // this window is constructed before the engine realises, so its first
+    // build sees empty palette/parameter tables and must be redone once they
+    // exist (colour dropdown showed one stale entry, permitted-value rows
+    // like Dasher Font came up blank).
     void rebuild_sections();
 
     // LIFETIME INVARIANT: MainWindow holds this window in a unique_ptr for
