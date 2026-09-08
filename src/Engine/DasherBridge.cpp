@@ -7,8 +7,7 @@
 #include <filesystem>
 #include <glib.h>
 
-DasherBridge::DasherBridge(const std::string& data_dir, const std::string& user_dir)
-    : m_user_dir(user_dir) {
+DasherBridge::DasherBridge(const std::string& data_dir, const std::string& user_dir) : m_user_dir(user_dir) {
     m_start_time = std::chrono::steady_clock::now();
 
     char* error = nullptr;

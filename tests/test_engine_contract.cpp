@@ -176,7 +176,8 @@ TEST_CASE("import training text reports success on a live engine") {
     // behaviour is pinned engine-side in DasherCore's training tests).
     CHECK(bridge.import_training_text("hello world this is a test") == 0);
     CHECK(bridge.import_training_text("") == 0);
-    for (int i = 0; i < 3; i++) bridge.frame(i * 16);
+    for (int i = 0; i < 3; i++)
+        bridge.frame(i * 16);
     CHECK_FALSE(bridge.has_engine_error());
 }
 

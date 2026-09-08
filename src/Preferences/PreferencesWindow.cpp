@@ -153,9 +153,12 @@ void PreferencesWindow::update_rate_readout() {
 // outlive rebuild_sections().
 static Glib::ustring training_format_size(uintmax_t bytes) {
     std::ostringstream os;
-    if (bytes < 1024) os << bytes << " B";
-    else if (bytes < 1024 * 1024) os << (bytes / 1024) << " KB";
-    else os << std::fixed << std::setprecision(1) << (bytes / 1048576.0) << " MB";
+    if (bytes < 1024)
+        os << bytes << " B";
+    else if (bytes < 1024 * 1024)
+        os << (bytes / 1024) << " KB";
+    else
+        os << std::fixed << std::setprecision(1) << (bytes / 1048576.0) << " MB";
     return os.str();
 }
 
@@ -339,19 +342,22 @@ void PreferencesWindow::rebuild_sections() {
                         // that only handles Glib::Error.
                         std::error_code ec_a, ec_b;
                         const auto canon_src = std::filesystem::weakly_canonical(std::filesystem::path(path), ec_a);
-                        const auto canon_dst = std::filesystem::weakly_canonical(std::filesystem::path(training_pre), ec_b);
+                        const auto canon_dst =
+                            std::filesystem::weakly_canonical(std::filesystem::path(training_pre), ec_b);
                         // Both must have resolved: two failures both yield empty
                         // paths and would false-positive as "already yours".
                         if (!ec_a && !ec_b && canon_src == canon_dst) {
-                            if (m_training_status) m_training_status->set_text(_("That file already is your training data."));
+                            if (m_training_status)
+                                m_training_status->set_text(_("That file already is your training data."));
                             return;
                         }
                         constexpr uintmax_t kMaxImportBytes = 10ull * 1024 * 1024;
                         std::error_code ec_sz;
                         const uintmax_t fsize = std::filesystem::file_size(path, ec_sz);
                         if (!ec_sz && fsize > kMaxImportBytes) {
-                            if (m_training_status) m_training_status->set_text(
-                                _("The file is too large (over 10 MB) to import as training text."));
+                            if (m_training_status)
+                                m_training_status->set_text(
+                                    _("The file is too large (over 10 MB) to import as training text."));
                             return;
                         }
                         std::ifstream in(path, std::ios::binary);
@@ -367,7 +373,8 @@ void PreferencesWindow::rebuild_sections() {
                         {
                             std::istreambuf_iterator<char> it(in), end;
                             const uintmax_t limit = kMaxImportBytes + 1;
-                            for (uintmax_t i = 0; i < limit && it != end; ++i, ++it) text.push_back(*it);
+                            for (uintmax_t i = 0; i < limit && it != end; ++i, ++it)
+                                text.push_back(*it);
                         }
                         if (in.bad()) {
                             if (m_training_status) m_training_status->set_text(_("Could not read the selected file."));
@@ -380,12 +387,14 @@ void PreferencesWindow::rebuild_sections() {
                         const std::string training = training_pre;
                         if (training.empty()) {
                             if (m_training_status)
-                                m_training_status->set_text(_("Training is not available yet — try again once the canvas has rendered."));
+                                m_training_status->set_text(
+                                    _("Training is not available yet — try again once the canvas has rendered."));
                             return;
                         }
                         if (static_cast<uintmax_t>(text.size()) > kMaxImportBytes) {
-                            if (m_training_status) m_training_status->set_text(
-                                _("The file is too large (over 10 MB) to import as training text."));
+                            if (m_training_status)
+                                m_training_status->set_text(
+                                    _("The file is too large (over 10 MB) to import as training text."));
                             return;
                         }
                         // Persist first — see the comment above the section.
@@ -407,15 +416,18 @@ void PreferencesWindow::rebuild_sections() {
                             out << text << "\n";
                             out.flush();
                             if (!out) {
-                                if (m_training_status) m_training_status->set_text(_("Could not write the training data."));
+                                if (m_training_status)
+                                    m_training_status->set_text(_("Could not write the training data."));
                                 return;
                             }
                         }
                         const int rc = m_bridge->import_training_text(text);
                         if (m_training_status) {
-                            m_training_status->set_text(rc == 0
-                                ? Glib::ustring::compose(_("Imported %1 of training text"), training_format_size(text.size()))
-                                : Glib::ustring::compose(_("Imported %1 — applies fully on next launch"), training_format_size(text.size())));
+                            m_training_status->set_text(
+                                rc == 0 ? Glib::ustring::compose(_("Imported %1 of training text"),
+                                                                 training_format_size(text.size()))
+                                        : Glib::ustring::compose(_("Imported %1 — applies fully on next launch"),
+                                                                 training_format_size(text.size())));
                         }
                         refresh_training_row();
                     } catch (const Glib::Error& err) {
@@ -423,8 +435,8 @@ void PreferencesWindow::rebuild_sections() {
                         // open_finish throws GtkDialogError::DISMISSED for it
                         // (GTK4 C enum; this gtkmm ships no C++ wrapper).
                         // Anything else is a real failure to report.
-                        if (err.domain() == gtk_dialog_error_quark() &&
-                            err.code() == GTK_DIALOG_ERROR_DISMISSED) return;
+                        if (err.domain() == gtk_dialog_error_quark() && err.code() == GTK_DIALOG_ERROR_DISMISSED)
+                            return;
                         if (m_training_status) m_training_status->set_text(_("Could not open the selected file."));
                     }
                 });
@@ -449,9 +461,11 @@ void PreferencesWindow::rebuild_sections() {
                         const auto ex_dst = std::filesystem::weakly_canonical(std::filesystem::path(training), ec_y);
                         if (!ec_x && !ec_y && ex_src == ex_dst) return;
                         std::error_code ec;
-                        std::filesystem::copy_file(training, path, std::filesystem::copy_options::overwrite_existing, ec);
+                        std::filesystem::copy_file(training, path, std::filesystem::copy_options::overwrite_existing,
+                                                   ec);
                         if (m_training_status)
-                            m_training_status->set_text(ec ? _("Could not write the export file.") : _("Training data exported."));
+                            m_training_status->set_text(ec ? _("Could not write the export file.")
+                                                           : _("Training data exported."));
                     } catch (const Glib::Error&) {
                         // dismissed
                     }
@@ -480,17 +494,19 @@ void PreferencesWindow::rebuild_sections() {
                     int removed = 0;
                     for (const auto& entry : std::filesystem::directory_iterator(dir, ec)) {
                         const std::string name = entry.path().filename().string();
-                        if (entry.is_regular_file(ec) && name.rfind("training_", 0) == 0 &&
-                            name.size() > 4 && name.compare(name.size() - 4, 4, ".txt") == 0) {
+                        if (entry.is_regular_file(ec) && name.rfind("training_", 0) == 0 && name.size() > 4 &&
+                            name.compare(name.size() - 4, 4, ".txt") == 0) {
                             std::filesystem::remove(entry.path(), ec);
-                            if (!ec) removed++;
-                            else ec.clear();
+                            if (!ec)
+                                removed++;
+                            else
+                                ec.clear();
                         }
                     }
                     if (m_training_status) {
                         m_training_status->set_text(removed > 0
-                            ? _("Training data deleted — restart Dasher to fully apply")
-                            : _("No user training data yet"));
+                                                        ? _("Training data deleted — restart Dasher to fully apply")
+                                                        : _("No user training data yet"));
                     }
                     refresh_training_row();
                     analytics::AnalyticsClient::instance().capture("training_reset");

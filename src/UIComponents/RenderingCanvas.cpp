@@ -62,8 +62,7 @@ bool looks_like_data_dir(const std::string& dir) {
     ec.clear();
     for (const auto& entry : std::filesystem::directory_iterator(dir, ec)) {
         const std::string name = entry.path().filename().string();
-        if (name.rfind("alphabet.", 0) == 0 && name.size() > 4 &&
-            name.compare(name.size() - 4, 4, ".xml") == 0)
+        if (name.rfind("alphabet.", 0) == 0 && name.size() > 4 && name.compare(name.size() - 4, 4, ".xml") == 0)
             return true;
     }
     return false;
@@ -87,9 +86,12 @@ std::string resolve_data_dir() {
     std::string exe_dir = executable_dir();
     for (const char* candidate : candidates) {
         std::string dir;
-        if (candidate) dir = candidate;
-        else if (!exe_dir.empty()) dir = exe_dir + "/Data";
-        else continue;
+        if (candidate)
+            dir = candidate;
+        else if (!exe_dir.empty())
+            dir = exe_dir + "/Data";
+        else
+            continue;
         if (looks_like_data_dir(dir)) {
             // Visible (g_debug, not g_message): which candidate won is
             // support-relevant for installed copies but noise otherwise.
