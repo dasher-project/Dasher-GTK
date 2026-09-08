@@ -289,8 +289,7 @@ void PreferencesWindow::rebuild_sections() {
             row->append(*Gtk::make_managed<PopoverMenuButtonInfo>(
                 "Dasher learns from what you type. Import adds text to the model and your "
                 "accumulated training data; Export saves it for backup or transfer to "
-                "another device; Reset deletes it and the model returns to its built-in "
-                "defaults on next launch."));
+                "another device; Reset deletes it (restart Dasher to fully apply)."));
 
             section->append(*row);
 
@@ -329,13 +328,35 @@ void PreferencesWindow::rebuild_sections() {
                         if (!file) return;
                         const std::string path = file->get_path();
                         if (path.empty()) return;
+                        const std::string training_pre = m_bridge->get_training_path();
+                        // Cap BEFORE reading: the slurp below runs on the UI
+                        // thread, so an oversized file must be rejected
+                        // without being read (loop-2 review).
+                        // Self-import (an Export round-trip) would append the
+                        // file to itself and double every count. ec overloads:
+                        // the throwing weakly_canonical would escape a catch
+                        // that only handles Glib::Error.
+                        std::error_code ec_a, ec_b;
+                        if (std::filesystem::weakly_canonical(std::filesystem::path(path), ec_a) ==
+                            std::filesystem::weakly_canonical(std::filesystem::path(training_pre), ec_b)) {
+                            if (m_training_status) m_training_status->set_text(_("That file already is your training data."));
+                            return;
+                        }
+                        constexpr uintmax_t kMaxImportBytes = 10ull * 1024 * 1024;
+                        std::error_code ec_sz;
+                        const uintmax_t fsize = std::filesystem::file_size(path, ec_sz);
+                        if (!ec_sz && fsize > kMaxImportBytes) {
+                            if (m_training_status) m_training_status->set_text(
+                                _("The file is too large (over 10 MB) to import as training text."));
+                            return;
+                        }
                         std::ifstream in(path, std::ios::binary);
                         if (!in) {
                             if (m_training_status) m_training_status->set_text(_("Could not open the selected file."));
                             return;
                         }
                         std::string text((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
-                        if (!in && text.empty()) {
+                        if (in.bad()) {
                             if (m_training_status) m_training_status->set_text(_("Could not read the selected file."));
                             return;
                         }
@@ -343,24 +364,13 @@ void PreferencesWindow::rebuild_sections() {
                             if (m_training_status) m_training_status->set_text(_("The selected file is empty."));
                             return;
                         }
-                        const std::string training = m_bridge->get_training_path();
+                        const std::string training = training_pre;
                         if (training.empty()) {
                             if (m_training_status)
                                 m_training_status->set_text(_("Training is not available yet — try again once the canvas has rendered."));
                             return;
                         }
-                        // Self-import (an Export round-trip) would append the
-                        // file to itself and double every count.
-                        if (std::filesystem::weakly_canonical(std::filesystem::path(path)) ==
-                            std::filesystem::weakly_canonical(std::filesystem::path(training))) {
-                            if (m_training_status) m_training_status->set_text(_("That file already is your training data."));
-                            return;
-                        }
-                        // Cap: the read and the training pass run on the UI
-                        // thread; an absurd file would freeze the main loop
-                        // (this is an accessibility app — a frozen UI is a
-                        // functional break).
-                        constexpr uintmax_t kMaxImportBytes = 10ull * 1024 * 1024;
+                        // Cap again for streams that lied about their size.
                         if (static_cast<uintmax_t>(text.size()) > kMaxImportBytes) {
                             if (m_training_status) m_training_status->set_text(
                                 _("The file is too large (over 10 MB) to import as training text."));
@@ -370,7 +380,18 @@ void PreferencesWindow::rebuild_sections() {
                         std::error_code ec;
                         std::filesystem::create_directories(std::filesystem::path(training).parent_path(), ec);
                         {
-                            std::ofstream out(training, std::ios::app);
+                            // Boundary: the engine appends raw buffers with
+                            // no trailing newline, so an existing file may
+                            // end mid-line — start the import on a fresh one.
+                            bool needs_newline = false;
+                            {
+                                std::ifstream probe(training, std::ios::binary);
+                                probe.seekg(-1, std::ios::end);
+                                char last = '\n';
+                                if (probe && probe.get(last) && last != '\n') needs_newline = true;
+                            }
+                            std::ofstream out(training, std::ios::app | std::ios::binary);
+                            if (needs_newline) out << '\n';
                             out << text << "\n";
                             out.flush();
                             if (!out) {
@@ -415,9 +436,14 @@ void PreferencesWindow::rebuild_sections() {
 
             m_training_reset_btn->signal_clicked().connect([this]() {
                 auto dialog = Gtk::AlertDialog::create(_("Reset training data?"));
+                // Copy is deliberately careful: the files are deleted, but
+                // text typed since the last context switch is still in the
+                // engine's pending buffer and gets flushed back at exit
+                // (DasherCore#87 — needs an engine dasher_reset_training
+                // before a full-reset promise is honest).
                 dialog->set_detail("This deletes your accumulated training data for every "
-                                   "alphabet. The model returns to its built-in defaults on "
-                                   "next launch. This cannot be undone.");
+                                   "alphabet. Predictions keep the influence of recent typing "
+                                   "until you restart Dasher.");
                 dialog->set_buttons({"_Cancel", "_Reset"});
                 dialog->set_default_button(0);
                 dialog->set_cancel_button(0);
@@ -439,7 +465,7 @@ void PreferencesWindow::rebuild_sections() {
                     }
                     if (m_training_status) {
                         m_training_status->set_text(removed > 0
-                            ? _("Training data deleted — the model returns to its built-in defaults on next launch")
+                            ? _("Training data deleted — restart Dasher to fully apply")
                             : _("No user training data yet"));
                     }
                     refresh_training_row();

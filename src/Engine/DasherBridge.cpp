@@ -56,12 +56,17 @@ void DasherBridge::set_screen_size(int width, int height) {
     if (m_ctx && !m_startup_training_checked) {
         m_startup_training_checked = true;
         if (dasher_capi_version() < 1 && !m_user_dir.empty()) {
-            namespace fs = std::filesystem;
-            std::error_code ec;
-            for (const auto& entry : fs::directory_iterator(m_user_dir, ec)) {
-                const std::string name = entry.path().filename().string();
-                if (entry.is_regular_file(ec) && name.rfind("training_", 0) == 0 &&
-                    name.size() > 4 && name.compare(name.size() - 4, 4, ".txt") == 0) {
+            // Only the CURRENT alphabet's training file — feeding every
+            // training_*.txt into the current model would train, say, the
+            // German corpus into the English LM (the engine's own scan
+            // filters by the alphabet's declared training file).
+            const char* own = dasher_get_training_path(m_ctx);
+            const std::string own_name = own ? std::filesystem::path(own).filename().string() : "";
+            if (!own_name.empty()) {
+                namespace fs = std::filesystem;
+                std::error_code ec;
+                for (const auto& entry : fs::directory_iterator(m_user_dir, ec)) {
+                    if (entry.path().filename().string() != own_name) continue;
                     std::ifstream in(entry.path());
                     std::string text((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
                     if (!text.empty()) dasher_import_training_text(m_ctx, text.c_str());

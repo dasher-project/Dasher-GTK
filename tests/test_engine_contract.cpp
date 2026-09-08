@@ -146,7 +146,9 @@ TEST_CASE("training path resolves into the user dir at the engine layout") {
     CAPTURE(path);
     REQUIRE_FALSE(path.empty());
     const auto abs = std::filesystem::absolute(std::filesystem::path(path)).string();
-    CHECK(abs.rfind(std::filesystem::absolute(std::filesystem::path(user)).string(), 0) == 0);
+    // Trailing separator: a sibling dir sharing a name prefix must not pass.
+    const std::string user_prefix = std::filesystem::absolute(std::filesystem::path(user)).string() + "/";
+    CHECK(abs.rfind(user_prefix, 0) == 0);
     const std::string name = std::filesystem::path(path).filename().string();
     CHECK(name.rfind("training_", 0) == 0);
     CHECK(name.compare(name.size() - 4, 4, ".txt") == 0);
