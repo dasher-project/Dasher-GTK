@@ -47,10 +47,6 @@ public:
 
 private:
     void rebuild_sections();
-<<<<<<< HEAD
-=======
-
-    friend class ::PrefsRebuildSelftest;
 
     // LIFETIME INVARIANT: MainWindow holds this window in a unique_ptr for
     // the whole app session (close only hides it), so `this` outlives every
@@ -58,8 +54,6 @@ private:
     // captured-`this` callbacks below (training import/export/reset) must
     // switch to Glib::WeakRef validation at entry.
 
-  private:
->>>>>>> a96be97 (polish: review-loop round 2 — honest Reset, cap-before-read, boundaries)
     // Speech/TTS page — built once, never rebuilt (issue #42 lifetime hazard).
     void add_speech_section();
     void add_locale_section();
