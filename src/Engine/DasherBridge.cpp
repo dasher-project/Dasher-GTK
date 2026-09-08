@@ -3,9 +3,12 @@
 #include "Analytics/EngineLogRingBuffer.h"
 #include <cstring>
 #include <iostream>
+#include <fstream>
+#include <filesystem>
 #include <glib.h>
 
-DasherBridge::DasherBridge(const std::string& data_dir, const std::string& user_dir) {
+DasherBridge::DasherBridge(const std::string& data_dir, const std::string& user_dir)
+    : m_user_dir(user_dir) {
     m_start_time = std::chrono::steady_clock::now();
 
     char* error = nullptr;
@@ -40,6 +43,44 @@ DasherBridge::~DasherBridge() {
 
 void DasherBridge::set_screen_size(int width, int height) {
     if (m_ctx) dasher_set_screen_size(m_ctx, width, height);
+
+    // One-time, on first realization: cores older than CAPI version 1 never
+    // loaded user-dir training at startup (DasherCore#84) — split-dir
+    // frontends like this one lost all learning between sessions — so feed
+    // the accumulated files back through the import API. Version-gated: at
+    // >= 1 the engine's own scan already loaded them and a re-import would
+    // count every word twice.
+    if (m_ctx && !m_startup_training_checked) {
+        m_startup_training_checked = true;
+        if (dasher_capi_version() < 1 && !m_user_dir.empty()) {
+            namespace fs = std::filesystem;
+            std::error_code ec;
+            for (const auto& entry : fs::directory_iterator(m_user_dir, ec)) {
+                const std::string name = entry.path().filename().string();
+                if (entry.is_regular_file(ec) && name.rfind("training_", 0) == 0 &&
+                    name.size() > 4 && name.compare(name.size() - 4, 4, ".txt") == 0) {
+                    std::ifstream in(entry.path());
+                    std::string text((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
+                    if (!text.empty()) dasher_import_training_text(m_ctx, text.c_str());
+                }
+            }
+        }
+    }
+}
+
+std::string DasherBridge::get_training_path() const {
+    if (!m_ctx) return "";
+    const char* path = dasher_get_training_path(m_ctx);
+    return path ? std::string(path) : std::string();
+}
+
+int DasherBridge::import_training_text(const std::string& text) {
+    if (!m_ctx) return -1;
+    return dasher_import_training_text(m_ctx, text.c_str());
+}
+
+int DasherBridge::capi_version() {
+    return dasher_capi_version();
 }
 
 void DasherBridge::mouse_move(float x, float y) {

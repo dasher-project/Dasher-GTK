@@ -8,10 +8,75 @@
 #include <glib.h>
 #include <glibmm/datetime.h>
 #include <cmath>
+#include <filesystem>
+
+#if defined(_WIN32)
+#include <windows.h>
+#elif defined(__APPLE__)
+#include <mach-o/dyld.h>
+#else
+#include <unistd.h>
+#endif
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
+
+namespace {
+
+// Directory containing the executable, for the portable/installed layout
+// where Data/ sits beside the binary. Empty when the platform lookup fails.
+std::string executable_dir() {
+#if defined(_WIN32)
+    char buf[MAX_PATH];
+    const DWORD n = GetModuleFileNameA(nullptr, buf, MAX_PATH);
+    if (n == 0 || n >= MAX_PATH) return "";
+    return std::filesystem::path(std::string(buf, n)).parent_path().string();
+#elif defined(__APPLE__)
+    uint32_t size = 0;
+    _NSGetExecutablePath(nullptr, &size);
+    if (size == 0) return "";
+    std::string buf(size, '\0');
+    if (_NSGetExecutablePath(buf.data(), &size) != 0) return "";
+    return std::filesystem::path(buf).parent_path().string();
+#else
+    char buf[4096];
+    const ssize_t n = readlink("/proc/self/exe", buf, sizeof(buf) - 1);
+    if (n <= 0) return "";
+    buf[n] = '\0';
+    return std::filesystem::path(buf).parent_path().string();
+#endif
+}
+
+// The bundled read-only data directory. Resolution order (issue #83: the
+// old cwd-relative "Data" only worked when launched from build/Dasher):
+//   1. the compile-time build-tree path (dev runs, any CWD — the POST_BUILD
+//      step keeps build/Dasher/Data fresh),
+//   2. <exe_dir>/Data (portable/install layout: install(DIRECTORY) puts the
+//      binary and Data/ side by side at the prefix root),
+//   3. "Data" relative to the CWD (legacy dev-run fallback).
+std::string resolve_data_dir() {
+    const char* candidates[] = {
+#ifdef DASHER_GTK_BUILD_DATA_DIR
+        DASHER_GTK_BUILD_DATA_DIR,
+#endif
+        nullptr, // exe-relative filled in below
+        "Data",
+    };
+    std::string exe_dir = executable_dir();
+    for (const char* candidate : candidates) {
+        std::string dir;
+        if (candidate) dir = candidate;
+        else if (!exe_dir.empty()) dir = exe_dir + "/Data";
+        else continue;
+        if (g_file_test((dir + "/alphabets").c_str(), G_FILE_TEST_IS_DIR)) return dir;
+    }
+    // Nothing verified — hand the engine the legacy relative path and let its
+    // no-data diagnostics speak (better than failing silently with "").
+    return "Data";
+}
+
+} // namespace
 
 RenderingCanvas::RenderingCanvas() {
     set_size_request(500, 500);
@@ -32,7 +97,11 @@ RenderingCanvas::RenderingCanvas() {
         user_dir = dir;
         g_free(dir);
     }
-    bridge = std::make_shared<DasherBridge>("Data", user_dir);
+    // Absolute resolution of the bundled data dir (issue #83): the old
+    // cwd-relative "Data" broke any launch whose working directory wasn't
+    // build/Dasher — installed copies scanned nothing and started from an
+    // untrained model.
+    bridge = std::make_shared<DasherBridge>(resolve_data_dir(), user_dir);
 
     auto locales = bridge->get_available_locales();
     auto* const* sys_langs = g_get_language_names();

@@ -127,6 +127,44 @@ TEST_CASE("probe-then-fetch permitted values enumerate") {
     CHECK(std::find(values.begin(), values.end(), current) != values.end());
 }
 
+TEST_CASE("training path resolves into the user dir at the engine layout") {
+    // DasherCore#85/#86 contract the Preferences training UI depends on:
+    // after realize, the engine reports the ONE file adaptive learning
+    // appends to — inside this bridge's user dir, at the ROOT (not a
+    // training/ subdirectory: the pre-#83 UIs derived paths the engine
+    // never read or wrote, so exports missed all adaptive learning).
+    const std::string data = find_data_dir();
+    REQUIRE_FALSE(data.empty());
+    REQUIRE(DasherBridge::capi_version() >= 1); // this build has the user-dir scan
+
+    const std::string user = make_fresh_user_dir();
+    DasherBridge bridge(data, user);
+    CHECK(bridge.get_training_path().empty()); // unrealized: defined as empty
+    bridge.set_screen_size(800, 600);
+
+    const std::string path = bridge.get_training_path();
+    CAPTURE(path);
+    REQUIRE_FALSE(path.empty());
+    const auto abs = std::filesystem::absolute(std::filesystem::path(path)).string();
+    CHECK(abs.rfind(std::filesystem::absolute(std::filesystem::path(user)).string(), 0) == 0);
+    const std::string name = std::filesystem::path(path).filename().string();
+    CHECK(name.rfind("training_", 0) == 0);
+    CHECK(name.compare(name.size() - 4, 4, ".txt") == 0);
+    // Root layout: no path component may be a "training" directory.
+    for (const auto& part : std::filesystem::path(path).parent_path())
+        CHECK(part != "training");
+}
+
+TEST_CASE("import training text reports success on a live engine") {
+    const std::string data = find_data_dir();
+    REQUIRE_FALSE(data.empty());
+
+    DasherBridge bridge(data, make_fresh_user_dir());
+    bridge.set_screen_size(800, 600);
+    CHECK(bridge.import_training_text("hello world this is a test") == 0);
+    CHECK(bridge.import_training_text("") == 0);
+}
+
 TEST_CASE("text-size callback is cached per label and size") {
     // DasherCore #56/v0.2.4: steady-state frames must issue zero measurement
     // callbacks (Windows measured 2,520 per window before the contract was
