@@ -8,6 +8,7 @@
 #include <glib.h>
 #include <glibmm/datetime.h>
 #include <cmath>
+#include <cstring>
 #include <filesystem>
 
 #if defined(_WIN32)

@@ -38,6 +38,7 @@
     "analytics_opted_in":  { "description": "User opted into analytics", "properties": {}, "pii": false },
     "analytics_id_reset":  { "description": "User reset their anonymous analytics ID", "properties": {}, "pii": false },
     "settings_reset_defaults": { "description": "User reset every engine parameter to its built-in default", "properties": {}, "pii": false },
+    "training_reset": { "description": "User deleted their accumulated training data via the Preferences training row", "properties": {}, "pii": false },
     "crash": {
       "description": "Uncaught C++ exception or fatal signal (SIGSEGV/SIGABRT/SIGILL), reported on the launch after the crash.",
       "properties": {

@@ -24,6 +24,7 @@
 #include <gtkmm/filedialog.h>
 #include <gtkmm/filefilter.h>
 #include <gtkmm/alertdialog.h>
+#include <gtk/gtk.h>
 #include <giomm/liststore.h>
 #include <functional>
 #include <sstream>
@@ -337,8 +338,11 @@ void PreferencesWindow::rebuild_sections() {
                         // the throwing weakly_canonical would escape a catch
                         // that only handles Glib::Error.
                         std::error_code ec_a, ec_b;
-                        if (std::filesystem::weakly_canonical(std::filesystem::path(path), ec_a) ==
-                            std::filesystem::weakly_canonical(std::filesystem::path(training_pre), ec_b)) {
+                        const auto canon_src = std::filesystem::weakly_canonical(std::filesystem::path(path), ec_a);
+                        const auto canon_dst = std::filesystem::weakly_canonical(std::filesystem::path(training_pre), ec_b);
+                        // Both must have resolved: two failures both yield empty
+                        // paths and would false-positive as "already yours".
+                        if (!ec_a && !ec_b && canon_src == canon_dst) {
                             if (m_training_status) m_training_status->set_text(_("That file already is your training data."));
                             return;
                         }
@@ -355,7 +359,16 @@ void PreferencesWindow::rebuild_sections() {
                             if (m_training_status) m_training_status->set_text(_("Could not open the selected file."));
                             return;
                         }
-                        std::string text((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
+                        // Bounded read: covers streams that lie about their
+                        // size AND non-terminating ones (FIFO/char device via
+                        // a typed path) — either way at most cap+1 bytes are
+                        // pulled, and the UI thread cannot hang.
+                        std::string text;
+                        {
+                            std::istreambuf_iterator<char> it(in), end;
+                            const uintmax_t limit = kMaxImportBytes + 1;
+                            for (uintmax_t i = 0; i < limit && it != end; ++i, ++it) text.push_back(*it);
+                        }
                         if (in.bad()) {
                             if (m_training_status) m_training_status->set_text(_("Could not read the selected file."));
                             return;
@@ -370,7 +383,6 @@ void PreferencesWindow::rebuild_sections() {
                                 m_training_status->set_text(_("Training is not available yet — try again once the canvas has rendered."));
                             return;
                         }
-                        // Cap again for streams that lied about their size.
                         if (static_cast<uintmax_t>(text.size()) > kMaxImportBytes) {
                             if (m_training_status) m_training_status->set_text(
                                 _("The file is too large (over 10 MB) to import as training text."));
@@ -406,7 +418,13 @@ void PreferencesWindow::rebuild_sections() {
                                 : Glib::ustring::compose(_("Imported %1 — applies fully on next launch"), training_format_size(text.size())));
                         }
                         refresh_training_row();
-                    } catch (const Glib::Error&) {
+                    } catch (const Glib::Error& err) {
+                        // Cancel is the most common way this dialog ends —
+                        // open_finish throws GtkDialogError::DISMISSED for it
+                        // (GTK4 C enum; this gtkmm ships no C++ wrapper).
+                        // Anything else is a real failure to report.
+                        if (err.domain() == gtk_dialog_error_quark() &&
+                            err.code() == GTK_DIALOG_ERROR_DISMISSED) return;
                         if (m_training_status) m_training_status->set_text(_("Could not open the selected file."));
                     }
                 });
@@ -423,7 +441,13 @@ void PreferencesWindow::rebuild_sections() {
                         const auto file = dialog->save_finish(result);
                         if (!file) return;
                         const std::string path = file->get_path();
-                        if (path.empty() || path == training) return;
+                        if (path.empty()) return;
+                        // Canonical compare, not raw strings ("./x" vs the
+                        // absolute path would slip through).
+                        std::error_code ec_x, ec_y;
+                        const auto ex_src = std::filesystem::weakly_canonical(std::filesystem::path(path), ec_x);
+                        const auto ex_dst = std::filesystem::weakly_canonical(std::filesystem::path(training), ec_y);
+                        if (!ec_x && !ec_y && ex_src == ex_dst) return;
                         std::error_code ec;
                         std::filesystem::copy_file(training, path, std::filesystem::copy_options::overwrite_existing, ec);
                         if (m_training_status)
@@ -442,8 +466,8 @@ void PreferencesWindow::rebuild_sections() {
                 // (DasherCore#87 — needs an engine dasher_reset_training
                 // before a full-reset promise is honest).
                 dialog->set_detail("This deletes your accumulated training data for every "
-                                   "alphabet. Predictions keep the influence of recent typing "
-                                   "until you restart Dasher.");
+                                   "alphabet. Predictions keep the influence of very recent "
+                                   "typing.");
                 dialog->set_buttons({"_Cancel", "_Reset"});
                 dialog->set_default_button(0);
                 dialog->set_cancel_button(0);
