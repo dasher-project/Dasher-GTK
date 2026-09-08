@@ -85,6 +85,10 @@ PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge, Dwell
     add_locale_section();
     add_privacy_section();
 
+    // Adaptive learning keeps appending while the window is hidden, so the
+    // training size readout would go stale between showings.
+    signal_map().connect([this]() { refresh_training_row(); });
+
     auto* scrolled_help = Gtk::make_managed<Gtk::ScrolledWindow>();
     auto* help_box = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::VERTICAL, 8);
     help_box->set_margin(12);
@@ -143,6 +147,28 @@ void PreferencesWindow::update_rate_readout() {
     m_rate_value->set_text(buf);
 }
 
+// Human-readable byte count for the training row. A free function on purpose:
+// a captured local lambda would dangle in the async dialog callbacks that
+// outlive rebuild_sections().
+static Glib::ustring training_format_size(uintmax_t bytes) {
+    std::ostringstream os;
+    if (bytes < 1024) os << bytes << " B";
+    else if (bytes < 1024 * 1024) os << (bytes / 1024) << " KB";
+    else os << std::fixed << std::setprecision(1) << (bytes / 1048576.0) << " MB";
+    return os.str();
+}
+
+void PreferencesWindow::refresh_training_row() {
+    if (!m_training_size_label || !m_training_export_btn || !m_training_reset_btn || !m_bridge) return;
+    const std::string path = m_bridge->get_training_path();
+    std::error_code ec;
+    const uintmax_t size = path.empty() ? 0 : std::filesystem::file_size(path, ec);
+    const bool have = !path.empty() && !ec && size > 0;
+    m_training_size_label->set_text(have ? training_format_size(size) : _("No user training data yet"));
+    m_training_export_btn->set_sensitive(have);
+    m_training_reset_btn->set_sensitive(have);
+}
+
 void PreferencesWindow::rebuild_sections() {
     // Detach the sidebar before tearing pages out of the stack (issue #42, fix
     // by @owenpkent in #43). GtkStackSidebar tracks the stack's pages model,
@@ -159,6 +185,12 @@ void PreferencesWindow::rebuild_sections() {
     m_sidebar.set_stack(m_stack);
     m_dynamic_pages.clear();
     m_rate_value = nullptr; // rebuilt below with the Output section
+    // Training widgets are about to be destroyed with their pages; async
+    // dialog callbacks still in flight null-check through these members.
+    m_training_size_label = nullptr;
+    m_training_status = nullptr;
+    m_training_export_btn = nullptr;
+    m_training_reset_btn = nullptr;
 
     struct GroupDef {
         std::string id;
@@ -236,7 +268,10 @@ void PreferencesWindow::rebuild_sections() {
             // Import persists FIRST (the file is the source of truth at
             // startup; a live-model failure converges at next launch, the
             // reverse order could lose the text), then trains the live
-            // model, matching Dasher-Windows #54's ordering.
+            // model, matching Dasher-Windows #54's ordering. Widgets are
+            // tracked in members and nulled on rebuild: async dialog
+            // callbacks may outlive a rebuild_sections() pass and must go
+            // through refresh_training_row()/null checks.
             auto* row = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::HORIZONTAL, 8);
             row->set_margin_top(4);
             row->set_margin_bottom(4);
@@ -246,10 +281,10 @@ void PreferencesWindow::rebuild_sections() {
             name_label->set_hexpand(true);
             row->append(*name_label);
 
-            auto* size_label = Gtk::make_managed<Gtk::Label>("");
-            size_label->add_css_class("dim-label");
-            size_label->set_valign(Gtk::Align::CENTER);
-            row->append(*size_label);
+            m_training_size_label = Gtk::make_managed<Gtk::Label>("");
+            m_training_size_label->add_css_class("dim-label");
+            m_training_size_label->set_valign(Gtk::Align::CENTER);
+            row->append(*m_training_size_label);
 
             row->append(*Gtk::make_managed<PopoverMenuButtonInfo>(
                 "Dasher learns from what you type. Import adds text to the model and your "
@@ -261,39 +296,22 @@ void PreferencesWindow::rebuild_sections() {
 
             auto* btns = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::HORIZONTAL, 8);
             auto* import_btn = Gtk::make_managed<Gtk::Button>(_("Import…"));
-            auto* export_btn = Gtk::make_managed<Gtk::Button>(_("Export…"));
-            auto* reset_btn = Gtk::make_managed<Gtk::Button>(_("Reset"));
+            m_training_export_btn = Gtk::make_managed<Gtk::Button>(_("Export…"));
+            m_training_reset_btn = Gtk::make_managed<Gtk::Button>(_("Reset"));
             btns->append(*import_btn);
-            btns->append(*export_btn);
-            btns->append(*reset_btn);
+            btns->append(*m_training_export_btn);
+            btns->append(*m_training_reset_btn);
             section->append(*btns);
 
-            auto* status = Gtk::make_managed<Gtk::Label>("");
-            status->set_halign(Gtk::Align::START);
-            status->set_wrap(true);
-            status->add_css_class("dim-label");
-            section->append(*status);
+            m_training_status = Gtk::make_managed<Gtk::Label>("");
+            m_training_status->set_halign(Gtk::Align::START);
+            m_training_status->set_wrap(true);
+            m_training_status->add_css_class("dim-label");
+            section->append(*m_training_status);
 
-            auto format_size = [](uintmax_t bytes) {
-                std::ostringstream os;
-                if (bytes < 1024) os << bytes << " B";
-                else if (bytes < 1024 * 1024) os << (bytes / 1024) << " KB";
-                else os << std::fixed << std::setprecision(1) << (bytes / 1048576.0) << " MB";
-                return os.str();
-            };
+            refresh_training_row();
 
-            auto refresh = [this, size_label, export_btn, reset_btn, &format_size]() {
-                const std::string path = m_bridge->get_training_path();
-                std::error_code ec;
-                const uintmax_t size = path.empty() ? 0 : std::filesystem::file_size(path, ec);
-                const bool have = !path.empty() && !ec && size > 0;
-                size_label->set_text(have ? format_size(size) : _("No user training data yet"));
-                export_btn->set_sensitive(have);
-                reset_btn->set_sensitive(have);
-            };
-            refresh();
-
-            import_btn->signal_clicked().connect([this, refresh, status, &format_size]() {
+            import_btn->signal_clicked().connect([this]() {
                 auto dialog = Gtk::FileDialog::create();
                 dialog->set_title(_("Import training text"));
                 auto filter = Gtk::FileFilter::create();
@@ -302,52 +320,84 @@ void PreferencesWindow::rebuild_sections() {
                 auto filters = Gio::ListStore<Gtk::FileFilter>::create();
                 filters->append(filter);
                 dialog->set_filters(filters);
-                dialog->open(*this, [this, refresh, status, dialog, &format_size](const Glib::RefPtr<Gio::AsyncResult>& result) {
+                dialog->open(*this, [this, dialog](const Glib::RefPtr<Gio::AsyncResult>& result) {
+                    // This callback can fire after a rebuild_sections() pass
+                    // destroyed the widgets; every touch goes through the
+                    // null-checked members.
                     try {
                         const auto file = dialog->open_finish(result);
                         if (!file) return;
                         const std::string path = file->get_path();
                         if (path.empty()) return;
                         std::ifstream in(path, std::ios::binary);
+                        if (!in) {
+                            if (m_training_status) m_training_status->set_text(_("Could not open the selected file."));
+                            return;
+                        }
                         std::string text((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
+                        if (!in && text.empty()) {
+                            if (m_training_status) m_training_status->set_text(_("Could not read the selected file."));
+                            return;
+                        }
                         if (text.empty()) {
-                            status->set_text(_("The selected file is empty."));
+                            if (m_training_status) m_training_status->set_text(_("The selected file is empty."));
+                            return;
+                        }
+                        const std::string training = m_bridge->get_training_path();
+                        if (training.empty()) {
+                            if (m_training_status)
+                                m_training_status->set_text(_("Training is not available yet — try again once the canvas has rendered."));
+                            return;
+                        }
+                        // Self-import (an Export round-trip) would append the
+                        // file to itself and double every count.
+                        if (std::filesystem::weakly_canonical(std::filesystem::path(path)) ==
+                            std::filesystem::weakly_canonical(std::filesystem::path(training))) {
+                            if (m_training_status) m_training_status->set_text(_("That file already is your training data."));
+                            return;
+                        }
+                        // Cap: the read and the training pass run on the UI
+                        // thread; an absurd file would freeze the main loop
+                        // (this is an accessibility app — a frozen UI is a
+                        // functional break).
+                        constexpr uintmax_t kMaxImportBytes = 10ull * 1024 * 1024;
+                        if (static_cast<uintmax_t>(text.size()) > kMaxImportBytes) {
+                            if (m_training_status) m_training_status->set_text(
+                                _("The file is too large (over 10 MB) to import as training text."));
                             return;
                         }
                         // Persist first — see the comment above the section.
-                        const std::string training = m_bridge->get_training_path();
-                        if (training.empty()) {
-                            status->set_text(_("Training is not available yet — try again once the canvas has rendered."));
-                            return;
-                        }
                         std::error_code ec;
                         std::filesystem::create_directories(std::filesystem::path(training).parent_path(), ec);
                         {
                             std::ofstream out(training, std::ios::app);
                             out << text << "\n";
+                            out.flush();
                             if (!out) {
-                                status->set_text(_("Could not write the training data."));
+                                if (m_training_status) m_training_status->set_text(_("Could not write the training data."));
                                 return;
                             }
                         }
                         const int rc = m_bridge->import_training_text(text);
-                        status->set_text(rc == 0
-                            ? Glib::ustring::compose(_("Imported %1 of training text"), format_size(text.size()))
-                            : Glib::ustring::compose(_("Imported %1 — applies fully on next launch"), format_size(text.size())));
-                        refresh();
+                        if (m_training_status) {
+                            m_training_status->set_text(rc == 0
+                                ? Glib::ustring::compose(_("Imported %1 of training text"), training_format_size(text.size()))
+                                : Glib::ustring::compose(_("Imported %1 — applies fully on next launch"), training_format_size(text.size())));
+                        }
+                        refresh_training_row();
                     } catch (const Glib::Error&) {
-                        status->set_text(_("Could not open the selected file."));
+                        if (m_training_status) m_training_status->set_text(_("Could not open the selected file."));
                     }
                 });
             });
 
-            export_btn->signal_clicked().connect([this, status]() {
+            m_training_export_btn->signal_clicked().connect([this]() {
                 const std::string training = m_bridge->get_training_path();
                 if (training.empty() || !std::filesystem::exists(training)) return;
                 auto dialog = Gtk::FileDialog::create();
                 dialog->set_title(_("Export training data"));
                 dialog->set_initial_name("dasher_training.txt");
-                dialog->save(*this, [this, status, dialog, training](const Glib::RefPtr<Gio::AsyncResult>& result) {
+                dialog->save(*this, [this, dialog, training](const Glib::RefPtr<Gio::AsyncResult>& result) {
                     try {
                         const auto file = dialog->save_finish(result);
                         if (!file) return;
@@ -355,14 +405,15 @@ void PreferencesWindow::rebuild_sections() {
                         if (path.empty() || path == training) return;
                         std::error_code ec;
                         std::filesystem::copy_file(training, path, std::filesystem::copy_options::overwrite_existing, ec);
-                        status->set_text(ec ? _("Could not write the export file.") : _("Training data exported."));
+                        if (m_training_status)
+                            m_training_status->set_text(ec ? _("Could not write the export file.") : _("Training data exported."));
                     } catch (const Glib::Error&) {
                         // dismissed
                     }
                 });
             });
 
-            reset_btn->signal_clicked().connect([this, refresh, status]() {
+            m_training_reset_btn->signal_clicked().connect([this]() {
                 auto dialog = Gtk::AlertDialog::create(_("Reset training data?"));
                 dialog->set_detail("This deletes your accumulated training data for every "
                                    "alphabet. The model returns to its built-in defaults on "
@@ -370,7 +421,7 @@ void PreferencesWindow::rebuild_sections() {
                 dialog->set_buttons({"_Cancel", "_Reset"});
                 dialog->set_default_button(0);
                 dialog->set_cancel_button(0);
-                dialog->choose(*this, [this, refresh, status, dialog](const Glib::RefPtr<Gio::AsyncResult>& result) {
+                dialog->choose(*this, [this, dialog](const Glib::RefPtr<Gio::AsyncResult>& result) {
                     if (dialog->choose_finish(result) != 1) return;
                     const std::string training = m_bridge->get_training_path();
                     if (training.empty()) return;
@@ -386,10 +437,12 @@ void PreferencesWindow::rebuild_sections() {
                             else ec.clear();
                         }
                     }
-                    status->set_text(removed > 0
-                        ? _("Training data deleted — the model returns to its built-in defaults on next launch")
-                        : _("No user training data yet"));
-                    refresh();
+                    if (m_training_status) {
+                        m_training_status->set_text(removed > 0
+                            ? _("Training data deleted — the model returns to its built-in defaults on next launch")
+                            : _("No user training data yet"));
+                    }
+                    refresh_training_row();
                     analytics::AnalyticsClient::instance().capture("training_reset");
                 });
             });

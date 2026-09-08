@@ -160,9 +160,22 @@ TEST_CASE("import training text reports success on a live engine") {
     REQUIRE_FALSE(data.empty());
 
     DasherBridge bridge(data, make_fresh_user_dir());
+    // The real measurement callback needs a Pango context (not initialised
+    // in this bare test binary — same reason as the cached-label test).
+    bridge.set_text_size_callback_for_tests([](const std::string& text, int font_size, int* w, int* h) {
+        *w = static_cast<int>(text.size()) * font_size / 2;
+        *h = font_size;
+        return 0;
+    });
     bridge.set_screen_size(800, 600);
+    // Import trains the LIVE model only (persistence is the caller's job) —
+    // the contract here is the rc plus "the engine stays healthy and keeps
+    // rendering", not an observable model change (the load-at-startup
+    // behaviour is pinned engine-side in DasherCore's training tests).
     CHECK(bridge.import_training_text("hello world this is a test") == 0);
     CHECK(bridge.import_training_text("") == 0);
+    for (int i = 0; i < 3; i++) bridge.frame(i * 16);
+    CHECK_FALSE(bridge.has_engine_error());
 }
 
 TEST_CASE("text-size callback is cached per label and size") {

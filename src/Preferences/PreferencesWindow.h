@@ -6,6 +6,7 @@
 #include "UpdateChecker.h"
 #include "gtkmm/alertdialog.h"
 #include "gtkmm/box.h"
+#include "gtkmm/button.h"
 #include "UIComponents/SyncedColorDropdown.h"
 #include "gtkmm/fontdialogbutton.h"
 #include "gtkmm/stack.h"
@@ -51,6 +52,17 @@ private:
     void add_locale_section();
     void add_privacy_section();
     void update_rate_readout();
+
+    // Training-data row (Language page). The widgets live in the rebuilt
+    // dynamic pages, so the pointers are nulled at the top of
+    // rebuild_sections() (m_rate_value pattern) and every deferred user of
+    // them — including async dialog callbacks that may still be in flight
+    // across a rebuild — must null-check via refresh_training_row().
+    void refresh_training_row();
+    Gtk::Label* m_training_size_label = nullptr;
+    Gtk::Label* m_training_status = nullptr;
+    Gtk::Button* m_training_export_btn = nullptr;
+    Gtk::Button* m_training_reset_btn = nullptr;
 
     std::shared_ptr<DasherBridge> m_bridge;
     DwellClickHandler* m_dwell_handler = nullptr;

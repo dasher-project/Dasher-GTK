@@ -38,6 +38,7 @@ std::string executable_dir() {
     if (size == 0) return "";
     std::string buf(size, '\0');
     if (_NSGetExecutablePath(buf.data(), &size) != 0) return "";
+    buf.resize(std::strlen(buf.c_str())); // drop the trailing NUL padding
     return std::filesystem::path(buf).parent_path().string();
 #else
     char buf[4096];
@@ -69,10 +70,16 @@ std::string resolve_data_dir() {
         if (candidate) dir = candidate;
         else if (!exe_dir.empty()) dir = exe_dir + "/Data";
         else continue;
-        if (g_file_test((dir + "/alphabets").c_str(), G_FILE_TEST_IS_DIR)) return dir;
+        if (g_file_test((dir + "/alphabets").c_str(), G_FILE_TEST_IS_DIR)) {
+            // Visible (g_debug, not g_message): which candidate won is
+            // support-relevant for installed copies but noise otherwise.
+            g_debug("Dasher: bundled data dir resolved to %s", dir.c_str());
+            return dir;
+        }
     }
     // Nothing verified — hand the engine the legacy relative path and let its
     // no-data diagnostics speak (better than failing silently with "").
+    g_debug("Dasher: no verified data dir; falling back to relative \"Data\"");
     return "Data";
 }
 

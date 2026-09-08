@@ -49,7 +49,10 @@ void DasherBridge::set_screen_size(int width, int height) {
     // frontends like this one lost all learning between sessions — so feed
     // the accumulated files back through the import API. Version-gated: at
     // >= 1 the engine's own scan already loaded them and a re-import would
-    // count every word twice.
+    // count every word twice. Retained per the engine's documented "MUST
+    // skip at >= 1" contract even though no core that exports
+    // dasher_capi_version can report 0 — it future-proofs running this
+    // frontend against a pre-#86 core via a swapped submodule pin.
     if (m_ctx && !m_startup_training_checked) {
         m_startup_training_checked = true;
         if (dasher_capi_version() < 1 && !m_user_dir.empty()) {
