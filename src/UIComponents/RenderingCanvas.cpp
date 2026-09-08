@@ -50,6 +50,25 @@ std::string executable_dir() {
 #endif
 }
 
+// A usable data dir: either the source layout (an alphabets/ subdir) or the
+// flattened build/install layout (alphabet.*.xml at the top level — the
+// POST_BUILD step copies DasherCore/Data/* straight into Data/). Checking
+// only for alphabets/ rejected every flattened candidate (greptile P1 on
+// this PR) and the resolution silently fell back to the broken relative
+// path.
+bool looks_like_data_dir(const std::string& dir) {
+    std::error_code ec;
+    if (std::filesystem::is_directory(std::filesystem::path(dir) / "alphabets", ec)) return true;
+    ec.clear();
+    for (const auto& entry : std::filesystem::directory_iterator(dir, ec)) {
+        const std::string name = entry.path().filename().string();
+        if (name.rfind("alphabet.", 0) == 0 && name.size() > 4 &&
+            name.compare(name.size() - 4, 4, ".xml") == 0)
+            return true;
+    }
+    return false;
+}
+
 // The bundled read-only data directory. Resolution order (issue #83: the
 // old cwd-relative "Data" only worked when launched from build/Dasher):
 //   1. the compile-time build-tree path (dev runs, any CWD — the POST_BUILD
@@ -71,7 +90,7 @@ std::string resolve_data_dir() {
         if (candidate) dir = candidate;
         else if (!exe_dir.empty()) dir = exe_dir + "/Data";
         else continue;
-        if (g_file_test((dir + "/alphabets").c_str(), G_FILE_TEST_IS_DIR)) {
+        if (looks_like_data_dir(dir)) {
             // Visible (g_debug, not g_message): which candidate won is
             // support-relevant for installed copies but noise otherwise.
             g_debug("Dasher: bundled data dir resolved to %s", dir.c_str());
