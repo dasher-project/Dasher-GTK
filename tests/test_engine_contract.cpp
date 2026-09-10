@@ -244,6 +244,51 @@ TEST_CASE("import training text reports success on a live engine") {
     CHECK_FALSE(bridge.has_engine_error());
 }
 
+
+TEST_CASE("live repro: retired Default alphabet heals and drives (DasherCore#88)") {
+    // From a live report ("no text goes into the output area"): the user's
+    // settings held AlphabetID="Default" — the bare a-z emergency fallback,
+    // registered unconditionally and selectable — which is structurally dead:
+    // the engine renders, reports no error, and commits nothing however long
+    // you drive. DasherCore#88 retires the registration and heals the id at
+    // realize. This test pins BOTH through the bridge surface.
+    const std::string data = find_data_dir();
+    REQUIRE_FALSE(data.empty());
+
+    const std::string user = make_fresh_user_dir();
+    {
+        std::ofstream out(std::filesystem::path(user) / "dasher_settings.xml");
+        out << "<?xml version=\"1.0\"?>\n<settings>\n"
+            << "  <string name=\"AlphabetID\" value=\"Default\" />\n</settings>\n";
+    }
+
+    DasherBridge bridge(data, user);
+    bridge.set_text_size_callback_for_tests([](const std::string& t, int fs, int* w, int* h) {
+        *w = (int)t.size() * fs / 2; *h = fs; return 0;
+    });
+    bridge.set_screen_size(800, 600);
+
+    // Healed: the engine reports a REAL alphabet, not the retired id.
+    REQUIRE(bridge.get_alphabet_id() != "Default");
+
+    // And it drives (canonical recipe from DasherCore test_interaction):
+    // pointer re-stated every frame, fast speed, 500 x 20ms.
+    bridge.set_speed_percent(300);
+    bridge.mouse_move(700.0f, 300.0f);
+    bridge.mouse_down();
+    std::string captured;
+    bridge.set_output_callback([&](int type, const std::string& t) {
+        if (type == 0) captured += t;
+    });
+    for (int i = 0; i < 500; i++) {
+        bridge.mouse_move(700.0f, 280.0f);
+        bridge.frame(1000 + i * 20);
+    }
+    bridge.mouse_up();
+    printf("  healed='%s' output='%s'\n", bridge.get_alphabet_id().c_str(), captured.c_str());
+    CHECK(captured.size() > 0);
+}
+
 TEST_CASE("text-size callback is cached per label and size") {
     // DasherCore #56/v0.2.4: steady-state frames must issue zero measurement
     // callbacks (Windows measured 2,520 per window before the contract was
