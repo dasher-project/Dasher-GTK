@@ -280,7 +280,7 @@ void PreferencesWindow::rebuild_sections() {
             row->set_margin_top(4);
             row->set_margin_bottom(4);
 
-            auto* name_label = Gtk::make_managed<Gtk::Label>(_("Training data"));
+            auto* name_label = Gtk::make_managed<Gtk::Label>(_("Training Data"));
             name_label->set_halign(Gtk::Align::START);
             name_label->set_hexpand(true);
             row->append(*name_label);
@@ -298,9 +298,9 @@ void PreferencesWindow::rebuild_sections() {
             section->append(*row);
 
             auto* btns = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::HORIZONTAL, 8);
-            auto* import_btn = Gtk::make_managed<Gtk::Button>(_("Import…"));
-            m_training_export_btn = Gtk::make_managed<Gtk::Button>(_("Export…"));
-            m_training_reset_btn = Gtk::make_managed<Gtk::Button>(_("Reset"));
+            auto* import_btn = Gtk::make_managed<Gtk::Button>(_("Import Training Text"));
+            m_training_export_btn = Gtk::make_managed<Gtk::Button>(_("Export Training Text"));
+            m_training_reset_btn = Gtk::make_managed<Gtk::Button>(_("Reset Training Data"));
             btns->append(*import_btn);
             btns->append(*m_training_export_btn);
             btns->append(*m_training_reset_btn);
@@ -316,7 +316,7 @@ void PreferencesWindow::rebuild_sections() {
 
             import_btn->signal_clicked().connect([this]() {
                 auto dialog = Gtk::FileDialog::create();
-                dialog->set_title(_("Import training text"));
+                dialog->set_title(_("Import Training Text"));
                 auto filter = Gtk::FileFilter::create();
                 filter->set_name(_("Text files"));
                 filter->add_pattern("*.txt");
@@ -446,7 +446,7 @@ void PreferencesWindow::rebuild_sections() {
                 const std::string training = m_bridge->get_training_path();
                 if (training.empty() || !std::filesystem::exists(training)) return;
                 auto dialog = Gtk::FileDialog::create();
-                dialog->set_title(_("Export training data"));
+                dialog->set_title(_("Export Training Text"));
                 dialog->set_initial_name("dasher_training.txt");
                 dialog->save(*this, [this, dialog, training](const Glib::RefPtr<Gio::AsyncResult>& result) {
                     try {
@@ -473,7 +473,7 @@ void PreferencesWindow::rebuild_sections() {
             });
 
             m_training_reset_btn->signal_clicked().connect([this]() {
-                auto dialog = Gtk::AlertDialog::create(_("Reset training data?"));
+                auto dialog = Gtk::AlertDialog::create(_("Reset Training Data?"));
                 // Copy is deliberately careful: the files are deleted, but
                 // text typed since the last context switch is still in the
                 // engine's pending buffer and gets flushed back at exit

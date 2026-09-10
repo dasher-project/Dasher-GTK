@@ -127,6 +127,24 @@ msgstr "ಎಲ್ಲವನ್ನೂ ನಕಲಿಸಿ"
 msgid "Copy commands"
 msgstr "ಆದೇಶಗಳನ್ನು ನಕಲಿಸಿ"
 
+msgid "Could not load the file into the engine"
+msgstr ""
+
+msgid "Could not open the selected file."
+msgstr ""
+
+msgid "Could not read the selected file."
+msgstr ""
+
+msgid "Could not sync your edit with the engine — it may be overwritten"
+msgstr ""
+
+msgid "Could not write the export file."
+msgstr ""
+
+msgid "Could not write the training data."
+msgstr ""
+
 msgid "Current Calibration"
 msgstr "ಪ್ರಸ್ತುತ ಮಾಪನಾಂಕ ನಿರ್ಣಯ"
 
@@ -217,8 +235,14 @@ msgstr "ಉಳಿಸಲು <x id=\"1\"/>ವಿಫಲವಾಗಿದೆ."
 msgid "Fast"
 msgstr "ವೇಗವಾಗಿ"
 
+msgid "File truncated at 4 MB — only the first part is loaded"
+msgstr ""
+
 msgid "Flatpak or AppImage build can't provide.\n\n"
 msgstr ""
+
+msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
+msgstr "ಕೀಬೋರ್ಡ್ ಅನ್ನು ತೇಲುವಂತೆ ಮಾಡಲು, Dasher ಅನ್ನು ಇತರ ಅಪ್ಲಿಕೇಶನ್‌ಗಳ ಮೇಲೆ ತೋರಿಸಲು ಅನುಮತಿಸಿ, ನಂತರ Float ಅನ್ನು ಮತ್ತೊಮ್ಮೆ ಟ್ಯಾಪ್ ಮಾಡಿ."
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
 msgstr "ಪೂರ್ಣ ಪ್ರವೇಶವು ಡ್ಯಾಶರ್‌ಗೆ ನೀವು ಬರೆಯುವುದನ್ನು ಮಾತನಾಡಲು ಮತ್ತು ನಿಮ್ಮ ತರಬೇತಿಯನ್ನು ನೆನಪಿಟ್ಟುಕೊಳ್ಳಲು ಅನುಮತಿಸುತ್ತದೆ. ಕೀಬೋರ್ಡ್ ಇಲ್ಲದೆಯೂ ಸಹ ಮೂಲಭೂತ ಪ್ರವೇಶಕ್ಕಾಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ."
@@ -249,6 +273,12 @@ msgstr "ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಆಮದು ಮಾಡ�
 
 msgid "Import Training Text"
 msgstr "ತರಬೇತಿ ಪಠ್ಯವನ್ನು ಆಮದು ಮಾಡಿ"
+
+msgid "Imported %1 — applies fully on next launch"
+msgstr ""
+
+msgid "Imported %1 of training text"
+msgstr ""
 
 msgid "Increase Speed"
 msgstr "ವೇಗ ಹೆಚ್ಚಿಸಿ"
@@ -331,6 +361,9 @@ msgstr "ಆಟದ ಮೋಡ್ ಅನ್ನು ಬಿಡಿ"
 msgid "Light"
 msgstr "ಬೆಳಕು"
 
+msgid "Loaded %1 characters"
+msgstr ""
+
 msgid "Locale"
 msgstr "ಪ್ರಾದೇಶಿಕ"
 
@@ -353,6 +386,12 @@ msgid "No settings available for this section."
 msgstr "ಈ ವಿಭಾಗಕ್ಕೆ ಯಾವುದೇ ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಲಭ್ಯವಿಲ್ಲ."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "No training data to export yet"
+msgstr ""
+
+msgid "No user training data yet"
 msgstr ""
 
 msgid "Nothing to save"
@@ -426,6 +465,9 @@ msgstr ""
 
 msgid "Prefs"
 msgstr "ಪೂರ್ವಭಾವಿಗಳು"
+
+msgid "Preparing Dasher…"
+msgstr "Dasher ಸಿದ್ಧವಾಗುತ್ತಿದೆ…"
 
 msgid "Privacy"
 msgstr "ಗೌಪ್ಯತೆ"
@@ -577,11 +619,23 @@ msgstr "ಪಠ್ಯ"
 msgid "Text files"
 msgstr "ಪಠ್ಯ ಕಡತಗಳುComment"
 
+msgid "That file already is your training data."
+msgstr ""
+
 msgid "the app you are pointing at (needs ydotool)"
 msgstr ""
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 msgstr "ಡೀಬಗ್ ಓವರ್‌ಲೇ ಕ್ಯಾನ್ವಾಸ್‌ನ ಮೇಲಿನ ಎಡಭಾಗದಲ್ಲಿ ಹಸಿರು ಫಲಕವನ್ನು ಚಿತ್ರಿಸುತ್ತದೆ, ಇದು ಲೈವ್ ಟಚ್ ಈವೆಂಟ್ ಎಣಿಕೆಗಳು ಮತ್ತು ಕೊನೆಯದಾಗಿ ವರದಿ ಮಾಡಲಾದ (x, y) ಅನ್ನು ತೋರಿಸುತ್ತದೆ. ನೀವು ಪಿಂಚ್ ಮಾಡಿ ಹಿಡಿದಿಟ್ಟುಕೊಂಡಾಗ, ನೀವು ಸುತ್ತಲೂ ನೋಡುವಾಗ ಬದಲಾಗುತ್ತಿರುವ ನಿರ್ದೇಶಾಂಕಗಳೊಂದಿಗೆ touch.began ಅನ್ನು ನಂತರ touch.moved ಅನ್ನು ನೋಡಬೇಕು."
+
+msgid "The file is too large (over 10 MB) to import as training text."
+msgstr ""
+
+msgid "The selected file is empty."
+msgstr ""
+
+msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
+msgstr ""
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 msgstr "ಇದು ನಿಮ್ಮ ಸಂಗ್ರಹವಾದ ತರಬೇತಿ ಡೇಟಾವನ್ನು ಅಳಿಸುತ್ತದೆ. ಮುಂದಿನ ಉಡಾವಣೆಯಲ್ಲಿ ಭಾಷಾ ಮಾದರಿಯು ಅಂತರ್ನಿರ್ಮಿತ ಡೀಫಾಲ್ಟ್‌ಗಳಿಗೆ ಹಿಂತಿರುಗುತ್ತದೆ. ಇದನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ."
@@ -604,8 +658,44 @@ msgstr ""
 msgid "Training"
 msgstr "ತರಬೇತಿ"
 
+msgid "Current training data: {0} KB"
+msgstr "ಪ್ರಸ್ತುತ ತರಬೇತಿ ಡೇಟಾ: {0} KB"
+
 msgid "Training Data"
 msgstr "ತರಬೇತಿ ಡೇಟಾ"
+
+msgid "Training data deleted — restart Dasher to fully apply"
+msgstr ""
+
+msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
+msgstr "ಆಮದು ಭಾಷಾ ಮಾದರಿಗೆ ಪಠ್ಯವನ್ನು ಸೇರಿಸುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮ ಸಂಚಿತ ತರಬೇತಿ ಡೇಟಾ (ಮರುಪ್ರಾರಂಭದಾದ್ಯಂತ ಇರಿಸಲಾಗುತ್ತದೆ). ರಫ್ತು ಬ್ಯಾಕಪ್ ಅಥವಾ ವರ್ಗಾವಣೆಗಾಗಿ ನಿಮ್ಮ ತರಬೇತಿ ಡೇಟಾವನ್ನು ಉಳಿಸುತ್ತದೆ. ಮರುಹೊಂದಿಸಿ ಎಲ್ಲಾ ಬಳಕೆದಾರ ತರಬೇತಿ ಡೇಟಾವನ್ನು ಅಳಿಸುತ್ತದೆ - ಮುಂದಿನ ಉಡಾವಣೆಯಲ್ಲಿ ಮಾದರಿಯು ಅದರ ಅಂತರ್ನಿರ್ಮಿತ ಡೀಫಾಲ್ಟ್‌ಗಳಿಗೆ ಹಿಂತಿರುಗುತ್ತದೆ."
+
+msgid "Training data exported."
+msgstr ""
+
+msgid "Export Training Data"
+msgstr "ತರಬೇತಿ ಡೇಟಾವನ್ನು ರಫ್ತು ಮಾಡಿ"
+
+msgid "Exported to {0}"
+msgstr "{0} ಗೆ ರಫ್ತು ಮಾಡಲಾಗಿದೆ"
+
+msgid "{0} failed: {1}"
+msgstr "{0} ವಿಫಲವಾಗಿದೆ: {1}"
+
+msgid "Imported {0} KB of training text"
+msgstr "{0} KB ತರಬೇತಿ ಪಠ್ಯವನ್ನು ಆಮದು ಮಾಡಲಾಗಿದೆ"
+
+msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
+msgstr "ಆಮದು ಮಾಡಿದ {0} KB — ಮುಂದಿನ ಉಡಾವಣೆಯಲ್ಲಿ ಸಂಪೂರ್ಣವಾಗಿ ಅನ್ವಯಿಸುತ್ತದೆ (ಲೈವ್ ಮಾಡೆಲ್ ಹಿಂತಿರುಗಿಸಲಾಗಿದೆ {1})"
+
+msgid "Training is not available yet — try again once the canvas has rendered."
+msgstr ""
+
+msgid "Training data deleted — the model returns to its built-in defaults on next launch"
+msgstr "ತರಬೇತಿ ಡೇಟಾವನ್ನು ಅಳಿಸಲಾಗಿದೆ - ಮುಂದಿನ ಉಡಾವಣೆಯಲ್ಲಿ ಮಾದರಿಯು ಅದರ ಅಂತರ್ನಿರ್ಮಿತ ಡೀಫಾಲ್ಟ್‌ಗಳಿಗೆ ಹಿಂತಿರುಗುತ್ತದೆ"
+
+msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
+msgstr "ಸಾಧ್ಯವಿರುವಲ್ಲಿ ತರಬೇತಿ ಡೇಟಾವನ್ನು ಅಳಿಸಲಾಗಿದೆ - {0} ಐಟಂ(ಗಳು) ವಿಫಲವಾಗಿದೆ; ಮರುಪ್ರಯತ್ನಿಸಲು ಪುನಃ ಮರುಹೊಂದಿಸಿ ಒತ್ತಿರಿ"
 
 msgid "Turbo"
 msgstr "ಟರ್ಬೊ"

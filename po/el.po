@@ -127,6 +127,24 @@ msgstr "Αντιγραφή όλων"
 msgid "Copy commands"
 msgstr "Αντιγραφή εντολών"
 
+msgid "Could not load the file into the engine"
+msgstr ""
+
+msgid "Could not open the selected file."
+msgstr ""
+
+msgid "Could not read the selected file."
+msgstr ""
+
+msgid "Could not sync your edit with the engine — it may be overwritten"
+msgstr ""
+
+msgid "Could not write the export file."
+msgstr ""
+
+msgid "Could not write the training data."
+msgstr ""
+
 msgid "Current Calibration"
 msgstr "Βαθμονόμηση ρεύματος"
 
@@ -217,8 +235,14 @@ msgstr "Αποτυχία αποθήκευσης :"
 msgid "Fast"
 msgstr "Γρήγορα"
 
+msgid "File truncated at 4 MB — only the first part is loaded"
+msgstr ""
+
 msgid "Flatpak or AppImage build can't provide.\n\n"
 msgstr ""
+
+msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
+msgstr "Για να αιωρήσετε το πληκτρολόγιο, επιτρέψτε στο Dasher να εμφανίζεται πάνω από άλλες εφαρμογές και πατήστε ξανά Float."
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
 msgstr "Η πλήρης πρόσβαση επιτρέπει στον Dasher να εκφωνεί ό,τι γράφετε και να θυμάται την εκπαίδευσή σας. Το πληκτρολόγιο εξακολουθεί να λειτουργεί για βασική εισαγωγή χωρίς αυτήν."
@@ -249,6 +273,12 @@ msgstr "Εισαγωγή ρυθμίσεων"
 
 msgid "Import Training Text"
 msgstr "Εισαγωγή κειμένου εκπαίδευσης"
+
+msgid "Imported %1 — applies fully on next launch"
+msgstr ""
+
+msgid "Imported %1 of training text"
+msgstr ""
 
 msgid "Increase Speed"
 msgstr "Αύξηση ταχύτητας"
@@ -331,6 +361,9 @@ msgstr "Έξοδος από τη λειτουργία παιχνιδιού"
 msgid "Light"
 msgstr "Φως"
 
+msgid "Loaded %1 characters"
+msgstr ""
+
 msgid "Locale"
 msgstr "Τοποθεσία"
 
@@ -353,6 +386,12 @@ msgid "No settings available for this section."
 msgstr "Δεν υπάρχουν διαθέσιμες ρυθμίσεις για αυτήν την ενότητα."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "No training data to export yet"
+msgstr ""
+
+msgid "No user training data yet"
 msgstr ""
 
 msgid "Nothing to save"
@@ -426,6 +465,9 @@ msgstr ""
 
 msgid "Prefs"
 msgstr "Προτιμήσεις"
+
+msgid "Preparing Dasher…"
+msgstr "Προετοιμασία του Dasher…"
 
 msgid "Privacy"
 msgstr "Μυστικότητα"
@@ -577,11 +619,23 @@ msgstr "κείμενο"
 msgid "Text files"
 msgstr "Αρχεία κειμένου"
 
+msgid "That file already is your training data."
+msgstr ""
+
 msgid "the app you are pointing at (needs ydotool)"
 msgstr ""
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 msgstr "Η επικάλυψη εντοπισμού σφαλμάτων σχεδιάζει ένα πράσινο πλαίσιο επάνω αριστερά στον καμβά που δείχνει τον αριθμό των ζωντανών συμβάντων αφής και το τελευταίο που αναφέρθηκε (x, y). Όταν τραβάτε παρατεταμένα τα δάχτυλα, θα πρέπει να δείτε το touch.began και στη συνέχεια το touch.move με μεταβαλλόμενες συντεταγμένες καθώς κοιτάτε τριγύρω."
+
+msgid "The file is too large (over 10 MB) to import as training text."
+msgstr ""
+
+msgid "The selected file is empty."
+msgstr ""
+
+msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
+msgstr ""
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 msgstr "Αυτό διαγράφει τα συσσωρευμένα δεδομένα εκπαίδευσης. Το μοντέλο γλώσσας θα επιστρέψει στις ενσωματωμένες προεπιλογές στην επόμενη εκκίνηση. Αυτή η ενέργεια δεν μπορεί να αναιρεθεί."
@@ -604,8 +658,44 @@ msgstr ""
 msgid "Training"
 msgstr "Εκπαίδευση"
 
+msgid "Current training data: {0} KB"
+msgstr "Τρέχοντα δεδομένα εκπαίδευσης: {0} KB"
+
 msgid "Training Data"
 msgstr "Δεδομένα Εκπαίδευσης"
+
+msgid "Training data deleted — restart Dasher to fully apply"
+msgstr ""
+
+msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
+msgstr "Η Εισαγωγή προσθέτει κείμενο στο μοντέλο γλώσσας και τα συσσωρευμένα δεδομένα προπόνησής σας (διατηρούνται κατά τις επανεκκινήσεις). Η Εξαγωγή αποθηκεύει τα δεδομένα προπόνησής σας για δημιουργία αντιγράφων ασφαλείας ή μεταφορά. Η επαναφορά διαγράφει όλα τα δεδομένα εκπαίδευσης των χρηστών — το μοντέλο επιστρέφει στις ενσωματωμένες προεπιλογές του στην επόμενη εκκίνηση."
+
+msgid "Training data exported."
+msgstr ""
+
+msgid "Export Training Data"
+msgstr "Εξαγωγή δεδομένων εκπαίδευσης"
+
+msgid "Exported to {0}"
+msgstr "Έγινε εξαγωγή σε {0}"
+
+msgid "{0} failed: {1}"
+msgstr "{0} απέτυχε: {1}"
+
+msgid "Imported {0} KB of training text"
+msgstr "Εισήχθησαν {0} KB εκπαιδευτικού κειμένου"
+
+msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
+msgstr "Εισήχθησαν {0} KB — ισχύει πλήρως στην επόμενη κυκλοφορία (το ζωντανό μοντέλο επιστράφηκε {1})"
+
+msgid "Training is not available yet — try again once the canvas has rendered."
+msgstr ""
+
+msgid "Training data deleted — the model returns to its built-in defaults on next launch"
+msgstr "Τα δεδομένα προπόνησης διαγράφηκαν — το μοντέλο επιστρέφει στις ενσωματωμένες προεπιλογές του στην επόμενη εκκίνηση"
+
+msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
+msgstr "Διαγράφηκαν δεδομένα εκπαίδευσης όπου είναι δυνατόν — {0} στοιχεία απέτυχαν. πατήστε ξανά Επαναφορά για να προσπαθήσετε ξανά"
 
 msgid "Turbo"
 msgstr "Τούρμπο"

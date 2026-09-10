@@ -127,6 +127,24 @@ msgstr "全部复制"
 msgid "Copy commands"
 msgstr "复制命令"
 
+msgid "Could not load the file into the engine"
+msgstr ""
+
+msgid "Could not open the selected file."
+msgstr ""
+
+msgid "Could not read the selected file."
+msgstr ""
+
+msgid "Could not sync your edit with the engine — it may be overwritten"
+msgstr ""
+
+msgid "Could not write the export file."
+msgstr ""
+
+msgid "Could not write the training data."
+msgstr ""
+
 msgid "Current Calibration"
 msgstr "电流校准"
 
@@ -217,8 +235,14 @@ msgstr "保存失败："
 msgid "Fast"
 msgstr "快速地"
 
+msgid "File truncated at 4 MB — only the first part is loaded"
+msgstr ""
+
 msgid "Flatpak or AppImage build can't provide.\n\n"
 msgstr ""
+
+msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
+msgstr "要悬浮键盘，请允许 Dasher 在其他应用上方显示，然后再次点击“悬浮”。"
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
 msgstr "完全访问权限可让 Dasher 说出您所写的内容并记住您的训练。没有它，键盘仍然可以进行基本输入。"
@@ -249,6 +273,12 @@ msgstr "导入设置"
 
 msgid "Import Training Text"
 msgstr "导入训练文本"
+
+msgid "Imported %1 — applies fully on next launch"
+msgstr ""
+
+msgid "Imported %1 of training text"
+msgstr ""
 
 msgid "Increase Speed"
 msgstr "提高速度"
@@ -331,6 +361,9 @@ msgstr "退出游戏模式"
 msgid "Light"
 msgstr "光"
 
+msgid "Loaded %1 characters"
+msgstr ""
+
 msgid "Locale"
 msgstr "本地化"
 
@@ -353,6 +386,12 @@ msgid "No settings available for this section."
 msgstr "此部分暂无设置选项。"
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "No training data to export yet"
+msgstr ""
+
+msgid "No user training data yet"
 msgstr ""
 
 msgid "Nothing to save"
@@ -426,6 +465,9 @@ msgstr ""
 
 msgid "Prefs"
 msgstr "偏好"
+
+msgid "Preparing Dasher…"
+msgstr "正在准备 Dasher…"
 
 msgid "Privacy"
 msgstr "隐私"
@@ -577,11 +619,23 @@ msgstr "文本"
 msgid "Text files"
 msgstr "文本文件"
 
+msgid "That file already is your training data."
+msgstr ""
+
 msgid "the app you are pointing at (needs ydotool)"
 msgstr ""
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 msgstr "调试覆盖层在画布的左上角绘制一个绿色面板，显示实时触摸事件计数和最后报告的 (x, y)。当您捏住并按住时，您应该会看到 touch.began 然后 touch.moved ，并且当您环顾四周时，坐标会发生变化。"
+
+msgid "The file is too large (over 10 MB) to import as training text."
+msgstr ""
+
+msgid "The selected file is empty."
+msgstr ""
+
+msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
+msgstr ""
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 msgstr "这将删除您积累的训练数据。语言模型将在下次启动时恢复为内置默认值。此操作无法撤消。"
@@ -604,8 +658,44 @@ msgstr ""
 msgid "Training"
 msgstr "训练"
 
+msgid "Current training data: {0} KB"
+msgstr "当前训练数据：{0} KB"
+
 msgid "Training Data"
 msgstr "训练数据"
+
+msgid "Training data deleted — restart Dasher to fully apply"
+msgstr ""
+
+msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
+msgstr "导入会将文本添加到语言模型和您累积的训练数据中（重启后仍保留）。导出可保存您的训练数据以用于备份或传输。重置会删除所有用户训练数据 — 模型将在下次启动时恢复为内置默认值。"
+
+msgid "Training data exported."
+msgstr ""
+
+msgid "Export Training Data"
+msgstr "导出训练数据"
+
+msgid "Exported to {0}"
+msgstr "导出到{0}"
+
+msgid "{0} failed: {1}"
+msgstr "{0} 失败：{1}"
+
+msgid "Imported {0} KB of training text"
+msgstr "导入了 {0} KB 的训练文本"
+
+msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
+msgstr "已导入 {0} KB — 将在下次启动时完全生效（实时模型返回了 {1}）"
+
+msgid "Training is not available yet — try again once the canvas has rendered."
+msgstr ""
+
+msgid "Training data deleted — the model returns to its built-in defaults on next launch"
+msgstr "训练数据已删除 - 模型在下次启动时恢复其内置默认值"
+
+msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
+msgstr "已尽可能删除训练数据 — {0} 项失败；请再次点击重置以重试"
 
 msgid "Turbo"
 msgstr "涡轮"

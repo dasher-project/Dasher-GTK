@@ -127,6 +127,24 @@ msgstr "Kopieer Alles"
 msgid "Copy commands"
 msgstr "Kopieer opdragte"
 
+msgid "Could not load the file into the engine"
+msgstr ""
+
+msgid "Could not open the selected file."
+msgstr ""
+
+msgid "Could not read the selected file."
+msgstr ""
+
+msgid "Could not sync your edit with the engine — it may be overwritten"
+msgstr ""
+
+msgid "Could not write the export file."
+msgstr ""
+
+msgid "Could not write the training data."
+msgstr ""
+
 msgid "Current Calibration"
 msgstr "Huidige Kalibrasie"
 
@@ -217,8 +235,14 @@ msgstr "Kon nie spel stoor nie: %s"
 msgid "Fast"
 msgstr "Vinnig"
 
+msgid "File truncated at 4 MB — only the first part is loaded"
+msgstr ""
+
 msgid "Flatpak or AppImage build can't provide.\n\n"
 msgstr ""
+
+msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
+msgstr "Om die sleutelbord te laat dryf, laat Dasher toe om oor ander apps te vertoon en tik dan Float weer."
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
 msgstr "Volle Toegang laat Dasher toe om te praat wat jy skryf en jou opleiding te onthou. Die sleutelbord werk steeds vir basiese invoer daarsonder."
@@ -249,6 +273,12 @@ msgstr "Invoerinstellings"
 
 msgid "Import Training Text"
 msgstr "Voer opleidingsteks in"
+
+msgid "Imported %1 — applies fully on next launch"
+msgstr ""
+
+msgid "Imported %1 of training text"
+msgstr ""
 
 msgid "Increase Speed"
 msgstr "Verhoog Spoed"
@@ -331,6 +361,9 @@ msgstr "Verlaat spelmodus"
 msgid "Light"
 msgstr "Lig"
 
+msgid "Loaded %1 characters"
+msgstr ""
+
 msgid "Locale"
 msgstr "Lokalisering"
 
@@ -353,6 +386,12 @@ msgid "No settings available for this section."
 msgstr "Geen instellings beskikbaar vir hierdie afdeling nie."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "No training data to export yet"
+msgstr ""
+
+msgid "No user training data yet"
 msgstr ""
 
 msgid "Nothing to save"
@@ -426,6 +465,9 @@ msgstr ""
 
 msgid "Prefs"
 msgstr "Voorkeure"
+
+msgid "Preparing Dasher…"
+msgstr "Dasher word voorberei…"
 
 msgid "Privacy"
 msgstr "Privaatheid"
@@ -577,11 +619,23 @@ msgstr "teks"
 msgid "Text files"
 msgstr "BeeldeName"
 
+msgid "That file already is your training data."
+msgstr ""
+
 msgid "the app you are pointing at (needs ydotool)"
 msgstr ""
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 msgstr "Die ontfoutingsoorleg teken 'n groen paneel links bo op die doek wat die aantal lewendige aanrakingsgebeurtenisse en die laaste gerapporteerde (x, y) wys. Wanneer jy knyp en hou, behoort jy touch.began en dan touch.moved te sien met veranderende koördinate terwyl jy rondkyk."
+
+msgid "The file is too large (over 10 MB) to import as training text."
+msgstr ""
+
+msgid "The selected file is empty."
+msgstr ""
+
+msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
+msgstr ""
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 msgstr "Dit verwyder jou opgehoopte opleidingsdata. Die taalmodel sal terugkeer na ingeboude verstekwaardes met die volgende bekendstelling. Dit kan nie ongedaan gemaak word nie."
@@ -604,8 +658,44 @@ msgstr ""
 msgid "Training"
 msgstr "Opleiding"
 
+msgid "Current training data: {0} KB"
+msgstr "Huidige opleidingsdata: {0} KB"
+
 msgid "Training Data"
 msgstr "Opleidingsdata"
+
+msgid "Training data deleted — restart Dasher to fully apply"
+msgstr ""
+
+msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
+msgstr "Invoer voeg teks by die taalmodel en jou opgehoopte opleidingsdata (met herbeginsels gehou). Uitvoer stoor jou opleidingsdata vir rugsteun of oordrag. Herstel vee alle gebruikersopleidingsdata uit - die model keer terug na sy ingeboude verstekke met volgende bekendstelling."
+
+msgid "Training data exported."
+msgstr ""
+
+msgid "Export Training Data"
+msgstr "Voer opleidingsdata uit"
+
+msgid "Exported to {0}"
+msgstr "Uitgevoer na {0}"
+
+msgid "{0} failed: {1}"
+msgstr "{0} het misluk: {1}"
+
+msgid "Imported {0} KB of training text"
+msgstr "Het {0} KB se opleidingsteks ingevoer"
+
+msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
+msgstr "Ingevoerde {0} KB — is ten volle van toepassing op volgende bekendstelling (regstreekse model teruggestuur {1})"
+
+msgid "Training is not available yet — try again once the canvas has rendered."
+msgstr ""
+
+msgid "Training data deleted — the model returns to its built-in defaults on next launch"
+msgstr "Opleidingsdata is uitgevee - die model keer terug na sy ingeboude verstekke met volgende bekendstelling"
+
+msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
+msgstr "Opleidingsdata uitgevee waar moontlik — {0} item(s) het misluk; druk Herstel weer om weer te probeer"
 
 msgid "Turbo"
 msgstr ""

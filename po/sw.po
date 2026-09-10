@@ -127,6 +127,24 @@ msgstr "Nakili Zote"
 msgid "Copy commands"
 msgstr "Nakili amri"
 
+msgid "Could not load the file into the engine"
+msgstr ""
+
+msgid "Could not open the selected file."
+msgstr ""
+
+msgid "Could not read the selected file."
+msgstr ""
+
+msgid "Could not sync your edit with the engine — it may be overwritten"
+msgstr ""
+
+msgid "Could not write the export file."
+msgstr ""
+
+msgid "Could not write the training data."
+msgstr ""
+
 msgid "Current Calibration"
 msgstr "Urekebishaji wa Sasa"
 
@@ -217,8 +235,14 @@ msgstr "Imeshindwa kuhifadhi:"
 msgid "Fast"
 msgstr "Haraka"
 
+msgid "File truncated at 4 MB — only the first part is loaded"
+msgstr ""
+
 msgid "Flatpak or AppImage build can't provide.\n\n"
 msgstr ""
+
+msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
+msgstr "Kufanya kibodi iweze kuelea, ruhusu Dasher ionekane juu ya programu nyingine, kisha gusa Float tena."
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
 msgstr "Ufikiaji Kamili humruhusu Dasher kuzungumza unachoandika na kukumbuka mafunzo yako. Kibodi bado inafanya kazi kwa ajili ya kuingia kwa msingi bila hiyo."
@@ -249,6 +273,12 @@ msgstr "Ingiza mipangilio"
 
 msgid "Import Training Text"
 msgstr "Ingiza Maandishi ya Mafunzo"
+
+msgid "Imported %1 — applies fully on next launch"
+msgstr ""
+
+msgid "Imported %1 of training text"
+msgstr ""
 
 msgid "Increase Speed"
 msgstr "Ongeza Kasi"
@@ -331,6 +361,9 @@ msgstr "Ondoka kwenye hali ya mchezo"
 msgid "Light"
 msgstr "Mwanga"
 
+msgid "Loaded %1 characters"
+msgstr ""
+
 msgid "Locale"
 msgstr "Eneo"
 
@@ -353,6 +386,12 @@ msgid "No settings available for this section."
 msgstr "Hakuna mipangilio inayopatikana kwa sehemu hii."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "No training data to export yet"
+msgstr ""
+
+msgid "No user training data yet"
 msgstr ""
 
 msgid "Nothing to save"
@@ -426,6 +465,9 @@ msgstr ""
 
 msgid "Prefs"
 msgstr "Mapendeleo"
+
+msgid "Preparing Dasher…"
+msgstr "Dasher inaandaliwa…"
 
 msgid "Privacy"
 msgstr "Faragha"
@@ -577,11 +619,23 @@ msgstr "maandishi"
 msgid "Text files"
 msgstr "Faili za maandishi"
 
+msgid "That file already is your training data."
+msgstr ""
+
 msgid "the app you are pointing at (needs ydotool)"
 msgstr ""
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 msgstr "Sehemu ya juu ya utatuzi huchota paneli ya kijani upande wa juu kushoto wa turubai inayoonyesha hesabu za matukio ya mguso wa moja kwa moja na ya mwisho yaliyoripotiwa (x, y). Unapobanwa na kushikilia, unapaswa kuona touch.began ilianza kisha touch.moved na kubadilisha viwianishi unapoangalia huku na huko."
+
+msgid "The file is too large (over 10 MB) to import as training text."
+msgstr ""
+
+msgid "The selected file is empty."
+msgstr ""
+
+msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
+msgstr ""
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 msgstr "Hii hufuta data yako ya mafunzo iliyokusanywa. Mfumo wa lugha utarudi kwenye chaguo-msingi zilizojengewa ndani kwenye uzinduzi unaofuata. Hii haiwezi kutenduliwa."
@@ -604,8 +658,44 @@ msgstr ""
 msgid "Training"
 msgstr "Mafunzo"
 
+msgid "Current training data: {0} KB"
+msgstr "Data ya sasa ya mafunzo: {0} KB"
+
 msgid "Training Data"
 msgstr "Data ya Mafunzo"
+
+msgid "Training data deleted — restart Dasher to fully apply"
+msgstr ""
+
+msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
+msgstr "Kuingiza huongeza maandishi kwenye mfano wa lugha na data yako ya mafunzo iliyokusanywa (hubaki kwenye kuanzisha upya). Kuhamisha huhifadhi data yako ya mafunzo kwa ajili ya nakala rudufu au uhamisho. Kuweka upya hunfuta data yote ya mafunzo ya mtumiaji — mfano utarudi kwa msingi wake uliyojengwa ndani kwenye uzinduaji ujao."
+
+msgid "Training data exported."
+msgstr ""
+
+msgid "Export Training Data"
+msgstr "Hamisha data ya mafunzo"
+
+msgid "Exported to {0}"
+msgstr "Imesafirishwa hadi {0}"
+
+msgid "{0} failed: {1}"
+msgstr "{0} imeshindwa: {1}"
+
+msgid "Imported {0} KB of training text"
+msgstr "Imeingiza KB {0} ya maandishi ya mafunzo"
+
+msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
+msgstr "Imeingizwa {0} KB — itatumika kikamilifu kwenye uzinduzi unaofuata (muundo wa moja kwa moja umerejeshwa {1})"
+
+msgid "Training is not available yet — try again once the canvas has rendered."
+msgstr ""
+
+msgid "Training data deleted — the model returns to its built-in defaults on next launch"
+msgstr "Data ya mafunzo imefutwa - muundo unarudi kwa chaguomsingi zilizojumuishwa kwenye uzinduzi unaofuata"
+
+msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
+msgstr "Data ya mafunzo ilifutwa inapowezekana - {0} kipengee/vipengee havikufaulu; bonyeza Rudisha tena ili kujaribu tena"
 
 msgid "Turbo"
 msgstr ""

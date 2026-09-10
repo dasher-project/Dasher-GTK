@@ -127,6 +127,24 @@ msgstr "Copiar tudo"
 msgid "Copy commands"
 msgstr "Copiar comandos"
 
+msgid "Could not load the file into the engine"
+msgstr ""
+
+msgid "Could not open the selected file."
+msgstr ""
+
+msgid "Could not read the selected file."
+msgstr ""
+
+msgid "Could not sync your edit with the engine — it may be overwritten"
+msgstr ""
+
+msgid "Could not write the export file."
+msgstr ""
+
+msgid "Could not write the training data."
+msgstr ""
+
 msgid "Current Calibration"
 msgstr "Calibração atual"
 
@@ -217,8 +235,14 @@ msgstr "Falha ao salvar:"
 msgid "Fast"
 msgstr "Rápido"
 
+msgid "File truncated at 4 MB — only the first part is loaded"
+msgstr ""
+
 msgid "Flatpak or AppImage build can't provide.\n\n"
 msgstr ""
+
+msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
+msgstr "Para flutuar o teclado, permita que o Dasher seja exibido sobre outros apps e toque em Float novamente."
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
 msgstr "O Acesso Total permite que o Dasher leia o que você escreve e memorize seu treinamento. O teclado ainda funciona para digitação básica sem ele."
@@ -249,6 +273,12 @@ msgstr "Importar configurações"
 
 msgid "Import Training Text"
 msgstr "Importar texto de treinamento"
+
+msgid "Imported %1 — applies fully on next launch"
+msgstr ""
+
+msgid "Imported %1 of training text"
+msgstr ""
 
 msgid "Increase Speed"
 msgstr "Aumentar a velocidade"
@@ -331,6 +361,9 @@ msgstr "Sair do modo de jogo"
 msgid "Light"
 msgstr "Luz"
 
+msgid "Loaded %1 characters"
+msgstr ""
+
 msgid "Locale"
 msgstr "Localidade"
 
@@ -353,6 +386,12 @@ msgid "No settings available for this section."
 msgstr "Não há configurações disponíveis para esta seção."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "No training data to export yet"
+msgstr ""
+
+msgid "No user training data yet"
 msgstr ""
 
 msgid "Nothing to save"
@@ -426,6 +465,9 @@ msgstr ""
 
 msgid "Prefs"
 msgstr "Preferências"
+
+msgid "Preparing Dasher…"
+msgstr "Preparando o Dasher…"
 
 msgid "Privacy"
 msgstr "Privacidade"
@@ -577,11 +619,23 @@ msgstr "texto"
 msgid "Text files"
 msgstr "Arquivos de texto"
 
+msgid "That file already is your training data."
+msgstr ""
+
 msgid "the app you are pointing at (needs ydotool)"
 msgstr ""
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 msgstr "A sobreposição de depuração desenha um painel verde no canto superior esquerdo da tela, mostrando a contagem de eventos de toque em tempo real e a última coordenada (x, y) registrada. Ao fazer o gesto de pinça e segurar, você verá `touch.began` e, em seguida, `touch.moved`, com as coordenadas mudando conforme você olha ao redor."
+
+msgid "The file is too large (over 10 MB) to import as training text."
+msgstr ""
+
+msgid "The selected file is empty."
+msgstr ""
+
+msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
+msgstr ""
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 msgstr "Isso apagará seus dados de treinamento acumulados. O modelo de linguagem retornará às configurações padrão na próxima inicialização. Essa ação é irreversível."
@@ -604,8 +658,44 @@ msgstr ""
 msgid "Training"
 msgstr "Treinamento"
 
+msgid "Current training data: {0} KB"
+msgstr "Dados de treinamento atuais: {0} KB"
+
 msgid "Training Data"
 msgstr "Dados de treinamento"
+
+msgid "Training data deleted — restart Dasher to fully apply"
+msgstr ""
+
+msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
+msgstr "A importação adiciona texto ao modelo de idioma e aos dados de treinamento acumulados (mantidos durante as reinicializações). A exportação salva seus dados de treinamento para backup ou transferência. A redefinição exclui todos os dados de treinamento do usuário – o modelo retorna aos seus padrões integrados na próxima inicialização."
+
+msgid "Training data exported."
+msgstr ""
+
+msgid "Export Training Data"
+msgstr "Exportar dados de treinamento"
+
+msgid "Exported to {0}"
+msgstr "Exportado para {0}"
+
+msgid "{0} failed: {1}"
+msgstr "{0} falhou: {1}"
+
+msgid "Imported {0} KB of training text"
+msgstr "Importou {0} KB de texto de treinamento"
+
+msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
+msgstr "{0} KB importados — aplicados totalmente na próxima inicialização (o modelo ativo retornou {1})"
+
+msgid "Training is not available yet — try again once the canvas has rendered."
+msgstr ""
+
+msgid "Training data deleted — the model returns to its built-in defaults on next launch"
+msgstr "Dados de treinamento excluídos — o modelo retorna aos padrões integrados na próxima inicialização"
+
+msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
+msgstr "Dados de treinamento excluídos sempre que possível — {0} itens falharam; pressione Redefinir novamente para tentar novamente"
 
 msgid "Turbo"
 msgstr ""

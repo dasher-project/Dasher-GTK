@@ -127,6 +127,24 @@ msgstr "کپی کردن همه"
 msgid "Copy commands"
 msgstr "کپی کردن دستورات"
 
+msgid "Could not load the file into the engine"
+msgstr ""
+
+msgid "Could not open the selected file."
+msgstr ""
+
+msgid "Could not read the selected file."
+msgstr ""
+
+msgid "Could not sync your edit with the engine — it may be overwritten"
+msgstr ""
+
+msgid "Could not write the export file."
+msgstr ""
+
+msgid "Could not write the training data."
+msgstr ""
+
 msgid "Current Calibration"
 msgstr "کالیبراسیون جریان"
 
@@ -217,8 +235,14 @@ msgstr "ذخیره ناموفق بود"
 msgid "Fast"
 msgstr "سریع"
 
+msgid "File truncated at 4 MB — only the first part is loaded"
+msgstr ""
+
 msgid "Flatpak or AppImage build can't provide.\n\n"
 msgstr ""
+
+msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
+msgstr "برای شناور کردن صفحه‌کلید، به Dasher اجازه دهید روی برنامه‌های دیگر نمایش داده شود، سپس دوباره Float را بزنید."
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
 msgstr "دسترسی کامل به Dasher اجازه می‌دهد آنچه را که شما می‌نویسید، بخواند و آموزش‌های شما را به خاطر بسپارد. صفحه کلید بدون آن نیز برای ورود اولیه کار می‌کند."
@@ -249,6 +273,12 @@ msgstr "تنظیمات را وارد کنید"
 
 msgid "Import Training Text"
 msgstr "وارد کردن متن آموزشی"
+
+msgid "Imported %1 — applies fully on next launch"
+msgstr ""
+
+msgid "Imported %1 of training text"
+msgstr ""
 
 msgid "Increase Speed"
 msgstr "افزایش سرعت"
@@ -331,6 +361,9 @@ msgstr "حالت بازی را ترک کنید"
 msgid "Light"
 msgstr "نور"
 
+msgid "Loaded %1 characters"
+msgstr ""
+
 msgid "Locale"
 msgstr "محل"
 
@@ -353,6 +386,12 @@ msgid "No settings available for this section."
 msgstr "تنظیماتی برای این بخش وجود ندارد."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "No training data to export yet"
+msgstr ""
+
+msgid "No user training data yet"
 msgstr ""
 
 msgid "Nothing to save"
@@ -426,6 +465,9 @@ msgstr ""
 
 msgid "Prefs"
 msgstr "مقدماتی"
+
+msgid "Preparing Dasher…"
+msgstr "در حال آماده‌سازی Dasher…"
 
 msgid "Privacy"
 msgstr "حریم خصوصی"
@@ -577,11 +619,23 @@ msgstr "متن"
 msgid "Text files"
 msgstr "پرونده‌های متنی"
 
+msgid "That file already is your training data."
+msgstr ""
+
 msgid "the app you are pointing at (needs ydotool)"
 msgstr ""
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 msgstr "لایه اشکال‌زدایی یک پنل سبز در بالا سمت چپ بوم رسم می‌کند که تعداد رویدادهای لمسی زنده و آخرین گزارش‌شده (x، y) را نشان می‌دهد. وقتی انگشت خود را روی صفحه نگه می‌دارید، باید touch.begin و سپس touch.moved را با تغییر مختصات هنگام نگاه کردن به اطراف ببینید."
+
+msgid "The file is too large (over 10 MB) to import as training text."
+msgstr ""
+
+msgid "The selected file is empty."
+msgstr ""
+
+msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
+msgstr ""
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 msgstr "این کار داده‌های آموزشی انباشته‌شده شما را حذف می‌کند. مدل زبان در اجرای بعدی به پیش‌فرض‌های داخلی خود باز خواهد گشت. این کار قابل بازگشت نیست."
@@ -604,8 +658,44 @@ msgstr ""
 msgid "Training"
 msgstr "آموزش"
 
+msgid "Current training data: {0} KB"
+msgstr "داده های آموزشی فعلی: {0} کیلوبایت"
+
 msgid "Training Data"
 msgstr "داده‌های آموزشی"
+
+msgid "Training data deleted — restart Dasher to fully apply"
+msgstr ""
+
+msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
+msgstr "Import متنی را به مدل زبان و داده‌های آموزشی انباشته‌شده شما اضافه می‌کند (در طول راه‌اندازی مجدد حفظ می‌شود). Export داده های آموزشی شما را برای پشتیبان گیری یا انتقال ذخیره می کند. بازنشانی تمام داده‌های آموزش کاربر را حذف می‌کند - مدل در راه‌اندازی بعدی به پیش‌فرض‌های داخلی خود بازمی‌گردد."
+
+msgid "Training data exported."
+msgstr ""
+
+msgid "Export Training Data"
+msgstr "صادرات داده های آموزشی"
+
+msgid "Exported to {0}"
+msgstr "به {0} صادر شد"
+
+msgid "{0} failed: {1}"
+msgstr "{0} ناموفق بود: {1}"
+
+msgid "Imported {0} KB of training text"
+msgstr "{0} کیلوبایت متن آموزشی وارد شد"
+
+msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
+msgstr "{0} کیلوبایت وارد شده — در راه اندازی بعدی کاملاً اعمال می شود (مدل زنده {1} برگردانده شد)"
+
+msgid "Training is not available yet — try again once the canvas has rendered."
+msgstr ""
+
+msgid "Training data deleted — the model returns to its built-in defaults on next launch"
+msgstr "داده های آموزشی حذف شد - مدل در راه اندازی بعدی به پیش فرض های داخلی خود باز می گردد"
+
+msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
+msgstr "در صورت امکان، داده‌های آموزشی حذف شد - {0} مورد (ها) ناموفق بود. دوباره Reset را فشار دهید تا دوباره امتحان کنید"
 
 msgid "Turbo"
 msgstr "توربو"

@@ -127,6 +127,24 @@ msgstr "सर्व कॉपी करा"
 msgid "Copy commands"
 msgstr "कॉपी कमांड्स"
 
+msgid "Could not load the file into the engine"
+msgstr ""
+
+msgid "Could not open the selected file."
+msgstr ""
+
+msgid "Could not read the selected file."
+msgstr ""
+
+msgid "Could not sync your edit with the engine — it may be overwritten"
+msgstr ""
+
+msgid "Could not write the export file."
+msgstr ""
+
+msgid "Could not write the training data."
+msgstr ""
+
 msgid "Current Calibration"
 msgstr "वर्तमान कॅलिब्रेशन"
 
@@ -217,8 +235,14 @@ msgstr "जतन करण्यात अयशस्वी:"
 msgid "Fast"
 msgstr "जलद"
 
+msgid "File truncated at 4 MB — only the first part is loaded"
+msgstr ""
+
 msgid "Flatpak or AppImage build can't provide.\n\n"
 msgstr ""
+
+msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
+msgstr "कीबोर्ड फ्लोट करण्यासाठी, Dasher ला इतर अ‍ॅप्ंवर दर्शवण्याची परवानगी द्या, नंतर पुन्हा Float टॅप करा."
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
 msgstr "फुल ॲक्सेसमुळे डॅशर तुम्ही जे लिहिता ते बोलू शकतो आणि तुमचे प्रशिक्षण लक्षात ठेवतो. त्याशिवायही, मूलभूत नोंदीसाठी कीबोर्ड काम करतो."
@@ -249,6 +273,12 @@ msgstr "सेटिंग्ज आयात करा"
 
 msgid "Import Training Text"
 msgstr "प्रशिक्षण मजकूर आयात करा"
+
+msgid "Imported %1 — applies fully on next launch"
+msgstr ""
+
+msgid "Imported %1 of training text"
+msgstr ""
 
 msgid "Increase Speed"
 msgstr "वेग वाढवा"
@@ -331,6 +361,9 @@ msgstr "गेम मोड सोडा"
 msgid "Light"
 msgstr "प्रकाश"
 
+msgid "Loaded %1 characters"
+msgstr ""
+
 msgid "Locale"
 msgstr "स्थानिक"
 
@@ -353,6 +386,12 @@ msgid "No settings available for this section."
 msgstr "या विभागासाठी कोणतीही सेटिंग उपलब्ध नाही."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "No training data to export yet"
+msgstr ""
+
+msgid "No user training data yet"
 msgstr ""
 
 msgid "Nothing to save"
@@ -426,6 +465,9 @@ msgstr ""
 
 msgid "Prefs"
 msgstr "प्राधान्ये"
+
+msgid "Preparing Dasher…"
+msgstr "Dasher सज्ज होत आहे…"
 
 msgid "Privacy"
 msgstr "गोपनीयता"
@@ -577,11 +619,23 @@ msgstr "मजकूर"
 msgid "Text files"
 msgstr "मजकूर फाइल्स"
 
+msgid "That file already is your training data."
+msgstr ""
+
 msgid "the app you are pointing at (needs ydotool)"
 msgstr ""
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 msgstr "डीबग ओव्हरले कॅनव्हासच्या वरच्या-डाव्या कोपऱ्यात एक हिरवा पॅनल दाखवतो, जो थेट टच इव्हेंटची संख्या आणि शेवटचे नोंदवलेले (x, y) दर्शवतो. जेव्हा तुम्ही पिंच करून धरता, तेव्हा तुम्ही आजूबाजूला पाहता त्याप्रमाणे बदलत्या कोऑर्डिनेट्ससह तुम्हाला 'touch.began' आणि नंतर 'touch.moved' दिसायला हवे."
+
+msgid "The file is too large (over 10 MB) to import as training text."
+msgstr ""
+
+msgid "The selected file is empty."
+msgstr ""
+
+msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
+msgstr ""
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 msgstr "यामुळे तुमचा जमा झालेला प्रशिक्षण डेटा हटवला जातो. पुढील वेळी सुरू केल्यावर लँग्वेज मॉडेल त्याच्या मूळ डीफॉल्ट सेटिंग्जवर परत येईल. हा बदल पूर्ववत करता येणार नाही."
@@ -604,8 +658,44 @@ msgstr ""
 msgid "Training"
 msgstr "प्रशिक्षण"
 
+msgid "Current training data: {0} KB"
+msgstr "वर्तमान प्रशिक्षण डेटा: {0} KB"
+
 msgid "Training Data"
 msgstr "प्रशिक्षण डेटा"
+
+msgid "Training data deleted — restart Dasher to fully apply"
+msgstr ""
+
+msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
+msgstr "इंपोर्ट भाषा मॉडेलमध्ये मजकूर जोडते आणि तुमचा जमा झालेला प्रशिक्षण डेटा (रीस्टार्टमध्ये ठेवला जातो). निर्यात तुमचा प्रशिक्षण डेटा बॅकअप किंवा हस्तांतरणासाठी जतन करते. रीसेट केल्याने सर्व वापरकर्ता प्रशिक्षण डेटा हटवला जातो — पुढील लॉन्चवर मॉडेल त्याच्या बिल्ट-इन डीफॉल्टवर परत येते."
+
+msgid "Training data exported."
+msgstr ""
+
+msgid "Export Training Data"
+msgstr "प्रशिक्षण डेटा निर्यात करा"
+
+msgid "Exported to {0}"
+msgstr "{0} वर निर्यात केले"
+
+msgid "{0} failed: {1}"
+msgstr "{0} अयशस्वी: {1}"
+
+msgid "Imported {0} KB of training text"
+msgstr "प्रशिक्षण मजकूराचा {0} KB आयात केला"
+
+msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
+msgstr "आयात केलेले {0} KB — पुढील लॉन्चवर पूर्णपणे लागू होते (लाइव्ह मॉडेल {1} परत केले)"
+
+msgid "Training is not available yet — try again once the canvas has rendered."
+msgstr ""
+
+msgid "Training data deleted — the model returns to its built-in defaults on next launch"
+msgstr "प्रशिक्षण डेटा हटवला — पुढील लॉन्च झाल्यावर मॉडेल त्याच्या बिल्ट-इन डीफॉल्टवर परत येईल"
+
+msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
+msgstr "जेथे शक्य असेल तेथे प्रशिक्षण डेटा हटविला — {0} आयटम अयशस्वी; पुन्हा प्रयत्न करण्यासाठी पुन्हा रीसेट दाबा"
 
 msgid "Turbo"
 msgstr "टर्बो"

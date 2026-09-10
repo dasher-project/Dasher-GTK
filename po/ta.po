@@ -127,6 +127,24 @@ msgstr "அனைத்தையும் நகலெடுக்கவும�
 msgid "Copy commands"
 msgstr "நகல் கட்டளைகள்"
 
+msgid "Could not load the file into the engine"
+msgstr ""
+
+msgid "Could not open the selected file."
+msgstr ""
+
+msgid "Could not read the selected file."
+msgstr ""
+
+msgid "Could not sync your edit with the engine — it may be overwritten"
+msgstr ""
+
+msgid "Could not write the export file."
+msgstr ""
+
+msgid "Could not write the training data."
+msgstr ""
+
 msgid "Current Calibration"
 msgstr "தற்போதைய அளவுத்திருத்தம்"
 
@@ -217,8 +235,14 @@ msgstr "சேமிக்க முடியவில்லை:"
 msgid "Fast"
 msgstr "வேகமாக"
 
+msgid "File truncated at 4 MB — only the first part is loaded"
+msgstr ""
+
 msgid "Flatpak or AppImage build can't provide.\n\n"
 msgstr ""
+
+msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
+msgstr "விசைப்பலகையை மிதக்கச் செய்ய, Dasher ஐ பிற பயன்பாடுகளின் மேல் காட்ட அனுமதித்து, பின்னர் Float ஐ மீண்டும் தட்டவும்."
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
 msgstr "முழு அணுகல் வசதி, நீங்கள் எழுதுவதை டேஷர் பேசவும், உங்கள் பயிற்சியை நினைவில் கொள்ளவும் அனுமதிக்கிறது. அது இல்லாமலேயே, அடிப்படை உள்ளீட்டிற்கு விசைப்பலகை தொடர்ந்து செயல்படும்."
@@ -249,6 +273,12 @@ msgstr "முக்கியமான அமைப்புகள்"
 
 msgid "Import Training Text"
 msgstr "இறக்குமதி பயிற்சி உரை"
+
+msgid "Imported %1 — applies fully on next launch"
+msgstr ""
+
+msgid "Imported %1 of training text"
+msgstr ""
 
 msgid "Increase Speed"
 msgstr "வேகத்தை அதிகரிக்கவும்"
@@ -331,6 +361,9 @@ msgstr "விளையாட்டு பயன்முறையை விட�
 msgid "Light"
 msgstr "ஒளி"
 
+msgid "Loaded %1 characters"
+msgstr ""
+
 msgid "Locale"
 msgstr "வட்டாரம்"
 
@@ -353,6 +386,12 @@ msgid "No settings available for this section."
 msgstr "இந்தப் பகுதிக்கு அமைப்புகள் எதுவும் கிடைக்கவில்லை."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "No training data to export yet"
+msgstr ""
+
+msgid "No user training data yet"
 msgstr ""
 
 msgid "Nothing to save"
@@ -426,6 +465,9 @@ msgstr ""
 
 msgid "Prefs"
 msgstr "விருப்பத்தேர்வுகள்"
+
+msgid "Preparing Dasher…"
+msgstr "Dasher தய்யாறாகிறது…"
 
 msgid "Privacy"
 msgstr "தனியுரிமை"
@@ -577,11 +619,23 @@ msgstr "உரை"
 msgid "Text files"
 msgstr "உரை கோப்புகள்"
 
+msgid "That file already is your training data."
+msgstr ""
+
 msgid "the app you are pointing at (needs ydotool)"
 msgstr ""
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 msgstr "பிழைத்திருத்த மேலடுக்கு, கேன்வாஸின் மேல் இடதுபுறத்தில் ஒரு பச்சை நிறப் பலகையை வரைகிறது. அது நிகழ்நேரத் தொடு நிகழ்வுகளின் எண்ணிக்கையையும், கடைசியாகப் பதிவு செய்யப்பட்ட (x, y) ஆயத்தொலைவுகளையும் காட்டுகிறது. நீங்கள் விரலைச் சுருக்கிப் பிடிக்கும்போது, நீங்கள் சுற்றிலும் பார்க்கும்போது ஆயத்தொலைவுகள் மாறிக்கொண்டே, 'touch.began' மற்றும் அதைத் தொடர்ந்து 'touch.moved' நிகழ்வுகளைக் காண்பீர்கள்."
+
+msgid "The file is too large (over 10 MB) to import as training text."
+msgstr ""
+
+msgid "The selected file is empty."
+msgstr ""
+
+msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
+msgstr ""
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 msgstr "இது நீங்கள் சேகரித்த பயிற்சித் தரவுகளை நீக்கிவிடும். அடுத்த முறை இயக்கும்போது மொழி மாதிரி அதன் இயல்புநிலை அமைப்புகளுக்குத் திரும்பும். இதை மீண்டும் பழைய நிலைக்குக் கொண்டுவர முடியாது."
@@ -604,8 +658,44 @@ msgstr ""
 msgid "Training"
 msgstr "பயிற்சி"
 
+msgid "Current training data: {0} KB"
+msgstr "தற்போதைய பயிற்சி தரவு: {0} KB"
+
 msgid "Training Data"
 msgstr "பயிற்சி தரவு"
+
+msgid "Training data deleted — restart Dasher to fully apply"
+msgstr ""
+
+msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
+msgstr "இறக்குமதி மொழி மாதிரியிலும் உங்கள் சேமிப்பு பயிற்சி தரவிலும் உரையைச் சேர்க்கிறது (மறுதொடக்கங்களிலும் நிலவும்). ஏற்றுமதி காப்புப்பிரதி அல்லது பரிமாற்றத்திற்காக உங்கள் பயிற்சி தரவைச் சேமிக்கிறது. மீட்டமைப்பு அனைத்து பயனர் பயிற்சி தரவையும் நீக்குகிறது — அடுத்த தொடக்கத்தில் மாதிரி தனது உள்ளமைக்கப்பட்ட இயல்புநிலைக்குத் திரும்பும்."
+
+msgid "Training data exported."
+msgstr ""
+
+msgid "Export Training Data"
+msgstr "பயிற்சி தரவை ஏற்றுமதி செய்யவும்"
+
+msgid "Exported to {0}"
+msgstr "{0}க்கு ஏற்றுமதி செய்யப்பட்டது"
+
+msgid "{0} failed: {1}"
+msgstr "{0} தோல்வியுற்றது: {1}"
+
+msgid "Imported {0} KB of training text"
+msgstr "{0} KB பயிற்சி உரை இறக்குமதி செய்யப்பட்டது"
+
+msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
+msgstr "{0} KB இறக்குமதி செய்யப்பட்டது — அடுத்த தொடக்கத்தில் முழுமையாக பயன்படும் (நேரடி மாதிரி {1} திருப்பியது)"
+
+msgid "Training is not available yet — try again once the canvas has rendered."
+msgstr ""
+
+msgid "Training data deleted — the model returns to its built-in defaults on next launch"
+msgstr "பயிற்சி தரவு நீக்கப்பட்டது — அடுத்த தொடக்கத்தில் மாதிரி தனது உள்ளமைக்கப்பட்ட இயல்புநிலைக்குத் திரும்பும்"
+
+msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
+msgstr "முடிந்த இடங்களில் பயிற்சி தரவு நீக்கப்பட்டது — {0} உருப்படி(கள்) தோல்வியுற்றன; மீண்டும் முயற்சிக்க மீட்டமையை மீண்டும் அழுத்தவும்"
 
 msgid "Turbo"
 msgstr "டர்போ"

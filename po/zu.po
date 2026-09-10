@@ -127,6 +127,24 @@ msgstr "Kopisha Konke"
 msgid "Copy commands"
 msgstr "Kopisha imiyalo"
 
+msgid "Could not load the file into the engine"
+msgstr ""
+
+msgid "Could not open the selected file."
+msgstr ""
+
+msgid "Could not read the selected file."
+msgstr ""
+
+msgid "Could not sync your edit with the engine — it may be overwritten"
+msgstr ""
+
+msgid "Could not write the export file."
+msgstr ""
+
+msgid "Could not write the training data."
+msgstr ""
+
 msgid "Current Calibration"
 msgstr "Ukulinganisa Kwamanje"
 
@@ -217,8 +235,14 @@ msgstr "Yehlulekile ukulondoloza:"
 msgid "Fast"
 msgstr "Okusheshayo"
 
+msgid "File truncated at 4 MB — only the first part is loaded"
+msgstr ""
+
 msgid "Flatpak or AppImage build can't provide.\n\n"
 msgstr ""
+
+msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
+msgstr "Ukwenza ikhibhodi ithukele, vimba i-Dasher ukuthi ivele ngaphezulu kwezinye izinhlelo-zokusebenza, bese uthinta Float futhi."
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
 msgstr "Ukufinyelela Okugcwele kuvumela i-Dasher ukuthi ikhulume lokho okubhalayo futhi ikhumbule ukuqeqeshwa kwakho. Ikhibhodi isasebenza ekungeneni okuyisisekelo ngaphandle kwayo."
@@ -249,6 +273,12 @@ msgstr "Ngenisa izilungiselelo"
 
 msgid "Import Training Text"
 msgstr "Ngenisa Umbhalo Wokuqeqesha"
+
+msgid "Imported %1 — applies fully on next launch"
+msgstr ""
+
+msgid "Imported %1 of training text"
+msgstr ""
 
 msgid "Increase Speed"
 msgstr "Khulisa isivinini"
@@ -331,6 +361,9 @@ msgstr "Shiya imodi yomdlalo"
 msgid "Light"
 msgstr "Ukukhanya"
 
+msgid "Loaded %1 characters"
+msgstr ""
+
 msgid "Locale"
 msgstr "Indawo"
 
@@ -353,6 +386,12 @@ msgid "No settings available for this section."
 msgstr "Azikho izilungiselelo ezitholakalayo zalesi sigaba."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "No training data to export yet"
+msgstr ""
+
+msgid "No user training data yet"
 msgstr ""
 
 msgid "Nothing to save"
@@ -426,6 +465,9 @@ msgstr ""
 
 msgid "Prefs"
 msgstr "Okuthandwayo"
+
+msgid "Preparing Dasher…"
+msgstr "Kulungiselela i-Dasher…"
 
 msgid "Privacy"
 msgstr "Ubumfihlo"
@@ -577,11 +619,23 @@ msgstr "umbhalo"
 msgid "Text files"
 msgstr "Amafayela ombhalo"
 
+msgid "That file already is your training data."
+msgstr ""
+
 msgid "the app you are pointing at (needs ydotool)"
 msgstr ""
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 msgstr "Isembozo sokulungisa amaphutha sidweba iphaneli eluhlaza phezulu kwesobunxele sekhanvasi ekhombisa ukubalwa kwemicimbi yokuthinta bukhoma kanye nokugcina okubikiwe (x, y). Uma ucindezela futhi ubamba, kufanele ubone ukuthi i-touch.began iqala bese kuthi i-touch.moved ngokushintsha ama-coordinates njengoba ubheka nxazonke."
+
+msgid "The file is too large (over 10 MB) to import as training text."
+msgstr ""
+
+msgid "The selected file is empty."
+msgstr ""
+
+msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
+msgstr ""
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 msgstr "Lokhu kususa idatha yakho yokuqeqesha eqoqwe. Imodeli yolimi izobuyela kokuzenzakalelayo okwakhelwe ngaphakathi ekuqalisweni okulandelayo. Lokhu akukwazi ukuhlehliswa."
@@ -604,8 +658,44 @@ msgstr ""
 msgid "Training"
 msgstr "Ukuqeqeshwa"
 
+msgid "Current training data: {0} KB"
+msgstr "Idatha yokuqeqeshwa yamanje: {0} KB"
+
 msgid "Training Data"
 msgstr "Idatha Yokuqeqesha"
+
+msgid "Training data deleted — restart Dasher to fully apply"
+msgstr ""
+
+msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
+msgstr "Ukungenisa kwengeza umbhalo kumodeli yolimi kanye nedatha yakho yokuqeqeshwa eqoqiwe (igcinwa kukho konke ukuqalisa kabusha). Ukuthekelisa kulondoloza idatha yakho yokuqeqeshwa ukuze kwenziwe ikhophi yasenqolobaneni noma ukudluliselwa. Ukusetha kabusha kususa yonke idatha yokuqeqeshwa komsebenzisi — imodeli ibuyela kokuzenzakalelayo kwayo eyakhelwe ngaphakathi ekuqaliseni okulandelayo."
+
+msgid "Training data exported."
+msgstr ""
+
+msgid "Export Training Data"
+msgstr "Thumela ngaphandle idatha yokuqeqesha"
+
+msgid "Exported to {0}"
+msgstr "Kuthunelwe ngaphandle ku-{0}"
+
+msgid "{0} failed: {1}"
+msgstr "{0} kwehlulekile: {1}"
+
+msgid "Imported {0} KB of training text"
+msgstr "Kungeniwe {0} KB kombhalo wokuqeqesha"
+
+msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
+msgstr "Ingenisiwe {0} KB — isebenza ngokugcwele ekuqalisweni okulandelayo (imodeli ebukhoma ibuyisiwe {1})"
+
+msgid "Training is not available yet — try again once the canvas has rendered."
+msgstr ""
+
+msgid "Training data deleted — the model returns to its built-in defaults on next launch"
+msgstr "Idatha yokuqeqesha isusiwe — imodeli ibuyela kokumisiwe kwayo eyakhelwe ngaphakathi ekuqaliseni okulandelayo"
+
+msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
+msgstr "Kususwe idatha yokuqeqeshwa lapho kungenzeka khona — {0}izinto zehlulekile; cindezela okuthi Setha kabusha futhi ukuze uzame futhi"
 
 msgid "Turbo"
 msgstr "I-Turbo"
