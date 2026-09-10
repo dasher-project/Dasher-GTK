@@ -182,15 +182,22 @@ int utf8_lead_length(unsigned char c) {
 
 int DasherBridge::engine_byte_offset(const std::string& engine_text, const std::string& pane_text,
                                      int pane_char_offset) {
-    // Walk both strings one CODEPOINT at a time in lockstep. Engine-only '\r'
-    // bytes advance the engine cursor without consuming pane codepoints; the
-    // texts are equal modulo CR (guaranteed by the sync layer's normalised
-    // comparison), so the walk cannot desync on content.
+    // Walk both strings one CODEPOINT at a time in lockstep. CRs that exist
+    // on only one side advance that side alone (greptile P1 on #86: a
+    // pane-only \r previously consumed an engine byte position, shifting
+    // every subsequent offset — the engine-only case alone was handled).
+    // The texts are equal modulo CR (guaranteed by the sync layer's
+    // normalised comparison), so the walk cannot desync on content.
     int pane_chars = 0;
     std::size_t e = 0, p = 0;
     while (pane_chars < pane_char_offset && e < engine_text.size() && p < pane_text.size()) {
         if (engine_text[e] == '\r' && pane_text[p] != '\r') {
             ++e; // engine-only CR: skip, no pane codepoint consumed
+            continue;
+        }
+        if (pane_text[p] == '\r' && engine_text[e] != '\r') {
+            ++p; // pane-only CR: consumes its pane codepoint, advances no engine byte
+            ++pane_chars;
             continue;
         }
         e += utf8_lead_length(static_cast<unsigned char>(engine_text[e]));
