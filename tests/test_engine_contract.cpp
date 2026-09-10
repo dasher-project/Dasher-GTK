@@ -218,6 +218,11 @@ TEST_CASE("editor contract: seed lands the caret on the byte offset; offset re-a
     REQUIRE(DasherBridge::engine_byte_offset(crlf, lf, 6) == 8);
     REQUIRE(DasherBridge::engine_byte_offset(crlf, lf, 7) == 9);
     REQUIRE(DasherBridge::engine_byte_offset(lf, lf, 7) == 8);
+    // Pane-only CR (greptile P1 on #86): mirrored case — the pane holds the
+    // CR, the engine doesn't. It must consume a pane codepoint WITHOUT
+    // advancing the engine cursor, or later offsets shift +1 per pane CR.
+    REQUIRE(DasherBridge::engine_byte_offset(lf, crlf, 6) == 6);
+    REQUIRE(DasherBridge::engine_byte_offset(lf, crlf, 7) == 7);
 }
 
 TEST_CASE("import training text reports success on a live engine") {
