@@ -37,7 +37,8 @@ void MainWindow::wire_editor_sync() {
 
     // Clause 2 — user edits seed the engine. Immediate, no debounce: engine
     // pushes arrive on every output change (the OnBufferChange connect in
-    // so a debounced edit would be clobbered before the timer fired. Equality
+    // the constructor), so a debounced edit would be clobbered before the
+    // timer fired. Equality
     // with the engine buffer means an engine push landing (nothing to seed);
     // a difference is a user edit (same trade as Dasher-Windows#56). A failed
     // seed is surfaced, not swallowed — the pane and engine then diverge until
@@ -57,8 +58,11 @@ void MainWindow::wire_editor_sync() {
     });
 
     // Clause 3 — pure caret moves (text already in sync) re-anchor the model:
-    // v5's click-a-word-and-the-canvas-follows behaviour. Converts against the
-    // PANE string — the caret's coordinate system (LF, codepoints).
+    // v5's click-a-word-and-the-canvas-follows behaviour. The caret is in PANE
+    // coordinates (LF, codepoints); the engine's buffer may still hold CRLF
+    // (engine-written newlines / raw file seeds), so the byte offset is
+    // MAPPED across the CR difference — a direct pane-bytes conversion would
+    // anchor N bytes early per preceding CR (review-loop 2).
     buffer->property_cursor_position().signal_changed().connect([this, buffer]() {
         if (m_suppress_editor_sync) return;
         auto bridge = m_canvas.bridge;
@@ -68,7 +72,7 @@ void MainWindow::wire_editor_sync() {
         const std::string pane = buffer->get_text();
         if (editor_cmp_text(pane) != editor_cmp_text(engine)) return;
         const int caret_chars = buffer->property_cursor_position().get_value();
-        const int caret_bytes = DasherBridge::byte_offset_from_codepoints(pane, caret_chars);
+        const int caret_bytes = DasherBridge::engine_byte_offset(engine, pane, caret_chars);
         if (caret_bytes >= 0 && caret_bytes != bridge->get_offset()) bridge->set_offset(caret_bytes);
     });
 }
@@ -286,11 +290,28 @@ MainWindow::MainWindow()
                 auto file = dialog->open_finish(result);
                 if (!file) return;
                 auto stream = file->read();
-                gsize size = 0;
-                auto bytes = stream->read_bytes(1024 * 1024, Glib::RefPtr<Gio::Cancellable>());
-                auto data = bytes->get_data(size);
-                std::string contents(static_cast<const char*>(data), size);
+                // Read ALL of it (a single read_bytes call can short-read),
+                // capped at 4 MiB — beyond that the per-keystroke seed cost
+                // becomes the bottleneck and truncating WITH a notice beats
+                // destroying the tail silently on Save (review-loop 2).
+                std::string contents;
+                bool truncated = false;
+                {
+                    char chunk[65536];
+                    while (true) {
+                        const gssize n = stream->read(chunk, sizeof(chunk));
+                        if (n <= 0) break;
+                        contents.append(chunk, static_cast<std::size_t>(n));
+                        if (contents.size() > 4u * 1024 * 1024) {
+                            truncated = true;
+                            break;
+                        }
+                    }
+                }
                 stream->close();
+                if (truncated) {
+                    m_message_overlay.show_message(_("File truncated at 4 MB — only the first part is loaded"));
+                }
                 // RFC 0019 clause 2: an opened file must reach the ENGINE,
                 // anchored at its end (continue-writing is the point of
                 // Open) — not just the pane, or the next engine push would
@@ -548,19 +569,23 @@ MainWindow::MainWindow()
             const int new_caret = old_caret >= old_char_count ? new_chars : std::min(old_caret, new_chars);
             buffer->place_cursor(buffer->get_iter_at_offset(new_caret));
             m_suppress_editor_sync = false;
-        }
-        if (m_speech_switch.get_active() && m_tts && m_tts->is_available()) {
-            if (!text.empty() && text.back() == ' ') {
-                std::string last_word;
-                auto pos = text.rfind(' ', text.size() - 2);
-                if (pos == std::string::npos) {
-                    last_word = text.substr(0, text.size() - 1);
-                } else {
-                    last_word = text.substr(pos + 1, text.size() - pos - 2);
-                }
-                if (!last_word.empty()) {
-                    m_tts->stop();
-                    m_tts->speak(last_word);
+
+            // Speak-on-space lives INSIDE the changed branch: event-2 pushes
+            // now arrive with the full (unchanged) text, and speaking those
+            // would echo the user's own pane edits back at them (loop-2).
+            if (m_speech_switch.get_active() && m_tts && m_tts->is_available()) {
+                if (!text_lf.empty() && text_lf.back() == ' ') {
+                    std::string last_word;
+                    auto pos = text_lf.rfind(' ', text_lf.size() - 2);
+                    if (pos == std::string::npos) {
+                        last_word = text_lf.substr(0, text_lf.size() - 1);
+                    } else {
+                        last_word = text_lf.substr(pos + 1, text_lf.size() - pos - 2);
+                    }
+                    if (!last_word.empty()) {
+                        m_tts->stop();
+                        m_tts->speak(last_word);
+                    }
                 }
             }
         }

@@ -223,8 +223,9 @@ RenderingCanvas::RenderingCanvas() {
         } else if (event_type == 2) {
             // Buffer cleared wholesale by the engine (reset, alphabet change —
             // DasherCore v0.2.3). Deltas can't express this — but "cleared"
-            // does NOT mean empty: dasher_seed_buffer emits event 2 BEFORE
-            // installing the new buffer, so rebuilding the shadow from the
+            // does NOT mean empty: dasher_seed_buffer assigns the NEW buffer
+            // BEFORE notifying (CAPI.cpp:2352 → 2364 — that ordering is what
+            // makes this rebuild correct), so rebuilding the shadow from the
             // engine's own buffer is the correct resync. For reset that
             // yields "" (previous behaviour); for a seed it yields the seeded
             // text, keeping the shadow in step with the edit buffer instead

@@ -169,6 +169,37 @@ int DasherBridge::byte_offset_from_codepoints(const std::string& utf8_text, int 
     return dasher_byte_offset_from_codepoints(utf8_text.c_str(), codepoint_offset);
 }
 
+namespace {
+// UTF-8 lead byte → sequence length (stray continuation bytes degrade to 1).
+int utf8_lead_length(unsigned char c) {
+    if (c < 0x80) return 1;
+    if ((c & 0xE0) == 0xC0) return 2;
+    if ((c & 0xF0) == 0xE0) return 3;
+    if ((c & 0xF8) == 0xF0) return 4;
+    return 1;
+}
+} // namespace
+
+int DasherBridge::engine_byte_offset(const std::string& engine_text, const std::string& pane_text,
+                                     int pane_char_offset) {
+    // Walk both strings one CODEPOINT at a time in lockstep. Engine-only '\r'
+    // bytes advance the engine cursor without consuming pane codepoints; the
+    // texts are equal modulo CR (guaranteed by the sync layer's normalised
+    // comparison), so the walk cannot desync on content.
+    int pane_chars = 0;
+    std::size_t e = 0, p = 0;
+    while (pane_chars < pane_char_offset && e < engine_text.size() && p < pane_text.size()) {
+        if (engine_text[e] == '\r' && pane_text[p] != '\r') {
+            ++e; // engine-only CR: skip, no pane codepoint consumed
+            continue;
+        }
+        e += utf8_lead_length(static_cast<unsigned char>(engine_text[e]));
+        p += utf8_lead_length(static_cast<unsigned char>(pane_text[p]));
+        ++pane_chars;
+    }
+    return static_cast<int>(e);
+}
+
 std::string DasherBridge::get_alphabet_id() const {
     if (!m_ctx) return "";
     const char* id = dasher_get_alphabet_id(m_ctx);

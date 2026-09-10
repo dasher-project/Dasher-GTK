@@ -66,6 +66,15 @@ public:
     // the engine counts UTF-8 bytes. Convert here. Returns the byte offset.
     static int byte_offset_from_codepoints(const std::string& utf8_text, int codepoint_offset);
 
+    // Map a PANE caret (codepoints into pane_text, which holds LF-only) to
+    // the equivalent BYTE offset in engine_text (which may hold CRLF —
+    // engine-written newlines and raw file seeds). The two texts must match
+    // modulo carriage returns (the sync layer guarantees this). Without this
+    // mapping, set_offset after a Dasher-written newline or a CRLF file seed
+    // anchors N bytes early per preceding CR and output lands mid-word
+    // (review-loop 2).
+    static int engine_byte_offset(const std::string& engine_text, const std::string& pane_text, int pane_char_offset);
+
     std::string get_alphabet_id() const;
     void set_alphabet_id(const std::string& id);
     int get_alphabet_count() const;

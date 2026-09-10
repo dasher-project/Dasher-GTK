@@ -174,12 +174,27 @@ TEST_CASE("editor contract: seed lands the caret on the byte offset; offset re-a
     const std::string text = "héllo wörld";
     // codepoint 6 (after "héllo ") is byte 7: h=0 é=1,2 l=3 l=4 o=5 space=6.
     REQUIRE(DasherBridge::byte_offset_from_codepoints(text, 6) == 7);
+    // The load-bearing invariant for the canvas's event-2 shadow rebuild:
+    // when the buffer-cleared event arrives, the engine's buffer ALREADY
+    // holds the seeded text (CAPI.cpp assigns editBuffer at :2352, notifies
+    // at :2364). Probed INSIDE the callback — if DasherCore ever reorders
+    // notify-before-assign, the pane wipes and this fails (loop-2 finding:
+    // checking after seed() returns pins nothing).
+    std::string at_event2;
+    bool saw_event2 = false;
+    bridge.set_output_callback([&](int event_type, const std::string&) {
+        if (event_type == 2) {
+            saw_event2 = true;
+            at_event2 = bridge.get_output_text();
+        }
+    });
     REQUIRE(bridge.seed_buffer(text, 7) == 0);
+    CHECK(saw_event2);
+    CHECK(at_event2 == text);
+    bridge.set_output_callback(nullptr);
     CHECK(bridge.get_offset() == 7);
-    // The pane contract the canvas's event-2 shadow rebuild relies on
-    // (RenderingCanvas): after a seed the engine's buffer IS the seeded
-    // text, so a shadow rebuilt from get_output_text() at event-2 time
-    // matches the pane instead of wiping it (review-loop-1 critical).
+    // And the pane-side invariant: after seed the engine's buffer IS the
+    // seeded text.
     CHECK(bridge.get_output_text() == text);
 
     // Pure caret move (clause 3): codepoint 7 (after "w", i.e. on the 2-byte
@@ -193,6 +208,16 @@ TEST_CASE("editor contract: seed lands the caret on the byte offset; offset re-a
     bridge.reset();
     CHECK(bridge.get_output_text().empty());
     CHECK(bridge.get_offset() == 0);
+
+    // CR mapping (loop-2): the engine buffer may hold CRLF while the pane
+    // holds LF — equal modulo CR. Pane cp 6 ('w') is engine byte 8; cp 7 (ö,
+    // 2 bytes) is engine byte 9. A direct pane-bytes conversion would be one
+    // byte early per preceding CR.
+    const std::string crlf = "héllo\r\nwörld";
+    const std::string lf = "héllo\nwörld";
+    REQUIRE(DasherBridge::engine_byte_offset(crlf, lf, 6) == 8);
+    REQUIRE(DasherBridge::engine_byte_offset(crlf, lf, 7) == 9);
+    REQUIRE(DasherBridge::engine_byte_offset(lf, lf, 7) == 8);
 }
 
 TEST_CASE("import training text reports success on a live engine") {
