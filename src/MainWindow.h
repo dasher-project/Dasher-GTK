@@ -113,6 +113,10 @@ class MainWindow : public Gtk::Window {
     // the output TextView — the user-edit handlers must not feed it back into
     // the engine. See wire_editor_sync() in MainWindow.cpp.
     bool m_suppress_editor_sync = false;
+    // True while a seed_buffer call is in flight — its synchronous event-2
+    // push lands inside the call, and speak-on-space must not fire for it
+    // (opening a file ending in a space spoke its last word, loop-3).
+    bool m_seed_push_in_flight = false;
     void wire_editor_sync();
 
     // Cleared in the destructor before any teardown. Cross-thread callbacks

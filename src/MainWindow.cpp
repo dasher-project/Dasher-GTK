@@ -52,8 +52,16 @@ void MainWindow::wire_editor_sync() {
         if (editor_cmp_text(pane) == editor_cmp_text(bridge->get_output_text())) return;
         const int caret_chars = buffer->property_cursor_position().get_value();
         const int caret_bytes = DasherBridge::byte_offset_from_codepoints(pane, caret_chars);
-        if (caret_bytes < 0 || bridge->seed_buffer(pane, caret_bytes) != 0) {
+        if (caret_bytes < 0) {
             m_message_overlay.show_message(_("Could not sync your edit with the engine — it may be overwritten"));
+        } else {
+            // The seed's event-2 echo lands synchronously inside this call;
+            // flag it so speak-on-space doesn't fire for our own seed (loop-3).
+            m_seed_push_in_flight = true;
+            const int rc = bridge->seed_buffer(pane, caret_bytes);
+            m_seed_push_in_flight = false;
+            if (rc != 0)
+                m_message_overlay.show_message(_("Could not sync your edit with the engine — it may be overwritten"));
         }
     });
 
@@ -301,11 +309,13 @@ MainWindow::MainWindow()
                     while (true) {
                         const gssize n = stream->read(chunk, sizeof(chunk));
                         if (n <= 0) break;
-                        contents.append(chunk, static_cast<std::size_t>(n));
-                        if (contents.size() > 4u * 1024 * 1024) {
+                        // Check BEFORE appending: the cut then lands at the
+                        // cap exactly, not cap + chunk − 1 (loop-3).
+                        if (contents.size() + static_cast<std::size_t>(n) > 4u * 1024 * 1024) {
                             truncated = true;
                             break;
                         }
+                        contents.append(chunk, static_cast<std::size_t>(n));
                     }
                 }
                 stream->close();
@@ -321,13 +331,20 @@ MainWindow::MainWindow()
                 // pane through the guarded push path; cursor placement at
                 // the end happens under the guard so it cannot re-seed. A
                 // failed seed leaves both sides untouched and says so.
-                if (m_canvas.bridge->seed_buffer(contents, static_cast<int>(contents.size())) == 0) {
+                m_seed_push_in_flight = true;
+                const int seed_rc = m_canvas.bridge->seed_buffer(contents, static_cast<int>(contents.size()));
+                m_seed_push_in_flight = false;
+                if (seed_rc == 0) {
                     m_suppress_editor_sync = true;
                     m_text_view.get_buffer()->place_cursor(m_text_view.get_buffer()->end());
                     m_suppress_editor_sync = false;
                 } else {
                     m_message_overlay.show_message(_("Could not load the file into the engine"));
                 }
+                // Note: the pane holds LF-only (the push boundary strips CR),
+                // so Open-then-Save rewrites a CRLF file with LF endings —
+                // one coordinate system by design (RFC 0019); document with
+                // the RFC's clause-7 cap when it lands.
             } catch (const Glib::Error& e) {
                 m_message_overlay.show_message(std::string(_("Failed to open: ")) + std::string(e.what()));
             }
@@ -573,7 +590,9 @@ MainWindow::MainWindow()
             // Speak-on-space lives INSIDE the changed branch: event-2 pushes
             // now arrive with the full (unchanged) text, and speaking those
             // would echo the user's own pane edits back at them (loop-2).
-            if (m_speech_switch.get_active() && m_tts && m_tts->is_available()) {
+            // Seed echoes (flagged below/above) are excluded too — opening a
+            // file ending in a space must not speak its last word (loop-3).
+            if (!m_seed_push_in_flight && m_speech_switch.get_active() && m_tts && m_tts->is_available()) {
                 if (!text_lf.empty() && text_lf.back() == ' ') {
                     std::string last_word;
                     auto pos = text_lf.rfind(' ', text_lf.size() - 2);
