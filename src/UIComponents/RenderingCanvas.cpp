@@ -222,8 +222,14 @@ RenderingCanvas::RenderingCanvas() {
             }
         } else if (event_type == 2) {
             // Buffer cleared wholesale by the engine (reset, alphabet change —
-            // DasherCore v0.2.3). Deltas can't express this; drop the shadow.
-            m_output_buffer.clear();
+            // DasherCore v0.2.3). Deltas can't express this — but "cleared"
+            // does NOT mean empty: dasher_seed_buffer emits event 2 BEFORE
+            // installing the new buffer, so rebuilding the shadow from the
+            // engine's own buffer is the correct resync. For reset that
+            // yields "" (previous behaviour); for a seed it yields the seeded
+            // text, keeping the shadow in step with the edit buffer instead
+            // of wiping the pane mid-edit (RFC 0019 review loop 1).
+            m_output_buffer = bridge->get_output_text();
         }
         OnBufferChange.emit(m_output_buffer);
         OnOutputEvent.emit(event_type, text);

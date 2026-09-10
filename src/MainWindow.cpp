@@ -36,10 +36,13 @@ void MainWindow::wire_editor_sync() {
     auto buffer = m_text_view.get_buffer();
 
     // Clause 2 — user edits seed the engine. Immediate, no debounce: engine
-    // pushes arrive on every output change (OnBufferChange above), so a
-    // debounced edit would be clobbered before the timer fired. Equality
+    // pushes arrive on every output change (the OnBufferChange connect in
+    // so a debounced edit would be clobbered before the timer fired. Equality
     // with the engine buffer means an engine push landing (nothing to seed);
-    // a difference is a user edit (same trade as Dasher-Windows#56).
+    // a difference is a user edit (same trade as Dasher-Windows#56). A failed
+    // seed is surfaced, not swallowed — the pane and engine then diverge until
+    // the next successful seed, and the user should know why predictions
+    // stopped following (issue #85 data-loss class).
     buffer->signal_changed().connect([this, buffer]() {
         if (m_suppress_editor_sync) return;
         auto bridge = m_canvas.bridge;
@@ -48,11 +51,14 @@ void MainWindow::wire_editor_sync() {
         if (editor_cmp_text(pane) == editor_cmp_text(bridge->get_output_text())) return;
         const int caret_chars = buffer->property_cursor_position().get_value();
         const int caret_bytes = DasherBridge::byte_offset_from_codepoints(pane, caret_chars);
-        if (caret_bytes >= 0) bridge->seed_buffer(pane, caret_bytes);
+        if (caret_bytes < 0 || bridge->seed_buffer(pane, caret_bytes) != 0) {
+            m_message_overlay.show_message(_("Could not sync your edit with the engine — it may be overwritten"));
+        }
     });
 
     // Clause 3 — pure caret moves (text already in sync) re-anchor the model:
-    // v5's click-a-word-and-the-canvas-follows behaviour.
+    // v5's click-a-word-and-the-canvas-follows behaviour. Converts against the
+    // PANE string — the caret's coordinate system (LF, codepoints).
     buffer->property_cursor_position().signal_changed().connect([this, buffer]() {
         if (m_suppress_editor_sync) return;
         auto bridge = m_canvas.bridge;
@@ -62,9 +68,8 @@ void MainWindow::wire_editor_sync() {
         const std::string pane = buffer->get_text();
         if (editor_cmp_text(pane) != editor_cmp_text(engine)) return;
         const int caret_chars = buffer->property_cursor_position().get_value();
-        const int caret_bytes = DasherBridge::byte_offset_from_codepoints(engine, caret_chars);
-        if (caret_bytes >= 0 && caret_bytes != bridge->get_offset())
-            bridge->set_offset(caret_bytes);
+        const int caret_bytes = DasherBridge::byte_offset_from_codepoints(pane, caret_chars);
+        if (caret_bytes >= 0 && caret_bytes != bridge->get_offset()) bridge->set_offset(caret_bytes);
     });
 }
 
@@ -286,18 +291,22 @@ MainWindow::MainWindow()
                 auto data = bytes->get_data(size);
                 std::string contents(static_cast<const char*>(data), size);
                 stream->close();
-                m_canvas.bridge->reset_output_text();
-                // Shadow buffer clears via output event 2 (DasherCore v0.2.3).
-                // RFC 0019 clause 2: an opened file must reach the ENGINE too,
+                // RFC 0019 clause 2: an opened file must reach the ENGINE,
                 // anchored at its end (continue-writing is the point of
                 // Open) — not just the pane, or the next engine push would
-                // clobber it (issue #85). Suppressed so the sync handlers
-                // don't double-seed at cursor-0.
-                m_suppress_editor_sync = true;
-                m_text_view.get_buffer()->set_text(contents);
-                m_text_view.get_buffer()->place_cursor(m_text_view.get_buffer()->end());
-                m_suppress_editor_sync = false;
-                m_canvas.bridge->seed_buffer(contents, static_cast<int>(contents.size()));
+                // clobber it (issue #85). The seed emits event 2, which
+                // (since the canvas rebuilds its shadow from the engine
+                // buffer on event 2) synchronously applies the text to the
+                // pane through the guarded push path; cursor placement at
+                // the end happens under the guard so it cannot re-seed. A
+                // failed seed leaves both sides untouched and says so.
+                if (m_canvas.bridge->seed_buffer(contents, static_cast<int>(contents.size())) == 0) {
+                    m_suppress_editor_sync = true;
+                    m_text_view.get_buffer()->place_cursor(m_text_view.get_buffer()->end());
+                    m_suppress_editor_sync = false;
+                } else {
+                    m_message_overlay.show_message(_("Could not load the file into the engine"));
+                }
             } catch (const Glib::Error& e) {
                 m_message_overlay.show_message(std::string(_("Failed to open: ")) + std::string(e.what()));
             }
@@ -524,18 +533,19 @@ MainWindow::MainWindow()
         // raised and the cursor preserved: at the end follows growth (zooming
         // keeps the caret with the new text), otherwise clamped in place.
         // Never a bare set_text: that is what silently destroyed user edits
-        // (issue #85).
+        // (issue #85). The pushed text is CR-stripped HERE so the pane holds
+        // LF-only and every caret/length below shares one coordinate system;
+        // the comparison against the engine (which emits CRLF) still strips.
+        const std::string text_lf = editor_cmp_text(text);
         auto buffer = m_text_view.get_buffer();
         const std::string current = buffer->get_text();
-        if (editor_cmp_text(current) != editor_cmp_text(text)) {
+        if (current != text_lf) {
             m_suppress_editor_sync = true;
             const int old_caret = buffer->property_cursor_position().get_value();
-            const int old_chars = static_cast<int>(g_utf8_strlen(current.c_str(), -1));
-            buffer->set_text(text);
-            const int new_chars = static_cast<int>(g_utf8_strlen(text.c_str(), -1));
-            const int new_caret = old_caret >= old_chars
-                                      ? new_chars
-                                      : std::min(old_caret, new_chars);
+            const int old_char_count = g_utf8_strlen(current.c_str(), -1);
+            buffer->set_text(text_lf);
+            const int new_chars = static_cast<int>(g_utf8_strlen(text_lf.c_str(), -1));
+            const int new_caret = old_caret >= old_char_count ? new_chars : std::min(old_caret, new_chars);
             buffer->place_cursor(buffer->get_iter_at_offset(new_caret));
             m_suppress_editor_sync = false;
         }

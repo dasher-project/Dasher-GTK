@@ -176,6 +176,11 @@ TEST_CASE("editor contract: seed lands the caret on the byte offset; offset re-a
     REQUIRE(DasherBridge::byte_offset_from_codepoints(text, 6) == 7);
     REQUIRE(bridge.seed_buffer(text, 7) == 0);
     CHECK(bridge.get_offset() == 7);
+    // The pane contract the canvas's event-2 shadow rebuild relies on
+    // (RenderingCanvas): after a seed the engine's buffer IS the seeded
+    // text, so a shadow rebuilt from get_output_text() at event-2 time
+    // matches the pane instead of wiping it (review-loop-1 critical).
+    CHECK(bridge.get_output_text() == text);
 
     // Pure caret move (clause 3): codepoint 7 (after "w", i.e. on the 2-byte
     // ö) is byte 8: h=0 é=1,2 l=3 l=4 o=5 space=6 w=7 ö=8,9.
