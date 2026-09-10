@@ -6,6 +6,7 @@
 #include "UpdateChecker.h"
 #include "gtkmm/alertdialog.h"
 #include "gtkmm/box.h"
+#include "gtkmm/button.h"
 #include "UIComponents/SyncedColorDropdown.h"
 #include "gtkmm/fontdialogbutton.h"
 #include "gtkmm/stack.h"
@@ -46,11 +47,29 @@ public:
 
 private:
     void rebuild_sections();
+
+    // LIFETIME INVARIANT: MainWindow holds this window in a unique_ptr for
+    // the whole app session (close only hides it), so `this` outlives every
+    // async dialog callback launched from here. If that ever changes, the
+    // captured-`this` callbacks below (training import/export/reset) must
+    // switch to Glib::WeakRef validation at entry.
+
     // Speech/TTS page — built once, never rebuilt (issue #42 lifetime hazard).
     void add_speech_section();
     void add_locale_section();
     void add_privacy_section();
     void update_rate_readout();
+
+    // Training-data row (Language page). The widgets live in the rebuilt
+    // dynamic pages, so the pointers are nulled at the top of
+    // rebuild_sections() (m_rate_value pattern) and every deferred user of
+    // them — including async dialog callbacks that may still be in flight
+    // across a rebuild — must null-check via refresh_training_row().
+    void refresh_training_row();
+    Gtk::Label* m_training_size_label = nullptr;
+    Gtk::Label* m_training_status = nullptr;
+    Gtk::Button* m_training_export_btn = nullptr;
+    Gtk::Button* m_training_reset_btn = nullptr;
 
     std::shared_ptr<DasherBridge> m_bridge;
     DwellClickHandler* m_dwell_handler = nullptr;

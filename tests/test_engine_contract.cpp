@@ -127,6 +127,60 @@ TEST_CASE("probe-then-fetch permitted values enumerate") {
     CHECK(std::find(values.begin(), values.end(), current) != values.end());
 }
 
+TEST_CASE("training path resolves into the user dir at the engine layout") {
+    // DasherCore#85/#86 contract the Preferences training UI depends on:
+    // after realize, the engine reports the ONE file adaptive learning
+    // appends to — inside this bridge's user dir, at the ROOT (not a
+    // training/ subdirectory: the pre-#83 UIs derived paths the engine
+    // never read or wrote, so exports missed all adaptive learning).
+    const std::string data = find_data_dir();
+    REQUIRE_FALSE(data.empty());
+    REQUIRE(DasherBridge::capi_version() >= 1); // this build has the user-dir scan
+
+    const std::string user = make_fresh_user_dir();
+    DasherBridge bridge(data, user);
+    CHECK(bridge.get_training_path().empty()); // unrealized: defined as empty
+    bridge.set_screen_size(800, 600);
+
+    const std::string path = bridge.get_training_path();
+    CAPTURE(path);
+    REQUIRE_FALSE(path.empty());
+    const auto abs = std::filesystem::absolute(std::filesystem::path(path)).string();
+    // Trailing separator: a sibling dir sharing a name prefix must not pass.
+    const std::string user_prefix = std::filesystem::absolute(std::filesystem::path(user)).string() + "/";
+    CHECK(abs.rfind(user_prefix, 0) == 0);
+    const std::string name = std::filesystem::path(path).filename().string();
+    CHECK(name.rfind("training_", 0) == 0);
+    CHECK(name.compare(name.size() - 4, 4, ".txt") == 0);
+    // Root layout: no path component may be a "training" directory.
+    for (const auto& part : std::filesystem::path(path).parent_path())
+        CHECK(part != "training");
+}
+
+TEST_CASE("import training text reports success on a live engine") {
+    const std::string data = find_data_dir();
+    REQUIRE_FALSE(data.empty());
+
+    DasherBridge bridge(data, make_fresh_user_dir());
+    // The real measurement callback needs a Pango context (not initialised
+    // in this bare test binary — same reason as the cached-label test).
+    bridge.set_text_size_callback_for_tests([](const std::string& text, int font_size, int* w, int* h) {
+        *w = static_cast<int>(text.size()) * font_size / 2;
+        *h = font_size;
+        return 0;
+    });
+    bridge.set_screen_size(800, 600);
+    // Import trains the LIVE model only (persistence is the caller's job) —
+    // the contract here is the rc plus "the engine stays healthy and keeps
+    // rendering", not an observable model change (the load-at-startup
+    // behaviour is pinned engine-side in DasherCore's training tests).
+    CHECK(bridge.import_training_text("hello world this is a test") == 0);
+    CHECK(bridge.import_training_text("") == 0);
+    for (int i = 0; i < 3; i++)
+        bridge.frame(i * 16);
+    CHECK_FALSE(bridge.has_engine_error());
+}
+
 TEST_CASE("text-size callback is cached per label and size") {
     // DasherCore #56/v0.2.4: steady-state frames must issue zero measurement
     // callbacks (Windows measured 2,520 per window before the contract was

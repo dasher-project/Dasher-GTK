@@ -287,10 +287,16 @@ target_link_directories(Dasher PRIVATE ${GTK_LIBRARY_DIRS} ${GTKMM_LIBRARY_DIRS}
 # rather than only on cmake reconfigure.
 set(DATA_DIR ${CMAKE_SOURCE_DIR}/DasherCore/Data)
 
+# Absolute build-tree data path for RenderingCanvas::resolve_data_dir (issue
+# #83): dev binaries find Data/ regardless of the working directory they are
+# launched from. Installed copies fall back to <exe_dir>/Data (the portable
+# install layout puts the binary and Data/ side by side).
+target_compile_definitions(Dasher PRIVATE DASHER_GTK_BUILD_DATA_DIR="${CMAKE_BINARY_DIR}/Dasher/Data")
+
 add_custom_command(TARGET Dasher POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/Dasher/Data
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${DATA_DIR}/alphabets ${CMAKE_BINARY_DIR}/Dasher/Data
-    COMMAND ${CMAKE_COMMAND} -E copy_directory ${DATA_DIR}/colors ${CMAKE_BINARY_DIR}/Dasher/Data
+    # DasherCore #82 ended the colors/colours split — one colours/ set now.
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${DATA_DIR}/colours ${CMAKE_BINARY_DIR}/Dasher/Data
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${DATA_DIR}/training ${CMAKE_BINARY_DIR}/Dasher/Data
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/Dasher/Strings

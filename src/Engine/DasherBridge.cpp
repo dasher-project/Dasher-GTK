@@ -3,9 +3,11 @@
 #include "Analytics/EngineLogRingBuffer.h"
 #include <cstring>
 #include <iostream>
+#include <fstream>
+#include <filesystem>
 #include <glib.h>
 
-DasherBridge::DasherBridge(const std::string& data_dir, const std::string& user_dir) {
+DasherBridge::DasherBridge(const std::string& data_dir, const std::string& user_dir) : m_user_dir(user_dir) {
     m_start_time = std::chrono::steady_clock::now();
 
     char* error = nullptr;
@@ -40,6 +42,52 @@ DasherBridge::~DasherBridge() {
 
 void DasherBridge::set_screen_size(int width, int height) {
     if (m_ctx) dasher_set_screen_size(m_ctx, width, height);
+
+    // One-time, on first realization: cores older than CAPI version 1 never
+    // loaded user-dir training at startup (DasherCore#84) — split-dir
+    // frontends like this one lost all learning between sessions — so feed
+    // the accumulated files back through the import API. Version-gated: at
+    // >= 1 the engine's own scan already loaded them and a re-import would
+    // count every word twice. Retained per the engine's documented "MUST
+    // skip at >= 1" contract even though no core that exports
+    // dasher_capi_version can report 0 — it future-proofs running this
+    // frontend against a pre-#86 core via a swapped submodule pin.
+    if (m_ctx && !m_startup_training_checked) {
+        m_startup_training_checked = true;
+        if (dasher_capi_version() < 1 && !m_user_dir.empty()) {
+            // Only the CURRENT alphabet's training file — feeding every
+            // training_*.txt into the current model would train, say, the
+            // German corpus into the English LM (the engine's own scan
+            // filters by the alphabet's declared training file).
+            const char* own = dasher_get_training_path(m_ctx);
+            const std::string own_name = own ? std::filesystem::path(own).filename().string() : "";
+            if (!own_name.empty()) {
+                namespace fs = std::filesystem;
+                std::error_code ec;
+                for (const auto& entry : fs::directory_iterator(m_user_dir, ec)) {
+                    if (entry.path().filename().string() != own_name) continue;
+                    std::ifstream in(entry.path());
+                    std::string text((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
+                    if (!text.empty()) dasher_import_training_text(m_ctx, text.c_str());
+                }
+            }
+        }
+    }
+}
+
+std::string DasherBridge::get_training_path() const {
+    if (!m_ctx) return "";
+    const char* path = dasher_get_training_path(m_ctx);
+    return path ? std::string(path) : std::string();
+}
+
+int DasherBridge::import_training_text(const std::string& text) {
+    if (!m_ctx) return -1;
+    return dasher_import_training_text(m_ctx, text.c_str());
+}
+
+int DasherBridge::capi_version() {
+    return dasher_capi_version();
 }
 
 void DasherBridge::mouse_move(float x, float y) {

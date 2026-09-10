@@ -116,6 +116,22 @@ public:
     // result. Mirrors DasherApple's reset-to-defaults (#18) and Dasher-Windows.
     void reset_settings();
 
+    // ── Training data (DasherCore#84/#85/#86) ──
+    // Absolute path of the current alphabet's engine-owned training file —
+    // the single file adaptive learning appends to and the Preferences
+    // training UI reads/exports/resets (<userDir>/training_<alphabet>.txt
+    // at the user-dir ROOT). Empty when the engine cannot report one
+    // (unrealized, or the alphabet declares no training file). Valid after
+    // set_screen_size realizes the engine; the file need not exist yet.
+    std::string get_training_path() const;
+    // Feed text into the live language model (dasher_import_training_text).
+    // Returns 0 on success, -1 on failure.
+    int import_training_text(const std::string& text);
+    // C API version of the linked engine. >= 1 means the startup training
+    // load already scans the user dir (DasherCore#86), so compatibility
+    // re-imports must be skipped or text would be counted twice.
+    static int capi_version();
+
     // RFC 0009 A2: sticky error flag — set once any C API call has failed;
     // only destroy + create clears it. Frontends report it and may recreate.
     bool has_engine_error() const;
@@ -157,6 +173,10 @@ public:
 
   private:
     dasher_ctx* m_ctx = nullptr;
+    std::string m_user_dir;
+    // One-shot flag: the pre-CAPI-1 training re-import (see
+    // set_screen_size) must run at most once per bridge.
+    bool m_startup_training_checked = false;
     std::function<void(int, const std::string&)> m_output_callback;
 
     static void output_callback_trampoline(int event_type, const char* text, void* user_data);
