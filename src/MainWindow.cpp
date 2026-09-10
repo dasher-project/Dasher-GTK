@@ -14,6 +14,77 @@
 #include <cstdio>
 #include <memory>
 
+// RFC 0019 helper — normalise for COMPARISON only: the engine emits CRLF
+// newlines, GtkTextView holds LF. Stripping \r from both sides keeps the
+// pane-vs-engine equality test (origin discrimination) stable; seeds send
+// the pane's text as-is.
+static std::string editor_cmp_text(const std::string& s) {
+    std::string out;
+    out.reserve(s.size());
+    for (char c : s)
+        if (c != '\r') out.push_back(c);
+    return out;
+}
+
+// RFC 0019 (the editor contract): the output TextView is editable and its
+// user edits are synchronised with the engine.GtkTextBuffer offsets count
+// CODEPOINTS; the engine counts UTF-8 BYTES — every offset crossing that
+// boundary goes through DasherBridge::byte_offset_from_codepoints.
+// IME note: GTK preedit lives in the IM context, not the buffer — insert
+// signals fire on COMMIT, so composition deferral (clause 2) is native.
+void MainWindow::wire_editor_sync() {
+    auto buffer = m_text_view.get_buffer();
+
+    // Clause 2 — user edits seed the engine. Immediate, no debounce: engine
+    // pushes arrive on every output change (the OnBufferChange connect in
+    // the constructor), so a debounced edit would be clobbered before the
+    // timer fired. Equality
+    // with the engine buffer means an engine push landing (nothing to seed);
+    // a difference is a user edit (same trade as Dasher-Windows#56). A failed
+    // seed is surfaced, not swallowed — the pane and engine then diverge until
+    // the next successful seed, and the user should know why predictions
+    // stopped following (issue #85 data-loss class).
+    buffer->signal_changed().connect([this, buffer]() {
+        if (m_suppress_editor_sync) return;
+        auto bridge = m_canvas.bridge;
+        if (!bridge) return;
+        const std::string pane = buffer->get_text();
+        if (editor_cmp_text(pane) == editor_cmp_text(bridge->get_output_text())) return;
+        const int caret_chars = buffer->property_cursor_position().get_value();
+        const int caret_bytes = DasherBridge::byte_offset_from_codepoints(pane, caret_chars);
+        if (caret_bytes < 0) {
+            m_message_overlay.show_message(_("Could not sync your edit with the engine — it may be overwritten"));
+        } else {
+            // The seed's event-2 echo lands synchronously inside this call;
+            // flag it so speak-on-space doesn't fire for our own seed (loop-3).
+            m_seed_push_in_flight = true;
+            const int rc = bridge->seed_buffer(pane, caret_bytes);
+            m_seed_push_in_flight = false;
+            if (rc != 0)
+                m_message_overlay.show_message(_("Could not sync your edit with the engine — it may be overwritten"));
+        }
+    });
+
+    // Clause 3 — pure caret moves (text already in sync) re-anchor the model:
+    // v5's click-a-word-and-the-canvas-follows behaviour. The caret is in PANE
+    // coordinates (LF, codepoints); the engine's buffer may still hold CRLF
+    // (engine-written newlines / raw file seeds), so the byte offset is
+    // MAPPED across the CR difference — a direct pane-bytes conversion would
+    // anchor N bytes early per preceding CR (review-loop 2).
+    buffer->property_cursor_position().signal_changed().connect([this, buffer]() {
+        if (m_suppress_editor_sync) return;
+        auto bridge = m_canvas.bridge;
+        if (!bridge) return;
+        const std::string engine = bridge->get_output_text();
+        if (engine.empty()) return;
+        const std::string pane = buffer->get_text();
+        if (editor_cmp_text(pane) != editor_cmp_text(engine)) return;
+        const int caret_chars = buffer->property_cursor_position().get_value();
+        const int caret_bytes = DasherBridge::engine_byte_offset(engine, pane, caret_chars);
+        if (caret_bytes >= 0 && caret_bytes != bridge->get_offset()) bridge->set_offset(caret_bytes);
+    });
+}
+
 MainWindow::MainWindow()
     // Resolve parameter keys by their stable enum names rather than hardcoding
     // numeric indices: Dasher::Parameter values are an internal detail of
@@ -227,14 +298,53 @@ MainWindow::MainWindow()
                 auto file = dialog->open_finish(result);
                 if (!file) return;
                 auto stream = file->read();
-                gsize size = 0;
-                auto bytes = stream->read_bytes(1024 * 1024, Glib::RefPtr<Gio::Cancellable>());
-                auto data = bytes->get_data(size);
-                std::string contents(static_cast<const char*>(data), size);
+                // Read ALL of it (a single read_bytes call can short-read),
+                // capped at 4 MiB — beyond that the per-keystroke seed cost
+                // becomes the bottleneck and truncating WITH a notice beats
+                // destroying the tail silently on Save (review-loop 2).
+                std::string contents;
+                bool truncated = false;
+                {
+                    char chunk[65536];
+                    while (true) {
+                        const gssize n = stream->read(chunk, sizeof(chunk));
+                        if (n <= 0) break;
+                        // Check BEFORE appending: the cut then lands at the
+                        // cap exactly, not cap + chunk − 1 (loop-3).
+                        if (contents.size() + static_cast<std::size_t>(n) > 4u * 1024 * 1024) {
+                            truncated = true;
+                            break;
+                        }
+                        contents.append(chunk, static_cast<std::size_t>(n));
+                    }
+                }
                 stream->close();
-                m_canvas.bridge->reset_output_text();
-                // Shadow buffer clears via output event 2 (DasherCore v0.2.3).
-                m_text_view.get_buffer()->set_text(contents);
+                if (truncated) {
+                    m_message_overlay.show_message(_("File truncated at 4 MB — only the first part is loaded"));
+                }
+                // RFC 0019 clause 2: an opened file must reach the ENGINE,
+                // anchored at its end (continue-writing is the point of
+                // Open) — not just the pane, or the next engine push would
+                // clobber it (issue #85). The seed emits event 2, which
+                // (since the canvas rebuilds its shadow from the engine
+                // buffer on event 2) synchronously applies the text to the
+                // pane through the guarded push path; cursor placement at
+                // the end happens under the guard so it cannot re-seed. A
+                // failed seed leaves both sides untouched and says so.
+                m_seed_push_in_flight = true;
+                const int seed_rc = m_canvas.bridge->seed_buffer(contents, static_cast<int>(contents.size()));
+                m_seed_push_in_flight = false;
+                if (seed_rc == 0) {
+                    m_suppress_editor_sync = true;
+                    m_text_view.get_buffer()->place_cursor(m_text_view.get_buffer()->end());
+                    m_suppress_editor_sync = false;
+                } else {
+                    m_message_overlay.show_message(_("Could not load the file into the engine"));
+                }
+                // Note: the pane holds LF-only (the push boundary strips CR),
+                // so Open-then-Save rewrites a CRLF file with LF endings —
+                // one coordinate system by design (RFC 0019); document with
+                // the RFC's clause-7 cap when it lands.
             } catch (const Glib::Error& e) {
                 m_message_overlay.show_message(std::string(_("Failed to open: ")) + std::string(e.what()));
             }
@@ -457,19 +567,44 @@ MainWindow::MainWindow()
     });
 
     m_canvas.OnBufferChange.connect([this](const std::string& text) {
-        m_text_view.get_buffer()->set_text(text);
-        if (m_speech_switch.get_active() && m_tts && m_tts->is_available()) {
-            if (!text.empty() && text.back() == ' ') {
-                std::string last_word;
-                auto pos = text.rfind(' ', text.size() - 2);
-                if (pos == std::string::npos) {
-                    last_word = text.substr(0, text.size() - 1);
-                } else {
-                    last_word = text.substr(pos + 1, text.size() - pos - 2);
-                }
-                if (!last_word.empty()) {
-                    m_tts->stop();
-                    m_tts->speak(last_word);
+        // RFC 0019 clause 4 — engine-origin pushes apply with the loop-guard
+        // raised and the cursor preserved: at the end follows growth (zooming
+        // keeps the caret with the new text), otherwise clamped in place.
+        // Never a bare set_text: that is what silently destroyed user edits
+        // (issue #85). The pushed text is CR-stripped HERE so the pane holds
+        // LF-only and every caret/length below shares one coordinate system;
+        // the comparison against the engine (which emits CRLF) still strips.
+        const std::string text_lf = editor_cmp_text(text);
+        auto buffer = m_text_view.get_buffer();
+        const std::string current = buffer->get_text();
+        if (current != text_lf) {
+            m_suppress_editor_sync = true;
+            const int old_caret = buffer->property_cursor_position().get_value();
+            const int old_char_count = g_utf8_strlen(current.c_str(), -1);
+            buffer->set_text(text_lf);
+            const int new_chars = static_cast<int>(g_utf8_strlen(text_lf.c_str(), -1));
+            const int new_caret = old_caret >= old_char_count ? new_chars : std::min(old_caret, new_chars);
+            buffer->place_cursor(buffer->get_iter_at_offset(new_caret));
+            m_suppress_editor_sync = false;
+
+            // Speak-on-space lives INSIDE the changed branch: event-2 pushes
+            // now arrive with the full (unchanged) text, and speaking those
+            // would echo the user's own pane edits back at them (loop-2).
+            // Seed echoes (flagged below/above) are excluded too — opening a
+            // file ending in a space must not speak its last word (loop-3).
+            if (!m_seed_push_in_flight && m_speech_switch.get_active() && m_tts && m_tts->is_available()) {
+                if (!text_lf.empty() && text_lf.back() == ' ') {
+                    std::string last_word;
+                    auto pos = text_lf.rfind(' ', text_lf.size() - 2);
+                    if (pos == std::string::npos) {
+                        last_word = text_lf.substr(0, text_lf.size() - 1);
+                    } else {
+                        last_word = text_lf.substr(pos + 1, text_lf.size() - pos - 2);
+                    }
+                    if (!last_word.empty()) {
+                        m_tts->stop();
+                        m_tts->speak(last_word);
+                    }
                 }
             }
         }
@@ -494,6 +629,7 @@ MainWindow::MainWindow()
     m_text_view.set_valign(Gtk::Align::FILL);
     m_text_view.set_margin(5);
     m_text_view.add_css_class("dasher-output");
+    wire_editor_sync();
 
     m_paste_button.signal_clicked().connect([this]() { m_text_view.activate_action("clipboard.paste"); });
     m_copy_button.signal_clicked().connect([this]() { m_text_view.activate_action("clipboard.copy"); });
