@@ -108,6 +108,13 @@ class MainWindow : public Gtk::Window {
     std::unique_ptr<TtsService> m_tts;
     bool m_direct_mode_active = false;
 
+    // ── Editor contract (RFC 0019) ──
+    // True while a programmatic (engine-origin) set_text is being applied to
+    // the output TextView — the user-edit handlers must not feed it back into
+    // the engine. See wire_editor_sync() in MainWindow.cpp.
+    bool m_suppress_editor_sync = false;
+    void wire_editor_sync();
+
     // Cleared in the destructor before any teardown. Cross-thread callbacks
     // (DirectModeService's failure callback runs on its worker) capture a
     // shared copy and check it inside main-thread idles, so an idle queued

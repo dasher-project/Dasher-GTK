@@ -14,6 +14,60 @@
 #include <cstdio>
 #include <memory>
 
+// RFC 0019 helper — normalise for COMPARISON only: the engine emits CRLF
+// newlines, GtkTextView holds LF. Stripping \r from both sides keeps the
+// pane-vs-engine equality test (origin discrimination) stable; seeds send
+// the pane's text as-is.
+static std::string editor_cmp_text(const std::string& s) {
+    std::string out;
+    out.reserve(s.size());
+    for (char c : s)
+        if (c != '\r') out.push_back(c);
+    return out;
+}
+
+// RFC 0019 (the editor contract): the output TextView is editable and its
+// user edits are synchronised with the engine.GtkTextBuffer offsets count
+// CODEPOINTS; the engine counts UTF-8 BYTES — every offset crossing that
+// boundary goes through DasherBridge::byte_offset_from_codepoints.
+// IME note: GTK preedit lives in the IM context, not the buffer — insert
+// signals fire on COMMIT, so composition deferral (clause 2) is native.
+void MainWindow::wire_editor_sync() {
+    auto buffer = m_text_view.get_buffer();
+
+    // Clause 2 — user edits seed the engine. Immediate, no debounce: engine
+    // pushes arrive on every output change (OnBufferChange above), so a
+    // debounced edit would be clobbered before the timer fired. Equality
+    // with the engine buffer means an engine push landing (nothing to seed);
+    // a difference is a user edit (same trade as Dasher-Windows#56).
+    buffer->signal_changed().connect([this, buffer]() {
+        if (m_suppress_editor_sync) return;
+        auto bridge = m_canvas.bridge;
+        if (!bridge) return;
+        const std::string pane = buffer->get_text();
+        if (editor_cmp_text(pane) == editor_cmp_text(bridge->get_output_text())) return;
+        const int caret_chars = buffer->property_cursor_position().get_value();
+        const int caret_bytes = DasherBridge::byte_offset_from_codepoints(pane, caret_chars);
+        if (caret_bytes >= 0) bridge->seed_buffer(pane, caret_bytes);
+    });
+
+    // Clause 3 — pure caret moves (text already in sync) re-anchor the model:
+    // v5's click-a-word-and-the-canvas-follows behaviour.
+    buffer->property_cursor_position().signal_changed().connect([this, buffer]() {
+        if (m_suppress_editor_sync) return;
+        auto bridge = m_canvas.bridge;
+        if (!bridge) return;
+        const std::string engine = bridge->get_output_text();
+        if (engine.empty()) return;
+        const std::string pane = buffer->get_text();
+        if (editor_cmp_text(pane) != editor_cmp_text(engine)) return;
+        const int caret_chars = buffer->property_cursor_position().get_value();
+        const int caret_bytes = DasherBridge::byte_offset_from_codepoints(engine, caret_chars);
+        if (caret_bytes >= 0 && caret_bytes != bridge->get_offset())
+            bridge->set_offset(caret_bytes);
+    });
+}
+
 MainWindow::MainWindow()
     // Resolve parameter keys by their stable enum names rather than hardcoding
     // numeric indices: Dasher::Parameter values are an internal detail of
@@ -234,7 +288,16 @@ MainWindow::MainWindow()
                 stream->close();
                 m_canvas.bridge->reset_output_text();
                 // Shadow buffer clears via output event 2 (DasherCore v0.2.3).
+                // RFC 0019 clause 2: an opened file must reach the ENGINE too,
+                // anchored at its end (continue-writing is the point of
+                // Open) — not just the pane, or the next engine push would
+                // clobber it (issue #85). Suppressed so the sync handlers
+                // don't double-seed at cursor-0.
+                m_suppress_editor_sync = true;
                 m_text_view.get_buffer()->set_text(contents);
+                m_text_view.get_buffer()->place_cursor(m_text_view.get_buffer()->end());
+                m_suppress_editor_sync = false;
+                m_canvas.bridge->seed_buffer(contents, static_cast<int>(contents.size()));
             } catch (const Glib::Error& e) {
                 m_message_overlay.show_message(std::string(_("Failed to open: ")) + std::string(e.what()));
             }
@@ -457,7 +520,25 @@ MainWindow::MainWindow()
     });
 
     m_canvas.OnBufferChange.connect([this](const std::string& text) {
-        m_text_view.get_buffer()->set_text(text);
+        // RFC 0019 clause 4 — engine-origin pushes apply with the loop-guard
+        // raised and the cursor preserved: at the end follows growth (zooming
+        // keeps the caret with the new text), otherwise clamped in place.
+        // Never a bare set_text: that is what silently destroyed user edits
+        // (issue #85).
+        auto buffer = m_text_view.get_buffer();
+        const std::string current = buffer->get_text();
+        if (editor_cmp_text(current) != editor_cmp_text(text)) {
+            m_suppress_editor_sync = true;
+            const int old_caret = buffer->property_cursor_position().get_value();
+            const int old_chars = static_cast<int>(g_utf8_strlen(current.c_str(), -1));
+            buffer->set_text(text);
+            const int new_chars = static_cast<int>(g_utf8_strlen(text.c_str(), -1));
+            const int new_caret = old_caret >= old_chars
+                                      ? new_chars
+                                      : std::min(old_caret, new_chars);
+            buffer->place_cursor(buffer->get_iter_at_offset(new_caret));
+            m_suppress_editor_sync = false;
+        }
         if (m_speech_switch.get_active() && m_tts && m_tts->is_available()) {
             if (!text.empty() && text.back() == ' ') {
                 std::string last_word;
@@ -494,6 +575,7 @@ MainWindow::MainWindow()
     m_text_view.set_valign(Gtk::Align::FILL);
     m_text_view.set_margin(5);
     m_text_view.add_css_class("dasher-output");
+    wire_editor_sync();
 
     m_paste_button.signal_clicked().connect([this]() { m_text_view.activate_action("clipboard.paste"); });
     m_copy_button.signal_clicked().connect([this]() { m_text_view.activate_action("clipboard.copy"); });

@@ -52,6 +52,20 @@ public:
     // (v5's New went through SetBuffer(0), which reset context too).
     void reset();
 
+    // ── Editor contract (RFC 0019) ──
+    // Re-anchor the model at a buffer position (v5's click-to-retarget).
+    // offset is a UTF-8 BYTE position — convert widget offsets with
+    // byte_offset_from_codepoints below. Returns 0 ok / -1 fail.
+    int set_offset(int offset);
+    // Replace the edit buffer with user-edited text, anchored at caret_offset
+    // (UTF-8 bytes). Predictions continue from the caret.
+    int seed_buffer(const std::string& text, int caret_offset);
+    // Current engine offset (UTF-8 bytes in the buffer); -1 if not realized.
+    int get_offset() const;
+    // GtkTextBuffer offsets count CODEPOINTS (gtkmm iter/property values);
+    // the engine counts UTF-8 bytes. Convert here. Returns the byte offset.
+    static int byte_offset_from_codepoints(const std::string& utf8_text, int codepoint_offset);
+
     std::string get_alphabet_id() const;
     void set_alphabet_id(const std::string& id);
     int get_alphabet_count() const;

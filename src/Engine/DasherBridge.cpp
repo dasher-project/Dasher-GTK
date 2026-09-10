@@ -150,6 +150,25 @@ void DasherBridge::reset() {
     // dasher_reset clears the engine's rate window itself; nothing extra to do.
 }
 
+int DasherBridge::set_offset(int offset) {
+    if (!m_ctx) return -1;
+    return dasher_set_offset(m_ctx, offset);
+}
+
+int DasherBridge::seed_buffer(const std::string& text, int caret_offset) {
+    if (!m_ctx) return -1;
+    return dasher_seed_buffer(m_ctx, text.c_str(), caret_offset);
+}
+
+int DasherBridge::get_offset() const {
+    if (!m_ctx) return -1;
+    return dasher_get_offset(m_ctx);
+}
+
+int DasherBridge::byte_offset_from_codepoints(const std::string& utf8_text, int codepoint_offset) {
+    return dasher_byte_offset_from_codepoints(utf8_text.c_str(), codepoint_offset);
+}
+
 std::string DasherBridge::get_alphabet_id() const {
     if (!m_ctx) return "";
     const char* id = dasher_get_alphabet_id(m_ctx);

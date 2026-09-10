@@ -157,6 +157,39 @@ TEST_CASE("training path resolves into the user dir at the engine layout") {
         CHECK(part != "training");
 }
 
+TEST_CASE("editor contract: seed lands the caret on the byte offset; offset re-anchors; reset clears") {
+    // RFC 0019 via the GTK bridge surface, mirroring Dasher-Windows#56's
+    // engine-integration test. Clause 2 — seed text + caret (UTF-8 BYTES);
+    // clause 3 — set_offset re-anchors; clause 5 — reset (New) clears buffer
+    // AND offset.
+    const std::string data = find_data_dir();
+    REQUIRE_FALSE(data.empty());
+
+    DasherBridge bridge(data, make_fresh_user_dir());
+    bridge.set_screen_size(800, 600);
+
+    // "héllo wörld": é/ö are 1 codepoint each but 2 UTF-8 bytes. GtkTextBuffer
+    // offsets count codepoints; the engine counts bytes — the exact boundary
+    // byte_offset_from_codepoints exists to cross.
+    const std::string text = "héllo wörld";
+    // codepoint 6 (after "héllo ") is byte 7: h=0 é=1,2 l=3 l=4 o=5 space=6.
+    REQUIRE(DasherBridge::byte_offset_from_codepoints(text, 6) == 7);
+    REQUIRE(bridge.seed_buffer(text, 7) == 0);
+    CHECK(bridge.get_offset() == 7);
+
+    // Pure caret move (clause 3): codepoint 7 (after "w", i.e. on the 2-byte
+    // ö) is byte 8: h=0 é=1,2 l=3 l=4 o=5 space=6 w=7 ö=8,9.
+    const int mid = DasherBridge::byte_offset_from_codepoints(text, 7);
+    REQUIRE(mid == 8);
+    REQUIRE(bridge.set_offset(mid) == 0);
+    CHECK(bridge.get_offset() == 8);
+
+    // New (clause 5): buffer and offset both reset.
+    bridge.reset();
+    CHECK(bridge.get_output_text().empty());
+    CHECK(bridge.get_offset() == 0);
+}
+
 TEST_CASE("import training text reports success on a live engine") {
     const std::string data = find_data_dir();
     REQUIRE_FALSE(data.empty());
