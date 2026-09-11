@@ -244,7 +244,6 @@ TEST_CASE("import training text reports success on a live engine") {
     CHECK_FALSE(bridge.has_engine_error());
 }
 
-
 TEST_CASE("live repro: retired Default alphabet heals and drives (DasherCore#88)") {
     // From a live report ("no text goes into the output area"): the user's
     // settings held AlphabetID="Default" — the bare a-z emergency fallback,
@@ -264,7 +263,9 @@ TEST_CASE("live repro: retired Default alphabet heals and drives (DasherCore#88)
 
     DasherBridge bridge(data, user);
     bridge.set_text_size_callback_for_tests([](const std::string& t, int fs, int* w, int* h) {
-        *w = (int)t.size() * fs / 2; *h = fs; return 0;
+        *w = (int)t.size() * fs / 2;
+        *h = fs;
+        return 0;
     });
     bridge.set_screen_size(800, 600);
 
