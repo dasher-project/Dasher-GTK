@@ -127,6 +127,24 @@ msgstr "Kopioi kaikki"
 msgid "Copy commands"
 msgstr "Kopioi komennot"
 
+msgid "Could not load the file into the engine"
+msgstr ""
+
+msgid "Could not open the selected file."
+msgstr ""
+
+msgid "Could not read the selected file."
+msgstr ""
+
+msgid "Could not sync your edit with the engine — it may be overwritten"
+msgstr ""
+
+msgid "Could not write the export file."
+msgstr ""
+
+msgid "Could not write the training data."
+msgstr ""
+
 msgid "Current Calibration"
 msgstr "Nykyinen kalibrointi"
 
@@ -217,8 +235,14 @@ msgstr "Tallennus epäonnistui"
 msgid "Fast"
 msgstr "Nopeasti"
 
+msgid "File truncated at 4 MB — only the first part is loaded"
+msgstr ""
+
 msgid "Flatpak or AppImage build can't provide.\n\n"
 msgstr ""
+
+msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
+msgstr "Vapauta näppäimistö kellumaan sallimalla Dasherin näkyä muiden sovellusten päällä ja napauta sitten Float uudelleen."
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
 msgstr "Täysi käyttöoikeus antaa Dasherille mahdollisuuden puhua kirjoittamasi ja muistaa koulutuksesi. Näppäimistö toimii perussyötöissä ilman sitäkin."
@@ -249,6 +273,12 @@ msgstr "Tuo asetukset"
 
 msgid "Import Training Text"
 msgstr "Tuo harjoitusteksti"
+
+msgid "Imported %1 — applies fully on next launch"
+msgstr ""
+
+msgid "Imported %1 of training text"
+msgstr ""
 
 msgid "Increase Speed"
 msgstr "Lisää nopeutta"
@@ -331,6 +361,9 @@ msgstr "Poistu pelitilasta"
 msgid "Light"
 msgstr "Valo"
 
+msgid "Loaded %1 characters"
+msgstr ""
+
 msgid "Locale"
 msgstr "Sijainti"
 
@@ -353,6 +386,12 @@ msgid "No settings available for this section."
 msgstr "Tälle osiolle ei ole käytettävissä asetuksia."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "No training data to export yet"
+msgstr ""
+
+msgid "No user training data yet"
 msgstr ""
 
 msgid "Nothing to save"
@@ -426,6 +465,9 @@ msgstr ""
 
 msgid "Prefs"
 msgstr ""
+
+msgid "Preparing Dasher…"
+msgstr "Valmistellaan Dasheria…"
 
 msgid "Privacy"
 msgstr "Tietosuoja"
@@ -577,11 +619,23 @@ msgstr "teksti"
 msgid "Text files"
 msgstr "Tekstitiedostot"
 
+msgid "That file already is your training data."
+msgstr ""
+
 msgid "the app you are pointing at (needs ydotool)"
 msgstr ""
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 msgstr "Virheenkorjausnäkymä piirtää vihreän paneelin kankaan vasempaan yläkulmaan, jossa näkyvät reaaliaikaisten kosketustapahtumien määrät ja viimeksi raportoidut arvot (x, y). Kun pidät painettuna, sinun pitäisi nähdä touch.began ja sitten touch.moved muuttuvilla koordinaateilla katsellessasi ympärillesi."
+
+msgid "The file is too large (over 10 MB) to import as training text."
+msgstr ""
+
+msgid "The selected file is empty."
+msgstr ""
+
+msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
+msgstr ""
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 msgstr "Tämä poistaa kertyneet harjoitustietosi. Kielimalli palautuu oletusasetuksiin seuraavan käynnistyksen yhteydessä. Tätä ei voi perua."
@@ -604,8 +658,44 @@ msgstr ""
 msgid "Training"
 msgstr "Koulutus"
 
+msgid "Current training data: {0} KB"
+msgstr "Nykyiset harjoitustiedot: {0} kt"
+
 msgid "Training Data"
 msgstr "Harjoitustiedot"
+
+msgid "Training data deleted — restart Dasher to fully apply"
+msgstr ""
+
+msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
+msgstr "Tuo lisää tekstiä kielimalliin ja kertyneisiin harjoitustietoihisi (säilytetään uudelleenkäynnistysten aikana). Vienti tallentaa harjoitustietosi varmuuskopiointia tai siirtoa varten. Reset poistaa kaikki käyttäjien harjoitustiedot – malli palaa sisäänrakennetuille oletusasetuksiin seuraavan käynnistyksen yhteydessä."
+
+msgid "Training data exported."
+msgstr ""
+
+msgid "Export Training Data"
+msgstr "Vie koulutustiedot"
+
+msgid "Exported to {0}"
+msgstr "Vietiin kohteeseen {0}"
+
+msgid "{0} failed: {1}"
+msgstr "{0} epäonnistui: {1}"
+
+msgid "Imported {0} KB of training text"
+msgstr "Tuotu {0} kt harjoitustekstiä"
+
+msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
+msgstr "Tuotu {0} kt – sovelletaan kokonaan seuraavan julkaisun yhteydessä (malli palautettiin {1})"
+
+msgid "Training is not available yet — try again once the canvas has rendered."
+msgstr ""
+
+msgid "Training data deleted — the model returns to its built-in defaults on next launch"
+msgstr "Harjoitustiedot poistettu – malli palaa sisäänrakennettuun oletusasetuksiinsa seuraavan käynnistyksen yhteydessä"
+
+msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
+msgstr "Harjoitustiedot poistettu mahdollisuuksien mukaan – {0} kohde(tta) epäonnistui; paina Reset uudelleen yrittääksesi uudelleen"
 
 msgid "Turbo"
 msgstr ""

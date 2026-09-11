@@ -280,7 +280,7 @@ void PreferencesWindow::rebuild_sections() {
             row->set_margin_top(4);
             row->set_margin_bottom(4);
 
-            auto* name_label = Gtk::make_managed<Gtk::Label>(_("Training data"));
+            auto* name_label = Gtk::make_managed<Gtk::Label>(_("Training Data"));
             name_label->set_halign(Gtk::Align::START);
             name_label->set_hexpand(true);
             row->append(*name_label);
@@ -291,16 +291,18 @@ void PreferencesWindow::rebuild_sections() {
             row->append(*m_training_size_label);
 
             row->append(*Gtk::make_managed<PopoverMenuButtonInfo>(
-                "Dasher learns from what you type. Import adds text to the model and your "
-                "accumulated training data; Export saves it for backup or transfer to "
-                "another device; Reset deletes it (restart Dasher to fully apply)."));
+                // Catalogue msgid (33 locales) — do not reword locally; the
+                // reset nuance lives in the dialog detail + status strings.
+                _("Import adds text to the language model (appends to existing learning). Export saves your "
+                  "accumulated training data for backup or transfer. Reset deletes custom training data — the model "
+                  "returns to its built-in defaults on next launch.")));
 
             section->append(*row);
 
             auto* btns = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::HORIZONTAL, 8);
-            auto* import_btn = Gtk::make_managed<Gtk::Button>(_("Import…"));
-            m_training_export_btn = Gtk::make_managed<Gtk::Button>(_("Export…"));
-            m_training_reset_btn = Gtk::make_managed<Gtk::Button>(_("Reset"));
+            auto* import_btn = Gtk::make_managed<Gtk::Button>(_("Import Training Text"));
+            m_training_export_btn = Gtk::make_managed<Gtk::Button>(_("Export Training Text"));
+            m_training_reset_btn = Gtk::make_managed<Gtk::Button>(_("Reset Training Data"));
             btns->append(*import_btn);
             btns->append(*m_training_export_btn);
             btns->append(*m_training_reset_btn);
@@ -316,7 +318,7 @@ void PreferencesWindow::rebuild_sections() {
 
             import_btn->signal_clicked().connect([this]() {
                 auto dialog = Gtk::FileDialog::create();
-                dialog->set_title(_("Import training text"));
+                dialog->set_title(_("Import Training Text"));
                 auto filter = Gtk::FileFilter::create();
                 filter->set_name(_("Text files"));
                 filter->add_pattern("*.txt");
@@ -446,7 +448,7 @@ void PreferencesWindow::rebuild_sections() {
                 const std::string training = m_bridge->get_training_path();
                 if (training.empty() || !std::filesystem::exists(training)) return;
                 auto dialog = Gtk::FileDialog::create();
-                dialog->set_title(_("Export training data"));
+                dialog->set_title(_("Export Training Text"));
                 dialog->set_initial_name("dasher_training.txt");
                 dialog->save(*this, [this, dialog, training](const Glib::RefPtr<Gio::AsyncResult>& result) {
                     try {
@@ -473,15 +475,16 @@ void PreferencesWindow::rebuild_sections() {
             });
 
             m_training_reset_btn->signal_clicked().connect([this]() {
-                auto dialog = Gtk::AlertDialog::create(_("Reset training data?"));
-                // Copy is deliberately careful: the files are deleted, but
-                // text typed since the last context switch is still in the
-                // engine's pending buffer and gets flushed back at exit
-                // (DasherCore#87 — needs an engine dasher_reset_training
-                // before a full-reset promise is honest).
-                dialog->set_detail("This deletes your accumulated training data for every "
-                                   "alphabet. Predictions keep the influence of very recent "
-                                   "typing.");
+                auto dialog = Gtk::AlertDialog::create(_("Reset Training Data?"));
+                // Catalogue key this_deletes_your_accumulated_training_data_for_every_
+                // alphab… (the honest DasherCore#87 variant — English-only until the
+                // next translate batch). Copy is deliberately careful: the files are
+                // deleted, but text typed since the last context switch is still in
+                // the engine's pending buffer and gets flushed back at exit until the
+                // engine grows dasher_reset_training.
+                dialog->set_detail(_("This deletes your accumulated training data for every "
+                                     "alphabet. Predictions keep the influence of very recent "
+                                     "typing."));
                 dialog->set_buttons({"_Cancel", "_Reset"});
                 dialog->set_default_button(0);
                 dialog->set_cancel_button(0);

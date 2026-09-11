@@ -127,6 +127,24 @@ msgstr "എല്ലാം പകർത്തുക"
 msgid "Copy commands"
 msgstr "കമാൻഡുകൾ പകർത്തുക"
 
+msgid "Could not load the file into the engine"
+msgstr ""
+
+msgid "Could not open the selected file."
+msgstr ""
+
+msgid "Could not read the selected file."
+msgstr ""
+
+msgid "Could not sync your edit with the engine — it may be overwritten"
+msgstr ""
+
+msgid "Could not write the export file."
+msgstr ""
+
+msgid "Could not write the training data."
+msgstr ""
+
 msgid "Current Calibration"
 msgstr "നിലവിലെ കാലിബ്രേഷൻ"
 
@@ -217,8 +235,14 @@ msgstr "സംരക്ഷിക്കുന്നതിൽ പരാജയപ�
 msgid "Fast"
 msgstr "വേഗത"
 
+msgid "File truncated at 4 MB — only the first part is loaded"
+msgstr ""
+
 msgid "Flatpak or AppImage build can't provide.\n\n"
 msgstr ""
+
+msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
+msgstr "കീബോർഡ് ഫ്ലോട്ട് ചെയ്യാൻ, Dasher-ന് മറ്റ് ആപ്പുകൾക്ക് മുകളിൽ കാണിക്കാൻ അനുവദിക്കുക, തുടർന്ന് Float വീണ്ടും ടാപ്പ് ചെയ്യുക."
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
 msgstr "പൂർണ്ണ ആക്‌സസ് ഡാഷറിനെ നിങ്ങൾ എഴുതുന്നത് സംസാരിക്കാനും നിങ്ങളുടെ പരിശീലനം ഓർമ്മിക്കാനും അനുവദിക്കുന്നു. കീബോർഡ് ഇല്ലാതെ തന്നെ അടിസ്ഥാന എൻട്രിക്ക് ഇപ്പോഴും പ്രവർത്തിക്കുന്നു."
@@ -249,6 +273,12 @@ msgstr "ക്രമീകരണങ്ങൾ ഇറക്കുമതി ചെ�
 
 msgid "Import Training Text"
 msgstr "പരിശീലന വാചകം ഇറക്കുമതി ചെയ്യുക"
+
+msgid "Imported %1 — applies fully on next launch"
+msgstr ""
+
+msgid "Imported %1 of training text"
+msgstr ""
 
 msgid "Increase Speed"
 msgstr "വേഗത കൂട്ടുക"
@@ -331,6 +361,9 @@ msgstr "ഗെയിം മോഡ് വിടുക"
 msgid "Light"
 msgstr "വെളിച്ചം"
 
+msgid "Loaded %1 characters"
+msgstr ""
+
 msgid "Locale"
 msgstr "സ്ഥലം"
 
@@ -353,6 +386,12 @@ msgid "No settings available for this section."
 msgstr "ഈ വിഭാഗത്തിന് ക്രമീകരണങ്ങളൊന്നും ലഭ്യമല്ല."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "No training data to export yet"
+msgstr ""
+
+msgid "No user training data yet"
 msgstr ""
 
 msgid "Nothing to save"
@@ -426,6 +465,9 @@ msgstr ""
 
 msgid "Prefs"
 msgstr "മുൻഗണനകൾ"
+
+msgid "Preparing Dasher…"
+msgstr "Dasher തയ്യാറാകുകയാണ്…"
 
 msgid "Privacy"
 msgstr "സ്വകാര്യത"
@@ -577,11 +619,23 @@ msgstr "വാചകം"
 msgid "Text files"
 msgstr "ടെക്സ്റ്റ് ഫയലുകൾ"
 
+msgid "That file already is your training data."
+msgstr ""
+
 msgid "the app you are pointing at (needs ydotool)"
 msgstr ""
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 msgstr "ഡീബഗ് ഓവർലേ, ക്യാൻവാസിന്റെ മുകളിൽ ഇടതുവശത്ത് ഒരു പച്ച പാനൽ വരയ്ക്കുന്നു, അതിൽ തത്സമയ ടച്ച് ഇവന്റ് എണ്ണങ്ങളും അവസാനം റിപ്പോർട്ട് ചെയ്തതും (x, y) കാണിക്കുന്നു. നിങ്ങൾ പിഞ്ച് ചെയ്ത് പിടിക്കുമ്പോൾ, ചുറ്റും നോക്കുമ്പോൾ മാറുന്ന കോർഡിനേറ്റുകളോടെ touch.began, തുടർന്ന് touch.moved എന്നിവ കാണും."
+
+msgid "The file is too large (over 10 MB) to import as training text."
+msgstr ""
+
+msgid "The selected file is empty."
+msgstr ""
+
+msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
+msgstr ""
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 msgstr "ഇത് നിങ്ങളുടെ ശേഖരിച്ച പരിശീലന ഡാറ്റ ഇല്ലാതാക്കുന്നു. അടുത്ത സമാരംഭത്തിൽ ഭാഷാ മോഡൽ ബിൽറ്റ്-ഇൻ ഡിഫോൾട്ടുകളിലേക്ക് മടങ്ങും. ഇത് പഴയപടിയാക്കാൻ കഴിയില്ല."
@@ -604,8 +658,44 @@ msgstr ""
 msgid "Training"
 msgstr "പരിശീലനം"
 
+msgid "Current training data: {0} KB"
+msgstr "നിലവിലെ പരിശീലന ഡാറ്റ: {0} KB"
+
 msgid "Training Data"
 msgstr "പരിശീലന ഡാറ്റ"
+
+msgid "Training data deleted — restart Dasher to fully apply"
+msgstr ""
+
+msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
+msgstr "ഇറക്കുമതി ഭാഷാ മോഡലിലേക്കും നിങ്ങളുടെ പരിശീലന ഡാറ്റയിലേക്കും ടെക്‌സ്‌റ്റ് ചേർക്കുന്നു (പുനരാരംഭിക്കുന്നതിലുടനീളം സൂക്ഷിക്കുന്നു). കയറ്റുമതി നിങ്ങളുടെ പരിശീലന ഡാറ്റ ബാക്കപ്പിനും കൈമാറ്റത്തിനും സംരക്ഷിക്കുന്നു. റീസെറ്റ് എല്ലാ ഉപയോക്തൃ പരിശീലന ഡാറ്റയും ഇല്ലാതാക്കുന്നു - അടുത്ത ലോഞ്ചിൽ മോഡൽ അതിൻ്റെ ബിൽറ്റ്-ഇൻ ഡിഫോൾട്ടുകളിലേക്ക് മടങ്ങുന്നു."
+
+msgid "Training data exported."
+msgstr ""
+
+msgid "Export Training Data"
+msgstr "പരിശീലന ഡാറ്റ കയറ്റുമതി ചെയ്യുക"
+
+msgid "Exported to {0}"
+msgstr "{0} എന്നതിലേക്ക് കയറ്റുമതി ചെയ്തു"
+
+msgid "{0} failed: {1}"
+msgstr "{0} പരാജയപ്പെട്ടു: {1}"
+
+msgid "Imported {0} KB of training text"
+msgstr "{0} KB പരിശീലന വാചകം ഇറക്കുമതി ചെയ്തു"
+
+msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
+msgstr "ഇറക്കുമതി ചെയ്‌ത {0} KB — അടുത്ത ലോഞ്ചിൽ പൂർണ്ണമായും ബാധകമാകും (തത്സമയ മോഡൽ തിരികെ നൽകി {1})"
+
+msgid "Training is not available yet — try again once the canvas has rendered."
+msgstr ""
+
+msgid "Training data deleted — the model returns to its built-in defaults on next launch"
+msgstr "പരിശീലന ഡാറ്റ ഇല്ലാതാക്കി - അടുത്ത ലോഞ്ചിൽ മോഡൽ അതിൻ്റെ ബിൽറ്റ്-ഇൻ ഡിഫോൾട്ടുകളിലേക്ക് മടങ്ങുന്നു"
+
+msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
+msgstr "സാധ്യമാകുന്നിടത്ത് പരിശീലന ഡാറ്റ ഇല്ലാതാക്കി - {0} ഇനം(ങ്ങൾ) പരാജയപ്പെട്ടു; വീണ്ടും ശ്രമിക്കാൻ വീണ്ടും റീസെറ്റ് അമർത്തുക"
 
 msgid "Turbo"
 msgstr "ടർബോ"

@@ -127,6 +127,24 @@ msgstr "نسخ الكل"
 msgid "Copy commands"
 msgstr "نسخ الأوامر"
 
+msgid "Could not load the file into the engine"
+msgstr ""
+
+msgid "Could not open the selected file."
+msgstr ""
+
+msgid "Could not read the selected file."
+msgstr ""
+
+msgid "Could not sync your edit with the engine — it may be overwritten"
+msgstr ""
+
+msgid "Could not write the export file."
+msgstr ""
+
+msgid "Could not write the training data."
+msgstr ""
+
 msgid "Current Calibration"
 msgstr "معايرة التيار"
 
@@ -217,8 +235,14 @@ msgstr "فشلت عملية الحفظ"
 msgid "Fast"
 msgstr "سريع"
 
+msgid "File truncated at 4 MB — only the first part is loaded"
+msgstr ""
+
 msgid "Flatpak or AppImage build can't provide.\n\n"
 msgstr ""
+
+msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
+msgstr "لتحريك لوحة المفاتيح عائمة، اسمح لـ Dasher بالعرض فوق التطبيقات الأخرى، ثم اضغط Float مرة أخرى."
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
 msgstr "تتيح لك خاصية الوصول الكامل في برنامج داشر نطق ما تكتبه وحفظ تدريبك. ولا يزال بإمكانك استخدام لوحة المفاتيح لإدخال البيانات الأساسية بدونها."
@@ -249,6 +273,12 @@ msgstr "استيراد الإعدادات"
 
 msgid "Import Training Text"
 msgstr "استيراد نص التدريب"
+
+msgid "Imported %1 — applies fully on next launch"
+msgstr ""
+
+msgid "Imported %1 of training text"
+msgstr ""
 
 msgid "Increase Speed"
 msgstr "زيادة السرعة"
@@ -331,6 +361,9 @@ msgstr "الخروج من وضع اللعبة"
 msgid "Light"
 msgstr "ضوء"
 
+msgid "Loaded %1 characters"
+msgstr ""
+
 msgid "Locale"
 msgstr "موقع"
 
@@ -353,6 +386,12 @@ msgid "No settings available for this section."
 msgstr "لا توجد إعدادات متاحة لهذا القسم."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "No training data to export yet"
+msgstr ""
+
+msgid "No user training data yet"
 msgstr ""
 
 msgid "Nothing to save"
@@ -426,6 +465,9 @@ msgstr ""
 
 msgid "Prefs"
 msgstr "التفضيلات"
+
+msgid "Preparing Dasher…"
+msgstr "جارٍ تحضير Dasher…"
 
 msgid "Privacy"
 msgstr "خصوصية"
@@ -577,11 +619,23 @@ msgstr "نص"
 msgid "Text files"
 msgstr "ملفات نصية"
 
+msgid "That file already is your training data."
+msgstr ""
+
 msgid "the app you are pointing at (needs ydotool)"
 msgstr ""
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 msgstr "تعرض نافذة تصحيح الأخطاء لوحة خضراء أعلى يسار اللوحة، تُظهر عدد أحداث اللمس المباشرة وآخر إحداثيات (س، ص). عند الضغط مع الاستمرار، سترى touch.began ثم touch.moved مع تغير الإحداثيات أثناء تحريك المؤشر."
+
+msgid "The file is too large (over 10 MB) to import as training text."
+msgstr ""
+
+msgid "The selected file is empty."
+msgstr ""
+
+msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
+msgstr ""
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 msgstr "سيؤدي هذا إلى حذف بيانات التدريب المتراكمة. سيعود نموذج اللغة إلى الإعدادات الافتراضية المدمجة عند التشغيل التالي. لا يمكن التراجع عن هذا الإجراء."
@@ -604,8 +658,44 @@ msgstr ""
 msgid "Training"
 msgstr "تمرين"
 
+msgid "Current training data: {0} KB"
+msgstr "بيانات التدريب الحالية: {0} كيلوبايت"
+
 msgid "Training Data"
 msgstr "بيانات التدريب"
+
+msgid "Training data deleted — restart Dasher to fully apply"
+msgstr ""
+
+msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
+msgstr "يضيف الاستيراد نصًا إلى نموذج اللغة وبيانات التدريب المتراكمة (التي يتم الاحتفاظ بها خلال عمليات إعادة التشغيل). يحفظ التصدير بيانات التدريب الخاصة بك للنسخ الاحتياطي أو النقل. تؤدي إعادة التعيين إلى حذف جميع بيانات تدريب المستخدم — ويعود النموذج إلى إعداداته الافتراضية المضمنة عند الإطلاق التالي."
+
+msgid "Training data exported."
+msgstr ""
+
+msgid "Export Training Data"
+msgstr "تصدير بيانات التدريب"
+
+msgid "Exported to {0}"
+msgstr "تم التصدير إلى {0}"
+
+msgid "{0} failed: {1}"
+msgstr "{0} فشل: {1}"
+
+msgid "Imported {0} KB of training text"
+msgstr "تم استيراد {0} كيلوبايت من نص التدريب"
+
+msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
+msgstr "تم استيراد {0} كيلوبايت — ينطبق بالكامل عند التشغيل التالي (تم إرجاع النموذج المباشر {1})"
+
+msgid "Training is not available yet — try again once the canvas has rendered."
+msgstr ""
+
+msgid "Training data deleted — the model returns to its built-in defaults on next launch"
+msgstr "تم حذف بيانات التدريب — يعود النموذج إلى إعداداته الافتراضية المضمنة عند الإطلاق التالي"
+
+msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
+msgstr "تم حذف بيانات التدريب حيثما أمكن — فشل {0} عنصر (عناصر)؛ اضغط على إعادة تعيين مرة أخرى لإعادة المحاولة"
 
 msgid "Turbo"
 msgstr "توربيني"

@@ -127,6 +127,24 @@ msgstr "تمام کاپی کریں۔"
 msgid "Copy commands"
 msgstr "کمانڈز کاپی کریں۔"
 
+msgid "Could not load the file into the engine"
+msgstr ""
+
+msgid "Could not open the selected file."
+msgstr ""
+
+msgid "Could not read the selected file."
+msgstr ""
+
+msgid "Could not sync your edit with the engine — it may be overwritten"
+msgstr ""
+
+msgid "Could not write the export file."
+msgstr ""
+
+msgid "Could not write the training data."
+msgstr ""
+
 msgid "Current Calibration"
 msgstr "موجودہ کیلیبریشن"
 
@@ -217,8 +235,14 @@ msgstr "محفوظ کرنے میں ناکام:"
 msgid "Fast"
 msgstr "تیز"
 
+msgid "File truncated at 4 MB — only the first part is loaded"
+msgstr ""
+
 msgid "Flatpak or AppImage build can't provide.\n\n"
 msgstr ""
+
+msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
+msgstr "کی بورڈ کو فلوٹ کرنے کے لیے، Dasher کو دوسرے ایپس کے اوپر دکھنے کی اجازت دیں، پھر دوبارہ Float پر ٹیپ کریں۔"
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
 msgstr "مکمل رسائی ڈیشر کو وہ بولنے دیتا ہے جو آپ لکھتے ہیں اور اپنی تربیت کو یاد رکھتے ہیں۔ کی بورڈ اب بھی اس کے بغیر بنیادی اندراج کے لیے کام کرتا ہے۔"
@@ -249,6 +273,12 @@ msgstr "ترتیبات درآمد کریں۔"
 
 msgid "Import Training Text"
 msgstr "تربیتی متن درآمد کریں۔"
+
+msgid "Imported %1 — applies fully on next launch"
+msgstr ""
+
+msgid "Imported %1 of training text"
+msgstr ""
 
 msgid "Increase Speed"
 msgstr "رفتار میں اضافہ کریں۔"
@@ -331,6 +361,9 @@ msgstr "گیم موڈ چھوڑ دیں۔"
 msgid "Light"
 msgstr "روشنی"
 
+msgid "Loaded %1 characters"
+msgstr ""
+
 msgid "Locale"
 msgstr "لوکیل"
 
@@ -353,6 +386,12 @@ msgid "No settings available for this section."
 msgstr "اس سیکشن کے لیے کوئی ترتیبات دستیاب نہیں ہیں۔"
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "No training data to export yet"
+msgstr ""
+
+msgid "No user training data yet"
 msgstr ""
 
 msgid "Nothing to save"
@@ -426,6 +465,9 @@ msgstr ""
 
 msgid "Prefs"
 msgstr ""
+
+msgid "Preparing Dasher…"
+msgstr "ڈیشر تیار ہو رہا ہے…"
 
 msgid "Privacy"
 msgstr "رازداری"
@@ -577,11 +619,23 @@ msgstr "متن"
 msgid "Text files"
 msgstr "ٹیکسٹ فائلیں"
 
+msgid "That file already is your training data."
+msgstr ""
+
 msgid "the app you are pointing at (needs ydotool)"
 msgstr ""
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 msgstr "ڈیبگ اوورلے کینوس کے اوپر بائیں طرف ایک سبز پینل کھینچتا ہے جو لائیو ٹچ ایونٹ کی گنتی اور آخری رپورٹ (x, y) دکھاتا ہے۔ جب آپ چوٹکی لگاتے اور پکڑتے ہیں تو آپ کو اپنے اردگرد نظر آتے ہی touch.began پھر touch.moved کوآرڈینیٹ بدلتے ہوئے نظر آنا چاہیے۔"
+
+msgid "The file is too large (over 10 MB) to import as training text."
+msgstr ""
+
+msgid "The selected file is empty."
+msgstr ""
+
+msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
+msgstr ""
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 msgstr "یہ آپ کے جمع کردہ تربیتی ڈیٹا کو حذف کر دیتا ہے۔ اگلی لانچ پر لینگویج ماڈل بلٹ ان ڈیفالٹس پر واپس آجائے گا۔ اسے کالعدم نہیں کیا جا سکتا۔"
@@ -604,8 +658,44 @@ msgstr ""
 msgid "Training"
 msgstr "تربیت"
 
+msgid "Current training data: {0} KB"
+msgstr "موجودہ تربیتی ڈیٹا: {0} KB"
+
 msgid "Training Data"
 msgstr "تربیت کا ڈیٹا"
+
+msgid "Training data deleted — restart Dasher to fully apply"
+msgstr ""
+
+msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
+msgstr "درآمد زبان کے ماڈل اور آپ کے جمع کردہ تربیتی ڈیٹا میں متن شامل کرتا ہے (دوبارہ شروع ہونے پر رکھا جاتا ہے)۔ ایکسپورٹ آپ کے تربیتی ڈیٹا کو بیک اپ یا ٹرانسفر کے لیے محفوظ کرتا ہے۔ ری سیٹ کرنے سے صارف کی تربیت کا تمام ڈیٹا حذف ہو جاتا ہے — ماڈل اگلے لانچ پر اپنے پہلے سے طے شدہ ڈیفالٹس پر واپس آجاتا ہے۔"
+
+msgid "Training data exported."
+msgstr ""
+
+msgid "Export Training Data"
+msgstr "ٹریننگ ڈیٹا برآمد کریں"
+
+msgid "Exported to {0}"
+msgstr "{0} کو برآمد کیا گیا"
+
+msgid "{0} failed: {1}"
+msgstr "{0} ناکام ہو گیا: {1}"
+
+msgid "Imported {0} KB of training text"
+msgstr "{0} کلو بائٹ ٹریننگ ٹیکسٹ درآمد ہو گیا"
+
+msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
+msgstr "{0} کلو بائٹ درآمد ہو گئے — اگلے لانچ پر مکمل لاگو ہوں گے (لائیو ماڈل نے {1} واپس دیا)"
+
+msgid "Training is not available yet — try again once the canvas has rendered."
+msgstr ""
+
+msgid "Training data deleted — the model returns to its built-in defaults on next launch"
+msgstr "ٹریننگ ڈیٹا کو حذف کر دیا گیا — ماڈل اگلی لانچ پر اپنے بلٹ ان ڈیفالٹس پر واپس آجاتا ہے۔"
+
+msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
+msgstr "جہاں ممکن ہو تربیتی ڈیٹا کو حذف کر دیا گیا — {0} آئٹمز ناکام ہو گئے؛ دوبارہ کوشش کرنے کے لیے دوبارہ ری سیٹ دبائیں۔"
 
 msgid "Turbo"
 msgstr "ٹربو"

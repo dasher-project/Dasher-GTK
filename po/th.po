@@ -127,6 +127,24 @@ msgstr "คัดลอกทั้งหมด"
 msgid "Copy commands"
 msgstr "คัดลอกคำสั่ง"
 
+msgid "Could not load the file into the engine"
+msgstr ""
+
+msgid "Could not open the selected file."
+msgstr ""
+
+msgid "Could not read the selected file."
+msgstr ""
+
+msgid "Could not sync your edit with the engine — it may be overwritten"
+msgstr ""
+
+msgid "Could not write the export file."
+msgstr ""
+
+msgid "Could not write the training data."
+msgstr ""
+
 msgid "Current Calibration"
 msgstr "การสอบเทียบกระแสไฟฟ้า"
 
@@ -217,8 +235,14 @@ msgstr "บันทึกไม่สำเร็จ:"
 msgid "Fast"
 msgstr "เร็ว"
 
+msgid "File truncated at 4 MB — only the first part is loaded"
+msgstr ""
+
 msgid "Flatpak or AppImage build can't provide.\n\n"
 msgstr ""
+
+msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
+msgstr "หากต้องการลอยคีย์บอร์ด ให้อนุญาต Dasher แสดงเหนือแอปอื่น แล้วแตะ Float อีกครั้ง"
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
 msgstr "การเข้าถึงแบบเต็มรูปแบบช่วยให้ Dasher สามารถอ่านสิ่งที่คุณเขียนและจดจำการฝึกฝนของคุณได้ แป้นพิมพ์ยังคงใช้งานได้สำหรับการป้อนข้อมูลพื้นฐานโดยไม่ต้องใช้ฟังก์ชันนี้"
@@ -249,6 +273,12 @@ msgstr "การตั้งค่าการนำเข้า"
 
 msgid "Import Training Text"
 msgstr "นำเข้าข้อความฝึกอบรม"
+
+msgid "Imported %1 — applies fully on next launch"
+msgstr ""
+
+msgid "Imported %1 of training text"
+msgstr ""
 
 msgid "Increase Speed"
 msgstr "เพิ่มความเร็ว"
@@ -331,6 +361,9 @@ msgstr "ออกจากโหมดเกม"
 msgid "Light"
 msgstr "แสงสว่าง"
 
+msgid "Loaded %1 characters"
+msgstr ""
+
 msgid "Locale"
 msgstr "ท้องถิ่น"
 
@@ -353,6 +386,12 @@ msgid "No settings available for this section."
 msgstr "ไม่มีการตั้งค่าใดๆ สำหรับส่วนนี้"
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "No training data to export yet"
+msgstr ""
+
+msgid "No user training data yet"
 msgstr ""
 
 msgid "Nothing to save"
@@ -426,6 +465,9 @@ msgstr ""
 
 msgid "Prefs"
 msgstr "การตั้งค่า"
+
+msgid "Preparing Dasher…"
+msgstr "กำลังเตรียม Dasher…"
 
 msgid "Privacy"
 msgstr "ความเป็นส่วนตัว"
@@ -577,11 +619,23 @@ msgstr "ข้อความ"
 msgid "Text files"
 msgstr "ไฟล์ข้อความ"
 
+msgid "That file already is your training data."
+msgstr ""
+
 msgid "the app you are pointing at (needs ydotool)"
 msgstr ""
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 msgstr "หน้าต่างดีบักจะแสดงแผงสีเขียวที่มุมซ้ายบนของพื้นที่แสดงผล โดยแสดงจำนวนการสัมผัสแบบเรียลไทม์และตำแหน่งล่าสุดที่รายงาน (x, y) เมื่อคุณบีบนิ้วค้างไว้ คุณจะเห็น touch.began จากนั้น touch.moved พร้อมพิกัดที่เปลี่ยนแปลงไปตามการมองไปรอบๆ"
+
+msgid "The file is too large (over 10 MB) to import as training text."
+msgstr ""
+
+msgid "The selected file is empty."
+msgstr ""
+
+msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
+msgstr ""
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 msgstr "การดำเนินการนี้จะลบข้อมูลการฝึกอบรมที่คุณสะสมไว้ โมเดลภาษาจะกลับไปใช้ค่าเริ่มต้นเมื่อเปิดใช้งานครั้งถัดไป การดำเนินการนี้ไม่สามารถย้อนกลับได้"
@@ -604,8 +658,44 @@ msgstr ""
 msgid "Training"
 msgstr "การฝึกอบรม"
 
+msgid "Current training data: {0} KB"
+msgstr "ข้อมูลการฝึกอบรมปัจจุบัน: {0} KB"
+
 msgid "Training Data"
 msgstr "ข้อมูลการฝึกอบรม"
+
+msgid "Training data deleted — restart Dasher to fully apply"
+msgstr ""
+
+msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
+msgstr "การนำเข้าจะเพิ่มข้อความลงในโมเดลภาษาและข้อมูลการฝึกอบรมที่สะสมของคุณ (เก็บไว้ระหว่างการรีสตาร์ท) การส่งออกจะบันทึกข้อมูลการฝึกอบรมของคุณเพื่อสำรองหรือถ่ายโอน การรีเซ็ตจะลบข้อมูลการฝึกผู้ใช้ทั้งหมด โมเดลจะกลับสู่ค่าเริ่มต้นในตัวในการเปิดตัวครั้งถัดไป"
+
+msgid "Training data exported."
+msgstr ""
+
+msgid "Export Training Data"
+msgstr "ส่งออกข้อมูลการฝึกอบรม"
+
+msgid "Exported to {0}"
+msgstr "ส่งออกไปยัง {0} แล้ว"
+
+msgid "{0} failed: {1}"
+msgstr "{0} ล้มเหลว: {1}"
+
+msgid "Imported {0} KB of training text"
+msgstr "นำเข้าข้อความการฝึกอบรม {0} KB"
+
+msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
+msgstr "นำเข้า {0} KB — นำไปใช้โดยสมบูรณ์ในการเปิดตัวครั้งถัดไป (โมเดลสดส่งคืน {1})"
+
+msgid "Training is not available yet — try again once the canvas has rendered."
+msgstr ""
+
+msgid "Training data deleted — the model returns to its built-in defaults on next launch"
+msgstr "ลบข้อมูลการฝึกอบรมแล้ว — โมเดลจะกลับไปใช้ค่าเริ่มต้นที่มีอยู่ในตัวเมื่อเปิดใช้งานครั้งถัดไป"
+
+msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
+msgstr "ลบข้อมูลการฝึกอบรมเท่าที่ทำได้ — {0} รายการล้มเหลว; กดรีเซ็ตอีกครั้งเพื่อลองใหม่"
 
 msgid "Turbo"
 msgstr "เทอร์โบ"

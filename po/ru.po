@@ -127,6 +127,24 @@ msgstr "Скопировать все"
 msgid "Copy commands"
 msgstr "Копировать команды"
 
+msgid "Could not load the file into the engine"
+msgstr ""
+
+msgid "Could not open the selected file."
+msgstr ""
+
+msgid "Could not read the selected file."
+msgstr ""
+
+msgid "Could not sync your edit with the engine — it may be overwritten"
+msgstr ""
+
+msgid "Could not write the export file."
+msgstr ""
+
+msgid "Could not write the training data."
+msgstr ""
+
 msgid "Current Calibration"
 msgstr "Текущая калибровка"
 
@@ -217,8 +235,14 @@ msgstr "Сохранение не удалось:"
 msgid "Fast"
 msgstr "Быстрый"
 
+msgid "File truncated at 4 MB — only the first part is loaded"
+msgstr ""
+
 msgid "Flatpak or AppImage build can't provide.\n\n"
 msgstr ""
+
+msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
+msgstr "Чтобы открепить клавиатуру, разрешите Dasher отображаться поверх других приложений, затем снова нажмите Float."
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
 msgstr "Функция Full Access позволяет Dasher озвучивать написанный текст и запоминать ваши инструкции. Клавиатура по-прежнему работает для базового ввода без этой функции."
@@ -249,6 +273,12 @@ msgstr "Импорт настроек"
 
 msgid "Import Training Text"
 msgstr "Импорт обучающего текста"
+
+msgid "Imported %1 — applies fully on next launch"
+msgstr ""
+
+msgid "Imported %1 of training text"
+msgstr ""
 
 msgid "Increase Speed"
 msgstr "Увеличьте скорость"
@@ -331,6 +361,9 @@ msgstr "Выйти из игрового режима"
 msgid "Light"
 msgstr "Свет"
 
+msgid "Loaded %1 characters"
+msgstr ""
+
 msgid "Locale"
 msgstr "Местоположение"
 
@@ -353,6 +386,12 @@ msgid "No settings available for this section."
 msgstr "Настройки для этого раздела отсутствуют."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "No training data to export yet"
+msgstr ""
+
+msgid "No user training data yet"
 msgstr ""
 
 msgid "Nothing to save"
@@ -426,6 +465,9 @@ msgstr ""
 
 msgid "Prefs"
 msgstr "Настройки"
+
+msgid "Preparing Dasher…"
+msgstr "Подготовка Dasher…"
 
 msgid "Privacy"
 msgstr "Конфиденциальность"
@@ -577,11 +619,23 @@ msgstr "текст"
 msgid "Text files"
 msgstr "Текстовые файлы"
 
+msgid "That file already is your training data."
+msgstr ""
+
 msgid "the app you are pointing at (needs ydotool)"
 msgstr ""
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 msgstr "Всплывающее окно отладки отображает зеленую панель в левом верхнем углу холста, показывающую количество событий касания в реальном времени и последнее зарегистрированное событие (x, y). При нажатии и удержании жеста «щипок» вы должны увидеть touch.began, затем touch.moved с изменяющимися координатами по мере того, как вы осматриваетесь."
+
+msgid "The file is too large (over 10 MB) to import as training text."
+msgstr ""
+
+msgid "The selected file is empty."
+msgstr ""
+
+msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
+msgstr ""
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 msgstr "Это удалит ваши накопленные обучающие данные. При следующем запуске языковая модель вернется к встроенным настройкам по умолчанию. Это действие необратимо."
@@ -604,8 +658,44 @@ msgstr ""
 msgid "Training"
 msgstr "Обучение"
 
+msgid "Current training data: {0} KB"
+msgstr "Текущие данные обучения: {0} КБ."
+
 msgid "Training Data"
 msgstr "обучающие данные"
+
+msgid "Training data deleted — restart Dasher to fully apply"
+msgstr ""
+
+msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
+msgstr "Импорт добавляет текст в языковую модель и накопленные данные обучения (сохраняются при перезапуске). Экспорт сохраняет данные тренировок для резервного копирования или передачи. При сбросе удаляются все данные обучения пользователей — при следующем запуске модель возвращается к встроенным настройкам по умолчанию."
+
+msgid "Training data exported."
+msgstr ""
+
+msgid "Export Training Data"
+msgstr "Экспортировать данные обучения"
+
+msgid "Exported to {0}"
+msgstr "Экспортировано в {0}"
+
+msgid "{0} failed: {1}"
+msgstr "Сбой {0}: {1}"
+
+msgid "Imported {0} KB of training text"
+msgstr "Импортировано {0} КБ обучающего текста"
+
+msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
+msgstr "Импортировано {0} КБ — полностью применяется при следующем запуске (действующая модель возвращена {1})"
+
+msgid "Training is not available yet — try again once the canvas has rendered."
+msgstr ""
+
+msgid "Training data deleted — the model returns to its built-in defaults on next launch"
+msgstr "Данные обучения удалены — модель возвращается к своим встроенным настройкам по умолчанию при следующем запуске."
+
+msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
+msgstr "Данные обучения удалены там, где это удалось — {0} элемент(ов) не удалось; нажмите «Сбросить» ещё раз, чтобы повторить"
 
 msgid "Turbo"
 msgstr "Турбо"

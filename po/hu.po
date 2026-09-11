@@ -127,6 +127,24 @@ msgstr "Összes másolása"
 msgid "Copy commands"
 msgstr "Parancsok másolása"
 
+msgid "Could not load the file into the engine"
+msgstr ""
+
+msgid "Could not open the selected file."
+msgstr ""
+
+msgid "Could not read the selected file."
+msgstr ""
+
+msgid "Could not sync your edit with the engine — it may be overwritten"
+msgstr ""
+
+msgid "Could not write the export file."
+msgstr ""
+
+msgid "Could not write the training data."
+msgstr ""
+
 msgid "Current Calibration"
 msgstr "Aktuális kalibráció"
 
@@ -217,8 +235,14 @@ msgstr "Sikertelen mentés:"
 msgid "Fast"
 msgstr "Gyors"
 
+msgid "File truncated at 4 MB — only the first part is loaded"
+msgstr ""
+
 msgid "Flatpak or AppImage build can't provide.\n\n"
 msgstr ""
+
+msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
+msgstr "A billentyűzet lebegtetéséhez engedélyezze a Dashernek a más alkalmazások feletti megjelenítést, majd koppintson újra a Float gombra."
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
 msgstr "A Teljes Hozzáférés lehetővé teszi a Dasher számára, hogy kimondja, amit írsz, és megjegyezze a betanításodat. A billentyűzet nélküle is működik az alapvető bevitelhez."
@@ -249,6 +273,12 @@ msgstr "Beállítások importálása"
 
 msgid "Import Training Text"
 msgstr "Betanító szöveg importálása"
+
+msgid "Imported %1 — applies fully on next launch"
+msgstr ""
+
+msgid "Imported %1 of training text"
+msgstr ""
 
 msgid "Increase Speed"
 msgstr "Növelje a sebességet"
@@ -331,6 +361,9 @@ msgstr "Kilépés a játékmódból"
 msgid "Light"
 msgstr "Fény"
 
+msgid "Loaded %1 characters"
+msgstr ""
+
 msgid "Locale"
 msgstr "Helyi"
 
@@ -353,6 +386,12 @@ msgid "No settings available for this section."
 msgstr "Ehhez a szakaszhoz nem érhetők el beállítások."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr ""
+
+msgid "No training data to export yet"
+msgstr ""
+
+msgid "No user training data yet"
 msgstr ""
 
 msgid "Nothing to save"
@@ -426,6 +465,9 @@ msgstr ""
 
 msgid "Prefs"
 msgstr ""
+
+msgid "Preparing Dasher…"
+msgstr "Dasher előkészítése…"
 
 msgid "Privacy"
 msgstr "Magánélet"
@@ -577,11 +619,23 @@ msgstr "szöveg"
 msgid "Text files"
 msgstr "Szövegfájlok"
 
+msgid "That file already is your training data."
+msgstr ""
+
 msgid "the app you are pointing at (needs ydotool)"
 msgstr ""
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 msgstr "A hibakeresési átfedés egy zöld panelt rajzol a vászon bal felső sarkába, amelyen látható az élő érintési események száma és az utolsó jelentett érték (x, y). Amikor összecsippenti és nyomva tartja az ujját, a touch.began, majd a touch.moved elemeket kell látnia változó koordinátákkal, miközben körülnéz."
+
+msgid "The file is too large (over 10 MB) to import as training text."
+msgstr ""
+
+msgid "The selected file is empty."
+msgstr ""
+
+msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
+msgstr ""
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 msgstr "Ez törli a felhalmozott betanítási adatokat. A nyelvi modell a következő indításkor visszaáll a beépített alapértelmezett értékekre. Ez a művelet nem vonható vissza."
@@ -604,8 +658,44 @@ msgstr ""
 msgid "Training"
 msgstr "Edzés"
 
+msgid "Current training data: {0} KB"
+msgstr "Jelenlegi edzési adatok: {0} KB"
+
 msgid "Training Data"
 msgstr "Betanítási adatok"
+
+msgid "Training data deleted — restart Dasher to fully apply"
+msgstr ""
+
+msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
+msgstr "Az importálás szöveget ad a nyelvi modellhez és a felhalmozott edzési adatokhoz (az újraindítások során megőrzik). Az Exportálás menti az edzési adatokat biztonsági mentés vagy átvitel céljából. A visszaállítás törli az összes felhasználói képzési adatot – a modell a következő indításakor visszaáll a beépített alapértékeihez."
+
+msgid "Training data exported."
+msgstr ""
+
+msgid "Export Training Data"
+msgstr "Képzési adatok exportálása"
+
+msgid "Exported to {0}"
+msgstr "Exportálva ide: {0}"
+
+msgid "{0} failed: {1}"
+msgstr "{0} sikertelen: {1}"
+
+msgid "Imported {0} KB of training text"
+msgstr "{0} KB képzési szöveg importálva"
+
+msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
+msgstr "Importált {0} KB – a következő indításkor teljes mértékben érvényes (az élő modell visszaküldése: {1})"
+
+msgid "Training is not available yet — try again once the canvas has rendered."
+msgstr ""
+
+msgid "Training data deleted — the model returns to its built-in defaults on next launch"
+msgstr "A képzési adatok törölve – a modell a következő indításkor visszaáll a beépített alapértékeihez"
+
+msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
+msgstr "A képzési adatok törölve, ahol lehetséges – {0} elem meghiúsult; az újrapróbálkozáshoz nyomja meg újra a Reset gombot"
 
 msgid "Turbo"
 msgstr "Turbó"
