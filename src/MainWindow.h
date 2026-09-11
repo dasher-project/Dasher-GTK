@@ -163,7 +163,14 @@ class MainWindow : public Gtk::Window {
     void clamp_geometry_to_monitor(ui::WindowGeometry& g);
     bool on_close_request() override;
 
-    PreferencesWindow m_preferences_window;
+    // Built lazily on first open: the Preferences content queries engine
+    // tables (palette list, permitted values) at construction, so it must
+    // not exist before the engine realises — and rebuilding it later
+    // re-orders the sidebar pages (dynamic pages re-append after the
+    // static ones), which is why section order used to shift between
+    // launches.
+    std::unique_ptr<PreferencesWindow> m_preferences_window;
+    PreferencesWindow& preferences_window();
 
     // Frontend analytics consent; drives the first-run opt-in prompt below.
     analytics::AnalyticsSettings m_analytics = analytics::AnalyticsSettings::load();

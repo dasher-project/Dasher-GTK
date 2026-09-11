@@ -36,6 +36,11 @@
   </developer>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="0.2.13" date="2026-09-07">
+      <description>
+        <p>Letter boxes have visible outlines again (v5 look) — themes like Yellow on Black show yellow letters inside bordered boxes instead of floating in space, and the flat slab at the canvas edge reads as a box. Engine update to DasherCore v0.2.20, which also merges the duplicated colour-palette sets into one. Upgraders: if boxes still have no borders, set Outline Width to 1 or more in Preferences → Customization (earlier builds saved a zero). Preferences now opens with the full theme and font lists populated and a stable section order.</p>
+      </description>
+    </release>
     <release version="0.2.12" date="2026-09-01">
       <description>
         <p>Engine update: colour palettes that omit label sequences (the dark companions among them) now inherit their parent palette's label colours, so node labels stay legible on every palette instead of falling back to defaults (DasherCore v0.2.18).</p>
