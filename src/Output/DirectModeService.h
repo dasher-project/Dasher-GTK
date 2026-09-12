@@ -23,6 +23,11 @@
 struct DirectModeJob {
     bool is_delete = false;
     std::string text;
+    // RFC 0015 clipboard bridge: a Ctrl-combo injected into the TARGET
+    // (Select All / Copy / Paste act on the target's selection, which the
+    // engine cannot reach — frontend injections, same as v5). Evdev keycode
+    // (30=A, 46=C, 47=V); -1 = not a combo job.
+    int ctrl_key = -1;
     // Availability generation at enqueue time. A failure only counts against
     // the verdict that was current when the job was queued: one queued before
     // a successful recheck() (Retry) must not disable the recovered service.
@@ -43,6 +48,19 @@ class DirectModeService {
     // the service already knows injection is broken; a failure discovered
     // later (mid-session daemon death) arrives via the failure callback.
     bool inject_text(const std::string& text);
+
+    // RFC 0015 clipboard bridge: queue a Ctrl-combo (evdev keycode: 30=A,
+    // 46=C, 47=V) for injection into the focused window — Select All / Copy /
+    // Paste act on the TARGET's selection, so they must be frontend
+    // injections aimed at the target, exactly like v5 and Dasher-Windows.
+    bool inject_ctrl_key(int evdev_code);
+
+    // Monotonic ms (g_get_monotonic_time()/1000) of the most recent
+    // injection job RUN by the worker — the TargetContextWatcher's
+    // self-injection quiet window keys off this (our injections fire the
+    // target's caret events; seeding on them resets the canvas mid-dash —
+    // Dasher-Windows#58). 0 = never.
+    int64_t last_injection_ms() const { return m_last_injection_ms.load(); }
 
     // Queue one backspace per character (not byte) of `deleted_text`.
     bool inject_delete(const std::string& deleted_text);
@@ -65,6 +83,7 @@ class DirectModeService {
     static int utf8_length(const std::string& text);
 
   private:
+    std::atomic<int64_t> m_last_injection_ms{0};
     // True when the ydotool binary exists AND the daemon answers. Arch-family
     // distros install the binary without enabling ydotoold, which previously
     // made is_available() lie — `which ydotool` alone is not enough.

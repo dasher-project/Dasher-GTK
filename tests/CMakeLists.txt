@@ -20,6 +20,8 @@ add_executable(dasher_unit_tests
     test_dwell_click_handler.cpp
     ${CMAKE_SOURCE_DIR}/src/Input/DwellClickHandler.cpp
     test_direct_mode_service.cpp
+    test_target_context_watcher.cpp
+    ${CMAKE_SOURCE_DIR}/src/Output/TargetContextDecision.cpp
     ${CMAKE_SOURCE_DIR}/src/Output/DirectModeService.cpp
     test_pii_scrubber.cpp
     test_engine_log_ring_buffer.cpp

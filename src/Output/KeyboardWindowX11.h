@@ -24,6 +24,14 @@ void engage(Gtk::Window& window);
 // Restore normal (focused, unraised, per-desktop) window behaviour.
 void release(Gtk::Window& window);
 
+// Raise `window` to the top of the X11 stacking order and flush. For
+// windows that must sit ABOVE the (no-activate, stay-above) keyboard-mode
+// dock — dialogs opened from the mini-bar — and for bringing the main
+// window back after release(), which un-sets stay-above but never raises
+// (the "exit keyboard mode buries Dasher like a crash" live report).
+// No-op off X11.
+void raise_overlay(Gtk::Window& window);
+
 // Keyboard-mode window opacity, 0.2–1.0 (matching Dasher-Windows/Apple's
 // slider ranges) via EWMH _NET_WM_WINDOW_OPACITY. No-op off X11. Applied
 // separately from engage() so the slider can update it live.

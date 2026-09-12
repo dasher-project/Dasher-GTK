@@ -93,6 +93,14 @@ void engage(Gtk::Window& window) {
     set_net_state(window, "_NET_WM_STATE_STICKY", true);
 }
 
+void raise_overlay(Gtk::Window& window) {
+    Display* dpy = x11_display_of(window);
+    const Window xid = x11_window_of(window);
+    if (!dpy || xid == None) return;
+    XRaiseWindow(dpy, xid);
+    XFlush(dpy);
+}
+
 void release(Gtk::Window& window) {
     set_net_state(window, "_NET_WM_STATE_ABOVE", false);
     set_net_state(window, "_NET_WM_STATE_STICKY", false);
@@ -164,6 +172,7 @@ namespace KeyboardWindowX11 {
 void engage(Gtk::Window&) {}
 void release(Gtk::Window&) {}
 void set_opacity(Gtk::Window&, double) {}
+void raise_overlay(Gtk::Window&) {}
 
 } // namespace KeyboardWindowX11
 

@@ -1,4 +1,5 @@
 #include "MainWindow.h"
+#include "Output/TargetContextWatcher.h"
 #include "dasher.h"
 #include "i18n.h"
 #include <cairomm/fontface.h>
@@ -13,6 +14,11 @@
 #include <glibmm/markup.h>
 #include <cstdio>
 #include <memory>
+
+// Clause-6 watcher owns DBus listeners; heap + lazy so shutdown order is
+// explicit and off-X11 builds pay nothing.
+static TargetContextWatcher s_target_watcher;
+TargetContextWatcher& MainWindow::target_watcher() { return s_target_watcher; }
 
 // RFC 0019 helper — normalise for COMPARISON only: the engine emits CRLF
 // newlines, GtkTextView holds LF. Stripping \r from both sides keeps the
@@ -490,10 +496,21 @@ MainWindow::MainWindow()
             // accept-focus-off + keep-above + stick, via Xlib since GTK4
             // dropped the APIs). No-op on Wayland — see RFC 0015.
             KeyboardWindowX11::engage(*this);
+            // RFC 0015 clause 8 / RFC 0019 clause 6: watch the target's
+            // caret moves + focus changes and re-seed context (with the
+            // self-injection + shadow-compare guards — see the watcher).
+            target_watcher().start(m_canvas.bridge.get(), m_direct_mode.get());
             KeyboardWindowX11::set_opacity(*this, m_ui_settings.keyboard_opacity());
             m_pane.set_shrink_end_child(false);
         } else {
+            target_watcher().stop();
             KeyboardWindowX11::release(*this);
+            // Live report: exiting keyboard mode left Dasher BURIED behind
+            // the target app (release only un-sets stay-above — nothing ever
+            // raises the window back), reading exactly like a crash. Present
+            // + raise so normal mode comes back visible and focused.
+            present();
+            KeyboardWindowX11::raise_overlay(*this);
             m_pane.set_shrink_end_child(true);
             m_pane.set_position(get_width() * 2 / 3);
         }
@@ -506,14 +523,55 @@ MainWindow::MainWindow()
     // Keyboard-mode mini bar (Dasher-Windows/Apple pattern): floating
     // top-right over the canvas with settings + exit, visible only while
     // keyboard mode is on and the main bars are hidden.
+    // Keyboard-mode mini-bar: New (RFC 0019 clause 5 — buffer + context +
+    // rate window; the hidden pane clears via the engine's buffer-cleared
+    // event) + the RFC 0015 clipboard bridge (Select All / Copy / Paste are
+    // TARGET-side injections — the engine cannot act on another app's
+    // selection; v5 and Dasher-Windows#56 do it frontend-side too).
+    // Catalogue msgids: new/copy/paste carry 32 locales; "Select All" is a
+    // new key for the next shared-resources batch.
+    m_minibar_new_btn.set_icon_name("document-new");
+    m_minibar_new_btn.set_tooltip_text(_("New"));
+    m_minibar_new_btn.set_valign(Gtk::Align::START);
+    m_minibar_new_btn.signal_clicked().connect([this]() { m_canvas.bridge->reset(); });
+
+    m_minibar_selectall_btn.set_icon_name("edit-select-all");
+    m_minibar_selectall_btn.set_tooltip_text(_("Select All"));
+    m_minibar_selectall_btn.set_valign(Gtk::Align::START);
+    m_minibar_selectall_btn.signal_clicked().connect(
+        [this]() { m_direct_mode->inject_ctrl_key(30); }); // A
+
+    m_minibar_copy_btn.set_icon_name("edit-copy");
+    m_minibar_copy_btn.set_tooltip_text(_("Copy"));
+    m_minibar_copy_btn.set_valign(Gtk::Align::START);
+    m_minibar_copy_btn.signal_clicked().connect(
+        [this]() { m_direct_mode->inject_ctrl_key(46); }); // C
+
+    m_minibar_paste_btn.set_icon_name("edit-paste");
+    m_minibar_paste_btn.set_tooltip_text(_("Paste"));
+    m_minibar_paste_btn.set_valign(Gtk::Align::START);
+    m_minibar_paste_btn.signal_clicked().connect(
+        [this]() { m_direct_mode->inject_ctrl_key(47); }); // V
+
     m_minibar_settings_btn.set_icon_name("settings");
     m_minibar_settings_btn.set_tooltip_text(_("Settings"));
     m_minibar_settings_btn.set_valign(Gtk::Align::START);
-    m_minibar_settings_btn.signal_clicked().connect([this]() { preferences_window().present(); });
+    m_minibar_settings_btn.signal_clicked().connect([this]() {
+        // While keyboard mode is active the main window is a no-activate,
+        // stay-above dock — a merely-"presented" dialog lands UNDER it and
+        // is unreachable (live report: "you can never see settings"). Raise
+        // the dialog above the dock explicitly after presenting.
+        preferences_window().present();
+        KeyboardWindowX11::raise_overlay(preferences_window());
+    });
     m_minibar_exit_btn.set_icon_name("keyboard");
     m_minibar_exit_btn.set_tooltip_text(_("Exit keyboard mode"));
     m_minibar_exit_btn.set_valign(Gtk::Align::START);
     m_minibar_exit_btn.signal_clicked().connect([this]() { m_keyboard_button.set_active(false); });
+    m_keyboard_minibar.append(m_minibar_new_btn);
+    m_keyboard_minibar.append(m_minibar_selectall_btn);
+    m_keyboard_minibar.append(m_minibar_copy_btn);
+    m_keyboard_minibar.append(m_minibar_paste_btn);
     m_keyboard_minibar.append(m_minibar_settings_btn);
     m_keyboard_minibar.append(m_minibar_exit_btn);
     m_keyboard_minibar.set_halign(Gtk::Align::END);
