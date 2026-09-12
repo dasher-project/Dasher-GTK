@@ -36,7 +36,8 @@ class TargetContextWatcher {
 
     ~TargetContextWatcher();
 
+    struct Impl; // pimpl: the atspi plumbing TU needs the type
+
   private:
-    struct Impl;
     Impl* m_impl = nullptr;
 };

@@ -662,6 +662,12 @@ MainWindow::MainWindow()
     m_text_view.add_css_class("dasher-output");
     wire_editor_sync();
 
+    // TEMP (clause-6 live debug, stripped before merge): DASHER_DEBUG_KEYBOARD=1
+    // enters keyboard mode at startup — deterministic automation without the
+    // Layout menu / accelerator propagation games.
+    if (g_getenv("DASHER_DEBUG_KEYBOARD")) m_keyboard_button.set_active(true);
+
+
     m_paste_button.signal_clicked().connect([this]() { m_text_view.activate_action("clipboard.paste"); });
     m_copy_button.signal_clicked().connect([this]() { m_text_view.activate_action("clipboard.copy"); });
     m_copyall_button.signal_clicked().connect([this]() {

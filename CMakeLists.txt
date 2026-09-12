@@ -254,8 +254,10 @@ if(TARGET tts_wrapper)
 endif()
 target_link_libraries(Dasher PRIVATE dasher SDL3::SDL3 ${GTK_LIBRARIES} ${GTKMM_LIBRARIES} ${DASHER_X11_LIBS})
 
-# TargetContextWatcher plumbing (atspi) — X11 builds only.
-if(ATSPI_FOUND AND DASHER_X11)
+# TargetContextWatcher plumbing (atspi) — X11 builds only (X11_FOUND,
+# not the nonexistent DASHER_X11 variable — that miss compiled the watcher
+# as its empty stub: available() always false, no watching ever).
+if(ATSPI_FOUND AND X11_FOUND)
     target_include_directories(Dasher SYSTEM PRIVATE ${ATSPI_INCLUDE_DIRS})
     target_link_libraries(Dasher PRIVATE ${ATSPI_LIBRARIES})
     target_compile_definitions(Dasher PRIVATE DASHER_HAVE_ATSPI=1)
