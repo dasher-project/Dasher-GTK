@@ -119,3 +119,54 @@ TEST_CASE("sentence_window: caret move within same sentence") {
     const auto w2 = T::sentence_window(text, 25);
     CHECK(w1.text.size() < w2.text.size());
 }
+
+// ── Review-loop fixes: boundary context sensitivity ──
+
+TEST_CASE("sentence_window: decimal point is NOT a boundary") {
+    const std::string text = "The value is 3.14159 approximately";
+    auto w = T::sentence_window(text, 20); // caret after "3.14"
+    // '.' before '1' at position 18 → decimal, not boundary
+    // Window should include text back to at least "The value is 3.14"
+    CHECK(w.text.find("3.14") != std::string::npos);
+}
+
+TEST_CASE("sentence_window: time colon is NOT a boundary") {
+    const std::string text = "Meet at 10:30 sharp";
+    auto w = T::sentence_window(text, 14); // caret after "10:30"
+    CHECK(w.text.find("10:30") != std::string::npos);
+}
+
+TEST_CASE("sentence_window: URL dots are NOT boundaries") {
+    const std::string text = "Visit https://example.com for more info";
+    auto w = T::sentence_window(text, 26); // caret in the URL
+    CHECK(w.text.find("example.com") != std::string::npos);
+}
+
+TEST_CASE("sentence_window: codepoint cap for CJK") {
+    // 100 CJK chars = 300 UTF-8 bytes, no sentence boundaries
+    std::string text;
+    for (int i = 0; i < 100; i++) text += "\xE4\xBD\xA0\xE5\xA5\xBD"; // 你好 (2 chars, 6 bytes)
+    // 100 iterations × 2 chars = 200 chars = 600 bytes — exceeds the 200-codepoint cap
+    auto w = T::sentence_window(text, static_cast<int>(text.size()));
+    // Should be capped at ~200 codepoints ≈ 600 bytes of CJK
+    // (or less — the cap counts codepoints, not bytes)
+    CHECK(w.text.size() <= 200 * 3); // 3 bytes per CJK char max
+    CHECK(w.text.size() > 100);     // not truncated to a tiny window
+}
+
+TEST_CASE("sentence_window: empty window at sentence start still allows seed") {
+    // A caret right after ". " has an empty window but a large field —
+    // the engine should seed-empty (clearing stale context)
+    const std::string target = "Stale old sentence. New sentence starts here";
+    const std::string engine = "Completely different context";
+    CHECK(T::should_seed(10000, 0, engine, engine.size(), target, 20)); // caret at ". "
+    // ^ the target field is large (kMinFieldLength passes on untrimmed),
+    // the sentence windows differ → seed
+}
+
+TEST_CASE("sentence_window: closer paren after boundary is skipped") {
+    const std::string text = "(First one.) Second two starts here";
+    auto w = T::sentence_window(text, 25); // caret in "Second"
+    // Boundary at '.' (byte 11), then ')' and ' ' — all should be skipped
+    CHECK(w.text.find("Second") == 0);
+}

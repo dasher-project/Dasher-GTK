@@ -26,7 +26,7 @@ struct TargetContextDecision {
     // formatting, timing) that break the shadow-compare → visible canvas
     // reset on every keystroke. The sentence window is small, stable, and
     // grows in lockstep with the engine buffer during typing.
-    static constexpr int kSentenceWindowMaxChars = 200;
+    static constexpr int kSentenceWindowMaxChars = 200; // codepoints, matching the RFC's ~200 UTF-16 units
 
     // Returns true when a read should be seeded into the engine.
     static bool should_seed(int64_t now_ms, int64_t last_injection_ms, const std::string& engine_text,

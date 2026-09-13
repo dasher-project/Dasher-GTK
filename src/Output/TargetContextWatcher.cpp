@@ -41,14 +41,23 @@ struct TargetContextWatcher::Impl {
     // The source of the latest qualifying event, ref'd for the debounce
     // window (the event's accessible is not guaranteed to live that long).
     AtspiAccessible* pending_source = nullptr;
+    // Cached last-read accessible (ref'd, not consumed) so force_reanchor
+    // has a source even outside the debounce window.
+    AtspiAccessible* last_source = nullptr;
     sigc::connection pending;
 
-    ~Impl() { drop_source(); }
+    ~Impl() { drop_source(); clear_last_source(); }
 
     void drop_source() {
         if (pending_source) {
             g_object_unref(pending_source);
             pending_source = nullptr;
+        }
+    }
+    void clear_last_source() {
+        if (last_source) {
+            g_object_unref(last_source);
+            last_source = nullptr;
         }
     }
 
@@ -69,10 +78,18 @@ struct TargetContextWatcher::Impl {
             120);
     }
 
-    void read_and_seed() {
-        // Use the source BEFORE dropping our ref (greptile P1: the capture's
-        // ref was the only thing keeping it alive across the debounce).
+    void read_and_seed(bool force = false) {
+        // Use the source BEFORE dropping our ref. Cache it as last_source
+        // so force_reanchor() has a target even after the debounce clears
+        // pending_source (greptile: "the button is a no-op in exactly the
+        // scenario it exists for").
         AtspiAccessible* source = pending_source;
+        if (source) {
+            clear_last_source();
+            last_source = static_cast<AtspiAccessible*>(g_object_ref(source));
+        } else {
+            source = last_source;
+        }
         if (!bridge || !source) {
             drop_source();
             return;
@@ -122,16 +139,15 @@ struct TargetContextWatcher::Impl {
         rel = std::clamp(rel, 0, static_cast<gint>(g_utf8_strlen(window_text.c_str(), -1)));
         const int caret_bytes = DasherBridge::byte_offset_from_codepoints(window_text, static_cast<int>(rel));
 
-        // RFC 0015 sentence-window amendment (governance#40): trim to the
-        // sentence around the caret before seeding AND before comparing.
-        // Full-document reads from complex editors return inconsistent
-        // results that break the shadow-compare; the sentence window is
-        // small, stable, and grows in lockstep with the engine buffer.
+        // RFC 0015 sentence-window amendment (governance#40): should_seed
+        // trims both sides symmetrically for the compare (see its
+        // implementation). When it returns true, seed with the TRIMMED
+        // sentence — the engine gets the context it needs, not the
+        // formatting noise it doesn't.
         const auto read_window = TargetContextDecision::sentence_window(window_text, caret_bytes);
-
-        if (TargetContextDecision::should_seed(mono_ms(), direct ? direct->last_injection_ms() : 0,
+        if (TargetContextDecision::should_seed(mono_ms(), force ? 0 : (direct ? direct->last_injection_ms() : 0),
                                                bridge->get_output_text(), bridge->get_offset(),
-                                               read_window.text, read_window.caret_offset)) {
+                                               window_text, caret_bytes)) {
             bridge->seed_buffer(read_window.text, read_window.caret_offset);
         }
     }
@@ -187,32 +203,23 @@ void TargetContextWatcher::stop() {
 
 void TargetContextWatcher::force_reanchor() {
     // Manual re-anchor (governance#40): the user explicitly asked for a
-    // fresh context read. We don't know which accessible is focused from
-    // here (the event listeners track that), so we use the atspi desktop's
-    // focused accessible directly.
+    // fresh context read. Uses the cached last_source (kept alive between
+    // reads for exactly this case — some apps' a11y providers miss
+    // same-field clicks, so no event fires and pending_source is null).
+    // The quiet window is BYPASSED — the user asked for this.
     if (!m_impl) return;
-    AtspiAccessible* focused = atspi_get_desktop(0) ? nullptr : nullptr;
-    // The atspi API for getting the focused accessible is via the event
-    // bus; the simplest portable approach is to re-read from the last
-    // event source, or if none, skip (the user can click in the target
-    // to trigger an event). For now: schedule a read from whatever the
-    // last pending_source was, or do nothing if it was already consumed.
-    // TODO: query the focused accessible via atspi's device event
-    // controller or the focus event cache. For the common case, the
-    // user will have just clicked in the target field, so the pending
-    // debounce will fire momentarily.
-    (void)focused;
-    // Schedule an immediate read (bypasses the debounce delay).
     m_impl->pending.disconnect();
     m_impl->pending = Glib::signal_timeout().connect([this]() {
         m_impl->pending.disconnect();
-        m_impl->read_and_seed();
+        m_impl->read_and_seed(/*force=*/true);
         return false;
     },
                                                      10); // near-immediate
 }
 
 #else // !DASHER_HAVE_X11
+
+void TargetContextWatcher::force_reanchor() {}
 
 struct TargetContextWatcher::Impl {};
 
@@ -224,6 +231,5 @@ TargetContextWatcher::~TargetContextWatcher() {
 }
 void TargetContextWatcher::start(DasherBridge*, DirectModeService*) {}
 void TargetContextWatcher::stop() {}
-void TargetContextWatcher::force_reanchor() {}
 
 #endif
