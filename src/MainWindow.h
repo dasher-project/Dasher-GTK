@@ -155,6 +155,7 @@ class MainWindow : public Gtk::Window {
     // New + Select All / Copy / Paste (target-side injections) + Settings +
     // Exit. Windows-parity (#56's mini-bar).
     Gtk::Button m_minibar_new_btn;
+    Gtk::Button m_minibar_reanchor_btn;
     Gtk::Button m_minibar_selectall_btn;
     Gtk::Button m_minibar_copy_btn;
     Gtk::Button m_minibar_paste_btn;

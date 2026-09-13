@@ -537,6 +537,20 @@ MainWindow::MainWindow()
     m_minibar_new_btn.set_valign(Gtk::Align::START);
     m_minibar_new_btn.signal_clicked().connect([this]() { m_canvas.bridge->reset(); });
 
+    // RFC 0015 sentence-window amendment (governance#40): manual re-anchor
+    // for edge cases where the caret-moved event doesn't fire (some apps'
+    // accessibility providers miss same-field clicks) or the user wants
+    // certainty about the current context.
+    m_minibar_reanchor_btn.set_icon_name("edit-find");
+    m_minibar_reanchor_btn.set_tooltip_text(_("Re-anchor context"));
+    m_minibar_reanchor_btn.set_valign(Gtk::Align::START);
+    m_minibar_reanchor_btn.signal_clicked().connect([this]() {
+        // The watcher's read_and_seed is normally triggered by atspi events;
+        // for a manual trigger we call it directly (the quiet window is
+        // bypassed — the user explicitly asked for this).
+        s_target_watcher.force_reanchor();
+    });
+
     m_minibar_selectall_btn.set_icon_name("edit-select-all");
     m_minibar_selectall_btn.set_tooltip_text(_("Select All"));
     m_minibar_selectall_btn.set_valign(Gtk::Align::START);
@@ -568,6 +582,7 @@ MainWindow::MainWindow()
     m_minibar_exit_btn.set_valign(Gtk::Align::START);
     m_minibar_exit_btn.signal_clicked().connect([this]() { m_keyboard_button.set_active(false); });
     m_keyboard_minibar.append(m_minibar_new_btn);
+    m_keyboard_minibar.append(m_minibar_reanchor_btn);
     m_keyboard_minibar.append(m_minibar_selectall_btn);
     m_keyboard_minibar.append(m_minibar_copy_btn);
     m_keyboard_minibar.append(m_minibar_paste_btn);
