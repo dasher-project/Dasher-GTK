@@ -21,7 +21,6 @@ struct TargetContextDecision {
     static constexpr int kReadCapChars = 8192;
 
     // Returns true when a read should be seeded into the engine.
-    static bool should_seed(int64_t now_ms, int64_t last_injection_ms,
-                            const std::string& engine_text, int engine_caret_bytes,
-                            const std::string& read_text, int read_caret_bytes);
+    static bool should_seed(int64_t now_ms, int64_t last_injection_ms, const std::string& engine_text,
+                            int engine_caret_bytes, const std::string& read_text, int read_caret_bytes);
 };

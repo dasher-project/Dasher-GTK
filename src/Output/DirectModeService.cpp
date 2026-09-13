@@ -168,15 +168,20 @@ void DirectModeService::set_failure_callback(FailureCallback callback) {
 }
 
 bool DirectModeService::run_job(const DirectModeJob& job) {
-    // Record BEFORE running: the injection is about to perturb the target
+    // Record BEFORE running: a TYPED injection is about to perturb the target
     // and fire its caret events — the quiet window must cover the command
-    // duration and the echo (TargetContextWatcher guard 1).
-    m_last_injection_ms.store(static_cast<int64_t>(g_get_monotonic_time()) / 1000);
+    // duration and the echo (TargetContextWatcher guard 1). Ctrl-combos
+    // (Select All / Copy / PASTE) deliberately do NOT arm it: their follow-up
+    // event is the SIGNAL we want — paste changes the target wholesale and
+    // the engine must re-seed from it (greptile P1 "paste synchronization
+    // is suppressed"); the shadow-compare guard already prevents no-op
+    // rebuilds for Copy/Select All.
+    if (job.ctrl_key <= 0) m_last_injection_ms.store(static_cast<int64_t>(g_get_monotonic_time()) / 1000);
     if (job.ctrl_key > 0) {
         // RFC 0015 clipboard bridge: Ctrl held, key tap, Ctrl released —
         // one ydotool invocation so the target sees an atomic chord.
-        return run_command("ydotool key 29:1 " + std::to_string(job.ctrl_key) + ":1 " +
-                           std::to_string(job.ctrl_key) + ":0 29:0 >/dev/null 2>&1");
+        return run_command("ydotool key 29:1 " + std::to_string(job.ctrl_key) + ":1 " + std::to_string(job.ctrl_key) +
+                           ":0 29:0 >/dev/null 2>&1");
     }
     if (job.is_delete) {
         for (int i = 0; i < utf8_length(job.text); i++) {

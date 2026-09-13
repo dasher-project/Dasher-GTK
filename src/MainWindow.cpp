@@ -18,7 +18,9 @@
 // Clause-6 watcher owns DBus listeners; heap + lazy so shutdown order is
 // explicit and off-X11 builds pay nothing.
 static TargetContextWatcher s_target_watcher;
-TargetContextWatcher& MainWindow::target_watcher() { return s_target_watcher; }
+TargetContextWatcher& MainWindow::target_watcher() {
+    return s_target_watcher;
+}
 
 // RFC 0019 helper — normalise for COMPARISON only: the engine emits CRLF
 // newlines, GtkTextView holds LF. Stripping \r from both sides keeps the
@@ -538,20 +540,17 @@ MainWindow::MainWindow()
     m_minibar_selectall_btn.set_icon_name("edit-select-all");
     m_minibar_selectall_btn.set_tooltip_text(_("Select All"));
     m_minibar_selectall_btn.set_valign(Gtk::Align::START);
-    m_minibar_selectall_btn.signal_clicked().connect(
-        [this]() { m_direct_mode->inject_ctrl_key(30); }); // A
+    m_minibar_selectall_btn.signal_clicked().connect([this]() { m_direct_mode->inject_ctrl_key(30); }); // A
 
     m_minibar_copy_btn.set_icon_name("edit-copy");
     m_minibar_copy_btn.set_tooltip_text(_("Copy"));
     m_minibar_copy_btn.set_valign(Gtk::Align::START);
-    m_minibar_copy_btn.signal_clicked().connect(
-        [this]() { m_direct_mode->inject_ctrl_key(46); }); // C
+    m_minibar_copy_btn.signal_clicked().connect([this]() { m_direct_mode->inject_ctrl_key(46); }); // C
 
     m_minibar_paste_btn.set_icon_name("edit-paste");
     m_minibar_paste_btn.set_tooltip_text(_("Paste"));
     m_minibar_paste_btn.set_valign(Gtk::Align::START);
-    m_minibar_paste_btn.signal_clicked().connect(
-        [this]() { m_direct_mode->inject_ctrl_key(47); }); // V
+    m_minibar_paste_btn.signal_clicked().connect([this]() { m_direct_mode->inject_ctrl_key(47); }); // V
 
     m_minibar_settings_btn.set_icon_name("settings");
     m_minibar_settings_btn.set_tooltip_text(_("Settings"));
@@ -661,12 +660,6 @@ MainWindow::MainWindow()
     m_text_view.set_margin(5);
     m_text_view.add_css_class("dasher-output");
     wire_editor_sync();
-
-    // TEMP (clause-6 live debug, stripped before merge): DASHER_DEBUG_KEYBOARD=1
-    // enters keyboard mode at startup — deterministic automation without the
-    // Layout menu / accelerator propagation games.
-    if (g_getenv("DASHER_DEBUG_KEYBOARD")) m_keyboard_button.set_active(true);
-
 
     m_paste_button.signal_clicked().connect([this]() { m_text_view.activate_action("clipboard.paste"); });
     m_copy_button.signal_clicked().connect([this]() { m_text_view.activate_action("clipboard.copy"); });
@@ -784,6 +777,7 @@ void MainWindow::update_game_target() {
 }
 
 MainWindow::~MainWindow() {
+    target_watcher().stop();
     // Retire cross-thread idles before any member (or widget) teardown: the
     // DirectModeService worker's failure callback checks this flag inside its
     // queued idle, so nothing reaches a half-destroyed window afterwards.

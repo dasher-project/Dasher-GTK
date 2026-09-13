@@ -22,17 +22,15 @@ int64_t mono_ms() {
 // caret or no meaningful language-model context.
 bool text_carrying_role(AtspiAccessible* accessible) {
     const AtspiRole role = atspi_accessible_get_role(accessible, nullptr);
-    return role == ATSPI_ROLE_TEXT || role == ATSPI_ROLE_DOCUMENT_TEXT ||
-           role == ATSPI_ROLE_ENTRY || role == ATSPI_ROLE_PARAGRAPH;
+    return role == ATSPI_ROLE_TEXT || role == ATSPI_ROLE_DOCUMENT_TEXT || role == ATSPI_ROLE_ENTRY ||
+           role == ATSPI_ROLE_PARAGRAPH;
 }
 
 } // namespace
 
 struct TargetContextWatcher::Impl {
     // atspi delivers to a plain C trampoline; this is its entry point.
-    static void dispatch(AtspiEvent* event, void* self) {
-        static_cast<Impl*>(self)->on_event(event);
-    }
+    static void dispatch(AtspiEvent* event, void* self) { static_cast<Impl*>(self)->on_event(event); }
 
     DasherBridge* bridge = nullptr;
     DirectModeService* direct = nullptr;
@@ -55,7 +53,6 @@ struct TargetContextWatcher::Impl {
     }
 
     void on_event(AtspiEvent* event) {
-        g_warning("TCW event type=%s role=%d", event && event->type ? event->type : "(null)", (event && event->source) ? (int)atspi_accessible_get_role(event->source, nullptr) : -1, event && event->type ? event->type : "(null)");
         if (!bridge || !event || !event->source) return;
         if (!text_carrying_role(event->source)) return;
         drop_source();
@@ -63,44 +60,61 @@ struct TargetContextWatcher::Impl {
         // Debounce: caret-move events arrive in bursts while the user types
         // or clicks; one read+seed at the end of the burst is enough.
         pending.disconnect();
-        pending = Glib::signal_timeout().connect([this]() {
-            pending.disconnect();
-            read_and_seed();
-            return false; // one-shot
-        },
-                                                 120);
+        pending = Glib::signal_timeout().connect(
+            [this]() {
+                pending.disconnect();
+                read_and_seed();
+                return false; // one-shot
+            },
+            120);
     }
 
     void read_and_seed() {
+        // Use the source BEFORE dropping our ref (greptile P1: the capture's
+        // ref was the only thing keeping it alive across the debounce).
         AtspiAccessible* source = pending_source;
-        drop_source();
-        g_warning("TCW read_and_seed src=%p", (void*)source);
-        if (!bridge || !source) return;
+        if (!bridge || !source) {
+            drop_source();
+            return;
+        }
 
-        AtspiText* text = atpi_text_of(source);
-        if (!text) return;
+        // atspi_accessible_get_text returns a NEW reference (greptile P2).
+        AtspiText* text = atspi_accessible_get_text(source);
+        if (!text) {
+            drop_source();
+            return;
+        }
 
         GError* err = nullptr;
         const gint count = atspi_text_get_character_count(text, &err);
-        if (err || count <= 0) {
+        gint caret = -1;
+        if (!err && count > 0) caret = atspi_text_get_caret_offset(text, &err);
+        if (err || count <= 0 || caret < 0) {
             g_clear_error(&err);
-            return;
-        }
-        gint caret = atspi_text_get_caret_offset(text, &err);
-        if (err || caret < 0) {
-            g_clear_error(&err);
+            g_object_unref(text);
+            drop_source();
             return;
         }
 
-        // RFC 0019 clause 7: seed the trailing window, not the document.
-        const gint start = std::max(0, count - TargetContextDecision::kReadCapChars);
-        gchar* raw = atspi_text_get_text(text, start, count, &err);
+        // RFC 0019 clause 7: seed a WINDOW, not the document. Trailing
+        // window when the caret sits inside it; when the caret is BEFORE
+        // the trailing window (greptile P1: "window ignores caret
+        // position"), read a window that STARTS at the caret instead — the
+        // anchor must reflect where the user actually is.
+        gint start = std::max(0, count - TargetContextDecision::kReadCapChars);
+        if (caret < start) start = caret;
+        const gint end = std::min(count, start + TargetContextDecision::kReadCapChars);
+        gchar* raw = atspi_text_get_text(text, start, end, &err);
         if (err || !raw) {
             g_clear_error(&err);
+            g_object_unref(text);
+            drop_source();
             return;
         }
         std::string window_text(raw);
         g_free(raw);
+        g_object_unref(text);
+        drop_source();
 
         // atspi offsets count CODEPOINTS (characters); the engine counts
         // UTF-8 bytes. Window-relative caret, converted at the boundary.
@@ -108,18 +122,11 @@ struct TargetContextWatcher::Impl {
         rel = std::clamp(rel, 0, static_cast<gint>(g_utf8_strlen(window_text.c_str(), -1)));
         const int caret_bytes = DasherBridge::byte_offset_from_codepoints(window_text, static_cast<int>(rel));
 
-        g_warning("TCW read count=%d caret=%d quiet=%lld engine_len=%zu read_len=%zu",
-                (int)count, (int)caret, (long long)(direct ? direct->last_injection_ms() : -1),
-                bridge->get_output_text().size(), window_text.size());
         if (TargetContextDecision::should_seed(mono_ms(), direct ? direct->last_injection_ms() : 0,
-                        bridge->get_output_text(), bridge->get_offset(),
-                        window_text, caret_bytes)) {
+                                               bridge->get_output_text(), bridge->get_offset(), window_text,
+                                               caret_bytes)) {
             bridge->seed_buffer(window_text, caret_bytes);
         }
-    }
-
-    static AtspiText* atpi_text_of(AtspiAccessible* accessible) {
-        return accessible ? atspi_accessible_get_text(accessible) : nullptr;
     }
 };
 
@@ -131,19 +138,18 @@ static void watcher_event_trampoline(AtspiEvent* event, void* user_data) {
 bool TargetContextWatcher::available() {
     static int state = 0; // 0 unknown, 1 yes, -1 no
     if (state == 0) {
-        g_warning("TCW atspi_init...");
         // atspi_init connects to the session accessibility bus; failure is
         // expected on bare WMs / headless CI and must be non-fatal.
         state = (atspi_init() == 0) ? 1 : -1;
-        g_warning("TCW atspi_init -> %d", state);
     }
     return state == 1;
 }
 
-TargetContextWatcher::~TargetContextWatcher() { stop(); }
+TargetContextWatcher::~TargetContextWatcher() {
+    stop();
+}
 
 void TargetContextWatcher::start(DasherBridge* bridge, DirectModeService* direct) {
-    g_warning("TCW start called");
     if (m_impl) return; // already running
     if (!available()) return;
     m_impl = new Impl();
@@ -176,8 +182,12 @@ void TargetContextWatcher::stop() {
 
 struct TargetContextWatcher::Impl {};
 
-bool TargetContextWatcher::available() { return false; }
-TargetContextWatcher::~TargetContextWatcher() { stop(); }
+bool TargetContextWatcher::available() {
+    return false;
+}
+TargetContextWatcher::~TargetContextWatcher() {
+    stop();
+}
 void TargetContextWatcher::start(DasherBridge*, DirectModeService*) {}
 void TargetContextWatcher::stop() {}
 
