@@ -55,7 +55,7 @@ struct TargetContextWatcher::Impl {
     }
 
     void on_event(AtspiEvent* event) {
-        g_debug("TCW event type=%s", event && event->type ? event->type : "(null)");
+        g_warning("TCW event type=%s role=%d", event && event->type ? event->type : "(null)", (event && event->source) ? (int)atspi_accessible_get_role(event->source, nullptr) : -1, event && event->type ? event->type : "(null)");
         if (!bridge || !event || !event->source) return;
         if (!text_carrying_role(event->source)) return;
         drop_source();
@@ -74,7 +74,7 @@ struct TargetContextWatcher::Impl {
     void read_and_seed() {
         AtspiAccessible* source = pending_source;
         drop_source();
-        g_debug("TCW read_and_seed src=%p", (void*)source);
+        g_warning("TCW read_and_seed src=%p", (void*)source);
         if (!bridge || !source) return;
 
         AtspiText* text = atpi_text_of(source);
@@ -108,7 +108,7 @@ struct TargetContextWatcher::Impl {
         rel = std::clamp(rel, 0, static_cast<gint>(g_utf8_strlen(window_text.c_str(), -1)));
         const int caret_bytes = DasherBridge::byte_offset_from_codepoints(window_text, static_cast<int>(rel));
 
-        g_debug("TCW read count=%d caret=%d quiet=%lld engine_len=%zu read_len=%zu",
+        g_warning("TCW read count=%d caret=%d quiet=%lld engine_len=%zu read_len=%zu",
                 (int)count, (int)caret, (long long)(direct ? direct->last_injection_ms() : -1),
                 bridge->get_output_text().size(), window_text.size());
         if (TargetContextDecision::should_seed(mono_ms(), direct ? direct->last_injection_ms() : 0,
@@ -131,11 +131,11 @@ static void watcher_event_trampoline(AtspiEvent* event, void* user_data) {
 bool TargetContextWatcher::available() {
     static int state = 0; // 0 unknown, 1 yes, -1 no
     if (state == 0) {
-        g_debug("TCW atspi_init...");
+        g_warning("TCW atspi_init...");
         // atspi_init connects to the session accessibility bus; failure is
         // expected on bare WMs / headless CI and must be non-fatal.
         state = (atspi_init() == 0) ? 1 : -1;
-        g_debug("TCW atspi_init -> %d", state);
+        g_warning("TCW atspi_init -> %d", state);
     }
     return state == 1;
 }
@@ -143,7 +143,7 @@ bool TargetContextWatcher::available() {
 TargetContextWatcher::~TargetContextWatcher() { stop(); }
 
 void TargetContextWatcher::start(DasherBridge* bridge, DirectModeService* direct) {
-    g_debug("TCW start called");
+    g_warning("TCW start called");
     if (m_impl) return; // already running
     if (!available()) return;
     m_impl = new Impl();
