@@ -21,6 +21,12 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTK REQUIRED gtk4)
 pkg_check_modules(GTKMM REQUIRED gtkmm-4.0)
 
+# atspi (RFC 0015 clause 8 / RFC 0019 clause 6): the direct-mode target
+# context watcher listens to focus + caret-moved events and reads target
+# text via the AtspiText interface. Optional at build time; the watcher
+# degrades to unavailable when the lib or the session bus is missing.
+pkg_check_modules(ATSPI atspi-2)
+
 # libcurl backs the analytics HTTP transport (POST to PostHog). Optional: it is
 # present in the GNOME/freedesktop SDK (Flatpak) and Linux CI, but not every
 # toolchain ships it (e.g. GVSBuild on Windows). When absent the app still
@@ -247,6 +253,15 @@ if(TARGET tts_wrapper)
 	target_compile_definitions(Dasher PRIVATE HAS_TTS)
 endif()
 target_link_libraries(Dasher PRIVATE dasher SDL3::SDL3 ${GTK_LIBRARIES} ${GTKMM_LIBRARIES} ${DASHER_X11_LIBS})
+
+# TargetContextWatcher plumbing (atspi) — X11 builds only (X11_FOUND,
+# not the nonexistent DASHER_X11 variable — that miss compiled the watcher
+# as its empty stub: available() always false, no watching ever).
+if(ATSPI_FOUND AND X11_FOUND)
+    target_include_directories(Dasher SYSTEM PRIVATE ${ATSPI_INCLUDE_DIRS})
+    target_link_libraries(Dasher PRIVATE ${ATSPI_LIBRARIES})
+    target_compile_definitions(Dasher PRIVATE DASHER_HAVE_ATSPI=1)
+endif()
 target_compile_definitions(Dasher PRIVATE ${DASHER_X11_DEFS})
 if(CURL_FOUND)
 	target_link_libraries(Dasher PRIVATE CURL::libcurl)

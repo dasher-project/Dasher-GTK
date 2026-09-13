@@ -41,6 +41,8 @@
 #include <gtkmm/filedialog.h>
 #include <gtkmm/filefilter.h>
 
+class TargetContextWatcher;
+
 class MainWindow : public Gtk::Window {
   public:
     MainWindow();
@@ -119,6 +121,11 @@ class MainWindow : public Gtk::Window {
     bool m_seed_push_in_flight = false;
     void wire_editor_sync();
 
+    // RFC 0015 clause 8 / RFC 0019 clause 6: caret-move context triggers on
+    // direct-mode targets (atspi). Started/stopped with keyboard mode.
+    // (Global forward declaration above the class.)
+    TargetContextWatcher& target_watcher();
+
     // Cleared in the destructor before any teardown. Cross-thread callbacks
     // (DirectModeService's failure callback runs on its worker) capture a
     // shared copy and check it inside main-thread idles, so an idle queued
@@ -144,6 +151,13 @@ class MainWindow : public Gtk::Window {
     // an overlay on the message overlay (itself a Gtk::Overlay), floating
     // top-right, settings + exit. Visible only while keyboard mode is on.
     Gtk::Box m_keyboard_minibar = Gtk::Box(Gtk::Orientation::HORIZONTAL, 2);
+    // Keyboard-mode mini-bar (RFC 0015 clipboard bridge + RFC 0019 New):
+    // New + Select All / Copy / Paste (target-side injections) + Settings +
+    // Exit. Windows-parity (#56's mini-bar).
+    Gtk::Button m_minibar_new_btn;
+    Gtk::Button m_minibar_selectall_btn;
+    Gtk::Button m_minibar_copy_btn;
+    Gtk::Button m_minibar_paste_btn;
     Gtk::Button m_minibar_settings_btn;
     Gtk::Button m_minibar_exit_btn;
 
