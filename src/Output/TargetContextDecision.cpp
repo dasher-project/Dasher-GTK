@@ -41,7 +41,7 @@ bool is_boundary_in_context(const std::string& s, const size_t i) {
     // '.' and ':' are boundaries only when followed by whitespace, a
     // closer (" )]), or end-of-string — "word. Next" is a boundary,
     // "example.com" and "10:30" are not.
-    if (c == '.' || c == ':') {
+    if (c == '.' || c == ':' || c == '?') {
         if (i + 1 >= s.size()) return true; // end of text → boundary
         const char next = s[i + 1];
         return next == ' ' || next == '\t' || next == '\n' || next == '\r' ||
