@@ -36,6 +36,11 @@
   </developer>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="0.2.14" date="2026-09-13">
+      <description>
+        <p>Major text-editing update. The output pane is now a real editor: type or paste directly into it, click mid-sentence and the canvas re-targets your predictions there, and New starts a fresh session (not mid-sentence). Training data finally persists across restarts, with import/export/reset in Preferences → Language. Keyboard mode gains a mini-bar (New, Select All, Copy, Paste, Settings, Exit) that acts on the app you're typing into. The canvas no longer "freezes" on startup — a themed loading state shows while the engine prepares. Your alphabet is auto-repaired if an old build saved a broken one (the "no text appears" bug). Engine updated to DasherCore v0.2.24.</p>
+      </description>
+    </release>
     <release version="0.2.13" date="2026-09-07">
       <description>
         <p>Letter boxes have visible outlines again (v5 look) — themes like Yellow on Black show yellow letters inside bordered boxes instead of floating in space, and the flat slab at the canvas edge reads as a box. Engine update to DasherCore v0.2.20, which also merges the duplicated colour-palette sets into one. Upgraders: if boxes still have no borders, set Outline Width to 1 or more in Preferences → Customization (earlier builds saved a zero). Preferences now opens with the full theme and font lists populated and a stable section order.</p>
