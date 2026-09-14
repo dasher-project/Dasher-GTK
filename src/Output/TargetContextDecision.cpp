@@ -43,9 +43,14 @@ bool is_boundary_in_context(const std::string& s, const size_t i) {
     // "example.com" and "10:30" are not.
     if (c == '.' || c == ':' || c == '?') {
         if (i + 1 >= s.size()) return true; // end of text → boundary
-        const char next = s[i + 1];
-        return next == ' ' || next == '\t' || next == '\n' || next == '\r' ||
-               next == ')' || next == '"' || next == ']';
+        const auto next = static_cast<unsigned char>(s[i + 1]);
+        // Boundary when followed by: ASCII whitespace, a closer, OR any
+        // non-ASCII lead byte (a CJK/Arabic/etc sentence start is still a
+        // sentence start — "Hello.你好" must split at the period).
+        // Continuation bytes (0x80-0xBF) can't follow a boundary in
+        // well-formed UTF-8, so >= 0xC0 covers all lead bytes.
+        return next == ' ' || next == '\t' || next == '\n' || next == '\r' || next == ')' || next == '"' ||
+               next == ']' || next >= 0xC0;
     }
     // ';' is always a boundary
     return is_sentence_boundary(c);
@@ -67,15 +72,16 @@ int count_codepoints(const std::string& s, const size_t from, const size_t to) {
 bool is_lead_byte(const std::string& s, const size_t i) {
     if (i >= s.size()) return false;
     const auto c = static_cast<unsigned char>(s[i]);
-    if (c < 0x80) return true;                        // ASCII
-    if ((c & 0xC0) == 0x80) return false;             // continuation
-    return true;                                       // lead byte (C0-F4)
+    if (c < 0x80) return true;            // ASCII
+    if ((c & 0xC0) == 0x80) return false; // continuation
+    return true;                          // lead byte (C0-F4)
 }
 
 // Nudge a byte offset forward to the nearest lead byte (max 3 nudges for a
 // 4-byte sequence).
 size_t snap_to_lead_byte(const std::string& s, size_t offset) {
-    while (offset < s.size() && !is_lead_byte(s, offset)) ++offset;
+    while (offset < s.size() && !is_lead_byte(s, offset))
+        ++offset;
     return offset;
 }
 
@@ -110,7 +116,10 @@ TargetContextDecision::SentenceWindow TargetContextDecision::sentence_window(con
     // at "Next", not ") Next".
     while (start < static_cast<size_t>(caret)) {
         const char c = utf8_text[start];
-        if (c == ' ' || c == '\t' || c == '\n' || c == '\r') { ++start; continue; }
+        if (c == ' ' || c == '\t' || c == '\n' || c == '\r') {
+            ++start;
+            continue;
+        }
         if ((c == ')' || c == '"') && start + 1 < static_cast<size_t>(caret)) {
             // Only skip if the NEXT char is whitespace or another closer
             // (i.e. this closer is adjacent to the boundary, not part of

@@ -145,13 +145,14 @@ TEST_CASE("sentence_window: URL dots are NOT boundaries") {
 TEST_CASE("sentence_window: codepoint cap for CJK") {
     // 100 CJK chars = 300 UTF-8 bytes, no sentence boundaries
     std::string text;
-    for (int i = 0; i < 100; i++) text += "\xE4\xBD\xA0\xE5\xA5\xBD"; // 你好 (2 chars, 6 bytes)
+    for (int i = 0; i < 100; i++)
+        text += "\xE4\xBD\xA0\xE5\xA5\xBD"; // 你好 (2 chars, 6 bytes)
     // 100 iterations × 2 chars = 200 chars = 600 bytes — exceeds the 200-codepoint cap
     auto w = T::sentence_window(text, static_cast<int>(text.size()));
     // Should be capped at ~200 codepoints ≈ 600 bytes of CJK
     // (or less — the cap counts codepoints, not bytes)
     CHECK(w.text.size() <= 200 * 3); // 3 bytes per CJK char max
-    CHECK(w.text.size() > 100);     // not truncated to a tiny window
+    CHECK(w.text.size() > 100);      // not truncated to a tiny window
 }
 
 TEST_CASE("sentence_window: empty window at sentence start still allows seed") {
@@ -169,4 +170,28 @@ TEST_CASE("sentence_window: closer paren after boundary is skipped") {
     auto w = T::sentence_window(text, 25); // caret in "Second"
     // Boundary at '.' (byte 11), then ')' and ' ' — all should be skipped
     CHECK(w.text.find("Second") == 0);
+}
+
+// ── Greptile fixes: multibyte boundaries + focus tracking ──
+
+TEST_CASE("sentence_window: period before CJK text IS a boundary") {
+    // "Hello." followed by CJK 你 — the period must split (greptile P2)
+    const std::string text = "Hello.\xE4\xBD\xA0\xE5\xA5\xBD world";
+    auto w = T::sentence_window(text, 10); // caret at the CJK char
+    // Boundary at '.' (byte 5) → window starts at 你 (byte 6)
+    CHECK(w.text.find("Hello") == std::string::npos); // no stale context
+    CHECK(w.text.size() > 0);                         // non-empty window
+}
+
+TEST_CASE("sentence_window: period before Arabic IS a boundary") {
+    const std::string text = "Done.\xD9\x85\xD8\xB1\xD8\xAD\xD8\xA8\xD8\xA7 next";
+    auto w = T::sentence_window(text, 7);
+    CHECK(w.text.find("Done") == std::string::npos);
+}
+
+TEST_CASE("sentence_window: period before ASCII letter is NOT a boundary") {
+    // "example.com" — period followed by ASCII letter, not whitespace
+    const std::string text = "Visit example.com now";
+    auto w = T::sentence_window(text, 21); // caret at end — includes all
+    CHECK(w.text.find("example.com") != std::string::npos);
 }

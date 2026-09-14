@@ -41,12 +41,19 @@ struct TargetContextWatcher::Impl {
     // The source of the latest qualifying event, ref'd for the debounce
     // window (the event's accessible is not guaranteed to live that long).
     AtspiAccessible* pending_source = nullptr;
-    // Cached last-read accessible (ref'd, not consumed) so force_reanchor
-    // has a source even outside the debounce window.
-    AtspiAccessible* last_source = nullptr;
+    // The most recently FOCUSED text accessible (ref'd). Updated by the
+    // focus listener on EVERY qualifying focus event — not just reads —
+    // so force_reanchor reads the CURRENT target even when no caret event
+    // has fired since the last field switch (greptile P1: "re-anchor uses
+    // stale target"). If the app fires NO focus event at all, this is
+    // stale — same gap as the event-driven path.
+    AtspiAccessible* last_focused = nullptr;
     sigc::connection pending;
 
-    ~Impl() { drop_source(); clear_last_source(); }
+    ~Impl() {
+        drop_source();
+        clear_stale_focus();
+    }
 
     void drop_source() {
         if (pending_source) {
@@ -54,16 +61,20 @@ struct TargetContextWatcher::Impl {
             pending_source = nullptr;
         }
     }
-    void clear_last_source() {
-        if (last_source) {
-            g_object_unref(last_source);
-            last_source = nullptr;
+    void clear_stale_focus() {
+        if (last_focused) {
+            g_object_unref(last_focused);
+            last_focused = nullptr;
         }
     }
 
     void on_event(AtspiEvent* event) {
         if (!bridge || !event || !event->source) return;
         if (!text_carrying_role(event->source)) return;
+        // Track the focused text accessible on EVERY qualifying event
+        // (focus AND caret) — this is what force_reanchor reads from.
+        clear_stale_focus();
+        last_focused = ATSPI_ACCESSIBLE(g_object_ref(event->source));
         drop_source();
         pending_source = ATSPI_ACCESSIBLE(g_object_ref(event->source));
         // Debounce: caret-move events arrive in bursts while the user types
@@ -79,17 +90,10 @@ struct TargetContextWatcher::Impl {
     }
 
     void read_and_seed(bool force = false) {
-        // Use the source BEFORE dropping our ref. Cache it as last_source
-        // so force_reanchor() has a target even after the debounce clears
-        // pending_source (greptile: "the button is a no-op in exactly the
-        // scenario it exists for").
-        AtspiAccessible* source = pending_source;
-        if (source) {
-            clear_last_source();
-            last_source = static_cast<AtspiAccessible*>(g_object_ref(source));
-        } else {
-            source = last_source;
-        }
+        // Use the source BEFORE dropping our ref. Fall back to last_focused
+        // (the most recently FOCUSED text accessible — updated by every
+        // qualifying event) so force_reanchor reads the current target.
+        AtspiAccessible* source = pending_source ? pending_source : last_focused;
         if (!bridge || !source) {
             drop_source();
             return;
@@ -146,8 +150,8 @@ struct TargetContextWatcher::Impl {
         // formatting noise it doesn't.
         const auto read_window = TargetContextDecision::sentence_window(window_text, caret_bytes);
         if (TargetContextDecision::should_seed(mono_ms(), force ? 0 : (direct ? direct->last_injection_ms() : 0),
-                                               bridge->get_output_text(), bridge->get_offset(),
-                                               window_text, caret_bytes)) {
+                                               bridge->get_output_text(), bridge->get_offset(), window_text,
+                                               caret_bytes)) {
             bridge->seed_buffer(read_window.text, read_window.caret_offset);
         }
     }
@@ -209,12 +213,13 @@ void TargetContextWatcher::force_reanchor() {
     // The quiet window is BYPASSED — the user asked for this.
     if (!m_impl) return;
     m_impl->pending.disconnect();
-    m_impl->pending = Glib::signal_timeout().connect([this]() {
-        m_impl->pending.disconnect();
-        m_impl->read_and_seed(/*force=*/true);
-        return false;
-    },
-                                                     10); // near-immediate
+    m_impl->pending = Glib::signal_timeout().connect(
+        [this]() {
+            m_impl->pending.disconnect();
+            m_impl->read_and_seed(/*force=*/true);
+            return false;
+        },
+        10); // near-immediate
 }
 
 #else // !DASHER_HAVE_X11
