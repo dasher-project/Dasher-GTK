@@ -34,6 +34,11 @@ class TargetContextWatcher {
     // Stop listening; cancels any pending debounced read. Idempotent.
     void stop();
 
+    // Manual re-anchor (governance#40): force a fresh read + seed from the
+    // current focused accessible, bypassing the quiet window (the user
+    // explicitly asked for this). No-op when not running or no atspi.
+    void force_reanchor();
+
     ~TargetContextWatcher();
 
     struct Impl; // pimpl: the atspi plumbing TU needs the type

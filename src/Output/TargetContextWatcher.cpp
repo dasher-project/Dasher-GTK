@@ -41,9 +41,19 @@ struct TargetContextWatcher::Impl {
     // The source of the latest qualifying event, ref'd for the debounce
     // window (the event's accessible is not guaranteed to live that long).
     AtspiAccessible* pending_source = nullptr;
+    // The most recently FOCUSED text accessible (ref'd). Updated by the
+    // focus listener on EVERY qualifying focus event — not just reads —
+    // so force_reanchor reads the CURRENT target even when no caret event
+    // has fired since the last field switch (greptile P1: "re-anchor uses
+    // stale target"). If the app fires NO focus event at all, this is
+    // stale — same gap as the event-driven path.
+    AtspiAccessible* last_focused = nullptr;
     sigc::connection pending;
 
-    ~Impl() { drop_source(); }
+    ~Impl() {
+        drop_source();
+        clear_stale_focus();
+    }
 
     void drop_source() {
         if (pending_source) {
@@ -51,10 +61,20 @@ struct TargetContextWatcher::Impl {
             pending_source = nullptr;
         }
     }
+    void clear_stale_focus() {
+        if (last_focused) {
+            g_object_unref(last_focused);
+            last_focused = nullptr;
+        }
+    }
 
     void on_event(AtspiEvent* event) {
         if (!bridge || !event || !event->source) return;
         if (!text_carrying_role(event->source)) return;
+        // Track the focused text accessible on EVERY qualifying event
+        // (focus AND caret) — this is what force_reanchor reads from.
+        clear_stale_focus();
+        last_focused = ATSPI_ACCESSIBLE(g_object_ref(event->source));
         drop_source();
         pending_source = ATSPI_ACCESSIBLE(g_object_ref(event->source));
         // Debounce: caret-move events arrive in bursts while the user types
@@ -69,10 +89,11 @@ struct TargetContextWatcher::Impl {
             120);
     }
 
-    void read_and_seed() {
-        // Use the source BEFORE dropping our ref (greptile P1: the capture's
-        // ref was the only thing keeping it alive across the debounce).
-        AtspiAccessible* source = pending_source;
+    void read_and_seed(bool force = false) {
+        // Use the source BEFORE dropping our ref. Fall back to last_focused
+        // (the most recently FOCUSED text accessible — updated by every
+        // qualifying event) so force_reanchor reads the current target.
+        AtspiAccessible* source = pending_source ? pending_source : last_focused;
         if (!bridge || !source) {
             drop_source();
             return;
@@ -122,10 +143,16 @@ struct TargetContextWatcher::Impl {
         rel = std::clamp(rel, 0, static_cast<gint>(g_utf8_strlen(window_text.c_str(), -1)));
         const int caret_bytes = DasherBridge::byte_offset_from_codepoints(window_text, static_cast<int>(rel));
 
-        if (TargetContextDecision::should_seed(mono_ms(), direct ? direct->last_injection_ms() : 0,
+        // RFC 0015 sentence-window amendment (governance#40): should_seed
+        // trims both sides symmetrically for the compare (see its
+        // implementation). When it returns true, seed with the TRIMMED
+        // sentence — the engine gets the context it needs, not the
+        // formatting noise it doesn't.
+        const auto read_window = TargetContextDecision::sentence_window(window_text, caret_bytes);
+        if (TargetContextDecision::should_seed(mono_ms(), force ? 0 : (direct ? direct->last_injection_ms() : 0),
                                                bridge->get_output_text(), bridge->get_offset(), window_text,
                                                caret_bytes)) {
-            bridge->seed_buffer(window_text, caret_bytes);
+            bridge->seed_buffer(read_window.text, read_window.caret_offset);
         }
     }
 };
@@ -178,7 +205,26 @@ void TargetContextWatcher::stop() {
     m_impl = nullptr;
 }
 
+void TargetContextWatcher::force_reanchor() {
+    // Manual re-anchor (governance#40): the user explicitly asked for a
+    // fresh context read. Uses the cached last_source (kept alive between
+    // reads for exactly this case — some apps' a11y providers miss
+    // same-field clicks, so no event fires and pending_source is null).
+    // The quiet window is BYPASSED — the user asked for this.
+    if (!m_impl) return;
+    m_impl->pending.disconnect();
+    m_impl->pending = Glib::signal_timeout().connect(
+        [this]() {
+            m_impl->pending.disconnect();
+            m_impl->read_and_seed(/*force=*/true);
+            return false;
+        },
+        10); // near-immediate
+}
+
 #else // !DASHER_HAVE_X11
+
+void TargetContextWatcher::force_reanchor() {}
 
 struct TargetContextWatcher::Impl {};
 
