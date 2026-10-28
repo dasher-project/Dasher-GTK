@@ -62,8 +62,8 @@ public:
                     row->append(*Gtk::make_managed<SyncedSpinButton>(info.key, info.name, m_bridge, info.min_val,
                                                                      info.max_val, info.step));
                 } else {
-                    row->append(
-                        *Gtk::make_managed<SyncedSlider>(info.key, info.name, m_bridge, info.min_val, info.max_val, info.step));
+                    row->append(*Gtk::make_managed<SyncedSlider>(info.key, info.name, m_bridge, info.min_val,
+                                                                 info.max_val, info.step));
                 }
                 break;
             case 2: // STRING

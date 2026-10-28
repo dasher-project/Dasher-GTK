@@ -19,41 +19,42 @@ namespace analytics {
 
 inline void track_setting_bool(const std::string& setting_id, bool value, const std::string& surface = "settings") {
     AnalyticsClient::instance().capture("setting_changed", {
-        {"setting_id", setting_id},
-        {"value_type", "bool"},
-        {"value", value ? "true" : "false"},
-        {"surface", surface},
-    });
+                                                               {"setting_id", setting_id},
+                                                               {"value_type", "bool"},
+                                                               {"value", value ? "true" : "false"},
+                                                               {"surface", surface},
+                                                           });
 }
 
 inline void track_setting_number(const std::string& setting_id, long value, const std::string& surface = "settings") {
     AnalyticsClient::instance().capture("setting_changed", {
-        {"setting_id", setting_id},
-        {"value_type", "number"},
-        {"value", std::to_string(value)},
-        {"surface", surface},
-    });
+                                                               {"setting_id", setting_id},
+                                                               {"value_type", "number"},
+                                                               {"value", std::to_string(value)},
+                                                               {"surface", surface},
+                                                           });
 }
 
 // Enum values must come from a fixed vocabulary (engine permitted values,
 // palette names) — never free text.
-inline void track_setting_enum(const std::string& setting_id, const std::string& value, const std::string& surface = "settings") {
+inline void track_setting_enum(const std::string& setting_id, const std::string& value,
+                               const std::string& surface = "settings") {
     AnalyticsClient::instance().capture("setting_changed", {
-        {"setting_id", setting_id},
-        {"value_type", "enum"},
-        {"value", value},
-        {"surface", surface},
-    });
+                                                               {"setting_id", setting_id},
+                                                               {"value_type", "enum"},
+                                                               {"value", value},
+                                                               {"surface", surface},
+                                                           });
 }
 
 // Free-text/string setting: the value is NEVER collected (RFC 0001
 // amendment — file paths and custom text are explicitly excluded).
 inline void track_setting_string_changed(const std::string& setting_id, const std::string& surface = "settings") {
     AnalyticsClient::instance().capture("setting_changed", {
-        {"setting_id", setting_id},
-        {"value_type", "string"},
-        {"surface", "settings"},
-    });
+                                                               {"setting_id", setting_id},
+                                                               {"value_type", "string"},
+                                                               {"surface", "settings"},
+                                                           });
 }
 
 } // namespace analytics

@@ -10,25 +10,25 @@
 
 class SyncedStringDropdown : public Gtk::DropDown {
 public:
-    SyncedStringDropdown(int parameter_key, const std::string& param_name, std::shared_ptr<DasherBridge> bridge, const std::vector<std::string>& values, const std::string& surface = "settings")
-        : m_bridge(bridge), m_key(parameter_key), m_name(param_name), m_surface(surface)
-    {
-        set_possible_values(values);
-        set_selected(find_index(m_bridge->get_string_parameter(m_key)));
+  SyncedStringDropdown(int parameter_key, const std::string& param_name, std::shared_ptr<DasherBridge> bridge,
+                       const std::vector<std::string>& values, const std::string& surface = "settings")
+      : m_bridge(bridge), m_key(parameter_key), m_name(param_name), m_surface(surface) {
+      set_possible_values(values);
+      set_selected(find_index(m_bridge->get_string_parameter(m_key)));
 
-        property_selected_item().signal_changed().connect([this]() {
-            auto item = std::dynamic_pointer_cast<Gtk::StringObject>(get_selected_item());
-            if (!item) return; // model just replaced; nothing selected yet
-            // During update_from_bridge() the model swap transiently selects
-            // index 0; writing that to the engine would clobber the current
-            // (or reset-default) value with the first list entry.
-            if (m_refreshing) return;
-            Glib::ustring sel = item->get_string();
-            m_bridge->set_string_parameter(m_key, sel);
-            analytics::track_setting_enum(m_name, sel.raw(), m_surface); // permitted-values vocabulary
-            OnSelectionChanged.emit(sel);
-        });
-    }
+      property_selected_item().signal_changed().connect([this]() {
+          auto item = std::dynamic_pointer_cast<Gtk::StringObject>(get_selected_item());
+          if (!item) return; // model just replaced; nothing selected yet
+          // During update_from_bridge() the model swap transiently selects
+          // index 0; writing that to the engine would clobber the current
+          // (or reset-default) value with the first list entry.
+          if (m_refreshing) return;
+          Glib::ustring sel = item->get_string();
+          m_bridge->set_string_parameter(m_key, sel);
+          analytics::track_setting_enum(m_name, sel.raw(), m_surface); // permitted-values vocabulary
+          OnSelectionChanged.emit(sel);
+      });
+  }
 
     Glib::ustring get_selected_string() {
         return std::dynamic_pointer_cast<Gtk::StringObject>(get_selected_item())->get_string();

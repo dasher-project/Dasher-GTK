@@ -7,19 +7,19 @@
 
 class SyncedSpinButton : public Gtk::SpinButton {
 public:
-    SyncedSpinButton(int parameter_key, const std::string& param_name, std::shared_ptr<DasherBridge> bridge, long min, long max, long step, const std::string& surface = "settings")
-        : m_bridge(bridge), m_key(parameter_key), m_name(param_name), m_surface(surface)
-    {
-        set_digits(0);
-        set_range(min, max);
-        set_increments(step, step * 5);
-        set_value(m_bridge->get_long_parameter(m_key));
+  SyncedSpinButton(int parameter_key, const std::string& param_name, std::shared_ptr<DasherBridge> bridge, long min,
+                   long max, long step, const std::string& surface = "settings")
+      : m_bridge(bridge), m_key(parameter_key), m_name(param_name), m_surface(surface) {
+      set_digits(0);
+      set_range(min, max);
+      set_increments(step, step * 5);
+      set_value(m_bridge->get_long_parameter(m_key));
 
-        signal_value_changed().connect([this]() {
-            m_bridge->set_long_parameter(m_key, get_value_as_int());
-            analytics::track_setting_number(m_name, get_value_as_int(), m_surface);
-        });
-    }
+      signal_value_changed().connect([this]() {
+          m_bridge->set_long_parameter(m_key, get_value_as_int());
+          analytics::track_setting_number(m_name, get_value_as_int(), m_surface);
+      });
+  }
 
     void update_from_bridge() {
         set_value(m_bridge->get_long_parameter(m_key));
