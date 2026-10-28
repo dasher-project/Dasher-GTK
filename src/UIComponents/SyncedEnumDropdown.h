@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Engine/DasherBridge.h"
+#include "Analytics/UiTelemetry.h"
 #include "gtkmm/dropdown.h"
 #include "gtkmm/label.h"
 #include "gtkmm/signallistitemfactory.h"
@@ -21,8 +22,8 @@ protected:
 
 class SyncedEnumDropdown : public Gtk::DropDown {
 public:
-    SyncedEnumDropdown(int parameter_key, std::shared_ptr<DasherBridge> bridge)
-        : m_bridge(bridge), m_key(parameter_key)
+    SyncedEnumDropdown(int parameter_key, const std::string& param_name, std::shared_ptr<DasherBridge> bridge, const std::string& surface = "settings")
+        : m_bridge(bridge), m_key(parameter_key), m_name(param_name), m_surface(surface)
     {
         int count = m_bridge->get_parameter_enum_count(m_key);
         for (int i = 0; i < count; i++) {
@@ -51,6 +52,7 @@ public:
             auto proxy = std::dynamic_pointer_cast<EnumProxy>(get_selected_item());
             if (proxy) {
                 m_bridge->set_long_parameter(m_key, proxy->value);
+                analytics::track_setting_enum(m_name, proxy->name, m_surface); // engine-permitted vocabulary
             }
         });
     }
@@ -58,6 +60,8 @@ public:
 protected:
     std::shared_ptr<DasherBridge> m_bridge;
     int m_key;
+    std::string m_name;
+    std::string m_surface;
     Glib::RefPtr<Gio::ListStore<EnumProxy>> value_list = Gio::ListStore<EnumProxy>::create();
     Glib::RefPtr<Gtk::SignalListItemFactory> item_factory = Gtk::SignalListItemFactory::create();
 

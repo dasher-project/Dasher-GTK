@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Engine/DasherBridge.h"
+#include "Analytics/UiTelemetry.h"
 #include "gtkmm/dropdown.h"
 #include "gtkmm/stringlist.h"
 #include "gtkmm/stringobject.h"
@@ -9,8 +10,8 @@
 
 class SyncedStringDropdown : public Gtk::DropDown {
 public:
-    SyncedStringDropdown(int parameter_key, std::shared_ptr<DasherBridge> bridge, const std::vector<std::string>& values)
-        : m_bridge(bridge), m_key(parameter_key)
+    SyncedStringDropdown(int parameter_key, const std::string& param_name, std::shared_ptr<DasherBridge> bridge, const std::vector<std::string>& values, const std::string& surface = "settings")
+        : m_bridge(bridge), m_key(parameter_key), m_name(param_name), m_surface(surface)
     {
         set_possible_values(values);
         set_selected(find_index(m_bridge->get_string_parameter(m_key)));
@@ -24,6 +25,7 @@ public:
             if (m_refreshing) return;
             Glib::ustring sel = item->get_string();
             m_bridge->set_string_parameter(m_key, sel);
+            analytics::track_setting_enum(m_name, sel.raw(), m_surface); // permitted-values vocabulary
             OnSelectionChanged.emit(sel);
         });
     }
@@ -53,6 +55,8 @@ protected:
 
     std::shared_ptr<DasherBridge> m_bridge;
     int m_key;
+    std::string m_name;
+    std::string m_surface;
     std::vector<Glib::ustring> possible_values;
     Glib::RefPtr<Gtk::StringList> m_model;
     bool m_refreshing = false; // suppress the change handler during model swaps

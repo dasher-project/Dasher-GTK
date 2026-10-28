@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Engine/DasherBridge.h"
+#include "Analytics/UiTelemetry.h"
 #include "ColorDisplayWidget.h"
 #include "gtkmm/box.h"
 #include "gtkmm/dropdown.h"
@@ -74,6 +75,7 @@ public:
             auto proxy = std::dynamic_pointer_cast<PaletteProxy>(get_selected_item());
             if (proxy) {
                 m_bridge->set_palette(proxy->name);
+                analytics::track_setting_enum("Colour Palette", proxy->name);
             }
         });
     }
