@@ -53,25 +53,25 @@ public:
             constexpr int UI_STEP = 4;
             switch (info.type) {
             case 0: // BOOL
-                row->append(*Gtk::make_managed<SyncedSwitch>(info.key, m_bridge));
+                row->append(*Gtk::make_managed<SyncedSwitch>(info.key, info.name, m_bridge));
                 break;
             case 1: // LONG
                 if (info.ui_type == UI_ENUM) {
-                    row->append(*Gtk::make_managed<SyncedEnumDropdown>(info.key, m_bridge));
+                    row->append(*Gtk::make_managed<SyncedEnumDropdown>(info.key, info.name, m_bridge));
                 } else if (info.ui_type == UI_STEP) {
-                    row->append(*Gtk::make_managed<SyncedSpinButton>(info.key, m_bridge, info.min_val, info.max_val,
-                                                                     info.step));
+                    row->append(*Gtk::make_managed<SyncedSpinButton>(info.key, info.name, m_bridge, info.min_val,
+                                                                     info.max_val, info.step));
                 } else {
-                    row->append(
-                        *Gtk::make_managed<SyncedSlider>(info.key, m_bridge, info.min_val, info.max_val, info.step));
+                    row->append(*Gtk::make_managed<SyncedSlider>(info.key, info.name, m_bridge, info.min_val,
+                                                                 info.max_val, info.step));
                 }
                 break;
             case 2: // STRING
                 if (info.ui_type == UI_ENUM) {
                     row->append(*Gtk::make_managed<SyncedStringDropdown>(
-                        info.key, m_bridge, m_bridge->get_parameter_string_values(info.key)));
+                        info.key, info.name, m_bridge, m_bridge->get_parameter_string_values(info.key)));
                 } else {
-                    row->append(*Gtk::make_managed<SyncedTextbox>(info.key, m_bridge));
+                    row->append(*Gtk::make_managed<SyncedTextbox>(info.key, info.name, m_bridge));
                 }
                 break;
             default:

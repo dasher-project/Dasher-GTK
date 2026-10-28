@@ -98,9 +98,11 @@ MainWindow::MainWindow()
     // numeric indices: Dasher::Parameter values are an internal detail of
     // DasherCore and are renumbered between releases.
     : m_alphabet_chooser(
-          m_canvas.bridge->find_parameter_key("SP_ALPHABET_ID"), m_canvas.bridge,
-          m_canvas.bridge->get_parameter_string_values(m_canvas.bridge->find_parameter_key("SP_ALPHABET_ID"))),
-      m_learning_switch(m_canvas.bridge->find_parameter_key("BP_LM_ADAPTIVE"), m_canvas.bridge) {
+          m_canvas.bridge->find_parameter_key("SP_ALPHABET_ID"), "Alphabet", m_canvas.bridge,
+          m_canvas.bridge->get_parameter_string_values(m_canvas.bridge->find_parameter_key("SP_ALPHABET_ID")),
+          "main_ui"),
+      m_learning_switch(m_canvas.bridge->find_parameter_key("BP_LM_ADAPTIVE"), "Adaptive learning", m_canvas.bridge,
+                        "main_ui") {
     Glib::RefPtr<Gtk::CssProvider> css = Gtk::CssProvider::create();
     // Load the stylesheet from the GResource bundle compiled into the binary
     // (see src/dasher.gresource.xml). Loading from a file path meant the CSS
@@ -150,6 +152,12 @@ MainWindow::MainWindow()
     pack_bar_start(m_header_bar, *Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
     pack_bar_start(m_header_bar, m_play_button);
     m_play_button.signal_clicked().connect([this]() {
+        // RFC 0001 2026-10-28 amendment: UI-interaction telemetry (opt-in
+        // gated inside capture()).
+        analytics::AnalyticsClient::instance().capture("ui_action",
+                                                       {{"surface", "main_toolbar"},
+                                                        {"action", "game_mode"},
+                                                        {"state", m_canvas.bridge->game_mode_active() ? "off" : "on"}});
         // Game mode toggle (Windows/Apple parity): enter starts the training
         // target from the engine's game-mode data; leave returns to normal.
         if (m_canvas.bridge->game_mode_active()) {
@@ -225,12 +233,15 @@ MainWindow::MainWindow()
         m_learning_switch.update_from_bridge();
     });
     m_pref_button.signal_clicked().connect([this]() {
+        analytics::AnalyticsClient::instance().capture("ui_action",
+                                                       {{"surface", "main_toolbar"}, {"action", "settings"}});
         // present() brings the window forward AND focuses it, where
         // set_visible(true) alone is a no-op if it's already visible behind.
         preferences_window().present();
     });
 
     m_new_button.signal_clicked().connect([this]() {
+        analytics::AnalyticsClient::instance().capture("ui_action", {{"surface", "main_toolbar"}, {"action", "new"}});
         // Full reset: clear the text AND restart the model from the root so the
         // prediction context is dropped. reset_output_text() alone would keep
         // the learned position (the canvas would resume mid-sentence). The
@@ -268,6 +279,7 @@ MainWindow::MainWindow()
     update_speed_display();
 
     m_open_button.signal_clicked().connect([this]() {
+        analytics::AnalyticsClient::instance().capture("ui_action", {{"surface", "main_toolbar"}, {"action", "open"}});
         auto dialog = Gtk::FileDialog::create();
         dialog->set_title(_("Open Text File"));
         auto filter = Gtk::FileFilter::create();
@@ -333,6 +345,7 @@ MainWindow::MainWindow()
     });
 
     m_save_button.signal_clicked().connect([this]() {
+        analytics::AnalyticsClient::instance().capture("ui_action", {{"surface", "main_toolbar"}, {"action", "save"}});
         auto dialog = Gtk::FileDialog::create();
         dialog->set_title(_("Save Text File"));
         auto filter = Gtk::FileFilter::create();
@@ -876,6 +889,13 @@ void MainWindow::nudge_speed(double delta_v5) {
     if (next > m_speed_max) next = m_speed_max;
     m_canvas.bridge->set_long_parameter(bitrate_key, static_cast<long>(std::lround(next * 100.0)));
     update_speed_display();
+    // RFC 0001 2026-10-28 amendment: one event per committed nudge, from the
+    // main UI (vs. the settings window — different UX question).
+    analytics::AnalyticsClient::instance().capture(
+        "setting_changed", {{"setting_id", "Max Bitrate"},
+                            {"value_type", "number"},
+                            {"value", std::to_string(m_canvas.bridge->get_long_parameter(bitrate_key))},
+                            {"surface", "main_ui"}});
 }
 
 void MainWindow::update_speed_display() {

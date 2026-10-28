@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Engine/DasherBridge.h"
+#include "Analytics/UiTelemetry.h"
 #include "gtkmm/dropdown.h"
 #include "gtkmm/label.h"
 #include "gtkmm/signallistitemfactory.h"
@@ -21,43 +22,46 @@ protected:
 
 class SyncedEnumDropdown : public Gtk::DropDown {
 public:
-    SyncedEnumDropdown(int parameter_key, std::shared_ptr<DasherBridge> bridge)
-        : m_bridge(bridge), m_key(parameter_key)
-    {
-        int count = m_bridge->get_parameter_enum_count(m_key);
-        for (int i = 0; i < count; i++) {
-            std::string name = m_bridge->get_parameter_enum_name(m_key, i);
-            int value = m_bridge->get_parameter_enum_value(m_key, i);
-            value_list->append(EnumProxy::create(name, value));
-        }
+  SyncedEnumDropdown(int parameter_key, const std::string& param_name, std::shared_ptr<DasherBridge> bridge,
+                     const std::string& surface = "settings")
+      : m_bridge(bridge), m_key(parameter_key), m_name(param_name), m_surface(surface) {
+      int count = m_bridge->get_parameter_enum_count(m_key);
+      for (int i = 0; i < count; i++) {
+          std::string name = m_bridge->get_parameter_enum_name(m_key, i);
+          int value = m_bridge->get_parameter_enum_value(m_key, i);
+          value_list->append(EnumProxy::create(name, value));
+      }
 
-        set_model(value_list);
-        set_factory(item_factory);
+      set_model(value_list);
+      set_factory(item_factory);
 
-        item_factory->signal_setup().connect([](const std::shared_ptr<Gtk::ListItem> item) {
-            auto* label = Gtk::make_managed<Gtk::Label>("");
-            label->set_halign(Gtk::Align::START);
-            item->set_child(*label);
-        });
-        item_factory->signal_bind().connect([](const std::shared_ptr<Gtk::ListItem> item) {
-            auto proxy = std::dynamic_pointer_cast<EnumProxy>(item->get_item());
-            auto* label = dynamic_cast<Gtk::Label*>(item->get_child());
-            label->set_label(proxy->name);
-        });
+      item_factory->signal_setup().connect([](const std::shared_ptr<Gtk::ListItem> item) {
+          auto* label = Gtk::make_managed<Gtk::Label>("");
+          label->set_halign(Gtk::Align::START);
+          item->set_child(*label);
+      });
+      item_factory->signal_bind().connect([](const std::shared_ptr<Gtk::ListItem> item) {
+          auto proxy = std::dynamic_pointer_cast<EnumProxy>(item->get_item());
+          auto* label = dynamic_cast<Gtk::Label*>(item->get_child());
+          label->set_label(proxy->name);
+      });
 
-        set_selected(find_value(static_cast<int>(m_bridge->get_long_parameter(m_key))));
+      set_selected(find_value(static_cast<int>(m_bridge->get_long_parameter(m_key))));
 
-        property_selected().signal_changed().connect([this]() {
-            auto proxy = std::dynamic_pointer_cast<EnumProxy>(get_selected_item());
-            if (proxy) {
-                m_bridge->set_long_parameter(m_key, proxy->value);
-            }
-        });
-    }
+      property_selected().signal_changed().connect([this]() {
+          auto proxy = std::dynamic_pointer_cast<EnumProxy>(get_selected_item());
+          if (proxy) {
+              m_bridge->set_long_parameter(m_key, proxy->value);
+              analytics::track_setting_enum(m_name, proxy->name, m_surface); // engine-permitted vocabulary
+          }
+      });
+  }
 
 protected:
     std::shared_ptr<DasherBridge> m_bridge;
     int m_key;
+    std::string m_name;
+    std::string m_surface;
     Glib::RefPtr<Gio::ListStore<EnumProxy>> value_list = Gio::ListStore<EnumProxy>::create();
     Glib::RefPtr<Gtk::SignalListItemFactory> item_factory = Gtk::SignalListItemFactory::create();
 
