@@ -36,6 +36,11 @@
   </developer>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="0.2.16" date="2026-10-28">
+      <description>
+        <p>Privacy-preserving usage insights (RFC 0001 amendment, opt-in as always): if you have analytics enabled, Dasher now records which toolbar buttons are used and which preferences are changed — never the content you type, never free-text setting values, never file paths. This tells the project which settings matter most and where to focus interface improvements. The speed stepper, alphabet chooser, and every preference control are covered.</p>
+      </description>
+    </release>
     <release version="0.2.15" date="2026-09-14">
       <description>
         <p>Keyboard mode gains sentence-window context: predictions now follow the sentence you're typing in, not the whole document — clicking mid-sentence re-anchors accurately and the canvas no longer resets on every keystroke. A manual re-anchor button (magnifier icon) forces a fresh context read for apps whose accessibility events are unreliable. URLs, decimal numbers, and times are correctly preserved (not split as sentence boundaries). Multilingual sentence boundaries (CJK, Arabic) are detected properly.</p>
