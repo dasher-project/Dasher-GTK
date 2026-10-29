@@ -65,8 +65,8 @@
       "description": "User activated a control in the main UI (outside settings windows) — RFC 0001 2026-10-28 amendment. Answers 'where should main-UI focus go'.",
       "properties": {
         "surface": { "type": "string", "enum": ["main_toolbar", "status_bar", "ime_toolbar", "ime_topbar"] },
-        "action": { "type": "string", "description": "Fixed vocabulary; new identifiers require a schema update", "examples": ["new", "open", "save", "pause_play", "game_mode", "settings", "copy", "share", "emoji_toggle", "speed_up", "speed_down", "layout"] },
-        "state": { "type": "string", "enum": ["on", "off", "paused", "playing", "text", "emoji"], "description": "Optional — toggle states" }
+        "action": { "type": "string", "description": "Fixed vocabulary; new identifiers require a schema update", "examples": ["new", "open", "save", "pause_play", "game_mode", "settings", "copy", "share", "emoji_toggle", "speed_up", "speed_down", "layout", "float", "dock", "hide"] },
+        "state": { "type": "string", "enum": ["on", "off", "paused", "playing", "text", "emoji"], "description": "Optional — for toggles" }
       },
       "pii": false
     },
