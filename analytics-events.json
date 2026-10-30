@@ -5,149 +5,47 @@
   "default_properties": {
     "description": "Automatically appended to every event from every frontend",
     "properties": {
-      "platform": {
-        "type": "string",
-        "examples": [
-          "windows",
-          "macos",
-          "ios",
-          "visionos",
-          "linux"
-        ],
-        "description": "GTK is multiplatform: host OS at compile time (linux on Linux builds, macos on macOS, windows on Windows)."
-      },
-      "app_variant": {
-        "type": "string",
-        "examples": [
-          "dasher-windows",
-          "dasher-mac",
-          "dasher-ios",
-          "dasher-gtk"
-        ]
-      },
-      "app_version": {
-        "type": "string",
-        "example": "0.1.0-preview9"
-      },
-      "os_version": {
-        "type": "string",
-        "example": "Microsoft Windows 10.0.19045"
-      },
-      "$os": {
-        "type": "string",
-        "examples": [
-          "Linux",
-          "Windows",
-          "macOS"
-        ],
-        "description": "The raw HTTP transport sends no SDK context, so $os is set explicitly — keeps OS breakdowns consistent with the Apple/Android SDKs."
-      },
-      "$geoip_disable": {
-        "type": "boolean",
-        "const": true,
-        "description": "Sent on every event (including crashes): PostHog Cloud must not derive location from the client IP (RFC 0001: no location data)."
-      }
+      "platform": { "type": "string", "examples": ["windows", "macos", "ios", "visionos", "linux"], "description": "GTK is multiplatform: host OS at compile time (linux on Linux builds, macos on macOS, windows on Windows)." },
+      "app_variant": { "type": "string", "examples": ["dasher-windows", "dasher-mac", "dasher-ios", "dasher-gtk"] },
+      "app_version": { "type": "string", "example": "0.1.0-preview9" },
+      "os_version": { "type": "string", "example": "Microsoft Windows 10.0.19045" },
+      "$os": { "type": "string", "examples": ["Linux", "Windows", "macOS"], "description": "The raw HTTP transport sends no SDK context, so $os is set explicitly — keeps OS breakdowns consistent with the Apple/Android SDKs." },
+      "$geoip_disable": { "type": "boolean", "const": true, "description": "Sent on every event (including crashes): PostHog Cloud must not derive location from the client IP (RFC 0001: no location data)." }
     }
   },
   "events": {
     "app_launched": {
       "description": "App starts (after opt-in)",
-      "properties": {
-        "locale": {
-          "type": "string",
-          "example": "en-GB"
-        }
-      },
+      "properties": { "locale": { "type": "string", "example": "en-GB" } },
       "pii": false
     },
     "input_method_changed": {
       "description": "User selects input method",
-      "properties": {
-        "method": {
-          "type": "string",
-          "enum": [
-            "pointer",
-            "touch",
-            "switch",
-            "joystick",
-            "eye_gaze",
-            "tilt"
-          ]
-        }
-      },
+      "properties": { "method": { "type": "string", "enum": ["pointer", "touch", "switch", "joystick", "eye_gaze", "tilt"] } },
       "pii": false,
       "note": "Not emitted by Dasher-GTK as of 0.2.2; kept here because this schema is shared across frontends."
     },
     "alphabet_selected": {
       "description": "User picks alphabet",
-      "properties": {
-        "alphabet_id": {
-          "type": "string",
-          "example": "English with limited punctuation"
-        }
-      },
+      "properties": { "alphabet_id": { "type": "string", "example": "English with limited punctuation" } },
       "pii": false
     },
     "settings_viewed": {
       "description": "User opens a settings tab",
-      "properties": {
-        "tab_name": {
-          "type": "string",
-          "enum": [
-            "Customization",
-            "Input",
-            "Language",
-            "Output",
-            "Game Mode",
-            "Speech",
-            "Locale",
-            "Privacy",
-            "About"
-          ]
-        }
-      },
+      "properties": { "tab_name": { "type": "string", "enum": ["Customization", "Input", "Language", "Output", "Game Mode", "Speech", "Locale", "Privacy", "About"] } },
       "pii": false
     },
-    "analytics_opted_in": {
-      "description": "User opted into analytics",
-      "properties": {},
-      "pii": false
-    },
-    "analytics_id_reset": {
-      "description": "User reset their anonymous analytics ID",
-      "properties": {},
-      "pii": false
-    },
-    "settings_reset_defaults": {
-      "description": "User reset every engine parameter to its built-in default",
-      "properties": {},
-      "pii": false
-    },
-    "training_reset": {
-      "description": "User deleted their accumulated training data via the Preferences training row",
-      "properties": {},
-      "pii": false
-    },
+    "analytics_opted_in":  { "description": "User opted into analytics", "properties": {}, "pii": false },
+    "analytics_id_reset":  { "description": "User reset their anonymous analytics ID", "properties": {}, "pii": false },
+    "settings_reset_defaults": { "description": "User reset every engine parameter to its built-in default", "properties": {}, "pii": false },
+    "training_reset": { "description": "User deleted their accumulated training data via the Preferences training row", "properties": {}, "pii": false },
     "crash": {
       "description": "Uncaught C++ exception or fatal signal (SIGSEGV/SIGABRT/SIGILL), reported on the launch after the crash.",
       "properties": {
-        "exception_type": {
-          "type": "string",
-          "example": "Signal:SIGSEGV"
-        },
-        "source": {
-          "type": "string",
-          "example": "signal_handler",
-          "note": "Which capture hook fired: 'std::terminate' or 'signal_handler'"
-        },
-        "stack_trace": {
-          "type": "string",
-          "note": "PII-scrubbed; may contain file paths but not user text. Empty for native signals, which are captured async-signal-safe."
-        },
-        "engine_log_tail": {
-          "type": "string",
-          "note": "Last engine log lines, PII-scrubbed"
-        }
+        "exception_type": { "type": "string", "example": "Signal:SIGSEGV" },
+        "source": { "type": "string", "example": "signal_handler", "note": "Which capture hook fired: 'std::terminate' or 'signal_handler'" },
+        "stack_trace": { "type": "string", "note": "PII-scrubbed; may contain file paths but not user text. Empty for native signals, which are captured async-signal-safe." },
+        "engine_log_tail": { "type": "string", "note": "Last engine log lines, PII-scrubbed" }
       },
       "pii": false,
       "note": "Dasher-GTK transmits this as a PostHog `$exception` event (Error Tracking), not a custom event named `crash`."
@@ -155,23 +53,10 @@
     "engine_error": {
       "description": "DasherCore raised its sticky error flag (RFC 0009 A2). Non-fatal: reported once per session and the app keeps running.",
       "properties": {
-        "exception_type": {
-          "type": "string",
-          "example": "DasherEngineError"
-        },
-        "source": {
-          "type": "string",
-          "example": "frame_tick",
-          "note": "Where the flag was observed"
-        },
-        "stack_trace": {
-          "type": "string",
-          "note": "Fixed marker string identifying the flag, not a captured stack"
-        },
-        "engine_log_tail": {
-          "type": "string",
-          "note": "Last engine log lines, PII-scrubbed"
-        }
+        "exception_type": { "type": "string", "example": "DasherEngineError" },
+        "source": { "type": "string", "example": "frame_tick", "note": "Where the flag was observed" },
+        "stack_trace": { "type": "string", "note": "Fixed marker string identifying the flag, not a captured stack" },
+        "engine_log_tail": { "type": "string", "note": "Last engine log lines, PII-scrubbed" }
       },
       "pii": false,
       "note": "Shares the PostHog `$exception` channel with `crash`; the two are distinguished by exception_type."
@@ -179,87 +64,19 @@
     "ui_action": {
       "description": "User activated a control in the main UI (outside settings windows) — RFC 0001 2026-10-28 amendment. Answers 'where should main-UI focus go'.",
       "properties": {
-        "surface": {
-          "type": "string",
-          "enum": [
-            "main_toolbar",
-            "status_bar",
-            "ime_toolbar",
-            "ime_topbar"
-          ]
-        },
-        "action": {
-          "type": "string",
-          "description": "Fixed vocabulary; new identifiers require a schema update",
-          "examples": [
-            "new",
-            "open",
-            "save",
-            "pause_play",
-            "game_mode",
-            "settings",
-            "copy",
-            "share",
-            "emoji_toggle",
-            "speed_up",
-            "speed_down",
-            "layout",
-            "float",
-            "dock",
-            "hide"
-          ]
-        },
-        "state": {
-          "type": "string",
-          "enum": [
-            "on",
-            "off",
-            "paused",
-            "playing",
-            "text",
-            "emoji"
-          ],
-          "description": "Optional — for toggles"
-        }
+        "surface": { "type": "string", "enum": ["main_toolbar", "status_bar", "ime_toolbar", "ime_topbar"] },
+        "action": { "type": "string", "description": "Fixed vocabulary; new identifiers require a schema update", "examples": ["new", "open", "save", "pause_play", "game_mode", "settings", "copy", "share", "emoji_toggle", "speed_up", "speed_down", "layout", "float", "dock", "hide"] },
+        "state": { "type": "string", "enum": ["on", "off", "paused", "playing", "text", "emoji"], "description": "Optional — for toggles" }
       },
       "pii": false
     },
     "setting_changed": {
       "description": "User committed a settings change — RFC 0001 2026-10-28 amendment. Answers 'which settings are the priority'. Fires at the widget commit site only (never for programmatic engine changes).",
       "properties": {
-        "setting_id": {
-          "type": "string",
-          "description": "Canonical identifier: DasherCore parameter name or frontend setting key",
-          "examples": [
-            "Max Bitrate",
-            "output_font_size"
-          ]
-        },
-        "value_type": {
-          "type": "string",
-          "enum": [
-            "bool",
-            "number",
-            "enum",
-            "string"
-          ]
-        },
-        "value": {
-          "type": [
-            "boolean",
-            "number",
-            "string"
-          ],
-          "description": "Present ONLY for bool/number/enum (fixed vocabularies). NEVER for string settings — free text is not collected"
-        },
-        "surface": {
-          "type": "string",
-          "enum": [
-            "settings",
-            "main_ui",
-            "ime"
-          ]
-        }
+        "setting_id": { "type": "string", "description": "Canonical identifier: DasherCore parameter name or frontend setting key", "examples": ["Max Bitrate", "output_font_size"] },
+        "value_type": { "type": "string", "enum": ["bool", "number", "enum", "string"] },
+        "value": { "type": ["boolean", "number", "string"], "description": "Present ONLY for bool/number/enum (fixed vocabularies). NEVER for string settings — free text is not collected" },
+        "surface": { "type": "string", "enum": ["settings", "main_ui", "ime"] }
       },
       "pii": false
     }
