@@ -36,6 +36,11 @@
   </developer>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="0.2.17" date="2026-11-07">
+      <description>
+        <p>The keyboard-mode mini-bar now shows your live typing speed while you write into other apps. Localisation is rebuilt from the shared catalogue: every interface string — menus, dialogs, the keyboard strip — is checked automatically against 32 languages, several strings that were stuck in English are translated, and file-dialog titles are localised again.</p>
+      </description>
+    </release>
     <release version="0.2.16" date="2026-10-28">
       <description>
         <p>Privacy-preserving usage insights (RFC 0001 amendment, opt-in as always): if you have analytics enabled, Dasher now records which toolbar buttons are used and which preferences are changed — never the content you type, never free-text setting values, never file paths. This tells the project which settings matter most and where to focus interface improvements. The speed stepper, alphabet chooser, and every preference control are covered.</p>
