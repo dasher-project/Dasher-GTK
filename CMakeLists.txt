@@ -239,7 +239,6 @@ if(CMAKE_MATCH_1 LESS REQUIRED_DASHER_CAPI_VERSION)
 	message(FATAL_ERROR "CAPI gate: pinned DasherCore exposes CAPI version ${CMAKE_MATCH_1}, this frontend requires >= ${REQUIRED_DASHER_CAPI_VERSION}. Bump the DasherCore submodule (see .github/workflows/engine-bump.yml).")
 endif()
 message(STATUS "CAPI gate: pinned DasherCore CAPI version ${CMAKE_MATCH_1} (required >= ${REQUIRED_DASHER_CAPI_VERSION}) — OK")
-
 # RFC 0022 item 4: the bundled DasherCore's version (git describe of the
 # submodule pin) — the engine is built from this tree, so the pin IS what
 # runs. Exact describe string (pin commits past a tag matter for triage).
