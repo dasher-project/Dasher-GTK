@@ -225,6 +225,29 @@ else()
 endif()
 message(STATUS "Dasher-GTK version: ${DASHER_GTK_VERSION}")
 target_compile_definitions(Dasher PRIVATE DASHER_GTK_VERSION="${DASHER_GTK_VERSION}")
+# RFC 0022 item 4: the bundled DasherCore's version (git describe of the
+# submodule pin) — the engine is built from this tree, so the pin IS what
+# runs. Exact describe string (pin commits past a tag matter for triage).
+set(DASHER_CORE_FALLBACK_VERSION "unknown" CACHE STRING "DasherCore version when the submodule has no git metadata")
+set(DASHER_CORE_VERSION "${DASHER_CORE_FALLBACK_VERSION}")
+if(GIT_EXECUTABLE AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/DasherCore/.git")
+	execute_process(
+		COMMAND ${GIT_EXECUTABLE} describe --tags
+		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/DasherCore
+		OUTPUT_VARIABLE DASHER_CORE_DESCRIBE
+		OUTPUT_STRIP_TRAILING_WHITESPACE
+		ERROR_QUIET
+		RESULT_VARIABLE DASHER_CORE_DESCRIBE_RESULT
+	)
+	if(DASHER_CORE_DESCRIBE_RESULT EQUAL 0 AND DASHER_CORE_DESCRIBE MATCHES "^v[0-9]")
+		set(DASHER_CORE_VERSION "${DASHER_CORE_DESCRIBE}")
+	endif()
+endif()
+message(STATUS "DasherCore engine version: ${DASHER_CORE_VERSION}")
+# Directory-scoped, not target PRIVATE: the unit tests compile
+# AnalyticsClient.cpp too and would otherwise miss the define
+# (selftest build caught exactly that).
+add_compile_definitions(DASHER_ENGINE_VERSION="${DASHER_CORE_VERSION}")
 if(MSGFMT_EXECUTABLE)
 	target_compile_definitions(Dasher PRIVATE ENABLE_NLS GETTEXT_PACKAGE="${GETTEXT_PACKAGE}" LOCALEDIR="${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LOCALEDIR}")
 	add_dependencies(Dasher translations)

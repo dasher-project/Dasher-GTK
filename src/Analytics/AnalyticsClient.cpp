@@ -108,6 +108,9 @@ std::map<std::string, std::string> AnalyticsClient::default_properties() const {
         {"platform", kPlatform},
         {"app_variant", kAppVariant},
         {"app_version", DASHER_GTK_VERSION},
+        // RFC 0022 item 4: the bundled DasherCore's version — makes engine
+        // drift visible in PostHog version adoption.
+        {"engine_version", DASHER_ENGINE_VERSION},
         {"os_version", os_version()},
         {"$os", os_name()},
         // RFC 0001 promises no location data. PostHog Cloud derives $geoip_* (city,
