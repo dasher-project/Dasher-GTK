@@ -167,7 +167,7 @@ MainWindow::MainWindow()
         } else {
             const int rc = m_canvas.bridge->enter_game_mode();
             if (rc == 0) {
-                m_play_button.set_label(_("Leave game"));
+                m_play_button.set_label(_("Leave game mode"));
                 update_game_target();
             } else {
                 m_message_overlay.show_message(
