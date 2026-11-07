@@ -17,1126 +17,1126 @@ msgid "%1$.1f cps · %2$d wpm"
 msgstr "%1$.1f cps · %2$d wpm"
 
 msgid "A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
-msgstr "کریش رپورٹ ~/Library/Logs/DiagnosticReports/Dasher-*.ips میں محفوظ کی گئی تھی۔ اگر آپ اسے GitHub کے مسئلے میں شیئر کر سکتے ہیں، تو اس سے ہمیں بگ کو ٹھیک کرنے میں مدد ملتی ہے۔"
+msgstr "کریش رپورٹ ~/Library/Logs/DiagnosticReports/Dasher-*.ips میں محفوظ کی گئی تھی۔ اگر آپ اسے GitHub کے مسئلے میں شیئر کر سکتے ہیں، تو اس سے ہمیں بگ کو ٹھیک کرنے میں مدد ملتی ہے۔A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
 
 msgid "About"
-msgstr "کے بارے میں"
+msgstr "کے بارے میںAbout"
 
 msgid "Dasher {0}"
-msgstr "ڈیشر {0}"
+msgstr "ڈیشر {0}Dasher {0}"
 
 msgid "Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
-msgstr "ہوور/پوائنٹر ایونٹس کو ڈیشر ان پٹ کے طور پر قبول کریں۔ آنکھوں سے باخبر رہنے یا بیرونی پوائنٹرز کے لیے فعال کریں۔"
+msgstr "ہوور/پوائنٹر ایونٹس کو ڈیشر ان پٹ کے طور پر قبول کریں۔ آنکھوں سے باخبر رہنے یا بیرونی پوائنٹرز کے لیے فعال کریں۔Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
 
 msgid "Access"
-msgstr "رسائی"
+msgstr "رسائیAccess"
 
 msgid "Accessibility Permission Required"
-msgstr "رسائی کی اجازت درکار ہے۔"
+msgstr "رسائی کی اجازت درکار ہے۔Accessibility Permission Required"
 
 msgid "Adapt Speed Automatically"
-msgstr "رفتار کو خود بخود ڈھالیں۔"
+msgstr "رفتار کو خود بخود ڈھالیں۔Adapt Speed Automatically"
 
 msgid "Advanced logging"
-msgstr "جدید لاگنگ"
+msgstr "جدید لاگنگAdvanced logging"
 
 msgid "Detailed diagnostic logging for bug reports (per-sample eye-tracker lines, keystroke traces, UIA reads). Basic connection events are always logged. May generate large log files."
-msgstr "بگ رپورٹس کے لیے تفصیلی تشخیصی لاگنگ (فی سیمپل آئی-ٹریکر لائنیں، کی اسٹروک ٹریسز، یو آئی اے ریڈز)۔ بنیادی کنیکشن ایونٹس ہمیشہ لاگ کیے جاتے ہیں۔ بڑی لاگ فائلیں پیدا کر سکتا ہے۔"
+msgstr "بگ رپورٹس کے لیے تفصیلی تشخیصی لاگنگ (فی سیمپل آئی-ٹریکر لائنیں، کی اسٹروک ٹریسز، یو آئی اے ریڈز)۔ بنیادی کنیکشن ایونٹس ہمیشہ لاگ کیے جاتے ہیں۔ بڑی لاگ فائلیں پیدا کر سکتا ہے۔Detailed diagnostic logging for bug reports (per-sample eye-tracker lines, keystroke traces, UIA reads). Basic connection events are always logged. May generate large log files."
 
 msgid "Advanced settings"
-msgstr "اعلی درجے کی ترتیبات"
+msgstr "اعلی درجے کی ترتیباتAdvanced settings"
 
 msgid "All Dasher settings will be restored to their default values. This cannot be undone."
-msgstr "ڈیشر کی تمام ترتیبات ان کی ڈیفالٹ اقدار پر بحال ہو جائیں گی۔ اسے کالعدم نہیں کیا جا سکتا۔"
+msgstr "ڈیشر کی تمام ترتیبات ان کی ڈیفالٹ اقدار پر بحال ہو جائیں گی۔ اسے کالعدم نہیں کیا جا سکتا۔All Dasher settings will be restored to their default values. This cannot be undone."
 
 msgid "Alphabet"
-msgstr "حروف تہجی"
+msgstr "حروف تہجیAlphabet"
 
 msgid "Help improve Dasher"
-msgstr "Dasher کو بہتر بنانے میں مدد کریں۔"
+msgstr "Dasher کو بہتر بنانے میں مدد کریں۔Help improve Dasher"
 
 msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
-msgstr "گمنام استعمال کے تجزیات اور کریش رپورٹس شیئر کریں؟ کوئی ٹائپ شدہ متن، کلپ بورڈ کا مواد یا ذاتی معلومات کبھی جمع نہیں کی جاتی۔ آپ اسے کسی بھی وقت سیٹنگز میں تبدیل کر سکتے ہیں۔"
+msgstr "گمنام استعمال کے تجزیات اور کریش رپورٹس شیئر کریں؟ کوئی ٹائپ شدہ متن، کلپ بورڈ کا مواد یا ذاتی معلومات کبھی جمع نہیں کی جاتی۔ آپ اسے کسی بھی وقت سیٹنگز میں تبدیل کر سکتے ہیں۔Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
 
 msgid "Not now"
-msgstr "ابھی نہیں۔"
+msgstr "ابھی نہیں۔Not now"
 
 msgid "Share anonymous analytics and crash reports"
-msgstr "گمنام تجزیات اور کریش رپورٹس کا اشتراک کریں۔"
+msgstr "گمنام تجزیات اور کریش رپورٹس کا اشتراک کریں۔Share anonymous analytics and crash reports"
 
 msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
-msgstr "Dasher گمنام، پرائیویسی کا احترام کرنے والے تجزیات جمع کرتا ہے تاکہ استعمال کے پیٹرن سمجھے جائیں اور کریشز ٹھیک ہوں۔ کوئی ٹائپ شدہ متن، کلپ بورڈ کا مواد، یا ذاتی معلومات کبھی جمع نہیں کی جاتی۔\n\nآپ اسے کسی بھی وقت سیٹنگز > پرائیویسی میں تبدیل کر سکتے ہیں۔"
+msgstr "Dasher گمنام، پرائیویسی کا احترام کرنے والے تجزیات جمع کرتا ہے تاکہ استعمال کے پیٹرن سمجھے جائیں اور کریشز ٹھیک ہوں۔ کوئی ٹائپ شدہ متن، کلپ بورڈ کا مواد، یا ذاتی معلومات کبھی جمع نہیں کی جاتی۔\n\nآپ اسے کسی بھی وقت سیٹنگز > پرائیویسی میں تبدیل کر سکتے ہیں۔Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
 
 msgid "Reset analytics ID"
-msgstr "تجزیاتی ID کو دوبارہ ترتیب دیں۔"
+msgstr "تجزیاتی ID کو دوبارہ ترتیب دیں۔Reset analytics ID"
 
 msgid "Dasher collects anonymous usage analytics and crash reports to understand how the app is used and to fix bugs. No typed text, clipboard contents, or personal information is ever collected."
-msgstr "Dasher گمنام استعمال کے تجزیات اور کریش رپورٹس جمع کرتا ہے تاکہ ایپ کے استعمال کو سمجھا جا سکے اور بگز ٹھیک ہوں۔ کوئی ٹائپ شدہ متن، کلپ بورڈ کا مواد، یا ذاتی معلومات کبھی جمع نہیں کی جاتی۔"
+msgstr "Dasher گمنام استعمال کے تجزیات اور کریش رپورٹس جمع کرتا ہے تاکہ ایپ کے استعمال کو سمجھا جا سکے اور بگز ٹھیک ہوں۔ کوئی ٹائپ شدہ متن، کلپ بورڈ کا مواد، یا ذاتی معلومات کبھی جمع نہیں کی جاتی۔Dasher collects anonymous usage analytics and crash reports to understand how the app is used and to fix bugs. No typed text, clipboard contents, or personal information is ever collected."
 
 msgid "Help improve Dasher?"
-msgstr "ڈیشر کو بہتر بنانے میں مدد کریں؟"
+msgstr "ڈیشر کو بہتر بنانے میں مدد کریں؟Help improve Dasher?"
 
 msgid "Anonymous ID: {0}"
-msgstr "گمنام ID: {0}"
+msgstr "گمنام ID: {0}Anonymous ID: {0}"
 
 msgid "Anonymous usage analytics"
-msgstr "گمنام استعمال کے تجزیات"
+msgstr "گمنام استعمال کے تجزیاتAnonymous usage analytics"
 
 msgid "Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
-msgstr "گمنام استعمال کے تجزیات ہمیں یہ سمجھنے میں مدد کرتے ہیں کہ Dasher کا استعمال کیسے کیا جاتا ہے اور کریشز کو ٹھیک کیا جاتا ہے۔ کوئی بھی ٹائپ شدہ متن، کلپ بورڈ مواد، یا ذاتی معلومات کبھی جمع نہیں کی جاتی ہیں۔ ترتیبات → رازداری میں کسی بھی وقت آپٹ آؤٹ کریں۔"
+msgstr "گمنام استعمال کے تجزیات ہمیں یہ سمجھنے میں مدد کرتے ہیں کہ Dasher کا استعمال کیسے کیا جاتا ہے اور کریشز کو ٹھیک کیا جاتا ہے۔ کوئی بھی ٹائپ شدہ متن، کلپ بورڈ مواد، یا ذاتی معلومات کبھی جمع نہیں کی جاتی ہیں۔ ترتیبات → رازداری میں کسی بھی وقت آپٹ آؤٹ کریں۔Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
 
 msgid "App-Level Dwell to Select"
-msgstr "منتخب کرنے کے لیے ایپ لیول ڈویل"
+msgstr "منتخب کرنے کے لیے ایپ لیول ڈویلApp-Level Dwell to Select"
 
 msgid "Dasher"
 msgstr ""
 
 msgid "Appearance"
-msgstr "ظاہری شکل"
+msgstr "ظاہری شکلAppearance"
 
 msgid "Left"
-msgstr "بائیں"
+msgstr "بائیںLeft"
 
 msgid "Move caret left (hold to repeat)"
-msgstr "کیریٹ بائیں طرف منتقل کریں (دوبارہ کے لیے دبائے رکھیں)"
+msgstr "کیریٹ بائیں طرف منتقل کریں (دوبارہ کے لیے دبائے رکھیں)Move caret left (hold to repeat)"
 
 msgid "Right"
-msgstr "دائیں"
+msgstr "دائیںRight"
 
 msgid "Move caret right (hold to repeat)"
-msgstr "کیریٹ دائیں طرف منتقل کریں (دوبارہ کے لیے دبائے رکھیں)"
+msgstr "کیریٹ دائیں طرف منتقل کریں (دوبارہ کے لیے دبائے رکھیں)Move caret right (hold to repeat)"
 
 msgid "Auto"
-msgstr "آٹو"
+msgstr "آٹوAuto"
 
 msgid "Auto-Centre Target"
-msgstr "آٹو سینٹر کا ہدف"
+msgstr "آٹو سینٹر کا ہدفAuto-Centre Target"
 
 msgid "Auto-select after fixating. Only enable if OS dwell is off."
-msgstr "درست کرنے کے بعد خودکار طور پر منتخب کریں۔ صرف اس صورت میں فعال کریں جب OS ڈویل آف ہو۔"
+msgstr "درست کرنے کے بعد خودکار طور پر منتخب کریں۔ صرف اس صورت میں فعال کریں جب OS ڈویل آف ہو۔Auto-select after fixating. Only enable if OS dwell is off."
 
 msgid "Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
-msgstr "چوٹکی کرتے وقت اپنی نگاہیں ٹھیک کرنے کے بعد خودکار طور پر منتخب کریں۔ صرف اس صورت میں فعال کریں جب OS ڈویل آف ہو۔"
+msgstr "چوٹکی کرتے وقت اپنی نگاہیں ٹھیک کرنے کے بعد خودکار طور پر منتخب کریں۔ صرف اس صورت میں فعال کریں جب OS ڈویل آف ہو۔Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
 
 msgid "Back"
-msgstr "واپس"
+msgstr "واپسBack"
 
 msgid "Del"
 msgstr "Del"
 
 msgid "Delete (hold to repeat)"
-msgstr "حذف کریں (دوبارہ کے لیے دبائے رکھیں)"
+msgstr "حذف کریں (دوبارہ کے لیے دبائے رکھیں)Delete (hold to repeat)"
 
 msgid "Calibrate Tilt"
-msgstr "ٹیلت کو کیلیبریٹ کریں"
+msgstr "ٹیلت کو کیلیبریٹ کریںCalibrate Tilt"
 
 msgid "Cancel"
-msgstr "منسوخ کریں۔"
+msgstr "منسوخ کریں۔Cancel"
 
 msgid "Check Again"
-msgstr "دوبارہ چیک کریں۔"
+msgstr "دوبارہ چیک کریں۔Check Again"
 
 msgid "Check for updates"
 msgstr ""
 
 msgid "Choose..."
-msgstr "منتخب کریں..."
+msgstr "منتخب کریں...Choose..."
 
 msgid "Choose File..."
-msgstr "فائل کا انتخاب کریں..."
+msgstr "فائل کا انتخاب کریں...Choose File..."
 
 msgid "Clear"
-msgstr "صاف"
+msgstr "صافClear"
 
 msgid "Clear logs"
-msgstr "لاگ صاف کریں"
+msgstr "لاگ صاف کریںClear logs"
 
 msgid "Click to set up keyboard mode (needs ydotool)"
-msgstr "کی بورڈ وضع ترتیب دینے کے لیے کلک کریں (ydotool کی ضرورت ہے)"
+msgstr "کی بورڈ وضع ترتیب دینے کے لیے کلک کریں (ydotool کی ضرورت ہے)Click to set up keyboard mode (needs ydotool)"
 
 msgid "Close"
-msgstr "بند"
+msgstr "بندClose"
 
 msgid "Close settings"
-msgstr "سیٹنگز بند کریں"
+msgstr "سیٹنگز بند کریںClose settings"
 
 msgid "Colour Theme"
-msgstr "رنگین تھیم"
+msgstr "رنگین تھیمColour Theme"
 
 msgid "contents or personal information is ever collected. You can change this any "
-msgstr "مواد یا ذاتی معلومات کبھی بھی جمع نہیں کی جاتی۔ آپ اسے کسی بھی وقت تبدیل کر سکتے ہیں"
+msgstr "مواد یا ذاتی معلومات کبھی بھی جمع نہیں کی جاتی۔ آپ اسے کسی بھی وقت تبدیل کر سکتے ہیںcontents or personal information is ever collected. You can change this any "
 
 msgid "Control"
-msgstr "کنٹرول"
+msgstr "کنٹرولControl"
 
 msgid "Control mode: enabled"
-msgstr "کنٹرول موڈ: فعال"
+msgstr "کنٹرول موڈ: فعالControl mode: enabled"
 
 msgid "Control mode"
-msgstr "کنٹرول موڈ"
+msgstr "کنٹرول موڈControl mode"
 
 msgid "Control nodes: move, delete, clear, speak, pause"
-msgstr "کنٹرول نوڈز: منتقل کریں، حذف کریں، صاف کریں، بولیں، روکیں"
+msgstr "کنٹرول نوڈز: منتقل کریں، حذف کریں، صاف کریں، بولیں، روکیںControl nodes: move, delete, clear, speak, pause"
 
 msgid "Copied to clipboard."
-msgstr "کلپ بورڈ پر کاپی ہو گیا۔"
+msgstr "کلپ بورڈ پر کاپی ہو گیا۔Copied to clipboard."
 
 msgid "Copy"
-msgstr "کاپی"
+msgstr "کاپیCopy"
 
 msgid "Copy all"
-msgstr "سب کاپی کریں۔"
+msgstr "سب کاپی کریں۔Copy all"
 
 msgid "Copy All"
-msgstr "تمام کاپی کریں۔"
+msgstr "تمام کاپی کریں۔Copy All"
 
 msgid "Copy all (to clipboard)"
-msgstr "سب کچھ کاپی کریں (کلپ بورڈ پر)"
+msgstr "سب کچھ کاپی کریں (کلپ بورڈ پر)Copy all (to clipboard)"
 
 msgid "Copy commands"
-msgstr "کمانڈز کاپی کریں۔"
+msgstr "کمانڈز کاپی کریں۔Copy commands"
 
 msgid "Copy selection"
-msgstr "منتخب شدہ کاپی کریں"
+msgstr "منتخب شدہ کاپی کریںCopy selection"
 
 msgid "Could not load the file into the engine"
-msgstr "فائل کو انجن میں لوڈ نہیں کیا جا سکا"
+msgstr "فائل کو انجن میں لوڈ نہیں کیا جا سکاCould not load the file into the engine"
 
 msgid "Could not open the selected file."
-msgstr "منتخب فائل نہیں کھولی جا سکی۔"
+msgstr "منتخب فائل نہیں کھولی جا سکی۔Could not open the selected file."
 
 msgid "Could not read the selected file."
-msgstr "منتخب فائل نہیں پڑھی جا سکی۔"
+msgstr "منتخب فائل نہیں پڑھی جا سکی۔Could not read the selected file."
 
 msgid "Could not sync your edit with the engine — it may be overwritten"
-msgstr "آپ کی ترمیم کو انجن کے ساتھ ہم آہنگ نہیں کیا جا سکا — یہ اوور رائٹ ہو سکتی ہے"
+msgstr "آپ کی ترمیم کو انجن کے ساتھ ہم آہنگ نہیں کیا جا سکا — یہ اوور رائٹ ہو سکتی ہےCould not sync your edit with the engine — it may be overwritten"
 
 msgid "Could not write the export file."
-msgstr "برآمد فائل نہیں لکھی جا سکی۔"
+msgstr "برآمد فائل نہیں لکھی جا سکی۔Could not write the export file."
 
 msgid "Could not write the training data."
-msgstr "ٹریننگ ڈیٹا نہیں لکھا جا سکا۔"
+msgstr "ٹریننگ ڈیٹا نہیں لکھا جا سکا۔Could not write the training data."
 
 msgid "Current Calibration"
-msgstr "موجودہ کیلیبریشن"
+msgstr "موجودہ کیلیبریشنCurrent Calibration"
 
 msgid "{0} custom file(s)"
-msgstr "{0} حسب ضرورت فائل"
+msgstr "{0} حسب ضرورت فائل{0} custom file(s)"
 
 msgid "Customization"
-msgstr "حسب ضرورت"
+msgstr "حسب ضرورتCustomization"
 
 msgid "Dark"
-msgstr "اندھیرا"
+msgstr "اندھیراDark"
 
 msgid "Dasher "
-msgstr "ڈیشر"
+msgstr "ڈیشرDasher "
 
 msgid "We found your Dasher 5 configuration"
-msgstr "ہم نے آپ کی Dasher 5 کنفیگریشن پائی ہے"
+msgstr "ہم نے آپ کی Dasher 5 کنفیگریشن پائی ہےWe found your Dasher 5 configuration"
 
 msgid "Dasher 5 Import"
-msgstr "Dasher 5 درآمد"
+msgstr "Dasher 5 درآمدDasher 5 Import"
 
 msgid "Would you like to import these settings into Dasher 6?"
-msgstr "کیا آپ یہ سیٹنگز Dasher 6 میں درآمد کرنا چاہتے ہیں؟"
+msgstr "کیا آپ یہ سیٹنگز Dasher 6 میں درآمد کرنا چاہتے ہیں؟Would you like to import these settings into Dasher 6?"
 
 msgid "No Dasher 5 data found on this computer."
-msgstr "اس کمپیوٹر پر کوئی Dasher 5 ڈیٹا نہیں ملا۔"
+msgstr "اس کمپیوٹر پر کوئی Dasher 5 ڈیٹا نہیں ملا۔No Dasher 5 data found on this computer."
 
 msgid "Dasher 5 settings found"
-msgstr "Dasher 5 سیٹنگز مل گئیں"
+msgstr "Dasher 5 سیٹنگز مل گئیںDasher 5 settings found"
 
 msgid "Dasher 5 data detected on this Mac."
-msgstr "اس میک پر ڈیشر 5 ڈیٹا کا پتہ چلا۔"
+msgstr "اس میک پر ڈیشر 5 ڈیٹا کا پتہ چلا۔Dasher 5 data detected on this Mac."
 
 msgid "Dasher 5 settings imported successfully."
-msgstr "Dasher 5 کی ترتیبات کامیابی کے ساتھ درآمد ہو گئیں۔"
+msgstr "Dasher 5 کی ترتیبات کامیابی کے ساتھ درآمد ہو گئیں۔Dasher 5 settings imported successfully."
 
 msgid "Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
-msgstr "ڈیشر سسٹم کی بورڈ کے طور پر بھی کام کرتا ہے، لہذا آپ کسی بھی ایپ میں لکھ سکتے ہیں۔ اسے سیٹنگز میں ایک بار فعال کریں۔"
+msgstr "ڈیشر سسٹم کی بورڈ کے طور پر بھی کام کرتا ہے، لہذا آپ کسی بھی ایپ میں لکھ سکتے ہیں۔ اسے سیٹنگز میں ایک بار فعال کریں۔Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
 
 msgid "Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
-msgstr "Dasher استعمال کو سمجھنے اور کریشوں کو ٹھیک کرنے کے لیے گمنام تجزیات جمع کرتا ہے۔ کوئی ٹائپ شدہ متن، کلپ بورڈ، یا ذاتی معلومات کبھی جمع نہیں کی جاتی ہیں۔ github.com/dasher-project/Dasher-Apple پر اوپن ایونٹ اسکیما دیکھیں۔"
+msgstr "Dasher استعمال کو سمجھنے اور کریشوں کو ٹھیک کرنے کے لیے گمنام تجزیات جمع کرتا ہے۔ کوئی ٹائپ شدہ متن، کلپ بورڈ، یا ذاتی معلومات کبھی جمع نہیں کی جاتی ہیں۔ github.com/dasher-project/Dasher-Apple پر اوپن ایونٹ اسکیما دیکھیں۔Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
 
 msgid "Dasher Engine Error"
-msgstr "Dasher انجن کی خرابی"
+msgstr "Dasher انجن کی خرابیDasher Engine Error"
 
 msgid "Dasher Keyboard"
-msgstr "ڈیشر کی بورڈ"
+msgstr "ڈیشر کی بورڈDasher Keyboard"
 
 msgid "Dasher keyboard"
-msgstr "ڈیشر کی بورڈ"
+msgstr "ڈیشر کی بورڈDasher keyboard"
 
 msgid "Dasher needs accessibility access to send text to other applications."
-msgstr "ڈیشر کو دیگر ایپلیکیشنز کو ٹیکسٹ بھیجنے کے لیے قابل رسائی رسائی درکار ہے۔"
+msgstr "ڈیشر کو دیگر ایپلیکیشنز کو ٹیکسٹ بھیجنے کے لیے قابل رسائی رسائی درکار ہے۔Dasher needs accessibility access to send text to other applications."
 
 msgid "Dasher Preferences"
-msgstr "ڈیشر کی ترجیحات"
+msgstr "ڈیشر کی ترجیحاتDasher Preferences"
 
 msgid "Dasher quit unexpectedly"
-msgstr "ڈیشر نے غیر متوقع طور پر کام چھوڑ دیا۔"
+msgstr "ڈیشر نے غیر متوقع طور پر کام چھوڑ دیا۔Dasher quit unexpectedly"
 
 msgid "Dasher v6"
-msgstr "ڈیشر v6"
+msgstr "ڈیشر v6Dasher v6"
 
 msgid "<big><b>Dasher v6</b></big>\n"
 msgstr "<big><b>Dasher v6</b></big>\n"
 
 msgid "Dead zone: {0} px"
-msgstr "ڈیڈ زون: {0} px"
+msgstr "ڈیڈ زون: {0} pxDead zone: {0} px"
 
 msgid "Decrease Speed"
-msgstr "رفتار کو کم کریں۔"
+msgstr "رفتار کو کم کریں۔Decrease Speed"
 
 msgid "Default"
-msgstr "طے شدہ"
+msgstr "طے شدہDefault"
 
 msgid "Alphabet: {0}"
-msgstr "حروف تہجی: {0}"
+msgstr "حروف تہجی: {0}Alphabet: {0}"
 
 msgid "Colour: {0}"
-msgstr "رنگ: {0}"
+msgstr "رنگ: {0}Colour: {0}"
 
 msgid "Speed: {0}"
-msgstr "رفتار: {0}"
+msgstr "رفتار: {0}Speed: {0}"
 
 msgid "Diagnostics"
-msgstr "تشخیص"
+msgstr "تشخیصDiagnostics"
 
 msgid "Direct Mode"
-msgstr "ڈائریکٹ موڈ"
+msgstr "ڈائریکٹ موڈDirect Mode"
 
 msgid "Done"
-msgstr "ہو گیا"
+msgstr "ہو گیاDone"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
-msgstr "کسی بٹن یا سوئچ کو دبانے کی بجائے ایک جگہ پر ہوور کریں تاکہ کلک ٹرگر ہو۔"
+msgstr "کسی بٹن یا سوئچ کو دبانے کی بجائے ایک جگہ پر ہوور کریں تاکہ کلک ٹرگر ہو۔Hover in one spot to trigger a click, instead of pressing a button or switch."
 
 msgid "Dwell Duration"
-msgstr "رہائش کی مدت"
+msgstr "رہائش کی مدتDwell Duration"
 
 msgid "Dwell to click"
-msgstr "کلک کرنے کے لئے رہنا"
+msgstr "کلک کرنے کے لئے رہناDwell to click"
 
 msgid "Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
-msgstr "ڈیشر کو ترتیبات → جنرل → کی بورڈ → کی بورڈز کے تحت فعال کریں، پھر مکمل رسائی کی اجازت کو آن کریں تاکہ ڈیشر بول اور سیکھ سکے۔"
+msgstr "ڈیشر کو ترتیبات → جنرل → کی بورڈ → کی بورڈز کے تحت فعال کریں، پھر مکمل رسائی کی اجازت کو آن کریں تاکہ ڈیشر بول اور سیکھ سکے۔Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
 
 msgid "Enable tilt input first to access calibration."
-msgstr "کیلیبریشن تک رسائی کے لیے پہلے جھکاؤ ان پٹ کو فعال کریں۔"
+msgstr "کیلیبریشن تک رسائی کے لیے پہلے جھکاؤ ان پٹ کو فعال کریں۔Enable tilt input first to access calibration."
 
 msgid "Dasher could not start"
-msgstr "ڈیشر شروع نہیں ہو سکا"
+msgstr "ڈیشر شروع نہیں ہو سکاDasher could not start"
 
 msgid "Engine Error"
-msgstr "انجن کی خرابی"
+msgstr "انجن کی خرابیEngine Error"
 
 msgid "The Dasher engine encountered an internal error and has stopped. Please restart Dasher."
-msgstr "Dasher انجن نے اندرونی خرابی کا سامنا کیا اور بند ہو گیا۔ براہ کرم Dasher کو دوبارہ شروع کریں۔"
+msgstr "Dasher انجن نے اندرونی خرابی کا سامنا کیا اور بند ہو گیا۔ براہ کرم Dasher کو دوبارہ شروع کریں۔The Dasher engine encountered an internal error and has stopped. Please restart Dasher."
 
 msgid "Please try reinstalling, or report this in a GitHub issue."
-msgstr "براہ کرم دوبارہ انسٹال کرنے کی کوشش کریں، یا اسے ایک GitHub مسئلے میں رپورٹ کریں۔"
+msgstr "براہ کرم دوبارہ انسٹال کرنے کی کوشش کریں، یا اسے ایک GitHub مسئلے میں رپورٹ کریں۔Please try reinstalling, or report this in a GitHub issue."
 
 msgid "Engine Speech Features"
-msgstr "انجن کی تقریری خصوصیات"
+msgstr "انجن کی تقریری خصوصیاتEngine Speech Features"
 
 msgid "Error: {0}"
-msgstr "خرابی: {0}"
+msgstr "خرابی: {0}Error: {0}"
 
 msgid "Error loading settings: {0}"
-msgstr "سیٹنگز لوڈ کرنے میں خرابی: {0}"
+msgstr "سیٹنگز لوڈ کرنے میں خرابی: {0}Error loading settings: {0}"
 
 msgid "Exit"
-msgstr "باہر نکلیں"
+msgstr "باہر نکلیںExit"
 
 msgid "Export Training Text"
-msgstr "ایکسپورٹ ٹریننگ ٹیکسٹ"
+msgstr "ایکسپورٹ ٹریننگ ٹیکسٹExport Training Text"
 
 msgid "Eye Gaze"
-msgstr "آنکھ کی نگاہ"
+msgstr "آنکھ کی نگاہEye Gaze"
 
 msgid "Could not connect to eye tracker on startup. Check the device and try re-selecting it in Settings > Input."
-msgstr "آغاز پر آئی ٹریکر سے منسلک نہیں ہو سکا۔ ڈیوائس کو چیک کریں اور اسے سیٹنگز > ان پٹ میں دوبارہ منتخب کرنے کی کوشش کریں۔"
+msgstr "آغاز پر آئی ٹریکر سے منسلک نہیں ہو سکا۔ ڈیوائس کو چیک کریں اور اسے سیٹنگز > ان پٹ میں دوبارہ منتخب کرنے کی کوشش کریں۔Could not connect to eye tracker on startup. Check the device and try re-selecting it in Settings > Input."
 
 msgid "Eye Tracker Device"
-msgstr "آئی ٹریکر ڈیوائس"
+msgstr "آئی ٹریکر ڈیوائسEye Tracker Device"
 
 msgid "Could not connect to {0}. Check the device is connected and drivers are installed."
-msgstr "{0} سے منسلک نہیں ہو سکا۔ چیک کریں کہ ڈیوائس منسلک ہے اور ڈرائیور انسٹال ہیں۔"
+msgstr "{0} سے منسلک نہیں ہو سکا۔ چیک کریں کہ ڈیوائس منسلک ہے اور ڈرائیور انسٹال ہیں۔Could not connect to {0}. Check the device is connected and drivers are installed."
 
 msgid "Could not connect to {0}. Make sure tobii_stream_engine.dll is installed and a Tobii device is connected."
-msgstr "{0} سے منسلک نہیں ہو سکا۔ یقینی بنائیں کہ tobii_stream_engine.dll انسٹال ہے اور Tobii ڈیوائس منسلک ہے۔"
+msgstr "{0} سے منسلک نہیں ہو سکا۔ یقینی بنائیں کہ tobii_stream_engine.dll انسٹال ہے اور Tobii ڈیوائس منسلک ہے۔Could not connect to {0}. Make sure tobii_stream_engine.dll is installed and a Tobii device is connected."
 
 msgid "Detailed tracking log for bug reports (per-sample lines, written to eyegaze.log in the Dasher folder). Basic connection events are always logged."
-msgstr "بگ رپورٹس کے لیے تفصیلی ٹریکنگ لاگ (نمونہ وار لائنیں، Dasher فولڈر میں eyegaze.log پر لکھی جاتی ہیں)۔ بنیادی کنکشن ایونٹس ہمیشہ لاگ ہوتے ہیں۔"
+msgstr "بگ رپورٹس کے لیے تفصیلی ٹریکنگ لاگ (نمونہ وار لائنیں، Dasher فولڈر میں eyegaze.log پر لکھی جاتی ہیں)۔ بنیادی کنکشن ایونٹس ہمیشہ لاگ ہوتے ہیں۔Detailed tracking log for bug reports (per-sample lines, written to eyegaze.log in the Dasher folder). Basic connection events are always logged."
 
 msgid "Failed to open: "
-msgstr "کھولنے میں ناکام:"
+msgstr "کھولنے میں ناکام:Failed to open: "
 
 msgid "Failed to save: "
-msgstr "محفوظ کرنے میں ناکام:"
+msgstr "محفوظ کرنے میں ناکام:Failed to save: "
 
 msgid "Fast"
-msgstr "تیز"
+msgstr "تیزFast"
 
 msgid "File truncated at 4 MB — only the first part is loaded"
-msgstr "فائل 4 MB پر کٹ گئی — صرف پہلا حصہ لوڈ ہوا ہے"
+msgstr "فائل 4 MB پر کٹ گئی — صرف پہلا حصہ لوڈ ہوا ہےFile truncated at 4 MB — only the first part is loaded"
 
 msgid "Normal Control"
-msgstr "معمول کا کنٹرول"
+msgstr "معمول کا کنٹرولNormal Control"
 
 msgid "Smoothing Mode"
-msgstr "ہموار کرنے کا موڈ"
+msgstr "ہموار کرنے کا موڈSmoothing Mode"
 
 msgid "Flatpak or AppImage build can't provide.\n\n"
-msgstr "فلیٹ پیک یا ایپ امیج بلڈ فراہم نہیں کر سکتا۔"
+msgstr "فلیٹ پیک یا ایپ امیج بلڈ فراہم نہیں کر سکتا۔atpak or AppImage build can't provide.\n\n"
 
 msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
-msgstr "کی بورڈ کو فلوٹ کرنے کے لیے، Dasher کو دوسرے ایپس کے اوپر دکھنے کی اجازت دیں، پھر دوبارہ Float پر ٹیپ کریں۔"
+msgstr "کی بورڈ کو فلوٹ کرنے کے لیے، Dasher کو دوسرے ایپس کے اوپر دکھنے کی اجازت دیں، پھر دوبارہ Float پر ٹیپ کریں۔To float the keyboard, allow Dasher to display over other apps, then tap Float again."
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
-msgstr "مکمل رسائی ڈیشر کو وہ بولنے دیتا ہے جو آپ لکھتے ہیں اور اپنی تربیت کو یاد رکھتے ہیں۔ کی بورڈ اب بھی اس کے بغیر بنیادی اندراج کے لیے کام کرتا ہے۔"
+msgstr "مکمل رسائی ڈیشر کو وہ بولنے دیتا ہے جو آپ لکھتے ہیں اور اپنی تربیت کو یاد رکھتے ہیں۔ کی بورڈ اب بھی اس کے بغیر بنیادی اندراج کے لیے کام کرتا ہے۔Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
 
 msgid "Game mode"
-msgstr "گیم موڈ"
+msgstr "گیم موڈGame mode"
 
 msgid "Game Mode"
-msgstr "گیم موڈ"
+msgstr "گیم موڈGame Mode"
 
 msgid "Game On"
-msgstr "گیم شروع"
+msgstr "گیم شروعGame On"
 
 msgid "Game Text File"
-msgstr "کھیل ہی کھیل میں ٹیکسٹ فائل"
+msgstr "کھیل ہی کھیل میں ٹیکسٹ فائلGame Text File"
 
 msgid "Reduces zoom toward wrong positions while your eyes move to a target"
-msgstr "آپ کی آنکھوں کے ہدف کی طرف حرکت کے دوران غلط مقامات کی طرف زوم کو کم کرتا ہے"
+msgstr "آپ کی آنکھوں کے ہدف کی طرف حرکت کے دوران غلط مقامات کی طرف زوم کو کم کرتا ہےReduces zoom toward wrong positions while your eyes move to a target"
 
 msgid "Filter gaze (reduces zoom toward wrong positions during eye transit)"
-msgstr "گیز فلٹر (آنکھ کے ٹرانزٹ کے دوران غلط مقامات کی طرف زوم کو کم کرتا ہے)"
+msgstr "گیز فلٹر (آنکھ کے ٹرانزٹ کے دوران غلط مقامات کی طرف زوم کو کم کرتا ہے)Filter gaze (reduces zoom toward wrong positions during eye transit)"
 
 msgid "Gaze Smoothing"
-msgstr "گیز سموتھنگ"
+msgstr "گیز سموتھنگGaze Smoothing"
 
 msgid "Got it"
-msgstr "سمجھ گیا"
+msgstr "سمجھ گیاGot it"
 
 msgid "GTK Edition"
-msgstr "جی ٹی کے ایڈیشن"
+msgstr "جی ٹی کے ایڈیشنGTK Edition"
 
 msgid "Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
-msgstr "درآمد زبان کے ماڈل میں متن کا اضافہ کرتا ہے (موجودہ سیکھنے میں شامل ہوتا ہے)۔ ایکسپورٹ آپ کے جمع شدہ ٹریننگ ڈیٹا کو بیک اپ یا ٹرانسفر کے لیے محفوظ کرتا ہے۔ ری سیٹ کرنے سے حسب ضرورت ٹریننگ ڈیٹا ڈیلیٹ ہو جاتا ہے — اگلی لانچ پر ماڈل اپنے بلٹ ان ڈیفالٹس پر واپس آجاتا ہے۔"
+msgstr "درآمد زبان کے ماڈل میں متن کا اضافہ کرتا ہے (موجودہ سیکھنے میں شامل ہوتا ہے)۔ ایکسپورٹ آپ کے جمع شدہ ٹریننگ ڈیٹا کو بیک اپ یا ٹرانسفر کے لیے محفوظ کرتا ہے۔ ری سیٹ کرنے سے حسب ضرورت ٹریننگ ڈیٹا ڈیلیٹ ہو جاتا ہے — اگلی لانچ پر ماڈل اپنے بلٹ ان ڈیفالٹس پر واپس آجاتا ہے۔Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
 
 msgid "Import from Dasher 5"
-msgstr "Dasher 5 سے درآمد کریں۔"
+msgstr "Dasher 5 سے درآمد کریں۔Import from Dasher 5"
 
 msgid "Import settings"
-msgstr "ترتیبات درآمد کریں۔"
+msgstr "ترتیبات درآمد کریں۔Import settings"
 
 msgid "Import Training Text"
-msgstr "تربیتی متن درآمد کریں۔"
+msgstr "تربیتی متن درآمد کریں۔Import Training Text"
 
 msgid "Imported %1 — applies fully on next launch"
-msgstr "درآمد شدہ %1 — اگلے لانچ پر مکمل طور پر لاگو ہوگا"
+msgstr "درآمد شدہ %1 — اگلے لانچ پر مکمل طور پر لاگو ہوگاImported %1 — applies fully on next launch"
 
 msgid "Imported %1 of training text"
-msgstr "درآمد شدہ %1 ٹریننگ ٹیکسٹ کا"
+msgstr "درآمد شدہ %1 ٹریننگ ٹیکسٹ کاImported %1 of training text"
 
 msgid "Increase Speed"
-msgstr "رفتار میں اضافہ کریں۔"
+msgstr "رفتار میں اضافہ کریں۔Increase Speed"
 
 msgid "Input"
-msgstr "ان پٹ"
+msgstr "ان پٹInput"
 
 msgid "Active engine input filter (set via Selection Method or advanced settings)"
-msgstr "ایکٹو انجن ان پٹ فلٹر (سلیکشن طریقہ یا جدید ترتیبات کے ذریعے سیٹ کیا گیا)"
+msgstr "ایکٹو انجن ان پٹ فلٹر (سلیکشن طریقہ یا جدید ترتیبات کے ذریعے سیٹ کیا گیا)Active engine input filter (set via Selection Method or advanced settings)"
 
 msgid "Managed by the engine — change via the Selection Method setting"
-msgstr "انجن کے ذریعے مینیج کیا جاتا ہے — سلیکشن میتھڈ سیٹنگ کے ذریعے تبدیل کریں۔"
+msgstr "انجن کے ذریعے مینیج کیا جاتا ہے — سلیکشن میتھڈ سیٹنگ کے ذریعے تبدیل کریں۔Managed by the engine — change via the Selection Method setting"
 
 msgid "Direct pointer — minimal processing"
-msgstr "براہِ راست پوائنٹر — کم سے کم پروسیسنگ"
+msgstr "براہِ راست پوائنٹر — کم سے کم پروسیسنگDirect pointer — minimal processing"
 
 msgid "No filtering — for clean input devices"
-msgstr "کوئی فلٹرنگ نہیں — صاف ان پٹ آلات کے لیے"
+msgstr "کوئی فلٹرنگ نہیں — صاف ان پٹ آلات کے لیےNo filtering — for clean input devices"
 
 msgid "Input smoothing — reduces jitter for noisy input (eye gaze, head tracking)"
-msgstr "ان پٹ ہموار کرنا — شور والا ان پٹ (آنکھوں کی نگاہ، سر کی ٹریکنگ) کے لیے جھٹکوں کو کم کرتا ہے"
+msgstr "ان پٹ ہموار کرنا — شور والا ان پٹ (آنکھوں کی نگاہ، سر کی ٹریکنگ) کے لیے جھٹکوں کو کم کرتا ہےInput smoothing — reduces jitter for noisy input (eye gaze, head tracking)"
 
 msgid "Dampens small pointer movements for a steadier zoom"
-msgstr "ایک مستحکم زوم کے لیے چھوٹے پوائنٹر کی حرکت کو کم کرتا ہے۔"
+msgstr "ایک مستحکم زوم کے لیے چھوٹے پوائنٹر کی حرکت کو کم کرتا ہے۔Dampens small pointer movements for a steadier zoom"
 
 msgid "Standard continuous control (default)"
-msgstr "معیاری مسلسل کنٹرول (پہلے سے طے شدہ)"
+msgstr "معیاری مسلسل کنٹرول (پہلے سے طے شدہ)Standard continuous control (default)"
 
 msgid "The standard steering method — move the pointer to zoom"
-msgstr "معیاری اسٹیئرنگ کا طریقہ — پوائنٹر کو زوم پر منتقل کریں۔"
+msgstr "معیاری اسٹیئرنگ کا طریقہ — پوائنٹر کو زوم پر منتقل کریں۔The standard steering method — move the pointer to zoom"
 
 msgid "Input Processing"
-msgstr "انپٹ پروسیسنگ"
+msgstr "انپٹ پروسیسنگInput Processing"
 
 msgid "Install Dasher via your package manager or build from source to use keyboard mode."
-msgstr "کی بورڈ موڈ استعمال کرنے کے لیے اپنے پیکیج مینیجر کے ذریعے ڈیشر انسٹال کریں یا سورس سے بنائیں۔"
+msgstr "کی بورڈ موڈ استعمال کرنے کے لیے اپنے پیکیج مینیجر کے ذریعے ڈیشر انسٹال کریں یا سورس سے بنائیں۔Install Dasher via your package manager or build from source to use keyboard mode."
 
 msgid "<b>Install ydotool to use keyboard mode</b>"
-msgstr "<b>کی بورڈ موڈ استعمال کرنے کے لیے ydotool انسٹال کریں</b>"
+msgstr "<b>کی بورڈ موڈ استعمال کرنے کے لیے ydotool انسٹال کریں</b><b>Install ydotool to use keyboard mode</b>"
 
 msgid "isn't installed. Run these commands, then press Retry:"
-msgstr "انسٹال نہیں ہے۔ ان کمانڈز کو چلائیں، پھر دوبارہ کوشش کریں دبائیں:"
+msgstr "انسٹال نہیں ہے۔ ان کمانڈز کو چلائیں، پھر دوبارہ کوشش کریں دبائیں:isn't installed. Run these commands, then press Retry:"
 
 msgid "Keyboard"
-msgstr "کی بورڈ"
+msgstr "کی بورڈKeyboard"
 
 msgid "_Keyboard"
-msgstr "_کی بورڈ"
+msgstr "_کی بورڈ_Keyboard"
 
 msgid "Type Dasher's output straight into the app you are pointing at"
-msgstr "Dasher کا آؤٹ پٹ سیدھا اس ایپ میں ٹائپ کریں جس کی طرف آپ اشارہ کر رہے ہیں"
+msgstr "Dasher کا آؤٹ پٹ سیدھا اس ایپ میں ٹائپ کریں جس کی طرف آپ اشارہ کر رہے ہیںType Dasher's output straight into the app you are pointing at"
 
 msgid "Exit keyboard mode"
-msgstr "کی بورڈ وضع سے باہر نکلیں۔"
+msgstr "کی بورڈ وضع سے باہر نکلیں۔Exit keyboard mode"
 
 msgid "Keyboard mode: hide the output pane and type Dasher's text straight into "
-msgstr "کی بورڈ موڈ: آؤٹ پٹ پین کو چھپائیں اور ڈیشر کا متن سیدھا ٹائپ کریں"
+msgstr "کی بورڈ موڈ: آؤٹ پٹ پین کو چھپائیں اور ڈیشر کا متن سیدھا ٹائپ کریںKeyboard mode: hide the output pane and type Dasher's text straight into "
 
 msgid "<b>Keyboard mode isn't available in this build</b>"
-msgstr "<b>اس تعمیر میں کی بورڈ وضع دستیاب نہیں ہے</b>"
+msgstr "<b>اس تعمیر میں کی بورڈ وضع دستیاب نہیں ہے</b><b>Keyboard mode isn't available in this build</b>"
 
 msgid "Keyboard mode opacity"
-msgstr "کی بورڈ موڈ کی دھندلاپن"
+msgstr "کی بورڈ موڈ کی دھندلاپنKeyboard mode opacity"
 
 msgid "Keyboard mode stopped"
-msgstr "کی بورڈ موڈ بند ہو گیا"
+msgstr "کی بورڈ موڈ بند ہو گیاKeyboard mode stopped"
 
 msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
-msgstr "کی بورڈ موڈ رک گیا: ydotool ٹیکسٹ انجیکشن نہیں کر سکا۔ ydotoold ہے"
+msgstr "کی بورڈ موڈ رک گیا: ydotool ٹیکسٹ انجیکشن نہیں کر سکا۔ ydotoold ہےKeyboard mode stopped: ydotool could not inject text. Is the ydotoold "
 
 msgid "Enable Keyboard Mode"
-msgstr "کی بورڈ وضع کو فعال کریں۔"
+msgstr "کی بورڈ وضع کو فعال کریں۔Enable Keyboard Mode"
 
 msgid "Window transparency when in Keyboard/Direct mode"
-msgstr "کی بورڈ/ڈائریکٹ موڈ میں ونڈو کی شفافیت"
+msgstr "کی بورڈ/ڈائریکٹ موڈ میں ونڈو کی شفافیتWindow transparency when in Keyboard/Direct mode"
 
 msgid "Keyboard mode types Dasher's output into other applications using ydotool, which "
-msgstr "کی بورڈ موڈ ydotool استعمال کرتے ہوئے ڈیشر کی آؤٹ پٹ کو دیگر ایپلیکیشنز میں ٹائپ کرتا ہے، جو"
+msgstr "کی بورڈ موڈ ydotool استعمال کرتے ہوئے ڈیشر کی آؤٹ پٹ کو دیگر ایپلیکیشنز میں ٹائپ کرتا ہے، جوKeyboard mode types Dasher's output into other applications using ydotool, which "
 
 msgid "(Default)"
-msgstr "(پہلے سے طے شدہ)"
+msgstr "(پہلے سے طے شدہ)(Default)"
 
 msgid "Language"
-msgstr "زبان"
+msgstr "زبانLanguage"
 
 msgid "Language / Locale"
-msgstr "زبان / مقامی"
+msgstr "زبان / مقامیLanguage / Locale"
 
 msgid "<b>Language / Locale</b>"
-msgstr "<b>زبان / لوکیل</b>"
+msgstr "<b>زبان / لوکیل</b><b>Language / Locale</b>"
 
 msgid "Bottom"
-msgstr "نیچے"
+msgstr "نیچےBottom"
 
 msgid "Pane position and direct-entry mode"
-msgstr "پین کی پوزیشن اور ڈائریکٹ انٹری موڈ"
+msgstr "پین کی پوزیشن اور ڈائریکٹ انٹری موڈPane position and direct-entry mode"
 
 msgid "Left side"
-msgstr "بائیں طرف"
+msgstr "بائیں طرفLeft side"
 
 msgid "Right side"
-msgstr "دائیں طرف"
+msgstr "دائیں طرفRight side"
 
 msgid "Top"
-msgstr "اوپر"
+msgstr "اوپرTop"
 
 msgid "Learning"
-msgstr "سیکھنا"
+msgstr "سیکھناLearning"
 
 msgid "Leave"
-msgstr "چھوڑیں"
+msgstr "چھوڑیںLeave"
 
 msgid "Leave game mode"
-msgstr "گیم موڈ چھوڑ دیں۔"
+msgstr "گیم موڈ چھوڑ دیں۔Leave game mode"
 
 msgid "Light"
-msgstr "روشنی"
+msgstr "روشنیLight"
 
 msgid "Load Voices"
-msgstr "آوازیں لوڈ کریں"
+msgstr "آوازیں لوڈ کریںLoad Voices"
 
 msgid "Loaded %1 characters"
-msgstr "%1 حروف لوڈ ہوئے"
+msgstr "%1 حروف لوڈ ہوئےLoaded %1 characters"
 
 msgid "Loading…"
-msgstr "لوڈ ہو رہا ہے…"
+msgstr "لوڈ ہو رہا ہے…Loading…"
 
 msgid "Locale"
-msgstr "لوکیل"
+msgstr "لوکیلLocale"
 
 msgid "Migration"
-msgstr "ہجرت"
+msgstr "ہجرتMigration"
 
 msgid "More"
-msgstr "مزید"
+msgstr "مزیدMore"
 
 msgid "More options"
-msgstr "مزید اختیارات"
+msgstr "مزید اختیاراتMore options"
 
 msgid "Move your eyes while pinching to steer"
-msgstr "اسٹیئر کرنے کے لیے چوٹکی لگاتے ہوئے اپنی آنکھوں کو حرکت دیں۔"
+msgstr "اسٹیئر کرنے کے لیے چوٹکی لگاتے ہوئے اپنی آنکھوں کو حرکت دیں۔Move your eyes while pinching to steer"
 
 msgid "New"
-msgstr "نیا"
+msgstr "نیاNew"
 
 msgid "New document"
-msgstr "نیا دستاویز"
+msgstr "نیا دستاویزNew document"
 
 msgid "New Message"
-msgstr "نیا پیغام"
+msgstr "نیا پیغامNew Message"
 
 msgid "New session (clear text and context)"
-msgstr "نئی سیشن (متن اور سیاق صاف کریں)"
+msgstr "نئی سیشن (متن اور سیاق صاف کریں)New session (clear text and context)"
 
 msgid "No Dasher 5 data found on this Mac."
-msgstr "اس میک پر کوئی Dasher 5 ڈیٹا نہیں ملا۔"
+msgstr "اس میک پر کوئی Dasher 5 ڈیٹا نہیں ملا۔No Dasher 5 data found on this Mac."
 
 msgid "No settings available for this section."
-msgstr "اس سیکشن کے لیے کوئی ترتیبات دستیاب نہیں ہیں۔"
+msgstr "اس سیکشن کے لیے کوئی ترتیبات دستیاب نہیں ہیں۔No settings available for this section."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
-msgstr "کوئی تقریر کا انجن دستیاب نہیں۔ سسٹم TTS خصوصیت کے ساتھ بنائیں، یا ترجیحات میں کلاؤڈ آواز مرتب کریں۔"
+msgstr "کوئی تقریر کا انجن دستیاب نہیں۔ سسٹم TTS خصوصیت کے ساتھ بنائیں، یا ترجیحات میں کلاؤڈ آواز مرتب کریں۔No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
 
 msgid "No training data to export yet"
-msgstr "ابھی تک برآمد کرنے کے لیے کوئی ٹریننگ ڈیٹا نہیں ہے"
+msgstr "ابھی تک برآمد کرنے کے لیے کوئی ٹریننگ ڈیٹا نہیں ہےNo training data to export yet"
 
 msgid "No user training data yet"
-msgstr "ابھی تک کوئی یوزر ٹریننگ ڈیٹا نہیں ہے"
+msgstr "ابھی تک کوئی یوزر ٹریننگ ڈیٹا نہیں ہےNo user training data yet"
 
 msgid "No voices found"
-msgstr "کوئی آوازیں نہیں ملی"
+msgstr "کوئی آوازیں نہیں ملیNo voices found"
 
 msgid "Nothing to save"
-msgstr "بچانے کے لیے کچھ نہیں۔"
+msgstr "بچانے کے لیے کچھ نہیں۔Nothing to save"
 
 msgid "Nothing to share"
-msgstr "اشتراک کرنے کے لیے کچھ نہیں ہے۔"
+msgstr "اشتراک کرنے کے لیے کچھ نہیں ہے۔Nothing to share"
 
 msgid "OK"
-msgstr "ٹھیک ہے"
+msgstr "ٹھیک ہےOK"
 
 msgid "On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
-msgstr "visionOS پر، لکھنا شروع کرنے کے لیے کینوس پر چٹکی بھریں اور ہولڈ کریں، اسٹیئر کرنے کے لیے چوٹکی کرتے وقت ارد گرد دیکھیں، اور توقف کے لیے چھوڑ دیں۔ ان پٹ ماڈل پنچ اینڈ لِک ہے۔"
+msgstr "visionOS پر، لکھنا شروع کرنے کے لیے کینوس پر چٹکی بھریں اور ہولڈ کریں، اسٹیئر کرنے کے لیے چوٹکی کرتے وقت ارد گرد دیکھیں، اور توقف کے لیے چھوڑ دیں۔ ان پٹ ماڈل پنچ اینڈ لِک ہے۔On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
 
 msgid "Open"
-msgstr "کھولیں"
+msgstr "کھولیںOpen"
 
 msgid "Open..."
-msgstr "کھولیں..."
+msgstr "کھولیں...Open..."
 
 msgid "Open failed"
-msgstr "کھولنا ناکام ہو گیا۔"
+msgstr "کھولنا ناکام ہو گیا۔Open failed"
 
 msgid "Open Keyboard Settings"
-msgstr "کی بورڈ کی ترتیبات کھولیں۔"
+msgstr "کی بورڈ کی ترتیبات کھولیں۔Open Keyboard Settings"
 
 msgid "Open Settings"
-msgstr "ترتیبات کھولیں۔"
+msgstr "ترتیبات کھولیں۔Open Settings"
 
 msgid "Open System Settings"
-msgstr "سسٹم کی ترتیبات کھولیں۔"
+msgstr "سسٹم کی ترتیبات کھولیں۔Open System Settings"
 
 msgid "Open text file"
-msgstr "ٹیکسٹ فائل کھولیں۔"
+msgstr "ٹیکسٹ فائل کھولیں۔Open text file"
 
 msgid "Output"
-msgstr "آؤٹ پٹ"
+msgstr "آؤٹ پٹOutput"
 
 msgid "Output Font"
-msgstr "آؤٹ پٹ فونٹ"
+msgstr "آؤٹ پٹ فونٹOutput Font"
 
 msgid "Output Font Size"
-msgstr "آؤٹ پٹ فونٹ سائز"
+msgstr "آؤٹ پٹ فونٹ سائزOutput Font Size"
 
 msgid "Touch the canvas to start writing."
-msgstr "لکھنا شروع کرنے کے لیے کینوس کو چھوئے۔"
+msgstr "لکھنا شروع کرنے کے لیے کینوس کو چھوئے۔Touch the canvas to start writing."
 
 msgid "Pane position"
-msgstr "پین کی پوزیشن"
+msgstr "پین کی پوزیشنPane position"
 
 msgid "Paste"
-msgstr "چسپاں کریں۔"
+msgstr "چسپاں کریں۔Paste"
 
 msgid "Pause"
-msgstr "توقف"
+msgstr "توقفPause"
 
 msgid "Pause When Looking Away"
-msgstr "دور دیکھتے وقت توقف کریں۔"
+msgstr "دور دیکھتے وقت توقف کریں۔Pause When Looking Away"
 
 msgid "Pinch and hold anywhere on the canvas to start"
-msgstr "شروع کرنے کے لیے کینوس پر کہیں بھی چٹکی لگائیں اور پکڑیں۔"
+msgstr "شروع کرنے کے لیے کینوس پر کہیں بھی چٹکی لگائیں اور پکڑیں۔Pinch and hold anywhere on the canvas to start"
 
 msgid "Pinch and Look to Write"
-msgstr "چٹکی لگائیں اور لکھنے کے لیے دیکھیں"
+msgstr "چٹکی لگائیں اور لکھنے کے لیے دیکھیںPinch and Look to Write"
 
 msgid "Pitch"
-msgstr "پچ"
+msgstr "پچPitch"
 
 msgid "High"
-msgstr "اونچا"
+msgstr "اونچاHigh"
 
 msgid "Low"
-msgstr "کم"
+msgstr "کمLow"
 
 msgid "Medium"
-msgstr "وسط"
+msgstr "وسطMedium"
 
 msgid "Very High"
-msgstr "بہت اعلی"
+msgstr "بہت اعلیVery High"
 
 msgid "Very Low"
-msgstr "بہت کم"
+msgstr "بہت کمVery Low"
 
 msgid "Game"
-msgstr "کھیل"
+msgstr "کھیلGame"
 
 msgid "Play"
-msgstr "کھیلیں"
+msgstr "کھیلیںPlay"
 
 msgid "Pointer Hover Input"
-msgstr "پوائنٹر ہوور ان پٹ"
+msgstr "پوائنٹر ہوور ان پٹPointer Hover Input"
 
 msgid "Preferences"
-msgstr "ترجیحات"
+msgstr "ترجیحاتPreferences"
 
 msgid "Prefs"
-msgstr "ترجیحات"
+msgstr "ترجیحاتPrefs"
 
 msgid "Preparing Dasher…"
-msgstr "ڈیشر تیار ہو رہا ہے…"
+msgstr "ڈیشر تیار ہو رہا ہے…Preparing Dasher…"
 
 msgid "Preview"
-msgstr "پریویو"
+msgstr "پریویوPreview"
 
 msgid "Privacy"
-msgstr "رازداری"
+msgstr "رازداریPrivacy"
 
 msgid "<b>Privacy</b>"
-msgstr "<b>رازداری</b>"
+msgstr "<b>رازداری</b><b>Privacy</b>"
 
 msgid "Quick speak"
-msgstr "فوری بولیں"
+msgstr "فوری بولیںQuick speak"
 
 msgid "Rate"
-msgstr "رفتار"
+msgstr "رفتارRate"
 
 msgid "Very Fast"
-msgstr "بہت تیز"
+msgstr "بہت تیزVery Fast"
 
 msgid "Very Slow"
-msgstr "بہت آہستہ"
+msgstr "بہت آہستہVery Slow"
 
 msgid "Re-import from Dasher 5"
-msgstr "Dasher 5 سے دوبارہ درآمد کریں۔"
+msgstr "Dasher 5 سے دوبارہ درآمد کریں۔Re-import from Dasher 5"
 
 msgid "Read"
-msgstr "پڑھیں"
+msgstr "پڑھیںRead"
 
 msgid "Release the pinch to pause"
-msgstr "توقف کے لیے چوٹکی چھوڑ دیں۔"
+msgstr "توقف کے لیے چوٹکی چھوڑ دیں۔Release the pinch to pause"
 
 msgid "Reset"
-msgstr "دوبارہ ترتیب دیں۔"
+msgstr "دوبارہ ترتیب دیں۔Reset"
 
 msgid "Reset All Settings to Defaults"
-msgstr "تمام ترتیبات کو ڈیفالٹس پر ری سیٹ کریں۔"
+msgstr "تمام ترتیبات کو ڈیفالٹس پر ری سیٹ کریں۔Reset All Settings to Defaults"
 
 msgid "Reset all settings to their defaults?"
-msgstr "تمام ترتیبات کو ان کے ڈیفالٹس پر ری سیٹ کریں؟"
+msgstr "تمام ترتیبات کو ان کے ڈیفالٹس پر ری سیٹ کریں؟Reset all settings to their defaults?"
 
 msgid "Reset anonymous ID"
-msgstr "گمنام ID کو دوبارہ ترتیب دیں۔"
+msgstr "گمنام ID کو دوبارہ ترتیب دیں۔Reset anonymous ID"
 
 msgid "Reset engine settings to defaults"
-msgstr "انجن کی ترتیبات کو ڈیفالٹس پر دوبارہ ترتیب دیں۔"
+msgstr "انجن کی ترتیبات کو ڈیفالٹس پر دوبارہ ترتیب دیں۔Reset engine settings to defaults"
 
 msgid "Reset Settings"
-msgstr "ترتیبات کو دوبارہ ترتیب دیں۔"
+msgstr "ترتیبات کو دوبارہ ترتیب دیں۔Reset Settings"
 
 msgid "Reset to defaults"
-msgstr "ڈیفالٹس پر ری سیٹ کریں۔"
+msgstr "ڈیفالٹس پر ری سیٹ کریں۔Reset to defaults"
 
 msgid "Reset Training Data"
-msgstr "ٹریننگ ڈیٹا ری سیٹ کریں۔"
+msgstr "ٹریننگ ڈیٹا ری سیٹ کریں۔Reset Training Data"
 
 msgid "Reset Training Data?"
-msgstr "ٹریننگ ڈیٹا ری سیٹ کریں؟"
+msgstr "ٹریننگ ڈیٹا ری سیٹ کریں؟Reset Training Data?"
 
 msgid "Reset WPM averages"
-msgstr "WPM اوسط ری سیٹ کریں"
+msgstr "WPM اوسط ری سیٹ کریںReset WPM averages"
 
 msgid "Restarting engine…"
-msgstr "انجن دوبارہ شروع ہو رہا ہے…"
+msgstr "انجن دوبارہ شروع ہو رہا ہے…Restarting engine…"
 
 msgid "Restore all Dasher settings to their default values. This cannot be undone."
-msgstr "ڈیشر کی تمام ترتیبات کو ان کی ڈیفالٹ اقدار پر بحال کریں۔ اسے کالعدم نہیں کیا جا سکتا۔"
+msgstr "ڈیشر کی تمام ترتیبات کو ان کی ڈیفالٹ اقدار پر بحال کریں۔ اسے کالعدم نہیں کیا جا سکتا۔Restore all Dasher settings to their default values. This cannot be undone."
 
 msgid "Retry"
-msgstr "دوبارہ کوشش کریں۔"
+msgstr "دوبارہ کوشش کریں۔Retry"
 
 msgid "Save"
-msgstr "محفوظ کریں۔"
+msgstr "محفوظ کریں۔Save"
 
 msgid "Save..."
-msgstr "محفوظ کریں..."
+msgstr "محفوظ کریں...Save..."
 
 msgid "Save eye-tracker diagnostics"
-msgstr "آئی ٹریکر کی تشخیص محفوظ کریں"
+msgstr "آئی ٹریکر کی تشخیص محفوظ کریںSave eye-tracker diagnostics"
 
 msgid "Save failed"
-msgstr "محفوظ کرنا ناکام ہو گیا۔"
+msgstr "محفوظ کرنا ناکام ہو گیا۔Save failed"
 
 msgid "Save file"
-msgstr "فائل محفوظ کریں"
+msgstr "فائل محفوظ کریںSave file"
 
 msgid "Save text file"
-msgstr "ٹیکسٹ فائل کو محفوظ کریں۔"
+msgstr "ٹیکسٹ فائل کو محفوظ کریں۔Save text file"
 
 msgid "Saved"
-msgstr "محفوظ کیا گیا۔"
+msgstr "محفوظ کیا گیا۔Saved"
 
 msgid "Saved: "
-msgstr "محفوظ کیا گیا:"
+msgstr "محفوظ کیا گیا:Saved: "
 
 msgid "Scan Speed"
-msgstr "اسکین کی رفتار"
+msgstr "اسکین کی رفتارScan Speed"
 
 msgid "Selection Method"
-msgstr "سلیکشن کا طریقہ"
+msgstr "سلیکشن کا طریقہSelection Method"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
-msgstr "سروس چل رہی ہے؟ انسٹال کمانڈز کے لیے کی بورڈ کے بٹن پر سیٹ اپ ہیلپ دیکھیں۔"
+msgstr "سروس چل رہی ہے؟ انسٹال کمانڈز کے لیے کی بورڈ کے بٹن پر سیٹ اپ ہیلپ دیکھیں۔service running? See the setup help on the Keyboard button for install commands."
 
 msgid "Settings"
-msgstr "ترتیبات"
+msgstr "ترتیباتSettings"
 
 msgid "Settings..."
-msgstr "ترتیبات..."
+msgstr "ترتیبات...Settings..."
 
 msgid "Reset all settings to defaults"
-msgstr "تمام ترتیبات کو ڈیفالٹ پر دوبارہ ترتیب دیں۔"
+msgstr "تمام ترتیبات کو ڈیفالٹ پر دوبارہ ترتیب دیں۔Reset all settings to defaults"
 
 msgid "Settings reset"
-msgstr "ترتیبات دوبارہ ترتیب دیں۔"
+msgstr "ترتیبات دوبارہ ترتیب دیں۔Settings reset"
 
 msgid "Reset all engine settings to their built-in defaults?"
-msgstr "انجن کی تمام ترتیبات کو ان کے پہلے سے طے شدہ ڈیفالٹس پر ری سیٹ کریں؟"
+msgstr "انجن کی تمام ترتیبات کو ان کے پہلے سے طے شدہ ڈیفالٹس پر ری سیٹ کریں؟Reset all engine settings to their built-in defaults?"
 
 msgid "Settings (speed, colours, control mode, language model)"
-msgstr "ترتیبات (رفتار، رنگ، کنٹرول موڈ، زبان ماڈل)"
+msgstr "ترتیبات (رفتار، رنگ، کنٹرول موڈ، زبان ماڈل)Settings (speed, colours, control mode, language model)"
 
 msgid "Settle time: {0} ms"
-msgstr "سیٹل ٹائم: {0} ms"
+msgstr "سیٹل ٹائم: {0} msSettle time: {0} ms"
 
 msgid "Share"
-msgstr "شیئر کریں۔"
+msgstr "شیئر کریں۔Share"
 
 msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard "
-msgstr "نامعلوم استعمال کے تجزیات اور کریش رپورٹس شیئر کریں؟ کوئی ٹائپ شدہ متن، کلپ بورڈ نہیں"
+msgstr "نامعلوم استعمال کے تجزیات اور کریش رپورٹس شیئر کریں؟ کوئی ٹائپ شدہ متن، کلپ بورڈ نہیںShare anonymous usage analytics and crash reports? No typed text, clipboard "
 
 msgid "Show Input Debug Overlay"
-msgstr "ان پٹ ڈیبگ اوورلے دکھائیں۔"
+msgstr "ان پٹ ڈیبگ اوورلے دکھائیں۔Show Input Debug Overlay"
 
 msgid "Show status bar"
-msgstr "اسٹیٹس بار دکھائیں"
+msgstr "اسٹیٹس بار دکھائیںShow status bar"
 
 msgid "Show typing rate (WPM)"
-msgstr "ٹائپنگ کی شرح دکھائیں (WPM)"
+msgstr "ٹائپنگ کی شرح دکھائیں (WPM)Show typing rate (WPM)"
 
 msgid "Size"
-msgstr "سائز"
+msgstr "سائزSize"
 
 msgid "Skipped files"
-msgstr "چھوڑی ہوئی فائلیں۔"
+msgstr "چھوڑی ہوئی فائلیں۔Skipped files"
 
 msgid "Slow"
-msgstr "سست"
+msgstr "سستSlow"
 
 msgid "Speak on stop"
-msgstr "روکنے پر بولیں"
+msgstr "روکنے پر بولیںSpeak on stop"
 
 msgid "Speak words"
-msgstr "الفاظ بولیں"
+msgstr "الفاظ بولیںSpeak words"
 
 msgid "Speech"
-msgstr "تقریر"
+msgstr "تقریرSpeech"
 
 msgid "Speech off"
-msgstr "تقریر بند"
+msgstr "تقریر بندSpeech off"
 
 msgid "Speech on"
-msgstr "پر تقریر"
+msgstr "پر تقریرSpeech on"
 
 msgid "Hello, this is a preview of the selected voice."
-msgstr "ہیلو، یہ منتخب آواز کا پیش نظارہ ہے۔"
+msgstr "ہیلو، یہ منتخب آواز کا پیش نظارہ ہے۔Hello, this is a preview of the selected voice."
 
 msgid "Speech Settings"
-msgstr "تقریری ترتیبات"
+msgstr "تقریری ترتیباتSpeech Settings"
 
 msgid "<b>Speech Settings</b>"
-msgstr "<b>تقریر کی ترتیبات</b>"
+msgstr "<b>تقریر کی ترتیبات</b><b>Speech Settings</b>"
 
 msgid "Speech volume"
-msgstr "تقریری حجم"
+msgstr "تقریری حجمSpeech volume"
 
 msgid "Speed"
-msgstr "رفتار"
+msgstr "رفتارSpeed"
 
 msgid "Speed "
-msgstr "رفتار "
+msgstr "رفتار Speed "
 
 msgid "Start Calibrating"
-msgstr "کیلیبریٹنگ شروع کریں۔"
+msgstr "کیلیبریٹنگ شروع کریں۔Start Calibrating"
 
 msgid "Start fresh"
-msgstr "نئے سرے سے شروع کریں۔"
+msgstr "نئے سرے سے شروع کریں۔Start fresh"
 
 msgid "Dasher failed to start:\n{0}"
-msgstr "ڈیشر شروع کرنے میں ناکام:\n{0}"
+msgstr "ڈیشر شروع کرنے میں ناکام:\n{0}Dasher failed to start:\n{0}"
 
 msgid "Steering Method"
-msgstr "اسٹیئرنگ کا طریقہ"
+msgstr "اسٹیئرنگ کا طریقہSteering Method"
 
 msgid "Stop"
-msgstr "رک جاؤ"
+msgstr "رک جاؤStop"
 
 msgid "Stop speaking"
-msgstr "بولنا بند کریں"
+msgstr "بولنا بند کریںStop speaking"
 
 msgid "Switch Setup"
-msgstr "سوئچ سیٹ اپ"
+msgstr "سوئچ سیٹ اپSwitch Setup"
 
 msgid "System"
-msgstr "سسٹم"
+msgstr "سسٹمSystem"
 
 msgid "text"
-msgstr "متن"
+msgstr "متنtext"
 
 msgid "Text files"
-msgstr "ٹیکسٹ فائلیں"
+msgstr "ٹیکسٹ فائلیںText files"
 
 msgid "That file already is your training data."
-msgstr "یہ فائل پہلے ہی آپ کا ٹریننگ ڈیٹا ہے۔"
+msgstr "یہ فائل پہلے ہی آپ کا ٹریننگ ڈیٹا ہے۔That file already is your training data."
 
 msgid "the app you are pointing at (needs ydotool)"
-msgstr "ایپ جس کی طرف آپ اشارہ کر رہے ہیں (ydotool کی ضرورت ہے)"
+msgstr "ایپ جس کی طرف آپ اشارہ کر رہے ہیں (ydotool کی ضرورت ہے)the app you are pointing at (needs ydotool)"
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
-msgstr "ڈیبگ اوورلے کینوس کے اوپر بائیں طرف ایک سبز پینل کھینچتا ہے جو لائیو ٹچ ایونٹ کی گنتی اور آخری رپورٹ (x, y) دکھاتا ہے۔ جب آپ چوٹکی لگاتے اور پکڑتے ہیں تو آپ کو اپنے اردگرد نظر آتے ہی touch.began پھر touch.moved کوآرڈینیٹ بدلتے ہوئے نظر آنا چاہیے۔"
+msgstr "ڈیبگ اوورلے کینوس کے اوپر بائیں طرف ایک سبز پینل کھینچتا ہے جو لائیو ٹچ ایونٹ کی گنتی اور آخری رپورٹ (x, y) دکھاتا ہے۔ جب آپ چوٹکی لگاتے اور پکڑتے ہیں تو آپ کو اپنے اردگرد نظر آتے ہی touch.began پھر touch.moved کوآرڈینیٹ بدلتے ہوئے نظر آنا چاہیے۔The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 
 msgid "The file is too large (over 10 MB) to import as training text."
-msgstr "فائل بہت بڑی ہے (10 MB سے زیادہ) تاکہ ٹریننگ ٹیکسٹ کے طور پر درآمد کی جا سکے۔"
+msgstr "فائل بہت بڑی ہے (10 MB سے زیادہ) تاکہ ٹریننگ ٹیکسٹ کے طور پر درآمد کی جا سکے۔The file is too large (over 10 MB) to import as training text."
 
 msgid "The selected file is empty."
-msgstr "منتخب فائل خالی ہے۔"
+msgstr "منتخب فائل خالی ہے۔The selected file is empty."
 
 msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
-msgstr "یہ ہر حروف کے لیے آپ کا جمع شدہ ٹریننگ ڈیٹا حذف کر دیتا ہے۔ پیش گوئیاں حالیہ ٹائپنگ کے اثر کو برقرار رکھتی ہیں۔"
+msgstr "یہ ہر حروف کے لیے آپ کا جمع شدہ ٹریننگ ڈیٹا حذف کر دیتا ہے۔ پیش گوئیاں حالیہ ٹائپنگ کے اثر کو برقرار رکھتی ہیں۔This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
-msgstr "یہ آپ کے جمع کردہ تربیتی ڈیٹا کو حذف کر دیتا ہے۔ اگلی لانچ پر لینگویج ماڈل بلٹ ان ڈیفالٹس پر واپس آجائے گا۔ اسے کالعدم نہیں کیا جا سکتا۔"
+msgstr "یہ آپ کے جمع کردہ تربیتی ڈیٹا کو حذف کر دیتا ہے۔ اگلی لانچ پر لینگویج ماڈل بلٹ ان ڈیفالٹس پر واپس آجائے گا۔ اسے کالعدم نہیں کیا جا سکتا۔This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 
 msgid "Tilt Calibration"
-msgstr "جھکاؤ کیلیبریشن"
+msgstr "جھکاؤ کیلیبریشنTilt Calibration"
 
 msgid "Hold the device upright, then tilt forward and back"
-msgstr "ڈیوائس کو سیدھا پکڑیں، پھر آگے اور پیچھے جھکائیں"
+msgstr "ڈیوائس کو سیدھا پکڑیں، پھر آگے اور پیچھے جھکائیںHold the device upright, then tilt forward and back"
 
 msgid "Tilt left and right through the full range"
-msgstr "پورے دائرے میں بائیں اور دائیں جھکائیں"
+msgstr "پورے دائرے میں بائیں اور دائیں جھکائیںTilt left and right through the full range"
 
 msgid "Move slowly and smoothly through all positions"
-msgstr "تمام پوزیشنز کے ذریعے آہستہ اور ہموار حرکت کریں"
+msgstr "تمام پوزیشنز کے ذریعے آہستہ اور ہموار حرکت کریںMove slowly and smoothly through all positions"
 
 msgid "Tilt Settings"
-msgstr "جھکاؤ کی ترتیبات"
+msgstr "جھکاؤ کی ترتیباتTilt Settings"
 
 msgid "Tilt your device now..."
-msgstr "اپنے آلے کو ابھی جھکائیں..."
+msgstr "اپنے آلے کو ابھی جھکائیں...Tilt your device now..."
 
 msgid "Tilt your device through its full range of motion during calibration."
-msgstr "انشانکن کے دوران اپنے آلے کو حرکت کی پوری رینج کے ذریعے جھکائیں۔"
+msgstr "انشانکن کے دوران اپنے آلے کو حرکت کی پوری رینج کے ذریعے جھکائیں۔Tilt your device through its full range of motion during calibration."
 
 msgid "time under Preferences → Privacy."
-msgstr "وقت ترجیحات → رازداری میں۔"
+msgstr "وقت ترجیحات → رازداری میں۔time under Preferences → Privacy."
 
 msgid "Eye Tracker Error"
-msgstr "آئی ٹریکر کی خرابی۔"
+msgstr "آئی ٹریکر کی خرابی۔Eye Tracker Error"
 
 msgid "Eye tracker notice"
-msgstr "آئی ٹریکر نوٹس"
+msgstr "آئی ٹریکر نوٹسEye tracker notice"
 
 msgid "The eye tracker could not be fully resumed ({0}). Tracking may run at reduced speed and accuracy — try running Dasher as administrator."
-msgstr "آنکھ کے ٹریکر کو مکمل طور پر دوبارہ شروع نہیں کیا جا سکا ({0})۔ ٹریکنگ کم رفتار اور کم درستگی کے ساتھ چل سکتی ہے — Dasher کو ایڈمنسٹریٹر کے طور پر چلانے کی کوشش کریں۔"
+msgstr "آنکھ کے ٹریکر کو مکمل طور پر دوبارہ شروع نہیں کیا جا سکا ({0})۔ ٹریکنگ کم رفتار اور کم درستگی کے ساتھ چل سکتی ہے — Dasher کو ایڈمنسٹریٹر کے طور پر چلانے کی کوشش کریں۔The eye tracker could not be fully resumed ({0}). Tracking may run at reduced speed and accuracy — try running Dasher as administrator."
 
 msgid "Toggle control mode"
-msgstr "کنٹرول موڈ ٹوگل کریں"
+msgstr "کنٹرول موڈ ٹوگل کریںToggle control mode"
 
 msgid "Toggle game mode"
-msgstr "گیم موڈ ٹوگل کریں"
+msgstr "گیم موڈ ٹوگل کریںToggle game mode"
 
 msgid "Toggle keyboard mode"
-msgstr "کی بورڈ موڈ ٹوگل کریں"
+msgstr "کی بورڈ موڈ ٹوگل کریںToggle keyboard mode"
 
 msgid "Toggle pane position"
-msgstr "پین کی پوزیشن ٹوگل کریں"
+msgstr "پین کی پوزیشن ٹوگل کریںToggle pane position"
 
 msgid "Hide/show status bar"
-msgstr "اسٹیٹس بار دکھائیں/چھپائیں"
+msgstr "اسٹیٹس بار دکھائیں/چھپائیںHide/show status bar"
 
 msgid "Copy all text"
-msgstr "تمام متن کاپی کریں"
+msgstr "تمام متن کاپی کریںCopy all text"
 
 msgid "Copy selection in target app"
-msgstr "ٹارگٹ ایپ میں سلیکشن کاپی کریں۔"
+msgstr "ٹارگٹ ایپ میں سلیکشن کاپی کریں۔Copy selection in target app"
 
 msgid "Cut selection in target app"
-msgstr "ٹارگٹ ایپ میں سلیکشن کاٹیں"
+msgstr "ٹارگٹ ایپ میں سلیکشن کاٹیںCut selection in target app"
 
 msgid "Paste into target app"
-msgstr "ٹارگٹ ایپ میں پیسٹ کریں"
+msgstr "ٹارگٹ ایپ میں پیسٹ کریںPaste into target app"
 
 msgid "Re-anchor predictions to the caret (read the sentence around your cursor)"
-msgstr "پریڈکشنز کو کیریٹ پر دوبارہ اینکر کریں (اپنے کرسر کے ارد گرد جملہ پڑھیں)"
+msgstr "پریڈکشنز کو کیریٹ پر دوبارہ اینکر کریں (اپنے کرسر کے ارد گرد جملہ پڑھیں)Re-anchor predictions to the caret (read the sentence around your cursor)"
 
 msgid "Select all in target app"
-msgstr "ٹارگٹ ایپ میں سب کچھ منتخب کریں"
+msgstr "ٹارگٹ ایپ میں سب کچھ منتخب کریںSelect all in target app"
 
 msgid "eyetuitive"
-msgstr "چشم کشا"
+msgstr "چشم کشاeyetuitive"
 
 msgid "Eye tracker"
-msgstr "آئی ٹریکر"
+msgstr "آئی ٹریکرEye tracker"
 
 msgid "Tobii (Stream Engine)"
-msgstr "ٹوبی (اسٹریم انجن)"
+msgstr "ٹوبی (اسٹریم انجن)Tobii (Stream Engine)"
 
 msgid "UDP Gaze Tracker (network)"
-msgstr "UDP گیز ٹریکر (نیٹ ورک)"
+msgstr "UDP گیز ٹریکر (نیٹ ورک)UDP Gaze Tracker (network)"
 
 msgid "Windows Eye Tracker (native)"
-msgstr "ونڈوز آئی ٹریکر (مقامی)"
+msgstr "ونڈوز آئی ٹریکر (مقامی)Windows Eye Tracker (native)"
 
 msgid "Training"
-msgstr "تربیت"
+msgstr "تربیتTraining"
 
 msgid "Current training data: {0} KB"
-msgstr "موجودہ تربیتی ڈیٹا: {0} KB"
+msgstr "موجودہ تربیتی ڈیٹا: {0} KBCurrent training data: {0} KB"
 
 msgid "Training Data"
-msgstr "تربیت کا ڈیٹا"
+msgstr "تربیت کا ڈیٹاTraining Data"
 
 msgid "Training data deleted — restart Dasher to fully apply"
-msgstr "ٹریننگ ڈیٹا حذف ہو گیا — مکمل اثر کے لیے Dasher دوبارہ شروع کریں"
+msgstr "ٹریننگ ڈیٹا حذف ہو گیا — مکمل اثر کے لیے Dasher دوبارہ شروع کریںTraining data deleted — restart Dasher to fully apply"
 
 msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
-msgstr "درآمد زبان کے ماڈل اور آپ کے جمع کردہ تربیتی ڈیٹا میں متن شامل کرتا ہے (دوبارہ شروع ہونے پر رکھا جاتا ہے)۔ ایکسپورٹ آپ کے تربیتی ڈیٹا کو بیک اپ یا ٹرانسفر کے لیے محفوظ کرتا ہے۔ ری سیٹ کرنے سے صارف کی تربیت کا تمام ڈیٹا حذف ہو جاتا ہے — ماڈل اگلے لانچ پر اپنے پہلے سے طے شدہ ڈیفالٹس پر واپس آجاتا ہے۔"
+msgstr "درآمد زبان کے ماڈل اور آپ کے جمع کردہ تربیتی ڈیٹا میں متن شامل کرتا ہے (دوبارہ شروع ہونے پر رکھا جاتا ہے)۔ ایکسپورٹ آپ کے تربیتی ڈیٹا کو بیک اپ یا ٹرانسفر کے لیے محفوظ کرتا ہے۔ ری سیٹ کرنے سے صارف کی تربیت کا تمام ڈیٹا حذف ہو جاتا ہے — ماڈل اگلے لانچ پر اپنے پہلے سے طے شدہ ڈیفالٹس پر واپس آجاتا ہے۔Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
 
 msgid "Training data exported."
-msgstr "ٹریننگ ڈیٹا برآمد ہو گیا۔"
+msgstr "ٹریننگ ڈیٹا برآمد ہو گیا۔Training data exported."
 
 msgid "Export Training Data"
-msgstr "ٹریننگ ڈیٹا برآمد کریں"
+msgstr "ٹریننگ ڈیٹا برآمد کریںExport Training Data"
 
 msgid "Exported to {0}"
-msgstr "{0} کو برآمد کیا گیا"
+msgstr "{0} کو برآمد کیا گیاExported to {0}"
 
 msgid "{0} failed: {1}"
-msgstr "{0} ناکام ہو گیا: {1}"
+msgstr "{0} ناکام ہو گیا: {1}{0} failed: {1}"
 
 msgid "Imported {0} KB of training text"
-msgstr "{0} کلو بائٹ ٹریننگ ٹیکسٹ درآمد ہو گیا"
+msgstr "{0} کلو بائٹ ٹریننگ ٹیکسٹ درآمد ہو گیاImported {0} KB of training text"
 
 msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
-msgstr "{0} کلو بائٹ درآمد ہو گئے — اگلے لانچ پر مکمل لاگو ہوں گے (لائیو ماڈل نے {1} واپس دیا)"
+msgstr "{0} کلو بائٹ درآمد ہو گئے — اگلے لانچ پر مکمل لاگو ہوں گے (لائیو ماڈل نے {1} واپس دیا)Imported {0} KB — applies fully on next launch (live model returned {1})"
 
 msgid "Training is not available yet — try again once the canvas has rendered."
-msgstr "ٹریننگ ابھی دستیاب نہیں — جب کینوس رینڈر ہو جائے تو دوبارہ کوشش کریں۔"
+msgstr "ٹریننگ ابھی دستیاب نہیں — جب کینوس رینڈر ہو جائے تو دوبارہ کوشش کریں۔Training is not available yet — try again once the canvas has rendered."
 
 msgid "Training data deleted — the model returns to its built-in defaults on next launch"
-msgstr "ٹریننگ ڈیٹا کو حذف کر دیا گیا — ماڈل اگلی لانچ پر اپنے بلٹ ان ڈیفالٹس پر واپس آجاتا ہے۔"
+msgstr "ٹریننگ ڈیٹا کو حذف کر دیا گیا — ماڈل اگلی لانچ پر اپنے بلٹ ان ڈیفالٹس پر واپس آجاتا ہے۔Training data deleted — the model returns to its built-in defaults on next launch"
 
 msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
-msgstr "جہاں ممکن ہو تربیتی ڈیٹا کو حذف کر دیا گیا — {0} آئٹمز ناکام ہو گئے؛ دوبارہ کوشش کرنے کے لیے دوبارہ ری سیٹ دبائیں۔"
+msgstr "جہاں ممکن ہو تربیتی ڈیٹا کو حذف کر دیا گیا — {0} آئٹمز ناکام ہو گئے؛ دوبارہ کوشش کرنے کے لیے دوبارہ ری سیٹ دبائیں۔Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
 
 msgid "TTS Engine"
-msgstr "TTS انجن"
+msgstr "TTS انجنTTS Engine"
 
 msgid "No credentials required"
-msgstr "کوئی اسناد درکار نہیں"
+msgstr "کوئی اسناد درکار نہیںNo credentials required"
 
 msgid "Turbo"
-msgstr "ٹربو"
+msgstr "ٹربوTurbo"
 
 msgid "Typing into other applications needs access to /dev/uinput, which a sandboxed "
-msgstr "دوسری ایپلیکیشنز میں ٹائپ کرنے کے لیے /dev/uinput تک رسائی کی ضرورت ہوتی ہے، جو ایک سینڈباکسڈ ہے"
+msgstr "دوسری ایپلیکیشنز میں ٹائپ کرنے کے لیے /dev/uinput تک رسائی کی ضرورت ہوتی ہے، جو ایک سینڈباکسڈ ہےTyping into other applications needs access to /dev/uinput, which a sandboxed "
 
 msgid "Typing rate"
-msgstr "ٹائپنگ کی شرح"
+msgstr "ٹائپنگ کی شرحTyping rate"
 
 msgid "{cps} cps · {wpm} wpm"
 msgstr "{cps} cps · {wpm} wpm"
 
 msgid "UDP Port"
-msgstr "UDP پورٹ"
+msgstr "UDP پورٹUDP Port"
 
 msgid "UDP tracker listens for STREAM_DATA or GazePoint messages"
-msgstr "UDP ٹریکر STREAM_DATA یا GazePoint پیغامات کے لیے سنتا ہے"
+msgstr "UDP ٹریکر STREAM_DATA یا GazePoint پیغامات کے لیے سنتا ہےUDP tracker listens for STREAM_DATA or GazePoint messages"
 
 msgid "Dasher {0} is available (you're running v{1}). Tap to download — disable in Settings > Privacy."
-msgstr "ڈیشر {0} دستیاب ہے (آپ v{1} چلا رہے ہیں)۔ ڈاؤن لوڈ کرنے کے لیے تھپتھپائیں — ترتیبات > رازداری میں غیر فعال کریں۔"
+msgstr "ڈیشر {0} دستیاب ہے (آپ v{1} چلا رہے ہیں)۔ ڈاؤن لوڈ کرنے کے لیے تھپتھپائیں — ترتیبات > رازداری میں غیر فعال کریں۔Dasher {0} is available (you're running v{1}). Tap to download — disable in Settings > Privacy."
 
 msgid "Dasher update available"
-msgstr "ڈیشر اپ ڈیٹ دستیاب ہے۔"
+msgstr "ڈیشر اپ ڈیٹ دستیاب ہے۔Dasher update available"
 
 msgid "Use Dasher as your keyboard"
-msgstr "Dasher کو اپنے کی بورڈ کے بطور استعمال کریں۔"
+msgstr "Dasher کو اپنے کی بورڈ کے بطور استعمال کریں۔Use Dasher as your keyboard"
 
 msgid "Voice"
-msgstr "آواز"
+msgstr "آوازVoice"
 
 msgid "{0} voices"
-msgstr "{0} آوازیں۔"
+msgstr "{0} آوازیں۔{0} voices"
 
 msgid "Volume"
-msgstr "آواز"
+msgstr "آوازVolume"
 
 msgid "Dasher Warning"
-msgstr "ڈیشر کی وارننگ"
+msgstr "ڈیشر کی وارننگDasher Warning"
 
 msgid "We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
-msgstr "ہمیں اس میک پر آپ کی Dasher 5 کنفیگریشن ملی ہے۔ آپ کے حروف تہجی، رنگ، رفتار کی ترتیبات، اور حسب ضرورت فائلیں Dasher 6 میں درآمد کی جا سکتی ہیں۔"
+msgstr "ہمیں اس میک پر آپ کی Dasher 5 کنفیگریشن ملی ہے۔ آپ کے حروف تہجی، رنگ، رفتار کی ترتیبات، اور حسب ضرورت فائلیں Dasher 6 میں درآمد کی جا سکتی ہیں۔We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
 
 msgid "What was found"
-msgstr "جو ملا"
+msgstr "جو ملاWhat was found"
 
 msgid "{0} wpm"
 msgstr "{0} wpm"
 
 msgid "max {0}"
-msgstr "زیادہ سے زیادہ {0}"
+msgstr "زیادہ سے زیادہ {0}max {0}"
 
 msgid "X range:"
-msgstr "ایکس رینج:"
+msgstr "ایکس رینج:X range:"
 
 msgid "Y range:"
-msgstr "Y رینج:"
+msgstr "Y رینج:Y range:"
 
 msgid "ydotool found. Keyboard mode is ready."
-msgstr "ydotool ملا۔ کی بورڈ وضع تیار ہے۔"
+msgstr "ydotool ملا۔ کی بورڈ وضع تیار ہے۔ydotool found. Keyboard mode is ready."
 
 msgid "ydotool still isn't available. Make sure it's installed and the ydotool service is running."
-msgstr "ydotool ابھی دستیاب نہیں ہے۔ یقین کریں کہ یہ انسٹال ہے اور ydotool سروس چل رہی ہے۔"
+msgstr "ydotool ابھی دستیاب نہیں ہے۔ یقین کریں کہ یہ انسٹال ہے اور ydotool سروس چل رہی ہے۔ydotool still isn't available. Make sure it's installed and the ydotool service is running."
 
 msgid "You can import later in Settings > Privacy & Migration"
-msgstr "آپ بعد میں ترتیبات > رازداری اور منتقلی میں درآمد کر سکتے ہیں۔"
+msgstr "آپ بعد میں ترتیبات > رازداری اور منتقلی میں درآمد کر سکتے ہیں۔You can import later in Settings > Privacy & Migration"
 
 msgid "Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."
-msgstr "آپ کی نگاہوں کو مسلسل ٹریک کیا جاتا ہے جب آپ چوٹکی لگاتے اور پکڑتے ہیں — اس طرح تمام visionOS gaze ایپس کام کرتی ہیں۔"
+msgstr "آپ کی نگاہوں کو مسلسل ٹریک کیا جاتا ہے جب آپ چوٹکی لگاتے اور پکڑتے ہیں — اس طرح تمام visionOS gaze ایپس کام کرتی ہیں۔Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."

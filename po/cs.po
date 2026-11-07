@@ -14,268 +14,268 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "%1$.1f cps · %2$d wpm"
-msgstr "%1$.1f zn/s · %2$d sl/s"
+msgstr "%1$.1f zn/s · %2$d sl/s%1$.1f cps · %2$d wpm"
 
 msgid "A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
-msgstr "Zpráva o pádu byla uložena do souboru ~/Library/Logs/DiagnosticReports/Dasher-*.ips. Pokud ji můžete sdílet v rámci problému na GitHubu, pomůže nám to chybu opravit."
+msgstr "Zpráva o pádu byla uložena do souboru ~/Library/Logs/DiagnosticReports/Dasher-*.ips. Pokud ji můžete sdílet v rámci problému na GitHubu, pomůže nám to chybu opravit.A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
 
 msgid "About"
-msgstr "O nás"
+msgstr "O násAbout"
 
 msgid "Dasher {0}"
 msgstr "Dasher {0}"
 
 msgid "Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
-msgstr "Přijímat události najetí myší/ukazatele jako vstup Dasheru. Povolit pro sledování očí nebo externí ukazatele."
+msgstr "Přijímat události najetí myší/ukazatele jako vstup Dasheru. Povolit pro sledování očí nebo externí ukazatele.Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
 
 msgid "Access"
-msgstr "Přístup"
+msgstr "PřístupAccess"
 
 msgid "Accessibility Permission Required"
-msgstr "Vyžadováno oprávnění přístupnosti"
+msgstr "Vyžadováno oprávnění přístupnostiAccessibility Permission Required"
 
 msgid "Adapt Speed Automatically"
-msgstr "Automaticky přizpůsobit rychlost"
+msgstr "Automaticky přizpůsobit rychlostAdapt Speed Automatically"
 
 msgid "Advanced logging"
-msgstr "Pokročilé zaznamenávání"
+msgstr "Pokročilé zaznamenáváníAdvanced logging"
 
 msgid "Detailed diagnostic logging for bug reports (per-sample eye-tracker lines, keystroke traces, UIA reads). Basic connection events are always logged. May generate large log files."
-msgstr "Podrobné diagnostické protokolování pro hlášení chyb (řádky o jednotlivých vzorcích očního sledovače, stopy stisků kláves, čtení UIA). Základní události připojení jsou vždy protokolovány. Mohou vznikat velké soubory protokolu."
+msgstr "Podrobné diagnostické protokolování pro hlášení chyb (řádky o jednotlivých vzorcích očního sledovače, stopy stisků kláves, čtení UIA). Základní události připojení jsou vždy protokolovány. Mohou vznikat velké soubory protokolu.Detailed diagnostic logging for bug reports (per-sample eye-tracker lines, keystroke traces, UIA reads). Basic connection events are always logged. May generate large log files."
 
 msgid "Advanced settings"
-msgstr "Pokročilá nastavení"
+msgstr "Pokročilá nastaveníAdvanced settings"
 
 msgid "All Dasher settings will be restored to their default values. This cannot be undone."
-msgstr "Všechna nastavení Dasheru budou obnovena na výchozí hodnoty. Tuto akci nelze vrátit zpět."
+msgstr "Všechna nastavení Dasheru budou obnovena na výchozí hodnoty. Tuto akci nelze vrátit zpět.All Dasher settings will be restored to their default values. This cannot be undone."
 
 msgid "Alphabet"
-msgstr "Abeceda"
+msgstr "AbecedaAlphabet"
 
 msgid "Help improve Dasher"
-msgstr "Pomozte vylepšit Dasher"
+msgstr "Pomozte vylepšit DasherHelp improve Dasher"
 
 msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
-msgstr "Sdílet anonymní analytiku používání a zprávy o haváriích? Nikdy nejsou shromažďovány žádné napsané texty, obsah schránky ani osobní informace. Toto můžete kdykoli změnit v Nastavení."
+msgstr "Sdílet anonymní analytiku používání a zprávy o haváriích? Nikdy nejsou shromažďovány žádné napsané texty, obsah schránky ani osobní informace. Toto můžete kdykoli změnit v Nastavení.Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
 
 msgid "Not now"
-msgstr "Teď ne"
+msgstr "Teď neNot now"
 
 msgid "Share anonymous analytics and crash reports"
-msgstr "Sdílejte anonymní analýzy a zprávy o selhání"
+msgstr "Sdílejte anonymní analýzy a zprávy o selháníShare anonymous analytics and crash reports"
 
 msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
-msgstr "Dasher sbírá anonymní, na soukromí respektující analytická data, aby porozuměl vzorcům používání a opravil pády. Nikdy nejsou sbírány žádné napsané texty, obsah schránky ani osobní údaje.\n\nToto můžete kdykoliv změnit v Nastavení > Soukromí."
+msgstr "Dasher sbírá anonymní, na soukromí respektující analytická data, aby porozuměl vzorcům používání a opravil pády. Nikdy nejsou sbírány žádné napsané texty, obsah schránky ani osobní údaje.\n\nToto můžete kdykoliv změnit v Nastavení > Soukromí.Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
 
 msgid "Reset analytics ID"
-msgstr "Resetovat ID analýzy"
+msgstr "Resetovat ID analýzyReset analytics ID"
 
 msgid "Dasher collects anonymous usage analytics and crash reports to understand how the app is used and to fix bugs. No typed text, clipboard contents, or personal information is ever collected."
-msgstr "Dasher shromažďuje anonymní analytiku používání a hlášení pádů, aby pochopil, jak je aplikace používána, a opravil chyby. Nikdy nejsou shromažďována žádná napsaná data, obsah schránky ani osobní informace."
+msgstr "Dasher shromažďuje anonymní analytiku používání a hlášení pádů, aby pochopil, jak je aplikace používána, a opravil chyby. Nikdy nejsou shromažďována žádná napsaná data, obsah schránky ani osobní informace.Dasher collects anonymous usage analytics and crash reports to understand how the app is used and to fix bugs. No typed text, clipboard contents, or personal information is ever collected."
 
 msgid "Help improve Dasher?"
-msgstr "Pomoci zlepšit Dashera?"
+msgstr "Pomoci zlepšit Dashera?Help improve Dasher?"
 
 msgid "Anonymous ID: {0}"
-msgstr "Anonymní ID: {0}"
+msgstr "Anonymní ID: {0}Anonymous ID: {0}"
 
 msgid "Anonymous usage analytics"
-msgstr "Anonymní analýzy užívání"
+msgstr "Anonymní analýzy užíváníAnonymous usage analytics"
 
 msgid "Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
-msgstr "Anonymní analýzy používání nám pomáhají pochopit, jak se Dasher používá, a opravit pády. Nikdy se neshromažďuje žádný napsaný text, obsah schránky ani osobní údaje. Můžete se kdykoli odhlásit v Nastavení → Soukromí."
+msgstr "Anonymní analýzy používání nám pomáhají pochopit, jak se Dasher používá, a opravit pády. Nikdy se neshromažďuje žádný napsaný text, obsah schránky ani osobní údaje. Můžete se kdykoli odhlásit v Nastavení → Soukromí.Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
 
 msgid "App-Level Dwell to Select"
-msgstr "Setrvání na úrovni aplikace pro výběr"
+msgstr "Setrvání na úrovni aplikace pro výběrApp-Level Dwell to Select"
 
 msgid "Dasher"
 msgstr ""
 
 msgid "Appearance"
-msgstr "Vzhled"
+msgstr "VzhledAppearance"
 
 msgid "Left"
-msgstr "Levá"
+msgstr "LeváLeft"
 
 msgid "Move caret left (hold to repeat)"
-msgstr "Přesuň kurzor doleva (držte pro opakování)"
+msgstr "Přesuň kurzor doleva (držte pro opakování)Move caret left (hold to repeat)"
 
 msgid "Right"
-msgstr "Správně"
+msgstr "SprávněRight"
 
 msgid "Move caret right (hold to repeat)"
-msgstr "Přesuň kurzor doprava (držet pro opakování)"
+msgstr "Přesuň kurzor doprava (držet pro opakování)Move caret right (hold to repeat)"
 
 msgid "Auto"
-msgstr "Automaticky"
+msgstr "AutomatickyAuto"
 
 msgid "Auto-Centre Target"
-msgstr "Automatické centrování cíle"
+msgstr "Automatické centrování cíleAuto-Centre Target"
 
 msgid "Auto-select after fixating. Only enable if OS dwell is off."
-msgstr "Automatický výběr po fixaci. Povolit pouze v případě, že je vypnuta prodleva operačního systému."
+msgstr "Automatický výběr po fixaci. Povolit pouze v případě, že je vypnuta prodleva operačního systému.Auto-select after fixating. Only enable if OS dwell is off."
 
 msgid "Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
-msgstr "Automatický výběr po upoutání pozornosti během sevření prstů. Povolit pouze v případě, že je vypnuta prodleva v režimu OS."
+msgstr "Automatický výběr po upoutání pozornosti během sevření prstů. Povolit pouze v případě, že je vypnuta prodleva v režimu OS.Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
 
 msgid "Back"
-msgstr "Zpět"
+msgstr "ZpětBack"
 
 msgid "Del"
-msgstr "smazat"
+msgstr "smazatDel"
 
 msgid "Delete (hold to repeat)"
-msgstr "Smazat (podržte pro opakování)"
+msgstr "Smazat (podržte pro opakování)Delete (hold to repeat)"
 
 msgid "Calibrate Tilt"
-msgstr "Kalibrovat náklon"
+msgstr "Kalibrovat náklonCalibrate Tilt"
 
 msgid "Cancel"
-msgstr "Zrušit"
+msgstr "ZrušitCancel"
 
 msgid "Check Again"
-msgstr "Zkontrolujte znovu"
+msgstr "Zkontrolujte znovuCheck Again"
 
 msgid "Check for updates"
 msgstr ""
 
 msgid "Choose..."
-msgstr "Vybrat..."
+msgstr "Vybrat...Choose..."
 
 msgid "Choose File..."
-msgstr "Vyberte soubor..."
+msgstr "Vyberte soubor...Choose File..."
 
 msgid "Clear"
-msgstr "Jasný"
+msgstr "JasnýClear"
 
 msgid "Clear logs"
-msgstr "Vymazat záznamy"
+msgstr "Vymazat záznamyClear logs"
 
 msgid "Click to set up keyboard mode (needs ydotool)"
-msgstr "Kliknutím nastavíte režim klávesnice (potřebuje ydotool)"
+msgstr "Kliknutím nastavíte režim klávesnice (potřebuje ydotool)Click to set up keyboard mode (needs ydotool)"
 
 msgid "Close"
-msgstr "Zavřít"
+msgstr "ZavřítClose"
 
 msgid "Close settings"
-msgstr "Zavřít nastavení"
+msgstr "Zavřít nastaveníClose settings"
 
 msgid "Colour Theme"
-msgstr "Barevné téma"
+msgstr "Barevné témaColour Theme"
 
 msgid "contents or personal information is ever collected. You can change this any "
-msgstr "obsah nebo osobní údaje jsou kdykoli sbírány. Toto můžete kdykoli změnit"
+msgstr "obsah nebo osobní údaje jsou kdykoli sbírány. Toto můžete kdykoli změnitcontents or personal information is ever collected. You can change this any "
 
 msgid "Control"
-msgstr "Kontrola"
+msgstr "KontrolaControl"
 
 msgid "Control mode: enabled"
-msgstr "Režim ovládání: zapnuto"
+msgstr "Režim ovládání: zapnutoControl mode: enabled"
 
 msgid "Control mode"
-msgstr "Režim ovládání"
+msgstr "Režim ovládáníControl mode"
 
 msgid "Control nodes: move, delete, clear, speak, pause"
-msgstr "Ovládací uzly: přesunout, smazat, vyčistit, mluvit, pauza"
+msgstr "Ovládací uzly: přesunout, smazat, vyčistit, mluvit, pauzaControl nodes: move, delete, clear, speak, pause"
 
 msgid "Copied to clipboard."
-msgstr "Zkopírováno do schránky"
+msgstr "Zkopírováno do schránkyCopied to clipboard."
 
 msgid "Copy"
-msgstr "Kopírovat"
+msgstr "KopírovatCopy"
 
 msgid "Copy all"
-msgstr "Kopírovat vše"
+msgstr "Kopírovat všeCopy all"
 
 msgid "Copy All"
-msgstr "Kopírovat vše"
+msgstr "Kopírovat všeCopy All"
 
 msgid "Copy all (to clipboard)"
-msgstr "Kopírovat vše (do schránky)"
+msgstr "Kopírovat vše (do schránky)Copy all (to clipboard)"
 
 msgid "Copy commands"
-msgstr "Kopírovat příkazy"
+msgstr "Kopírovat příkazyCopy commands"
 
 msgid "Copy selection"
-msgstr "Kopírovat výběr"
+msgstr "Kopírovat výběrCopy selection"
 
 msgid "Could not load the file into the engine"
-msgstr "Nepodařilo se načíst soubor do enginu"
+msgstr "Nepodařilo se načíst soubor do enginuCould not load the file into the engine"
 
 msgid "Could not open the selected file."
-msgstr "Nepodařilo se otevřít vybraný soubor."
+msgstr "Nepodařilo se otevřít vybraný soubor.Could not open the selected file."
 
 msgid "Could not read the selected file."
-msgstr "Nepodařilo se přečíst vybraný soubor."
+msgstr "Nepodařilo se přečíst vybraný soubor.Could not read the selected file."
 
 msgid "Could not sync your edit with the engine — it may be overwritten"
-msgstr "Nepodařilo se synchronizovat vaši úpravu s enginem — může být přepsána"
+msgstr "Nepodařilo se synchronizovat vaši úpravu s enginem — může být přepsánaCould not sync your edit with the engine — it may be overwritten"
 
 msgid "Could not write the export file."
-msgstr "Nepodařilo se zapsat exportní soubor."
+msgstr "Nepodařilo se zapsat exportní soubor.Could not write the export file."
 
 msgid "Could not write the training data."
-msgstr "Nepodařilo se zapsat tréninková data."
+msgstr "Nepodařilo se zapsat tréninková data.Could not write the training data."
 
 msgid "Current Calibration"
-msgstr "Kalibrace proudu"
+msgstr "Kalibrace prouduCurrent Calibration"
 
 msgid "{0} custom file(s)"
-msgstr "Vlastní soubory: {0}"
+msgstr "Vlastní soubory: {0}{0} custom file(s)"
 
 msgid "Customization"
-msgstr "Přizpůsobení"
+msgstr "PřizpůsobeníCustomization"
 
 msgid "Dark"
-msgstr "Tmavý"
+msgstr "TmavýDark"
 
 msgid "Dasher "
-msgstr "Dasher"
+msgstr "DasherDasher "
 
 msgid "We found your Dasher 5 configuration"
-msgstr "Našli jsme vaši konfiguraci Dasher 5"
+msgstr "Našli jsme vaši konfiguraci Dasher 5We found your Dasher 5 configuration"
 
 msgid "Dasher 5 Import"
-msgstr "Import Dasher 5"
+msgstr "Import Dasher 5Dasher 5 Import"
 
 msgid "Would you like to import these settings into Dasher 6?"
-msgstr "Chcete tyto nastavení importovat do Dasher 6?"
+msgstr "Chcete tyto nastavení importovat do Dasher 6?Would you like to import these settings into Dasher 6?"
 
 msgid "No Dasher 5 data found on this computer."
-msgstr "Na tomto počítači nebyla nalezena žádná data Dasher 5."
+msgstr "Na tomto počítači nebyla nalezena žádná data Dasher 5.No Dasher 5 data found on this computer."
 
 msgid "Dasher 5 settings found"
-msgstr "Nalezeno 5 nastavení Dasher"
+msgstr "Nalezeno 5 nastavení DasherDasher 5 settings found"
 
 msgid "Dasher 5 data detected on this Mac."
-msgstr "Na tomto Macu byla nalezena data z Dasheru 5."
+msgstr "Na tomto Macu byla nalezena data z Dasheru 5.Dasher 5 data detected on this Mac."
 
 msgid "Dasher 5 settings imported successfully."
-msgstr "Nastavení Dasheru 5 bylo úspěšně importováno."
+msgstr "Nastavení Dasheru 5 bylo úspěšně importováno.Dasher 5 settings imported successfully."
 
 msgid "Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
-msgstr "Dasher funguje také jako systémová klávesnice, takže můžete psát v jakékoli aplikaci. Povolte ji jednou v Nastavení."
+msgstr "Dasher funguje také jako systémová klávesnice, takže můžete psát v jakékoli aplikaci. Povolte ji jednou v Nastavení.Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
 
 msgid "Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
-msgstr "Dasher shromažďuje anonymní analytické údaje, aby pochopil používání a opravil pády. Nikdy se neshromažďuje žádný text na počítači, schránka ani osobní údaje. Schéma otevřených událostí naleznete na adrese github.com/dasher-project/Dasher-Apple."
+msgstr "Dasher shromažďuje anonymní analytické údaje, aby pochopil používání a opravil pády. Nikdy se neshromažďuje žádný text na počítači, schránka ani osobní údaje. Schéma otevřených událostí naleznete na adrese github.com/dasher-project/Dasher-Apple.Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
 
 msgid "Dasher Engine Error"
-msgstr "Chyba enginu Dasher"
+msgstr "Chyba enginu DasherDasher Engine Error"
 
 msgid "Dasher Keyboard"
-msgstr "Klávesnice Dasher"
+msgstr "Klávesnice DasherDasher Keyboard"
 
 msgid "Dasher keyboard"
-msgstr "Klávesnice Dasher"
+msgstr "Klávesnice DasherDasher keyboard"
 
 msgid "Dasher needs accessibility access to send text to other applications."
-msgstr "Dasher potřebuje přístup k přístupu, aby mohl posílat textové zprávy do jiných aplikací."
+msgstr "Dasher potřebuje přístup k přístupu, aby mohl posílat textové zprávy do jiných aplikací.Dasher needs accessibility access to send text to other applications."
 
 msgid "Dasher Preferences"
-msgstr "Předvolby pomlčky"
+msgstr "Předvolby pomlčkyDasher Preferences"
 
 msgid "Dasher quit unexpectedly"
-msgstr "Dasher nečekaně odešel"
+msgstr "Dasher nečekaně odešelDasher quit unexpectedly"
 
 msgid "Dasher v6"
 msgstr "Dasher v6"
@@ -284,859 +284,859 @@ msgid "<big><b>Dasher v6</b></big>\n"
 msgstr "<big><b>Dasher v6</b></big>\n"
 
 msgid "Dead zone: {0} px"
-msgstr "Mrtvá zóna: {0} px"
+msgstr "Mrtvá zóna: {0} pxDead zone: {0} px"
 
 msgid "Decrease Speed"
-msgstr "Snížení rychlosti"
+msgstr "Snížení rychlostiDecrease Speed"
 
 msgid "Default"
-msgstr "Výchozí"
+msgstr "VýchozíDefault"
 
 msgid "Alphabet: {0}"
-msgstr "Abeceda: {0}"
+msgstr "Abeceda: {0}Alphabet: {0}"
 
 msgid "Colour: {0}"
-msgstr "Barva: {0}"
+msgstr "Barva: {0}Colour: {0}"
 
 msgid "Speed: {0}"
-msgstr "Rychlost: {0}"
+msgstr "Rychlost: {0}Speed: {0}"
 
 msgid "Diagnostics"
-msgstr "Diagnostika"
+msgstr "DiagnostikaDiagnostics"
 
 msgid "Direct Mode"
-msgstr "Přímý režim"
+msgstr "Přímý režimDirect Mode"
 
 msgid "Done"
-msgstr "Hotovo"
+msgstr "HotovoDone"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
-msgstr "Zůstaňte na jednom místě, abyste vyvolali kliknutí, místo stisknutí tlačítka nebo spínače."
+msgstr "Zůstaňte na jednom místě, abyste vyvolali kliknutí, místo stisknutí tlačítka nebo spínače.Hover in one spot to trigger a click, instead of pressing a button or switch."
 
 msgid "Dwell Duration"
-msgstr "Doba setrvání"
+msgstr "Doba setrváníDwell Duration"
 
 msgid "Dwell to click"
-msgstr "Klepněte na tlačítko Dwell"
+msgstr "Klepněte na tlačítko DwellDwell to click"
 
 msgid "Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
-msgstr "Povolte Dasher v Nastavení → Obecné → Klávesnice → Klávesnice a poté zapněte Povolit plný přístup, aby Dasher mohl mluvit a učit se."
+msgstr "Povolte Dasher v Nastavení → Obecné → Klávesnice → Klávesnice a poté zapněte Povolit plný přístup, aby Dasher mohl mluvit a učit se.Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
 
 msgid "Enable tilt input first to access calibration."
-msgstr "Pro přístup ke kalibraci nejprve povolte vstup náklonu."
+msgstr "Pro přístup ke kalibraci nejprve povolte vstup náklonu.Enable tilt input first to access calibration."
 
 msgid "Dasher could not start"
-msgstr "Dasher se nemohl spustit"
+msgstr "Dasher se nemohl spustitDasher could not start"
 
 msgid "Engine Error"
-msgstr "Chyba motoru"
+msgstr "Chyba motoruEngine Error"
 
 msgid "The Dasher engine encountered an internal error and has stopped. Please restart Dasher."
-msgstr "Engine Dasher narazil na interní chybu a zastavil se. Prosím, restartujte Dasher."
+msgstr "Engine Dasher narazil na interní chybu a zastavil se. Prosím, restartujte Dasher.The Dasher engine encountered an internal error and has stopped. Please restart Dasher."
 
 msgid "Please try reinstalling, or report this in a GitHub issue."
-msgstr "Zkuste to prosím přeinstalovat, nebo to nahlaste v problému na GitHubu."
+msgstr "Zkuste to prosím přeinstalovat, nebo to nahlaste v problému na GitHubu.Please try reinstalling, or report this in a GitHub issue."
 
 msgid "Engine Speech Features"
-msgstr "Funkce hlasu motoru"
+msgstr "Funkce hlasu motoruEngine Speech Features"
 
 msgid "Error: {0}"
-msgstr "Chyba: {0}"
+msgstr "Chyba: {0}Error: {0}"
 
 msgid "Error loading settings: {0}"
-msgstr "Chyba při načítání nastavení: {0}"
+msgstr "Chyba při načítání nastavení: {0}Error loading settings: {0}"
 
 msgid "Exit"
-msgstr "Konec"
+msgstr "KonecExit"
 
 msgid "Export Training Text"
-msgstr "Exportovat školicí text"
+msgstr "Exportovat školicí textExport Training Text"
 
 msgid "Eye Gaze"
-msgstr "Pohled do očí"
+msgstr "Pohled do očíEye Gaze"
 
 msgid "Could not connect to eye tracker on startup. Check the device and try re-selecting it in Settings > Input."
-msgstr "Při spuštění se nelze připojit ke sledování očí. Zkontrolujte zařízení a zkuste jej znovu vybrat v Nastavení > Vstup."
+msgstr "Při spuštění se nelze připojit ke sledování očí. Zkontrolujte zařízení a zkuste jej znovu vybrat v Nastavení > Vstup.Could not connect to eye tracker on startup. Check the device and try re-selecting it in Settings > Input."
 
 msgid "Eye Tracker Device"
-msgstr "Zařízení pro sledování očí"
+msgstr "Zařízení pro sledování očíEye Tracker Device"
 
 msgid "Could not connect to {0}. Check the device is connected and drivers are installed."
-msgstr "Nelze se připojit k {0}. Zkontrolujte, zda je zařízení připojeno a zda jsou nainstalovány ovladače."
+msgstr "Nelze se připojit k {0}. Zkontrolujte, zda je zařízení připojeno a zda jsou nainstalovány ovladače.Could not connect to {0}. Check the device is connected and drivers are installed."
 
 msgid "Could not connect to {0}. Make sure tobii_stream_engine.dll is installed and a Tobii device is connected."
-msgstr "Nelze se připojit k {0}. Ujistěte se, že je nainstalován tobii_stream_engine.dll a že je připojeno zařízení Tobii."
+msgstr "Nelze se připojit k {0}. Ujistěte se, že je nainstalován tobii_stream_engine.dll a že je připojeno zařízení Tobii.Could not connect to {0}. Make sure tobii_stream_engine.dll is installed and a Tobii device is connected."
 
 msgid "Detailed tracking log for bug reports (per-sample lines, written to eyegaze.log in the Dasher folder). Basic connection events are always logged."
-msgstr "Podrobný sledovací protokol pro hlášení chyb (řádky pro každý vzorek, zapisované do souboru eyegaze.log ve složce Dasher). Základní události připojení jsou vždy zaznamenávány."
+msgstr "Podrobný sledovací protokol pro hlášení chyb (řádky pro každý vzorek, zapisované do souboru eyegaze.log ve složce Dasher). Základní události připojení jsou vždy zaznamenávány.Detailed tracking log for bug reports (per-sample lines, written to eyegaze.log in the Dasher folder). Basic connection events are always logged."
 
 msgid "Failed to open: "
-msgstr "Nepodařilo se otevřít"
+msgstr "Nepodařilo se otevřítFailed to open: "
 
 msgid "Failed to save: "
-msgstr "Uložení se nezdařilo"
+msgstr "Uložení se nezdařiloFailed to save: "
 
 msgid "Fast"
-msgstr "Rychle"
+msgstr "RychleFast"
 
 msgid "File truncated at 4 MB — only the first part is loaded"
-msgstr "Soubor byl zkrácen na 4 MB — načtena je pouze první část"
+msgstr "Soubor byl zkrácen na 4 MB — načtena je pouze první částFile truncated at 4 MB — only the first part is loaded"
 
 msgid "Normal Control"
-msgstr "Normální ovládání"
+msgstr "Normální ovládáníNormal Control"
 
 msgid "Smoothing Mode"
-msgstr "Režim vyhlazování"
+msgstr "Režim vyhlazováníSmoothing Mode"
 
 msgid "Flatpak or AppImage build can't provide.\n\n"
-msgstr "Build Flatpak nebo AppImage nemůže poskytnout."
+msgstr "Build Flatpak nebo AppImage nemůže poskytnout.atpak or AppImage build can't provide.\n\n"
 
 msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
-msgstr "Chcete-li klávesnici uvolnit, povolte aplikaci Dasher zobrazovat nad jinými aplikacemi a klepněte znovu na Float."
+msgstr "Chcete-li klávesnici uvolnit, povolte aplikaci Dasher zobrazovat nad jinými aplikacemi a klepněte znovu na Float.To float the keyboard, allow Dasher to display over other apps, then tap Float again."
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
-msgstr "Plný přístup umožňuje Dasheru číst, co píšete, a pamatovat si váš trénink. Klávesnice funguje pro základní zadávání i bez ní."
+msgstr "Plný přístup umožňuje Dasheru číst, co píšete, a pamatovat si váš trénink. Klávesnice funguje pro základní zadávání i bez ní.Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
 
 msgid "Game mode"
-msgstr "Herní režim"
+msgstr "Herní režimGame mode"
 
 msgid "Game Mode"
-msgstr "Režim Hry"
+msgstr "Režim HryGame Mode"
 
 msgid "Game On"
-msgstr "Hra začíná"
+msgstr "Hra začínáGame On"
 
 msgid "Game Text File"
-msgstr "Textový soubor hry"
+msgstr "Textový soubor hryGame Text File"
 
 msgid "Reduces zoom toward wrong positions while your eyes move to a target"
-msgstr "Snižuje přiblížení k nesprávným pozicím, zatímco vaše oči míří k cíli"
+msgstr "Snižuje přiblížení k nesprávným pozicím, zatímco vaše oči míří k cíliReduces zoom toward wrong positions while your eyes move to a target"
 
 msgid "Filter gaze (reduces zoom toward wrong positions during eye transit)"
-msgstr "Filtrovat pohled (snižuje přiblížení směrem k nesprávným pozicím během pohybu očí)"
+msgstr "Filtrovat pohled (snižuje přiblížení směrem k nesprávným pozicím během pohybu očí)Filter gaze (reduces zoom toward wrong positions during eye transit)"
 
 msgid "Gaze Smoothing"
-msgstr "Zjemnění pohledu"
+msgstr "Zjemnění pohleduGaze Smoothing"
 
 msgid "Got it"
-msgstr "Rozumím"
+msgstr "RozumímGot it"
 
 msgid "GTK Edition"
-msgstr "Edice GTK"
+msgstr "Edice GTKGTK Edition"
 
 msgid "Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
-msgstr "Import přidá text do jazykového modelu (připojí se k existujícímu učení). Export uloží nashromážděná tréninková data pro zálohování nebo přenos. Obnovení odstraní vlastní tréninková data – model se při dalším spuštění vrátí k výchozím nastavením."
+msgstr "Import přidá text do jazykového modelu (připojí se k existujícímu učení). Export uloží nashromážděná tréninková data pro zálohování nebo přenos. Obnovení odstraní vlastní tréninková data – model se při dalším spuštění vrátí k výchozím nastavením.Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
 
 msgid "Import from Dasher 5"
-msgstr "Import z Dasheru 5"
+msgstr "Import z Dasheru 5Import from Dasher 5"
 
 msgid "Import settings"
-msgstr "Nastavení importu"
+msgstr "Nastavení importuImport settings"
 
 msgid "Import Training Text"
-msgstr "Importovat školicí text"
+msgstr "Importovat školicí textImport Training Text"
 
 msgid "Imported %1 — applies fully on next launch"
-msgstr "Importováno %1 — plně se použije při dalším spuštění"
+msgstr "Importováno %1 — plně se použije při dalším spuštěníImported %1 — applies fully on next launch"
 
 msgid "Imported %1 of training text"
-msgstr "Importováno %1 tréninkového textu"
+msgstr "Importováno %1 tréninkového textuImported %1 of training text"
 
 msgid "Increase Speed"
-msgstr "Zvýšit rychlost"
+msgstr "Zvýšit rychlostIncrease Speed"
 
 msgid "Input"
-msgstr "Vstup"
+msgstr "VstupInput"
 
 msgid "Active engine input filter (set via Selection Method or advanced settings)"
-msgstr "Aktivní vstupní filtr motoru (nastavený pomocí metody výběru nebo pokročilých nastavení)"
+msgstr "Aktivní vstupní filtr motoru (nastavený pomocí metody výběru nebo pokročilých nastavení)Active engine input filter (set via Selection Method or advanced settings)"
 
 msgid "Managed by the engine — change via the Selection Method setting"
-msgstr "Spravováno motorem — změna pomocí nastavení Metoda výběru"
+msgstr "Spravováno motorem — změna pomocí nastavení Metoda výběruManaged by the engine — change via the Selection Method setting"
 
 msgid "Direct pointer — minimal processing"
-msgstr "Přímý ukazatel — minimální zpracování"
+msgstr "Přímý ukazatel — minimální zpracováníDirect pointer — minimal processing"
 
 msgid "No filtering — for clean input devices"
-msgstr "Žádné filtrování – pro čistá vstupní zařízení"
+msgstr "Žádné filtrování – pro čistá vstupní zařízeníNo filtering — for clean input devices"
 
 msgid "Input smoothing — reduces jitter for noisy input (eye gaze, head tracking)"
-msgstr "Vyhlazení vstupu — snižuje chvění při hlučném vstupu (pohled očí, sledování hlavy)"
+msgstr "Vyhlazení vstupu — snižuje chvění při hlučném vstupu (pohled očí, sledování hlavy)Input smoothing — reduces jitter for noisy input (eye gaze, head tracking)"
 
 msgid "Dampens small pointer movements for a steadier zoom"
-msgstr "Tlumí malé pohyby ukazatele pro stabilnější přiblížení"
+msgstr "Tlumí malé pohyby ukazatele pro stabilnější přiblíženíDampens small pointer movements for a steadier zoom"
 
 msgid "Standard continuous control (default)"
-msgstr "Standardní plynulé ovládání (výchozí)"
+msgstr "Standardní plynulé ovládání (výchozí)Standard continuous control (default)"
 
 msgid "The standard steering method — move the pointer to zoom"
-msgstr "Standardní metoda řízení — pohybem ukazatele přiblížíte"
+msgstr "Standardní metoda řízení — pohybem ukazatele přiblížíteThe standard steering method — move the pointer to zoom"
 
 msgid "Input Processing"
-msgstr "Zpracování vstupu"
+msgstr "Zpracování vstupuInput Processing"
 
 msgid "Install Dasher via your package manager or build from source to use keyboard mode."
-msgstr "Nainstalujte Dasher přes správce balíčků nebo sestavte ze zdrojového kódu, abyste mohli používat režim klávesnice."
+msgstr "Nainstalujte Dasher přes správce balíčků nebo sestavte ze zdrojového kódu, abyste mohli používat režim klávesnice.Install Dasher via your package manager or build from source to use keyboard mode."
 
 msgid "<b>Install ydotool to use keyboard mode</b>"
-msgstr "<b>Nainstalujte ydotool pro použití režimu klávesnice</b>"
+msgstr "<b>Nainstalujte ydotool pro použití režimu klávesnice</b><b>Install ydotool to use keyboard mode</b>"
 
 msgid "isn't installed. Run these commands, then press Retry:"
-msgstr "není nainstalován. Spusťte tyto příkazy a stiskněte Opakovat:"
+msgstr "není nainstalován. Spusťte tyto příkazy a stiskněte Opakovat:isn't installed. Run these commands, then press Retry:"
 
 msgid "Keyboard"
-msgstr "Klávesnice"
+msgstr "KlávesniceKeyboard"
 
 msgid "_Keyboard"
-msgstr "Klávesnice"
+msgstr "Klávesnice_Keyboard"
 
 msgid "Type Dasher's output straight into the app you are pointing at"
-msgstr "Zadejte výstup Dasheru přímo do aplikace, na kterou ukazujete"
+msgstr "Zadejte výstup Dasheru přímo do aplikace, na kterou ukazujeteType Dasher's output straight into the app you are pointing at"
 
 msgid "Exit keyboard mode"
-msgstr "Ukončit režim klávesnice"
+msgstr "Ukončit režim klávesniceExit keyboard mode"
 
 msgid "Keyboard mode: hide the output pane and type Dasher's text straight into "
-msgstr "Režim klávesnice: skrýt panel výstupu a psát text Dasher přímo do"
+msgstr "Režim klávesnice: skrýt panel výstupu a psát text Dasher přímo doKeyboard mode: hide the output pane and type Dasher's text straight into "
 
 msgid "<b>Keyboard mode isn't available in this build</b>"
-msgstr "<b>Režim klávesnice není v této sestavě k dispozici</b>"
+msgstr "<b>Režim klávesnice není v této sestavě k dispozici</b><b>Keyboard mode isn't available in this build</b>"
 
 msgid "Keyboard mode opacity"
-msgstr "Neprůhlednost režimu klávesnice"
+msgstr "Neprůhlednost režimu klávesniceKeyboard mode opacity"
 
 msgid "Keyboard mode stopped"
-msgstr "Režim klávesnice zastaven"
+msgstr "Režim klávesnice zastavenKeyboard mode stopped"
 
 msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
-msgstr "Režim klávesnice zastaven: ydotool nemohl vložit text. Je ydotoold"
+msgstr "Režim klávesnice zastaven: ydotool nemohl vložit text. Je ydotooldKeyboard mode stopped: ydotool could not inject text. Is the ydotoold "
 
 msgid "Enable Keyboard Mode"
-msgstr "Povolit režim klávesnice"
+msgstr "Povolit režim klávesniceEnable Keyboard Mode"
 
 msgid "Window transparency when in Keyboard/Direct mode"
-msgstr "Průhlednost okna při režimu Klávesnice/Přímý"
+msgstr "Průhlednost okna při režimu Klávesnice/PřímýWindow transparency when in Keyboard/Direct mode"
 
 msgid "Keyboard mode types Dasher's output into other applications using ydotool, which "
-msgstr "Režim klávesnice zadává výstup Dasheru do jiných aplikací pomocí ydotool, který"
+msgstr "Režim klávesnice zadává výstup Dasheru do jiných aplikací pomocí ydotool, kterýKeyboard mode types Dasher's output into other applications using ydotool, which "
 
 msgid "(Default)"
-msgstr "(Výchozí)"
+msgstr "(Výchozí)(Default)"
 
 msgid "Language"
-msgstr "Jazyk"
+msgstr "JazykLanguage"
 
 msgid "Language / Locale"
-msgstr "Jazyk / Lokalita"
+msgstr "Jazyk / LokalitaLanguage / Locale"
 
 msgid "<b>Language / Locale</b>"
-msgstr "Jazyková lokalita"
+msgstr "Jazyková lokalita<b>Language / Locale</b>"
 
 msgid "Bottom"
-msgstr "Dno"
+msgstr "DnoBottom"
 
 msgid "Pane position and direct-entry mode"
-msgstr "Poloha panelu a režim přímého vstupu"
+msgstr "Poloha panelu a režim přímého vstupuPane position and direct-entry mode"
 
 msgid "Left side"
-msgstr "Levá strana"
+msgstr "Levá stranaLeft side"
 
 msgid "Right side"
-msgstr "Pravá strana"
+msgstr "Pravá stranaRight side"
 
 msgid "Top"
-msgstr "Nahoře"
+msgstr "NahořeTop"
 
 msgid "Learning"
-msgstr "Učení"
+msgstr "UčeníLearning"
 
 msgid "Leave"
-msgstr "Opustit"
+msgstr "OpustitLeave"
 
 msgid "Leave game mode"
-msgstr "Opustit herní režim"
+msgstr "Opustit herní režimLeave game mode"
 
 msgid "Light"
-msgstr "Světlo"
+msgstr "SvětloLight"
 
 msgid "Load Voices"
-msgstr "Načíst hlasy"
+msgstr "Načíst hlasyLoad Voices"
 
 msgid "Loaded %1 characters"
-msgstr "Načteno %1 znaků"
+msgstr "Načteno %1 znakůLoaded %1 characters"
 
 msgid "Loading…"
-msgstr "Načítání…"
+msgstr "Načítání…Loading…"
 
 msgid "Locale"
-msgstr "Lokalita"
+msgstr "LokalitaLocale"
 
 msgid "Migration"
-msgstr "Migrace"
+msgstr "MigraceMigration"
 
 msgid "More"
-msgstr "Více"
+msgstr "VíceMore"
 
 msgid "More options"
-msgstr "Více možností"
+msgstr "Více možnostíMore options"
 
 msgid "Move your eyes while pinching to steer"
-msgstr "Pohybujte očima při sevření prstů pro řízení"
+msgstr "Pohybujte očima při sevření prstů pro řízeníMove your eyes while pinching to steer"
 
 msgid "New"
-msgstr "Nový"
+msgstr "NovýNew"
 
 msgid "New document"
-msgstr "Nový dokument"
+msgstr "Nový dokumentNew document"
 
 msgid "New Message"
-msgstr "Nová zpráva"
+msgstr "Nová zprávaNew Message"
 
 msgid "New session (clear text and context)"
-msgstr "Nová relace (vymazat text a kontext)"
+msgstr "Nová relace (vymazat text a kontext)New session (clear text and context)"
 
 msgid "No Dasher 5 data found on this Mac."
-msgstr "Na tomto Macu nebyla nalezena žádná data pro Dasher 5."
+msgstr "Na tomto Macu nebyla nalezena žádná data pro Dasher 5.No Dasher 5 data found on this Mac."
 
 msgid "No settings available for this section."
-msgstr "Pro tuto sekci nejsou k dispozici žádná nastavení."
+msgstr "Pro tuto sekci nejsou k dispozici žádná nastavení.No settings available for this section."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
-msgstr "Žádný dostupný řečový modul. Sestavte s funkcí systému TTS nebo nastavte cloudový hlas v Předvolbách."
+msgstr "Žádný dostupný řečový modul. Sestavte s funkcí systému TTS nebo nastavte cloudový hlas v Předvolbách.No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
 
 msgid "No training data to export yet"
-msgstr "Žádná výcviková data k exportu zatím"
+msgstr "Žádná výcviková data k exportu zatímNo training data to export yet"
 
 msgid "No user training data yet"
-msgstr "Dosud žádná data o školení uživatele"
+msgstr "Dosud žádná data o školení uživateleNo user training data yet"
 
 msgid "No voices found"
-msgstr "Nebyly nalezeny žádné hlasy"
+msgstr "Nebyly nalezeny žádné hlasyNo voices found"
 
 msgid "Nothing to save"
-msgstr "Nic k uložení"
+msgstr "Nic k uloženíNothing to save"
 
 msgid "Nothing to share"
-msgstr "Nic ke sdílení"
+msgstr "Nic ke sdíleníNothing to share"
 
 msgid "OK"
 msgstr "OK"
 
 msgid "On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
-msgstr "V systému VisionOS začněte psát stisknutím a podržením prstů na plátně, při stisknutí a stisknutí prstů se rozhlédněte pro řízení a uvolněním prstů pozastavte psaní. Model vstupu je se stisknutím a pohledem."
+msgstr "V systému VisionOS začněte psát stisknutím a podržením prstů na plátně, při stisknutí a stisknutí prstů se rozhlédněte pro řízení a uvolněním prstů pozastavte psaní. Model vstupu je se stisknutím a pohledem.On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
 
 msgid "Open"
-msgstr "Otevřít"
+msgstr "OtevřítOpen"
 
 msgid "Open..."
-msgstr "OTEVŘENO..."
+msgstr "OTEVŘENO...Open..."
 
 msgid "Open failed"
-msgstr "Otevřít se nezdařilo"
+msgstr "Otevřít se nezdařiloOpen failed"
 
 msgid "Open Keyboard Settings"
-msgstr "Otevřít nastavení klávesnice"
+msgstr "Otevřít nastavení klávesniceOpen Keyboard Settings"
 
 msgid "Open Settings"
-msgstr "Otevřít Nastavení"
+msgstr "Otevřít NastaveníOpen Settings"
 
 msgid "Open System Settings"
-msgstr "Otevřít Nastavení systému"
+msgstr "Otevřít Nastavení systémuOpen System Settings"
 
 msgid "Open text file"
-msgstr "Otevřete textový soubor."
+msgstr "Otevřete textový soubor.Open text file"
 
 msgid "Output"
-msgstr "Výstup"
+msgstr "VýstupOutput"
 
 msgid "Output Font"
-msgstr "Výstupní písmo"
+msgstr "Výstupní písmoOutput Font"
 
 msgid "Output Font Size"
-msgstr "Velikost výstupního písma"
+msgstr "Velikost výstupního písmaOutput Font Size"
 
 msgid "Touch the canvas to start writing."
-msgstr "Dotkněte se plátna a začněte psát."
+msgstr "Dotkněte se plátna a začněte psát.Touch the canvas to start writing."
 
 msgid "Pane position"
-msgstr "Pozice panelu"
+msgstr "Pozice paneluPane position"
 
 msgid "Paste"
-msgstr "Vložit"
+msgstr "VložitPaste"
 
 msgid "Pause"
-msgstr "Pauza"
+msgstr "PauzaPause"
 
 msgid "Pause When Looking Away"
-msgstr "Pauza při odvracení pohledu"
+msgstr "Pauza při odvracení pohleduPause When Looking Away"
 
 msgid "Pinch and hold anywhere on the canvas to start"
-msgstr "Spusťte stisknutím a podržením libovolného místa na plátně."
+msgstr "Spusťte stisknutím a podržením libovolného místa na plátně.Pinch and hold anywhere on the canvas to start"
 
 msgid "Pinch and Look to Write"
-msgstr "Štípnutí a pohled pro psaní"
+msgstr "Štípnutí a pohled pro psaníPinch and Look to Write"
 
 msgid "Pitch"
-msgstr "Hřiště"
+msgstr "HřištěPitch"
 
 msgid "High"
-msgstr "Vysoký"
+msgstr "VysokýHigh"
 
 msgid "Low"
-msgstr "Nízký"
+msgstr "NízkýLow"
 
 msgid "Medium"
-msgstr "Střední"
+msgstr "StředníMedium"
 
 msgid "Very High"
-msgstr "Velmi vysoká"
+msgstr "Velmi vysokáVery High"
 
 msgid "Very Low"
-msgstr "Velmi nízká"
+msgstr "Velmi nízkáVery Low"
 
 msgid "Game"
-msgstr "Hra"
+msgstr "HraGame"
 
 msgid "Play"
-msgstr "Zahrajte si"
+msgstr "Zahrajte siPlay"
 
 msgid "Pointer Hover Input"
-msgstr "Vstup při najetí kurzoru"
+msgstr "Vstup při najetí kurzoruPointer Hover Input"
 
 msgid "Preferences"
-msgstr "Předvolby"
+msgstr "PředvolbyPreferences"
 
 msgid "Prefs"
-msgstr "Nastavení"
+msgstr "NastaveníPrefs"
 
 msgid "Preparing Dasher…"
-msgstr "Příprava Dasheru…"
+msgstr "Příprava Dasheru…Preparing Dasher…"
 
 msgid "Preview"
-msgstr "Náhled"
+msgstr "NáhledPreview"
 
 msgid "Privacy"
-msgstr "Soukromí"
+msgstr "SoukromíPrivacy"
 
 msgid "<b>Privacy</b>"
-msgstr "<b>Soukromí</b>"
+msgstr "<b>Soukromí</b><b>Privacy</b>"
 
 msgid "Quick speak"
-msgstr "Rychle mluvit"
+msgstr "Rychle mluvitQuick speak"
 
 msgid "Rate"
-msgstr "Hodnotit"
+msgstr "HodnotitRate"
 
 msgid "Very Fast"
-msgstr "Velmi rychle"
+msgstr "Velmi rychleVery Fast"
 
 msgid "Very Slow"
-msgstr "Velmi pomalé"
+msgstr "Velmi pomaléVery Slow"
 
 msgid "Re-import from Dasher 5"
-msgstr "Znovu importovat z Dasheru 5"
+msgstr "Znovu importovat z Dasheru 5Re-import from Dasher 5"
 
 msgid "Read"
-msgstr "Přečteno"
+msgstr "PřečtenoRead"
 
 msgid "Release the pinch to pause"
-msgstr "Uvolněním prstů pozastavíte"
+msgstr "Uvolněním prstů pozastavíteRelease the pinch to pause"
 
 msgid "Reset"
-msgstr "Obnovit"
+msgstr "ObnovitReset"
 
 msgid "Reset All Settings to Defaults"
-msgstr "Obnovit všechna nastavení na výchozí hodnoty"
+msgstr "Obnovit všechna nastavení na výchozí hodnotyReset All Settings to Defaults"
 
 msgid "Reset all settings to their defaults?"
-msgstr "Obnovit všechna nastavení na výchozí hodnoty?"
+msgstr "Obnovit všechna nastavení na výchozí hodnoty?Reset all settings to their defaults?"
 
 msgid "Reset anonymous ID"
-msgstr "Obnovit anonymní ID"
+msgstr "Obnovit anonymní IDReset anonymous ID"
 
 msgid "Reset engine settings to defaults"
-msgstr "Resetovat nastavení motoru na výchozí"
+msgstr "Resetovat nastavení motoru na výchozíReset engine settings to defaults"
 
 msgid "Reset Settings"
-msgstr "Obnovit nastavení"
+msgstr "Obnovit nastaveníReset Settings"
 
 msgid "Reset to defaults"
-msgstr "Obnovit na výchozí nastavení"
+msgstr "Obnovit na výchozí nastaveníReset to defaults"
 
 msgid "Reset Training Data"
-msgstr "Resetovat tréninková data"
+msgstr "Resetovat tréninková dataReset Training Data"
 
 msgid "Reset Training Data?"
-msgstr "Resetovat tréninková data?"
+msgstr "Resetovat tréninková data?Reset Training Data?"
 
 msgid "Reset WPM averages"
-msgstr "Resetovat průměry WPM"
+msgstr "Resetovat průměry WPMReset WPM averages"
 
 msgid "Restarting engine…"
-msgstr "Restartování motoru…"
+msgstr "Restartování motoru…Restarting engine…"
 
 msgid "Restore all Dasher settings to their default values. This cannot be undone."
-msgstr "Obnovit všechna nastavení Dasheru na výchozí hodnoty. Tuto akci nelze vrátit zpět."
+msgstr "Obnovit všechna nastavení Dasheru na výchozí hodnoty. Tuto akci nelze vrátit zpět.Restore all Dasher settings to their default values. This cannot be undone."
 
 msgid "Retry"
-msgstr "Zkusit znovu"
+msgstr "Zkusit znovuRetry"
 
 msgid "Save"
-msgstr "Uložit"
+msgstr "UložitSave"
 
 msgid "Save..."
-msgstr "Uložit..."
+msgstr "Uložit...Save..."
 
 msgid "Save eye-tracker diagnostics"
-msgstr "Uložit diagnostiku sledovače očí"
+msgstr "Uložit diagnostiku sledovače očíSave eye-tracker diagnostics"
 
 msgid "Save failed"
-msgstr "Uložení se nezdařilo"
+msgstr "Uložení se nezdařiloSave failed"
 
 msgid "Save file"
-msgstr "Uložit soubor"
+msgstr "Uložit souborSave file"
 
 msgid "Save text file"
-msgstr "Uložit textový soubor"
+msgstr "Uložit textový souborSave text file"
 
 msgid "Saved"
-msgstr "Uloženo"
+msgstr "UloženoSaved"
 
 msgid "Saved: "
-msgstr "Uloženo:"
+msgstr "Uloženo:Saved: "
 
 msgid "Scan Speed"
-msgstr "Rychlost skenování"
+msgstr "Rychlost skenováníScan Speed"
 
 msgid "Selection Method"
-msgstr "Metoda výběru"
+msgstr "Metoda výběruSelection Method"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
-msgstr "Služba běží? Podívejte se na nápovědu k nastavení na tlačítku Klávesnice pro instalační příkazy."
+msgstr "Služba běží? Podívejte se na nápovědu k nastavení na tlačítku Klávesnice pro instalační příkazy.service running? See the setup help on the Keyboard button for install commands."
 
 msgid "Settings"
-msgstr "Nastavení"
+msgstr "NastaveníSettings"
 
 msgid "Settings..."
-msgstr "Nastavení..."
+msgstr "Nastavení...Settings..."
 
 msgid "Reset all settings to defaults"
-msgstr "Obnovit všechna nastavení na výchozí hodnoty"
+msgstr "Obnovit všechna nastavení na výchozí hodnotyReset all settings to defaults"
 
 msgid "Settings reset"
-msgstr "Obnovení nastavení"
+msgstr "Obnovení nastaveníSettings reset"
 
 msgid "Reset all engine settings to their built-in defaults?"
-msgstr "Obnovit všechna nastavení motoru na jejich vestavěné výchozí hodnoty?"
+msgstr "Obnovit všechna nastavení motoru na jejich vestavěné výchozí hodnoty?Reset all engine settings to their built-in defaults?"
 
 msgid "Settings (speed, colours, control mode, language model)"
-msgstr "Nastavení (rychlost, barvy, režim ovládání, jazykový model)"
+msgstr "Nastavení (rychlost, barvy, režim ovládání, jazykový model)Settings (speed, colours, control mode, language model)"
 
 msgid "Settle time: {0} ms"
-msgstr "Doba vyrovnání: {0} ms"
+msgstr "Doba vyrovnání: {0} msSettle time: {0} ms"
 
 msgid "Share"
-msgstr "Podíl"
+msgstr "PodílShare"
 
 msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard "
-msgstr "Sdílet anonymní statistiky používání a zprávy o pádech? Žádný psaný text, schránka"
+msgstr "Sdílet anonymní statistiky používání a zprávy o pádech? Žádný psaný text, schránkaShare anonymous usage analytics and crash reports? No typed text, clipboard "
 
 msgid "Show Input Debug Overlay"
-msgstr "Zobrazit překryvné ladění vstupu"
+msgstr "Zobrazit překryvné ladění vstupuShow Input Debug Overlay"
 
 msgid "Show status bar"
-msgstr "Zobrazit stavový řádek"
+msgstr "Zobrazit stavový řádekShow status bar"
 
 msgid "Show typing rate (WPM)"
-msgstr "Zobrazit rychlost psaní (WPM)"
+msgstr "Zobrazit rychlost psaní (WPM)Show typing rate (WPM)"
 
 msgid "Size"
-msgstr "Velikost"
+msgstr "VelikostSize"
 
 msgid "Skipped files"
-msgstr "Přeskočené soubory"
+msgstr "Přeskočené souborySkipped files"
 
 msgid "Slow"
-msgstr "Pomalý"
+msgstr "PomalýSlow"
 
 msgid "Speak on stop"
-msgstr "Mluv na zastávce"
+msgstr "Mluv na zastávceSpeak on stop"
 
 msgid "Speak words"
-msgstr "Mluv slova"
+msgstr "Mluv slovaSpeak words"
 
 msgid "Speech"
-msgstr "Řeč"
+msgstr "ŘečSpeech"
 
 msgid "Speech off"
-msgstr "Řeč vypnuta"
+msgstr "Řeč vypnutaSpeech off"
 
 msgid "Speech on"
-msgstr "Projev na"
+msgstr "Projev naSpeech on"
 
 msgid "Hello, this is a preview of the selected voice."
-msgstr "Dobrý den, toto je náhled vybraného hlasu."
+msgstr "Dobrý den, toto je náhled vybraného hlasu.Hello, this is a preview of the selected voice."
 
 msgid "Speech Settings"
-msgstr "Nastavení řeči"
+msgstr "Nastavení řečiSpeech Settings"
 
 msgid "<b>Speech Settings</b>"
-msgstr "<b>Nastavení řeči</b>"
+msgstr "<b>Nastavení řeči</b><b>Speech Settings</b>"
 
 msgid "Speech volume"
-msgstr "Hlasitost řeči"
+msgstr "Hlasitost řečiSpeech volume"
 
 msgid "Speed"
-msgstr "Rychlost"
+msgstr "RychlostSpeed"
 
 msgid "Speed "
-msgstr "Rychlost"
+msgstr "RychlostSpeed "
 
 msgid "Start Calibrating"
-msgstr "Zahájení kalibrace"
+msgstr "Zahájení kalibraceStart Calibrating"
 
 msgid "Start fresh"
-msgstr "Začněte znovu"
+msgstr "Začněte znovuStart fresh"
 
 msgid "Dasher failed to start:\n{0}"
-msgstr "Dasher se nepodařilo spustit:\n{0}"
+msgstr "Dasher se nepodařilo spustit:\n{0}Dasher failed to start:\n{0}"
 
 msgid "Steering Method"
-msgstr "Řídicí metoda"
+msgstr "Řídicí metodaSteering Method"
 
 msgid "Stop"
-msgstr "Zastávka"
+msgstr "ZastávkaStop"
 
 msgid "Stop speaking"
-msgstr "Přestaň mluvit"
+msgstr "Přestaň mluvitStop speaking"
 
 msgid "Switch Setup"
-msgstr "Nastavení přepínače"
+msgstr "Nastavení přepínačeSwitch Setup"
 
 msgid "System"
-msgstr "Systém"
+msgstr "SystémSystem"
 
 msgid "text"
 msgstr "text"
 
 msgid "Text files"
-msgstr "Textové soubory"
+msgstr "Textové souboryText files"
 
 msgid "That file already is your training data."
-msgstr "Ten soubor už je vaším tréninkovým datem."
+msgstr "Ten soubor už je vaším tréninkovým datem.That file already is your training data."
 
 msgid "the app you are pointing at (needs ydotool)"
-msgstr "aplikace, na kterou ukazujete (vyžaduje ydotool)"
+msgstr "aplikace, na kterou ukazujete (vyžaduje ydotool)the app you are pointing at (needs ydotool)"
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
-msgstr "Ladicí překryv nakreslí v levém horním rohu plátna zelený panel zobrazující počet událostí dotyku v reálném čase a poslední hlášenou hodnotu (x, y). Když stisknete a podržíte prsty, měli byste vidět touch.began a poté touch.moved se měnícími souřadnicemi, jak se rozhlížíte."
+msgstr "Ladicí překryv nakreslí v levém horním rohu plátna zelený panel zobrazující počet událostí dotyku v reálném čase a poslední hlášenou hodnotu (x, y). Když stisknete a podržíte prsty, měli byste vidět touch.began a poté touch.moved se měnícími souřadnicemi, jak se rozhlížíte.The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 
 msgid "The file is too large (over 10 MB) to import as training text."
-msgstr "Soubor je příliš velký (více než 10 MB) na import jako tréninkový text."
+msgstr "Soubor je příliš velký (více než 10 MB) na import jako tréninkový text.The file is too large (over 10 MB) to import as training text."
 
 msgid "The selected file is empty."
-msgstr "Vybraný soubor je prázdný."
+msgstr "Vybraný soubor je prázdný.The selected file is empty."
 
 msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
-msgstr "Tímto se smažou všechny vaše nahromaděné tréninkové údaje pro každou abecedu. Předpovědi si ponechají vliv velmi nedávného psaní."
+msgstr "Tímto se smažou všechny vaše nahromaděné tréninkové údaje pro každou abecedu. Předpovědi si ponechají vliv velmi nedávného psaní.This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
-msgstr "Tímto se smažou nashromážděná trénovací data. Jazykový model se při dalším spuštění vrátí k výchozím nastavením. Tuto akci nelze vrátit zpět."
+msgstr "Tímto se smažou nashromážděná trénovací data. Jazykový model se při dalším spuštění vrátí k výchozím nastavením. Tuto akci nelze vrátit zpět.This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 
 msgid "Tilt Calibration"
-msgstr "Kalibrace náklonu"
+msgstr "Kalibrace náklonuTilt Calibration"
 
 msgid "Hold the device upright, then tilt forward and back"
-msgstr "Držte zařízení vzpřímeně, pak nakloňte dopředu a dozadu"
+msgstr "Držte zařízení vzpřímeně, pak nakloňte dopředu a dozaduHold the device upright, then tilt forward and back"
 
 msgid "Tilt left and right through the full range"
-msgstr "Nakloňte se doleva a doprava v celém rozsahu"
+msgstr "Nakloňte se doleva a doprava v celém rozsahuTilt left and right through the full range"
 
 msgid "Move slowly and smoothly through all positions"
-msgstr "Pohybujte se pomalu a plynule přes všechny pozice"
+msgstr "Pohybujte se pomalu a plynule přes všechny poziceMove slowly and smoothly through all positions"
 
 msgid "Tilt Settings"
-msgstr "Nastavení naklonění"
+msgstr "Nastavení nakloněníTilt Settings"
 
 msgid "Tilt your device now..."
-msgstr "Nakloňte zařízení nyní..."
+msgstr "Nakloňte zařízení nyní...Tilt your device now..."
 
 msgid "Tilt your device through its full range of motion during calibration."
-msgstr "Během kalibrace naklánějte zařízení v celém rozsahu jeho pohybu."
+msgstr "Během kalibrace naklánějte zařízení v celém rozsahu jeho pohybu.Tilt your device through its full range of motion during calibration."
 
 msgid "time under Preferences → Privacy."
-msgstr "čas v Předvolbách → Soukromí."
+msgstr "čas v Předvolbách → Soukromí.time under Preferences → Privacy."
 
 msgid "Eye Tracker Error"
-msgstr "Chyba Eye Tracker"
+msgstr "Chyba Eye TrackerEye Tracker Error"
 
 msgid "Eye tracker notice"
-msgstr "Upozornění na sledování očí"
+msgstr "Upozornění na sledování očíEye tracker notice"
 
 msgid "The eye tracker could not be fully resumed ({0}). Tracking may run at reduced speed and accuracy — try running Dasher as administrator."
-msgstr "Sledovač očí nebylo možné plně obnovit ({0}). Sledování může probíhat sníženou rychlostí a přesností — zkuste spustit Dasher jako správce."
+msgstr "Sledovač očí nebylo možné plně obnovit ({0}). Sledování může probíhat sníženou rychlostí a přesností — zkuste spustit Dasher jako správce.The eye tracker could not be fully resumed ({0}). Tracking may run at reduced speed and accuracy — try running Dasher as administrator."
 
 msgid "Toggle control mode"
-msgstr "Přepnout režim ovládání"
+msgstr "Přepnout režim ovládáníToggle control mode"
 
 msgid "Toggle game mode"
-msgstr "Přepnout herní režim"
+msgstr "Přepnout herní režimToggle game mode"
 
 msgid "Toggle keyboard mode"
-msgstr "Přepnout režim klávesnice"
+msgstr "Přepnout režim klávesniceToggle keyboard mode"
 
 msgid "Toggle pane position"
-msgstr "Přepnout polohu panelu"
+msgstr "Přepnout polohu paneluToggle pane position"
 
 msgid "Hide/show status bar"
-msgstr "Skrýt/zobrazit stavový řádek"
+msgstr "Skrýt/zobrazit stavový řádekHide/show status bar"
 
 msgid "Copy all text"
-msgstr "Kopírovat veškerý text"
+msgstr "Kopírovat veškerý textCopy all text"
 
 msgid "Copy selection in target app"
-msgstr "Zkopírujte výběr v cílové aplikaci"
+msgstr "Zkopírujte výběr v cílové aplikaciCopy selection in target app"
 
 msgid "Cut selection in target app"
-msgstr "Vyjmout výběr v cílové aplikaci"
+msgstr "Vyjmout výběr v cílové aplikaciCut selection in target app"
 
 msgid "Paste into target app"
-msgstr "Vložit do cílové aplikace"
+msgstr "Vložit do cílové aplikacePaste into target app"
 
 msgid "Re-anchor predictions to the caret (read the sentence around your cursor)"
-msgstr "Znovu ukotvěte predikce ke kurzoru (přečtěte si větu kolem vašeho kurzoru)"
+msgstr "Znovu ukotvěte predikce ke kurzoru (přečtěte si větu kolem vašeho kurzoru)Re-anchor predictions to the caret (read the sentence around your cursor)"
 
 msgid "Select all in target app"
-msgstr "Vybrat vše v cílové aplikaci"
+msgstr "Vybrat vše v cílové aplikaciSelect all in target app"
 
 msgid "eyetuitive"
 msgstr "eyetuitive"
 
 msgid "Eye tracker"
-msgstr "Sledovač očí"
+msgstr "Sledovač očíEye tracker"
 
 msgid "Tobii (Stream Engine)"
 msgstr "Tobii (Stream Engine)"
 
 msgid "UDP Gaze Tracker (network)"
-msgstr "UDP Gaze Tracker (síť)"
+msgstr "UDP Gaze Tracker (síť)UDP Gaze Tracker (network)"
 
 msgid "Windows Eye Tracker (native)"
-msgstr "Windows Eye Tracker (nativní)"
+msgstr "Windows Eye Tracker (nativní)Windows Eye Tracker (native)"
 
 msgid "Training"
-msgstr "Výcvik"
+msgstr "VýcvikTraining"
 
 msgid "Current training data: {0} KB"
-msgstr "Aktuální tréninková data: {0} kB"
+msgstr "Aktuální tréninková data: {0} kBCurrent training data: {0} KB"
 
 msgid "Training Data"
-msgstr "Trénovací data"
+msgstr "Trénovací dataTraining Data"
 
 msgid "Training data deleted — restart Dasher to fully apply"
-msgstr "Tréninková data byla smazána — restartujte Dasher pro plné použití"
+msgstr "Tréninková data byla smazána — restartujte Dasher pro plné použitíTraining data deleted — restart Dasher to fully apply"
 
 msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
-msgstr "Import přidá text do jazykového modelu a vaše nashromážděná tréninková data (uchovaná po restartech). Export uloží vaše tréninková data pro zálohování nebo přenos. Reset odstraní všechna uživatelská trénovací data – model se při příštím spuštění vrátí ke svým vestavěným výchozím hodnotám."
+msgstr "Import přidá text do jazykového modelu a vaše nashromážděná tréninková data (uchovaná po restartech). Export uloží vaše tréninková data pro zálohování nebo přenos. Reset odstraní všechna uživatelská trénovací data – model se při příštím spuštění vrátí ke svým vestavěným výchozím hodnotám.Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
 
 msgid "Training data exported."
-msgstr "Tréninková data exportována."
+msgstr "Tréninková data exportována.Training data exported."
 
 msgid "Export Training Data"
-msgstr "Export tréninkových dat"
+msgstr "Export tréninkových datExport Training Data"
 
 msgid "Exported to {0}"
-msgstr "Exportováno do {0}"
+msgstr "Exportováno do {0}Exported to {0}"
 
 msgid "{0} failed: {1}"
-msgstr "{0} se nezdařilo: {1}"
+msgstr "{0} se nezdařilo: {1}{0} failed: {1}"
 
 msgid "Imported {0} KB of training text"
-msgstr "Importováno {0} kB tréninkového textu"
+msgstr "Importováno {0} kB tréninkového textuImported {0} KB of training text"
 
 msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
-msgstr "Importované {0} kB – plně platí při příštím spuštění (živý model vrátil {1})"
+msgstr "Importované {0} kB – plně platí při příštím spuštění (živý model vrátil {1})Imported {0} KB — applies fully on next launch (live model returned {1})"
 
 msgid "Training is not available yet — try again once the canvas has rendered."
-msgstr "Školení zatím není k dispozici — zkuste to znovu, až bude plátno vykresleno."
+msgstr "Školení zatím není k dispozici — zkuste to znovu, až bude plátno vykresleno.Training is not available yet — try again once the canvas has rendered."
 
 msgid "Training data deleted — the model returns to its built-in defaults on next launch"
-msgstr "Tréninková data byla odstraněna – model se při příštím spuštění vrátí ke svým vestavěným výchozím nastavením"
+msgstr "Tréninková data byla odstraněna – model se při příštím spuštění vrátí ke svým vestavěným výchozím nastavenímTraining data deleted — the model returns to its built-in defaults on next launch"
 
 msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
-msgstr "Tam, kde to bylo možné, byla smazána tréninková data – počet položek selhal: {0}; znovu stiskněte Reset pro opakování"
+msgstr "Tam, kde to bylo možné, byla smazána tréninková data – počet položek selhal: {0}; znovu stiskněte Reset pro opakováníDeleted training data where possible — {0} item(s) failed; press Reset again to retry"
 
 msgid "TTS Engine"
-msgstr "TTS engine"
+msgstr "TTS engineTTS Engine"
 
 msgid "No credentials required"
-msgstr "Nejsou potřeba žádné přihlašovací údaje"
+msgstr "Nejsou potřeba žádné přihlašovací údajeNo credentials required"
 
 msgid "Turbo"
 msgstr "Turbo"
 
 msgid "Typing into other applications needs access to /dev/uinput, which a sandboxed "
-msgstr "Psaní do jiných aplikací vyžaduje přístup k /dev/uinput, který je izolovaný v sandboxu"
+msgstr "Psaní do jiných aplikací vyžaduje přístup k /dev/uinput, který je izolovaný v sandboxuTyping into other applications needs access to /dev/uinput, which a sandboxed "
 
 msgid "Typing rate"
-msgstr "Rychlost psaní"
+msgstr "Rychlost psaníTyping rate"
 
 msgid "{cps} cps · {wpm} wpm"
-msgstr "{cps} cps · {wpm} slov za minutu"
+msgstr "{cps} cps · {wpm} slov za minutu{cps} cps · {wpm} wpm"
 
 msgid "UDP Port"
-msgstr "UDP port"
+msgstr "UDP portUDP Port"
 
 msgid "UDP tracker listens for STREAM_DATA or GazePoint messages"
-msgstr "UDP tracker naslouchá zprávám STREAM_DATA nebo GazePoint"
+msgstr "UDP tracker naslouchá zprávám STREAM_DATA nebo GazePointUDP tracker listens for STREAM_DATA or GazePoint messages"
 
 msgid "Dasher {0} is available (you're running v{1}). Tap to download — disable in Settings > Privacy."
-msgstr "Dasher {0} je k dispozici (používáte verzi {1}). Klepnutím stáhněte – deaktivujte v Nastavení > Soukromí."
+msgstr "Dasher {0} je k dispozici (používáte verzi {1}). Klepnutím stáhněte – deaktivujte v Nastavení > Soukromí.Dasher {0} is available (you're running v{1}). Tap to download — disable in Settings > Privacy."
 
 msgid "Dasher update available"
-msgstr "Dasher aktualizace k dispozici"
+msgstr "Dasher aktualizace k dispoziciDasher update available"
 
 msgid "Use Dasher as your keyboard"
-msgstr "Používejte Dasher jako klávesnici"
+msgstr "Používejte Dasher jako klávesniciUse Dasher as your keyboard"
 
 msgid "Voice"
-msgstr "Hlas"
+msgstr "HlasVoice"
 
 msgid "{0} voices"
-msgstr "{0} hlasů"
+msgstr "{0} hlasů{0} voices"
 
 msgid "Volume"
-msgstr "Hlasitost"
+msgstr "HlasitostVolume"
 
 msgid "Dasher Warning"
-msgstr "Varování Dasher"
+msgstr "Varování DasherDasher Warning"
 
 msgid "We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
-msgstr "Na tomto Macu jsme našli vaši konfiguraci Dasheru 5. Vaši abecedu, barvy, nastavení rychlosti a vlastní soubory lze importovat do Dasheru 6."
+msgstr "Na tomto Macu jsme našli vaši konfiguraci Dasheru 5. Vaši abecedu, barvy, nastavení rychlosti a vlastní soubory lze importovat do Dasheru 6.We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
 
 msgid "What was found"
-msgstr "Co bylo nalezeno"
+msgstr "Co bylo nalezenoWhat was found"
 
 msgid "{0} wpm"
-msgstr "{0} slov za minutu"
+msgstr "{0} slov za minutu{0} wpm"
 
 msgid "max {0}"
-msgstr "max. {0}"
+msgstr "max. {0}max {0}"
 
 msgid "X range:"
-msgstr "Rozsah X:"
+msgstr "Rozsah X:X range:"
 
 msgid "Y range:"
-msgstr "Rozsah Y:"
+msgstr "Rozsah Y:Y range:"
 
 msgid "ydotool found. Keyboard mode is ready."
-msgstr "ydotool nalezen. Režim klávesnice je připraven."
+msgstr "ydotool nalezen. Režim klávesnice je připraven.ydotool found. Keyboard mode is ready."
 
 msgid "ydotool still isn't available. Make sure it's installed and the ydotool service is running."
-msgstr "ydotool stále není dostupný. Ujistěte se, že je nainstalován a služba ydotool běží."
+msgstr "ydotool stále není dostupný. Ujistěte se, že je nainstalován a služba ydotool běží.ydotool still isn't available. Make sure it's installed and the ydotool service is running."
 
 msgid "You can import later in Settings > Privacy & Migration"
-msgstr "Importovat můžete později v Nastavení > Soukromí a migrace"
+msgstr "Importovat můžete později v Nastavení > Soukromí a migraceYou can import later in Settings > Privacy & Migration"
 
 msgid "Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."
-msgstr "Váš pohled je nepřetržitě sledován pouze během sevření a podržení prstů – takto fungují všechny aplikace pro sledování pohledu VisionOS."
+msgstr "Váš pohled je nepřetržitě sledován pouze během sevření a podržení prstů – takto fungují všechny aplikace pro sledování pohledu VisionOS.Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."

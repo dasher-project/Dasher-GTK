@@ -14,1129 +14,1129 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "%1$.1f cps · %2$d wpm"
-msgstr "0.1f نبضة في الثانية · d كلمة في الدقيقة"
+msgstr "0.1f نبضة في الثانية · d كلمة في الدقيقة%1$.1f cps · %2$d wpm"
 
 msgid "A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
-msgstr "تم حفظ تقرير الأعطال في المسار ~/Library/Logs/DiagnosticReports/Dasher-*.ips. إذا أمكنك مشاركته في مشكلة على GitHub، فسيساعدنا ذلك في إصلاح الخلل."
+msgstr "تم حفظ تقرير الأعطال في المسار ~/Library/Logs/DiagnosticReports/Dasher-*.ips. إذا أمكنك مشاركته في مشكلة على GitHub، فسيساعدنا ذلك في إصلاح الخلل.A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
 
 msgid "About"
-msgstr "من نحن"
+msgstr "من نحنAbout"
 
 msgid "Dasher {0}"
-msgstr "داشر {0}"
+msgstr "داشر {0}Dasher {0}"
 
 msgid "Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
-msgstr "قبول أحداث التمرير/المؤشر كمدخلات لـ Dasher. تفعيل خاصية تتبع العين أو المؤشرات الخارجية."
+msgstr "قبول أحداث التمرير/المؤشر كمدخلات لـ Dasher. تفعيل خاصية تتبع العين أو المؤشرات الخارجية.Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
 
 msgid "Access"
-msgstr "وصول"
+msgstr "وصولAccess"
 
 msgid "Accessibility Permission Required"
-msgstr "يلزم الحصول على إذن الوصول"
+msgstr "يلزم الحصول على إذن الوصولAccessibility Permission Required"
 
 msgid "Adapt Speed Automatically"
-msgstr "ضبط السرعة تلقائيًا"
+msgstr "ضبط السرعة تلقائيًاAdapt Speed Automatically"
 
 msgid "Advanced logging"
-msgstr "التسجيل المتقدم"
+msgstr "التسجيل المتقدمAdvanced logging"
 
 msgid "Detailed diagnostic logging for bug reports (per-sample eye-tracker lines, keystroke traces, UIA reads). Basic connection events are always logged. May generate large log files."
-msgstr "تسجيل تشخيصي مفصل لتقارير الأخطاء (أسطر جهاز تتبع العين لكل عينة، تتبعات ضربات المفاتيح، قراءات UIA). يتم دائمًا تسجيل أحداث الاتصال الأساسية. قد يتم توليد ملفات سجل كبيرة."
+msgstr "تسجيل تشخيصي مفصل لتقارير الأخطاء (أسطر جهاز تتبع العين لكل عينة، تتبعات ضربات المفاتيح، قراءات UIA). يتم دائمًا تسجيل أحداث الاتصال الأساسية. قد يتم توليد ملفات سجل كبيرة.Detailed diagnostic logging for bug reports (per-sample eye-tracker lines, keystroke traces, UIA reads). Basic connection events are always logged. May generate large log files."
 
 msgid "Advanced settings"
-msgstr "الإعدادات المتقدمة"
+msgstr "الإعدادات المتقدمةAdvanced settings"
 
 msgid "All Dasher settings will be restored to their default values. This cannot be undone."
-msgstr "ستتم استعادة جميع إعدادات Dasher إلى قيمها الافتراضية. لا يمكن التراجع عن هذا الإجراء."
+msgstr "ستتم استعادة جميع إعدادات Dasher إلى قيمها الافتراضية. لا يمكن التراجع عن هذا الإجراء.All Dasher settings will be restored to their default values. This cannot be undone."
 
 msgid "Alphabet"
-msgstr "الأبجدية"
+msgstr "الأبجديةAlphabet"
 
 msgid "Help improve Dasher"
-msgstr "ساعد في تحسين تطبيق Dasher"
+msgstr "ساعد في تحسين تطبيق DasherHelp improve Dasher"
 
 msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
-msgstr "مشاركة تحليلات الاستخدام والتقارير عن الأعطال بشكل مجهول؟ لا يتم جمع أي نص مكتوب، أو محتويات الحافظة، أو المعلومات الشخصية أبدًا. يمكنك تغيير هذا في أي وقت من الإعدادات."
+msgstr "مشاركة تحليلات الاستخدام والتقارير عن الأعطال بشكل مجهول؟ لا يتم جمع أي نص مكتوب، أو محتويات الحافظة، أو المعلومات الشخصية أبدًا. يمكنك تغيير هذا في أي وقت من الإعدادات.Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
 
 msgid "Not now"
-msgstr "ليس الآن"
+msgstr "ليس الآنNot now"
 
 msgid "Share anonymous analytics and crash reports"
-msgstr "مشاركة التحليلات المجهولة الهوية وتقارير الأعطال"
+msgstr "مشاركة التحليلات المجهولة الهوية وتقارير الأعطالShare anonymous analytics and crash reports"
 
 msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
-msgstr "يجمع Dasher تحليلات مجهولة تحترم الخصوصية لفهم أنماط الاستخدام وإصلاح الأعطال. لا يتم جمع أي نص مكتوب، أو محتويات الحافظة، أو معلومات شخصية على الإطلاق.\n\nيمكنك تغيير هذا في أي وقت من الإعدادات > الخصوصية."
+msgstr "يجمع Dasher تحليلات مجهولة تحترم الخصوصية لفهم أنماط الاستخدام وإصلاح الأعطال. لا يتم جمع أي نص مكتوب، أو محتويات الحافظة، أو معلومات شخصية على الإطلاق.\n\nيمكنك تغيير هذا في أي وقت من الإعدادات > الخصوصية.Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
 
 msgid "Reset analytics ID"
-msgstr "إعادة تعيين التحليلات"
+msgstr "إعادة تعيين التحليلاتReset analytics ID"
 
 msgid "Dasher collects anonymous usage analytics and crash reports to understand how the app is used and to fix bugs. No typed text, clipboard contents, or personal information is ever collected."
-msgstr "يقوم Dasher بجمع تحليلات الاستخدام المجهولة وتقارير الأعطال لفهم كيفية استخدام التطبيق وإصلاح الأخطاء. لا يتم جمع أي نص مكتوب أو محتويات الحافظة أو معلومات شخصية أبدًا."
+msgstr "يقوم Dasher بجمع تحليلات الاستخدام المجهولة وتقارير الأعطال لفهم كيفية استخدام التطبيق وإصلاح الأخطاء. لا يتم جمع أي نص مكتوب أو محتويات الحافظة أو معلومات شخصية أبدًا.Dasher collects anonymous usage analytics and crash reports to understand how the app is used and to fix bugs. No typed text, clipboard contents, or personal information is ever collected."
 
 msgid "Help improve Dasher?"
-msgstr "هل تساعد في تحسين داشر؟"
+msgstr "هل تساعد في تحسين داشر؟Help improve Dasher?"
 
 msgid "Anonymous ID: {0}"
-msgstr "معرف مجهول: {0}"
+msgstr "معرف مجهول: {0}Anonymous ID: {0}"
 
 msgid "Anonymous usage analytics"
-msgstr "تحليلات الاستخدام المجهولة"
+msgstr "تحليلات الاستخدام المجهولةAnonymous usage analytics"
 
 msgid "Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
-msgstr "تساعدنا تحليلات الاستخدام المجهولة على فهم كيفية استخدام تطبيق Dasher وإصلاح الأعطال. لا يتم جمع أي نصوص مكتوبة أو محتويات الحافظة أو معلومات شخصية على الإطلاق. يمكنك إلغاء الاشتراك في أي وقت من خلال الإعدادات ← الخصوصية."
+msgstr "تساعدنا تحليلات الاستخدام المجهولة على فهم كيفية استخدام تطبيق Dasher وإصلاح الأعطال. لا يتم جمع أي نصوص مكتوبة أو محتويات الحافظة أو معلومات شخصية على الإطلاق. يمكنك إلغاء الاشتراك في أي وقت من خلال الإعدادات ← الخصوصية.Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
 
 msgid "App-Level Dwell to Select"
-msgstr "تحديد مستوى التطبيق"
+msgstr "تحديد مستوى التطبيقApp-Level Dwell to Select"
 
 msgid "Dasher"
 msgstr ""
 
 msgid "Appearance"
-msgstr "المظهر"
+msgstr "المظهرAppearance"
 
 msgid "Left"
-msgstr "يسار"
+msgstr "يسارLeft"
 
 msgid "Move caret left (hold to repeat)"
-msgstr "حرك المؤشر إلى اليسار (اضغط مع الاستمرار للتكرار)"
+msgstr "حرك المؤشر إلى اليسار (اضغط مع الاستمرار للتكرار)Move caret left (hold to repeat)"
 
 msgid "Right"
-msgstr "يمين"
+msgstr "يمينRight"
 
 msgid "Move caret right (hold to repeat)"
-msgstr "حرك المؤشر إلى اليمين (اضغط مع الاستمرار للتكرار)"
+msgstr "حرك المؤشر إلى اليمين (اضغط مع الاستمرار للتكرار)Move caret right (hold to repeat)"
 
 msgid "Auto"
-msgstr "آلي"
+msgstr "آليAuto"
 
 msgid "Auto-Centre Target"
-msgstr "مركز السيارات تارجت"
+msgstr "مركز السيارات تارجتAuto-Centre Target"
 
 msgid "Auto-select after fixating. Only enable if OS dwell is off."
-msgstr "يتم التحديد التلقائي بعد التثبيت. يتم التفعيل فقط في حالة إيقاف تشغيل خاصية \"التوقف المؤقت\" في نظام التشغيل."
+msgstr "يتم التحديد التلقائي بعد التثبيت. يتم التفعيل فقط في حالة إيقاف تشغيل خاصية \"التوقف المؤقت\" في نظام التشغيل.Auto-select after fixating. Only enable if OS dwell is off."
 
 msgid "Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
-msgstr "يتم التحديد التلقائي بعد تثبيت النظر أثناء الضغط بإصبعين. فعّل هذه الخاصية فقط إذا كانت خاصية \"التوقف المؤقت\" في نظام التشغيل معطلة."
+msgstr "يتم التحديد التلقائي بعد تثبيت النظر أثناء الضغط بإصبعين. فعّل هذه الخاصية فقط إذا كانت خاصية \"التوقف المؤقت\" في نظام التشغيل معطلة.Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
 
 msgid "Back"
-msgstr "عودة"
+msgstr "عودةBack"
 
 msgid "Del"
-msgstr "حذف"
+msgstr "حذفDel"
 
 msgid "Delete (hold to repeat)"
-msgstr "حذف (اضغط مطولًا للتكرار)"
+msgstr "حذف (اضغط مطولًا للتكرار)Delete (hold to repeat)"
 
 msgid "Calibrate Tilt"
-msgstr "معايرة الميل"
+msgstr "معايرة الميلCalibrate Tilt"
 
 msgid "Cancel"
-msgstr "يلغي"
+msgstr "يلغيCancel"
 
 msgid "Check Again"
-msgstr "تحقق مرة أخرى"
+msgstr "تحقق مرة أخرىCheck Again"
 
 msgid "Check for updates"
 msgstr ""
 
 msgid "Choose..."
-msgstr "يختار..."
+msgstr "يختار...Choose..."
 
 msgid "Choose File..."
-msgstr "اختر ملفًا..."
+msgstr "اختر ملفًا...Choose File..."
 
 msgid "Clear"
-msgstr "واضح"
+msgstr "واضحClear"
 
 msgid "Clear logs"
-msgstr "مسح السجلات"
+msgstr "مسح السجلاتClear logs"
 
 msgid "Click to set up keyboard mode (needs ydotool)"
-msgstr "انقر لإعداد وضع لوحة المفاتيح (يحتاج إلى ydotool)"
+msgstr "انقر لإعداد وضع لوحة المفاتيح (يحتاج إلى ydotool)Click to set up keyboard mode (needs ydotool)"
 
 msgid "Close"
-msgstr "خاتمة"
+msgstr "خاتمةClose"
 
 msgid "Close settings"
-msgstr "إغلاق الإعدادات"
+msgstr "إغلاق الإعداداتClose settings"
 
 msgid "Colour Theme"
-msgstr "نظام الألوان"
+msgstr "نظام الألوانColour Theme"
 
 msgid "contents or personal information is ever collected. You can change this any "
-msgstr "يتم جمع المحتوى أو المعلومات الشخصية في أي وقت. يمكنك تغيير هذا في أي"
+msgstr "يتم جمع المحتوى أو المعلومات الشخصية في أي وقت. يمكنك تغيير هذا في أيcontents or personal information is ever collected. You can change this any "
 
 msgid "Control"
-msgstr "تحكم"
+msgstr "تحكمControl"
 
 msgid "Control mode: enabled"
-msgstr "وضع التحكم: مفعل"
+msgstr "وضع التحكم: مفعلControl mode: enabled"
 
 msgid "Control mode"
-msgstr "وضع التحكم"
+msgstr "وضع التحكمControl mode"
 
 msgid "Control nodes: move, delete, clear, speak, pause"
-msgstr "عقد التحكم: تحريك، حذف، مسح، تحدث، توقف مؤقت"
+msgstr "عقد التحكم: تحريك، حذف، مسح، تحدث، توقف مؤقتControl nodes: move, delete, clear, speak, pause"
 
 msgid "Copied to clipboard."
-msgstr "منسوخة إلى الحافظة."
+msgstr "منسوخة إلى الحافظة.Copied to clipboard."
 
 msgid "Copy"
-msgstr "نسخ"
+msgstr "نسخCopy"
 
 msgid "Copy all"
-msgstr "نسخ الكل"
+msgstr "نسخ الكلCopy all"
 
 msgid "Copy All"
-msgstr "نسخ الكل"
+msgstr "نسخ الكلCopy All"
 
 msgid "Copy all (to clipboard)"
-msgstr "نسخ الكل (إلى الحافظة)"
+msgstr "نسخ الكل (إلى الحافظة)Copy all (to clipboard)"
 
 msgid "Copy commands"
-msgstr "نسخ الأوامر"
+msgstr "نسخ الأوامرCopy commands"
 
 msgid "Copy selection"
-msgstr "نسخ التحديد"
+msgstr "نسخ التحديدCopy selection"
 
 msgid "Could not load the file into the engine"
-msgstr "تعذر تحميل الملف إلى المحرك"
+msgstr "تعذر تحميل الملف إلى المحركCould not load the file into the engine"
 
 msgid "Could not open the selected file."
-msgstr "تعذر فتح الملف المحدد."
+msgstr "تعذر فتح الملف المحدد.Could not open the selected file."
 
 msgid "Could not read the selected file."
-msgstr "تعذر قراءة الملف المحدد."
+msgstr "تعذر قراءة الملف المحدد.Could not read the selected file."
 
 msgid "Could not sync your edit with the engine — it may be overwritten"
-msgstr "تعذر مزامنة تحريرك مع المحرك — قد يتم الكتابة فوقه"
+msgstr "تعذر مزامنة تحريرك مع المحرك — قد يتم الكتابة فوقهCould not sync your edit with the engine — it may be overwritten"
 
 msgid "Could not write the export file."
-msgstr "تعذر كتابة ملف التصدير."
+msgstr "تعذر كتابة ملف التصدير.Could not write the export file."
 
 msgid "Could not write the training data."
-msgstr "تعذر كتابة بيانات التدريب."
+msgstr "تعذر كتابة بيانات التدريب.Could not write the training data."
 
 msgid "Current Calibration"
-msgstr "معايرة التيار"
+msgstr "معايرة التيارCurrent Calibration"
 
 msgid "{0} custom file(s)"
-msgstr "{0} ملف (ملفات) مخصصة"
+msgstr "{0} ملف (ملفات) مخصصة{0} custom file(s)"
 
 msgid "Customization"
-msgstr "التخصيص"
+msgstr "التخصيصCustomization"
 
 msgid "Dark"
-msgstr "مظلم"
+msgstr "مظلمDark"
 
 msgid "Dasher "
-msgstr "شخص أنيق"
+msgstr "شخص أنيقDasher "
 
 msgid "We found your Dasher 5 configuration"
-msgstr "لقد وجدنا إعداد Dasher 5 الخاص بك"
+msgstr "لقد وجدنا إعداد Dasher 5 الخاص بكWe found your Dasher 5 configuration"
 
 msgid "Dasher 5 Import"
-msgstr "داشر 5 استيراد"
+msgstr "داشر 5 استيرادDasher 5 Import"
 
 msgid "Would you like to import these settings into Dasher 6?"
-msgstr "هل ترغب في استيراد هذه الإعدادات إلى Dasher 6؟"
+msgstr "هل ترغب في استيراد هذه الإعدادات إلى Dasher 6؟Would you like to import these settings into Dasher 6?"
 
 msgid "No Dasher 5 data found on this computer."
-msgstr "لم يتم العثور على بيانات Dasher 5 على هذا الكمبيوتر."
+msgstr "لم يتم العثور على بيانات Dasher 5 على هذا الكمبيوتر.No Dasher 5 data found on this computer."
 
 msgid "Dasher 5 settings found"
-msgstr "تم العثور على إعدادات Dasher 5"
+msgstr "تم العثور على إعدادات Dasher 5Dasher 5 settings found"
 
 msgid "Dasher 5 data detected on this Mac."
-msgstr "تم اكتشاف بيانات Dasher 5 على هذا الجهاز Mac."
+msgstr "تم اكتشاف بيانات Dasher 5 على هذا الجهاز Mac.Dasher 5 data detected on this Mac."
 
 msgid "Dasher 5 settings imported successfully."
-msgstr "تم استيراد إعدادات Dasher 5 بنجاح."
+msgstr "تم استيراد إعدادات Dasher 5 بنجاح.Dasher 5 settings imported successfully."
 
 msgid "Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
-msgstr "يعمل تطبيق Dasher أيضًا كلوحة مفاتيح نظام، لذا يمكنك الكتابة في أي تطبيق. قم بتفعيله مرة واحدة من الإعدادات."
+msgstr "يعمل تطبيق Dasher أيضًا كلوحة مفاتيح نظام، لذا يمكنك الكتابة في أي تطبيق. قم بتفعيله مرة واحدة من الإعدادات.Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
 
 msgid "Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
-msgstr "يجمع تطبيق Dasher بيانات تحليلية مجهولة المصدر لفهم الاستخدام وإصلاح الأعطال. لا يتم جمع أي نصوص مكتوبة أو بيانات من الحافظة أو معلومات شخصية على الإطلاق. اطلع على مخطط الأحداث المفتوح على github.com/dasher-project/Dasher-Apple."
+msgstr "يجمع تطبيق Dasher بيانات تحليلية مجهولة المصدر لفهم الاستخدام وإصلاح الأعطال. لا يتم جمع أي نصوص مكتوبة أو بيانات من الحافظة أو معلومات شخصية على الإطلاق. اطلع على مخطط الأحداث المفتوح على github.com/dasher-project/Dasher-Apple.Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
 
 msgid "Dasher Engine Error"
-msgstr "خطأ محرك داشر"
+msgstr "خطأ محرك داشرDasher Engine Error"
 
 msgid "Dasher Keyboard"
-msgstr "لوحة مفاتيح داشر"
+msgstr "لوحة مفاتيح داشرDasher Keyboard"
 
 msgid "Dasher keyboard"
-msgstr "لوحة مفاتيح داشر"
+msgstr "لوحة مفاتيح داشرDasher keyboard"
 
 msgid "Dasher needs accessibility access to send text to other applications."
-msgstr "يحتاج تطبيق Dasher إلى إمكانية الوصول لذوي الاحتياجات الخاصة لإرسال الرسائل النصية إلى التطبيقات الأخرى."
+msgstr "يحتاج تطبيق Dasher إلى إمكانية الوصول لذوي الاحتياجات الخاصة لإرسال الرسائل النصية إلى التطبيقات الأخرى.Dasher needs accessibility access to send text to other applications."
 
 msgid "Dasher Preferences"
-msgstr "تفضيلات Dasher"
+msgstr "تفضيلات DasherDasher Preferences"
 
 msgid "Dasher quit unexpectedly"
-msgstr "استقال داشر بشكل غير متوقع"
+msgstr "استقال داشر بشكل غير متوقعDasher quit unexpectedly"
 
 msgid "Dasher v6"
-msgstr "داشر v6"
+msgstr "داشر v6Dasher v6"
 
 msgid "<big><b>Dasher v6</b></big>\n"
 msgstr "<big><b>Dasher v6</b></big>\n"
 
 msgid "Dead zone: {0} px"
-msgstr "المنطقة الميتة: {0} بكسل"
+msgstr "المنطقة الميتة: {0} بكسلDead zone: {0} px"
 
 msgid "Decrease Speed"
-msgstr "تقليل السرعة"
+msgstr "تقليل السرعةDecrease Speed"
 
 msgid "Default"
-msgstr "تقصير"
+msgstr "تقصيرDefault"
 
 msgid "Alphabet: {0}"
-msgstr "الأبجدية: {0}"
+msgstr "الأبجدية: {0}Alphabet: {0}"
 
 msgid "Colour: {0}"
-msgstr "اللون: {0}"
+msgstr "اللون: {0}Colour: {0}"
 
 msgid "Speed: {0}"
-msgstr "السرعة: {0}"
+msgstr "السرعة: {0}Speed: {0}"
 
 msgid "Diagnostics"
-msgstr "التشخيص"
+msgstr "التشخيصDiagnostics"
 
 msgid "Direct Mode"
-msgstr "الوضع المباشر"
+msgstr "الوضع المباشرDirect Mode"
 
 msgid "Done"
-msgstr "منتهي"
+msgstr "منتهيDone"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
-msgstr "حوم في مكان واحد لتفعيل النقر، بدلاً من الضغط على زر أو مفتاح."
+msgstr "حوم في مكان واحد لتفعيل النقر، بدلاً من الضغط على زر أو مفتاح.Hover in one spot to trigger a click, instead of pressing a button or switch."
 
 msgid "Dwell Duration"
-msgstr "مدة الإقامة"
+msgstr "مدة الإقامةDwell Duration"
 
 msgid "Dwell to click"
-msgstr "اسكن للنقر"
+msgstr "اسكن للنقرDwell to click"
 
 msgid "Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
-msgstr "قم بتمكين Dasher من خلال الإعدادات → عام → لوحة المفاتيح → لوحات المفاتيح، ثم قم بتشغيل السماح بالوصول الكامل حتى يتمكن Dasher من التحدث والتعلم."
+msgstr "قم بتمكين Dasher من خلال الإعدادات → عام → لوحة المفاتيح → لوحات المفاتيح، ثم قم بتشغيل السماح بالوصول الكامل حتى يتمكن Dasher من التحدث والتعلم.Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
 
 msgid "Enable tilt input first to access calibration."
-msgstr "قم بتمكين إدخال الإمالة أولاً للوصول إلى المعايرة."
+msgstr "قم بتمكين إدخال الإمالة أولاً للوصول إلى المعايرة.Enable tilt input first to access calibration."
 
 msgid "Dasher could not start"
-msgstr "لم يتمكن Dasher من البدء"
+msgstr "لم يتمكن Dasher من البدءDasher could not start"
 
 msgid "Engine Error"
-msgstr "خطأ المحرك"
+msgstr "خطأ المحركEngine Error"
 
 msgid "The Dasher engine encountered an internal error and has stopped. Please restart Dasher."
-msgstr "واجهة محرك داشير قد واجهت خطأ داخلي وتوقفت. يرجى إعادة تشغيل داشير."
+msgstr "واجهة محرك داشير قد واجهت خطأ داخلي وتوقفت. يرجى إعادة تشغيل داشير.The Dasher engine encountered an internal error and has stopped. Please restart Dasher."
 
 msgid "Please try reinstalling, or report this in a GitHub issue."
-msgstr "يرجى محاولة إعادة التثبيت، أو الإبلاغ عن هذا في مشكلة على GitHub."
+msgstr "يرجى محاولة إعادة التثبيت، أو الإبلاغ عن هذا في مشكلة على GitHub.Please try reinstalling, or report this in a GitHub issue."
 
 msgid "Engine Speech Features"
-msgstr "ميزات محرك الكلام"
+msgstr "ميزات محرك الكلامEngine Speech Features"
 
 msgid "Error: {0}"
-msgstr "خطأ: {0}"
+msgstr "خطأ: {0}Error: {0}"
 
 msgid "Error loading settings: {0}"
-msgstr "خطأ في تحميل الإعدادات: {0}"
+msgstr "خطأ في تحميل الإعدادات: {0}Error loading settings: {0}"
 
 msgid "Exit"
-msgstr "خروج"
+msgstr "خروجExit"
 
 msgid "Export Training Text"
-msgstr "تصدير نص التدريب"
+msgstr "تصدير نص التدريبExport Training Text"
 
 msgid "Eye Gaze"
-msgstr "نظرة العين"
+msgstr "نظرة العينEye Gaze"
 
 msgid "Could not connect to eye tracker on startup. Check the device and try re-selecting it in Settings > Input."
-msgstr "تعذر الاتصال بجهاز تعقب العين عند بدء التشغيل. تحقق من الجهاز وحاول إعادة تحديده في الإعدادات > الإدخال."
+msgstr "تعذر الاتصال بجهاز تعقب العين عند بدء التشغيل. تحقق من الجهاز وحاول إعادة تحديده في الإعدادات > الإدخال.Could not connect to eye tracker on startup. Check the device and try re-selecting it in Settings > Input."
 
 msgid "Eye Tracker Device"
-msgstr "جهاز تتبع العين"
+msgstr "جهاز تتبع العينEye Tracker Device"
 
 msgid "Could not connect to {0}. Check the device is connected and drivers are installed."
-msgstr "تعذر الاتصال بـ {0}. تحقق من توصيل الجهاز وتثبيت برامج التشغيل."
+msgstr "تعذر الاتصال بـ {0}. تحقق من توصيل الجهاز وتثبيت برامج التشغيل.Could not connect to {0}. Check the device is connected and drivers are installed."
 
 msgid "Could not connect to {0}. Make sure tobii_stream_engine.dll is installed and a Tobii device is connected."
-msgstr "تعذر الاتصال بـ {0}. تأكد من تثبيت tobii_stream_engine.dll ومن توصيل جهاز Tobii."
+msgstr "تعذر الاتصال بـ {0}. تأكد من تثبيت tobii_stream_engine.dll ومن توصيل جهاز Tobii.Could not connect to {0}. Make sure tobii_stream_engine.dll is installed and a Tobii device is connected."
 
 msgid "Detailed tracking log for bug reports (per-sample lines, written to eyegaze.log in the Dasher folder). Basic connection events are always logged."
-msgstr "سجل تتبع مفصل لتقارير الأخطاء (أسطر لكل عينة، مكتوبة في eyegaze.log في مجلد Dasher). يتم دائمًا تسجيل أحداث الاتصال الأساسية."
+msgstr "سجل تتبع مفصل لتقارير الأخطاء (أسطر لكل عينة، مكتوبة في eyegaze.log في مجلد Dasher). يتم دائمًا تسجيل أحداث الاتصال الأساسية.Detailed tracking log for bug reports (per-sample lines, written to eyegaze.log in the Dasher folder). Basic connection events are always logged."
 
 msgid "Failed to open: "
-msgstr "فشل في الفتح@ title Title of a list of documents that are open"
+msgstr "فشل في الفتح@ title Title of a list of documents that are openFailed to open: "
 
 msgid "Failed to save: "
-msgstr "فشلت عملية الحفظ"
+msgstr "فشلت عملية الحفظFailed to save: "
 
 msgid "Fast"
-msgstr "سريع"
+msgstr "سريعFast"
 
 msgid "File truncated at 4 MB — only the first part is loaded"
-msgstr "تم اقتطاع الملف عند 4 ميغابايت — تم تحميل الجزء الأول فقط"
+msgstr "تم اقتطاع الملف عند 4 ميغابايت — تم تحميل الجزء الأول فقطFile truncated at 4 MB — only the first part is loaded"
 
 msgid "Normal Control"
-msgstr "التحكم العادي"
+msgstr "التحكم العاديNormal Control"
 
 msgid "Smoothing Mode"
-msgstr "وضع التنعيم"
+msgstr "وضع التنعيمSmoothing Mode"
 
 msgid "Flatpak or AppImage build can't provide.\n\n"
-msgstr "لا يمكن أن يوفر بناء Flatpak أو AppImage."
+msgstr "لا يمكن أن يوفر بناء Flatpak أو AppImage.atpak or AppImage build can't provide.\n\n"
 
 msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
-msgstr "لتحريك لوحة المفاتيح عائمة، اسمح لـ Dasher بالعرض فوق التطبيقات الأخرى، ثم اضغط Float مرة أخرى."
+msgstr "لتحريك لوحة المفاتيح عائمة، اسمح لـ Dasher بالعرض فوق التطبيقات الأخرى، ثم اضغط Float مرة أخرى.To float the keyboard, allow Dasher to display over other apps, then tap Float again."
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
-msgstr "تتيح لك خاصية الوصول الكامل في برنامج داشر نطق ما تكتبه وحفظ تدريبك. ولا يزال بإمكانك استخدام لوحة المفاتيح لإدخال البيانات الأساسية بدونها."
+msgstr "تتيح لك خاصية الوصول الكامل في برنامج داشر نطق ما تكتبه وحفظ تدريبك. ولا يزال بإمكانك استخدام لوحة المفاتيح لإدخال البيانات الأساسية بدونها.Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
 
 msgid "Game mode"
-msgstr "وضع اللعب"
+msgstr "وضع اللعبGame mode"
 
 msgid "Game Mode"
-msgstr "نمط اللعب"
+msgstr "نمط اللعبGame Mode"
 
 msgid "Game On"
-msgstr "ابدأ اللعبة"
+msgstr "ابدأ اللعبةGame On"
 
 msgid "Game Text File"
-msgstr "ملف نص اللعبة"
+msgstr "ملف نص اللعبةGame Text File"
 
 msgid "Reduces zoom toward wrong positions while your eyes move to a target"
-msgstr "يقلل التكبير نحو مواقع خاطئة أثناء تحرك عينيك نحو هدف"
+msgstr "يقلل التكبير نحو مواقع خاطئة أثناء تحرك عينيك نحو هدفReduces zoom toward wrong positions while your eyes move to a target"
 
 msgid "Filter gaze (reduces zoom toward wrong positions during eye transit)"
-msgstr "تصفية النظرة (تقلل التكبير نحو المواقع الخاطئة أثناء انتقال العين)"
+msgstr "تصفية النظرة (تقلل التكبير نحو المواقع الخاطئة أثناء انتقال العين)Filter gaze (reduces zoom toward wrong positions during eye transit)"
 
 msgid "Gaze Smoothing"
-msgstr "تنعيم النظر"
+msgstr "تنعيم النظرGaze Smoothing"
 
 msgid "Got it"
-msgstr "فهمتها"
+msgstr "فهمتهاGot it"
 
 msgid "GTK Edition"
-msgstr "إصدار جي تي كيه"
+msgstr "إصدار جي تي كيهGTK Edition"
 
 msgid "Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
-msgstr "تُضيف خاصية الاستيراد نصًا إلى نموذج اللغة (تُلحقه بالتعلم الحالي). تحفظ خاصية التصدير بيانات التدريب المتراكمة لعمل نسخة احتياطية أو نقلها. تُحذف خاصية إعادة الضبط بيانات التدريب المخصصة، ويعود النموذج إلى إعداداته الافتراضية المدمجة عند التشغيل التالي."
+msgstr "تُضيف خاصية الاستيراد نصًا إلى نموذج اللغة (تُلحقه بالتعلم الحالي). تحفظ خاصية التصدير بيانات التدريب المتراكمة لعمل نسخة احتياطية أو نقلها. تُحذف خاصية إعادة الضبط بيانات التدريب المخصصة، ويعود النموذج إلى إعداداته الافتراضية المدمجة عند التشغيل التالي.Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
 
 msgid "Import from Dasher 5"
-msgstr "استيراد من داشر 5"
+msgstr "استيراد من داشر 5Import from Dasher 5"
 
 msgid "Import settings"
-msgstr "استيراد الإعدادات"
+msgstr "استيراد الإعداداتImport settings"
 
 msgid "Import Training Text"
-msgstr "استيراد نص التدريب"
+msgstr "استيراد نص التدريبImport Training Text"
 
 msgid "Imported %1 — applies fully on next launch"
-msgstr "تم استيراد %1 — سيتم التطبيق بالكامل عند الإطلاق التالي"
+msgstr "تم استيراد %1 — سيتم التطبيق بالكامل عند الإطلاق التاليImported %1 — applies fully on next launch"
 
 msgid "Imported %1 of training text"
-msgstr "تم استيراد %1 من نص التدريب"
+msgstr "تم استيراد %1 من نص التدريبImported %1 of training text"
 
 msgid "Increase Speed"
-msgstr "زيادة السرعة"
+msgstr "زيادة السرعةIncrease Speed"
 
 msgid "Input"
-msgstr "مدخل"
+msgstr "مدخلInput"
 
 msgid "Active engine input filter (set via Selection Method or advanced settings)"
-msgstr "مرشح إدخال المحرك النشط (يتم ضبطه عبر طريقة التحديد أو الإعدادات المتقدمة)"
+msgstr "مرشح إدخال المحرك النشط (يتم ضبطه عبر طريقة التحديد أو الإعدادات المتقدمة)Active engine input filter (set via Selection Method or advanced settings)"
 
 msgid "Managed by the engine — change via the Selection Method setting"
-msgstr "تتم إدارته بواسطة المحرك - يتم التغيير عبر إعداد طريقة التحديد"
+msgstr "تتم إدارته بواسطة المحرك - يتم التغيير عبر إعداد طريقة التحديدManaged by the engine — change via the Selection Method setting"
 
 msgid "Direct pointer — minimal processing"
-msgstr "المؤشر المباشر — الحد الأدنى من المعالجة"
+msgstr "المؤشر المباشر — الحد الأدنى من المعالجةDirect pointer — minimal processing"
 
 msgid "No filtering — for clean input devices"
-msgstr "لا توجد تصفية — لأجهزة الإدخال النظيفة"
+msgstr "لا توجد تصفية — لأجهزة الإدخال النظيفةNo filtering — for clean input devices"
 
 msgid "Input smoothing — reduces jitter for noisy input (eye gaze, head tracking)"
-msgstr "تجانس الإدخال - يقلل من الارتعاش للإدخال الصاخب (نظرة العين، تتبع الرأس)"
+msgstr "تجانس الإدخال - يقلل من الارتعاش للإدخال الصاخب (نظرة العين، تتبع الرأس)Input smoothing — reduces jitter for noisy input (eye gaze, head tracking)"
 
 msgid "Dampens small pointer movements for a steadier zoom"
-msgstr "يخفف حركات المؤشر الصغيرة للحصول على تكبير/تصغير أكثر ثباتًا"
+msgstr "يخفف حركات المؤشر الصغيرة للحصول على تكبير/تصغير أكثر ثباتًاDampens small pointer movements for a steadier zoom"
 
 msgid "Standard continuous control (default)"
-msgstr "التحكم المستمر القياسي (الافتراضي)"
+msgstr "التحكم المستمر القياسي (الافتراضي)Standard continuous control (default)"
 
 msgid "The standard steering method — move the pointer to zoom"
-msgstr "طريقة التوجيه القياسية — حرك المؤشر للتكبير"
+msgstr "طريقة التوجيه القياسية — حرك المؤشر للتكبيرThe standard steering method — move the pointer to zoom"
 
 msgid "Input Processing"
-msgstr "معالجة الإدخال"
+msgstr "معالجة الإدخالInput Processing"
 
 msgid "Install Dasher via your package manager or build from source to use keyboard mode."
-msgstr "قم بتثبيت Dasher عبر مدير الحزم الخاص بك أو قم بالبناء من المصدر لاستخدام وضع لوحة المفاتيح."
+msgstr "قم بتثبيت Dasher عبر مدير الحزم الخاص بك أو قم بالبناء من المصدر لاستخدام وضع لوحة المفاتيح.Install Dasher via your package manager or build from source to use keyboard mode."
 
 msgid "<b>Install ydotool to use keyboard mode</b>"
-msgstr "<b>تثبيت ydotool لاستخدام وضع لوحة المفاتيح</b>"
+msgstr "<b>تثبيت ydotool لاستخدام وضع لوحة المفاتيح</b><b>Install ydotool to use keyboard mode</b>"
 
 msgid "isn't installed. Run these commands, then press Retry:"
-msgstr "غير مثبت. قم بتشغيل هذه الأوامر، ثم اضغط على إعادة المحاولة:"
+msgstr "غير مثبت. قم بتشغيل هذه الأوامر، ثم اضغط على إعادة المحاولة:isn't installed. Run these commands, then press Retry:"
 
 msgid "Keyboard"
-msgstr "لوحة المفاتيح"
+msgstr "لوحة المفاتيحKeyboard"
 
 msgid "_Keyboard"
-msgstr "كيبورد"
+msgstr "كيبورد_Keyboard"
 
 msgid "Type Dasher's output straight into the app you are pointing at"
-msgstr "اكتب مخرجات Dasher مباشرة في التطبيق الذي تشير إليه"
+msgstr "اكتب مخرجات Dasher مباشرة في التطبيق الذي تشير إليهType Dasher's output straight into the app you are pointing at"
 
 msgid "Exit keyboard mode"
-msgstr "الخروج من وضع لوحة المفاتيح"
+msgstr "الخروج من وضع لوحة المفاتيحExit keyboard mode"
 
 msgid "Keyboard mode: hide the output pane and type Dasher's text straight into "
-msgstr "وضع لوحة المفاتيح: إخفاء جزء الإخراج وكتابة نص داشر مباشرةً في"
+msgstr "وضع لوحة المفاتيح: إخفاء جزء الإخراج وكتابة نص داشر مباشرةً فيKeyboard mode: hide the output pane and type Dasher's text straight into "
 
 msgid "<b>Keyboard mode isn't available in this build</b>"
-msgstr "<b>وضع لوحة المفاتيح غير متوفر في هذا الإصدار</b>"
+msgstr "<b>وضع لوحة المفاتيح غير متوفر في هذا الإصدار</b><b>Keyboard mode isn't available in this build</b>"
 
 msgid "Keyboard mode opacity"
-msgstr "شفافية وضع لوحة المفاتيح"
+msgstr "شفافية وضع لوحة المفاتيحKeyboard mode opacity"
 
 msgid "Keyboard mode stopped"
-msgstr "تم إيقاف وضع لوحة المفاتيح"
+msgstr "تم إيقاف وضع لوحة المفاتيحKeyboard mode stopped"
 
 msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
-msgstr "توقف وضع لوحة المفاتيح: تعذر على ydotool إدخال النص. هل ydotoold"
+msgstr "توقف وضع لوحة المفاتيح: تعذر على ydotool إدخال النص. هل ydotooldKeyboard mode stopped: ydotool could not inject text. Is the ydotoold "
 
 msgid "Enable Keyboard Mode"
-msgstr "تمكين وضع لوحة المفاتيح"
+msgstr "تمكين وضع لوحة المفاتيحEnable Keyboard Mode"
 
 msgid "Window transparency when in Keyboard/Direct mode"
-msgstr "شفافية النافذة عند وضع لوحة المفاتيح/الوضع المباشر"
+msgstr "شفافية النافذة عند وضع لوحة المفاتيح/الوضع المباشرWindow transparency when in Keyboard/Direct mode"
 
 msgid "Keyboard mode types Dasher's output into other applications using ydotool, which "
-msgstr "وضع لوحة المفاتيح يكتب إخراج داشر في تطبيقات أخرى باستخدام ydotool، والذي"
+msgstr "وضع لوحة المفاتيح يكتب إخراج داشر في تطبيقات أخرى باستخدام ydotool، والذيKeyboard mode types Dasher's output into other applications using ydotool, which "
 
 msgid "(Default)"
-msgstr "(تقصير)"
+msgstr "(تقصير)(Default)"
 
 msgid "Language"
-msgstr "لغة"
+msgstr "لغةLanguage"
 
 msgid "Language / Locale"
-msgstr "اللغة / الإعدادات المحلية"
+msgstr "اللغة / الإعدادات المحليةLanguage / Locale"
 
 msgid "<b>Language / Locale</b>"
-msgstr "اللغة المحلية"
+msgstr "اللغة المحلية<b>Language / Locale</b>"
 
 msgid "Bottom"
-msgstr "قاع"
+msgstr "قاعBottom"
 
 msgid "Pane position and direct-entry mode"
-msgstr "موضع الجزء ووضع الدخول المباشر"
+msgstr "موضع الجزء ووضع الدخول المباشرPane position and direct-entry mode"
 
 msgid "Left side"
-msgstr "الجانب الأيسر"
+msgstr "الجانب الأيسرLeft side"
 
 msgid "Right side"
-msgstr "الجانب الأيمن"
+msgstr "الجانب الأيمنRight side"
 
 msgid "Top"
-msgstr "قمة"
+msgstr "قمةTop"
 
 msgid "Learning"
-msgstr "تعلُّم"
+msgstr "تعلُّمLearning"
 
 msgid "Leave"
-msgstr "غادر"
+msgstr "غادرLeave"
 
 msgid "Leave game mode"
-msgstr "الخروج من وضع اللعبة"
+msgstr "الخروج من وضع اللعبةLeave game mode"
 
 msgid "Light"
-msgstr "ضوء"
+msgstr "ضوءLight"
 
 msgid "Load Voices"
-msgstr "تحميل الأصوات"
+msgstr "تحميل الأصواتLoad Voices"
 
 msgid "Loaded %1 characters"
-msgstr "تم تحميل %1 حرف"
+msgstr "تم تحميل %1 حرفLoaded %1 characters"
 
 msgid "Loading…"
-msgstr "جارٍ التحميل…"
+msgstr "جارٍ التحميل…Loading…"
 
 msgid "Locale"
-msgstr "موقع"
+msgstr "موقعLocale"
 
 msgid "Migration"
-msgstr "الهجرة"
+msgstr "الهجرةMigration"
 
 msgid "More"
-msgstr "المزيد"
+msgstr "المزيدMore"
 
 msgid "More options"
-msgstr "المزيد من الخيارات"
+msgstr "المزيد من الخياراتMore options"
 
 msgid "Move your eyes while pinching to steer"
-msgstr "حرك عينيك أثناء الضغط على زر التكبير/التصغير للتوجيه"
+msgstr "حرك عينيك أثناء الضغط على زر التكبير/التصغير للتوجيهMove your eyes while pinching to steer"
 
 msgid "New"
-msgstr "جديد"
+msgstr "جديدNew"
 
 msgid "New document"
-msgstr "مستند جديد"
+msgstr "مستند جديدNew document"
 
 msgid "New Message"
-msgstr "رسالة جديدة"
+msgstr "رسالة جديدةNew Message"
 
 msgid "New session (clear text and context)"
-msgstr "جلسة جديدة (مسح النص والسياق)"
+msgstr "جلسة جديدة (مسح النص والسياق)New session (clear text and context)"
 
 msgid "No Dasher 5 data found on this Mac."
-msgstr "لم يتم العثور على بيانات Dasher 5 على هذا الجهاز Mac."
+msgstr "لم يتم العثور على بيانات Dasher 5 على هذا الجهاز Mac.No Dasher 5 data found on this Mac."
 
 msgid "No settings available for this section."
-msgstr "لا توجد إعدادات متاحة لهذا القسم."
+msgstr "لا توجد إعدادات متاحة لهذا القسم.No settings available for this section."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
-msgstr "لا يوجد محرك تحويل نص إلى كلام متاح. قم بالبناء باستخدام ميزة تحويل النص إلى كلام في النظام، أو قم بإعداد صوت سحابي في التفضيلات."
+msgstr "لا يوجد محرك تحويل نص إلى كلام متاح. قم بالبناء باستخدام ميزة تحويل النص إلى كلام في النظام، أو قم بإعداد صوت سحابي في التفضيلات.No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
 
 msgid "No training data to export yet"
-msgstr "لا توجد بيانات تدريب للتصدير بعد"
+msgstr "لا توجد بيانات تدريب للتصدير بعدNo training data to export yet"
 
 msgid "No user training data yet"
-msgstr "لا توجد بيانات تدريب للمستخدم بعد"
+msgstr "لا توجد بيانات تدريب للمستخدم بعدNo user training data yet"
 
 msgid "No voices found"
-msgstr "لم يتم العثور على أصوات"
+msgstr "لم يتم العثور على أصواتNo voices found"
 
 msgid "Nothing to save"
-msgstr "لا يوجد شيء للحفظ"
+msgstr "لا يوجد شيء للحفظNothing to save"
 
 msgid "Nothing to share"
-msgstr "لا يوجد ما يُشارك."
+msgstr "لا يوجد ما يُشارك.Nothing to share"
 
 msgid "OK"
-msgstr "نعم"
+msgstr "نعمOK"
 
 msgid "On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
-msgstr "في نظام visionOS، اضغط بإصبعين على لوحة الرسم لبدء الكتابة، وانظر حولك أثناء الضغط للتوجيه، ثم ارفع إصبعيك للتوقف مؤقتًا. نموذج الإدخال هو الضغط والنظر."
+msgstr "في نظام visionOS، اضغط بإصبعين على لوحة الرسم لبدء الكتابة، وانظر حولك أثناء الضغط للتوجيه، ثم ارفع إصبعيك للتوقف مؤقتًا. نموذج الإدخال هو الضغط والنظر.On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
 
 msgid "Open"
-msgstr "افتح"
+msgstr "افتحOpen"
 
 msgid "Open..."
-msgstr "يفتح..."
+msgstr "يفتح...Open..."
 
 msgid "Open failed"
-msgstr "فشل الفتح"
+msgstr "فشل الفتحOpen failed"
 
 msgid "Open Keyboard Settings"
-msgstr "افتح إعدادات لوحة المفاتيح"
+msgstr "افتح إعدادات لوحة المفاتيحOpen Keyboard Settings"
 
 msgid "Open Settings"
-msgstr "افتح الإعدادات"
+msgstr "افتح الإعداداتOpen Settings"
 
 msgid "Open System Settings"
-msgstr "افتح إعدادات النظام"
+msgstr "افتح إعدادات النظامOpen System Settings"
 
 msgid "Open text file"
-msgstr "فتح ملف نصي"
+msgstr "فتح ملف نصيOpen text file"
 
 msgid "Output"
-msgstr "المخرجات"
+msgstr "المخرجاتOutput"
 
 msgid "Output Font"
-msgstr "خط الإخراج"
+msgstr "خط الإخراجOutput Font"
 
 msgid "Output Font Size"
-msgstr "حجم خط الإخراج"
+msgstr "حجم خط الإخراجOutput Font Size"
 
 msgid "Touch the canvas to start writing."
-msgstr "المس اللوحة لبدء الكتابة."
+msgstr "المس اللوحة لبدء الكتابة.Touch the canvas to start writing."
 
 msgid "Pane position"
-msgstr "موضع اللوحة"
+msgstr "موضع اللوحةPane position"
 
 msgid "Paste"
-msgstr "لصق"
+msgstr "لصقPaste"
 
 msgid "Pause"
-msgstr "يوقف"
+msgstr "يوقفPause"
 
 msgid "Pause When Looking Away"
-msgstr "توقف مؤقتًا عند النظر بعيدًا"
+msgstr "توقف مؤقتًا عند النظر بعيدًاPause When Looking Away"
 
 msgid "Pinch and hold anywhere on the canvas to start"
-msgstr "اضغط مع الاستمرار في الضغط في أي مكان على اللوحة للبدء"
+msgstr "اضغط مع الاستمرار في الضغط في أي مكان على اللوحة للبدءPinch and hold anywhere on the canvas to start"
 
 msgid "Pinch and Look to Write"
-msgstr "اضغط وانظر للكتابة"
+msgstr "اضغط وانظر للكتابةPinch and Look to Write"
 
 msgid "Pitch"
-msgstr "نغمة"
+msgstr "نغمةPitch"
 
 msgid "High"
-msgstr "عالي"
+msgstr "عاليHigh"
 
 msgid "Low"
-msgstr "قليل"
+msgstr "قليلLow"
 
 msgid "Medium"
-msgstr "واسطة"
+msgstr "واسطةMedium"
 
 msgid "Very High"
-msgstr "عالية جدًا"
+msgstr "عالية جدًاVery High"
 
 msgid "Very Low"
-msgstr "منخفض جدًا"
+msgstr "منخفض جدًاVery Low"
 
 msgid "Game"
-msgstr "لعبة"
+msgstr "لعبةGame"
 
 msgid "Play"
-msgstr "اللعب"
+msgstr "اللعبPlay"
 
 msgid "Pointer Hover Input"
-msgstr "إدخال تحريك المؤشر"
+msgstr "إدخال تحريك المؤشرPointer Hover Input"
 
 msgid "Preferences"
-msgstr "التفضيلات"
+msgstr "التفضيلاتPreferences"
 
 msgid "Prefs"
-msgstr "التفضيلات"
+msgstr "التفضيلاتPrefs"
 
 msgid "Preparing Dasher…"
-msgstr "جارٍ تحضير Dasher…"
+msgstr "جارٍ تحضير Dasher…Preparing Dasher…"
 
 msgid "Preview"
-msgstr "معاينة"
+msgstr "معاينةPreview"
 
 msgid "Privacy"
-msgstr "خصوصية"
+msgstr "خصوصيةPrivacy"
 
 msgid "<b>Privacy</b>"
-msgstr "<b>الخصوصية</b>"
+msgstr "<b>الخصوصية</b><b>Privacy</b>"
 
 msgid "Quick speak"
-msgstr "تحدث بسرعة"
+msgstr "تحدث بسرعةQuick speak"
 
 msgid "Rate"
-msgstr "معدل"
+msgstr "معدلRate"
 
 msgid "Very Fast"
-msgstr "سريع جدًا"
+msgstr "سريع جدًاVery Fast"
 
 msgid "Very Slow"
-msgstr "بطيء جدًا"
+msgstr "بطيء جدًاVery Slow"
 
 msgid "Re-import from Dasher 5"
-msgstr "إعادة الاستيراد من Dasher 5"
+msgstr "إعادة الاستيراد من Dasher 5Re-import from Dasher 5"
 
 msgid "Read"
-msgstr "اقرأ"
+msgstr "اقرأRead"
 
 msgid "Release the pinch to pause"
-msgstr "حرر الضغطة للتوقف مؤقتًا"
+msgstr "حرر الضغطة للتوقف مؤقتًاRelease the pinch to pause"
 
 msgid "Reset"
-msgstr "إعادة ضبط"
+msgstr "إعادة ضبطReset"
 
 msgid "Reset All Settings to Defaults"
-msgstr "إعادة ضبط جميع الإعدادات إلى الوضع الافتراضي"
+msgstr "إعادة ضبط جميع الإعدادات إلى الوضع الافتراضيReset All Settings to Defaults"
 
 msgid "Reset all settings to their defaults?"
-msgstr "هل تريد إعادة ضبط جميع الإعدادات إلى قيمها الافتراضية؟"
+msgstr "هل تريد إعادة ضبط جميع الإعدادات إلى قيمها الافتراضية؟Reset all settings to their defaults?"
 
 msgid "Reset anonymous ID"
-msgstr "إعادة تعيين المعرف المجهول"
+msgstr "إعادة تعيين المعرف المجهولReset anonymous ID"
 
 msgid "Reset engine settings to defaults"
-msgstr "بازنشانی تنظیمات به حالت پیش فرض"
+msgstr "بازنشانی تنظیمات به حالت پیش فرضReset engine settings to defaults"
 
 msgid "Reset Settings"
-msgstr "إعادة ضبط الإعدادات"
+msgstr "إعادة ضبط الإعداداتReset Settings"
 
 msgid "Reset to defaults"
-msgstr "إعادة ضبط الإعدادات الافتراضية"
+msgstr "إعادة ضبط الإعدادات الافتراضيةReset to defaults"
 
 msgid "Reset Training Data"
-msgstr "إعادة ضبط بيانات التدريب"
+msgstr "إعادة ضبط بيانات التدريبReset Training Data"
 
 msgid "Reset Training Data?"
-msgstr "إعادة ضبط بيانات التدريب؟"
+msgstr "إعادة ضبط بيانات التدريب؟Reset Training Data?"
 
 msgid "Reset WPM averages"
-msgstr "إعادة تعيين متوسط ​​سرعة الكتابة"
+msgstr "إعادة تعيين متوسط ​​سرعة الكتابةReset WPM averages"
 
 msgid "Restarting engine…"
-msgstr "جارٍ إعادة تشغيل المحرك…"
+msgstr "جارٍ إعادة تشغيل المحرك…Restarting engine…"
 
 msgid "Restore all Dasher settings to their default values. This cannot be undone."
-msgstr "أعد ضبط جميع إعدادات Dasher إلى قيمها الافتراضية. لا يمكن التراجع عن هذا الإجراء."
+msgstr "أعد ضبط جميع إعدادات Dasher إلى قيمها الافتراضية. لا يمكن التراجع عن هذا الإجراء.Restore all Dasher settings to their default values. This cannot be undone."
 
 msgid "Retry"
-msgstr "أعد المحاولة"
+msgstr "أعد المحاولةRetry"
 
 msgid "Save"
-msgstr "حفظ"
+msgstr "حفظSave"
 
 msgid "Save..."
-msgstr "يحفظ..."
+msgstr "يحفظ...Save..."
 
 msgid "Save eye-tracker diagnostics"
-msgstr "حفظ تشخيصات متعقب العين"
+msgstr "حفظ تشخيصات متعقب العينSave eye-tracker diagnostics"
 
 msgid "Save failed"
-msgstr "فشلت عملية الحفظ"
+msgstr "فشلت عملية الحفظSave failed"
 
 msgid "Save file"
-msgstr "حفظ الملف"
+msgstr "حفظ الملفSave file"
 
 msgid "Save text file"
-msgstr "حفظ ملف نصي"
+msgstr "حفظ ملف نصيSave text file"
 
 msgid "Saved"
-msgstr "أنقذ"
+msgstr "أنقذSaved"
 
 msgid "Saved: "
-msgstr "تم الحفظ:"
+msgstr "تم الحفظ:Saved: "
 
 msgid "Scan Speed"
-msgstr "سرعة المسح"
+msgstr "سرعة المسحScan Speed"
 
 msgid "Selection Method"
-msgstr "طريقة الاختيار"
+msgstr "طريقة الاختيارSelection Method"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
-msgstr "هل الخدمة تعمل؟ انظر مساعدة الإعداد على زر لوحة المفاتيح لأوامر التثبيت."
+msgstr "هل الخدمة تعمل؟ انظر مساعدة الإعداد على زر لوحة المفاتيح لأوامر التثبيت.service running? See the setup help on the Keyboard button for install commands."
 
 msgid "Settings"
-msgstr "إعدادات"
+msgstr "إعداداتSettings"
 
 msgid "Settings..."
-msgstr "إعدادات..."
+msgstr "إعدادات...Settings..."
 
 msgid "Reset all settings to defaults"
-msgstr "إعادة ضبط جميع الإعدادات إلى الوضع الافتراضي"
+msgstr "إعادة ضبط جميع الإعدادات إلى الوضع الافتراضيReset all settings to defaults"
 
 msgid "Settings reset"
-msgstr "إعادة ضبط الإعدادات"
+msgstr "إعادة ضبط الإعداداتSettings reset"
 
 msgid "Reset all engine settings to their built-in defaults?"
-msgstr "هل تريد إعادة تعيين جميع إعدادات المحرك إلى الإعدادات الافتراضية المضمنة ؟"
+msgstr "هل تريد إعادة تعيين جميع إعدادات المحرك إلى الإعدادات الافتراضية المضمنة ؟Reset all engine settings to their built-in defaults?"
 
 msgid "Settings (speed, colours, control mode, language model)"
-msgstr "الإعدادات (السرعة، الألوان، وضع التحكم، نموذج اللغة)"
+msgstr "الإعدادات (السرعة، الألوان، وضع التحكم، نموذج اللغة)Settings (speed, colours, control mode, language model)"
 
 msgid "Settle time: {0} ms"
-msgstr "وقت التسوية: {0} مللي ثانية"
+msgstr "وقت التسوية: {0} مللي ثانيةSettle time: {0} ms"
 
 msgid "Share"
-msgstr "يشارك"
+msgstr "يشاركShare"
 
 msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard "
-msgstr "مشاركة تحليلات الاستخدام والتقارير عن الأعطال بشكل مجهول؟ لا نص مكتوب، ولا الحافظة"
+msgstr "مشاركة تحليلات الاستخدام والتقارير عن الأعطال بشكل مجهول؟ لا نص مكتوب، ولا الحافظةShare anonymous usage analytics and crash reports? No typed text, clipboard "
 
 msgid "Show Input Debug Overlay"
-msgstr "عرض طبقة تصحيح الأخطاء للإدخال"
+msgstr "عرض طبقة تصحيح الأخطاء للإدخالShow Input Debug Overlay"
 
 msgid "Show status bar"
-msgstr "عرض شريط الحالة"
+msgstr "عرض شريط الحالةShow status bar"
 
 msgid "Show typing rate (WPM)"
-msgstr "عرض معدل الكتابة (كلمة في الدقيقة)"
+msgstr "عرض معدل الكتابة (كلمة في الدقيقة)Show typing rate (WPM)"
 
 msgid "Size"
-msgstr "مقاس"
+msgstr "مقاسSize"
 
 msgid "Skipped files"
-msgstr "الملفات المتخطاة"
+msgstr "الملفات المتخطاةSkipped files"
 
 msgid "Slow"
-msgstr "بطيء"
+msgstr "بطيءSlow"
 
 msgid "Speak on stop"
-msgstr "تحدث عن التوقف"
+msgstr "تحدث عن التوقفSpeak on stop"
 
 msgid "Speak words"
-msgstr "تحدث كلمات"
+msgstr "تحدث كلماتSpeak words"
 
 msgid "Speech"
-msgstr "خطاب"
+msgstr "خطابSpeech"
 
 msgid "Speech off"
-msgstr "توقف عن الكلام"
+msgstr "توقف عن الكلامSpeech off"
 
 msgid "Speech on"
-msgstr "خطاب حول"
+msgstr "خطاب حولSpeech on"
 
 msgid "Hello, this is a preview of the selected voice."
-msgstr "مرحبًا، هذه معاينة للصوت المحدد."
+msgstr "مرحبًا، هذه معاينة للصوت المحدد.Hello, this is a preview of the selected voice."
 
 msgid "Speech Settings"
-msgstr "إعدادات الكلام"
+msgstr "إعدادات الكلامSpeech Settings"
 
 msgid "<b>Speech Settings</b>"
-msgstr "<b>إعدادات الكلام</b>"
+msgstr "<b>إعدادات الكلام</b><b>Speech Settings</b>"
 
 msgid "Speech volume"
-msgstr "حجم الصوت"
+msgstr "حجم الصوتSpeech volume"
 
 msgid "Speed"
-msgstr "سرعة"
+msgstr "سرعةSpeed"
 
 msgid "Speed "
-msgstr "سرعة "
+msgstr "سرعة Speed "
 
 msgid "Start Calibrating"
-msgstr "ابدأ المعايرة"
+msgstr "ابدأ المعايرةStart Calibrating"
 
 msgid "Start fresh"
-msgstr "ابدأ من جديد"
+msgstr "ابدأ من جديدStart fresh"
 
 msgid "Dasher failed to start:\n{0}"
-msgstr "فشل Dasher في البدء:\n{0}"
+msgstr "فشل Dasher في البدء:\n{0}Dasher failed to start:\n{0}"
 
 msgid "Steering Method"
-msgstr "طريقة التوجيه"
+msgstr "طريقة التوجيهSteering Method"
 
 msgid "Stop"
-msgstr "قف"
+msgstr "قفStop"
 
 msgid "Stop speaking"
-msgstr "توقف عن الكلام"
+msgstr "توقف عن الكلامStop speaking"
 
 msgid "Switch Setup"
-msgstr "إعداد المحول"
+msgstr "إعداد المحولSwitch Setup"
 
 msgid "System"
-msgstr "نظام"
+msgstr "نظامSystem"
 
 msgid "text"
-msgstr "نص"
+msgstr "نصtext"
 
 msgid "Text files"
-msgstr "ملفات نصية"
+msgstr "ملفات نصيةText files"
 
 msgid "That file already is your training data."
-msgstr "ذلك الملف هو بالفعل بيانات تدريبك."
+msgstr "ذلك الملف هو بالفعل بيانات تدريبك.That file already is your training data."
 
 msgid "the app you are pointing at (needs ydotool)"
-msgstr "التطبيق الذي تشير إليه (يحتاج إلى ydotool)"
+msgstr "التطبيق الذي تشير إليه (يحتاج إلى ydotool)the app you are pointing at (needs ydotool)"
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
-msgstr "تعرض نافذة تصحيح الأخطاء لوحة خضراء أعلى يسار اللوحة، تُظهر عدد أحداث اللمس المباشرة وآخر إحداثيات (س، ص). عند الضغط مع الاستمرار، سترى touch.began ثم touch.moved مع تغير الإحداثيات أثناء تحريك المؤشر."
+msgstr "تعرض نافذة تصحيح الأخطاء لوحة خضراء أعلى يسار اللوحة، تُظهر عدد أحداث اللمس المباشرة وآخر إحداثيات (س، ص). عند الضغط مع الاستمرار، سترى touch.began ثم touch.moved مع تغير الإحداثيات أثناء تحريك المؤشر.The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 
 msgid "The file is too large (over 10 MB) to import as training text."
-msgstr "الملف كبير جدًا (أكثر من 10 ميغابايت) لاستيراده كنص تدريبي."
+msgstr "الملف كبير جدًا (أكثر من 10 ميغابايت) لاستيراده كنص تدريبي.The file is too large (over 10 MB) to import as training text."
 
 msgid "The selected file is empty."
-msgstr "الملف المحدد فارغ."
+msgstr "الملف المحدد فارغ.The selected file is empty."
 
 msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
-msgstr "هذا يحذف بيانات التدريب التي تراكمت لكل حرف من الأبجدية. التوقعات تحافظ على تأثير الكتابة الحديثة جداً."
+msgstr "هذا يحذف بيانات التدريب التي تراكمت لكل حرف من الأبجدية. التوقعات تحافظ على تأثير الكتابة الحديثة جداً.This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
-msgstr "سيؤدي هذا إلى حذف بيانات التدريب المتراكمة. سيعود نموذج اللغة إلى الإعدادات الافتراضية المدمجة عند التشغيل التالي. لا يمكن التراجع عن هذا الإجراء."
+msgstr "سيؤدي هذا إلى حذف بيانات التدريب المتراكمة. سيعود نموذج اللغة إلى الإعدادات الافتراضية المدمجة عند التشغيل التالي. لا يمكن التراجع عن هذا الإجراء.This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 
 msgid "Tilt Calibration"
-msgstr "معايرة الميل"
+msgstr "معايرة الميلTilt Calibration"
 
 msgid "Hold the device upright, then tilt forward and back"
-msgstr "امسك الجهاز بشكل عمودي، ثم أماله للأمام والخلف"
+msgstr "امسك الجهاز بشكل عمودي، ثم أماله للأمام والخلفHold the device upright, then tilt forward and back"
 
 msgid "Tilt left and right through the full range"
-msgstr "مال إلى اليسار واليمين عبر النطاق الكامل"
+msgstr "مال إلى اليسار واليمين عبر النطاق الكاملTilt left and right through the full range"
 
 msgid "Move slowly and smoothly through all positions"
-msgstr "تحرك ببطء وبسلاسة عبر جميع الوضعيات"
+msgstr "تحرك ببطء وبسلاسة عبر جميع الوضعياتMove slowly and smoothly through all positions"
 
 msgid "Tilt Settings"
-msgstr "إعدادات الميل"
+msgstr "إعدادات الميلTilt Settings"
 
 msgid "Tilt your device now..."
-msgstr "قم بإمالة جهازك الآن..."
+msgstr "قم بإمالة جهازك الآن...Tilt your device now..."
 
 msgid "Tilt your device through its full range of motion during calibration."
-msgstr "قم بإمالة جهازك عبر نطاق حركته الكامل أثناء المعايرة."
+msgstr "قم بإمالة جهازك عبر نطاق حركته الكامل أثناء المعايرة.Tilt your device through its full range of motion during calibration."
 
 msgid "time under Preferences → Privacy."
-msgstr "الوقت تحت التفضيلات → الخصوصية."
+msgstr "الوقت تحت التفضيلات → الخصوصية.time under Preferences → Privacy."
 
 msgid "Eye Tracker Error"
-msgstr "خطأ في تعقب العين"
+msgstr "خطأ في تعقب العينEye Tracker Error"
 
 msgid "Eye tracker notice"
-msgstr "إشعار تعقب العين"
+msgstr "إشعار تعقب العينEye tracker notice"
 
 msgid "The eye tracker could not be fully resumed ({0}). Tracking may run at reduced speed and accuracy — try running Dasher as administrator."
-msgstr "لا يمكن استئناف متتبع العين بشكل كامل ({0}). قد يتم تشغيل التتبع بسرعة ودقة أقل - حاول تشغيل Dasher كمسؤول."
+msgstr "لا يمكن استئناف متتبع العين بشكل كامل ({0}). قد يتم تشغيل التتبع بسرعة ودقة أقل - حاول تشغيل Dasher كمسؤول.The eye tracker could not be fully resumed ({0}). Tracking may run at reduced speed and accuracy — try running Dasher as administrator."
 
 msgid "Toggle control mode"
-msgstr "تبديل وضع التحكم"
+msgstr "تبديل وضع التحكمToggle control mode"
 
 msgid "Toggle game mode"
-msgstr "تبديل وضع اللعبة"
+msgstr "تبديل وضع اللعبةToggle game mode"
 
 msgid "Toggle keyboard mode"
-msgstr "تبديل وضع لوحة المفاتيح"
+msgstr "تبديل وضع لوحة المفاتيحToggle keyboard mode"
 
 msgid "Toggle pane position"
-msgstr "تبديل موضع اللوحة"
+msgstr "تبديل موضع اللوحةToggle pane position"
 
 msgid "Hide/show status bar"
-msgstr "إخفاء/عرض شريط الحالة"
+msgstr "إخفاء/عرض شريط الحالةHide/show status bar"
 
 msgid "Copy all text"
-msgstr "انسخ كل النص"
+msgstr "انسخ كل النصCopy all text"
 
 msgid "Copy selection in target app"
-msgstr "نسخ التحديد في التطبيق المستهدف"
+msgstr "نسخ التحديد في التطبيق المستهدفCopy selection in target app"
 
 msgid "Cut selection in target app"
-msgstr "قص التحديد في التطبيق المستهدف"
+msgstr "قص التحديد في التطبيق المستهدفCut selection in target app"
 
 msgid "Paste into target app"
-msgstr "الصق في التطبيق الهدف"
+msgstr "الصق في التطبيق الهدفPaste into target app"
 
 msgid "Re-anchor predictions to the caret (read the sentence around your cursor)"
-msgstr "إعادة تثبيت التوقعات على المؤشر (اقرأ الجملة حول المؤشر الخاص بك)"
+msgstr "إعادة تثبيت التوقعات على المؤشر (اقرأ الجملة حول المؤشر الخاص بك)Re-anchor predictions to the caret (read the sentence around your cursor)"
 
 msgid "Select all in target app"
-msgstr "حدد الكل في التطبيق المستهدف"
+msgstr "حدد الكل في التطبيق المستهدفSelect all in target app"
 
 msgid "eyetuitive"
 msgstr "com.eyetuitive"
 
 msgid "Eye tracker"
-msgstr "متعقب العين"
+msgstr "متعقب العينEye tracker"
 
 msgid "Tobii (Stream Engine)"
-msgstr "توبّي (محرك البث)"
+msgstr "توبّي (محرك البث)Tobii (Stream Engine)"
 
 msgid "UDP Gaze Tracker (network)"
-msgstr "UDP Gaze Tracker (شبكة)"
+msgstr "UDP Gaze Tracker (شبكة)UDP Gaze Tracker (network)"
 
 msgid "Windows Eye Tracker (native)"
-msgstr "Windows Eye Tracker (أصلي)"
+msgstr "Windows Eye Tracker (أصلي)Windows Eye Tracker (native)"
 
 msgid "Training"
-msgstr "تمرين"
+msgstr "تمرينTraining"
 
 msgid "Current training data: {0} KB"
-msgstr "بيانات التدريب الحالية: {0} كيلوبايت"
+msgstr "بيانات التدريب الحالية: {0} كيلوبايتCurrent training data: {0} KB"
 
 msgid "Training Data"
-msgstr "بيانات التدريب"
+msgstr "بيانات التدريبTraining Data"
 
 msgid "Training data deleted — restart Dasher to fully apply"
-msgstr "تم حذف بيانات التدريب — أعد تشغيل Dasher لتطبيق ذلك بالكامل"
+msgstr "تم حذف بيانات التدريب — أعد تشغيل Dasher لتطبيق ذلك بالكاملTraining data deleted — restart Dasher to fully apply"
 
 msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
-msgstr "يضيف الاستيراد نصًا إلى نموذج اللغة وبيانات التدريب المتراكمة (التي يتم الاحتفاظ بها خلال عمليات إعادة التشغيل). يحفظ التصدير بيانات التدريب الخاصة بك للنسخ الاحتياطي أو النقل. تؤدي إعادة التعيين إلى حذف جميع بيانات تدريب المستخدم — ويعود النموذج إلى إعداداته الافتراضية المضمنة عند الإطلاق التالي."
+msgstr "يضيف الاستيراد نصًا إلى نموذج اللغة وبيانات التدريب المتراكمة (التي يتم الاحتفاظ بها خلال عمليات إعادة التشغيل). يحفظ التصدير بيانات التدريب الخاصة بك للنسخ الاحتياطي أو النقل. تؤدي إعادة التعيين إلى حذف جميع بيانات تدريب المستخدم — ويعود النموذج إلى إعداداته الافتراضية المضمنة عند الإطلاق التالي.Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
 
 msgid "Training data exported."
-msgstr "تم تصدير بيانات التدريب."
+msgstr "تم تصدير بيانات التدريب.Training data exported."
 
 msgid "Export Training Data"
-msgstr "تصدير بيانات التدريب"
+msgstr "تصدير بيانات التدريبExport Training Data"
 
 msgid "Exported to {0}"
-msgstr "تم التصدير إلى {0}"
+msgstr "تم التصدير إلى {0}Exported to {0}"
 
 msgid "{0} failed: {1}"
-msgstr "{0} فشل: {1}"
+msgstr "{0} فشل: {1}{0} failed: {1}"
 
 msgid "Imported {0} KB of training text"
-msgstr "تم استيراد {0} كيلوبايت من نص التدريب"
+msgstr "تم استيراد {0} كيلوبايت من نص التدريبImported {0} KB of training text"
 
 msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
-msgstr "تم استيراد {0} كيلوبايت — ينطبق بالكامل عند التشغيل التالي (تم إرجاع النموذج المباشر {1})"
+msgstr "تم استيراد {0} كيلوبايت — ينطبق بالكامل عند التشغيل التالي (تم إرجاع النموذج المباشر {1})Imported {0} KB — applies fully on next launch (live model returned {1})"
 
 msgid "Training is not available yet — try again once the canvas has rendered."
-msgstr "التدريب غير متاح بعد — حاول مرة أخرى بمجرد أن يتم عرض اللوحة."
+msgstr "التدريب غير متاح بعد — حاول مرة أخرى بمجرد أن يتم عرض اللوحة.Training is not available yet — try again once the canvas has rendered."
 
 msgid "Training data deleted — the model returns to its built-in defaults on next launch"
-msgstr "تم حذف بيانات التدريب — يعود النموذج إلى إعداداته الافتراضية المضمنة عند الإطلاق التالي"
+msgstr "تم حذف بيانات التدريب — يعود النموذج إلى إعداداته الافتراضية المضمنة عند الإطلاق التاليTraining data deleted — the model returns to its built-in defaults on next launch"
 
 msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
-msgstr "تم حذف بيانات التدريب حيثما أمكن — فشل {0} عنصر (عناصر)؛ اضغط على إعادة تعيين مرة أخرى لإعادة المحاولة"
+msgstr "تم حذف بيانات التدريب حيثما أمكن — فشل {0} عنصر (عناصر)؛ اضغط على إعادة تعيين مرة أخرى لإعادة المحاولةDeleted training data where possible — {0} item(s) failed; press Reset again to retry"
 
 msgid "TTS Engine"
-msgstr "محرك تحويل النص إلى كلام"
+msgstr "محرك تحويل النص إلى كلامTTS Engine"
 
 msgid "No credentials required"
-msgstr "لا تتطلب بيانات اعتماد"
+msgstr "لا تتطلب بيانات اعتمادNo credentials required"
 
 msgid "Turbo"
-msgstr "توربيني"
+msgstr "توربينيTurbo"
 
 msgid "Typing into other applications needs access to /dev/uinput, which a sandboxed "
-msgstr "الكتابة في تطبيقات أخرى تتطلب الوصول إلى /dev/uinput، وهو ما يتم في بيئة محصورة"
+msgstr "الكتابة في تطبيقات أخرى تتطلب الوصول إلى /dev/uinput، وهو ما يتم في بيئة محصورةTyping into other applications needs access to /dev/uinput, which a sandboxed "
 
 msgid "Typing rate"
-msgstr "معدل الطباعة"
+msgstr "معدل الطباعةTyping rate"
 
 msgid "{cps} cps · {wpm} wpm"
-msgstr "{cps} حرف/ثانية · {wpm} كلمة/دقيقة"
+msgstr "{cps} حرف/ثانية · {wpm} كلمة/دقيقة{cps} cps · {wpm} wpm"
 
 msgid "UDP Port"
-msgstr "منفذ UDP"
+msgstr "منفذ UDPUDP Port"
 
 msgid "UDP tracker listens for STREAM_DATA or GazePoint messages"
-msgstr "يستمع متعقّب UDP لرسائل STREAM_DATA أو GazePoint"
+msgstr "يستمع متعقّب UDP لرسائل STREAM_DATA أو GazePointUDP tracker listens for STREAM_DATA or GazePoint messages"
 
 msgid "Dasher {0} is available (you're running v{1}). Tap to download — disable in Settings > Privacy."
-msgstr "Dasher {0} متاح (أنت تقوم بتشغيل الإصدار v{1}). انقر للتنزيل - قم بتعطيله في الإعدادات > الخصوصية."
+msgstr "Dasher {0} متاح (أنت تقوم بتشغيل الإصدار v{1}). انقر للتنزيل - قم بتعطيله في الإعدادات > الخصوصية.Dasher {0} is available (you're running v{1}). Tap to download — disable in Settings > Privacy."
 
 msgid "Dasher update available"
-msgstr "تحديث داشر متاح"
+msgstr "تحديث داشر متاحDasher update available"
 
 msgid "Use Dasher as your keyboard"
-msgstr "استخدم داشر كلوحة مفاتيح"
+msgstr "استخدم داشر كلوحة مفاتيحUse Dasher as your keyboard"
 
 msgid "Voice"
-msgstr "صوت"
+msgstr "صوتVoice"
 
 msgid "{0} voices"
-msgstr "{0} أصوات"
+msgstr "{0} أصوات{0} voices"
 
 msgid "Volume"
-msgstr "الحجم"
+msgstr "الحجمVolume"
 
 msgid "Dasher Warning"
-msgstr "تحذير داشر"
+msgstr "تحذير داشرDasher Warning"
 
 msgid "We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
-msgstr "لقد وجدنا إعدادات برنامج Dasher 5 الخاصة بك على هذا الجهاز. يمكنك استيراد حروفك الأبجدية وألوانك وإعدادات السرعة وملفاتك المخصصة إلى برنامج Dasher 6."
+msgstr "لقد وجدنا إعدادات برنامج Dasher 5 الخاصة بك على هذا الجهاز. يمكنك استيراد حروفك الأبجدية وألوانك وإعدادات السرعة وملفاتك المخصصة إلى برنامج Dasher 6.We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
 
 msgid "What was found"
-msgstr "ما تم العثور عليه"
+msgstr "ما تم العثور عليهWhat was found"
 
 msgid "{0} wpm"
-msgstr "{0} كلمة في الدقيقة"
+msgstr "{0} كلمة في الدقيقة{0} wpm"
 
 msgid "max {0}"
-msgstr "الحد الأقصى {0}"
+msgstr "الحد الأقصى {0}max {0}"
 
 msgid "X range:"
-msgstr "نطاق X:"
+msgstr "نطاق X:X range:"
 
 msgid "Y range:"
-msgstr "نطاق Y:"
+msgstr "نطاق Y:Y range:"
 
 msgid "ydotool found. Keyboard mode is ready."
-msgstr "تم العثور على ydotool. وضع لوحة المفاتيح جاهز."
+msgstr "تم العثور على ydotool. وضع لوحة المفاتيح جاهز.ydotool found. Keyboard mode is ready."
 
 msgid "ydotool still isn't available. Make sure it's installed and the ydotool service is running."
-msgstr "ydotool لا يزال غير متاح. تأكد من تثبيته وأن خدمة ydotool تعمل."
+msgstr "ydotool لا يزال غير متاح. تأكد من تثبيته وأن خدمة ydotool تعمل.ydotool still isn't available. Make sure it's installed and the ydotool service is running."
 
 msgid "You can import later in Settings > Privacy & Migration"
-msgstr "يمكنك الاستيراد لاحقًا من خلال الإعدادات > الخصوصية والترحيل"
+msgstr "يمكنك الاستيراد لاحقًا من خلال الإعدادات > الخصوصية والترحيلYou can import later in Settings > Privacy & Migration"
 
 msgid "Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."
-msgstr "يتم تتبع نظرتك باستمرار فقط أثناء الضغط والضغط - هذه هي الطريقة التي تعمل بها جميع تطبيقات تتبع النظر في نظام visionOS."
+msgstr "يتم تتبع نظرتك باستمرار فقط أثناء الضغط والضغط - هذه هي الطريقة التي تعمل بها جميع تطبيقات تتبع النظر في نظام visionOS.Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."

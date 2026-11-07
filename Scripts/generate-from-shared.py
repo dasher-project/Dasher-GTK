@@ -104,6 +104,12 @@ def generate_po(locale, shared):
         seen_msgids.add(en_text)
 
         translated = entry.get(locale, "")
+        # gettext consistency: a msgid ending in \n requires the msgstr to
+        # end in the same number of \n (msgfmt fatal-errors otherwise).
+        # Some catalogue translations drop them; restore mechanically.
+        trailing = en_text[-len(en_text.rstrip("\n")):] if en_text.rstrip("\n") else en_text
+        if translated and trailing and not translated.endswith(trailing):
+            translated += trailing
         lines.append(f'msgid "{po_escape(en_text)}"')
         if translated:
             lines.append(f'msgstr "{po_escape(translated)}"')
