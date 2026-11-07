@@ -1,0 +1,51 @@
+name: Schema sync
+
+# RFC 0022 item 6: the analytics event schema is canonical in
+# dasher-project/governance (analytics/analytics-events.json); this repo's
+# copy is generated. Weekly + on demand: pull the canonical file and open a
+# PR when it differs. Same-repo GITHUB_TOKEN only.
+
+on:
+  schedule:
+    - cron: "30 7 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pull the canonical schema
+        run: |
+          set -euo pipefail
+          curl -fsSL "https://raw.githubusercontent.com/dasher-project/governance/main/analytics/analytics-events.json" \
+            -o /tmp/canonical.json
+          python3 -m json.tool /tmp/canonical.json >/dev/null  # fail on invalid JSON
+
+      - name: Open a PR if the copy differs
+        run: |
+          set -euo pipefail
+          if diff -q /tmp/canonical.json analytics-events.json >/dev/null 2>&1; then
+            echo "schema copy is current — nothing to do"
+            exit 0
+          fi
+          BRANCH="chore/schema-sync-$(date -u +%Y%m%d)"
+          if gh pr list --head "$BRANCH" --state open | grep -q .; then
+            echo "sync PR already open"; exit 0
+          fi
+          git config user.name "dasher-bot"
+          git config user.email "noreply@dasher.at"
+          git checkout -b "$BRANCH"
+          cp /tmp/canonical.json analytics-events.json
+          git add analytics-events.json
+          git commit -m "chore: sync analytics schema from governance (RFC 0022 item 6)"
+          git push origin "$BRANCH"
+          gh pr create --head "$BRANCH" --title "chore: sync analytics schema from governance" \
+            --body "Automated (RFC 0022 item 6): the canonical schema changed in governance; this regenerates the repo copy. Review the diff for events this frontend should start/stop emitting."
+        env:
+          GH_TOKEN: ${{ github.token }}
