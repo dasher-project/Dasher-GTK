@@ -244,7 +244,10 @@ if(GIT_EXECUTABLE AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/DasherCore/.git")
 	endif()
 endif()
 message(STATUS "DasherCore engine version: ${DASHER_CORE_VERSION}")
-target_compile_definitions(Dasher PRIVATE DASHER_ENGINE_VERSION="${DASHER_CORE_VERSION}")
+# Directory-scoped, not target PRIVATE: the unit tests compile
+# AnalyticsClient.cpp too and would otherwise miss the define
+# (selftest build caught exactly that).
+add_compile_definitions(DASHER_ENGINE_VERSION="${DASHER_CORE_VERSION}")
 if(MSGFMT_EXECUTABLE)
 	target_compile_definitions(Dasher PRIVATE ENABLE_NLS GETTEXT_PACKAGE="${GETTEXT_PACKAGE}" LOCALEDIR="${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LOCALEDIR}")
 	add_dependencies(Dasher translations)
