@@ -14,13 +14,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "%1$.1f cps · %2$d wpm"
-msgstr ""
+msgstr "%1$.1f cps · %2$d wpm"
 
 msgid "A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
 msgstr "செயலிழப்பு அறிக்கை ~/Library/Logs/DiagnosticReports/Dasher-*.ips என்ற கோப்பில் சேமிக்கப்பட்டுள்ளது. அதை நீங்கள் ஒரு GitHub சிக்கலாகப் பகிர்ந்தால், அந்தப் பிழையைச் சரிசெய்ய எங்களுக்கு அது உதவும்."
 
 msgid "About"
 msgstr "பற்றி"
+
+msgid "Dasher {0}"
+msgstr "டாஷர் {0}"
 
 msgid "Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
 msgstr "ஹோவர்/பாயிண்டர் நிகழ்வுகளை டாஷர் உள்ளீடாக ஏற்றுக்கொள்ளுங்கள். கண் கண்காணிப்பு அல்லது வெளிப்புற பாயிண்டர்களுக்காக இதைச் செயல்படுத்துங்கள்."
@@ -33,6 +36,12 @@ msgstr "அணுகல் அனுமதி தேவை"
 
 msgid "Adapt Speed Automatically"
 msgstr "வேகத்தை தானாகவே சரிசெய்யவும்"
+
+msgid "Advanced logging"
+msgstr "மேம்பட்ட பதிவு"
+
+msgid "Detailed diagnostic logging for bug reports (per-sample eye-tracker lines, keystroke traces, UIA reads). Basic connection events are always logged. May generate large log files."
+msgstr "தூளிழப்பு அறிக்கைகளுக்கான விரிவான விபரமான ஆய்வு பதிவு செய்யும் (ஒவ்வொரு மாதிரிப் பின்தொடர்பு கண்-கண்காணிப்பாளர் வரிசைகள், விசைப்பலகை அழுத்தக் குறிப்புகள், UIA வாசிப்புகள்). அடிப்படை இணைப்பு நிகழ்வுகள் எப்போதும் பதிவு செய்யப்படுகின்றன. பெரிய பதிவு கோப்புகளை உருவாக்கலாம்."
 
 msgid "Advanced settings"
 msgstr "மேம்பட்ட அமைப்புகள்"
@@ -47,7 +56,7 @@ msgid "Help improve Dasher"
 msgstr "டாஷரை மேம்படுத்த உதவுங்கள்"
 
 msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
-msgstr ""
+msgstr "அநாமதேய பயன்பாட்டு பகுப்பாய்வு மற்றும் பிழை அறிக்கைகளைப் பகிர்வீர்களா? தட்டச்சு செய்யப்பட்ட உரை, கிளிப்போர்டு உள்ளடக்கம் அல்லது தனிப்பட்ட தகவல்கள் எதுவும் சேகரிக்கப்படாது. இதை அமைப்புகளில் எப்போது வேண்டுமானாலும் மாற்றலாம்."
 
 msgid "Not now"
 msgstr "இப்போது இல்லை"
@@ -55,11 +64,20 @@ msgstr "இப்போது இல்லை"
 msgid "Share anonymous analytics and crash reports"
 msgstr "அநாமதேய பகுப்பாய்வுகள் மற்றும் செயலிழப்பு அறிக்கைகளைப் பகிரவும்"
 
+msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
+msgstr "Dasher அநாமதேய, தனியுரிமை-மரியாதை கொண்ட பகுப்பாய்வுகளை சேகரித்து பயன்பாட்டு முறைகளை புரிந்து பிழைகளை சரிசெய்கிறது. தட்டச்சு செய்யப்பட்ட உரை, கிளிப்போர்டு உள்ளடக்கம் அல்லது தனிப்பட்ட தகவல்கள் எதுவும் சேகரிக்கப்படாது.\n\nநீங்கள் இதை 언제든지 Settings > Privacy இல் மாற்றலாம்."
+
 msgid "Reset analytics ID"
 msgstr "பகுப்பாய்வு ஐடியை மீட்டமைக்கவும்"
 
+msgid "Dasher collects anonymous usage analytics and crash reports to understand how the app is used and to fix bugs. No typed text, clipboard contents, or personal information is ever collected."
+msgstr "Dasher பயன்பாட்டு அநாமதேய பகுப்பாய்வு மற்றும் பிழை அறிக்கைகளை சேகரித்து பயன்பாடு எப்படி பயன்படுத்தப்படுகிறது என்பதைப் புரிந்து பிழைகளை சரிசெய்கிறது. தட்டச்சு செய்யப்பட்ட உரை, கிளிப்போர்டு உள்ளடக்கம் அல்லது தனிப்பட்ட தகவல்கள் எதுவும் சேகரிக்கப்படாது."
+
 msgid "Help improve Dasher?"
-msgstr ""
+msgstr "டாஷர் மேம்படுத்த உதவ விரும்புகிறீர்களா?"
+
+msgid "Anonymous ID: {0}"
+msgstr "அநாமதேய ஐடி: {0}"
 
 msgid "Anonymous usage analytics"
 msgstr "அநாமதேய பயன்பாட்டு பகுப்பாய்வு"
@@ -73,6 +91,21 @@ msgstr "தேர்ந்தெடுக்க வேண்டிய செய�
 msgid "Dasher"
 msgstr ""
 
+msgid "Appearance"
+msgstr "உறுப்பின சுயவிபரம்"
+
+msgid "Left"
+msgstr "இடது"
+
+msgid "Move caret left (hold to repeat)"
+msgstr "கேரெட்டை இடது பக்கம் நகர்த்தவும் (மீண்டும் செய்ய பிடித்துக்கொள்ளவும்)"
+
+msgid "Right"
+msgstr "வலது"
+
+msgid "Move caret right (hold to repeat)"
+msgstr "கேரெட்டை வலது பக்கம் நகர்த்தவும் (மீண்டும் செய்ய பிடித்துக்கொள்ளவும்)"
+
 msgid "Auto"
 msgstr "ஆட்டோ"
 
@@ -85,11 +118,26 @@ msgstr "நிலைநிறுத்திய பிறகு தானாக�
 msgid "Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
 msgstr "விரல்களால் கிள்ளும்போது உங்கள் பார்வையை நிலைநிறுத்திய பிறகு தானாகவே தேர்ந்தெடுக்கும். OS dwell முடக்கப்பட்டிருந்தால் மட்டுமே இதைச் செயல்படுத்தவும்."
 
+msgid "Back"
+msgstr "மீண்டும்"
+
+msgid "Del"
+msgstr "Del"
+
+msgid "Delete (hold to repeat)"
+msgstr "அழி (மீண்டும் செய்ய பிடித்துக்கொள்ளவும்)"
+
+msgid "Calibrate Tilt"
+msgstr "சாய்வை சரிசெய்"
+
 msgid "Cancel"
 msgstr "ரத்துசெய்"
 
 msgid "Check Again"
 msgstr "மீண்டும் சரிபார்க்கவும்"
+
+msgid "Check for updates"
+msgstr ""
 
 msgid "Choose..."
 msgstr "தேர்ந்தெடுங்கள்..."
@@ -100,23 +148,41 @@ msgstr "கோப்பைத் தேர்ந்தெடுக்கவு�
 msgid "Clear"
 msgstr "தெளிவான"
 
+msgid "Clear logs"
+msgstr "பதிவுகளை அழிக்கவும்"
+
 msgid "Click to set up keyboard mode (needs ydotool)"
 msgstr "விசைப்பலகை பயன்முறையை அமைக்க கிளிக் செய்யவும் (ydotool தேவை)"
 
 msgid "Close"
 msgstr "அருகில்"
 
+msgid "Close settings"
+msgstr "அமைப்புகளை மூடு"
+
 msgid "Colour Theme"
 msgstr "வண்ண தீம்"
 
 msgid "contents or personal information is ever collected. You can change this any "
-msgstr ""
+msgstr "உள்ளடக்கம் அல்லது தனிப்பட்ட தகவல்கள் எப்போதும் சேகரிக்கப்படவில்லை. நீங்கள் இதை எப்போதும் மாற்றலாம்"
+
+msgid "Control"
+msgstr "கட்டுப்பாடு"
+
+msgid "Control mode: enabled"
+msgstr "கட்டுப்பாட்டு முறை: இயலுமைப்படுத்தப்பட்டது"
+
+msgid "Control mode"
+msgstr "கட்டுப்பாட்டு முறை"
+
+msgid "Control nodes: move, delete, clear, speak, pause"
+msgstr "கட்டுப்பாட்டு நொட்ஸ்: நகர்த்து, அகற்று, சுத்தம் செய், பேசுக, இடைநிறுத்து"
 
 msgid "Copied to clipboard."
 msgstr "கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது."
 
 msgid "Copy"
-msgstr "நகல்"
+msgstr "நகலெடு"
 
 msgid "Copy all"
 msgstr "அனைத்தையும் நகலெடுக்கவும்"
@@ -124,29 +190,38 @@ msgstr "அனைத்தையும் நகலெடுக்கவும�
 msgid "Copy All"
 msgstr "அனைத்தையும் நகலெடுக்கவும்"
 
+msgid "Copy all (to clipboard)"
+msgstr "அனைத்தையும் நகலெடு (கிளிப்போர்டுக்கு)"
+
 msgid "Copy commands"
 msgstr "நகல் கட்டளைகள்"
 
+msgid "Copy selection"
+msgstr "தேர்வை நகலெடு"
+
 msgid "Could not load the file into the engine"
-msgstr ""
+msgstr "கோப்பை இயந்திரத்தில் ஏற்ற முடியவில்லை"
 
 msgid "Could not open the selected file."
-msgstr ""
+msgstr "தேர்ந்தெடுக்கப்பட்ட கோப்பை திறக்க முடியவில்லை."
 
 msgid "Could not read the selected file."
-msgstr ""
+msgstr "தேர்ந்தெடுக்கப்பட்ட கோப்பை படிக்க முடியவில்லை."
 
 msgid "Could not sync your edit with the engine — it may be overwritten"
-msgstr ""
+msgstr "உங்கள் திருத்தத்தை இயந்திரத்துடன் ஒத்திசைக்க முடியவில்லை — அது மீளெழுதப்படலாம்"
 
 msgid "Could not write the export file."
-msgstr ""
+msgstr "ஏற்றுமதி கோப்பை எழுத முடியவில்லை."
 
 msgid "Could not write the training data."
-msgstr ""
+msgstr "பயிற்சி தரவை எழுத முடியவில்லை."
 
 msgid "Current Calibration"
 msgstr "தற்போதைய அளவுத்திருத்தம்"
+
+msgid "{0} custom file(s)"
+msgstr "{0} தனிப்பயன் கோப்பு(கள்)"
 
 msgid "Customization"
 msgstr "தனிப்பயனாக்கம்"
@@ -156,6 +231,21 @@ msgstr "இருள்"
 
 msgid "Dasher "
 msgstr "டேஷர்"
+
+msgid "We found your Dasher 5 configuration"
+msgstr "உங்கள் Dasher 5 கட்டமைப்பு கண்டுபிடிக்கப்பட்டது"
+
+msgid "Dasher 5 Import"
+msgstr "Dasher 5 இறக்குமதி"
+
+msgid "Would you like to import these settings into Dasher 6?"
+msgstr "இந்த அமைப்புகளை Dasher 6-க்கு இறக்குமதி செய்ய விரும்புகிறீர்களா?"
+
+msgid "No Dasher 5 data found on this computer."
+msgstr "இந்த கணினியில் Dasher 5 தரவு எதுவும் கிடைக்கவில்லை."
+
+msgid "Dasher 5 settings found"
+msgstr "Dasher 5 அமைப்புகள் கிடைத்தன"
 
 msgid "Dasher 5 data detected on this Mac."
 msgstr "இந்த மேக்கில் டேஷர் 5 தரவு கண்டறியப்பட்டுள்ளது."
@@ -169,8 +259,8 @@ msgstr "டாஷர் ஒரு சிஸ்டம் கீபோர்டா
 msgid "Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
 msgstr "பயன்பாட்டைப் புரிந்துகொள்வதற்கும் செயலிழப்புகளைச் சரிசெய்வதற்கும் டேஷர் அநாமதேயப் பகுப்பாய்வுகளைச் சேகரிக்கிறது. தட்டச்சு செய்யப்பட்ட உரை, கிளிப்போர்டு அல்லது தனிப்பட்ட தகவல்கள் எதுவும் ஒருபோதும் சேகரிக்கப்படுவதில்லை. திறந்த நிகழ்வுத் திட்டத்தை github.com/dasher-project/Dasher-Apple இல் பார்க்கவும்."
 
-msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
-msgstr "பயன்பாட்டு முறைகளைப் புரிந்துகொள்வதற்கும் செயலிழப்புகளைச் சரிசெய்வதற்கும், டேஷர் அநாமதேய, தனியுரிமையை மதிக்கும் பகுப்பாய்வுகளைச் சேகரிக்கிறது. தட்டச்சு செய்யப்பட்ட உரை, கிளிப்போர்டு உள்ளடக்கங்கள் அல்லது தனிப்பட்ட தகவல்கள் எதுவும் ஒருபோதும் சேகரிக்கப்படுவதில்லை.\n\nஅமைப்புகள் > தனியுரிமை என்பதில் இதை நீங்கள் எப்போது வேண்டுமானாலும் மாற்றிக்கொள்ளலாம்."
+msgid "Dasher Engine Error"
+msgstr "Dasher இயந்திர பிழை"
 
 msgid "Dasher Keyboard"
 msgstr "டேஷர் விசைப்பலகை"
@@ -193,11 +283,23 @@ msgstr "டேஷர் வி6"
 msgid "<big><b>Dasher v6</b></big>\n"
 msgstr "<big><b>டாஷர் v6</b></big>\n"
 
+msgid "Dead zone: {0} px"
+msgstr "இறந்த பகுதி: {0} px"
+
 msgid "Decrease Speed"
 msgstr "வேகத்தைக் குறைக்கவும்"
 
 msgid "Default"
 msgstr "இயல்புநிலை"
+
+msgid "Alphabet: {0}"
+msgstr "எழுத்துக்கள்: {0}"
+
+msgid "Colour: {0}"
+msgstr "நிறம்: {0}"
+
+msgid "Speed: {0}"
+msgstr "வேகம்: {0}"
 
 msgid "Diagnostics"
 msgstr "நோயறிதல்"
@@ -209,7 +311,10 @@ msgid "Done"
 msgstr "முடிந்தது"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
-msgstr ""
+msgstr "ஒரு இடத்தில் நிலைநிறுத்தி கிளிக் செய்யவும், பொத்தான் அல்லது ஸ்விட்ச் அழுத்தாமல்."
+
+msgid "Dwell Duration"
+msgstr "தங்கும் காலம்"
 
 msgid "Dwell to click"
 msgstr "கிளிக் செய்ய தங்குங்கள்"
@@ -220,11 +325,50 @@ msgstr "அமைப்புகள் → பொது → விசைப்�
 msgid "Enable tilt input first to access calibration."
 msgstr "அளவுத்திருத்தத்தை அணுக, முதலில் சாய்வு உள்ளீட்டை இயக்கவும்."
 
+msgid "Dasher could not start"
+msgstr "டாஷர் துவங்க முடியவில்லை"
+
+msgid "Engine Error"
+msgstr "இயந்திர பிழை"
+
+msgid "The Dasher engine encountered an internal error and has stopped. Please restart Dasher."
+msgstr "Dasher இயந்திரம் உள் பிழையை சந்தித்து நிறுத்தப்பட்டது. தயவுசெய்து Dasher-ஐ மீண்டும் தொடங்கவும்."
+
+msgid "Please try reinstalling, or report this in a GitHub issue."
+msgstr "தயவுசெய்து மீண்டும் நிறுவ முயற்சிக்கவும், அல்லது இதை GitHub பிரச்சனைச் சுட்டியில் அறிக்கையிடவும்."
+
+msgid "Engine Speech Features"
+msgstr "இயந்திர பேச்சு அம்சங்கள்"
+
+msgid "Error: {0}"
+msgstr "பிழை: {0}"
+
+msgid "Error loading settings: {0}"
+msgstr "அமைப்புகளை ஏற்றுவதில் பிழை: {0}"
+
+msgid "Exit"
+msgstr "வெளியேறு"
+
 msgid "Export Training Text"
 msgstr "பயிற்சி உரையை ஏற்றுமதி செய்"
 
 msgid "Eye Gaze"
 msgstr "கண் பார்வை"
+
+msgid "Could not connect to eye tracker on startup. Check the device and try re-selecting it in Settings > Input."
+msgstr "துவக்கத்தில் கண் கண்காணிப்பாளரை இணைக்க முடியவில்லை. சாதனத்தை சரிபார்த்து, அமைப்புகள் > உள்ளீடு இல் மீண்டும் தேர்வுசெய்ய முயற்சிக்கவும்."
+
+msgid "Eye Tracker Device"
+msgstr "கண் கண்காணிப்பு சாதனம்"
+
+msgid "Could not connect to {0}. Check the device is connected and drivers are installed."
+msgstr "{0} உடன் இணைக்க முடியவில்லை. சாதனம் இணைக்கப்பட்டுள்ளதா மற்றும் இயக்கிகள் நிறுவப்பட்டுள்ளதா என சரிபார்க்கவும்."
+
+msgid "Could not connect to {0}. Make sure tobii_stream_engine.dll is installed and a Tobii device is connected."
+msgstr "{0} உடன் இணைக்க முடியவில்லை. tobii_stream_engine.dll நிறுவப்பட்டுள்ளதையும், Tobii சாதனம் இணைக்கப்பட்டுள்ளதையும் உறுதிசெய்யவும்."
+
+msgid "Detailed tracking log for bug reports (per-sample lines, written to eyegaze.log in the Dasher folder). Basic connection events are always logged."
+msgstr "பிழை அறிக்கைகளுக்கான விரிவான கண்காணிப்பு பதிவு (ஒவ்வொரு மாதிரிக்கும் வரிகள், Dasher கோப்புறையில் eyegaze.log-ல் எழுதப்படும்). அடிப்படை இணைப்பு நிகழ்வுகள் எப்போதும் பதிவு செய்யப்படும்."
 
 msgid "Failed to open: "
 msgstr "திறக்க முடியவில்லை:"
@@ -236,10 +380,16 @@ msgid "Fast"
 msgstr "வேகமாக"
 
 msgid "File truncated at 4 MB — only the first part is loaded"
-msgstr ""
+msgstr "கோப்பு 4 MB-இல் வெட்டப்பட்டது — முதல் பகுதி மட்டுமே ஏற்றப்படும்"
+
+msgid "Normal Control"
+msgstr "இயல்பான கட்டுப்பாடு"
+
+msgid "Smoothing Mode"
+msgstr "மென்மையான பயன்முறை"
 
 msgid "Flatpak or AppImage build can't provide.\n\n"
-msgstr ""
+msgstr "Flatpak அல்லது AppImage கட்டமைப்பு வழங்க முடியாது.\n\n"
 
 msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
 msgstr "விசைப்பலகையை மிதக்கச் செய்ய, Dasher ஐ பிற பயன்பாடுகளின் மேல் காட்ட அனுமதித்து, பின்னர் Float ஐ மீண்டும் தட்டவும்."
@@ -253,8 +403,20 @@ msgstr "விளையாட்டு முறை"
 msgid "Game Mode"
 msgstr "விளையாட்டு முறை"
 
+msgid "Game On"
+msgstr "விளையாட்டு தொடங்கியது"
+
 msgid "Game Text File"
 msgstr "விளையாட்டு உரை கோப்பு"
+
+msgid "Reduces zoom toward wrong positions while your eyes move to a target"
+msgstr "உங்கள் கண்கள் இலக்கை நோக்கும்போது தவறான நிலைகளுக்கு ஜூம் குறைக்கிறது"
+
+msgid "Filter gaze (reduces zoom toward wrong positions during eye transit)"
+msgstr "கண் வடிகட்டி (கண் பயணத்தின் போது தவறான நிலைகளுக்கு ஜூம் குறைக்கிறது)"
+
+msgid "Gaze Smoothing"
+msgstr "கண் மென்மை"
 
 msgid "Got it"
 msgstr "புரிந்தது"
@@ -275,10 +437,10 @@ msgid "Import Training Text"
 msgstr "இறக்குமதி பயிற்சி உரை"
 
 msgid "Imported %1 — applies fully on next launch"
-msgstr ""
+msgstr "இறக்குமதி செய்யப்பட்ட %1 — அடுத்த தொடக்கத்தில் முழுமையாகப் பயன்படுத்தப்படும்"
 
 msgid "Imported %1 of training text"
-msgstr ""
+msgstr "இறக்குமதி செய்யப்பட்ட %1 பயிற்சி உரை"
 
 msgid "Increase Speed"
 msgstr "வேகத்தை அதிகரிக்கவும்"
@@ -286,8 +448,47 @@ msgstr "வேகத்தை அதிகரிக்கவும்"
 msgid "Input"
 msgstr "உள்ளீடு"
 
+msgid "Active engine input filter (set via Selection Method or advanced settings)"
+msgstr "செயலில் உள்ள என்ஜின் உள்ளீட்டு வடிகட்டி (தேர்வு முறை அல்லது மேம்பட்ட அமைப்புகள் மூலம் அமைக்கப்பட்டது)"
+
+msgid "Managed by the engine — change via the Selection Method setting"
+msgstr "எஞ்சினால் நிர்வகிக்கப்படுகிறது — தேர்வுக் குறிப்பு அமைப்பின் மூலம் மாற்றம்"
+
+msgid "Direct pointer — minimal processing"
+msgstr "நேரடி சுட்டிக்காட்டி - குறைந்தபட்ச செயலாக்கம்"
+
+msgid "No filtering — for clean input devices"
+msgstr "சுழற்சி இல்லாமல் — தூய நுழைவு சாதனங்களுக்காக"
+
+msgid "Input smoothing — reduces jitter for noisy input (eye gaze, head tracking)"
+msgstr "உள்ளீடு மென்மையாக்குதல் - சத்தமில்லாத உள்ளீட்டிற்கான நடுக்கத்தைக் குறைக்கிறது (கண் பார்வை, தலை கண்காணிப்பு)"
+
+msgid "Dampens small pointer movements for a steadier zoom"
+msgstr "ஒரு நிலையான ஜூம் செய்ய சிறிய சுட்டி இயக்கங்களை குறைக்கிறது"
+
+msgid "Standard continuous control (default)"
+msgstr "நிலையான தொடர்ச்சியான கட்டுப்பாடு (இயல்புநிலை)"
+
+msgid "The standard steering method — move the pointer to zoom"
+msgstr "நிலையான திசைமாற்றி முறை — சுட்டியை பெரிதாக்க நகர்த்தவும்"
+
+msgid "Joystick / gamepad (deflect a stick to steer)"
+msgstr "ஜாய்ஸ்டிக் / கேம்பேட் (திசை திருப்புவதற்கு ஸ்டிக்கை ஒரு பக்கமாகத் திருப்பவும்)"
+
+msgid "Tilt (hold the device, tilt to steer)"
+msgstr "சாய்த்தல் (சாதனத்தைப் பிடித்து, திருப்புவதற்குச் சாய்க்கவும்)"
+
+msgid "Input method"
+msgstr "உள்ளீட்டு முறை"
+
+msgid "Touch (drag on the canvas)"
+msgstr "தொடவும் (கேன்வாஸில் இழுக்கவும்)"
+
+msgid "Input Processing"
+msgstr "உள்ளீடு செயலாக்கம்"
+
 msgid "Install Dasher via your package manager or build from source to use keyboard mode."
-msgstr ""
+msgstr "கீபோர்டு முறையை பயன்படுத்த, உங்கள் பேக்கேஜ் மேலாளரை வழியாக Dasherஐ நிறுவவோ அல்லது மூலத்திலிருந்து கட்டவோ செய்யுங்கள்."
 
 msgid "<b>Install ydotool to use keyboard mode</b>"
 msgstr "<b>விசைப்பலகை பயன்முறையைப் பயன்படுத்த ydotool-ஐ நிறுவவும்</b>"
@@ -296,19 +497,19 @@ msgid "isn't installed. Run these commands, then press Retry:"
 msgstr "நிறுவப்படவில்லை. இந்தக் கட்டளைகளை இயக்கவும், பின்னர் மீண்டும் முயற்சிக்கவும்:"
 
 msgid "Keyboard"
-msgstr ""
+msgstr "விசைப்பலகை"
 
 msgid "_Keyboard"
 msgstr "விசைப்பலகை"
 
 msgid "Type Dasher's output straight into the app you are pointing at"
-msgstr ""
+msgstr "Dasher-இன் வெளியீட்டை நீங்கள் சுட்டும் பயன்பாட்டில் நேரடியாக தட்டச்சு செய்யவும்"
 
 msgid "Exit keyboard mode"
 msgstr "விசைப்பலகை பயன்முறையிலிருந்து வெளியேறு"
 
 msgid "Keyboard mode: hide the output pane and type Dasher's text straight into "
-msgstr ""
+msgstr "கீபோர்டு முறை: வெளியீட்டு பணியை மறைத்து டாஷரின் உரையை நேரடியாக உள்ளிடவும்"
 
 msgid "<b>Keyboard mode isn't available in this build</b>"
 msgstr "<b>இந்த உருவாக்கத்தில் விசைப்பலகை பயன்முறை கிடைக்காது</b>"
@@ -317,7 +518,7 @@ msgid "Keyboard mode opacity"
 msgstr "விசைப்பலகை பயன்முறை ஒளிபுகாத்தன்மை"
 
 msgid "Keyboard mode stopped"
-msgstr ""
+msgstr "விசைப்பலகை முறை நிறுத்தப்பட்டது"
 
 msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
 msgstr "விசைப்பலகை பயன்முறை நிறுத்தப்பட்டது: ydotool-ஆல் உரையை உள்ளிட முடியவில்லை. ydotool பழையதா?"
@@ -325,14 +526,20 @@ msgstr "விசைப்பலகை பயன்முறை நிறுத�
 msgid "Enable Keyboard Mode"
 msgstr "விசைப்பலகை பயன்முறையை இயக்கு"
 
+msgid "Window transparency when in Keyboard/Direct mode"
+msgstr "விசைப்பலகை/நேரடி முறையில் சாளரத்தின் வெளிப்படைத்தன்மை"
+
 msgid "Keyboard mode types Dasher's output into other applications using ydotool, which "
-msgstr ""
+msgstr "கீபோர்டு முறை டாஷர் வெளியீட்டை ydotool பயன்படுத்தி பிற பயன்பாடுகளில் தட்டச்சு செய்கிறது, இது"
+
+msgid "(Default)"
+msgstr "(இயல்புநிலை)"
 
 msgid "Language"
-msgstr ""
+msgstr "மொழி"
 
 msgid "Language / Locale"
-msgstr ""
+msgstr "மொழி / பிராந்தியம்"
 
 msgid "<b>Language / Locale</b>"
 msgstr "<b>மொழி / வட்டாரம்</b>"
@@ -355,14 +562,23 @@ msgstr "மேல்"
 msgid "Learning"
 msgstr "கற்றல்"
 
+msgid "Leave"
+msgstr "விடு"
+
 msgid "Leave game mode"
 msgstr "விளையாட்டு பயன்முறையை விட்டு வெளியேறு"
 
 msgid "Light"
 msgstr "ஒளி"
 
+msgid "Load Voices"
+msgstr "குரல்களை ஏற்று"
+
 msgid "Loaded %1 characters"
-msgstr ""
+msgstr "%1 எழுத்துகள் ஏற்றப்பட்டன"
+
+msgid "Loading…"
+msgstr "ஏற்றுகிறது…"
 
 msgid "Locale"
 msgstr "வட்டாரம்"
@@ -370,14 +586,26 @@ msgstr "வட்டாரம்"
 msgid "Migration"
 msgstr "இடம்பெயர்வு"
 
+msgid "More"
+msgstr "மேலும்"
+
+msgid "More options"
+msgstr "மேலும் விருப்பங்கள்"
+
 msgid "Move your eyes while pinching to steer"
 msgstr "திசை திருப்புவதற்கு, விரல்களை நெரித்தவாறே உங்கள் கண்களை நகர்த்தவும்."
 
 msgid "New"
 msgstr "புதிய"
 
+msgid "New document"
+msgstr "புதிய ஆவணம்"
+
 msgid "New Message"
 msgstr "புதிய செய்தி"
+
+msgid "New session (clear text and context)"
+msgstr "புதிய அமர்வு (உரை மற்றும் சூழலை அழி)"
 
 msgid "No Dasher 5 data found on this Mac."
 msgstr "இந்த மேக்கில் டேஷர் 5 தரவு எதுவும் காணப்படவில்லை."
@@ -386,13 +614,16 @@ msgid "No settings available for this section."
 msgstr "இந்தப் பகுதிக்கு அமைப்புகள் எதுவும் கிடைக்கவில்லை."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
-msgstr ""
+msgstr "எந்த வாக்கிய இயந்திரத்தையும் பயன்படுத்த முடியவில்லை. கணினியின் TTS அம்சத்துடன் உருவாக்கவும், அல்லது விருப்பங்களில் மேக குரலை அமைக்கவும்."
 
 msgid "No training data to export yet"
-msgstr ""
+msgstr "இன்னும் ஏற்றுமதி செய்ய பயிற்சி தரவு இல்லை"
 
 msgid "No user training data yet"
-msgstr ""
+msgstr "இன்னும் பயனர் பயிற்சி தரவு இல்லை"
+
+msgid "No voices found"
+msgstr "குரல்கள் இல்லை"
 
 msgid "Nothing to save"
 msgstr "காப்பாற்ற ஒன்றுமில்லை"
@@ -407,7 +638,7 @@ msgid "On visionOS, pinch and hold on the canvas to start writing, look around w
 msgstr "விஷன்ஓஎஸ்-இல், எழுதத் தொடங்க கேன்வாஸில் விரல்களைப் பிடித்து அழுத்திப் பிடிக்கவும்; விரல்களைப் பிடித்தவாறே சுற்றிலும் பார்த்து வழிநடத்தவும்; பின்னர் விடுவிப்பதன் மூலம் இடைநிறுத்தவும். உள்ளீட்டு முறை, விரல்களைப் பிடித்துப் பார்க்கும் வகையிலானது."
 
 msgid "Open"
-msgstr "திறந்த"
+msgstr "திற"
 
 msgid "Open..."
 msgstr "திற..."
@@ -430,14 +661,20 @@ msgstr "உரை கோப்பைத் திறக்கவும்"
 msgid "Output"
 msgstr "வெளியீடு"
 
+msgid "Output Font"
+msgstr "வெளியீடு எழுத்துரு"
+
 msgid "Output Font Size"
 msgstr "வெளியீட்டு எழுத்துரு அளவு"
 
 msgid "Touch the canvas to start writing."
 msgstr "எழுதத் தொடங்க கேன்வாஸைத் தொடவும்."
 
+msgid "Pane position"
+msgstr "பேன் நிலை"
+
 msgid "Paste"
-msgstr "பசை"
+msgstr "ஒட்டு"
 
 msgid "Pause"
 msgstr "இடைநிறுத்தம்"
@@ -451,8 +688,26 @@ msgstr "தொடங்குவதற்கு கேன்வாஸில் �
 msgid "Pinch and Look to Write"
 msgstr "எழுதுவதற்கு கிள்ளி, பார்க்கவும்"
 
+msgid "Pitch"
+msgstr "சுருதி"
+
+msgid "High"
+msgstr "உயர்"
+
+msgid "Low"
+msgstr "குறைந்த"
+
+msgid "Medium"
+msgstr "நடுத்தர"
+
+msgid "Very High"
+msgstr "மிக உயர்ந்தது"
+
+msgid "Very Low"
+msgstr "மிகக் குறைவு"
+
 msgid "Game"
-msgstr ""
+msgstr "விளையாட்டு"
 
 msgid "Play"
 msgstr "விளையாடு"
@@ -461,7 +716,7 @@ msgid "Pointer Hover Input"
 msgstr "சுட்டி வட்டமிடல் உள்ளீடு"
 
 msgid "Preferences"
-msgstr ""
+msgstr "விருப்பங்கள்"
 
 msgid "Prefs"
 msgstr "விருப்பத்தேர்வுகள்"
@@ -469,17 +724,35 @@ msgstr "விருப்பத்தேர்வுகள்"
 msgid "Preparing Dasher…"
 msgstr "Dasher தய்யாறாகிறது…"
 
+msgid "Preview"
+msgstr "முன்னோட்டம்"
+
 msgid "Privacy"
 msgstr "தனியுரிமை"
 
 msgid "<b>Privacy</b>"
 msgstr "<b>தனியுரிமை</b>"
 
+msgid "Quick speak"
+msgstr "விரைவு பேச்சு"
+
+msgid "Rate"
+msgstr "விகிதம்"
+
+msgid "Very Fast"
+msgstr "மிக வேகமாக"
+
+msgid "Very Slow"
+msgstr "மிக மெதுவாக"
+
 msgid "Re-import from Dasher 5"
 msgstr "டேஷர் 5 இலிருந்து மீண்டும் இறக்குமதி செய்யவும்"
 
 msgid "Read"
 msgstr "படிக்கவும்"
+
+msgid "Re-anchor context"
+msgstr ""
 
 msgid "Release the pinch to pause"
 msgstr "இடைநிறுத்த, கிள்ளலை விடுங்கள்."
@@ -511,6 +784,12 @@ msgstr "பயிற்சி தரவை மீட்டமைக்கவு�
 msgid "Reset Training Data?"
 msgstr "பயிற்சித் தரவை மீட்டமைக்கவா?"
 
+msgid "Reset WPM averages"
+msgstr "WPM சராசரிகளை மீட்டமை"
+
+msgid "Restarting engine…"
+msgstr "இயந்திரம் மீண்டும் தொடங்குகிறது…"
+
 msgid "Restore all Dasher settings to their default values. This cannot be undone."
 msgstr "டேஷரின் அனைத்து அமைப்புகளையும் அவற்றின் இயல்புநிலை மதிப்புகளுக்கு மீட்டமைக்கவும். இதை மீண்டும் பழைய நிலைக்குக் கொண்டுவர முடியாது."
 
@@ -523,8 +802,14 @@ msgstr "சேமிக்கவும்"
 msgid "Save..."
 msgstr "சேமிக்கவும்..."
 
+msgid "Save eye-tracker diagnostics"
+msgstr "கண்-கண்காணிப்பு கண்டறிதல்களை சேமி"
+
 msgid "Save failed"
 msgstr "சேமிப்பு தோல்வியடைந்தது"
+
+msgid "Save file"
+msgstr "கோப்பை சேமி"
 
 msgid "Save Text File"
 msgstr "உரை கோப்பை சேமிக்கவும்"
@@ -538,8 +823,14 @@ msgstr "சேமிக்கப்பட்டது:"
 msgid "Scan Speed"
 msgstr "ஸ்கேன் வேகம்"
 
-msgid "service running? See the setup help on the Keyboard button for install commands."
+msgid "Select All"
 msgstr ""
+
+msgid "Selection Method"
+msgstr "தேர்வு முறை"
+
+msgid "service running? See the setup help on the Keyboard button for install commands."
+msgstr "சேவை இயங்குகிறதா? நிறுவல் கட்டளைகளுக்காக விசைப்பலகை பொத்தானில் அமைப்பு உதவியைப் பார்க்கவும்."
 
 msgid "Settings"
 msgstr "அமைப்புகள்"
@@ -559,14 +850,20 @@ msgstr "அனைத்து எஞ்சின் அமைப்புகள�
 msgid "Settings (speed, colours, control mode, language model)"
 msgstr "அமைப்புகள் (வேகம், வண்ணங்கள், கட்டுப்பாட்டு முறை, மொழி மாதிரி)"
 
+msgid "Settle time: {0} ms"
+msgstr "நிலையாகும் நேரம்: {0} மி.வி."
+
 msgid "Share"
 msgstr "பகிர்"
 
 msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard "
-msgstr ""
+msgstr "அறியப்படாத பயன்பாட்டு பகுப்பாய்வுகள் மற்றும் இடர் அறிக்கைகளை பகிர்வதா? எந்த தட்டப்பட்ட உரையும், கிளிப்போர்டும் இல்லை"
 
 msgid "Show Input Debug Overlay"
 msgstr "உள்ளீட்டுப் பிழைத்திருத்த மேலடுக்குக் காட்சியைக் காட்டு"
+
+msgid "Show status bar"
+msgstr "நிலைப்பட்டை காட்டவும்"
 
 msgid "Show typing rate (WPM)"
 msgstr "தட்டச்சு வேகத்தைக் (WPM) காட்டு"
@@ -580,6 +877,12 @@ msgstr "கோப்புகளைத் தவிர்க்கவும்"
 msgid "Slow"
 msgstr "மெதுவாக"
 
+msgid "Speak on stop"
+msgstr "நிறுத்தும் போது பேசவும்"
+
+msgid "Speak words"
+msgstr "சொற்களை பேசவும்"
+
 msgid "Speech"
 msgstr "பேச்சு"
 
@@ -589,11 +892,17 @@ msgstr "பேச்சு தடை"
 msgid "Speech on"
 msgstr "ஸ்டெப் ஆன்"
 
+msgid "Hello, this is a preview of the selected voice."
+msgstr "வணக்கம், இது தேர்ந்தெடுக்கப்பட்ட குரியின் முன்னோட்டம்."
+
 msgid "Speech Settings"
-msgstr ""
+msgstr "பேச்சு அமைப்புகள்"
 
 msgid "<b>Speech Settings</b>"
 msgstr "<b>பேச்சு அமைப்புகள்</b>"
+
+msgid "Speech volume"
+msgstr "பேச்சு ஒலி"
 
 msgid "Speed"
 msgstr "வேகம்"
@@ -607,8 +916,20 @@ msgstr "அளவீடு செய்யத் தொடங்குங்க�
 msgid "Start fresh"
 msgstr "புதிதாகத் தொடங்குங்கள்"
 
+msgid "Dasher failed to start:\n{0}"
+msgstr "டாஷர் துவங்குவதில் தோல்வி அடைந்தது:\n{0}"
+
+msgid "Steering Method"
+msgstr "நிர்வாக முறை"
+
 msgid "Stop"
 msgstr "நிறுத்து"
+
+msgid "Stop speaking"
+msgstr "பேச்சை நிறுத்து"
+
+msgid "Switch Setup"
+msgstr "சுவிட்ச் அமைப்பு"
 
 msgid "System"
 msgstr "அமைப்பு"
@@ -620,28 +941,40 @@ msgid "Text files"
 msgstr "உரை கோப்புகள்"
 
 msgid "That file already is your training data."
-msgstr ""
+msgstr "அந்த கோப்பு ஏற்கனவே உங்கள் பயிற்சி தரவாக உள்ளது."
 
 msgid "the app you are pointing at (needs ydotool)"
-msgstr ""
+msgstr "நீங்கள் குறியும் செயலியில் (ydotool தேவை)"
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 msgstr "பிழைத்திருத்த மேலடுக்கு, கேன்வாஸின் மேல் இடதுபுறத்தில் ஒரு பச்சை நிறப் பலகையை வரைகிறது. அது நிகழ்நேரத் தொடு நிகழ்வுகளின் எண்ணிக்கையையும், கடைசியாகப் பதிவு செய்யப்பட்ட (x, y) ஆயத்தொலைவுகளையும் காட்டுகிறது. நீங்கள் விரலைச் சுருக்கிப் பிடிக்கும்போது, நீங்கள் சுற்றிலும் பார்க்கும்போது ஆயத்தொலைவுகள் மாறிக்கொண்டே, 'touch.began' மற்றும் அதைத் தொடர்ந்து 'touch.moved' நிகழ்வுகளைக் காண்பீர்கள்."
 
 msgid "The file is too large (over 10 MB) to import as training text."
-msgstr ""
+msgstr "கோப்பு மிகவும் பெரியது (10 MB-ஐ மேல்) பயிற்சி உரையாக இறக்குமதி செய்ய முடியாது."
 
 msgid "The selected file is empty."
-msgstr ""
+msgstr "தேர்ந்தெடுக்கப்பட்ட கோப்பு காலியாக உள்ளது."
 
 msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
-msgstr ""
+msgstr "இது ஒவ்வொரு எழுத்துமுதலுக்கும் உங்கள் சேர்க்கப்பட்ட பயிற்சி தரவை நீக்குகிறது. சமீபத்திய தட்டச்சின் தாக்கம் முன்னறிவிப்புகளில் தொடரும்."
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 msgstr "இது நீங்கள் சேகரித்த பயிற்சித் தரவுகளை நீக்கிவிடும். அடுத்த முறை இயக்கும்போது மொழி மாதிரி அதன் இயல்புநிலை அமைப்புகளுக்குத் திரும்பும். இதை மீண்டும் பழைய நிலைக்குக் கொண்டுவர முடியாது."
 
 msgid "Tilt Calibration"
 msgstr "சாய்வு அளவுத்திருத்தம்"
+
+msgid "Hold the device upright, then tilt forward and back"
+msgstr "சாதனத்தை நிலையாக தட்டிக்கொண்டு, பிறகு முன்னும் பின்னும் சாய்த்துக் கொள்ளுங்கள்"
+
+msgid "Tilt left and right through the full range"
+msgstr "முழு பரப்பளவிலும் இடதுக்கு வலது பக்கத்துக்கு சாய்க்கவும்"
+
+msgid "Move slowly and smoothly through all positions"
+msgstr "அனைத்து நிலைகளிலும் மெதுவாகவும் சீராகவும் நகருங்கள்"
+
+msgid "Tilt Settings"
+msgstr "செருக்கு அமைப்புகள்"
 
 msgid "Tilt your device now..."
 msgstr "உங்கள் சாதனத்தை இப்போது சாய்க்கவும்..."
@@ -650,10 +983,82 @@ msgid "Tilt your device through its full range of motion during calibration."
 msgstr "அளவுத்திருத்தத்தின் போது உங்கள் சாதனத்தை அதன் முழு இயக்க வரம்பிலும் சாய்க்கவும்."
 
 msgid "time under Preferences → Privacy."
-msgstr ""
+msgstr "Preferences → Privacy இல் நேரம்."
+
+msgid "Eye Tracker Error"
+msgstr "கண் டிராக்கர் பிழை"
+
+msgid "Eye tracker notice"
+msgstr "கண் கண்காணிப்பாளர் அறிவிப்பு"
+
+msgid "The eye tracker could not be fully resumed ({0}). Tracking may run at reduced speed and accuracy — try running Dasher as administrator."
+msgstr "ஐ டிராக்கரை முழுமையாக மீண்டும் தொடங்க முடியவில்லை ({0}). கண்காணிப்பு குறைந்த வேகத்திலும் துல்லியத்திலும் இயங்கலாம் - Dasher ஐ நிர்வாகியாக இயக்க முயற்சிக்கவும்."
+
+msgid "Toggle control mode"
+msgstr "கட்டுப்பாட்டு முறையை மாற்று"
+
+msgid "Toggle game mode"
+msgstr "விளையாட்டு முறையை மாற்று"
+
+msgid "Toggle keyboard mode"
+msgstr "விசைப்பலகை முறையை மாற்று"
+
+msgid "Toggle pane position"
+msgstr "பேன் நிலையை மாற்று"
+
+msgid "Hide/show status bar"
+msgstr "நிலைப்பட்டை மறை/காட்டு"
 
 msgid "Copy all text"
-msgstr ""
+msgstr "அனைத்து உரையையும் நகலெடு"
+
+msgid "Copy selection in target app"
+msgstr "இலக்கு பயன்பாட்டில் தேர்வை நகலெடுக்கவும்"
+
+msgid "Cut selection in target app"
+msgstr "இலக்கு பயன்பாட்டில் தேர்வை வெட்டு"
+
+msgid "Start game mode"
+msgstr "விளையாட்டு முறையை தொடங்கு"
+
+msgid "New / clear output"
+msgstr "புதிய / தெளிவான வெளியீடு"
+
+msgid "Open file"
+msgstr "கோப்பைத் திறக்கவும்"
+
+msgid "Paste into target app"
+msgstr "இலக்கு பயன்பாட்டில் ஒட்டு"
+
+msgid "Re-anchor predictions to the caret (read the sentence around your cursor)"
+msgstr "கேரெட்டுக்கு முன்னறிவிப்புகளை மீண்டும் இணை (உங்கள் கர்சரின் சுற்றியுள்ள வாக்கியத்தைப் படிக்கவும்)"
+
+msgid "Save to file"
+msgstr "கோப்பில் சேமிக்கவும்"
+
+msgid "Select all in target app"
+msgstr "இலக்கு பயன்பாட்டில் அனைத்தையும் தேர்வு செய்"
+
+msgid "Open settings"
+msgstr "அமைப்புகளை திற"
+
+msgid "Share text"
+msgstr "உரையைப் பகிரவும்"
+
+msgid "eyetuitive"
+msgstr "கண்பார்வை"
+
+msgid "Eye tracker"
+msgstr "கண் கண்காணிப்பான்"
+
+msgid "Tobii (Stream Engine)"
+msgstr "டோபி (ஸ்ட்ரீம் என்ஜின்)"
+
+msgid "UDP Gaze Tracker (network)"
+msgstr "UDP கேஸ் டிராக்கர் (நெட்வொர்க்)"
+
+msgid "Windows Eye Tracker (native)"
+msgstr "விண்டோஸ் ஐ டிராக்கர் (சொந்தம்)"
 
 msgid "Training"
 msgstr "பயிற்சி"
@@ -665,13 +1070,13 @@ msgid "Training Data"
 msgstr "பயிற்சி தரவு"
 
 msgid "Training data deleted — restart Dasher to fully apply"
-msgstr ""
+msgstr "பயிற்சி தரவு நீக்கப்பட்டது — முழுமையாகப் பயன்படுத்த Dasher-ஐ மீண்டும் தொடங்கவும்"
 
 msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
 msgstr "இறக்குமதி மொழி மாதிரியிலும் உங்கள் சேமிப்பு பயிற்சி தரவிலும் உரையைச் சேர்க்கிறது (மறுதொடக்கங்களிலும் நிலவும்). ஏற்றுமதி காப்புப்பிரதி அல்லது பரிமாற்றத்திற்காக உங்கள் பயிற்சி தரவைச் சேமிக்கிறது. மீட்டமைப்பு அனைத்து பயனர் பயிற்சி தரவையும் நீக்குகிறது — அடுத்த தொடக்கத்தில் மாதிரி தனது உள்ளமைக்கப்பட்ட இயல்புநிலைக்குத் திரும்பும்."
 
 msgid "Training data exported."
-msgstr ""
+msgstr "பயிற்சி தரவு ஏற்றுமதி செய்யப்பட்டது."
 
 msgid "Export Training Data"
 msgstr "பயிற்சி தரவை ஏற்றுமதி செய்யவும்"
@@ -689,7 +1094,7 @@ msgid "Imported {0} KB — applies fully on next launch (live model returned {1}
 msgstr "{0} KB இறக்குமதி செய்யப்பட்டது — அடுத்த தொடக்கத்தில் முழுமையாக பயன்படும் (நேரடி மாதிரி {1} திருப்பியது)"
 
 msgid "Training is not available yet — try again once the canvas has rendered."
-msgstr ""
+msgstr "பயிற்சி இன்னும் கிடைக்கவில்லை — கேன்வாஸ் ரெண்டர் ஆன பிறகு மீண்டும் முயற்சிக்கவும்."
 
 msgid "Training data deleted — the model returns to its built-in defaults on next launch"
 msgstr "பயிற்சி தரவு நீக்கப்பட்டது — அடுத்த தொடக்கத்தில் மாதிரி தனது உள்ளமைக்கப்பட்ட இயல்புநிலைக்குத் திரும்பும்"
@@ -697,26 +1102,62 @@ msgstr "பயிற்சி தரவு நீக்கப்பட்டத�
 msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
 msgstr "முடிந்த இடங்களில் பயிற்சி தரவு நீக்கப்பட்டது — {0} உருப்படி(கள்) தோல்வியுற்றன; மீண்டும் முயற்சிக்க மீட்டமையை மீண்டும் அழுத்தவும்"
 
+msgid "TTS Engine"
+msgstr "TTS Engine"
+
+msgid "No credentials required"
+msgstr "அங்கீகாரங்கள் தேவையில்லை"
+
 msgid "Turbo"
 msgstr "டர்போ"
 
 msgid "Typing into other applications needs access to /dev/uinput, which a sandboxed "
-msgstr ""
+msgstr "மற்ற பயன்பாடுகளுக்கு டைப் செய்ய /dev/uinputக்கு அணுகல் தேவை, அது ஒரு சாம்sandboxed ஆகும்"
 
 msgid "Typing rate"
 msgstr "தட்டச்சு விகிதம்"
 
 msgid "{cps} cps · {wpm} wpm"
-msgstr ""
+msgstr "{cps} cps · {wpm} wpm"
+
+msgid "UDP Port"
+msgstr "UDP Port"
+
+msgid "UDP tracker listens for STREAM_DATA or GazePoint messages"
+msgstr "UDP tracker listens for STREAM_DATA or GazePoint messages"
+
+msgid "Dasher {0} is available (you're running v{1}). Tap to download — disable in Settings > Privacy."
+msgstr "Dasher {0} கிடைக்கிறது (நீங்கள் v{1}ஐ இயக்குகிறீர்கள்). பதிவிறக்குவதற்கு தட்டவும் — அமைப்புகள் > தனியுரிமை என்பதில் முடக்கவும்."
+
+msgid "Dasher update available"
+msgstr "Dasher புதுப்பிப்பு உள்ளது"
 
 msgid "Use Dasher as your keyboard"
 msgstr "டேஷரை உங்கள் விசைப்பலகையாகப் பயன்படுத்தவும்."
+
+msgid "Voice"
+msgstr "குரல்"
+
+msgid "{0} voices"
+msgstr "{0} குரல்கள்"
+
+msgid "Volume"
+msgstr "ஒலி"
+
+msgid "Dasher Warning"
+msgstr "டாசர் எச்சரிக்கை"
 
 msgid "We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
 msgstr "இந்த மேக்கில் உங்கள் டேஷர் 5 உள்ளமைப்பைக் கண்டறிந்துள்ளோம். உங்கள் எழுத்துக்கள், வண்ணங்கள், வேக அமைப்புகள் மற்றும் தனிப்பயன் கோப்புகளை டேஷர் 6-இல் இறக்குமதி செய்யலாம்."
 
 msgid "What was found"
 msgstr "கண்டுபிடிக்கப்பட்டது"
+
+msgid "{0} wpm"
+msgstr "{0} wpm"
+
+msgid "max {0}"
+msgstr "அதிகபட்சம் {0}"
 
 msgid "X range:"
 msgstr "X வரம்பு:"
@@ -728,7 +1169,7 @@ msgid "ydotool found. Keyboard mode is ready."
 msgstr "ydotool கண்டறியப்பட்டது. விசைப்பலகை பயன்முறை தயாராக உள்ளது."
 
 msgid "ydotool still isn't available. Make sure it's installed and the ydotool service is running."
-msgstr ""
+msgstr "ydotool இன்னும் கிடைக்கும் நிலையில் இல்லை. அது நிறுவப்பட்டுள்ளதை உறுதிப்படுத்தவும், ydotool சேவை செயலிழக்காமல் இயங்குகிறது என்பதைக் 확인 செய்யவும்."
 
 msgid "You can import later in Settings > Privacy & Migration"
 msgstr "அமைப்புகள் > தனியுரிமை மற்றும் இடமாற்றம் என்பதில் நீங்கள் பின்னர் இறக்குமதி செய்யலாம்."

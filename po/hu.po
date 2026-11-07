@@ -14,13 +14,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "%1$.1f cps · %2$d wpm"
-msgstr ""
+msgstr "%1$.1f karakter/s · %2$d szó/perc"
 
 msgid "A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
 msgstr "Egy hibajelentés került mentésre a ~/Library/Logs/DiagnosticReports/Dasher-*.ips fájlba. Ha megosztod egy GitHub-hiba esetén, az segít nekünk a hiba kijavításában."
 
 msgid "About"
 msgstr "Névjegy"
+
+msgid "Dasher {0}"
+msgstr "Dasher {0}"
 
 msgid "Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
 msgstr "Elfogadja a lebegés/mutató eseményeket Dasher bemenetként. Engedélyezze a szemkövetést vagy a külső mutatókat."
@@ -33,6 +36,12 @@ msgstr "Akadálymentesítési engedély szükséges"
 
 msgid "Adapt Speed Automatically"
 msgstr "Automatikus sebességállítás"
+
+msgid "Advanced logging"
+msgstr "Fejlett naplózás"
+
+msgid "Detailed diagnostic logging for bug reports (per-sample eye-tracker lines, keystroke traces, UIA reads). Basic connection events are always logged. May generate large log files."
+msgstr "Részletes diagnosztikai naplózás a hibajelentésekhez (mintánkénti szemkövető sorok, billentyűleütés nyomkövetések, UIA olvasások). Az alapvető csatlakozási események mindig naplózva vannak. Nagy naplófájlokat generálhat."
 
 msgid "Advanced settings"
 msgstr "Speciális beállítások"
@@ -47,7 +56,7 @@ msgid "Help improve Dasher"
 msgstr "Segítsen a Dasher fejlesztésében"
 
 msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
-msgstr ""
+msgstr "Megosztja az anonim használati elemzéseket és a leállási jelentéseket? Soha nem kerülnek gyűjtésre beírt szövegek, vágólap tartalma vagy személyes információk. Ezt bármikor megváltoztathatja a Beállításokban."
 
 msgid "Not now"
 msgstr "Most nem"
@@ -55,11 +64,20 @@ msgstr "Most nem"
 msgid "Share anonymous analytics and crash reports"
 msgstr "Anonim elemzések és hibajelentések megosztása"
 
+msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
+msgstr "A Dasher névtelen, a magánélet tiszteletben tartásával gyűjt elemzéseket annak érdekében, hogy megértse a használati mintákat és javítsa a leállásokat. Soha nem gyűjtött gépelt szöveget, vágólap-tartalmakat vagy személyes információkat.\n\nEzt bármikor megváltoztathatja a Beállítások > Adatvédelem menüpontban."
+
 msgid "Reset analytics ID"
 msgstr "Elemzési azonosító visszaállítása"
 
+msgid "Dasher collects anonymous usage analytics and crash reports to understand how the app is used and to fix bugs. No typed text, clipboard contents, or personal information is ever collected."
+msgstr "A Dasher névtelen használati elemzéseket és összeomlási jelentéseket gyűjt, hogy megértse, hogyan használják az alkalmazást, és javítsa a hibákat. Soha nem gyűjtöttünk be begépelt szöveget, vágólap tartalmat vagy személyes információkat."
+
 msgid "Help improve Dasher?"
-msgstr ""
+msgstr "Segíteni a Dasher fejlesztésében?"
+
+msgid "Anonymous ID: {0}"
+msgstr "Névtelen azonosító: {0}"
 
 msgid "Anonymous usage analytics"
 msgstr "Névtelen használati elemzés"
@@ -73,8 +91,23 @@ msgstr "Alkalmazásszintű várakozás a kiválasztáshoz"
 msgid "Dasher"
 msgstr ""
 
+msgid "Appearance"
+msgstr "Megjelenés"
+
+msgid "Left"
+msgstr "Bal"
+
+msgid "Move caret left (hold to repeat)"
+msgstr "Mozgassa a kurzort balra (tartsa nyomva a ismétléshez)"
+
+msgid "Right"
+msgstr "Jobb"
+
+msgid "Move caret right (hold to repeat)"
+msgstr "Mozgassa a kurzort jobbra (tartsa nyomva a ismétléshez)"
+
 msgid "Auto"
-msgstr "Autó"
+msgstr "Automatikus"
 
 msgid "Auto-Centre Target"
 msgstr "Automatikus középre igazítás"
@@ -85,11 +118,26 @@ msgstr "Automatikus kiválasztás fixálás után. Csak akkor engedélyezze, ha 
 msgid "Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
 msgstr "Automatikus kiválasztás a tekintet rögzítése után csippentés közben. Csak akkor engedélyezze, ha az operációs rendszer várakozási ideje ki van kapcsolva."
 
+msgid "Back"
+msgstr "Vissza"
+
+msgid "Del"
+msgstr "törlés"
+
+msgid "Delete (hold to repeat)"
+msgstr "Törlés (tartsd nyomva a ismétléshez)"
+
+msgid "Calibrate Tilt"
+msgstr "Dőlésszög kalibrálása"
+
 msgid "Cancel"
 msgstr "Mégsem"
 
 msgid "Check Again"
 msgstr "Ellenőrizd újra"
+
+msgid "Check for updates"
+msgstr ""
 
 msgid "Choose..."
 msgstr "Válasszon..."
@@ -100,17 +148,35 @@ msgstr "Fájl kiválasztása..."
 msgid "Clear"
 msgstr "Világos"
 
+msgid "Clear logs"
+msgstr "Naplók törlése"
+
 msgid "Click to set up keyboard mode (needs ydotool)"
 msgstr "Kattintson a billentyűzet mód beállításához (ydotool szükséges)"
 
 msgid "Close"
 msgstr "Bezárás"
 
+msgid "Close settings"
+msgstr "Bezárás beállítások"
+
 msgid "Colour Theme"
 msgstr "Színtéma"
 
 msgid "contents or personal information is ever collected. You can change this any "
-msgstr ""
+msgstr "tartalmakat vagy személyes információkat gyűjtenek. Ezt bármikor megváltoztathatja"
+
+msgid "Control"
+msgstr "Kontroll"
+
+msgid "Control mode: enabled"
+msgstr "Vezérlési mód: engedélyezve"
+
+msgid "Control mode"
+msgstr "Vezérlési mód"
+
+msgid "Control nodes: move, delete, clear, speak, pause"
+msgstr "Vezérlőcsomópontok: mozgatás, törlés, törlés, beszéd, szünet"
 
 msgid "Copied to clipboard."
 msgstr "Vágólapra másolva"
@@ -124,29 +190,38 @@ msgstr "Mindet másolja"
 msgid "Copy All"
 msgstr "Összes másolása"
 
+msgid "Copy all (to clipboard)"
+msgstr "Mindet másol (a vágólapra)"
+
 msgid "Copy commands"
 msgstr "Parancsok másolása"
 
+msgid "Copy selection"
+msgstr "Másolás kijelölése"
+
 msgid "Could not load the file into the engine"
-msgstr ""
+msgstr "Nem sikerült betölteni a fájlt a motorba"
 
 msgid "Could not open the selected file."
-msgstr ""
+msgstr "A kiválasztott fájlt nem lehetett megnyitni."
 
 msgid "Could not read the selected file."
-msgstr ""
+msgstr "A kiválasztott fájl nem olvasható."
 
 msgid "Could not sync your edit with the engine — it may be overwritten"
-msgstr ""
+msgstr "Nem sikerült szinkronizálni a módosításodat a motorral — előfordulhat, hogy felülíródik"
 
 msgid "Could not write the export file."
-msgstr ""
+msgstr "Az exportfájl írása nem sikerült."
 
 msgid "Could not write the training data."
-msgstr ""
+msgstr "A tanítóadatok írása nem sikerült."
 
 msgid "Current Calibration"
 msgstr "Aktuális kalibráció"
+
+msgid "{0} custom file(s)"
+msgstr "{0} egyéni fájl"
 
 msgid "Customization"
 msgstr "Testreszabás"
@@ -156,6 +231,21 @@ msgstr "Sötét"
 
 msgid "Dasher "
 msgstr "Dasher"
+
+msgid "We found your Dasher 5 configuration"
+msgstr "Megtaláltuk a Dasher 5 beállítását"
+
+msgid "Dasher 5 Import"
+msgstr "Dasher 5 importálás"
+
+msgid "Would you like to import these settings into Dasher 6?"
+msgstr "Szeretnéd importálni ezeket a beállításokat a Dasher 6-ba?"
+
+msgid "No Dasher 5 data found on this computer."
+msgstr "A Dasher 5 adatai nem találhatók ezen a számítógépen."
+
+msgid "Dasher 5 settings found"
+msgstr "A Dasher 5 beállításai megtalálva"
 
 msgid "Dasher 5 data detected on this Mac."
 msgstr "Dasher 5 adatok észlelve ezen a Mac gépen."
@@ -169,8 +259,8 @@ msgstr "A Dasher rendszerbillentyűzetként is működik, így bármelyik alkalm
 msgid "Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
 msgstr "A Dasher névtelen elemzéseket gyűjt a használat megértése és az összeomlások kijavítása érdekében. Semmilyen begépelt szöveget, vágólapra helyezett adatot vagy személyes adatot nem gyűjt. A nyílt eseménysémát a github.com/dasher-project/Dasher-Apple oldalon tekintheti meg."
 
-msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
-msgstr "A Dasher névtelen, az adatvédelmet tiszteletben tartó elemzéseket gyűjt a használati minták megértése és az összeomlások kijavítása érdekében. Semmilyen begépelt szöveget, vágólap tartalmát vagy személyes információt nem gyűjt.\n\nEzt bármikor módosíthatja a Beállítások > Adatvédelem menüpontban."
+msgid "Dasher Engine Error"
+msgstr "Dasher motor hiba"
 
 msgid "Dasher Keyboard"
 msgstr "Dasher billentyűzet"
@@ -188,16 +278,28 @@ msgid "Dasher quit unexpectedly"
 msgstr "Dasher váratlanul kilépett"
 
 msgid "Dasher v6"
-msgstr ""
+msgstr "Dasher v6"
 
 msgid "<big><b>Dasher v6</b></big>\n"
 msgstr "<big><b>Dasher v6</b></big>\n"
+
+msgid "Dead zone: {0} px"
+msgstr "Holt zóna: {0} px"
 
 msgid "Decrease Speed"
 msgstr "Csökkentse a sebességet"
 
 msgid "Default"
 msgstr "Alapértelmezett"
+
+msgid "Alphabet: {0}"
+msgstr "Ábécé: {0}"
+
+msgid "Colour: {0}"
+msgstr "Szín: {0}"
+
+msgid "Speed: {0}"
+msgstr "Sebesség: {0}"
 
 msgid "Diagnostics"
 msgstr "Diagnosztika"
@@ -209,10 +311,13 @@ msgid "Done"
 msgstr "Kész"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
-msgstr ""
+msgstr "Lebegjen egy helyben a kattintás kiváltásához a gomb vagy kapcsoló megnyomása helyett."
+
+msgid "Dwell Duration"
+msgstr "Tartózkodási idő"
 
 msgid "Dwell to click"
-msgstr ""
+msgstr "Tartózkodjon a kattintáshoz"
 
 msgid "Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
 msgstr "Engedélyezze a Dashert a Beállítások → Általános → Billentyűzet → Billentyűzetek menüpontban, majd kapcsolja be a Teljes hozzáférés engedélyezése beállítást, hogy a Dasher beszélhessen és tanulhasson."
@@ -220,11 +325,50 @@ msgstr "Engedélyezze a Dashert a Beállítások → Általános → Billentyűz
 msgid "Enable tilt input first to access calibration."
 msgstr "A kalibráció eléréséhez először engedélyezze a dőlésszög bemenetét."
 
+msgid "Dasher could not start"
+msgstr "A Dasher nem tudott elindulni"
+
+msgid "Engine Error"
+msgstr "Motorhiba"
+
+msgid "The Dasher engine encountered an internal error and has stopped. Please restart Dasher."
+msgstr "A Dasher motor belső hibát észlelt, és leállt. Kérjük, indítsa újra a Dasher-t."
+
+msgid "Please try reinstalling, or report this in a GitHub issue."
+msgstr "Kérjük, próbálja meg újratelepíteni, vagy jelentse ezt egy GitHub problémában."
+
+msgid "Engine Speech Features"
+msgstr "Motor beszédfunkciók"
+
+msgid "Error: {0}"
+msgstr "Hiba: {0}"
+
+msgid "Error loading settings: {0}"
+msgstr "Hiba a beállítások betöltésekor: {0}"
+
+msgid "Exit"
+msgstr "Kilépés"
+
 msgid "Export Training Text"
 msgstr "Betanítási szöveg exportálása"
 
 msgid "Eye Gaze"
 msgstr "Szem tekintete"
+
+msgid "Could not connect to eye tracker on startup. Check the device and try re-selecting it in Settings > Input."
+msgstr "Nem sikerült csatlakozni a szemkövetőhöz indításkor. Ellenőrizze az eszközt, és próbálja meg újra kiválasztani a Beállítások > Bemenet menüpontban."
+
+msgid "Eye Tracker Device"
+msgstr "Szemkövető eszköz"
+
+msgid "Could not connect to {0}. Check the device is connected and drivers are installed."
+msgstr "Nem sikerült csatlakozni a következőhöz: {0}. Ellenőrizze, hogy az eszköz csatlakoztatva van-e, és az illesztőprogramok telepítve vannak."
+
+msgid "Could not connect to {0}. Make sure tobii_stream_engine.dll is installed and a Tobii device is connected."
+msgstr "Nem sikerült csatlakozni a következőhöz: {0}. Győződjön meg arról, hogy a tobii_stream_engine.dll telepítve van, és egy Tobii eszköz csatlakozik."
+
+msgid "Detailed tracking log for bug reports (per-sample lines, written to eyegaze.log in the Dasher folder). Basic connection events are always logged."
+msgstr "Részletes nyomkövetési napló hibajelentésekhez (mintánkénti sorok, a Dasher mappában az eyegaze.log fájlba írva). Az alapvető kapcsolódási események mindig naplózásra kerülnek."
 
 msgid "Failed to open: "
 msgstr "Nem nyílt meg"
@@ -236,10 +380,16 @@ msgid "Fast"
 msgstr "Gyors"
 
 msgid "File truncated at 4 MB — only the first part is loaded"
-msgstr ""
+msgstr "A fájl 4 MB-nál megszakadt — csak az első része lett betöltve"
+
+msgid "Normal Control"
+msgstr "Normál vezérlés"
+
+msgid "Smoothing Mode"
+msgstr "Simító mód"
 
 msgid "Flatpak or AppImage build can't provide.\n\n"
-msgstr ""
+msgstr "A Flatpak vagy AppImage build nem tud biztosítani.\n\n"
 
 msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
 msgstr "A billentyűzet lebegtetéséhez engedélyezze a Dashernek a más alkalmazások feletti megjelenítést, majd koppintson újra a Float gombra."
@@ -253,14 +403,26 @@ msgstr "Játékmód"
 msgid "Game Mode"
 msgstr "Játék üzemmód"
 
+msgid "Game On"
+msgstr "Játékra fel"
+
 msgid "Game Text File"
 msgstr "Játék szövegfájl"
+
+msgid "Reduces zoom toward wrong positions while your eyes move to a target"
+msgstr "Csökkenti a nagyítást a helytelen pozíciók felé, miközben a szemed a cél felé mozog"
+
+msgid "Filter gaze (reduces zoom toward wrong positions during eye transit)"
+msgstr "Szűrő tekintet (csökkenti a rossz pozíciókra történő nagyítást a szemmozgás során)"
+
+msgid "Gaze Smoothing"
+msgstr "Tekintet simítása"
 
 msgid "Got it"
 msgstr "Értem"
 
 msgid "GTK Edition"
-msgstr ""
+msgstr "GTK kiadás"
 
 msgid "Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
 msgstr "Az importálás szöveget ad hozzá a nyelvi modellhez (hozzáfűzi a meglévő tanuláshoz). Az exportálás menti a felhalmozott betanítási adatokat biztonsági mentés vagy átvitel céljából. A visszaállítás törli az egyéni betanítási adatokat – a modell a következő indításkor visszaáll a beépített alapértelmezett értékekre."
@@ -275,10 +437,10 @@ msgid "Import Training Text"
 msgstr "Betanító szöveg importálása"
 
 msgid "Imported %1 — applies fully on next launch"
-msgstr ""
+msgstr "Importálva %1 — a következő indításkor teljesen alkalmazva"
 
 msgid "Imported %1 of training text"
-msgstr ""
+msgstr "A betanító szöveg %1 részét importálták"
 
 msgid "Increase Speed"
 msgstr "Növelje a sebességet"
@@ -286,8 +448,47 @@ msgstr "Növelje a sebességet"
 msgid "Input"
 msgstr "Bemenet"
 
+msgid "Active engine input filter (set via Selection Method or advanced settings)"
+msgstr "Aktív motor bemeneti szűrő (a kiválasztási módszerrel vagy a speciális beállításokkal állítható be)"
+
+msgid "Managed by the engine — change via the Selection Method setting"
+msgstr "A motor kezeli – módosítsa a Selection Method beállítással"
+
+msgid "Direct pointer — minimal processing"
+msgstr "Közvetlen mutató – minimális feldolgozás"
+
+msgid "No filtering — for clean input devices"
+msgstr "Nincs szűrés – tiszta beviteli eszközökhöz"
+
+msgid "Input smoothing — reduces jitter for noisy input (eye gaze, head tracking)"
+msgstr "Bemeneti simítás – csökkenti a rezgést a zajos bevitelnél (szempillantás, fejkövetés)"
+
+msgid "Dampens small pointer movements for a steadier zoom"
+msgstr "Csillapítja a kis mutatómozgásokat a egyenletesebb zoom érdekében"
+
+msgid "Standard continuous control (default)"
+msgstr "Szabványos folyamatos vezérlés (alapértelmezett)"
+
+msgid "The standard steering method — move the pointer to zoom"
+msgstr "A szokásos kormányzási módszer – mozgassa a mutatót a nagyításhoz"
+
+msgid "Joystick / gamepad (deflect a stick to steer)"
+msgstr "Joystick / gamepad (irányításhoz tereld el a kart)"
+
+msgid "Tilt (hold the device, tilt to steer)"
+msgstr "Döntés (fogd meg a készüléket, döntsd a kormányzáshoz)"
+
+msgid "Input method"
+msgstr "Beviteli mód"
+
+msgid "Touch (drag on the canvas)"
+msgstr "Érintés (húzás a vásznon)"
+
+msgid "Input Processing"
+msgstr "Bemenetfeldolgozás"
+
 msgid "Install Dasher via your package manager or build from source to use keyboard mode."
-msgstr ""
+msgstr "Telepítse a Dashert a csomagkezelőjével, vagy építse le forrásból, hogy használhassa a billentyűzetes módot."
 
 msgid "<b>Install ydotool to use keyboard mode</b>"
 msgstr "<b>Telepítse az ydotool eszközt a billentyűzet mód használatához</b>"
@@ -296,19 +497,19 @@ msgid "isn't installed. Run these commands, then press Retry:"
 msgstr "nincs telepítve. Futtassa ezeket a parancsokat, majd nyomja meg az Újra gombot:"
 
 msgid "Keyboard"
-msgstr ""
+msgstr "Billentyűzet"
 
 msgid "_Keyboard"
 msgstr "Billentyűzet"
 
 msgid "Type Dasher's output straight into the app you are pointing at"
-msgstr ""
+msgstr "Írd be a Dasher kimenetét közvetlenül abba az alkalmazásba, amire mutatsz"
 
 msgid "Exit keyboard mode"
 msgstr "Billentyűzetes mód"
 
 msgid "Keyboard mode: hide the output pane and type Dasher's text straight into "
-msgstr ""
+msgstr "Billentyűzet mód: rejtsd el a kimeneti panelt, és gépeld be Dasher szövegét közvetlenül"
 
 msgid "<b>Keyboard mode isn't available in this build</b>"
 msgstr "<b>A billentyűzet mód nem érhető el ebben az összeállításban</b>"
@@ -317,7 +518,7 @@ msgid "Keyboard mode opacity"
 msgstr "Billentyűzet mód átlátszósága"
 
 msgid "Keyboard mode stopped"
-msgstr ""
+msgstr "A billentyűzet mód leállt"
 
 msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
 msgstr "A billentyűzet mód leállt: az ydotool nem tudott szöveget befecskendezni. Az ydotoold"
@@ -325,14 +526,20 @@ msgstr "A billentyűzet mód leállt: az ydotool nem tudott szöveget befecskend
 msgid "Enable Keyboard Mode"
 msgstr "A billentyűzet használata"
 
+msgid "Window transparency when in Keyboard/Direct mode"
+msgstr "Ablak átlátszósága billentyűzet/ közvetlen módban"
+
 msgid "Keyboard mode types Dasher's output into other applications using ydotool, which "
-msgstr ""
+msgstr "A billentyűzet mód a Dasher kimenetét más alkalmazásokba gépeli ydotool használatával, ami"
+
+msgid "(Default)"
+msgstr "(Alapértelmezett)"
 
 msgid "Language"
-msgstr ""
+msgstr "Nyelv"
 
 msgid "Language / Locale"
-msgstr ""
+msgstr "Nyelv / Terület"
 
 msgid "<b>Language / Locale</b>"
 msgstr "<b>Nyelv /Terület</b>"
@@ -355,14 +562,23 @@ msgstr "Felső"
 msgid "Learning"
 msgstr "Tanulás"
 
+msgid "Leave"
+msgstr "Távozni"
+
 msgid "Leave game mode"
 msgstr "Kilépés a játékmódból"
 
 msgid "Light"
 msgstr "Fény"
 
+msgid "Load Voices"
+msgstr "Hangok betöltése"
+
 msgid "Loaded %1 characters"
-msgstr ""
+msgstr "Betöltve %1 karakter"
+
+msgid "Loading…"
+msgstr "Betöltés…"
 
 msgid "Locale"
 msgstr "Helyi"
@@ -370,14 +586,26 @@ msgstr "Helyi"
 msgid "Migration"
 msgstr "Migráció"
 
+msgid "More"
+msgstr "Több"
+
+msgid "More options"
+msgstr "További lehetőségek"
+
 msgid "Move your eyes while pinching to steer"
 msgstr "Mozgasd a szemed, miközben csippentve irányítod az ujjaidat."
 
 msgid "New"
 msgstr "Új"
 
+msgid "New document"
+msgstr "Új dokumentum"
+
 msgid "New Message"
 msgstr "Új üzenet"
+
+msgid "New session (clear text and context)"
+msgstr "Új munkamenet (szöveg és kontextus törlése)"
 
 msgid "No Dasher 5 data found on this Mac."
 msgstr "Nem találhatók Dasher 5 adatok ezen a Mac gépen."
@@ -386,13 +614,16 @@ msgid "No settings available for this section."
 msgstr "Ehhez a szakaszhoz nem érhetők el beállítások."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
-msgstr ""
+msgstr "Nem érhető el beszédmotor. Építsd a rendszer TTS funkciójával, vagy állíts be egy felhő alapú hangot a Beállításokban."
 
 msgid "No training data to export yet"
-msgstr ""
+msgstr "Még nincs exportálható képzési adat"
 
 msgid "No user training data yet"
-msgstr ""
+msgstr "Még nincs felhasználói képzési adat"
+
+msgid "No voices found"
+msgstr "Nem található hang"
 
 msgid "Nothing to save"
 msgstr "Nincs mit menteni"
@@ -407,7 +638,7 @@ msgid "On visionOS, pinch and hold on the canvas to start writing, look around w
 msgstr "VisionOS rendszeren a vásznon tartva csippentsd az ujjad az írás megkezdéséhez, körülnézz csippentés közben az irányításhoz, majd engedd el a szüneteltetéshez. A beviteli modell csippentéses és nézési."
 
 msgid "Open"
-msgstr "Nyitva"
+msgstr "Megnyitás"
 
 msgid "Open..."
 msgstr "Nyitott..."
@@ -428,7 +659,10 @@ msgid "Open Text File"
 msgstr "Szövegfájl megnyitása"
 
 msgid "Output"
-msgstr ""
+msgstr "Kimenet"
+
+msgid "Output Font"
+msgstr "Kimeneti betűtípus"
 
 msgid "Output Font Size"
 msgstr "Kimeneti betűméret"
@@ -436,8 +670,11 @@ msgstr "Kimeneti betűméret"
 msgid "Touch the canvas to start writing."
 msgstr "Érintse meg a vásznat az írás megkezdéséhez."
 
+msgid "Pane position"
+msgstr "Panel pozíció"
+
 msgid "Paste"
-msgstr "Paszta"
+msgstr "Beillesztés"
 
 msgid "Pause"
 msgstr "Szünet"
@@ -451,8 +688,26 @@ msgstr "Csippentsd össze és tartsd lenyomva az ujjad a vásznon bárhol a kezd
 msgid "Pinch and Look to Write"
 msgstr "Csippentés és ránézés íráshoz"
 
+msgid "Pitch"
+msgstr "Hangmagasság"
+
+msgid "High"
+msgstr "Magas"
+
+msgid "Low"
+msgstr "Alacsony"
+
+msgid "Medium"
+msgstr "Közepes"
+
+msgid "Very High"
+msgstr "Nagyon magas"
+
+msgid "Very Low"
+msgstr "Nagyon alacsony"
+
 msgid "Game"
-msgstr ""
+msgstr "Játék"
 
 msgid "Play"
 msgstr "Játék"
@@ -461,13 +716,16 @@ msgid "Pointer Hover Input"
 msgstr "Mutató lebegés bemenet"
 
 msgid "Preferences"
-msgstr ""
+msgstr "Beállítások"
 
 msgid "Prefs"
-msgstr ""
+msgstr "Beállítások"
 
 msgid "Preparing Dasher…"
 msgstr "Dasher előkészítése…"
+
+msgid "Preview"
+msgstr "Előnézet"
 
 msgid "Privacy"
 msgstr "Magánélet"
@@ -475,11 +733,26 @@ msgstr "Magánélet"
 msgid "<b>Privacy</b>"
 msgstr "<b>Adatvédelem</b>"
 
+msgid "Quick speak"
+msgstr "Gyors beszéd"
+
+msgid "Rate"
+msgstr "Arány"
+
+msgid "Very Fast"
+msgstr "Nagyon gyors"
+
+msgid "Very Slow"
+msgstr "Nagyon lassú"
+
 msgid "Re-import from Dasher 5"
 msgstr "Újraimportálás a Dasher 5-ből"
 
 msgid "Read"
 msgstr "Elolvas"
+
+msgid "Re-anchor context"
+msgstr ""
 
 msgid "Release the pinch to pause"
 msgstr "Engedje el a csípést a szüneteltetéshez"
@@ -511,6 +784,12 @@ msgstr "Edzésadatok visszaállítása"
 msgid "Reset Training Data?"
 msgstr "Edzési adatok visszaállítása?"
 
+msgid "Reset WPM averages"
+msgstr "WPM átlagok visszaállítása"
+
+msgid "Restarting engine…"
+msgstr "A motor újraindítása…"
+
 msgid "Restore all Dasher settings to their default values. This cannot be undone."
 msgstr "Az összes Dasher-beállítás visszaállítása az alapértelmezett értékre. Ez a művelet nem vonható vissza."
 
@@ -523,8 +802,14 @@ msgstr "Mentés"
 msgid "Save..."
 msgstr "Megtakarítás..."
 
+msgid "Save eye-tracker diagnostics"
+msgstr "Szemkövető diagnosztika mentése"
+
 msgid "Save failed"
 msgstr "Mentés sikertelen"
+
+msgid "Save file"
+msgstr "Fájl mentése"
 
 msgid "Save Text File"
 msgstr "Mentés szöveges fájlba"
@@ -538,8 +823,14 @@ msgstr "Elmentve:"
 msgid "Scan Speed"
 msgstr "Szkennelési sebesség"
 
-msgid "service running? See the setup help on the Keyboard button for install commands."
+msgid "Select All"
 msgstr ""
+
+msgid "Selection Method"
+msgstr "Kiválasztási módszer"
+
+msgid "service running? See the setup help on the Keyboard button for install commands."
+msgstr "A szolgáltatás fut? Lásd a beállítási segítséget a Billentyűzet gombnál a telepítési parancsokhoz."
 
 msgid "Settings"
 msgstr "Beállítások"
@@ -559,14 +850,20 @@ msgstr "Visszaállítja az összes motorbeállítást a beépített alapértéke
 msgid "Settings (speed, colours, control mode, language model)"
 msgstr "Beállítások (sebesség, színek, vezérlési mód, nyelvi modell)"
 
+msgid "Settle time: {0} ms"
+msgstr "Beállítási idő: {0} ms"
+
 msgid "Share"
 msgstr "Részesedés"
 
 msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard "
-msgstr ""
+msgstr "Megosztja az anonim használati elemzéseket és a leállási jelentéseket? Nincs beírt szöveg, vágólap"
 
 msgid "Show Input Debug Overlay"
 msgstr "Beviteli hibakeresési átfedés megjelenítése"
+
+msgid "Show status bar"
+msgstr "Mutasd az állapotsort"
 
 msgid "Show typing rate (WPM)"
 msgstr "Gépelési sebesség (WPM) megjelenítése"
@@ -580,6 +877,12 @@ msgstr "Kihagyott fájlok"
 msgid "Slow"
 msgstr "Lassú"
 
+msgid "Speak on stop"
+msgstr "Beszélj megálláskor"
+
+msgid "Speak words"
+msgstr "Mondj szavakat"
+
 msgid "Speech"
 msgstr "Beszéd"
 
@@ -589,11 +892,17 @@ msgstr "Beszéd kikapcsolva"
 msgid "Speech on"
 msgstr "Beszéd a következőn:"
 
+msgid "Hello, this is a preview of the selected voice."
+msgstr "Helló, ez a kiválasztott hang előnézete."
+
 msgid "Speech Settings"
-msgstr ""
+msgstr "Beszédbeállítások"
 
 msgid "<b>Speech Settings</b>"
 msgstr "<b>Beszédbeállítások</b>"
+
+msgid "Speech volume"
+msgstr "Beszédhang hangereje"
 
 msgid "Speed"
 msgstr "Sebesség"
@@ -607,8 +916,20 @@ msgstr "Kalibrálás indítása"
 msgid "Start fresh"
 msgstr "Kezdj újra"
 
+msgid "Dasher failed to start:\n{0}"
+msgstr "A Dasher nem indult el:\n{0}"
+
+msgid "Steering Method"
+msgstr "Kormányzási módszer"
+
 msgid "Stop"
-msgstr ""
+msgstr "Állj"
+
+msgid "Stop speaking"
+msgstr "Ne beszélj"
+
+msgid "Switch Setup"
+msgstr "Kapcsoló beállítás"
 
 msgid "System"
 msgstr "Rendszer"
@@ -620,28 +941,40 @@ msgid "Text files"
 msgstr "Szövegfájlok"
 
 msgid "That file already is your training data."
-msgstr ""
+msgstr "Az a fájl már a képzési adatod."
 
 msgid "the app you are pointing at (needs ydotool)"
-msgstr ""
+msgstr "az alkalmazásra, amire mutatsz (ydotool szükséges)"
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 msgstr "A hibakeresési átfedés egy zöld panelt rajzol a vászon bal felső sarkába, amelyen látható az élő érintési események száma és az utolsó jelentett érték (x, y). Amikor összecsippenti és nyomva tartja az ujját, a touch.began, majd a touch.moved elemeket kell látnia változó koordinátákkal, miközben körülnéz."
 
 msgid "The file is too large (over 10 MB) to import as training text."
-msgstr ""
+msgstr "A fájl túl nagy (több mint 10 MB), hogy importálható legyen tréning szövegként."
 
 msgid "The selected file is empty."
-msgstr ""
+msgstr "A kiválasztott fájl üres."
 
 msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
-msgstr ""
+msgstr "Ez törli az összegyűjtött tanulási adatokat minden ábécére. A jóslatok továbbra is figyelembe veszik a nagyon friss gépelést."
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 msgstr "Ez törli a felhalmozott betanítási adatokat. A nyelvi modell a következő indításkor visszaáll a beépített alapértelmezett értékekre. Ez a művelet nem vonható vissza."
 
 msgid "Tilt Calibration"
 msgstr "Dőlésszög kalibrálása"
+
+msgid "Hold the device upright, then tilt forward and back"
+msgstr "Tartsd az eszközt függőlegesen, majd döntsd előre és hátra"
+
+msgid "Tilt left and right through the full range"
+msgstr "Dőlj jobbra és balra a teljes tartományban"
+
+msgid "Move slowly and smoothly through all positions"
+msgstr "Mozogj lassan és simán minden pozíción keresztül"
+
+msgid "Tilt Settings"
+msgstr "Dőlés beállítások"
 
 msgid "Tilt your device now..."
 msgstr "Döntse meg most a készülékét..."
@@ -650,10 +983,82 @@ msgid "Tilt your device through its full range of motion during calibration."
 msgstr "Kalibrálás közben döntse meg a készüléket teljes mozgástartományában."
 
 msgid "time under Preferences → Privacy."
-msgstr ""
+msgstr "idő a Beállítások → Adatvédelem alatt."
+
+msgid "Eye Tracker Error"
+msgstr "Szemkövető hiba"
+
+msgid "Eye tracker notice"
+msgstr "Szemkövető megjegyzés"
+
+msgid "The eye tracker could not be fully resumed ({0}). Tracking may run at reduced speed and accuracy — try running Dasher as administrator."
+msgstr "A szemkövetőt nem lehetett teljesen újraindítani ({0}). A követés csökkentett sebességgel és pontossággal futhat – próbálja meg rendszergazdaként futtatni a Dashert."
+
+msgid "Toggle control mode"
+msgstr "Váltás vezérlési módra"
+
+msgid "Toggle game mode"
+msgstr "Játék mód váltása"
+
+msgid "Toggle keyboard mode"
+msgstr "Váltás a billentyűzet mód között"
+
+msgid "Toggle pane position"
+msgstr "Váltás az ablaktábla pozíciója között"
+
+msgid "Hide/show status bar"
+msgstr "Állapotsáv elrejtése/megjelenítése"
 
 msgid "Copy all text"
-msgstr ""
+msgstr "Másoljon minden szöveget"
+
+msgid "Copy selection in target app"
+msgstr "Kijelölés másolása a célalkalmazásban"
+
+msgid "Cut selection in target app"
+msgstr "Kivágás a célalkalmazásban"
+
+msgid "Start game mode"
+msgstr "Játék mód indítása"
+
+msgid "New / clear output"
+msgstr "Új / tiszta kimenet"
+
+msgid "Open file"
+msgstr "Fájl megnyitása"
+
+msgid "Paste into target app"
+msgstr "Illessze be a célalkalmazásba"
+
+msgid "Re-anchor predictions to the caret (read the sentence around your cursor)"
+msgstr "Horgonozza újra az előrejelzéseket a kurzorhoz (olvassa el a mondatot a kurzor körül)"
+
+msgid "Save to file"
+msgstr "Mentés fájlba"
+
+msgid "Select all in target app"
+msgstr "Jelöljön ki mindent a célalkalmazásban"
+
+msgid "Open settings"
+msgstr "Nyisd meg a beállításokat"
+
+msgid "Share text"
+msgstr "Szöveg megosztása"
+
+msgid "eyetuitive"
+msgstr "szemtanús"
+
+msgid "Eye tracker"
+msgstr "Szemkövető"
+
+msgid "Tobii (Stream Engine)"
+msgstr "Tobii (folyammotor)"
+
+msgid "UDP Gaze Tracker (network)"
+msgstr "UDP Gaze Tracker (hálózat)"
+
+msgid "Windows Eye Tracker (native)"
+msgstr "Windows Eye Tracker (natív)"
 
 msgid "Training"
 msgstr "Edzés"
@@ -665,13 +1070,13 @@ msgid "Training Data"
 msgstr "Betanítási adatok"
 
 msgid "Training data deleted — restart Dasher to fully apply"
-msgstr ""
+msgstr "A képzési adatok törölve — indítsa újra a Dashert a teljes érvényesítéshez"
 
 msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
 msgstr "Az importálás szöveget ad a nyelvi modellhez és a felhalmozott edzési adatokhoz (az újraindítások során megőrzik). Az Exportálás menti az edzési adatokat biztonsági mentés vagy átvitel céljából. A visszaállítás törli az összes felhasználói képzési adatot – a modell a következő indításakor visszaáll a beépített alapértékeihez."
 
 msgid "Training data exported."
-msgstr ""
+msgstr "A képzési adatok exportálva."
 
 msgid "Export Training Data"
 msgstr "Képzési adatok exportálása"
@@ -689,7 +1094,7 @@ msgid "Imported {0} KB — applies fully on next launch (live model returned {1}
 msgstr "Importált {0} KB – a következő indításkor teljes mértékben érvényes (az élő modell visszaküldése: {1})"
 
 msgid "Training is not available yet — try again once the canvas has rendered."
-msgstr ""
+msgstr "A képzés még nem érhető el — próbálkozz újra, miután a vászon megjelent."
 
 msgid "Training data deleted — the model returns to its built-in defaults on next launch"
 msgstr "A képzési adatok törölve – a modell a következő indításkor visszaáll a beépített alapértékeihez"
@@ -697,26 +1102,62 @@ msgstr "A képzési adatok törölve – a modell a következő indításkor vis
 msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
 msgstr "A képzési adatok törölve, ahol lehetséges – {0} elem meghiúsult; az újrapróbálkozáshoz nyomja meg újra a Reset gombot"
 
+msgid "TTS Engine"
+msgstr "TTS motor"
+
+msgid "No credentials required"
+msgstr "Nincs szükség hitelesítő adatokra"
+
 msgid "Turbo"
 msgstr "Turbó"
 
 msgid "Typing into other applications needs access to /dev/uinput, which a sandboxed "
-msgstr ""
+msgstr "Más alkalmazásokba történő gépeléshez hozzáférés szükséges a /dev/uinput-hoz, ami egy sandboxolt"
 
 msgid "Typing rate"
 msgstr "Gépelési sebesség"
 
 msgid "{cps} cps · {wpm} wpm"
-msgstr ""
+msgstr "{cps} karakter/perc · {wpm} szó/perc"
+
+msgid "UDP Port"
+msgstr "UDP port"
+
+msgid "UDP tracker listens for STREAM_DATA or GazePoint messages"
+msgstr "Az UDP követő a STREAM_DATA vagy GazePoint üzenetekre figyel"
+
+msgid "Dasher {0} is available (you're running v{1}). Tap to download — disable in Settings > Privacy."
+msgstr "A Dasher {0} elérhető (a v{1} verziót futtatja). Koppintson a letöltéshez – tiltsa le a Beállítások > Adatvédelem menüpontban."
+
+msgid "Dasher update available"
+msgstr "Dasher frissítés elérhető"
 
 msgid "Use Dasher as your keyboard"
 msgstr "Használd a Dashert billentyűzetként"
+
+msgid "Voice"
+msgstr "Hang"
+
+msgid "{0} voices"
+msgstr "{0} hang"
+
+msgid "Volume"
+msgstr "Hangerő"
+
+msgid "Dasher Warning"
+msgstr "Dasher Figyelmeztetés"
 
 msgid "We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
 msgstr "Megtaláltuk a Dasher 5 konfigurációdat ezen a Mac gépen. Az ábécé, a színek, a sebességbeállítások és az egyéni fájlok importálhatók a Dasher 6-ba."
 
 msgid "What was found"
 msgstr "Mit találtak"
+
+msgid "{0} wpm"
+msgstr "{0} wpm"
+
+msgid "max {0}"
+msgstr "max. {0}"
 
 msgid "X range:"
 msgstr "X tartomány:"
@@ -728,7 +1169,7 @@ msgid "ydotool found. Keyboard mode is ready."
 msgstr "ydotool található. A billentyűzet mód készen áll."
 
 msgid "ydotool still isn't available. Make sure it's installed and the ydotool service is running."
-msgstr ""
+msgstr "Az ydotool még mindig nem elérhető. Győződj meg róla, hogy telepítve van, és az ydotool szolgáltatás fut."
 
 msgid "You can import later in Settings > Privacy & Migration"
 msgstr "Később importálhatja a Beállítások > Adatvédelem és migrálás menüpontban."

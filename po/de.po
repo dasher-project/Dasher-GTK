@@ -14,13 +14,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "%1$.1f cps · %2$d wpm"
-msgstr ""
+msgstr "%1$.1f cps · %2$d wpm"
 
 msgid "A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
 msgstr "Ein Absturzbericht wurde unter ~/Library/Logs/DiagnosticReports/Dasher-*.ips gespeichert. Wenn Sie es in einem GitHub-Problem teilen können, hilft es uns, den Fehler zu beheben."
 
 msgid "About"
 msgstr "Über"
+
+msgid "Dasher {0}"
+msgstr "Dasher {0}"
 
 msgid "Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
 msgstr "Akzeptieren Sie Hover-/Zeigerereignisse als Dasher-Eingabe. Aktivieren Sie Eye-Tracking oder externe Zeiger."
@@ -34,6 +37,12 @@ msgstr "Barrierefreiheitsgenehmigung erforderlich"
 msgid "Adapt Speed Automatically"
 msgstr "Geschwindigkeit automatisch anpassen"
 
+msgid "Advanced logging"
+msgstr "Erweiterte Protokollierung"
+
+msgid "Detailed diagnostic logging for bug reports (per-sample eye-tracker lines, keystroke traces, UIA reads). Basic connection events are always logged. May generate large log files."
+msgstr "Detailliertes diagnostisches Logging für Fehlerberichte (probenweise Eye-Tracker-Zeilen, Tastaturanschlagsprotokolle, UIA-Lesevorgänge). Grundlegende Verbindungsereignisse werden immer protokolliert. Kann große Protokolldateien erzeugen."
+
 msgid "Advanced settings"
 msgstr "Erweiterte Einstellungen"
 
@@ -41,13 +50,13 @@ msgid "All Dasher settings will be restored to their default values. This cannot
 msgstr "Alle Dasher-Einstellungen werden auf ihre Standardwerte zurückgesetzt. Dies kann nicht rückgängig gemacht werden."
 
 msgid "Alphabet"
-msgstr ""
+msgstr "Alphabet"
 
 msgid "Help improve Dasher"
 msgstr "Helfen Sie, Dasher zu verbessern"
 
 msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
-msgstr ""
+msgstr "Anonyme Nutzungsanalysen und Absturzberichte teilen? Es werden niemals getippte Texte, Zwischenablageinhalte oder persönliche Informationen gesammelt. Sie können dies jederzeit in den Einstellungen ändern."
 
 msgid "Not now"
 msgstr "Nicht jetzt"
@@ -55,11 +64,20 @@ msgstr "Nicht jetzt"
 msgid "Share anonymous analytics and crash reports"
 msgstr "Anonyme Analysen und Absturzberichte teilen"
 
+msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
+msgstr "Dasher sammelt anonyme, datenschutzfreundliche Analysen, um Nutzungsmuster zu verstehen und Abstürze zu beheben. Es werden niemals eingegebene Texte, Inhalte der Zwischenablage oder persönliche Informationen gesammelt.\n\nSie können dies jederzeit unter Einstellungen > Datenschutz ändern."
+
 msgid "Reset analytics ID"
 msgstr "Auswertungen zurücksetzen"
 
+msgid "Dasher collects anonymous usage analytics and crash reports to understand how the app is used and to fix bugs. No typed text, clipboard contents, or personal information is ever collected."
+msgstr "Dasher sammelt anonyme Nutzungsanalysen und Absturzberichte, um zu verstehen, wie die App verwendet wird, und um Fehler zu beheben. Es werden niemals eingegebene Texte, Zwischenablageninhalte oder persönliche Informationen gesammelt."
+
 msgid "Help improve Dasher?"
-msgstr ""
+msgstr "Helfen, Dasher zu verbessern?"
+
+msgid "Anonymous ID: {0}"
+msgstr "Anonyme ID: {0}"
 
 msgid "Anonymous usage analytics"
 msgstr "Anonyme Nutzungsanalyse"
@@ -73,8 +91,23 @@ msgstr "Verweildauer auf App-Ebene zur Auswahl"
 msgid "Dasher"
 msgstr ""
 
+msgid "Appearance"
+msgstr "Erscheinung"
+
+msgid "Left"
+msgstr "Links"
+
+msgid "Move caret left (hold to repeat)"
+msgstr "Bewegen Sie den Cursor nach links (gedrückt halten zum Wiederholen)"
+
+msgid "Right"
+msgstr "Rechts"
+
+msgid "Move caret right (hold to repeat)"
+msgstr "Bewegen Sie den Cursor nach rechts (gedrückt halten zum Wiederholen)"
+
 msgid "Auto"
-msgstr ""
+msgstr "Automatisch"
 
 msgid "Auto-Centre Target"
 msgstr "Ziel automatisch zentrieren"
@@ -85,11 +118,26 @@ msgstr "Automatische Auswahl nach dem Fixieren. Nur aktivieren, wenn die Betrieb
 msgid "Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
 msgstr "Automatische Auswahl, nachdem Sie Ihren Blick beim Kneifen fixiert haben. Nur aktivieren, wenn die Betriebssystem-Verweildauer ausgeschaltet ist."
 
+msgid "Back"
+msgstr "Zurück"
+
+msgid "Del"
+msgstr "löschen"
+
+msgid "Delete (hold to repeat)"
+msgstr "Löschen (gedrückt halten zum Wiederholen)"
+
+msgid "Calibrate Tilt"
+msgstr "Neigung kalibrieren"
+
 msgid "Cancel"
 msgstr "Stornieren"
 
 msgid "Check Again"
 msgstr "Überprüfen Sie es erneut"
+
+msgid "Check for updates"
+msgstr ""
 
 msgid "Choose..."
 msgstr "Wählen..."
@@ -100,23 +148,41 @@ msgstr "Wählen Sie Datei..."
 msgid "Clear"
 msgstr "Klar"
 
+msgid "Clear logs"
+msgstr "Protokolle löschen"
+
 msgid "Click to set up keyboard mode (needs ydotool)"
 msgstr "Klicken Sie hier, um den Tastaturmodus einzurichten (benötigt ydotool)"
 
 msgid "Close"
 msgstr "Schließen"
 
+msgid "Close settings"
+msgstr "Einstellungen schließen"
+
 msgid "Colour Theme"
 msgstr "Farbthema"
 
 msgid "contents or personal information is ever collected. You can change this any "
-msgstr ""
+msgstr "Inhalte oder persönliche Informationen werden jemals gesammelt. Sie können dies jederzeit ändern"
+
+msgid "Control"
+msgstr "Kontrolle"
+
+msgid "Control mode: enabled"
+msgstr "Steuermodus: aktiviert"
+
+msgid "Control mode"
+msgstr "Kontrollmodus"
+
+msgid "Control nodes: move, delete, clear, speak, pause"
+msgstr "Steuerknoten: verschieben, löschen, löschen, sprechen, pausieren"
 
 msgid "Copied to clipboard."
 msgstr "In die Zwischenablage kopiert."
 
 msgid "Copy"
-msgstr "Ausfertigung"
+msgstr "Kopieren"
 
 msgid "Copy all"
 msgstr "Alles kopieren"
@@ -124,29 +190,38 @@ msgstr "Alles kopieren"
 msgid "Copy All"
 msgstr "Alles kopieren"
 
+msgid "Copy all (to clipboard)"
+msgstr "Alles kopieren (in die Zwischenablage)"
+
 msgid "Copy commands"
 msgstr "Befehle kopieren"
 
+msgid "Copy selection"
+msgstr "Auswahl kopieren"
+
 msgid "Could not load the file into the engine"
-msgstr ""
+msgstr "Die Datei konnte nicht in die Engine geladen werden"
 
 msgid "Could not open the selected file."
-msgstr ""
+msgstr "Die ausgewählte Datei konnte nicht geöffnet werden."
 
 msgid "Could not read the selected file."
-msgstr ""
+msgstr "Die ausgewählte Datei konnte nicht gelesen werden."
 
 msgid "Could not sync your edit with the engine — it may be overwritten"
-msgstr ""
+msgstr "Konnte Ihre Bearbeitung nicht mit der Engine synchronisieren — sie könnte überschrieben werden"
 
 msgid "Could not write the export file."
-msgstr ""
+msgstr "Die Exportdatei konnte nicht geschrieben werden."
 
 msgid "Could not write the training data."
-msgstr ""
+msgstr "Konnte die Trainingsdaten nicht schreiben."
 
 msgid "Current Calibration"
 msgstr "Aktuelle Kalibrierung"
+
+msgid "{0} custom file(s)"
+msgstr "{0} benutzerdefinierte Datei(en)"
 
 msgid "Customization"
 msgstr "Anpassung"
@@ -156,6 +231,21 @@ msgstr "Dunkel"
 
 msgid "Dasher "
 msgstr "Dasher"
+
+msgid "We found your Dasher 5 configuration"
+msgstr "Wir haben Ihre Dasher 5-Konfiguration gefunden"
+
+msgid "Dasher 5 Import"
+msgstr "Dasher 5 Import"
+
+msgid "Would you like to import these settings into Dasher 6?"
+msgstr "Möchten Sie diese Einstellungen in Dasher 6 importieren?"
+
+msgid "No Dasher 5 data found on this computer."
+msgstr "Keine Dasher 5-Daten auf diesem Computer gefunden."
+
+msgid "Dasher 5 settings found"
+msgstr "Dasher 5 Einstellungen gefunden"
 
 msgid "Dasher 5 data detected on this Mac."
 msgstr "Dasher 5-Daten wurden auf diesem Mac erkannt."
@@ -169,8 +259,8 @@ msgstr "Dasher funktioniert auch als Systemtastatur, sodass Sie in jeder App sch
 msgid "Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
 msgstr "Dasher sammelt anonyme Analysen, um die Nutzung zu verstehen und Abstürze zu beheben. Es werden niemals getippter Text, Zwischenablage oder persönliche Daten erfasst. Sehen Sie sich das offene Ereignisschema unter github.com/dasher-project/Dasher-Apple an."
 
-msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
-msgstr "Dasher sammelt anonyme, die Privatsphäre respektierende Analysen, um Nutzungsmuster zu verstehen und Abstürze zu beheben. Es werden niemals getippter Text, Inhalte der Zwischenablage oder persönliche Informationen erfasst.\n\nSie können dies jederzeit unter Einstellungen > Datenschutz ändern."
+msgid "Dasher Engine Error"
+msgstr "Dasher-Motorfehler"
 
 msgid "Dasher Keyboard"
 msgstr "Dasher-Tastatur"
@@ -188,16 +278,28 @@ msgid "Dasher quit unexpectedly"
 msgstr "Dasher gab unerwartet auf"
 
 msgid "Dasher v6"
-msgstr ""
+msgstr "Dasher v6"
 
 msgid "<big><b>Dasher v6</b></big>\n"
 msgstr "<big><b>Dasher v6</b></big>\n"
+
+msgid "Dead zone: {0} px"
+msgstr "Toter Bereich: {0} px"
 
 msgid "Decrease Speed"
 msgstr "Geschwindigkeit verringern"
 
 msgid "Default"
 msgstr "Standard"
+
+msgid "Alphabet: {0}"
+msgstr "Alphabet: {0}"
+
+msgid "Colour: {0}"
+msgstr "Farbe: {0}"
+
+msgid "Speed: {0}"
+msgstr "Geschwindigkeit: {0}"
 
 msgid "Diagnostics"
 msgstr "Diagnose"
@@ -209,7 +311,10 @@ msgid "Done"
 msgstr "Erledigt"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
-msgstr ""
+msgstr "Schweben Sie an einer Stelle, um einen Klick auszulösen, anstatt eine Taste oder einen Schalter zu drücken."
+
+msgid "Dwell Duration"
+msgstr "Aufenthaltsdauer"
 
 msgid "Dwell to click"
 msgstr "Verweilen zum Klicken"
@@ -220,11 +325,50 @@ msgstr "Aktivieren Sie Dasher unter Einstellungen → Allgemein → Tastatur →
 msgid "Enable tilt input first to access calibration."
 msgstr "Aktivieren Sie zunächst die Neigungseingabe, um auf die Kalibrierung zuzugreifen."
 
+msgid "Dasher could not start"
+msgstr "Dasher konnte nicht starten"
+
+msgid "Engine Error"
+msgstr "Motorausfall"
+
+msgid "The Dasher engine encountered an internal error and has stopped. Please restart Dasher."
+msgstr "Die Dasher-Engine ist auf einen internen Fehler gestoßen und wurde gestoppt. Bitte starten Sie Dasher neu."
+
+msgid "Please try reinstalling, or report this in a GitHub issue."
+msgstr "Bitte versuchen Sie, die Software neu zu installieren, oder melden Sie dies in einem GitHub-Issue."
+
+msgid "Engine Speech Features"
+msgstr "Motor-Sprachfunktionen"
+
+msgid "Error: {0}"
+msgstr "Fehler: {0}"
+
+msgid "Error loading settings: {0}"
+msgstr "Fehler beim Laden der Einstellungen: {0}"
+
+msgid "Exit"
+msgstr "Beenden"
+
 msgid "Export Training Text"
 msgstr "Trainingstext exportieren"
 
 msgid "Eye Gaze"
 msgstr "Blick in die Augen"
+
+msgid "Could not connect to eye tracker on startup. Check the device and try re-selecting it in Settings > Input."
+msgstr "Beim Start konnte keine Verbindung zum Eyetracker hergestellt werden. Überprüfen Sie das Gerät und versuchen Sie, es unter Einstellungen > Eingabe erneut auszuwählen."
+
+msgid "Eye Tracker Device"
+msgstr "Augen-Tracker-Gerät"
+
+msgid "Could not connect to {0}. Check the device is connected and drivers are installed."
+msgstr "Es konnte keine Verbindung zu {0} hergestellt werden. Überprüfen Sie, ob das Gerät angeschlossen ist und die Treiber installiert sind."
+
+msgid "Could not connect to {0}. Make sure tobii_stream_engine.dll is installed and a Tobii device is connected."
+msgstr "Konnte keine Verbindung zu {0} herstellen. Stellen Sie sicher, dass tobii_stream_engine.dll installiert ist und ein Tobii-Gerät angeschlossen ist."
+
+msgid "Detailed tracking log for bug reports (per-sample lines, written to eyegaze.log in the Dasher folder). Basic connection events are always logged."
+msgstr "Detailliertes Verfolgungsprotokoll für Fehlerberichte (pro Musterzeilen, geschrieben in eyegaze.log im Dasher-Ordner). Grundlegende Verbindungsereignisse werden immer protokolliert."
 
 msgid "Failed to open: "
 msgstr "Öffnen fehlgeschlagen"
@@ -236,10 +380,16 @@ msgid "Fast"
 msgstr "Schnell"
 
 msgid "File truncated at 4 MB — only the first part is loaded"
-msgstr ""
+msgstr "Datei bei 4 MB abgeschnitten — nur der erste Teil wird geladen"
+
+msgid "Normal Control"
+msgstr "Normale Kontrolle"
+
+msgid "Smoothing Mode"
+msgstr "Glättungsmodus"
 
 msgid "Flatpak or AppImage build can't provide.\n\n"
-msgstr ""
+msgstr "Flatpak- oder AppImage-Build kann nicht bereitgestellt werden.\n\n"
 
 msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
 msgstr "Um die Tastatur schweben zu lassen, erlauben Sie Dasher, über anderen Apps anzuzeigen, und tippen Sie dann erneut auf Float."
@@ -253,14 +403,26 @@ msgstr "Spielmodus"
 msgid "Game Mode"
 msgstr "Spielmodus"
 
+msgid "Game On"
+msgstr "Spiel startklar"
+
 msgid "Game Text File"
 msgstr "Spieltextdatei"
+
+msgid "Reduces zoom toward wrong positions while your eyes move to a target"
+msgstr "Reduziert das Zoomen auf falsche Positionen, während Ihre Augen sich auf ein Ziel bewegen"
+
+msgid "Filter gaze (reduces zoom toward wrong positions during eye transit)"
+msgstr "Blick filtern (reduziert das Zoomen zu falschen Positionen während der Augenbewegung)"
+
+msgid "Gaze Smoothing"
+msgstr "Blickglättung"
 
 msgid "Got it"
 msgstr "Habe es"
 
 msgid "GTK Edition"
-msgstr ""
+msgstr "GTK-Ausgabe"
 
 msgid "Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
 msgstr "Durch den Import wird Text zum Sprachmodell hinzugefügt (an vorhandene Lerninhalte angehängt). Beim Exportieren werden Ihre gesammelten Trainingsdaten zur Sicherung oder Übertragung gespeichert. Beim Zurücksetzen werden benutzerdefinierte Trainingsdaten gelöscht – das Modell kehrt beim nächsten Start zu seinen integrierten Standardeinstellungen zurück."
@@ -275,10 +437,10 @@ msgid "Import Training Text"
 msgstr "Trainingstext importieren"
 
 msgid "Imported %1 — applies fully on next launch"
-msgstr ""
+msgstr "Importiert %1 — wird beim nächsten Start vollständig angewendet"
 
 msgid "Imported %1 of training text"
-msgstr ""
+msgstr "Importiert %1 des Trainingsmaterials"
 
 msgid "Increase Speed"
 msgstr "Geschwindigkeit erhöhen"
@@ -286,8 +448,47 @@ msgstr "Geschwindigkeit erhöhen"
 msgid "Input"
 msgstr "Eingang"
 
+msgid "Active engine input filter (set via Selection Method or advanced settings)"
+msgstr "Aktiver Engine-Eingangsfilter (über Auswahlmethode oder erweiterte Einstellungen festgelegt)"
+
+msgid "Managed by the engine — change via the Selection Method setting"
+msgstr "Von der Engine verwaltet – Änderung über die Einstellung „Auswahlmethode“."
+
+msgid "Direct pointer — minimal processing"
+msgstr "Direkter Zeiger – minimale Verarbeitung"
+
+msgid "No filtering — for clean input devices"
+msgstr "Keine Filterung – für saubere Eingabegeräte"
+
+msgid "Input smoothing — reduces jitter for noisy input (eye gaze, head tracking)"
+msgstr "Eingabeglättung – reduziert Jitter bei verrauschten Eingaben (Augenblick, Kopfverfolgung)"
+
+msgid "Dampens small pointer movements for a steadier zoom"
+msgstr "Dämpft kleine Zeigerbewegungen für einen gleichmäßigeren Zoom"
+
+msgid "Standard continuous control (default)"
+msgstr "Standardmäßige kontinuierliche Steuerung (Standard)"
+
+msgid "The standard steering method — move the pointer to zoom"
+msgstr "Die Standardsteuerungsmethode: Bewegen Sie den Zeiger zum Zoomen"
+
+msgid "Joystick / gamepad (deflect a stick to steer)"
+msgstr "Joystick / Gamepad (durch Bewegen eines Sticks zum Steuern)"
+
+msgid "Tilt (hold the device, tilt to steer)"
+msgstr "Neigen (Gerät festhalten, zum Steuern neigen)"
+
+msgid "Input method"
+msgstr "Eingabemethode"
+
+msgid "Touch (drag on the canvas)"
+msgstr "Berühren (über die Leinwand ziehen)"
+
+msgid "Input Processing"
+msgstr "Eingabeverarbeitung"
+
 msgid "Install Dasher via your package manager or build from source to use keyboard mode."
-msgstr ""
+msgstr "Installiere Dasher über deinen Paketmanager oder baue es aus dem Quellcode, um den Tastaturmodus zu verwenden."
 
 msgid "<b>Install ydotool to use keyboard mode</b>"
 msgstr "<b>Installieren Sie ydotool, um den Tastaturmodus zu verwenden</b>"
@@ -296,19 +497,19 @@ msgid "isn't installed. Run these commands, then press Retry:"
 msgstr "ist nicht installiert. Führen Sie diese Befehle aus und drücken Sie dann Wiederholen:"
 
 msgid "Keyboard"
-msgstr ""
+msgstr "Tastatur"
 
 msgid "_Keyboard"
 msgstr "Tastatur"
 
 msgid "Type Dasher's output straight into the app you are pointing at"
-msgstr ""
+msgstr "Geben Sie Dashers Ausgabe direkt in die App ein, auf die Sie zeigen"
 
 msgid "Exit keyboard mode"
 msgstr "Tastaturmodus beenden"
 
 msgid "Keyboard mode: hide the output pane and type Dasher's text straight into "
-msgstr ""
+msgstr "Tastaturmodus: Die Ausgabefläche ausblenden und Dashers Text direkt eingeben"
 
 msgid "<b>Keyboard mode isn't available in this build</b>"
 msgstr "<b>Der Tastaturmodus ist in diesem Build nicht verfügbar</b>"
@@ -317,7 +518,7 @@ msgid "Keyboard mode opacity"
 msgstr "Deckkraft im Tastaturmodus"
 
 msgid "Keyboard mode stopped"
-msgstr ""
+msgstr "Tastaturmodus gestoppt"
 
 msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
 msgstr "Tastaturmodus gestoppt: ydotool konnte keinen Text injizieren. Ist der ydotoold"
@@ -325,14 +526,20 @@ msgstr "Tastaturmodus gestoppt: ydotool konnte keinen Text injizieren. Ist der y
 msgid "Enable Keyboard Mode"
 msgstr "Tastaturmodus aktivieren"
 
+msgid "Window transparency when in Keyboard/Direct mode"
+msgstr "Fenstertransparenz im Tastatur-/Direktmodus"
+
 msgid "Keyboard mode types Dasher's output into other applications using ydotool, which "
-msgstr ""
+msgstr "Die Tastaturmodus-Typen leiten Dashers Ausgabe mit ydotool in andere Anwendungen weiter, was"
+
+msgid "(Default)"
+msgstr "(Standard)"
 
 msgid "Language"
-msgstr ""
+msgstr "Sprache"
 
 msgid "Language / Locale"
-msgstr ""
+msgstr "Sprache / Gebietsschema"
 
 msgid "<b>Language / Locale</b>"
 msgstr "Sprache lokal"
@@ -355,20 +562,35 @@ msgstr "Spitze"
 msgid "Learning"
 msgstr "Lernen"
 
+msgid "Leave"
+msgstr "Verlassen"
+
 msgid "Leave game mode"
 msgstr "Spielmodus verlassen"
 
 msgid "Light"
 msgstr "Licht"
 
+msgid "Load Voices"
+msgstr "Stimmen laden"
+
 msgid "Loaded %1 characters"
-msgstr ""
+msgstr "Geladene %1 Zeichen"
+
+msgid "Loading…"
+msgstr "Wird geladen…"
 
 msgid "Locale"
 msgstr "Locale (auch: Gebietsschema)"
 
 msgid "Migration"
-msgstr ""
+msgstr "Migration"
+
+msgid "More"
+msgstr "Mehr"
+
+msgid "More options"
+msgstr "Weitere Optionen"
 
 msgid "Move your eyes while pinching to steer"
 msgstr "Bewegen Sie Ihre Augen, während Sie zum Lenken kneifen"
@@ -376,8 +598,14 @@ msgstr "Bewegen Sie Ihre Augen, während Sie zum Lenken kneifen"
 msgid "New"
 msgstr "Neu"
 
+msgid "New document"
+msgstr "Neues Dokument"
+
 msgid "New Message"
 msgstr "Neue Nachricht"
+
+msgid "New session (clear text and context)"
+msgstr "Neue Sitzung (Text und Kontext löschen)"
 
 msgid "No Dasher 5 data found on this Mac."
 msgstr "Auf diesem Mac wurden keine Dasher 5-Daten gefunden."
@@ -386,13 +614,16 @@ msgid "No settings available for this section."
 msgstr "Für diesen Abschnitt sind keine Einstellungen verfügbar."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
-msgstr ""
+msgstr "Keine Sprachausgabe verfügbar. Erstellen Sie es mit der systemeigenen TTS-Funktion oder richten Sie eine Cloud-Stimme in den Einstellungen ein."
 
 msgid "No training data to export yet"
-msgstr ""
+msgstr "Noch keine Trainingsdaten zum Exportieren vorhanden"
 
 msgid "No user training data yet"
-msgstr ""
+msgstr "Noch keine Benutzerschulungsdaten"
+
+msgid "No voices found"
+msgstr "Keine Stimmen gefunden"
 
 msgid "Nothing to save"
 msgstr "Nichts zu retten"
@@ -401,13 +632,13 @@ msgid "Nothing to share"
 msgstr "Nichts zu teilen"
 
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 msgid "On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
 msgstr "Drücken Sie unter visionOS die Leinwand zusammen und halten Sie sie gedrückt, um mit dem Schreiben zu beginnen. Schauen Sie sich um, während Sie zusammenziehen, um zu steuern, und lassen Sie sie los, um zu pausieren. Das Eingabemodell ist Pinch-and-Look."
 
 msgid "Open"
-msgstr "auf"
+msgstr "Öffnen"
 
 msgid "Open..."
 msgstr "Offen..."
@@ -430,17 +661,23 @@ msgstr "Textdatei öffnen"
 msgid "Output"
 msgstr "Leistung"
 
+msgid "Output Font"
+msgstr "Ausgabe-Schriftart"
+
 msgid "Output Font Size"
 msgstr "Ausgabeschriftgröße"
 
 msgid "Touch the canvas to start writing."
 msgstr "Berühre die Leinwand, um mit dem Schreiben zu beginnen."
 
+msgid "Pane position"
+msgstr "Fensterposition"
+
 msgid "Paste"
-msgstr ""
+msgstr "Einfügen"
 
 msgid "Pause"
-msgstr ""
+msgstr "Pause"
 
 msgid "Pause When Looking Away"
 msgstr "Halten Sie inne, wenn Sie wegschauen"
@@ -451,8 +688,26 @@ msgstr "Drücken und halten Sie zum Starten eine beliebige Stelle auf der Leinwa
 msgid "Pinch and Look to Write"
 msgstr "Kneifen und schauen Sie, um zu schreiben"
 
+msgid "Pitch"
+msgstr "Tonhöhe"
+
+msgid "High"
+msgstr "Hoch"
+
+msgid "Low"
+msgstr "Niedrig"
+
+msgid "Medium"
+msgstr "Medium"
+
+msgid "Very High"
+msgstr "Sehr hoch"
+
+msgid "Very Low"
+msgstr "Sehr niedrig"
+
 msgid "Game"
-msgstr ""
+msgstr "Spiel"
 
 msgid "Play"
 msgstr "Spielen"
@@ -461,13 +716,16 @@ msgid "Pointer Hover Input"
 msgstr "Zeiger-Hover-Eingabe"
 
 msgid "Preferences"
-msgstr ""
+msgstr "Einstellungen"
 
 msgid "Prefs"
-msgstr ""
+msgstr "Einstellungen"
 
 msgid "Preparing Dasher…"
 msgstr "Dasher wird vorbereitet…"
+
+msgid "Preview"
+msgstr "Vorschau"
 
 msgid "Privacy"
 msgstr "Privatsphäre"
@@ -475,11 +733,26 @@ msgstr "Privatsphäre"
 msgid "<b>Privacy</b>"
 msgstr "<b>Datenschutz</b>"
 
+msgid "Quick speak"
+msgstr "Schnell sprechen"
+
+msgid "Rate"
+msgstr "Rate"
+
+msgid "Very Fast"
+msgstr "Sehr schnell"
+
+msgid "Very Slow"
+msgstr "Sehr langsam"
+
 msgid "Re-import from Dasher 5"
 msgstr "Reimport aus Dasher 5"
 
 msgid "Read"
 msgstr "Ablesen"
+
+msgid "Re-anchor context"
+msgstr ""
 
 msgid "Release the pinch to pause"
 msgstr "Lassen Sie die Taste los, um zu pausieren"
@@ -511,6 +784,12 @@ msgstr "Trainingsdaten zurücksetzen"
 msgid "Reset Training Data?"
 msgstr "Trainingsdaten zurücksetzen?"
 
+msgid "Reset WPM averages"
+msgstr "WPM-Durchschnitte zurücksetzen"
+
+msgid "Restarting engine…"
+msgstr "Motor wird neu gestartet…"
+
 msgid "Restore all Dasher settings to their default values. This cannot be undone."
 msgstr "Setzen Sie alle Dasher-Einstellungen auf ihre Standardwerte zurück. Dies kann nicht rückgängig gemacht werden."
 
@@ -523,8 +802,14 @@ msgstr "Speichern"
 msgid "Save..."
 msgstr "Speichern..."
 
+msgid "Save eye-tracker diagnostics"
+msgstr "Augen-Tracker-Diagnose speichern"
+
 msgid "Save failed"
 msgstr "Speichern fehlgeschlagen"
+
+msgid "Save file"
+msgstr "Datei speichern"
 
 msgid "Save Text File"
 msgstr "Speicher als Text Datei"
@@ -538,8 +823,14 @@ msgstr "Gespeichert:"
 msgid "Scan Speed"
 msgstr "Scangeschwindigkeit"
 
-msgid "service running? See the setup help on the Keyboard button for install commands."
+msgid "Select All"
 msgstr ""
+
+msgid "Selection Method"
+msgstr "Auswahlverfahren"
+
+msgid "service running? See the setup help on the Keyboard button for install commands."
+msgstr "Läuft der Dienst? Siehe die Einrichtungshilfe auf der Tastaturtaste für Installationsbefehle."
 
 msgid "Settings"
 msgstr "Einstellungen"
@@ -559,14 +850,20 @@ msgstr "Alle Motoreinstellungen auf ihre eingebauten Standardeinstellungen zurü
 msgid "Settings (speed, colours, control mode, language model)"
 msgstr "Einstellungen (Geschwindigkeit, Farben, Steuermodus, Sprachmodell)"
 
+msgid "Settle time: {0} ms"
+msgstr "Einschwingzeit: {0} ms"
+
 msgid "Share"
 msgstr "Aktie"
 
 msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard "
-msgstr ""
+msgstr "Anonyme Nutzungsanalysen und Absturzberichte teilen? Keine eingegebenen Texte, keine Zwischenablage"
 
 msgid "Show Input Debug Overlay"
 msgstr "Eingabe-Debug-Overlay anzeigen"
+
+msgid "Show status bar"
+msgstr "Statusleiste anzeigen"
 
 msgid "Show typing rate (WPM)"
 msgstr "Tipprate anzeigen (WPM)"
@@ -580,6 +877,12 @@ msgstr "Übersprungene Dateien"
 msgid "Slow"
 msgstr "Langsam"
 
+msgid "Speak on stop"
+msgstr "Sprich auf Stopp"
+
+msgid "Speak words"
+msgstr "Sprich Worte"
+
 msgid "Speech"
 msgstr "Rede"
 
@@ -589,11 +892,17 @@ msgstr "Rede aus"
 msgid "Speech on"
 msgstr "Rede weiter"
 
+msgid "Hello, this is a preview of the selected voice."
+msgstr "Hallo, dies ist eine Vorschau der ausgewählten Stimme."
+
 msgid "Speech Settings"
-msgstr ""
+msgstr "Spracheinstellungen"
 
 msgid "<b>Speech Settings</b>"
 msgstr "<b>Spracheinstellungen</b>"
+
+msgid "Speech volume"
+msgstr "Sprechlautstärke"
 
 msgid "Speed"
 msgstr "Geschwindigkeit"
@@ -607,11 +916,23 @@ msgstr "Beginnen Sie mit der Kalibrierung"
 msgid "Start fresh"
 msgstr "Fangen Sie neu an"
 
+msgid "Dasher failed to start:\n{0}"
+msgstr "Dasher konnte nicht starten:\n{0}"
+
+msgid "Steering Method"
+msgstr "Lenkmethode"
+
 msgid "Stop"
 msgstr "Stoppen"
 
+msgid "Stop speaking"
+msgstr "Hör auf zu sprechen"
+
+msgid "Switch Setup"
+msgstr "Schaltereinrichtung"
+
 msgid "System"
-msgstr ""
+msgstr "System"
 
 msgid "text"
 msgstr "Text"
@@ -620,28 +941,40 @@ msgid "Text files"
 msgstr "Textdateien"
 
 msgid "That file already is your training data."
-msgstr ""
+msgstr "Diese Datei ist bereits Ihre Trainingsdaten."
 
 msgid "the app you are pointing at (needs ydotool)"
-msgstr ""
+msgstr "die App, auf die du zeigst (benötigt ydotool)"
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
 msgstr "Das Debug-Overlay zeichnet oben links auf der Leinwand ein grünes Feld, das die Anzahl der Live-Touch-Ereignisse und die zuletzt gemeldeten Ereignisse (x, y) anzeigt. Wenn Sie die Finger zusammenziehen und gedrückt halten, sollten Sie „touch.began“ und dann „touch.moved“ sehen, wobei sich die Koordinaten ändern, während Sie sich umschauen."
 
 msgid "The file is too large (over 10 MB) to import as training text."
-msgstr ""
+msgstr "Die Datei ist zu groß (über 10 MB), um sie als Trainingsmaterial zu importieren."
 
 msgid "The selected file is empty."
-msgstr ""
+msgstr "Die ausgewählte Datei ist leer."
 
 msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
-msgstr ""
+msgstr "Dies löscht Ihre gesammelten Trainingsdaten für jeden Buchstaben. Vorhersagen behalten den Einfluss des sehr aktuellen Tippens bei."
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
 msgstr "Dadurch werden Ihre gesammelten Trainingsdaten gelöscht. Das Sprachmodell wird beim nächsten Start auf die integrierten Standardeinstellungen zurückgesetzt. Dies kann nicht rückgängig gemacht werden."
 
 msgid "Tilt Calibration"
 msgstr "Neigungskalibrierung"
+
+msgid "Hold the device upright, then tilt forward and back"
+msgstr "Halten Sie das Gerät aufrecht, neigen Sie es dann nach vorne und hinten"
+
+msgid "Tilt left and right through the full range"
+msgstr "Nach links und rechts durch den gesamten Bereich neigen"
+
+msgid "Move slowly and smoothly through all positions"
+msgstr "Bewege dich langsam und geschmeidig durch alle Positionen"
+
+msgid "Tilt Settings"
+msgstr "Neigeeinstellungen"
 
 msgid "Tilt your device now..."
 msgstr "Neigen Sie Ihr Gerät jetzt..."
@@ -650,10 +983,82 @@ msgid "Tilt your device through its full range of motion during calibration."
 msgstr "Neigen Sie Ihr Gerät während der Kalibrierung über den gesamten Bewegungsbereich."
 
 msgid "time under Preferences → Privacy."
-msgstr ""
+msgstr "Zeit unter Einstellungen → Datenschutz."
+
+msgid "Eye Tracker Error"
+msgstr "Eye-Tracker-Fehler"
+
+msgid "Eye tracker notice"
+msgstr "Hinweis zum Eyetracker"
+
+msgid "The eye tracker could not be fully resumed ({0}). Tracking may run at reduced speed and accuracy — try running Dasher as administrator."
+msgstr "Der Eyetracker konnte nicht vollständig fortgesetzt werden ({0}). Das Tracking läuft möglicherweise mit reduzierter Geschwindigkeit und Genauigkeit ab – versuchen Sie, Dasher als Administrator auszuführen."
+
+msgid "Toggle control mode"
+msgstr "Steuermodus umschalten"
+
+msgid "Toggle game mode"
+msgstr "Spielmodus umschalten"
+
+msgid "Toggle keyboard mode"
+msgstr "Tastaturmodus umschalten"
+
+msgid "Toggle pane position"
+msgstr "Position des Bereichs umschalten"
+
+msgid "Hide/show status bar"
+msgstr "Statusleiste ein-/ausblenden"
 
 msgid "Copy all text"
-msgstr ""
+msgstr "Alles kopieren"
+
+msgid "Copy selection in target app"
+msgstr "Auswahl in Ziel-App kopieren"
+
+msgid "Cut selection in target app"
+msgstr "Auswahl in der Zielanwendung ausschneiden"
+
+msgid "Start game mode"
+msgstr "Spielmodus starten"
+
+msgid "New / clear output"
+msgstr "Neue / saubere Ausgabe"
+
+msgid "Open file"
+msgstr "Datei öffnen"
+
+msgid "Paste into target app"
+msgstr "In die Ziel-App einfügen"
+
+msgid "Re-anchor predictions to the caret (read the sentence around your cursor)"
+msgstr "Verankern Sie Vorhersagen erneut am Cursor (lesen Sie den Satz um Ihren Cursor herum)"
+
+msgid "Save to file"
+msgstr "In Datei speichern"
+
+msgid "Select all in target app"
+msgstr "Alles in der Ziel-App auswählen"
+
+msgid "Open settings"
+msgstr "Einstellungen öffnen"
+
+msgid "Share text"
+msgstr "Text teilen"
+
+msgid "eyetuitive"
+msgstr "Augentuitiv"
+
+msgid "Eye tracker"
+msgstr "Augen-Tracker"
+
+msgid "Tobii (Stream Engine)"
+msgstr "Tobii (Stream Engine)"
+
+msgid "UDP Gaze Tracker (network)"
+msgstr "UDP Gaze Tracker (Netzwerk)"
+
+msgid "Windows Eye Tracker (native)"
+msgstr "Windows-Augen-Tracker (nativ)"
 
 msgid "Training"
 msgstr "Ausbildung"
@@ -665,13 +1070,13 @@ msgid "Training Data"
 msgstr "Trainingsdaten"
 
 msgid "Training data deleted — restart Dasher to fully apply"
-msgstr ""
+msgstr "Trainingsdaten gelöscht — Dasher neu starten, um vollständig anzuwenden"
 
 msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
 msgstr "Der Import fügt Text zum Sprachmodell und Ihren gesammelten Trainingsdaten hinzu (die über Neustarts hinweg beibehalten werden). Beim Exportieren werden Ihre Trainingsdaten zur Sicherung oder Übertragung gespeichert. Beim Zurücksetzen werden alle Benutzertrainingsdaten gelöscht – das Modell kehrt beim nächsten Start zu seinen integrierten Standardeinstellungen zurück."
 
 msgid "Training data exported."
-msgstr ""
+msgstr "Trainingsdaten exportiert."
 
 msgid "Export Training Data"
 msgstr "Trainingsdaten exportieren"
@@ -689,7 +1094,7 @@ msgid "Imported {0} KB — applies fully on next launch (live model returned {1}
 msgstr "{0} KB importiert – wird beim nächsten Start vollständig übernommen (Live-Modell hat {1} zurückgegeben)"
 
 msgid "Training is not available yet — try again once the canvas has rendered."
-msgstr ""
+msgstr "Das Training ist noch nicht verfügbar — versuchen Sie es erneut, sobald die Leinwand gerendert wurde."
 
 msgid "Training data deleted — the model returns to its built-in defaults on next launch"
 msgstr "Trainingsdaten gelöscht – das Modell kehrt beim nächsten Start zu seinen integrierten Standardwerten zurück"
@@ -697,26 +1102,62 @@ msgstr "Trainingsdaten gelöscht – das Modell kehrt beim nächsten Start zu se
 msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
 msgstr "Trainingsdaten nach Möglichkeit gelöscht – {0} Element(e) fehlgeschlagen; Drücken Sie erneut „Zurücksetzen“, um es erneut zu versuchen"
 
+msgid "TTS Engine"
+msgstr "TTS-Engine"
+
+msgid "No credentials required"
+msgstr "Keine Zugangsdaten erforderlich"
+
 msgid "Turbo"
-msgstr ""
+msgstr "Turbo"
 
 msgid "Typing into other applications needs access to /dev/uinput, which a sandboxed "
-msgstr ""
+msgstr "Das Tippen in andere Anwendungen benötigt Zugriff auf /dev/uinput, was eine sandboxed"
 
 msgid "Typing rate"
 msgstr "Tippgeschwindigkeit"
 
 msgid "{cps} cps · {wpm} wpm"
-msgstr ""
+msgstr "{cps} cps · {wpm} wpm"
+
+msgid "UDP Port"
+msgstr "UDP-Port"
+
+msgid "UDP tracker listens for STREAM_DATA or GazePoint messages"
+msgstr "UDP-Tracker hört auf STREAM_DATA- oder GazePoint-Nachrichten"
+
+msgid "Dasher {0} is available (you're running v{1}). Tap to download — disable in Settings > Privacy."
+msgstr "Dasher {0} ist verfügbar (Sie führen v{1} aus). Zum Herunterladen antippen – deaktivieren Sie die Funktion unter „Einstellungen“ > „Datenschutz“."
+
+msgid "Dasher update available"
+msgstr "Dasher-Update verfügbar"
 
 msgid "Use Dasher as your keyboard"
 msgstr "Verwenden Sie Dasher als Tastatur"
+
+msgid "Voice"
+msgstr "Stimme"
+
+msgid "{0} voices"
+msgstr "{0} Stimmen"
+
+msgid "Volume"
+msgstr "Lautstärke"
+
+msgid "Dasher Warning"
+msgstr "Dasher-Warnung"
 
 msgid "We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
 msgstr "Wir haben Ihre Dasher 5-Konfiguration auf diesem Mac gefunden. Ihr Alphabet, Ihre Farben, Geschwindigkeitseinstellungen und benutzerdefinierten Dateien können in Dasher 6 importiert werden."
 
 msgid "What was found"
 msgstr "Was wurde gefunden"
+
+msgid "{0} wpm"
+msgstr "{0} wpm"
+
+msgid "max {0}"
+msgstr "max. {0}"
 
 msgid "X range:"
 msgstr "X-Bereich:"
@@ -728,7 +1169,7 @@ msgid "ydotool found. Keyboard mode is ready."
 msgstr "ydotool gefunden. Der Tastaturmodus ist bereit."
 
 msgid "ydotool still isn't available. Make sure it's installed and the ydotool service is running."
-msgstr ""
+msgstr "ydotool ist immer noch nicht verfügbar. Stellen Sie sicher, dass es installiert ist und der ydotool-Dienst läuft."
 
 msgid "You can import later in Settings > Privacy & Migration"
 msgstr "Sie können den Import später unter „Einstellungen“ > „Datenschutz und Migration“ durchführen"

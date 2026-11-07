@@ -1,0 +1,43 @@
+name: Strings freshness
+
+# GTK#98 gap 4: generate-from-shared.py never ran in CI, so pin/po drift was
+# invisible. Mirrors Dasher-Windows' build-installer.yml pattern: regenerate,
+# then fail if the working tree differs. --ignore-cr-at-eol because runners
+# check out with autocrlf and the po files are LF.
+
+on:
+  pull_request:
+    paths:
+      - "po/**"
+      - ".github/workflows/strings-freshness.yml"
+      - "shared-resources/**"
+      - "shared-resources"  # bare gitlink — pin bumps change this, not children
+      - "Scripts/generate-from-shared.py"
+      - "Scripts/check-po-content.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Regenerate and verify freshness
+        run: |
+          set -euo pipefail
+          python3 Scripts/generate-from-shared.py >/dev/null
+          git diff --exit-code --ignore-cr-at-eol -- po/
+          echo "po/ is fresh."
+      # Review I3/C1: reproducibility is not content — the corrupted
+      # regeneration passed the diff gate. Assert against the catalogue.
+      - name: Verify po content matches the catalogue
+        run: python3 Scripts/check-po-content.py
