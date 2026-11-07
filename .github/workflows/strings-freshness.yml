@@ -9,7 +9,9 @@ on:
   pull_request:
     paths:
       - "po/**"
+      - ".github/workflows/strings-freshness.yml"
       - "shared-resources/**"
+      - "shared-resources"  # bare gitlink — pin bumps change this, not children
       - "Scripts/generate-from-shared.py"
   workflow_dispatch:
 
@@ -34,3 +36,7 @@ jobs:
           python3 Scripts/generate-from-shared.py >/dev/null
           git diff --exit-code --ignore-cr-at-eol -- po/
           echo "po/ is fresh."
+      # Review I3/C1: reproducibility is not content — the corrupted
+      # regeneration passed the diff gate. Assert against the catalogue.
+      - name: Verify po content matches the catalogue
+        run: python3 Scripts/check-po-content.py

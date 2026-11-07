@@ -14,268 +14,268 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "%1$.1f cps · %2$d wpm"
-msgstr "%1$.1f merkintöjä sekunnissa · %2$d sanaa minuutissa%1$.1f cps · %2$d wpm"
+msgstr "%1$.1f merkintöjä sekunnissa · %2$d sanaa minuutissa"
 
 msgid "A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
-msgstr "Kaatumisraportti tallennettiin tiedostoon ~/Library/Logs/DiagnosticReports/Dasher-*.ips. Jos voit jakaa sen GitHub-ongelmaraportissa, se auttaa meitä korjaamaan virheen.A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
+msgstr "Kaatumisraportti tallennettiin tiedostoon ~/Library/Logs/DiagnosticReports/Dasher-*.ips. Jos voit jakaa sen GitHub-ongelmaraportissa, se auttaa meitä korjaamaan virheen."
 
 msgid "About"
-msgstr "TietoaAbout"
+msgstr "Tietoa"
 
 msgid "Dasher {0}"
 msgstr "Dasher {0}"
 
 msgid "Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
-msgstr "Hyväksy leijutus-/osoitintapahtumat Dasher-syötteenä. Ota käyttöön silmänseurantaa tai ulkoisia osoittimia varten.Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
+msgstr "Hyväksy leijutus-/osoitintapahtumat Dasher-syötteenä. Ota käyttöön silmänseurantaa tai ulkoisia osoittimia varten."
 
 msgid "Access"
-msgstr "PääsyAccess"
+msgstr "Pääsy"
 
 msgid "Accessibility Permission Required"
-msgstr "Esteettömyyslupa vaaditaanAccessibility Permission Required"
+msgstr "Esteettömyyslupa vaaditaan"
 
 msgid "Adapt Speed Automatically"
-msgstr "Mukauta nopeutta automaattisestiAdapt Speed Automatically"
+msgstr "Mukauta nopeutta automaattisesti"
 
 msgid "Advanced logging"
-msgstr "Edistynyt lokitusAdvanced logging"
+msgstr "Edistynyt lokitus"
 
 msgid "Detailed diagnostic logging for bug reports (per-sample eye-tracker lines, keystroke traces, UIA reads). Basic connection events are always logged. May generate large log files."
-msgstr "Yksityiskohtainen diagnostiikkaloki bugiraportteja varten (näytteen mukaan silmälaitteen rivit, näppäinpainallusten jäljet, UIA-lukemat). Perusyhteystapahtumat kirjataan aina. Voi tuottaa suuria lokitiedostoja.Detailed diagnostic logging for bug reports (per-sample eye-tracker lines, keystroke traces, UIA reads). Basic connection events are always logged. May generate large log files."
+msgstr "Yksityiskohtainen diagnostiikkaloki bugiraportteja varten (näytteen mukaan silmälaitteen rivit, näppäinpainallusten jäljet, UIA-lukemat). Perusyhteystapahtumat kirjataan aina. Voi tuottaa suuria lokitiedostoja."
 
 msgid "Advanced settings"
-msgstr "LisäasetuksetAdvanced settings"
+msgstr "Lisäasetukset"
 
 msgid "All Dasher settings will be restored to their default values. This cannot be undone."
-msgstr "Kaikki Dasher-asetukset palautetaan oletusarvoihinsa. Tätä ei voi perua.All Dasher settings will be restored to their default values. This cannot be undone."
+msgstr "Kaikki Dasher-asetukset palautetaan oletusarvoihinsa. Tätä ei voi perua."
 
 msgid "Alphabet"
-msgstr "AakkosetAlphabet"
+msgstr "Aakkoset"
 
 msgid "Help improve Dasher"
-msgstr "Auta parantamaan DasheriaHelp improve Dasher"
+msgstr "Auta parantamaan Dasheria"
 
 msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
-msgstr "Jaa nimettömiä käyttöanalytiikkoja ja kaatumisraportteja? Ei koskaan kerätä kirjoitettua tekstiä, leikepöydän sisältöjä tai henkilökohtaisia tietoja. Voit muuttaa tätä milloin tahansa asetuksissa.Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
+msgstr "Jaa nimettömiä käyttöanalytiikkoja ja kaatumisraportteja? Ei koskaan kerätä kirjoitettua tekstiä, leikepöydän sisältöjä tai henkilökohtaisia tietoja. Voit muuttaa tätä milloin tahansa asetuksissa."
 
 msgid "Not now"
-msgstr "Ei nytNot now"
+msgstr "Ei nyt"
 
 msgid "Share anonymous analytics and crash reports"
-msgstr "Jaa anonyymejä analytiikka- ja virheraporttejaShare anonymous analytics and crash reports"
+msgstr "Jaa anonyymejä analytiikka- ja virheraportteja"
 
 msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
-msgstr "Dasher kerää nimettömiä, yksityisyyttä kunnioittavia analytiikkatietoja ymmärtääkseen käyttökuvioita ja korjatakseen kaatumisia. Kirjoitettua tekstiä, leikepöydän sisältöä tai henkilökohtaisia tietoja ei koskaan kerätä.\n\nVoit muuttaa tätä milloin tahansa kohdassa Asetukset > Tietosuoja.Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
+msgstr "Dasher kerää nimettömiä, yksityisyyttä kunnioittavia analytiikkatietoja ymmärtääkseen käyttökuvioita ja korjatakseen kaatumisia. Kirjoitettua tekstiä, leikepöydän sisältöä tai henkilökohtaisia tietoja ei koskaan kerätä.\n\nVoit muuttaa tätä milloin tahansa kohdassa Asetukset > Tietosuoja."
 
 msgid "Reset analytics ID"
-msgstr "Nollaa analytiikkaReset analytics ID"
+msgstr "Nollaa analytiikka"
 
 msgid "Dasher collects anonymous usage analytics and crash reports to understand how the app is used and to fix bugs. No typed text, clipboard contents, or personal information is ever collected."
-msgstr "Dasher kerää nimettömiä käyttöanalytiikka- ja kaatumisraportteja ymmärtääkseen, miten sovellusta käytetään, ja korjatakseen bugeja. Kirjoitettua tekstiä, leikepöydän sisältöä tai henkilökohtaisia tietoja ei koskaan kerätä.Dasher collects anonymous usage analytics and crash reports to understand how the app is used and to fix bugs. No typed text, clipboard contents, or personal information is ever collected."
+msgstr "Dasher kerää nimettömiä käyttöanalytiikka- ja kaatumisraportteja ymmärtääkseen, miten sovellusta käytetään, ja korjatakseen bugeja. Kirjoitettua tekstiä, leikepöydän sisältöä tai henkilökohtaisia tietoja ei koskaan kerätä."
 
 msgid "Help improve Dasher?"
-msgstr "Auttaako parantamaan Dasheria?Help improve Dasher?"
+msgstr "Auttaako parantamaan Dasheria?"
 
 msgid "Anonymous ID: {0}"
-msgstr "Nimetön tunnus: {0}Anonymous ID: {0}"
+msgstr "Nimetön tunnus: {0}"
 
 msgid "Anonymous usage analytics"
-msgstr "Anonyymi käyttöanalytiikkaAnonymous usage analytics"
+msgstr "Anonyymi käyttöanalytiikka"
 
 msgid "Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
-msgstr "Anonyymi käyttöanalytiikka auttaa meitä ymmärtämään, miten Dasheria käytetään, ja korjaamaan kaatumisia. Kirjoitettua tekstiä, leikepöydän sisältöä tai henkilötietoja ei koskaan kerätä. Voit kieltäytyä milloin tahansa kohdassa Asetukset → Tietosuoja.Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
+msgstr "Anonyymi käyttöanalytiikka auttaa meitä ymmärtämään, miten Dasheria käytetään, ja korjaamaan kaatumisia. Kirjoitettua tekstiä, leikepöydän sisältöä tai henkilötietoja ei koskaan kerätä. Voit kieltäytyä milloin tahansa kohdassa Asetukset → Tietosuoja."
 
 msgid "App-Level Dwell to Select"
-msgstr "Sovellustason viipyminen valintaa vartenApp-Level Dwell to Select"
+msgstr "Sovellustason viipyminen valintaa varten"
 
 msgid "Dasher"
 msgstr ""
 
 msgid "Appearance"
-msgstr "UlkonäköAppearance"
+msgstr "Ulkonäkö"
 
 msgid "Left"
-msgstr "VasenLeft"
+msgstr "Vasen"
 
 msgid "Move caret left (hold to repeat)"
-msgstr "Siirrä kohdistinta vasemmalle (pidä painettuna toistaaksesi)Move caret left (hold to repeat)"
+msgstr "Siirrä kohdistinta vasemmalle (pidä painettuna toistaaksesi)"
 
 msgid "Right"
-msgstr "OikeaRight"
+msgstr "Oikea"
 
 msgid "Move caret right (hold to repeat)"
-msgstr "Siirrä kohdistinta oikealle (pidä painettuna toistaaksesi)Move caret right (hold to repeat)"
+msgstr "Siirrä kohdistinta oikealle (pidä painettuna toistaaksesi)"
 
 msgid "Auto"
-msgstr "AutomaattinenAuto"
+msgstr "Automaattinen"
 
 msgid "Auto-Centre Target"
-msgstr "Automaattinen keskityskohdeAuto-Centre Target"
+msgstr "Automaattinen keskityskohde"
 
 msgid "Auto-select after fixating. Only enable if OS dwell is off."
-msgstr "Automaattinen valinta fiksaation jälkeen. Ota käyttöön vain, jos käyttöjärjestelmän viipymä on pois päältä.Auto-select after fixating. Only enable if OS dwell is off."
+msgstr "Automaattinen valinta fiksaation jälkeen. Ota käyttöön vain, jos käyttöjärjestelmän viipymä on pois päältä."
 
 msgid "Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
-msgstr "Automaattinen valinta katseen kiinnittämisen jälkeen nipistyksen aikana. Ota käyttöön vain, jos käyttöjärjestelmän viipymä on pois päältä.Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
+msgstr "Automaattinen valinta katseen kiinnittämisen jälkeen nipistyksen aikana. Ota käyttöön vain, jos käyttöjärjestelmän viipymä on pois päältä."
 
 msgid "Back"
-msgstr "TakaisinBack"
+msgstr "Takaisin"
 
 msgid "Del"
-msgstr "poistaDel"
+msgstr "poista"
 
 msgid "Delete (hold to repeat)"
-msgstr "Poista (pidä painettuna toistaaksesi)Delete (hold to repeat)"
+msgstr "Poista (pidä painettuna toistaaksesi)"
 
 msgid "Calibrate Tilt"
-msgstr "Kalibroi kallistusCalibrate Tilt"
+msgstr "Kalibroi kallistus"
 
 msgid "Cancel"
-msgstr "PeruuttaaCancel"
+msgstr "Peruuttaa"
 
 msgid "Check Again"
-msgstr "Tarkista uudelleenCheck Again"
+msgstr "Tarkista uudelleen"
 
 msgid "Check for updates"
 msgstr ""
 
 msgid "Choose..."
-msgstr "Valita...Choose..."
+msgstr "Valita..."
 
 msgid "Choose File..."
-msgstr "Valitse tiedosto...Choose File..."
+msgstr "Valitse tiedosto..."
 
 msgid "Clear"
-msgstr "TyhjennäClear"
+msgstr "Tyhjennä"
 
 msgid "Clear logs"
-msgstr "Tyhjennä lokitClear logs"
+msgstr "Tyhjennä lokit"
 
 msgid "Click to set up keyboard mode (needs ydotool)"
-msgstr "Napsauta asettaaksesi näppäimistötilan (tarvitsee ydotoolin)Click to set up keyboard mode (needs ydotool)"
+msgstr "Napsauta asettaaksesi näppäimistötilan (tarvitsee ydotoolin)"
 
 msgid "Close"
-msgstr "SuljeClose"
+msgstr "Sulje"
 
 msgid "Close settings"
-msgstr "Sulje asetuksetClose settings"
+msgstr "Sulje asetukset"
 
 msgid "Colour Theme"
-msgstr "VäriteemaColour Theme"
+msgstr "Väriteema"
 
 msgid "contents or personal information is ever collected. You can change this any "
-msgstr "sisältöä tai henkilötietoja koskaan kerätä. Voit muuttaa tätä milloin tahansacontents or personal information is ever collected. You can change this any "
+msgstr "sisältöä tai henkilötietoja koskaan kerätä. Voit muuttaa tätä milloin tahansa"
 
 msgid "Control"
-msgstr "KontrolliControl"
+msgstr "Kontrolli"
 
 msgid "Control mode: enabled"
-msgstr "Ohjaustila: käytössäControl mode: enabled"
+msgstr "Ohjaustila: käytössä"
 
 msgid "Control mode"
-msgstr "OhjaustilaControl mode"
+msgstr "Ohjaustila"
 
 msgid "Control nodes: move, delete, clear, speak, pause"
-msgstr "Ohjaussolmut: siirrä, poista, tyhjennä, puhu, taukoControl nodes: move, delete, clear, speak, pause"
+msgstr "Ohjaussolmut: siirrä, poista, tyhjennä, puhu, tauko"
 
 msgid "Copied to clipboard."
-msgstr "Kopioitu leikepöydälleCopied to clipboard."
+msgstr "Kopioitu leikepöydälle"
 
 msgid "Copy"
-msgstr "KopioiCopy"
+msgstr "Kopioi"
 
 msgid "Copy all"
-msgstr "Kopioi kaikkiCopy all"
+msgstr "Kopioi kaikki"
 
 msgid "Copy All"
-msgstr "Kopioi kaikkiCopy All"
+msgstr "Kopioi kaikki"
 
 msgid "Copy all (to clipboard)"
-msgstr "Kopioi kaikki (leikepöydälle)Copy all (to clipboard)"
+msgstr "Kopioi kaikki (leikepöydälle)"
 
 msgid "Copy commands"
-msgstr "Kopioi komennotCopy commands"
+msgstr "Kopioi komennot"
 
 msgid "Copy selection"
-msgstr "Kopioi valintaCopy selection"
+msgstr "Kopioi valinta"
 
 msgid "Could not load the file into the engine"
-msgstr "Tiedostoa ei voitu ladata moottoriinCould not load the file into the engine"
+msgstr "Tiedostoa ei voitu ladata moottoriin"
 
 msgid "Could not open the selected file."
-msgstr "Valittua tiedostoa ei voitu avata.Could not open the selected file."
+msgstr "Valittua tiedostoa ei voitu avata."
 
 msgid "Could not read the selected file."
-msgstr "Valittua tiedostoa ei voitu lukea.Could not read the selected file."
+msgstr "Valittua tiedostoa ei voitu lukea."
 
 msgid "Could not sync your edit with the engine — it may be overwritten"
-msgstr "Muokkaustasi ei voitu synkronoida moottorin kanssa — se saatetaan ylikirjoittaaCould not sync your edit with the engine — it may be overwritten"
+msgstr "Muokkaustasi ei voitu synkronoida moottorin kanssa — se saatetaan ylikirjoittaa"
 
 msgid "Could not write the export file."
-msgstr "Vientiä tiedostoa ei voitu kirjoittaa.Could not write the export file."
+msgstr "Vientiä tiedostoa ei voitu kirjoittaa."
 
 msgid "Could not write the training data."
-msgstr "Ei voitu kirjoittaa koulutusdataa.Could not write the training data."
+msgstr "Ei voitu kirjoittaa koulutusdataa."
 
 msgid "Current Calibration"
-msgstr "Nykyinen kalibrointiCurrent Calibration"
+msgstr "Nykyinen kalibrointi"
 
 msgid "{0} custom file(s)"
-msgstr "{0} mukautettua tiedostoa{0} custom file(s)"
+msgstr "{0} mukautettua tiedostoa"
 
 msgid "Customization"
-msgstr "UlkoasuCustomization"
+msgstr "Ulkoasu"
 
 msgid "Dark"
-msgstr "TummaDark"
+msgstr "Tumma"
 
 msgid "Dasher "
-msgstr "DasherDasher "
+msgstr "Dasher"
 
 msgid "We found your Dasher 5 configuration"
-msgstr "Löysimme Dasher 5 -kokoonpanosiWe found your Dasher 5 configuration"
+msgstr "Löysimme Dasher 5 -kokoonpanosi"
 
 msgid "Dasher 5 Import"
-msgstr "Dasher 5 TuoDasher 5 Import"
+msgstr "Dasher 5 Tuo"
 
 msgid "Would you like to import these settings into Dasher 6?"
-msgstr "Haluatko tuoda nämä asetukset Dasher 6:een?Would you like to import these settings into Dasher 6?"
+msgstr "Haluatko tuoda nämä asetukset Dasher 6:een?"
 
 msgid "No Dasher 5 data found on this computer."
-msgstr "Tietokoneelta ei löytynyt Dasher 5 -tietoja.No Dasher 5 data found on this computer."
+msgstr "Tietokoneelta ei löytynyt Dasher 5 -tietoja."
 
 msgid "Dasher 5 settings found"
-msgstr "Dasher 5 asetukset löytyivätDasher 5 settings found"
+msgstr "Dasher 5 asetukset löytyivät"
 
 msgid "Dasher 5 data detected on this Mac."
-msgstr "Dasher 5 -tietoja havaittu tällä Macilla.Dasher 5 data detected on this Mac."
+msgstr "Dasher 5 -tietoja havaittu tällä Macilla."
 
 msgid "Dasher 5 settings imported successfully."
-msgstr "Dasher 5 -asetusten tuonti onnistui.Dasher 5 settings imported successfully."
+msgstr "Dasher 5 -asetusten tuonti onnistui."
 
 msgid "Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
-msgstr "Dasher toimii myös järjestelmänäppäimistönä, joten voit kirjoittaa missä tahansa sovelluksessa. Ota se käyttöön kerran asetuksissa.Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
+msgstr "Dasher toimii myös järjestelmänäppäimistönä, joten voit kirjoittaa missä tahansa sovelluksessa. Ota se käyttöön kerran asetuksissa."
 
 msgid "Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
-msgstr "Dasher kerää anonyymiä analytiikkaa ymmärtääkseen käyttöä ja korjatakseen kaatumisia. Kirjoitettua tekstiä, leikepöydältä löytyviä tietoja tai henkilökohtaisia tietoja ei koskaan kerätä. Katso avoimen tapahtuman skeema osoitteessa github.com/dasher-project/Dasher-Apple.Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
+msgstr "Dasher kerää anonyymiä analytiikkaa ymmärtääkseen käyttöä ja korjatakseen kaatumisia. Kirjoitettua tekstiä, leikepöydältä löytyviä tietoja tai henkilökohtaisia tietoja ei koskaan kerätä. Katso avoimen tapahtuman skeema osoitteessa github.com/dasher-project/Dasher-Apple."
 
 msgid "Dasher Engine Error"
-msgstr "Dasher-moottorin virheDasher Engine Error"
+msgstr "Dasher-moottorin virhe"
 
 msgid "Dasher Keyboard"
-msgstr "Dasher-näppäimistöDasher Keyboard"
+msgstr "Dasher-näppäimistö"
 
 msgid "Dasher keyboard"
-msgstr "Dasher-näppäimistöDasher keyboard"
+msgstr "Dasher-näppäimistö"
 
 msgid "Dasher needs accessibility access to send text to other applications."
-msgstr "Dasher tarvitsee esteettömyysoikeudet lähettääkseen tekstiä muihin sovelluksiin.Dasher needs accessibility access to send text to other applications."
+msgstr "Dasher tarvitsee esteettömyysoikeudet lähettääkseen tekstiä muihin sovelluksiin."
 
 msgid "Dasher Preferences"
-msgstr "Dasherin asetuksetDasher Preferences"
+msgstr "Dasherin asetukset"
 
 msgid "Dasher quit unexpectedly"
-msgstr "Dasher lopetti yllättäenDasher quit unexpectedly"
+msgstr "Dasher lopetti yllättäen"
 
 msgid "Dasher v6"
 msgstr "Dasher v6"
@@ -284,859 +284,889 @@ msgid "<big><b>Dasher v6</b></big>\n"
 msgstr "<big><b>Dasher v6</b></big>\n"
 
 msgid "Dead zone: {0} px"
-msgstr "Kuollut alue: {0} pxDead zone: {0} px"
+msgstr "Kuollut alue: {0} px"
 
 msgid "Decrease Speed"
-msgstr "Vähennä nopeuttaDecrease Speed"
+msgstr "Vähennä nopeutta"
 
 msgid "Default"
-msgstr "OletusDefault"
+msgstr "Oletus"
 
 msgid "Alphabet: {0}"
-msgstr "Aakkoset: {0}Alphabet: {0}"
+msgstr "Aakkoset: {0}"
 
 msgid "Colour: {0}"
-msgstr "Väri: {0}Colour: {0}"
+msgstr "Väri: {0}"
 
 msgid "Speed: {0}"
-msgstr "Nopeus: {0}Speed: {0}"
+msgstr "Nopeus: {0}"
 
 msgid "Diagnostics"
-msgstr "DiagnostiikkaDiagnostics"
+msgstr "Diagnostiikka"
 
 msgid "Direct Mode"
-msgstr "Suora tilaDirect Mode"
+msgstr "Suora tila"
 
 msgid "Done"
-msgstr "TehtyDone"
+msgstr "Tehty"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
-msgstr "Liikuta kohdistinta yhdessä kohdassa aktivoidaksesi napsautuksen sen sijaan, että painaisit painiketta tai kytkintä.Hover in one spot to trigger a click, instead of pressing a button or switch."
+msgstr "Liikuta kohdistinta yhdessä kohdassa aktivoidaksesi napsautuksen sen sijaan, että painaisit painiketta tai kytkintä."
 
 msgid "Dwell Duration"
-msgstr "OleskeluaikaDwell Duration"
+msgstr "Oleskeluaika"
 
 msgid "Dwell to click"
-msgstr "Viivy napsauttaaksesiDwell to click"
+msgstr "Viivy napsauttaaksesi"
 
 msgid "Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
-msgstr "Ota Dasher käyttöön kohdassa Asetukset → Yleiset → Näppäimistö → Näppäimistöt ja ota sitten käyttöön Salli täysi käyttöoikeus, jotta Dasher voi puhua ja oppia.Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
+msgstr "Ota Dasher käyttöön kohdassa Asetukset → Yleiset → Näppäimistö → Näppäimistöt ja ota sitten käyttöön Salli täysi käyttöoikeus, jotta Dasher voi puhua ja oppia."
 
 msgid "Enable tilt input first to access calibration."
-msgstr "Ota kallistustulo ensin käyttöön päästäksesi kalibrointiin.Enable tilt input first to access calibration."
+msgstr "Ota kallistustulo ensin käyttöön päästäksesi kalibrointiin."
 
 msgid "Dasher could not start"
-msgstr "Dasher ei voinut käynnistyäDasher could not start"
+msgstr "Dasher ei voinut käynnistyä"
 
 msgid "Engine Error"
-msgstr "MoottorivirheEngine Error"
+msgstr "Moottorivirhe"
 
 msgid "The Dasher engine encountered an internal error and has stopped. Please restart Dasher."
-msgstr "Dasher-moottori kohtasi sisäisen virheen ja on pysähtynyt. Käynnistä Dasher uudelleen.The Dasher engine encountered an internal error and has stopped. Please restart Dasher."
+msgstr "Dasher-moottori kohtasi sisäisen virheen ja on pysähtynyt. Käynnistä Dasher uudelleen."
 
 msgid "Please try reinstalling, or report this in a GitHub issue."
-msgstr "Yritä asentaa uudelleen tai ilmoita tästä GitHub-ongelmassa.Please try reinstalling, or report this in a GitHub issue."
+msgstr "Yritä asentaa uudelleen tai ilmoita tästä GitHub-ongelmassa."
 
 msgid "Engine Speech Features"
-msgstr "Moottorin puheominaisuudetEngine Speech Features"
+msgstr "Moottorin puheominaisuudet"
 
 msgid "Error: {0}"
-msgstr "Virhe: {0}Error: {0}"
+msgstr "Virhe: {0}"
 
 msgid "Error loading settings: {0}"
-msgstr "Virhe ladattaessa asetuksia: {0}Error loading settings: {0}"
+msgstr "Virhe ladattaessa asetuksia: {0}"
 
 msgid "Exit"
-msgstr "PoistuExit"
+msgstr "Poistu"
 
 msgid "Export Training Text"
-msgstr "Vie harjoitustekstiExport Training Text"
+msgstr "Vie harjoitusteksti"
 
 msgid "Eye Gaze"
-msgstr "Silmän katseEye Gaze"
+msgstr "Silmän katse"
 
 msgid "Could not connect to eye tracker on startup. Check the device and try re-selecting it in Settings > Input."
-msgstr "Ei saatu yhteyttä katseenseurantaan käynnistyksen yhteydessä. Tarkista laite ja yritä valita se uudelleen kohdassa Asetukset > Tulo.Could not connect to eye tracker on startup. Check the device and try re-selecting it in Settings > Input."
+msgstr "Ei saatu yhteyttä katseenseurantaan käynnistyksen yhteydessä. Tarkista laite ja yritä valita se uudelleen kohdassa Asetukset > Tulo."
 
 msgid "Eye Tracker Device"
-msgstr "SilmänseurantalaiteEye Tracker Device"
+msgstr "Silmänseurantalaite"
 
 msgid "Could not connect to {0}. Check the device is connected and drivers are installed."
-msgstr "Ei voitu muodostaa yhteyttä verkkoon {0}. Tarkista, että laite on kytketty ja ajurit asennettu.Could not connect to {0}. Check the device is connected and drivers are installed."
+msgstr "Ei voitu muodostaa yhteyttä verkkoon {0}. Tarkista, että laite on kytketty ja ajurit asennettu."
 
 msgid "Could not connect to {0}. Make sure tobii_stream_engine.dll is installed and a Tobii device is connected."
-msgstr "Ei voitu muodostaa yhteyttä kohteeseen {0}. Varmista, että tobii_stream_engine.dll on asennettu ja Tobii-laite on liitetty.Could not connect to {0}. Make sure tobii_stream_engine.dll is installed and a Tobii device is connected."
+msgstr "Ei voitu muodostaa yhteyttä kohteeseen {0}. Varmista, että tobii_stream_engine.dll on asennettu ja Tobii-laite on liitetty."
 
 msgid "Detailed tracking log for bug reports (per-sample lines, written to eyegaze.log in the Dasher folder). Basic connection events are always logged."
-msgstr "Yksityiskohtainen seurantaloki virheraporteille (näytettä kohden rivit, kirjoitetaan eyegaze.log-tiedostoon Dasher-kansiossa). Perusyhteystapahtumat kirjataan aina.Detailed tracking log for bug reports (per-sample lines, written to eyegaze.log in the Dasher folder). Basic connection events are always logged."
+msgstr "Yksityiskohtainen seurantaloki virheraporteille (näytettä kohden rivit, kirjoitetaan eyegaze.log-tiedostoon Dasher-kansiossa). Perusyhteystapahtumat kirjataan aina."
 
 msgid "Failed to open: "
-msgstr "Avaaminen epäonnistui@ title Title of a list of documents that are openFailed to open: "
+msgstr "Avaaminen epäonnistui@ title Title of a list of documents that are open"
 
 msgid "Failed to save: "
-msgstr "Tallennus epäonnistuiFailed to save: "
+msgstr "Tallennus epäonnistui"
 
 msgid "Fast"
-msgstr "NopeastiFast"
+msgstr "Nopeasti"
 
 msgid "File truncated at 4 MB — only the first part is loaded"
-msgstr "Tiedosto katkaistu 4 MB kohdalla — vain ensimmäinen osa on ladattuFile truncated at 4 MB — only the first part is loaded"
+msgstr "Tiedosto katkaistu 4 MB kohdalla — vain ensimmäinen osa on ladattu"
 
 msgid "Normal Control"
-msgstr "Normaali ohjausNormal Control"
+msgstr "Normaali ohjaus"
 
 msgid "Smoothing Mode"
-msgstr "TasoitustilaSmoothing Mode"
+msgstr "Tasoitustila"
 
 msgid "Flatpak or AppImage build can't provide.\n\n"
-msgstr "Flatpak- tai AppImage-rakenne ei voi tarjota.atpak or AppImage build can't provide.\n\n"
+msgstr "Flatpak- tai AppImage-rakenne ei voi tarjota.\n\n"
 
 msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
-msgstr "Vapauta näppäimistö kellumaan sallimalla Dasherin näkyä muiden sovellusten päällä ja napauta sitten Float uudelleen.To float the keyboard, allow Dasher to display over other apps, then tap Float again."
+msgstr "Vapauta näppäimistö kellumaan sallimalla Dasherin näkyä muiden sovellusten päällä ja napauta sitten Float uudelleen."
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
-msgstr "Täysi käyttöoikeus antaa Dasherille mahdollisuuden puhua kirjoittamasi ja muistaa koulutuksesi. Näppäimistö toimii perussyötöissä ilman sitäkin.Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
+msgstr "Täysi käyttöoikeus antaa Dasherille mahdollisuuden puhua kirjoittamasi ja muistaa koulutuksesi. Näppäimistö toimii perussyötöissä ilman sitäkin."
 
 msgid "Game mode"
-msgstr "PelitilaGame mode"
+msgstr "Pelitila"
 
 msgid "Game Mode"
-msgstr "pelitilaGame Mode"
+msgstr "pelitila"
 
 msgid "Game On"
-msgstr "Peli käyntiinGame On"
+msgstr "Peli käyntiin"
 
 msgid "Game Text File"
-msgstr "Pelin tekstitiedostoGame Text File"
+msgstr "Pelin tekstitiedosto"
 
 msgid "Reduces zoom toward wrong positions while your eyes move to a target"
-msgstr "Vähentää zoomausta väärään kohtaan, kun silmäsi liikkuvat kohteeseenReduces zoom toward wrong positions while your eyes move to a target"
+msgstr "Vähentää zoomausta väärään kohtaan, kun silmäsi liikkuvat kohteeseen"
 
 msgid "Filter gaze (reduces zoom toward wrong positions during eye transit)"
-msgstr "Suodata katsetta (vähentää zoomausta väärien kohtien suuntaan silmän liikkeen aikana)Filter gaze (reduces zoom toward wrong positions during eye transit)"
+msgstr "Suodata katsetta (vähentää zoomausta väärien kohtien suuntaan silmän liikkeen aikana)"
 
 msgid "Gaze Smoothing"
-msgstr "Katseen tasaaminenGaze Smoothing"
+msgstr "Katseen tasaaminen"
 
 msgid "Got it"
-msgstr "SelväGot it"
+msgstr "Selvä"
 
 msgid "GTK Edition"
-msgstr "GTK-versioGTK Edition"
+msgstr "GTK-versio"
 
 msgid "Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
-msgstr "Tuonti lisää tekstiä kielimalliin (liittää olemassa olevaan oppimiseen). Vienti tallentaa kertyneet harjoitustiedot varmuuskopiointia tai siirtoa varten. Palautus poistaa mukautetut harjoitustiedot — malli palaa sisäänrakennettuihin oletusasetuksiinsa seuraavan käynnistyksen yhteydessä.Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
+msgstr "Tuonti lisää tekstiä kielimalliin (liittää olemassa olevaan oppimiseen). Vienti tallentaa kertyneet harjoitustiedot varmuuskopiointia tai siirtoa varten. Palautus poistaa mukautetut harjoitustiedot — malli palaa sisäänrakennettuihin oletusasetuksiinsa seuraavan käynnistyksen yhteydessä."
 
 msgid "Import from Dasher 5"
-msgstr "Tuo Dasher 5:stäImport from Dasher 5"
+msgstr "Tuo Dasher 5:stä"
 
 msgid "Import settings"
-msgstr "Tuo asetuksetImport settings"
+msgstr "Tuo asetukset"
 
 msgid "Import Training Text"
-msgstr "Tuo harjoitustekstiImport Training Text"
+msgstr "Tuo harjoitusteksti"
 
 msgid "Imported %1 — applies fully on next launch"
-msgstr "Tuotu %1 — astuu täysin voimaan seuraavalla käynnistykselläImported %1 — applies fully on next launch"
+msgstr "Tuotu %1 — astuu täysin voimaan seuraavalla käynnistyksellä"
 
 msgid "Imported %1 of training text"
-msgstr "Tuotu %1 koulutustekstistäImported %1 of training text"
+msgstr "Tuotu %1 koulutustekstistä"
 
 msgid "Increase Speed"
-msgstr "Lisää nopeuttaIncrease Speed"
+msgstr "Lisää nopeutta"
 
 msgid "Input"
-msgstr "SyöttöInput"
+msgstr "Syöttö"
 
 msgid "Active engine input filter (set via Selection Method or advanced settings)"
-msgstr "Aktiivinen moottorin syöttösuodatin (asetettu valintamenetelmän tai lisäasetusten kautta)Active engine input filter (set via Selection Method or advanced settings)"
+msgstr "Aktiivinen moottorin syöttösuodatin (asetettu valintamenetelmän tai lisäasetusten kautta)"
 
 msgid "Managed by the engine — change via the Selection Method setting"
-msgstr "Moottorin hallinnassa — muuta valintamenetelmä-asetuksen kauttaManaged by the engine — change via the Selection Method setting"
+msgstr "Moottorin hallinnassa — muuta valintamenetelmä-asetuksen kautta"
 
 msgid "Direct pointer — minimal processing"
-msgstr "Suora osoitin – minimaalinen käsittelyDirect pointer — minimal processing"
+msgstr "Suora osoitin – minimaalinen käsittely"
 
 msgid "No filtering — for clean input devices"
-msgstr "Ei suodatusta – puhtaille syöttölaitteilleNo filtering — for clean input devices"
+msgstr "Ei suodatusta – puhtaille syöttölaitteille"
 
 msgid "Input smoothing — reduces jitter for noisy input (eye gaze, head tracking)"
-msgstr "Sisääntulon tasoitus – vähentää värinää meluisan syöttämisen yhteydessä (silmien katselu, pään seuranta)Input smoothing — reduces jitter for noisy input (eye gaze, head tracking)"
+msgstr "Sisääntulon tasoitus – vähentää värinää meluisan syöttämisen yhteydessä (silmien katselu, pään seuranta)"
 
 msgid "Dampens small pointer movements for a steadier zoom"
-msgstr "Vaimentaa pieniä osoittimen liikkeitä tasaisemman zoomin saavuttamiseksiDampens small pointer movements for a steadier zoom"
+msgstr "Vaimentaa pieniä osoittimen liikkeitä tasaisemman zoomin saavuttamiseksi"
 
 msgid "Standard continuous control (default)"
-msgstr "Vakio jatkuva ohjaus (oletus)Standard continuous control (default)"
+msgstr "Vakio jatkuva ohjaus (oletus)"
 
 msgid "The standard steering method — move the pointer to zoom"
-msgstr "Vakioohjaustapa – siirrä osoitinta zoomataksesiThe standard steering method — move the pointer to zoom"
+msgstr "Vakioohjaustapa – siirrä osoitinta zoomataksesi"
+
+msgid "Joystick / gamepad (deflect a stick to steer)"
+msgstr "Joystick / peliohjain (ohjaa ohjataksesi ohjainta ohjaamalla sitä)"
+
+msgid "Tilt (hold the device, tilt to steer)"
+msgstr "Kallista (pidä laitetta, kallista ohjataksesi)"
+
+msgid "Input method"
+msgstr "Syöttötapa"
+
+msgid "Touch (drag on the canvas)"
+msgstr "Kosketa (vedä kankaalla)"
 
 msgid "Input Processing"
-msgstr "Syötteen käsittelyInput Processing"
+msgstr "Syötteen käsittely"
 
 msgid "Install Dasher via your package manager or build from source to use keyboard mode."
-msgstr "Asenna Dasher pakettienhallinnan kautta tai käännä lähdekoodista käyttääksesi näppäimistötilaa.Install Dasher via your package manager or build from source to use keyboard mode."
+msgstr "Asenna Dasher pakettienhallinnan kautta tai käännä lähdekoodista käyttääksesi näppäimistötilaa."
 
 msgid "<b>Install ydotool to use keyboard mode</b>"
-msgstr "<b>Asenna ydotool käyttääksesi näppäimistötilaa</b><b>Install ydotool to use keyboard mode</b>"
+msgstr "<b>Asenna ydotool käyttääksesi näppäimistötilaa</b>"
 
 msgid "isn't installed. Run these commands, then press Retry:"
-msgstr "ei ole asennettu. Suorita nämä komennot ja paina sitten Yritä uudelleen:isn't installed. Run these commands, then press Retry:"
+msgstr "ei ole asennettu. Suorita nämä komennot ja paina sitten Yritä uudelleen:"
 
 msgid "Keyboard"
-msgstr "NäppäimistöKeyboard"
+msgstr "Näppäimistö"
 
 msgid "_Keyboard"
-msgstr "näppäimistö_Keyboard"
+msgstr "näppäimistö"
 
 msgid "Type Dasher's output straight into the app you are pointing at"
-msgstr "Kirjoita Dasherin tulos suoraan sovellukseen, johon osoitatType Dasher's output straight into the app you are pointing at"
+msgstr "Kirjoita Dasherin tulos suoraan sovellukseen, johon osoitat"
 
 msgid "Exit keyboard mode"
-msgstr "Vaihda näppäimistötilaanExit keyboard mode"
+msgstr "Vaihda näppäimistötilaan"
 
 msgid "Keyboard mode: hide the output pane and type Dasher's text straight into "
-msgstr "Näppäimistötila: piilota tulospaneeli ja kirjoita Dasherin teksti suoraanKeyboard mode: hide the output pane and type Dasher's text straight into "
+msgstr "Näppäimistötila: piilota tulospaneeli ja kirjoita Dasherin teksti suoraan"
 
 msgid "<b>Keyboard mode isn't available in this build</b>"
-msgstr "<b>Näppäimistötila ei ole käytettävissä tässä koontiversiossa</b><b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>Näppäimistötila ei ole käytettävissä tässä koontiversiossa</b>"
 
 msgid "Keyboard mode opacity"
-msgstr "Näppäimistötilan läpinäkymättömyysKeyboard mode opacity"
+msgstr "Näppäimistötilan läpinäkymättömyys"
 
 msgid "Keyboard mode stopped"
-msgstr "Näppäimistötila pysähtyiKeyboard mode stopped"
+msgstr "Näppäimistötila pysähtyi"
 
 msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
-msgstr "Näppäimistötila pysähtyi: ydotool ei voinut syöttää tekstiä. Onko ydotooldKeyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "Näppäimistötila pysähtyi: ydotool ei voinut syöttää tekstiä. Onko ydotoold"
 
 msgid "Enable Keyboard Mode"
-msgstr "Ota näppäimistötila käyttöönEnable Keyboard Mode"
+msgstr "Ota näppäimistötila käyttöön"
 
 msgid "Window transparency when in Keyboard/Direct mode"
-msgstr "Ikkunan läpinäkyvyys näppäimistö-/suorassa tilassaWindow transparency when in Keyboard/Direct mode"
+msgstr "Ikkunan läpinäkyvyys näppäimistö-/suorassa tilassa"
 
 msgid "Keyboard mode types Dasher's output into other applications using ydotool, which "
-msgstr "Näppäimistötila kirjoittaa Dasherin tulosteen muihin sovelluksiin käyttämällä ydotoolia, jokaKeyboard mode types Dasher's output into other applications using ydotool, which "
+msgstr "Näppäimistötila kirjoittaa Dasherin tulosteen muihin sovelluksiin käyttämällä ydotoolia, joka"
 
 msgid "(Default)"
-msgstr "(oletus)(Default)"
+msgstr "(oletus)"
 
 msgid "Language"
-msgstr "KieliLanguage"
+msgstr "Kieli"
 
 msgid "Language / Locale"
-msgstr "Kieli / AlueLanguage / Locale"
+msgstr "Kieli / Alue"
 
 msgid "<b>Language / Locale</b>"
-msgstr "<b>Kieli /alue</b><b>Language / Locale</b>"
+msgstr "<b>Kieli /alue</b>"
 
 msgid "Bottom"
-msgstr "PohjaBottom"
+msgstr "Pohja"
 
 msgid "Pane position and direct-entry mode"
-msgstr "Paneelin sijainti ja suorasyöttötilaPane position and direct-entry mode"
+msgstr "Paneelin sijainti ja suorasyöttötila"
 
 msgid "Left side"
-msgstr "Vasen puoliLeft side"
+msgstr "Vasen puoli"
 
 msgid "Right side"
-msgstr "Oikea puoliRight side"
+msgstr "Oikea puoli"
 
 msgid "Top"
-msgstr "YläosaTop"
+msgstr "Yläosa"
 
 msgid "Learning"
-msgstr "OppiminenLearning"
+msgstr "Oppiminen"
 
 msgid "Leave"
-msgstr "LähteäLeave"
+msgstr "Lähteä"
 
 msgid "Leave game mode"
-msgstr "Poistu pelitilastaLeave game mode"
+msgstr "Poistu pelitilasta"
 
 msgid "Light"
-msgstr "ValoLight"
+msgstr "Valo"
 
 msgid "Load Voices"
-msgstr "Lataa äänetLoad Voices"
+msgstr "Lataa äänet"
 
 msgid "Loaded %1 characters"
-msgstr "Ladattu %1 merkkiäLoaded %1 characters"
+msgstr "Ladattu %1 merkkiä"
 
 msgid "Loading…"
-msgstr "Ladataan…Loading…"
+msgstr "Ladataan…"
 
 msgid "Locale"
-msgstr "SijaintiLocale"
+msgstr "Sijainti"
 
 msgid "Migration"
-msgstr "MuuttoliikeMigration"
+msgstr "Muuttoliike"
 
 msgid "More"
-msgstr "EnemmänMore"
+msgstr "Enemmän"
 
 msgid "More options"
-msgstr "Lisää vaihtoehtojaMore options"
+msgstr "Lisää vaihtoehtoja"
 
 msgid "Move your eyes while pinching to steer"
-msgstr "Liikuta silmiäsi samalla nipistämällä ohjataksesiMove your eyes while pinching to steer"
+msgstr "Liikuta silmiäsi samalla nipistämällä ohjataksesi"
 
 msgid "New"
-msgstr "UusiNew"
+msgstr "Uusi"
 
 msgid "New document"
-msgstr "Uusi asiakirjaNew document"
+msgstr "Uusi asiakirja"
 
 msgid "New Message"
-msgstr "Uusi viestiNew Message"
+msgstr "Uusi viesti"
 
 msgid "New session (clear text and context)"
-msgstr "Uusi istunto (tyhjennä teksti ja konteksti)New session (clear text and context)"
+msgstr "Uusi istunto (tyhjennä teksti ja konteksti)"
 
 msgid "No Dasher 5 data found on this Mac."
-msgstr "Tältä Macilta ei löytynyt Dasher 5 -tietoja.No Dasher 5 data found on this Mac."
+msgstr "Tältä Macilta ei löytynyt Dasher 5 -tietoja."
 
 msgid "No settings available for this section."
-msgstr "Tälle osiolle ei ole käytettävissä asetuksia.No settings available for this section."
+msgstr "Tälle osiolle ei ole käytettävissä asetuksia."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
-msgstr "Puheentunnistusta ei ole saatavilla. Rakenna järjestelmän TTS-ominaisuudella tai määritä pilvipuhe Asetuksissa.No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr "Puheentunnistusta ei ole saatavilla. Rakenna järjestelmän TTS-ominaisuudella tai määritä pilvipuhe Asetuksissa."
 
 msgid "No training data to export yet"
-msgstr "Vie lähtömateriaalina ei ole vielä koulutusdataaNo training data to export yet"
+msgstr "Vie lähtömateriaalina ei ole vielä koulutusdataa"
 
 msgid "No user training data yet"
-msgstr "Ei käyttäjäkoulutusdataa vieläNo user training data yet"
+msgstr "Ei käyttäjäkoulutusdataa vielä"
 
 msgid "No voices found"
-msgstr "Ääniä ei löytynytNo voices found"
+msgstr "Ääniä ei löytynyt"
 
 msgid "Nothing to save"
-msgstr "Ei mitään tallennettavaaNothing to save"
+msgstr "Ei mitään tallennettavaa"
 
 msgid "Nothing to share"
-msgstr "Ei mitään jaettavaaNothing to share"
+msgstr "Ei mitään jaettavaa"
 
 msgid "OK"
 msgstr "OK"
 
 msgid "On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
-msgstr "VisionOS-käyttöjärjestelmässä nipistä ja pidä sormea pohjalla aloittaaksesi kirjoittamisen, katso ympärillesi nipistämällä ohjataksesi ja vapauta sormi keskeyttääksesi kirjoittamisen. Syöttömalli on nipistämällä-ja-katsomalla-tyyppinen.On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
+msgstr "VisionOS-käyttöjärjestelmässä nipistä ja pidä sormea pohjalla aloittaaksesi kirjoittamisen, katso ympärillesi nipistämällä ohjataksesi ja vapauta sormi keskeyttääksesi kirjoittamisen. Syöttömalli on nipistämällä-ja-katsomalla-tyyppinen."
 
 msgid "Open"
-msgstr "AvaaOpen"
+msgstr "Avaa"
 
 msgid "Open..."
-msgstr "Avata...Open..."
+msgstr "Avata..."
 
 msgid "Open failed"
-msgstr "Avaus epäonnistuiOpen failed"
+msgstr "Avaus epäonnistui"
 
 msgid "Open Keyboard Settings"
-msgstr "Avaa näppäimistöasetuksetOpen Keyboard Settings"
+msgstr "Avaa näppäimistöasetukset"
 
 msgid "Open Settings"
-msgstr "Avaa asetuksetOpen Settings"
+msgstr "Avaa asetukset"
 
 msgid "Open System Settings"
-msgstr "Avaa järjestelmäasetuksetOpen System Settings"
+msgstr "Avaa järjestelmäasetukset"
 
-msgid "Open text file"
-msgstr "Avaa tekstitiedostoOpen text file"
+msgid "Open Text File"
+msgstr "Avaa tekstitiedosto"
 
 msgid "Output"
-msgstr "UlostuloOutput"
+msgstr "Ulostulo"
 
 msgid "Output Font"
-msgstr "TulostusfonttiOutput Font"
+msgstr "Tulostusfontti"
 
 msgid "Output Font Size"
-msgstr "Tulosteen fonttikokoOutput Font Size"
+msgstr "Tulosteen fonttikoko"
 
 msgid "Touch the canvas to start writing."
-msgstr "Aloita kirjoittaminen koskettamalla kanvasta.Touch the canvas to start writing."
+msgstr "Aloita kirjoittaminen koskettamalla kanvasta."
 
 msgid "Pane position"
-msgstr "Sijoita positioPane position"
+msgstr "Sijoita positio"
 
 msgid "Paste"
-msgstr "LiitäPaste"
+msgstr "Liitä"
 
 msgid "Pause"
-msgstr "TaukoPause"
+msgstr "Tauko"
 
 msgid "Pause When Looking Away"
-msgstr "Pysähdy katsoessasi poispäinPause When Looking Away"
+msgstr "Pysähdy katsoessasi poispäin"
 
 msgid "Pinch and hold anywhere on the canvas to start"
-msgstr "Aloita nipistämällä ja pitämällä painettuna mitä tahansa kankaallaPinch and hold anywhere on the canvas to start"
+msgstr "Aloita nipistämällä ja pitämällä painettuna mitä tahansa kankaalla"
 
 msgid "Pinch and Look to Write"
-msgstr "Nipistä ja katso kirjoittaaksesiPinch and Look to Write"
+msgstr "Nipistä ja katso kirjoittaaksesi"
 
 msgid "Pitch"
-msgstr "KorkeusPitch"
+msgstr "Korkeus"
 
 msgid "High"
-msgstr "KorkeaHigh"
+msgstr "Korkea"
 
 msgid "Low"
-msgstr "MatalaLow"
+msgstr "Matala"
 
 msgid "Medium"
-msgstr "KeskikokoinenMedium"
+msgstr "Keskikokoinen"
 
 msgid "Very High"
-msgstr "Erittäin korkeaVery High"
+msgstr "Erittäin korkea"
 
 msgid "Very Low"
-msgstr "Erittäin alhainenVery Low"
+msgstr "Erittäin alhainen"
 
 msgid "Game"
-msgstr "PeliGame"
+msgstr "Peli"
 
 msgid "Play"
-msgstr "ToistaPlay"
+msgstr "Toista"
 
 msgid "Pointer Hover Input"
-msgstr "Osoittimen leijutussyöttöPointer Hover Input"
+msgstr "Osoittimen leijutussyöttö"
 
 msgid "Preferences"
-msgstr "AsetuksetPreferences"
+msgstr "Asetukset"
 
 msgid "Prefs"
-msgstr "AsetuksetPrefs"
+msgstr "Asetukset"
 
 msgid "Preparing Dasher…"
-msgstr "Valmistellaan Dasheria…Preparing Dasher…"
+msgstr "Valmistellaan Dasheria…"
 
 msgid "Preview"
-msgstr "EsikatseluPreview"
+msgstr "Esikatselu"
 
 msgid "Privacy"
-msgstr "TietosuojaPrivacy"
+msgstr "Tietosuoja"
 
 msgid "<b>Privacy</b>"
-msgstr "<b>Yksityisyys</b><b>Privacy</b>"
+msgstr "<b>Yksityisyys</b>"
 
 msgid "Quick speak"
-msgstr "Puhu nopeastiQuick speak"
+msgstr "Puhu nopeasti"
 
 msgid "Rate"
-msgstr "MääräRate"
+msgstr "Määrä"
 
 msgid "Very Fast"
-msgstr "Erittäin nopeaVery Fast"
+msgstr "Erittäin nopea"
 
 msgid "Very Slow"
-msgstr "Erittäin hidasVery Slow"
+msgstr "Erittäin hidas"
 
 msgid "Re-import from Dasher 5"
-msgstr "Tuo uudelleen Dasher 5:stäRe-import from Dasher 5"
+msgstr "Tuo uudelleen Dasher 5:stä"
 
 msgid "Read"
-msgstr "LueRead"
+msgstr "Lue"
 
 msgid "Release the pinch to pause"
-msgstr "Pysähdy päästämällä nipistys irtiRelease the pinch to pause"
+msgstr "Pysähdy päästämällä nipistys irti"
 
 msgid "Reset"
-msgstr "NollaaReset"
+msgstr "Nollaa"
 
 msgid "Reset All Settings to Defaults"
-msgstr "Palauta kaikki asetukset oletusarvoihinReset All Settings to Defaults"
+msgstr "Palauta kaikki asetukset oletusarvoihin"
 
 msgid "Reset all settings to their defaults?"
-msgstr "Palauta kaikki asetukset oletusarvoihinsa?Reset all settings to their defaults?"
+msgstr "Palauta kaikki asetukset oletusarvoihinsa?"
 
 msgid "Reset anonymous ID"
-msgstr "Nollaa anonyymi tunnusReset anonymous ID"
+msgstr "Nollaa anonyymi tunnus"
 
 msgid "Reset engine settings to defaults"
-msgstr "Palauta moottorin asetukset oletuksiinReset engine settings to defaults"
+msgstr "Palauta moottorin asetukset oletuksiin"
 
 msgid "Reset Settings"
-msgstr "Palauta asetuksetReset Settings"
+msgstr "Palauta asetukset"
 
 msgid "Reset to defaults"
-msgstr "Palauta oletusasetuksetReset to defaults"
+msgstr "Palauta oletusasetukset"
 
 msgid "Reset Training Data"
-msgstr "Nollaa harjoitustiedotReset Training Data"
+msgstr "Nollaa harjoitustiedot"
 
 msgid "Reset Training Data?"
-msgstr "Nollataanko harjoitustiedot?Reset Training Data?"
+msgstr "Nollataanko harjoitustiedot?"
 
 msgid "Reset WPM averages"
-msgstr "Nollaa WPM-keskiarvotReset WPM averages"
+msgstr "Nollaa WPM-keskiarvot"
 
 msgid "Restarting engine…"
-msgstr "Moottorin uudelleenkäynnistys…Restarting engine…"
+msgstr "Moottorin uudelleenkäynnistys…"
 
 msgid "Restore all Dasher settings to their default values. This cannot be undone."
-msgstr "Palauta kaikki Dasher-asetukset oletusarvoihinsa. Tätä ei voi perua.Restore all Dasher settings to their default values. This cannot be undone."
+msgstr "Palauta kaikki Dasher-asetukset oletusarvoihinsa. Tätä ei voi perua."
 
 msgid "Retry"
-msgstr "Yritä uudelleenRetry"
+msgstr "Yritä uudelleen"
 
 msgid "Save"
-msgstr "TallennaSave"
+msgstr "Tallenna"
 
 msgid "Save..."
-msgstr "Tallentaa...Save..."
+msgstr "Tallentaa..."
 
 msgid "Save eye-tracker diagnostics"
-msgstr "Tallenna silmänseurannan diagnostiikkaSave eye-tracker diagnostics"
+msgstr "Tallenna silmänseurannan diagnostiikka"
 
 msgid "Save failed"
-msgstr "Tallennus epäonnistuiSave failed"
+msgstr "Tallennus epäonnistui"
 
 msgid "Save file"
-msgstr "Tallenna tiedostoSave file"
+msgstr "Tallenna tiedosto"
 
-msgid "Save text file"
-msgstr "Tallenna tekstitiedostoSave text file"
+msgid "Save Text File"
+msgstr "Tallenna tekstitiedosto"
 
 msgid "Saved"
-msgstr "TallennettuSaved"
+msgstr "Tallennettu"
 
 msgid "Saved: "
-msgstr "TallennettuSaved: "
+msgstr "Tallennettu"
 
 msgid "Scan Speed"
-msgstr "SkannausnopeusScan Speed"
+msgstr "Skannausnopeus"
 
 msgid "Selection Method"
-msgstr "ValintamenetelmäSelection Method"
+msgstr "Valintamenetelmä"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
-msgstr "Palvelu käynnissä? Katso asennusohjeet näppäimistön painikkeen ohjeesta.service running? See the setup help on the Keyboard button for install commands."
+msgstr "Palvelu käynnissä? Katso asennusohjeet näppäimistön painikkeen ohjeesta."
 
 msgid "Settings"
-msgstr "AsetuksetSettings"
+msgstr "Asetukset"
 
 msgid "Settings..."
-msgstr "Asetukset...Settings..."
+msgstr "Asetukset..."
 
 msgid "Reset all settings to defaults"
-msgstr "Palauta kaikki asetukset oletusarvoihinReset all settings to defaults"
+msgstr "Palauta kaikki asetukset oletusarvoihin"
 
 msgid "Settings reset"
-msgstr "Asetusten nollausSettings reset"
+msgstr "Asetusten nollaus"
 
 msgid "Reset all engine settings to their built-in defaults?"
-msgstr "Palautetaanko kaikki moottorin asetukset niiden sisäänrakennettuihin oletuksiin?Reset all engine settings to their built-in defaults?"
+msgstr "Palautetaanko kaikki moottorin asetukset niiden sisäänrakennettuihin oletuksiin?"
 
 msgid "Settings (speed, colours, control mode, language model)"
-msgstr "Asetukset (nopeus, värit, ohjaustila, kielimalli)Settings (speed, colours, control mode, language model)"
+msgstr "Asetukset (nopeus, värit, ohjaustila, kielimalli)"
 
 msgid "Settle time: {0} ms"
-msgstr "Asetusaika: {0} msSettle time: {0} ms"
+msgstr "Asetusaika: {0} ms"
 
 msgid "Share"
-msgstr "JakaaShare"
+msgstr "Jakaa"
 
 msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard "
-msgstr "Jaa anonyymejä käyttöanalytiikka- ja kaatumisraportteja? Ei kirjoitettua tekstiä, leikepöytäShare anonymous usage analytics and crash reports? No typed text, clipboard "
+msgstr "Jaa anonyymejä käyttöanalytiikka- ja kaatumisraportteja? Ei kirjoitettua tekstiä, leikepöytä"
 
 msgid "Show Input Debug Overlay"
-msgstr "Näytä syötteen virheenkorjauspeittokuvaShow Input Debug Overlay"
+msgstr "Näytä syötteen virheenkorjauspeittokuva"
 
 msgid "Show status bar"
-msgstr "Näytä tilapalkkiShow status bar"
+msgstr "Näytä tilapalkki"
 
 msgid "Show typing rate (WPM)"
-msgstr "Näytä kirjoitusnopeus (WPM)Show typing rate (WPM)"
+msgstr "Näytä kirjoitusnopeus (WPM)"
 
 msgid "Size"
-msgstr "KokoSize"
+msgstr "Koko"
 
 msgid "Skipped files"
-msgstr "Ohitetut tiedostotSkipped files"
+msgstr "Ohitetut tiedostot"
 
 msgid "Slow"
-msgstr "HidasSlow"
+msgstr "Hidas"
 
 msgid "Speak on stop"
-msgstr "Puhu pysäytyksessäSpeak on stop"
+msgstr "Puhu pysäytyksessä"
 
 msgid "Speak words"
-msgstr "Puhu sanojaSpeak words"
+msgstr "Puhu sanoja"
 
 msgid "Speech"
-msgstr "PuheSpeech"
+msgstr "Puhe"
 
 msgid "Speech off"
-msgstr "Puhe pois päältäSpeech off"
+msgstr "Puhe pois päältä"
 
 msgid "Speech on"
-msgstr "Puhe aiheestaSpeech on"
+msgstr "Puhe aiheesta"
 
 msgid "Hello, this is a preview of the selected voice."
-msgstr "Hei, tämä on esikatselu valitusta äänestä.Hello, this is a preview of the selected voice."
+msgstr "Hei, tämä on esikatselu valitusta äänestä."
 
 msgid "Speech Settings"
-msgstr "PuheasetuksetSpeech Settings"
+msgstr "Puheasetukset"
 
 msgid "<b>Speech Settings</b>"
-msgstr "Puheasetukset<b>Speech Settings</b>"
+msgstr "Puheasetukset"
 
 msgid "Speech volume"
-msgstr "Puheen äänenvoimakkuusSpeech volume"
+msgstr "Puheen äänenvoimakkuus"
 
 msgid "Speed"
-msgstr "NopeusSpeed"
+msgstr "Nopeus"
 
 msgid "Speed "
-msgstr "NopeusSpeed "
+msgstr "Nopeus"
 
 msgid "Start Calibrating"
-msgstr "Aloita kalibrointiStart Calibrating"
+msgstr "Aloita kalibrointi"
 
 msgid "Start fresh"
-msgstr "Aloita puhtaalta pöydältäStart fresh"
+msgstr "Aloita puhtaalta pöydältä"
 
 msgid "Dasher failed to start:\n{0}"
-msgstr "Dasher ei käynnistynyt:\n{0}Dasher failed to start:\n{0}"
+msgstr "Dasher ei käynnistynyt:\n{0}"
 
 msgid "Steering Method"
-msgstr "OhjausmenetelmäSteering Method"
+msgstr "Ohjausmenetelmä"
 
 msgid "Stop"
-msgstr "PysähdyStop"
+msgstr "Pysähdy"
 
 msgid "Stop speaking"
-msgstr "Lopeta puhuminenStop speaking"
+msgstr "Lopeta puhuminen"
 
 msgid "Switch Setup"
-msgstr "Kytkimen asetuksetSwitch Setup"
+msgstr "Kytkimen asetukset"
 
 msgid "System"
-msgstr "JärjestelmäSystem"
+msgstr "Järjestelmä"
 
 msgid "text"
-msgstr "tekstitext"
+msgstr "teksti"
 
 msgid "Text files"
-msgstr "TekstitiedostotText files"
+msgstr "Tekstitiedostot"
 
 msgid "That file already is your training data."
-msgstr "Tuo tiedosto on jo sinun koulutusdatasi.That file already is your training data."
+msgstr "Tuo tiedosto on jo sinun koulutusdatasi."
 
 msgid "the app you are pointing at (needs ydotool)"
-msgstr "sovellus, johon osoitat (tarvitsee ydotoolin)the app you are pointing at (needs ydotool)"
+msgstr "sovellus, johon osoitat (tarvitsee ydotoolin)"
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
-msgstr "Virheenkorjausnäkymä piirtää vihreän paneelin kankaan vasempaan yläkulmaan, jossa näkyvät reaaliaikaisten kosketustapahtumien määrät ja viimeksi raportoidut arvot (x, y). Kun pidät painettuna, sinun pitäisi nähdä touch.began ja sitten touch.moved muuttuvilla koordinaateilla katsellessasi ympärillesi.The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
+msgstr "Virheenkorjausnäkymä piirtää vihreän paneelin kankaan vasempaan yläkulmaan, jossa näkyvät reaaliaikaisten kosketustapahtumien määrät ja viimeksi raportoidut arvot (x, y). Kun pidät painettuna, sinun pitäisi nähdä touch.began ja sitten touch.moved muuttuvilla koordinaateilla katsellessasi ympärillesi."
 
 msgid "The file is too large (over 10 MB) to import as training text."
-msgstr "Tiedosto on liian suuri (yli 10 Mt) tuodakseen sen koulutustekstinä.The file is too large (over 10 MB) to import as training text."
+msgstr "Tiedosto on liian suuri (yli 10 Mt) tuodakseen sen koulutustekstinä."
 
 msgid "The selected file is empty."
-msgstr "Valittu tiedosto on tyhjä.The selected file is empty."
+msgstr "Valittu tiedosto on tyhjä."
 
 msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
-msgstr "Tämä poistaa keräämäsi harjoitteludatan jokaiselle aakkoselle. Ennusteet säilyttävät erittäin äskettäisen kirjoittamisen vaikutuksen.This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
+msgstr "Tämä poistaa keräämäsi harjoitteludatan jokaiselle aakkoselle. Ennusteet säilyttävät erittäin äskettäisen kirjoittamisen vaikutuksen."
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
-msgstr "Tämä poistaa kertyneet harjoitustietosi. Kielimalli palautuu oletusasetuksiin seuraavan käynnistyksen yhteydessä. Tätä ei voi perua.This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
+msgstr "Tämä poistaa kertyneet harjoitustietosi. Kielimalli palautuu oletusasetuksiin seuraavan käynnistyksen yhteydessä. Tätä ei voi perua."
 
 msgid "Tilt Calibration"
-msgstr "Kallistuksen kalibrointiTilt Calibration"
+msgstr "Kallistuksen kalibrointi"
 
 msgid "Hold the device upright, then tilt forward and back"
-msgstr "Pidä laitetta pystysuorassa, kallista sitten eteen- ja taaksepäinHold the device upright, then tilt forward and back"
+msgstr "Pidä laitetta pystysuorassa, kallista sitten eteen- ja taaksepäin"
 
 msgid "Tilt left and right through the full range"
-msgstr "Kallista vasemmalle ja oikealle koko liikeradallaTilt left and right through the full range"
+msgstr "Kallista vasemmalle ja oikealle koko liikeradalla"
 
 msgid "Move slowly and smoothly through all positions"
-msgstr "Liiku hitaasti ja sulavasti kaikkien asentojen läpiMove slowly and smoothly through all positions"
+msgstr "Liiku hitaasti ja sulavasti kaikkien asentojen läpi"
 
 msgid "Tilt Settings"
-msgstr "KallistusasetuksetTilt Settings"
+msgstr "Kallistusasetukset"
 
 msgid "Tilt your device now..."
-msgstr "Kallista laitettasi nyt...Tilt your device now..."
+msgstr "Kallista laitettasi nyt..."
 
 msgid "Tilt your device through its full range of motion during calibration."
-msgstr "Kallista laitettasi koko liikeradalla kalibroinnin aikana.Tilt your device through its full range of motion during calibration."
+msgstr "Kallista laitettasi koko liikeradalla kalibroinnin aikana."
 
 msgid "time under Preferences → Privacy."
-msgstr "aika Asetukset → Tietosuoja.time under Preferences → Privacy."
+msgstr "aika Asetukset → Tietosuoja."
 
 msgid "Eye Tracker Error"
 msgstr "Eye Tracker Error"
 
 msgid "Eye tracker notice"
-msgstr "Eye tracker huomautusEye tracker notice"
+msgstr "Eye tracker huomautus"
 
 msgid "The eye tracker could not be fully resumed ({0}). Tracking may run at reduced speed and accuracy — try running Dasher as administrator."
-msgstr "Silmänseurantaa ei voitu jatkaa kokonaan ({0}). Seuranta voi toimia pienemmällä nopeudella ja tarkkuudella – kokeile käyttää Dasheria järjestelmänvalvojana.The eye tracker could not be fully resumed ({0}). Tracking may run at reduced speed and accuracy — try running Dasher as administrator."
+msgstr "Silmänseurantaa ei voitu jatkaa kokonaan ({0}). Seuranta voi toimia pienemmällä nopeudella ja tarkkuudella – kokeile käyttää Dasheria järjestelmänvalvojana."
 
 msgid "Toggle control mode"
-msgstr "Vaihda ohjaustilaaToggle control mode"
+msgstr "Vaihda ohjaustilaa"
 
 msgid "Toggle game mode"
-msgstr "Vaihda pelitilaaToggle game mode"
+msgstr "Vaihda pelitilaa"
 
 msgid "Toggle keyboard mode"
-msgstr "Vaihda näppäimistötilaaToggle keyboard mode"
+msgstr "Vaihda näppäimistötilaa"
 
 msgid "Toggle pane position"
-msgstr "Vaihda ruudun sijaintiaToggle pane position"
+msgstr "Vaihda ruudun sijaintia"
 
 msgid "Hide/show status bar"
-msgstr "Piilota/näytä tilapalkkiHide/show status bar"
+msgstr "Piilota/näytä tilapalkki"
 
 msgid "Copy all text"
-msgstr "Kopioi kaikki tekstiCopy all text"
+msgstr "Kopioi kaikki teksti"
 
 msgid "Copy selection in target app"
-msgstr "Kopioi valinta kohdesovellukseenCopy selection in target app"
+msgstr "Kopioi valinta kohdesovellukseen"
 
 msgid "Cut selection in target app"
-msgstr "Leikkaa valinta kohdesovelluksessaCut selection in target app"
+msgstr "Leikkaa valinta kohdesovelluksessa"
+
+msgid "Start game mode"
+msgstr "Aloita pelitila"
+
+msgid "New / clear output"
+msgstr "Uusi / selkeä tuloste"
+
+msgid "Open file"
+msgstr "Avaa tiedosto"
 
 msgid "Paste into target app"
-msgstr "Liitä kohdesovellukseenPaste into target app"
+msgstr "Liitä kohdesovellukseen"
 
 msgid "Re-anchor predictions to the caret (read the sentence around your cursor)"
-msgstr "Ankkuroi ennusteet uudelleen kohdistimeen (lue lause kohdistimesi ympäriltä)Re-anchor predictions to the caret (read the sentence around your cursor)"
+msgstr "Ankkuroi ennusteet uudelleen kohdistimeen (lue lause kohdistimesi ympäriltä)"
+
+msgid "Save to file"
+msgstr "Tallenna tiedostoon"
 
 msgid "Select all in target app"
-msgstr "Valitse kaikki kohdeohjelmassaSelect all in target app"
+msgstr "Valitse kaikki kohdeohjelmassa"
+
+msgid "Open settings"
+msgstr "Avaa asetukset"
+
+msgid "Share text"
+msgstr "Jaa teksti"
 
 msgid "eyetuitive"
-msgstr "silmiinpistäväeyetuitive"
+msgstr "silmiinpistävä"
 
 msgid "Eye tracker"
-msgstr "SilmänseurantalaiteEye tracker"
+msgstr "Silmänseurantalaite"
 
 msgid "Tobii (Stream Engine)"
 msgstr "Tobii (Stream Engine)"
 
 msgid "UDP Gaze Tracker (network)"
-msgstr "UDP Gaze Tracker (verkko)UDP Gaze Tracker (network)"
+msgstr "UDP Gaze Tracker (verkko)"
 
 msgid "Windows Eye Tracker (native)"
-msgstr "Windows Eye Tracker (alkuperäinen)Windows Eye Tracker (native)"
+msgstr "Windows Eye Tracker (alkuperäinen)"
 
 msgid "Training"
-msgstr "KoulutusTraining"
+msgstr "Koulutus"
 
 msgid "Current training data: {0} KB"
-msgstr "Nykyiset harjoitustiedot: {0} ktCurrent training data: {0} KB"
+msgstr "Nykyiset harjoitustiedot: {0} kt"
 
 msgid "Training Data"
-msgstr "HarjoitustiedotTraining Data"
+msgstr "Harjoitustiedot"
 
 msgid "Training data deleted — restart Dasher to fully apply"
-msgstr "Koulutusdata poistettu — käynnistä Dasher uudelleen, jotta muutokset tulevat täysin voimaanTraining data deleted — restart Dasher to fully apply"
+msgstr "Koulutusdata poistettu — käynnistä Dasher uudelleen, jotta muutokset tulevat täysin voimaan"
 
 msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
-msgstr "Tuo lisää tekstiä kielimalliin ja kertyneisiin harjoitustietoihisi (säilytetään uudelleenkäynnistysten aikana). Vienti tallentaa harjoitustietosi varmuuskopiointia tai siirtoa varten. Reset poistaa kaikki käyttäjien harjoitustiedot – malli palaa sisäänrakennetuille oletusasetuksiin seuraavan käynnistyksen yhteydessä.Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
+msgstr "Tuo lisää tekstiä kielimalliin ja kertyneisiin harjoitustietoihisi (säilytetään uudelleenkäynnistysten aikana). Vienti tallentaa harjoitustietosi varmuuskopiointia tai siirtoa varten. Reset poistaa kaikki käyttäjien harjoitustiedot – malli palaa sisäänrakennetuille oletusasetuksiin seuraavan käynnistyksen yhteydessä."
 
 msgid "Training data exported."
-msgstr "Koulutusdata viety.Training data exported."
+msgstr "Koulutusdata viety."
 
 msgid "Export Training Data"
-msgstr "Vie koulutustiedotExport Training Data"
+msgstr "Vie koulutustiedot"
 
 msgid "Exported to {0}"
-msgstr "Vietiin kohteeseen {0}Exported to {0}"
+msgstr "Vietiin kohteeseen {0}"
 
 msgid "{0} failed: {1}"
-msgstr "{0} epäonnistui: {1}{0} failed: {1}"
+msgstr "{0} epäonnistui: {1}"
 
 msgid "Imported {0} KB of training text"
-msgstr "Tuotu {0} kt harjoitustekstiäImported {0} KB of training text"
+msgstr "Tuotu {0} kt harjoitustekstiä"
 
 msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
-msgstr "Tuotu {0} kt – sovelletaan kokonaan seuraavan julkaisun yhteydessä (malli palautettiin {1})Imported {0} KB — applies fully on next launch (live model returned {1})"
+msgstr "Tuotu {0} kt – sovelletaan kokonaan seuraavan julkaisun yhteydessä (malli palautettiin {1})"
 
 msgid "Training is not available yet — try again once the canvas has rendered."
-msgstr "Koulutus ei ole vielä saatavilla — yritä uudelleen, kun kangas on renderöity.Training is not available yet — try again once the canvas has rendered."
+msgstr "Koulutus ei ole vielä saatavilla — yritä uudelleen, kun kangas on renderöity."
 
 msgid "Training data deleted — the model returns to its built-in defaults on next launch"
-msgstr "Harjoitustiedot poistettu – malli palaa sisäänrakennettuun oletusasetuksiinsa seuraavan käynnistyksen yhteydessäTraining data deleted — the model returns to its built-in defaults on next launch"
+msgstr "Harjoitustiedot poistettu – malli palaa sisäänrakennettuun oletusasetuksiinsa seuraavan käynnistyksen yhteydessä"
 
 msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
-msgstr "Harjoitustiedot poistettu mahdollisuuksien mukaan – {0} kohde(tta) epäonnistui; paina Reset uudelleen yrittääksesi uudelleenDeleted training data where possible — {0} item(s) failed; press Reset again to retry"
+msgstr "Harjoitustiedot poistettu mahdollisuuksien mukaan – {0} kohde(tta) epäonnistui; paina Reset uudelleen yrittääksesi uudelleen"
 
 msgid "TTS Engine"
-msgstr "TTS-moottoriTTS Engine"
+msgstr "TTS-moottori"
 
 msgid "No credentials required"
-msgstr "Ei vaadita tunnistetietojaNo credentials required"
+msgstr "Ei vaadita tunnistetietoja"
 
 msgid "Turbo"
 msgstr "Turbo"
 
 msgid "Typing into other applications needs access to /dev/uinput, which a sandboxed "
-msgstr "Kirjoittaminen muihin sovelluksiin vaatii pääsyn /dev/uinputiin, mikä on hiekkalaatikossaTyping into other applications needs access to /dev/uinput, which a sandboxed "
+msgstr "Kirjoittaminen muihin sovelluksiin vaatii pääsyn /dev/uinputiin, mikä on hiekkalaatikossa"
 
 msgid "Typing rate"
-msgstr "KirjoitusnopeusTyping rate"
+msgstr "Kirjoitusnopeus"
 
 msgid "{cps} cps · {wpm} wpm"
-msgstr "{cps} merkkiä/s · {wpm} sanaa/min{cps} cps · {wpm} wpm"
+msgstr "{cps} merkkiä/s · {wpm} sanaa/min"
 
 msgid "UDP Port"
-msgstr "UDP-porttiUDP Port"
+msgstr "UDP-portti"
 
 msgid "UDP tracker listens for STREAM_DATA or GazePoint messages"
-msgstr "UDP-seuranta kuuntelee STREAM_DATA- tai GazePoint-viestejäUDP tracker listens for STREAM_DATA or GazePoint messages"
+msgstr "UDP-seuranta kuuntelee STREAM_DATA- tai GazePoint-viestejä"
 
 msgid "Dasher {0} is available (you're running v{1}). Tap to download — disable in Settings > Privacy."
-msgstr "Dasher {0} on saatavilla (käytät v{1}). Lataa napauttamalla — poista käytöstä kohdassa Asetukset > Tietosuoja.Dasher {0} is available (you're running v{1}). Tap to download — disable in Settings > Privacy."
+msgstr "Dasher {0} on saatavilla (käytät v{1}). Lataa napauttamalla — poista käytöstä kohdassa Asetukset > Tietosuoja."
 
 msgid "Dasher update available"
-msgstr "Dasher-päivitys saatavillaDasher update available"
+msgstr "Dasher-päivitys saatavilla"
 
 msgid "Use Dasher as your keyboard"
-msgstr "Käytä Dasheria näppäimistönäUse Dasher as your keyboard"
+msgstr "Käytä Dasheria näppäimistönä"
 
 msgid "Voice"
-msgstr "ÄäniVoice"
+msgstr "Ääni"
 
 msgid "{0} voices"
-msgstr "{0} ääntä{0} voices"
+msgstr "{0} ääntä"
 
 msgid "Volume"
-msgstr "TilavuusVolume"
+msgstr "Tilavuus"
 
 msgid "Dasher Warning"
-msgstr "Dasher VaroitusDasher Warning"
+msgstr "Dasher Varoitus"
 
 msgid "We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
-msgstr "Löysimme Dasher 5 -kokoonpanosi tältä Macilta. Aakkoset, värit, nopeusasetukset ja mukautetut tiedostot voidaan tuoda Dasher 6:een.We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
+msgstr "Löysimme Dasher 5 -kokoonpanosi tältä Macilta. Aakkoset, värit, nopeusasetukset ja mukautetut tiedostot voidaan tuoda Dasher 6:een."
 
 msgid "What was found"
-msgstr "Mitä löytyiWhat was found"
+msgstr "Mitä löytyi"
 
 msgid "{0} wpm"
 msgstr "{0} wpm"
 
 msgid "max {0}"
-msgstr "enintään {0}max {0}"
+msgstr "enintään {0}"
 
 msgid "X range:"
-msgstr "X-alue:X range:"
+msgstr "X-alue:"
 
 msgid "Y range:"
-msgstr "Y-alue:Y range:"
+msgstr "Y-alue:"
 
 msgid "ydotool found. Keyboard mode is ready."
-msgstr "ydotool löytyi. Näppäimistötila on valmis.ydotool found. Keyboard mode is ready."
+msgstr "ydotool löytyi. Näppäimistötila on valmis."
 
 msgid "ydotool still isn't available. Make sure it's installed and the ydotool service is running."
-msgstr "ydotool ei ole vielä saatavilla. Varmista, että se on asennettu ja että ydotool-palvelu on käynnissä.ydotool still isn't available. Make sure it's installed and the ydotool service is running."
+msgstr "ydotool ei ole vielä saatavilla. Varmista, että se on asennettu ja että ydotool-palvelu on käynnissä."
 
 msgid "You can import later in Settings > Privacy & Migration"
-msgstr "Voit tuoda sen myöhemmin kohdassa Asetukset > Tietosuoja ja siirtoYou can import later in Settings > Privacy & Migration"
+msgstr "Voit tuoda sen myöhemmin kohdassa Asetukset > Tietosuoja ja siirto"
 
 msgid "Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."
-msgstr "Katseesi seurataan jatkuvasti vain, kun nipistät ja pidät kiinni – näin kaikki visionOS-katsesovellukset toimivat.Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."
+msgstr "Katseesi seurataan jatkuvasti vain, kun nipistät ja pidät kiinni – näin kaikki visionOS-katsesovellukset toimivat."

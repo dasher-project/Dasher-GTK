@@ -17,1126 +17,1156 @@ msgid "%1$.1f cps · %2$d wpm"
 msgstr "%1$.1f cps · %2$d wpm"
 
 msgid "A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
-msgstr "একটি ক্র্যাশ রিপোর্ট ~/Library/Logs/DiagnosticReports/Dasher-*.ips-এ সংরক্ষিত হয়েছে। আপনি যদি এটি একটি গিটহাব ইস্যু-তে শেয়ার করেন, তবে তা আমাদের বাগটি সমাধান করতে সাহায্য করবে।A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
+msgstr "একটি ক্র্যাশ রিপোর্ট ~/Library/Logs/DiagnosticReports/Dasher-*.ips-এ সংরক্ষিত হয়েছে। আপনি যদি এটি একটি গিটহাব ইস্যু-তে শেয়ার করেন, তবে তা আমাদের বাগটি সমাধান করতে সাহায্য করবে।"
 
 msgid "About"
-msgstr "সম্বন্ধেAbout"
+msgstr "সম্বন্ধে"
 
 msgid "Dasher {0}"
-msgstr "ড্যাশার {0}Dasher {0}"
+msgstr "ড্যাশার {0}"
 
 msgid "Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
-msgstr "হোভার/পয়েন্টার ইভেন্টগুলোকে ড্যাশার ইনপুট হিসেবে গ্রহণ করুন। আই ট্র্যাকিং বা এক্সটার্নাল পয়েন্টারের জন্য এটি সক্রিয় করুন।Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
+msgstr "হোভার/পয়েন্টার ইভেন্টগুলোকে ড্যাশার ইনপুট হিসেবে গ্রহণ করুন। আই ট্র্যাকিং বা এক্সটার্নাল পয়েন্টারের জন্য এটি সক্রিয় করুন।"
 
 msgid "Access"
-msgstr "অ্যাক্সেসAccess"
+msgstr "অ্যাক্সেস"
 
 msgid "Accessibility Permission Required"
-msgstr "প্রবেশগম্যতার অনুমতি প্রয়োজনAccessibility Permission Required"
+msgstr "প্রবেশগম্যতার অনুমতি প্রয়োজন"
 
 msgid "Adapt Speed Automatically"
-msgstr "স্বয়ংক্রিয়ভাবে গতি সামঞ্জস্য করুনAdapt Speed Automatically"
+msgstr "স্বয়ংক্রিয়ভাবে গতি সামঞ্জস্য করুন"
 
 msgid "Advanced logging"
-msgstr "উন্নত লগিংAdvanced logging"
+msgstr "উন্নত লগিং"
 
 msgid "Detailed diagnostic logging for bug reports (per-sample eye-tracker lines, keystroke traces, UIA reads). Basic connection events are always logged. May generate large log files."
-msgstr "বাগ রিপোর্টের জন্য বিস্তারিত ডায়গনস্টিক লগিং (প্রতি-নমুনার আই ট্র্যাকার লাইন, কীস্ট্রোক ট্রেস, UIA রিড)। মৌলিক সংযোগ ইভেন্ট সবসময় লগ করা হয়। বড় লগ ফাইল তৈরি করতে পারে।Detailed diagnostic logging for bug reports (per-sample eye-tracker lines, keystroke traces, UIA reads). Basic connection events are always logged. May generate large log files."
+msgstr "বাগ রিপোর্টের জন্য বিস্তারিত ডায়গনস্টিক লগিং (প্রতি-নমুনার আই ট্র্যাকার লাইন, কীস্ট্রোক ট্রেস, UIA রিড)। মৌলিক সংযোগ ইভেন্ট সবসময় লগ করা হয়। বড় লগ ফাইল তৈরি করতে পারে।"
 
 msgid "Advanced settings"
-msgstr "উন্নত সেটিংসAdvanced settings"
+msgstr "উন্নত সেটিংস"
 
 msgid "All Dasher settings will be restored to their default values. This cannot be undone."
-msgstr "ড্যাশার-এর সমস্ত সেটিংস তাদের ডিফল্ট মানে পুনরুদ্ধার করা হবে। এটি পূর্বাবস্থায় ফেরানো যাবে না।All Dasher settings will be restored to their default values. This cannot be undone."
+msgstr "ড্যাশার-এর সমস্ত সেটিংস তাদের ডিফল্ট মানে পুনরুদ্ধার করা হবে। এটি পূর্বাবস্থায় ফেরানো যাবে না।"
 
 msgid "Alphabet"
-msgstr "বর্ণমালাAlphabet"
+msgstr "বর্ণমালা"
 
 msgid "Help improve Dasher"
-msgstr "ড্যাশারকে উন্নত করতে সাহায্য করুনHelp improve Dasher"
+msgstr "ড্যাশারকে উন্নত করতে সাহায্য করুন"
 
 msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
-msgstr "গোপনীয় ব্যবহার বিশ্লেষণ ও ক্র্যাশ রিপোর্ট শেয়ার করবেন? কোনও টাইপ করা টেক্সট, ক্লিপবোর্ডের বিষয়বস্তু বা ব্যক্তিগত তথ্য কখনো সংগ্রহ করা হয় না। আপনি যখন খুশি সেটিংসে এটি পরিবর্তন করতে পারেন।Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
+msgstr "গোপনীয় ব্যবহার বিশ্লেষণ ও ক্র্যাশ রিপোর্ট শেয়ার করবেন? কোনও টাইপ করা টেক্সট, ক্লিপবোর্ডের বিষয়বস্তু বা ব্যক্তিগত তথ্য কখনো সংগ্রহ করা হয় না। আপনি যখন খুশি সেটিংসে এটি পরিবর্তন করতে পারেন।"
 
 msgid "Not now"
-msgstr "এখন নয়Not now"
+msgstr "এখন নয়"
 
 msgid "Share anonymous analytics and crash reports"
-msgstr "বেনামী বিশ্লেষণ এবং ক্র্যাশ রিপোর্ট শেয়ার করুনShare anonymous analytics and crash reports"
+msgstr "বেনামী বিশ্লেষণ এবং ক্র্যাশ রিপোর্ট শেয়ার করুন"
 
 msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
-msgstr "ড্যাশার ব্যবহার প্যাটার্ন বোঝার এবং ক্র্যাশ ঠিক করার জন্য গোপনীয়তা-সন্মানমূলক অজ্ঞাতপরিচয় বিশ্লেষণ সংগ্রহ করে। কখনোই টাইপ করা টেক্সট, ক্লিপবোর্ডের বিষয়বস্তু বা ব্যক্তিগত তথ্য সংগ্রহ করা হয় না।\n\nআপনি যেকোনো সময় এটি পরিবর্তন করতে পারেন সেটিংস > গোপনীয়তা-এ।Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
+msgstr "ড্যাশার ব্যবহার প্যাটার্ন বোঝার এবং ক্র্যাশ ঠিক করার জন্য গোপনীয়তা-সন্মানমূলক অজ্ঞাতপরিচয় বিশ্লেষণ সংগ্রহ করে। কখনোই টাইপ করা টেক্সট, ক্লিপবোর্ডের বিষয়বস্তু বা ব্যক্তিগত তথ্য সংগ্রহ করা হয় না।\n\nআপনি যেকোনো সময় এটি পরিবর্তন করতে পারেন সেটিংস > গোপনীয়তা-এ।"
 
 msgid "Reset analytics ID"
-msgstr "বিশ্লেষণ আইডি রিসেট করুনReset analytics ID"
+msgstr "বিশ্লেষণ আইডি রিসেট করুন"
 
 msgid "Dasher collects anonymous usage analytics and crash reports to understand how the app is used and to fix bugs. No typed text, clipboard contents, or personal information is ever collected."
-msgstr "ড্যাশার অজ্ঞাত ব্যবহার বিশ্লেষণ এবং ক্র্যাশ রিপোর্ট সংগ্রহ করে যাতে বোঝা যায় অ্যাপটি কিভাবে ব্যবহার করা হচ্ছে এবং বাগ ঠিক করা যায়। কখনও কোন টাইপ করা লেখা, ক্লিপবোর্ডের বিষয়বস্তু বা ব্যক্তিগত তথ্য সংগ্রহ করা হয় না।Dasher collects anonymous usage analytics and crash reports to understand how the app is used and to fix bugs. No typed text, clipboard contents, or personal information is ever collected."
+msgstr "ড্যাশার অজ্ঞাত ব্যবহার বিশ্লেষণ এবং ক্র্যাশ রিপোর্ট সংগ্রহ করে যাতে বোঝা যায় অ্যাপটি কিভাবে ব্যবহার করা হচ্ছে এবং বাগ ঠিক করা যায়। কখনও কোন টাইপ করা লেখা, ক্লিপবোর্ডের বিষয়বস্তু বা ব্যক্তিগত তথ্য সংগ্রহ করা হয় না।"
 
 msgid "Help improve Dasher?"
-msgstr "ড্যাশার উন্নত করতে সাহায্য করবেন?Help improve Dasher?"
+msgstr "ড্যাশার উন্নত করতে সাহায্য করবেন?"
 
 msgid "Anonymous ID: {0}"
-msgstr "বেনামী আইডি: {0}Anonymous ID: {0}"
+msgstr "বেনামী আইডি: {0}"
 
 msgid "Anonymous usage analytics"
-msgstr "বেনামী ব্যবহার বিশ্লেষণAnonymous usage analytics"
+msgstr "বেনামী ব্যবহার বিশ্লেষণ"
 
 msgid "Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
-msgstr "বেনামী ব্যবহার বিশ্লেষণ আমাদের বুঝতে সাহায্য করে যে ড্যাশার কীভাবে ব্যবহৃত হচ্ছে এবং ক্র্যাশ ঠিক করতে সহায়তা করে। টাইপ করা কোনো লেখা, ক্লিপবোর্ডের বিষয়বস্তু বা ব্যক্তিগত তথ্য কখনোই সংগ্রহ করা হয় না। সেটিংস → গোপনীয়তা-তে গিয়ে যেকোনো সময় এটি থেকে বেরিয়ে আসুন।Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
+msgstr "বেনামী ব্যবহার বিশ্লেষণ আমাদের বুঝতে সাহায্য করে যে ড্যাশার কীভাবে ব্যবহৃত হচ্ছে এবং ক্র্যাশ ঠিক করতে সহায়তা করে। টাইপ করা কোনো লেখা, ক্লিপবোর্ডের বিষয়বস্তু বা ব্যক্তিগত তথ্য কখনোই সংগ্রহ করা হয় না। সেটিংস → গোপনীয়তা-তে গিয়ে যেকোনো সময় এটি থেকে বেরিয়ে আসুন।"
 
 msgid "App-Level Dwell to Select"
-msgstr "অ্যাপ-স্তরে নির্বাচন করতে থাকুনApp-Level Dwell to Select"
+msgstr "অ্যাপ-স্তরে নির্বাচন করতে থাকুন"
 
 msgid "Dasher"
 msgstr ""
 
 msgid "Appearance"
-msgstr "দৃশ্যমানতাAppearance"
+msgstr "দৃশ্যমানতা"
 
 msgid "Left"
-msgstr "বামLeft"
+msgstr "বাম"
 
 msgid "Move caret left (hold to repeat)"
-msgstr "কারেট বাম দিকে সরান (বারবার করার জন্য ধরে রাখুন)Move caret left (hold to repeat)"
+msgstr "কারেট বাম দিকে সরান (বারবার করার জন্য ধরে রাখুন)"
 
 msgid "Right"
-msgstr "ঠিকRight"
+msgstr "ঠিক"
 
 msgid "Move caret right (hold to repeat)"
-msgstr "কারেট ডান দিকে সরান (বারবার করতে ধরে থাকুন)Move caret right (hold to repeat)"
+msgstr "কারেট ডান দিকে সরান (বারবার করতে ধরে থাকুন)"
 
 msgid "Auto"
-msgstr "অটোAuto"
+msgstr "অটো"
 
 msgid "Auto-Centre Target"
-msgstr "অটো-সেন্টার টার্গেটAuto-Centre Target"
+msgstr "অটো-সেন্টার টার্গেট"
 
 msgid "Auto-select after fixating. Only enable if OS dwell is off."
-msgstr "দৃষ্টি নিবদ্ধ করার পর স্বয়ংক্রিয়ভাবে নির্বাচিত হবে। শুধুমাত্র OS ডুয়েল বন্ধ থাকলেই এটি সক্রিয় করুন।Auto-select after fixating. Only enable if OS dwell is off."
+msgstr "দৃষ্টি নিবদ্ধ করার পর স্বয়ংক্রিয়ভাবে নির্বাচিত হবে। শুধুমাত্র OS ডুয়েল বন্ধ থাকলেই এটি সক্রিয় করুন।"
 
 msgid "Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
-msgstr "পিঞ্চ করার সময় দৃষ্টি স্থির রাখলে স্বয়ংক্রিয়ভাবে নির্বাচন হবে। শুধুমাত্র OS dwell বন্ধ থাকলেই এটি সক্রিয় করুন।Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
+msgstr "পিঞ্চ করার সময় দৃষ্টি স্থির রাখলে স্বয়ংক্রিয়ভাবে নির্বাচন হবে। শুধুমাত্র OS dwell বন্ধ থাকলেই এটি সক্রিয় করুন।"
 
 msgid "Back"
-msgstr "পেছনেBack"
+msgstr "পেছনে"
 
 msgid "Del"
-msgstr "মুছুনDel"
+msgstr "মুছুন"
 
 msgid "Delete (hold to repeat)"
-msgstr "মুছুন (বারবার করতে ধরুন)Delete (hold to repeat)"
+msgstr "মুছুন (বারবার করতে ধরুন)"
 
 msgid "Calibrate Tilt"
-msgstr "ঝোঁক ক্যালিব্রেট করুনCalibrate Tilt"
+msgstr "ঝোঁক ক্যালিব্রেট করুন"
 
 msgid "Cancel"
-msgstr "বাতিল করুনCancel"
+msgstr "বাতিল করুন"
 
 msgid "Check Again"
-msgstr "আবার পরীক্ষা করুনCheck Again"
+msgstr "আবার পরীক্ষা করুন"
 
 msgid "Check for updates"
 msgstr ""
 
 msgid "Choose..."
-msgstr "বেছে নিন...Choose..."
+msgstr "বেছে নিন..."
 
 msgid "Choose File..."
-msgstr "ফাইল নির্বাচন করুন...Choose File..."
+msgstr "ফাইল নির্বাচন করুন..."
 
 msgid "Clear"
-msgstr "পরিষ্কারClear"
+msgstr "পরিষ্কার"
 
 msgid "Clear logs"
-msgstr "লগগুলো পরিষ্কার করুনClear logs"
+msgstr "লগগুলো পরিষ্কার করুন"
 
 msgid "Click to set up keyboard mode (needs ydotool)"
-msgstr "কীবোর্ড মোড সেট আপ করতে ক্লিক করুন (ydotool প্রয়োজন)Click to set up keyboard mode (needs ydotool)"
+msgstr "কীবোর্ড মোড সেট আপ করতে ক্লিক করুন (ydotool প্রয়োজন)"
 
 msgid "Close"
-msgstr "বন্ধ করুনClose"
+msgstr "বন্ধ করুন"
 
 msgid "Close settings"
-msgstr "সেটিংস বন্ধ করুনClose settings"
+msgstr "সেটিংস বন্ধ করুন"
 
 msgid "Colour Theme"
-msgstr "রঙের থিমColour Theme"
+msgstr "রঙের থিম"
 
 msgid "contents or personal information is ever collected. You can change this any "
-msgstr "কোনো সামগ্রী বা ব্যক্তিগত তথ্য কখনও সংগ্রহ করা হয় না। আপনি এটিকে যেকোনো সময় পরিবর্তন করতে পারেনcontents or personal information is ever collected. You can change this any "
+msgstr "কোনো সামগ্রী বা ব্যক্তিগত তথ্য কখনও সংগ্রহ করা হয় না। আপনি এটিকে যেকোনো সময় পরিবর্তন করতে পারেন"
 
 msgid "Control"
-msgstr "নিয়ন্ত্রণControl"
+msgstr "নিয়ন্ত্রণ"
 
 msgid "Control mode: enabled"
-msgstr "নিয়ন্ত্রণ মোড: সক্রিয়Control mode: enabled"
+msgstr "নিয়ন্ত্রণ মোড: সক্রিয়"
 
 msgid "Control mode"
-msgstr "নিয়ন্ত্রণ মোডControl mode"
+msgstr "নিয়ন্ত্রণ মোড"
 
 msgid "Control nodes: move, delete, clear, speak, pause"
-msgstr "নিয়ন্ত্রণ নোড: স্থানান্তর, মুছে ফেলা, সাফ করা, কথা বলা, বিরতিControl nodes: move, delete, clear, speak, pause"
+msgstr "নিয়ন্ত্রণ নোড: স্থানান্তর, মুছে ফেলা, সাফ করা, কথা বলা, বিরতি"
 
 msgid "Copied to clipboard."
-msgstr "ক্লিপবোর্ড-এ কপি করা হয়েছেCopied to clipboard."
+msgstr "ক্লিপবোর্ড-এ কপি করা হয়েছে"
 
 msgid "Copy"
-msgstr "কপি করুনCopy"
+msgstr "কপি করুন"
 
 msgid "Copy all"
-msgstr "সব কপি করুনCopy all"
+msgstr "সব কপি করুন"
 
 msgid "Copy All"
-msgstr "সব কপি করুনCopy All"
+msgstr "সব কপি করুন"
 
 msgid "Copy all (to clipboard)"
-msgstr "সবগুলো কপি করুন (ক্লিপবোর্ডে)Copy all (to clipboard)"
+msgstr "সবগুলো কপি করুন (ক্লিপবোর্ডে)"
 
 msgid "Copy commands"
-msgstr "কমান্ড কপি করুনCopy commands"
+msgstr "কমান্ড কপি করুন"
 
 msgid "Copy selection"
-msgstr "নির্বাচন কপি করুনCopy selection"
+msgstr "নির্বাচন কপি করুন"
 
 msgid "Could not load the file into the engine"
-msgstr "ফাইলটি ইঞ্জিনে লোড করা যায়নিCould not load the file into the engine"
+msgstr "ফাইলটি ইঞ্জিনে লোড করা যায়নি"
 
 msgid "Could not open the selected file."
-msgstr "নির্বাচিত ফাইলটি খোলা যায়নি।Could not open the selected file."
+msgstr "নির্বাচিত ফাইলটি খোলা যায়নি।"
 
 msgid "Could not read the selected file."
-msgstr "নির্বাচিত ফাইলটি পড়া যায়নি।Could not read the selected file."
+msgstr "নির্বাচিত ফাইলটি পড়া যায়নি।"
 
 msgid "Could not sync your edit with the engine — it may be overwritten"
-msgstr "আপনার সম্পাদনাটি ইঞ্জিনের সঙ্গে সিঙ্ক করা যায়নি — এটি ওভাররাইট হতে পারেCould not sync your edit with the engine — it may be overwritten"
+msgstr "আপনার সম্পাদনাটি ইঞ্জিনের সঙ্গে সিঙ্ক করা যায়নি — এটি ওভাররাইট হতে পারে"
 
 msgid "Could not write the export file."
-msgstr "রপ্তানি ফাইলটি লেখা সম্ভব হয়নি।Could not write the export file."
+msgstr "রপ্তানি ফাইলটি লেখা সম্ভব হয়নি।"
 
 msgid "Could not write the training data."
-msgstr "প্রশিক্ষণ ডেটা লিখতে পারেনি।Could not write the training data."
+msgstr "প্রশিক্ষণ ডেটা লিখতে পারেনি।"
 
 msgid "Current Calibration"
-msgstr "বর্তমান ক্রমাঙ্কনCurrent Calibration"
+msgstr "বর্তমান ক্রমাঙ্কন"
 
 msgid "{0} custom file(s)"
-msgstr "{0} কাস্টম ফাইল(গুলি){0} custom file(s)"
+msgstr "{0} কাস্টম ফাইল(গুলি)"
 
 msgid "Customization"
-msgstr "কাস্টমাইজেশনCustomization"
+msgstr "কাস্টমাইজেশন"
 
 msgid "Dark"
-msgstr "অন্ধকারDark"
+msgstr "অন্ধকার"
 
 msgid "Dasher "
-msgstr "DasherDasher "
+msgstr "Dasher"
 
 msgid "We found your Dasher 5 configuration"
-msgstr "আমরা আপনার ড্যাশার ৫ কনফিগারেশনটি পেয়েছিWe found your Dasher 5 configuration"
+msgstr "আমরা আপনার ড্যাশার ৫ কনফিগারেশনটি পেয়েছি"
 
 msgid "Dasher 5 Import"
-msgstr "ড্যাশার ৫ ইম্পোর্টDasher 5 Import"
+msgstr "ড্যাশার ৫ ইম্পোর্ট"
 
 msgid "Would you like to import these settings into Dasher 6?"
-msgstr "আপনি কি এই সেটিংস গুলো Dasher 6-এ ইমপোর্ট করতে চান?Would you like to import these settings into Dasher 6?"
+msgstr "আপনি কি এই সেটিংস গুলো Dasher 6-এ ইমপোর্ট করতে চান?"
 
 msgid "No Dasher 5 data found on this computer."
-msgstr "এই কম্পিউটারে কোন ড্যাশার 5 ডেটা পাওয়া যায়নি।No Dasher 5 data found on this computer."
+msgstr "এই কম্পিউটারে কোন ড্যাশার 5 ডেটা পাওয়া যায়নি।"
 
 msgid "Dasher 5 settings found"
-msgstr "ড্যাশার ৫ সেটিংস পাওয়া গেছেDasher 5 settings found"
+msgstr "ড্যাশার ৫ সেটিংস পাওয়া গেছে"
 
 msgid "Dasher 5 data detected on this Mac."
-msgstr "এই ম্যাক-এ ড্যাশার ৫ ডেটা শনাক্ত করা হয়েছে।Dasher 5 data detected on this Mac."
+msgstr "এই ম্যাক-এ ড্যাশার ৫ ডেটা শনাক্ত করা হয়েছে।"
 
 msgid "Dasher 5 settings imported successfully."
-msgstr "ড্যাশার ৫-এর সেটিংস সফলভাবে ইম্পোর্ট করা হয়েছে।Dasher 5 settings imported successfully."
+msgstr "ড্যাশার ৫-এর সেটিংস সফলভাবে ইম্পোর্ট করা হয়েছে।"
 
 msgid "Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
-msgstr "ড্যাশার সিস্টেম কিবোর্ড হিসেবেও কাজ করে, ফলে আপনি যেকোনো অ্যাপে লিখতে পারবেন। সেটিংস থেকে এটি একবার চালু করুন।Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
+msgstr "ড্যাশার সিস্টেম কিবোর্ড হিসেবেও কাজ করে, ফলে আপনি যেকোনো অ্যাপে লিখতে পারবেন। সেটিংস থেকে এটি একবার চালু করুন।"
 
 msgid "Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
-msgstr "ড্যাশার ব্যবহার বুঝতে এবং ক্র্যাশ ঠিক করতে বেনামী অ্যানালিটিক্স সংগ্রহ করে। টাইপ করা কোনো টেক্সট, ক্লিপবোর্ড বা ব্যক্তিগত তথ্য কখনোই সংগ্রহ করা হয় না। ওপেন ইভেন্ট স্কিমাটি github.com/dasher-project/Dasher-Apple-এ দেখুন।Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
+msgstr "ড্যাশার ব্যবহার বুঝতে এবং ক্র্যাশ ঠিক করতে বেনামী অ্যানালিটিক্স সংগ্রহ করে। টাইপ করা কোনো টেক্সট, ক্লিপবোর্ড বা ব্যক্তিগত তথ্য কখনোই সংগ্রহ করা হয় না। ওপেন ইভেন্ট স্কিমাটি github.com/dasher-project/Dasher-Apple-এ দেখুন।"
 
 msgid "Dasher Engine Error"
-msgstr "ড্যাশার ইঞ্জিন ত্রুটিDasher Engine Error"
+msgstr "ড্যাশার ইঞ্জিন ত্রুটি"
 
 msgid "Dasher Keyboard"
-msgstr "ড্যাশার কীবোর্ডDasher Keyboard"
+msgstr "ড্যাশার কীবোর্ড"
 
 msgid "Dasher keyboard"
-msgstr "ড্যাশার কিবোর্ডDasher keyboard"
+msgstr "ড্যাশার কিবোর্ড"
 
 msgid "Dasher needs accessibility access to send text to other applications."
-msgstr "অন্যান্য অ্যাপ্লিকেশনে টেক্সট পাঠাতে ড্যাশারের অ্যাক্সেসিবিলিটি অ্যাক্সেস প্রয়োজন।Dasher needs accessibility access to send text to other applications."
+msgstr "অন্যান্য অ্যাপ্লিকেশনে টেক্সট পাঠাতে ড্যাশারের অ্যাক্সেসিবিলিটি অ্যাক্সেস প্রয়োজন।"
 
 msgid "Dasher Preferences"
-msgstr "Dasher পছন্দসমূহDasher Preferences"
+msgstr "Dasher পছন্দসমূহ"
 
 msgid "Dasher quit unexpectedly"
-msgstr "ড্যাশার অপ্রত্যাশিতভাবে পদত্যাগ করেছেDasher quit unexpectedly"
+msgstr "ড্যাশার অপ্রত্যাশিতভাবে পদত্যাগ করেছে"
 
 msgid "Dasher v6"
-msgstr "ড্যাশার v6Dasher v6"
+msgstr "ড্যাশার v6"
 
 msgid "<big><b>Dasher v6</b></big>\n"
-msgstr "<big><b>ড্যাশার v6</b></big>\nbig><b>Dasher v6</b></big>\n"
+msgstr "<big><b>ড্যাশার v6</b></big>\n"
 
 msgid "Dead zone: {0} px"
-msgstr "মৃত অঞ্চল: {0} pxDead zone: {0} px"
+msgstr "মৃত অঞ্চল: {0} px"
 
 msgid "Decrease Speed"
-msgstr "গতি কমানোDecrease Speed"
+msgstr "গতি কমানো"
 
 msgid "Default"
-msgstr "ডিফল্টDefault"
+msgstr "ডিফল্ট"
 
 msgid "Alphabet: {0}"
-msgstr "বর্ণমালা: {0}Alphabet: {0}"
+msgstr "বর্ণমালা: {0}"
 
 msgid "Colour: {0}"
-msgstr "রঙ: {0}Colour: {0}"
+msgstr "রঙ: {0}"
 
 msgid "Speed: {0}"
-msgstr "গতি: {0}Speed: {0}"
+msgstr "গতি: {0}"
 
 msgid "Diagnostics"
-msgstr "ডায়াগনস্টিকসDiagnostics"
+msgstr "ডায়াগনস্টিকস"
 
 msgid "Direct Mode"
-msgstr "সরাসরি মোডDirect Mode"
+msgstr "সরাসরি মোড"
 
 msgid "Done"
-msgstr "সম্পন্ন হয়েছেDone"
+msgstr "সম্পন্ন হয়েছে"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
-msgstr "একটি বোতাম বা সুইচ চাপার পরিবর্তে একটি স্থানে হোভার করুন ক্লিক ট্রিগার করার জন্য।Hover in one spot to trigger a click, instead of pressing a button or switch."
+msgstr "একটি বোতাম বা সুইচ চাপার পরিবর্তে একটি স্থানে হোভার করুন ক্লিক ট্রিগার করার জন্য।"
 
 msgid "Dwell Duration"
-msgstr "থাকার সময়কালDwell Duration"
+msgstr "থাকার সময়কাল"
 
 msgid "Dwell to click"
-msgstr "ক্লিক করতে বসুনDwell to click"
+msgstr "ক্লিক করতে বসুন"
 
 msgid "Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
-msgstr "সেটিংস → সাধারণ → কীবোর্ড → কীবোর্ডস-এ গিয়ে ড্যাশার সক্রিয় করুন, তারপর সম্পূর্ণ অ্যাক্সেসের অনুমতি দিন (Allow Full Access) চালু করুন, যাতে ড্যাশার কথা বলতে ও শিখতে পারে।Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
+msgstr "সেটিংস → সাধারণ → কীবোর্ড → কীবোর্ডস-এ গিয়ে ড্যাশার সক্রিয় করুন, তারপর সম্পূর্ণ অ্যাক্সেসের অনুমতি দিন (Allow Full Access) চালু করুন, যাতে ড্যাশার কথা বলতে ও শিখতে পারে।"
 
 msgid "Enable tilt input first to access calibration."
-msgstr "ক্যালিব্রেশন অ্যাক্সেস করতে প্রথমে টিল্ট ইনপুট সক্রিয় করুন।Enable tilt input first to access calibration."
+msgstr "ক্যালিব্রেশন অ্যাক্সেস করতে প্রথমে টিল্ট ইনপুট সক্রিয় করুন।"
 
 msgid "Dasher could not start"
-msgstr "ড্যাশার চালু করতে পারল নাDasher could not start"
+msgstr "ড্যাশার চালু করতে পারল না"
 
 msgid "Engine Error"
-msgstr "ইঞ্জিন ত্রুটিEngine Error"
+msgstr "ইঞ্জিন ত্রুটি"
 
 msgid "The Dasher engine encountered an internal error and has stopped. Please restart Dasher."
-msgstr "ড্যাশার ইঞ্জিন একটি অভ্যন্তরীণ ত্রুটির সম্মুখীন হয়েছে এবং বন্ধ হয়ে গেছে। দয়া করে ড্যাশার পুনরায় চালু করুন।The Dasher engine encountered an internal error and has stopped. Please restart Dasher."
+msgstr "ড্যাশার ইঞ্জিন একটি অভ্যন্তরীণ ত্রুটির সম্মুখীন হয়েছে এবং বন্ধ হয়ে গেছে। দয়া করে ড্যাশার পুনরায় চালু করুন।"
 
 msgid "Please try reinstalling, or report this in a GitHub issue."
-msgstr "অনুগ্রহ করে পুনরায় ইনস্টল করার চেষ্টা করুন, অথবা এটি একটি GitHub সমস্যা হিসেবে রিপোর্ট করুন।Please try reinstalling, or report this in a GitHub issue."
+msgstr "অনুগ্রহ করে পুনরায় ইনস্টল করার চেষ্টা করুন, অথবা এটি একটি GitHub সমস্যা হিসেবে রিপোর্ট করুন।"
 
 msgid "Engine Speech Features"
-msgstr "ইঞ্জিন স্পিচ বৈশিষ্ট্যEngine Speech Features"
+msgstr "ইঞ্জিন স্পিচ বৈশিষ্ট্য"
 
 msgid "Error: {0}"
-msgstr "ত্রুটি: {0}Error: {0}"
+msgstr "ত্রুটি: {0}"
 
 msgid "Error loading settings: {0}"
-msgstr "সেটিংস লোড করার সময় ত্রুটি: {0}Error loading settings: {0}"
+msgstr "সেটিংস লোড করার সময় ত্রুটি: {0}"
 
 msgid "Exit"
-msgstr "প্রস্থানExit"
+msgstr "প্রস্থান"
 
 msgid "Export Training Text"
-msgstr "রপ্তানি প্রশিক্ষণ পাঠ্যExport Training Text"
+msgstr "রপ্তানি প্রশিক্ষণ পাঠ্য"
 
 msgid "Eye Gaze"
-msgstr "চোখের দৃষ্টিEye Gaze"
+msgstr "চোখের দৃষ্টি"
 
 msgid "Could not connect to eye tracker on startup. Check the device and try re-selecting it in Settings > Input."
-msgstr "স্টার্টআপে আই ট্র্যাকারের সাথে সংযোগ করা যায়নি। ডিভাইসটি পরীক্ষা করুন এবং সেটিংস > ইনপুট থেকে এটিকে পুনরায় নির্বাচন করার চেষ্টা করুন৷Could not connect to eye tracker on startup. Check the device and try re-selecting it in Settings > Input."
+msgstr "স্টার্টআপে আই ট্র্যাকারের সাথে সংযোগ করা যায়নি। ডিভাইসটি পরীক্ষা করুন এবং সেটিংস > ইনপুট থেকে এটিকে পুনরায় নির্বাচন করার চেষ্টা করুন৷"
 
 msgid "Eye Tracker Device"
-msgstr "চোখ ট্র্যাকার ডিভাইসEye Tracker Device"
+msgstr "চোখ ট্র্যাকার ডিভাইস"
 
 msgid "Could not connect to {0}. Check the device is connected and drivers are installed."
-msgstr "{0} এর সাথে সংযোগ করা যায়নি৷ ডিভাইস সংযুক্ত এবং ড্রাইভার ইনস্টল করা আছে চেক করুন.Could not connect to {0}. Check the device is connected and drivers are installed."
+msgstr "{0} এর সাথে সংযোগ করা যায়নি৷ ডিভাইস সংযুক্ত এবং ড্রাইভার ইনস্টল করা আছে চেক করুন."
 
 msgid "Could not connect to {0}. Make sure tobii_stream_engine.dll is installed and a Tobii device is connected."
-msgstr "{0}-এর সাথে সংযোগ স্থাপন করা যায়নি। নিশ্চিত করুন যে tobii_stream_engine.dll ইন্সটল করা আছে এবং একটি Tobii ডিভাইস সংযুক্ত আছে।Could not connect to {0}. Make sure tobii_stream_engine.dll is installed and a Tobii device is connected."
+msgstr "{0}-এর সাথে সংযোগ স্থাপন করা যায়নি। নিশ্চিত করুন যে tobii_stream_engine.dll ইন্সটল করা আছে এবং একটি Tobii ডিভাইস সংযুক্ত আছে।"
 
 msgid "Detailed tracking log for bug reports (per-sample lines, written to eyegaze.log in the Dasher folder). Basic connection events are always logged."
-msgstr "বাগ রিপোর্টের জন্য বিস্তারিত ট্র্যাকিং লগ (প্রতি-নমুনার লাইন, Dasher ফোল্ডারের eyegaze.log-এ লেখা হয়)। বেসিক সংযোগ ইভেন্টগুলো সর্বদা লগ করা হয়।Detailed tracking log for bug reports (per-sample lines, written to eyegaze.log in the Dasher folder). Basic connection events are always logged."
+msgstr "বাগ রিপোর্টের জন্য বিস্তারিত ট্র্যাকিং লগ (প্রতি-নমুনার লাইন, Dasher ফোল্ডারের eyegaze.log-এ লেখা হয়)। বেসিক সংযোগ ইভেন্টগুলো সর্বদা লগ করা হয়।"
 
 msgid "Failed to open: "
-msgstr "প্যারেন্ট ফোল্ডারে স্থানান্তর করুনFailed to open: "
+msgstr "প্যারেন্ট ফোল্ডারে স্থানান্তর করুন"
 
 msgid "Failed to save: "
-msgstr "সংরক্ষণ করতে ব্যর্থ হয়েছেFailed to save: "
+msgstr "সংরক্ষণ করতে ব্যর্থ হয়েছে"
 
 msgid "Fast"
-msgstr "দ্রুতFast"
+msgstr "দ্রুত"
 
 msgid "File truncated at 4 MB — only the first part is loaded"
-msgstr "ফাইল ৪ এমবিতে ছাড়াছাড়ি হয়েছে — শুধুমাত্র প্রথম অংশটি লোড হয়েছেFile truncated at 4 MB — only the first part is loaded"
+msgstr "ফাইল ৪ এমবিতে ছাড়াছাড়ি হয়েছে — শুধুমাত্র প্রথম অংশটি লোড হয়েছে"
 
 msgid "Normal Control"
-msgstr "স্বাভাবিক নিয়ন্ত্রণNormal Control"
+msgstr "স্বাভাবিক নিয়ন্ত্রণ"
 
 msgid "Smoothing Mode"
-msgstr "স্মুথিং মোডSmoothing Mode"
+msgstr "স্মুথিং মোড"
 
 msgid "Flatpak or AppImage build can't provide.\n\n"
-msgstr "ফ্ল্যাটপ্যাক বা অ্যাপইমেজ বিল্ড সরবরাহ করতে পারে না।atpak or AppImage build can't provide.\n\n"
+msgstr "ফ্ল্যাটপ্যাক বা অ্যাপইমেজ বিল্ড সরবরাহ করতে পারে না।\n\n"
 
 msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
-msgstr "কীবোর্ড ভাসমান করতে Dasher-কে অন্য অ্যাপের উপরে দেখানোর অনুমতি দিন, তারপর আবার Float ট্যাপ করুন।To float the keyboard, allow Dasher to display over other apps, then tap Float again."
+msgstr "কীবোর্ড ভাসমান করতে Dasher-কে অন্য অ্যাপের উপরে দেখানোর অনুমতি দিন, তারপর আবার Float ট্যাপ করুন।"
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
-msgstr "ফুল অ্যাক্সেস ড্যাশারকে আপনার লেখা কথা বলতে এবং আপনার প্রশিক্ষণ মনে রাখতে সাহায্য করে। এটি ছাড়াও, সাধারণ এন্ট্রির জন্য কিবোর্ড কাজ করে।Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
+msgstr "ফুল অ্যাক্সেস ড্যাশারকে আপনার লেখা কথা বলতে এবং আপনার প্রশিক্ষণ মনে রাখতে সাহায্য করে। এটি ছাড়াও, সাধারণ এন্ট্রির জন্য কিবোর্ড কাজ করে।"
 
 msgid "Game mode"
-msgstr "গেম মোডGame mode"
+msgstr "গেম মোড"
 
 msgid "Game Mode"
-msgstr "গেম মোডGame Mode"
+msgstr "গেম মোড"
 
 msgid "Game On"
-msgstr "গেইম অনGame On"
+msgstr "গেইম অন"
 
 msgid "Game Text File"
-msgstr "গেম টেক্সট ফাইলGame Text File"
+msgstr "গেম টেক্সট ফাইল"
 
 msgid "Reduces zoom toward wrong positions while your eyes move to a target"
-msgstr "আপনার চোখ যখন একটি লক্ষ্য দিকে গমন করে তখন ভুল অবস্থানের দিকে জুম কমায়Reduces zoom toward wrong positions while your eyes move to a target"
+msgstr "আপনার চোখ যখন একটি লক্ষ্য দিকে গমন করে তখন ভুল অবস্থানের দিকে জুম কমায়"
 
 msgid "Filter gaze (reduces zoom toward wrong positions during eye transit)"
-msgstr "দৃষ্টি ফিল্টার (চোখের চলাচলের সময় ভুল অবস্থানের দিকে জুম কমায়)Filter gaze (reduces zoom toward wrong positions during eye transit)"
+msgstr "দৃষ্টি ফিল্টার (চোখের চলাচলের সময় ভুল অবস্থানের দিকে জুম কমায়)"
 
 msgid "Gaze Smoothing"
-msgstr "দৃষ্টি মসৃণীকরণGaze Smoothing"
+msgstr "দৃষ্টি মসৃণীকরণ"
 
 msgid "Got it"
-msgstr "বুঝেছি।Got it"
+msgstr "বুঝেছি।"
 
 msgid "GTK Edition"
-msgstr "GTK সংস্করণGTK Edition"
+msgstr "GTK সংস্করণ"
 
 msgid "Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
-msgstr "ইম্পোর্ট ল্যাঙ্গুয়েজ মডেলে টেক্সট যোগ করে (বিদ্যমান লার্নিং-এর সাথে যুক্ত করে)। এক্সপোর্ট আপনার সংগৃহীত ট্রেনিং ডেটা ব্যাকআপ বা স্থানান্তরের জন্য সংরক্ষণ করে। রিসেট কাস্টম ট্রেনিং ডেটা মুছে দেয় — পরবর্তীবার চালু করলে মডেলটি তার বিল্ট-ইন ডিফল্ট সেটিংসে ফিরে আসে।Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
+msgstr "ইম্পোর্ট ল্যাঙ্গুয়েজ মডেলে টেক্সট যোগ করে (বিদ্যমান লার্নিং-এর সাথে যুক্ত করে)। এক্সপোর্ট আপনার সংগৃহীত ট্রেনিং ডেটা ব্যাকআপ বা স্থানান্তরের জন্য সংরক্ষণ করে। রিসেট কাস্টম ট্রেনিং ডেটা মুছে দেয় — পরবর্তীবার চালু করলে মডেলটি তার বিল্ট-ইন ডিফল্ট সেটিংসে ফিরে আসে।"
 
 msgid "Import from Dasher 5"
-msgstr "ড্যাশার ৫ থেকে আমদানি করুনImport from Dasher 5"
+msgstr "ড্যাশার ৫ থেকে আমদানি করুন"
 
 msgid "Import settings"
-msgstr "সেটিংস আমদানি করুনImport settings"
+msgstr "সেটিংস আমদানি করুন"
 
 msgid "Import Training Text"
-msgstr "প্রশিক্ষণ পাঠ্য আমদানি করুনImport Training Text"
+msgstr "প্রশিক্ষণ পাঠ্য আমদানি করুন"
 
 msgid "Imported %1 — applies fully on next launch"
-msgstr "আমদানি করা হয়েছে %1 — পরবর্তী লঞ্চে সম্পূর্ণভাবে প্রযোজ্যImported %1 — applies fully on next launch"
+msgstr "আমদানি করা হয়েছে %1 — পরবর্তী লঞ্চে সম্পূর্ণভাবে প্রযোজ্য"
 
 msgid "Imported %1 of training text"
-msgstr "প্রশিক্ষণ পাঠ্যের %1 আমদানি করা হয়েছেImported %1 of training text"
+msgstr "প্রশিক্ষণ পাঠ্যের %1 আমদানি করা হয়েছে"
 
 msgid "Increase Speed"
-msgstr "গতি বাড়ানIncrease Speed"
+msgstr "গতি বাড়ান"
 
 msgid "Input"
-msgstr "ইনপুটInput"
+msgstr "ইনপুট"
 
 msgid "Active engine input filter (set via Selection Method or advanced settings)"
-msgstr "সক্রিয় ইঞ্জিন ইনপুট ফিল্টার (নির্বাচন পদ্ধতি বা উন্নত সেটিংসের মাধ্যমে সেট)Active engine input filter (set via Selection Method or advanced settings)"
+msgstr "সক্রিয় ইঞ্জিন ইনপুট ফিল্টার (নির্বাচন পদ্ধতি বা উন্নত সেটিংসের মাধ্যমে সেট)"
 
 msgid "Managed by the engine — change via the Selection Method setting"
-msgstr "ইঞ্জিন দ্বারা পরিচালিত — নির্বাচন পদ্ধতি সেটিং এর মাধ্যমে পরিবর্তন করুনManaged by the engine — change via the Selection Method setting"
+msgstr "ইঞ্জিন দ্বারা পরিচালিত — নির্বাচন পদ্ধতি সেটিং এর মাধ্যমে পরিবর্তন করুন"
 
 msgid "Direct pointer — minimal processing"
-msgstr "সরাসরি পয়েন্টার - ন্যূনতম প্রক্রিয়াকরণDirect pointer — minimal processing"
+msgstr "সরাসরি পয়েন্টার - ন্যূনতম প্রক্রিয়াকরণ"
 
 msgid "No filtering — for clean input devices"
-msgstr "কোনো ফিল্টারিং নেই — পরিষ্কার ইনপুট ডিভাইসের জন্যNo filtering — for clean input devices"
+msgstr "কোনো ফিল্টারিং নেই — পরিষ্কার ইনপুট ডিভাইসের জন্য"
 
 msgid "Input smoothing — reduces jitter for noisy input (eye gaze, head tracking)"
-msgstr "ইনপুট মসৃণকরণ - শোরগোল ইনপুট (চোখের দৃষ্টি, মাথা ট্র্যাকিং) জন্য ঝাঁকুনি কমায়Input smoothing — reduces jitter for noisy input (eye gaze, head tracking)"
+msgstr "ইনপুট মসৃণকরণ - শোরগোল ইনপুট (চোখের দৃষ্টি, মাথা ট্র্যাকিং) জন্য ঝাঁকুনি কমায়"
 
 msgid "Dampens small pointer movements for a steadier zoom"
-msgstr "একটি স্থির জুমের জন্য ছোট পয়েন্টার আন্দোলনকে স্যাঁতসেঁতে করেDampens small pointer movements for a steadier zoom"
+msgstr "একটি স্থির জুমের জন্য ছোট পয়েন্টার আন্দোলনকে স্যাঁতসেঁতে করে"
 
 msgid "Standard continuous control (default)"
-msgstr "স্ট্যান্ডার্ড ক্রমাগত নিয়ন্ত্রণ (ডিফল্ট)Standard continuous control (default)"
+msgstr "স্ট্যান্ডার্ড ক্রমাগত নিয়ন্ত্রণ (ডিফল্ট)"
 
 msgid "The standard steering method — move the pointer to zoom"
-msgstr "স্ট্যান্ডার্ড স্টিয়ারিং পদ্ধতি — পয়েন্টারটিকে জুম করতে সরানThe standard steering method — move the pointer to zoom"
+msgstr "স্ট্যান্ডার্ড স্টিয়ারিং পদ্ধতি — পয়েন্টারটিকে জুম করতে সরান"
+
+msgid "Joystick / gamepad (deflect a stick to steer)"
+msgstr "জয়স্টিক / গেমপ্যাড (দিক পরিবর্তন করার জন্য স্টিকটি নাড়ানো)"
+
+msgid "Tilt (hold the device, tilt to steer)"
+msgstr "কাত করুন (ডিভাইসটি ধরে রাখুন, চালনা করতে কাত করুন)"
+
+msgid "Input method"
+msgstr "ইনপুট পদ্ধতি"
+
+msgid "Touch (drag on the canvas)"
+msgstr "স্পর্শ করুন (ক্যানভাসে টেনে আনুন)"
 
 msgid "Input Processing"
-msgstr "ইনপুট প্রক্রিয়াকরণInput Processing"
+msgstr "ইনপুট প্রক্রিয়াকরণ"
 
 msgid "Install Dasher via your package manager or build from source to use keyboard mode."
-msgstr "কীবোর্ড মোড ব্যবহার করতে আপনার প্যাকেজ ম্যানেজারের মাধ্যমে Dasher ইনস্টল করুন বা সোর্স থেকে তৈরি করুন।Install Dasher via your package manager or build from source to use keyboard mode."
+msgstr "কীবোর্ড মোড ব্যবহার করতে আপনার প্যাকেজ ম্যানেজারের মাধ্যমে Dasher ইনস্টল করুন বা সোর্স থেকে তৈরি করুন।"
 
 msgid "<b>Install ydotool to use keyboard mode</b>"
-msgstr "<b>কীবোর্ড মোড ব্যবহার করতে ydotool ইনস্টল করুন</b><b>Install ydotool to use keyboard mode</b>"
+msgstr "<b>কীবোর্ড মোড ব্যবহার করতে ydotool ইনস্টল করুন</b>"
 
 msgid "isn't installed. Run these commands, then press Retry:"
-msgstr "ইনস্টল করা নেই । এই কমান্ডগুলি চালান, তারপরে আবার চেষ্টা করুন টিপুন:isn't installed. Run these commands, then press Retry:"
+msgstr "ইনস্টল করা নেই । এই কমান্ডগুলি চালান, তারপরে আবার চেষ্টা করুন টিপুন:"
 
 msgid "Keyboard"
-msgstr "কীবোর্ডKeyboard"
+msgstr "কীবোর্ড"
 
 msgid "_Keyboard"
-msgstr "কিবোর্ড_Keyboard"
+msgstr "কিবোর্ড"
 
 msgid "Type Dasher's output straight into the app you are pointing at"
-msgstr "ড্যাশারের আউটপুট সরাসরি সেই অ্যাপে টাইপ করুন যা আপনি ইঙ্গিত করছেনType Dasher's output straight into the app you are pointing at"
+msgstr "ড্যাশারের আউটপুট সরাসরি সেই অ্যাপে টাইপ করুন যা আপনি ইঙ্গিত করছেন"
 
 msgid "Exit keyboard mode"
-msgstr "কীবোর্ড মোড থেকে প্রস্থান করুনExit keyboard mode"
+msgstr "কীবোর্ড মোড থেকে প্রস্থান করুন"
 
 msgid "Keyboard mode: hide the output pane and type Dasher's text straight into "
-msgstr "কীবোর্ড মোড: আউটপুট প্যান লুকান এবং সরাসরি ড্যাশারের টেক্সট টাইপ করুনKeyboard mode: hide the output pane and type Dasher's text straight into "
+msgstr "কীবোর্ড মোড: আউটপুট প্যান লুকান এবং সরাসরি ড্যাশারের টেক্সট টাইপ করুন"
 
 msgid "<b>Keyboard mode isn't available in this build</b>"
-msgstr "<b>এই বিল্ডে কীবোর্ড মোড উপলভ্য নয়</b><b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>এই বিল্ডে কীবোর্ড মোড উপলভ্য নয়</b>"
 
 msgid "Keyboard mode opacity"
-msgstr "কীবোর্ড মোডের অস্বচ্ছতাKeyboard mode opacity"
+msgstr "কীবোর্ড মোডের অস্বচ্ছতা"
 
 msgid "Keyboard mode stopped"
-msgstr "কীবোর্ড মোড বন্ধ হয়েছেKeyboard mode stopped"
+msgstr "কীবোর্ড মোড বন্ধ হয়েছে"
 
 msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
-msgstr "কীবোর্ড মোড বন্ধ করা হয়েছে: ydotool টেক্সট ইনজেক্ট করতে পারেনি । ydotoold কিKeyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "কীবোর্ড মোড বন্ধ করা হয়েছে: ydotool টেক্সট ইনজেক্ট করতে পারেনি । ydotoold কি"
 
 msgid "Enable Keyboard Mode"
-msgstr "ডান বাটন:Enable Keyboard Mode"
+msgstr "ডান বাটন:"
 
 msgid "Window transparency when in Keyboard/Direct mode"
-msgstr "কীবোর্ড/ডিরেক্ট মোডে থাকাকালে উইন্ডোর স্বচ্ছতাWindow transparency when in Keyboard/Direct mode"
+msgstr "কীবোর্ড/ডিরেক্ট মোডে থাকাকালে উইন্ডোর স্বচ্ছতা"
 
 msgid "Keyboard mode types Dasher's output into other applications using ydotool, which "
-msgstr "কীবোর্ড মোড ydotool ব্যবহার করে Dasher-এর আউটপুট অন্যান্য অ্যাপ্লিকেশনে টাইপ করে, যাKeyboard mode types Dasher's output into other applications using ydotool, which "
+msgstr "কীবোর্ড মোড ydotool ব্যবহার করে Dasher-এর আউটপুট অন্যান্য অ্যাপ্লিকেশনে টাইপ করে, যা"
 
 msgid "(Default)"
-msgstr "(ডিফল্ট)(Default)"
+msgstr "(ডিফল্ট)"
 
 msgid "Language"
-msgstr "ভাষাLanguage"
+msgstr "ভাষা"
 
 msgid "Language / Locale"
-msgstr "ভাষা / স্থানীয়তাLanguage / Locale"
+msgstr "ভাষা / স্থানীয়তা"
 
 msgid "<b>Language / Locale</b>"
-msgstr "<b>ভাষা / স্থানীয়</b><b>Language / Locale</b>"
+msgstr "<b>ভাষা / স্থানীয়</b>"
 
 msgid "Bottom"
-msgstr "নীচেBottom"
+msgstr "নীচে"
 
 msgid "Pane position and direct-entry mode"
-msgstr "পেইন পজিশন এবং ডাইরেক্ট-এন্ট্রি মোডPane position and direct-entry mode"
+msgstr "পেইন পজিশন এবং ডাইরেক্ট-এন্ট্রি মোড"
 
 msgid "Left side"
-msgstr "বাম দিকেLeft side"
+msgstr "বাম দিকে"
 
 msgid "Right side"
-msgstr "ডান দিকেRight side"
+msgstr "ডান দিকে"
 
 msgid "Top"
-msgstr "শীর্ষTop"
+msgstr "শীর্ষ"
 
 msgid "Learning"
-msgstr "শিক্ষাLearning"
+msgstr "শিক্ষা"
 
 msgid "Leave"
-msgstr "যাওLeave"
+msgstr "যাও"
 
 msgid "Leave game mode"
-msgstr "গেম মোড ত্যাগ করুনLeave game mode"
+msgstr "গেম মোড ত্যাগ করুন"
 
 msgid "Light"
-msgstr "আলোLight"
+msgstr "আলো"
 
 msgid "Load Voices"
-msgstr "ভয়েস লোড করুনLoad Voices"
+msgstr "ভয়েস লোড করুন"
 
 msgid "Loaded %1 characters"
-msgstr "%1টি চরিত্র লোড হয়েছেLoaded %1 characters"
+msgstr "%1টি চরিত্র লোড হয়েছে"
 
 msgid "Loading…"
-msgstr "লোড হচ্ছে…Loading…"
+msgstr "লোড হচ্ছে…"
 
 msgid "Locale"
-msgstr "লোকালLocale"
+msgstr "লোকাল"
 
 msgid "Migration"
-msgstr "অভিবাসনMigration"
+msgstr "অভিবাসন"
 
 msgid "More"
-msgstr "আরওMore"
+msgstr "আরও"
 
 msgid "More options"
-msgstr "আরও বিকল্পMore options"
+msgstr "আরও বিকল্প"
 
 msgid "Move your eyes while pinching to steer"
-msgstr "চালনা করার জন্য চিমটি কাটার সাথে সাথে চোখ নাড়াচাড়া করুন।Move your eyes while pinching to steer"
+msgstr "চালনা করার জন্য চিমটি কাটার সাথে সাথে চোখ নাড়াচাড়া করুন।"
 
 msgid "New"
-msgstr "নতুনNew"
+msgstr "নতুন"
 
 msgid "New document"
-msgstr "নতুন দলিলNew document"
+msgstr "নতুন দলিল"
 
 msgid "New Message"
-msgstr "নতুন বার্তাNew Message"
+msgstr "নতুন বার্তা"
 
 msgid "New session (clear text and context)"
-msgstr "নতুন সেশন (টেক্সট ও প্রসঙ্গ মুছুন)New session (clear text and context)"
+msgstr "নতুন সেশন (টেক্সট ও প্রসঙ্গ মুছুন)"
 
 msgid "No Dasher 5 data found on this Mac."
-msgstr "এই ম্যাক-এ কোনো ড্যাশার ৫ ডেটা পাওয়া যায়নি।No Dasher 5 data found on this Mac."
+msgstr "এই ম্যাক-এ কোনো ড্যাশার ৫ ডেটা পাওয়া যায়নি।"
 
 msgid "No settings available for this section."
-msgstr "এই বিভাগের জন্য কোনও সেটিংস উপলব্ধ নেই ।No settings available for this section."
+msgstr "এই বিভাগের জন্য কোনও সেটিংস উপলব্ধ নেই ।"
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
-msgstr "কোনও বক্তৃতা ইঞ্জিন উপলব্ধ নেই। সিস্টেম TTS ফিচার ব্যবহার করে তৈরি করুন, বা পছন্দসই সেটিংসে একটি ক্লাউড ভয়েস সেট আপ করুন।No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr "কোনও বক্তৃতা ইঞ্জিন উপলব্ধ নেই। সিস্টেম TTS ফিচার ব্যবহার করে তৈরি করুন, বা পছন্দসই সেটিংসে একটি ক্লাউড ভয়েস সেট আপ করুন।"
 
 msgid "No training data to export yet"
-msgstr "এখন পর্যন্ত রপ্তানি করার কোনো প্রশিক্ষণ তথ্য নেইNo training data to export yet"
+msgstr "এখন পর্যন্ত রপ্তানি করার কোনো প্রশিক্ষণ তথ্য নেই"
 
 msgid "No user training data yet"
-msgstr "এখনও কোনো ব্যবহারকারীর প্রশিক্ষণ ডেটা নেইNo user training data yet"
+msgstr "এখনও কোনো ব্যবহারকারীর প্রশিক্ষণ ডেটা নেই"
 
 msgid "No voices found"
-msgstr "কোনো ভয়েস পাওয়া যায়নিNo voices found"
+msgstr "কোনো ভয়েস পাওয়া যায়নি"
 
 msgid "Nothing to save"
-msgstr "বাঁচানোর কিছুই নেইNothing to save"
+msgstr "বাঁচানোর কিছুই নেই"
 
 msgid "Nothing to share"
-msgstr "শেয়ার করার মতো কিছুই নেইNothing to share"
+msgstr "শেয়ার করার মতো কিছুই নেই"
 
 msgid "OK"
-msgstr "ঠিক আছেOK"
+msgstr "ঠিক আছে"
 
 msgid "On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
-msgstr "ভিশনওএস-এ, লেখা শুরু করতে ক্যানভাসের উপর পিঞ্চ করে ধরে রাখুন, দিক পরিবর্তন করতে পিঞ্চ করার সময় চারপাশে তাকান এবং বিরতি দিতে ছেড়ে দিন। এর ইনপুট মডেলটি হলো পিঞ্চ-অ্যান্ড-লুক।On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
+msgstr "ভিশনওএস-এ, লেখা শুরু করতে ক্যানভাসের উপর পিঞ্চ করে ধরে রাখুন, দিক পরিবর্তন করতে পিঞ্চ করার সময় চারপাশে তাকান এবং বিরতি দিতে ছেড়ে দিন। এর ইনপুট মডেলটি হলো পিঞ্চ-অ্যান্ড-লুক।"
 
 msgid "Open"
-msgstr "খুলুনOpen"
+msgstr "খুলুন"
 
 msgid "Open..."
-msgstr "খোলা...Open..."
+msgstr "খোলা..."
 
 msgid "Open failed"
-msgstr "খুলতে ব্যর্থ হয়েছেOpen failed"
+msgstr "খুলতে ব্যর্থ হয়েছে"
 
 msgid "Open Keyboard Settings"
-msgstr "কীবোর্ড সেটিংস খুলুনOpen Keyboard Settings"
+msgstr "কীবোর্ড সেটিংস খুলুন"
 
 msgid "Open Settings"
-msgstr "সেটিংস খুলুনOpen Settings"
+msgstr "সেটিংস খুলুন"
 
 msgid "Open System Settings"
-msgstr "সিস্টেম সেটিংস খুলুনOpen System Settings"
+msgstr "সিস্টেম সেটিংস খুলুন"
 
-msgid "Open text file"
-msgstr "টেক্সট ফাইল খুলুনOpen text file"
+msgid "Open Text File"
+msgstr "টেক্সট ফাইল খুলুন"
 
 msgid "Output"
-msgstr "আউটপুটOutput"
+msgstr "আউটপুট"
 
 msgid "Output Font"
-msgstr "আউটপুট ফন্টOutput Font"
+msgstr "আউটপুট ফন্ট"
 
 msgid "Output Font Size"
-msgstr "আউটপুট ফন্ট সাইজOutput Font Size"
+msgstr "আউটপুট ফন্ট সাইজ"
 
 msgid "Touch the canvas to start writing."
-msgstr "লেখা শুরু করতে ক্যানভাসটি স্পর্শ করুন।Touch the canvas to start writing."
+msgstr "লেখা শুরু করতে ক্যানভাসটি স্পর্শ করুন।"
 
 msgid "Pane position"
-msgstr "পেইন অবস্থানPane position"
+msgstr "পেইন অবস্থান"
 
 msgid "Paste"
-msgstr "পেস্টPaste"
+msgstr "পেস্ট"
 
 msgid "Pause"
-msgstr "বিরতিPause"
+msgstr "বিরতি"
 
 msgid "Pause When Looking Away"
-msgstr "অন্যদিকে তাকানোর সময় থামুনPause When Looking Away"
+msgstr "অন্যদিকে তাকানোর সময় থামুন"
 
 msgid "Pinch and hold anywhere on the canvas to start"
-msgstr "শুরু করতে ক্যানভাসের যেকোনো জায়গায় চিমটি দিয়ে ধরে রাখুন।Pinch and hold anywhere on the canvas to start"
+msgstr "শুরু করতে ক্যানভাসের যেকোনো জায়গায় চিমটি দিয়ে ধরে রাখুন।"
 
 msgid "Pinch and Look to Write"
-msgstr "লেখার জন্য চিমটি দিন এবং দেখুনPinch and Look to Write"
+msgstr "লেখার জন্য চিমটি দিন এবং দেখুন"
 
 msgid "Pitch"
-msgstr "পিচPitch"
+msgstr "পিচ"
 
 msgid "High"
-msgstr "উচ্চHigh"
+msgstr "উচ্চ"
 
 msgid "Low"
-msgstr "কমLow"
+msgstr "কম"
 
 msgid "Medium"
-msgstr "মাঝারিMedium"
+msgstr "মাঝারি"
 
 msgid "Very High"
-msgstr "খুব উচ্চVery High"
+msgstr "খুব উচ্চ"
 
 msgid "Very Low"
-msgstr "খুব কমVery Low"
+msgstr "খুব কম"
 
 msgid "Game"
-msgstr "খেলাGame"
+msgstr "খেলা"
 
 msgid "Play"
-msgstr "খেলাPlay"
+msgstr "খেলা"
 
 msgid "Pointer Hover Input"
-msgstr "পয়েন্টার হোভার ইনপুটPointer Hover Input"
+msgstr "পয়েন্টার হোভার ইনপুট"
 
 msgid "Preferences"
-msgstr "পছন্দসমূহPreferences"
+msgstr "পছন্দসমূহ"
 
 msgid "Prefs"
-msgstr "পছন্দসমূহPrefs"
+msgstr "পছন্দসমূহ"
 
 msgid "Preparing Dasher…"
-msgstr "Dasher প্রস্তুত হচ্ছে…Preparing Dasher…"
+msgstr "Dasher প্রস্তুত হচ্ছে…"
 
 msgid "Preview"
-msgstr "পূর্বরূপPreview"
+msgstr "পূর্বরূপ"
 
 msgid "Privacy"
-msgstr "গোপনীয়তাPrivacy"
+msgstr "গোপনীয়তা"
 
 msgid "<b>Privacy</b>"
-msgstr "<b>গোপনীয়তা</b><b>Privacy</b>"
+msgstr "<b>গোপনীয়তা</b>"
 
 msgid "Quick speak"
-msgstr "দ্রুত কথা বলQuick speak"
+msgstr "দ্রুত কথা বল"
 
 msgid "Rate"
-msgstr "হারRate"
+msgstr "হার"
 
 msgid "Very Fast"
-msgstr "খুব দ্রুতVery Fast"
+msgstr "খুব দ্রুত"
 
 msgid "Very Slow"
-msgstr "খুব ধীরVery Slow"
+msgstr "খুব ধীর"
 
 msgid "Re-import from Dasher 5"
-msgstr "ড্যাশার ৫ থেকে পুনরায় আমদানি করুনRe-import from Dasher 5"
+msgstr "ড্যাশার ৫ থেকে পুনরায় আমদানি করুন"
 
 msgid "Read"
-msgstr "পড়াRead"
+msgstr "পড়া"
 
 msgid "Release the pinch to pause"
-msgstr "থামানোর জন্য চিমটি ছেড়ে দিন।Release the pinch to pause"
+msgstr "থামানোর জন্য চিমটি ছেড়ে দিন।"
 
 msgid "Reset"
-msgstr "রিসেটReset"
+msgstr "রিসেট"
 
 msgid "Reset All Settings to Defaults"
-msgstr "সমস্ত সেটিংস ডিফল্টে রিসেট করুনReset All Settings to Defaults"
+msgstr "সমস্ত সেটিংস ডিফল্টে রিসেট করুন"
 
 msgid "Reset all settings to their defaults?"
-msgstr "সমস্ত সেটিংস ডিফল্টে রিসেট করবেন?Reset all settings to their defaults?"
+msgstr "সমস্ত সেটিংস ডিফল্টে রিসেট করবেন?"
 
 msgid "Reset anonymous ID"
-msgstr "বেনামী আইডি রিসেট করুনReset anonymous ID"
+msgstr "বেনামী আইডি রিসেট করুন"
 
 msgid "Reset engine settings to defaults"
-msgstr "ইঞ্জিন সেটিংস ডিফল্টে রিসেট করুনReset engine settings to defaults"
+msgstr "ইঞ্জিন সেটিংস ডিফল্টে রিসেট করুন"
 
 msgid "Reset Settings"
-msgstr "সেটিংস রিসেট করুনReset Settings"
+msgstr "সেটিংস রিসেট করুন"
 
 msgid "Reset to defaults"
-msgstr "ডিফল্টে রিসেট করুনReset to defaults"
+msgstr "ডিফল্টে রিসেট করুন"
 
 msgid "Reset Training Data"
-msgstr "প্রশিক্ষণ ডেটা রিসেট করুনReset Training Data"
+msgstr "প্রশিক্ষণ ডেটা রিসেট করুন"
 
 msgid "Reset Training Data?"
-msgstr "প্রশিক্ষণ ডেটা রিসেট করবেন?Reset Training Data?"
+msgstr "প্রশিক্ষণ ডেটা রিসেট করবেন?"
 
 msgid "Reset WPM averages"
-msgstr "WPM গড় রিসেট করুনReset WPM averages"
+msgstr "WPM গড় রিসেট করুন"
 
 msgid "Restarting engine…"
-msgstr "ইঞ্জিন পুনরায় চালু করা হচ্ছে…Restarting engine…"
+msgstr "ইঞ্জিন পুনরায় চালু করা হচ্ছে…"
 
 msgid "Restore all Dasher settings to their default values. This cannot be undone."
-msgstr "ড্যাশার-এর সমস্ত সেটিংস ডিফল্ট মানে পুনরুদ্ধার করুন। এটি পূর্বাবস্থায় ফেরানো যাবে না।Restore all Dasher settings to their default values. This cannot be undone."
+msgstr "ড্যাশার-এর সমস্ত সেটিংস ডিফল্ট মানে পুনরুদ্ধার করুন। এটি পূর্বাবস্থায় ফেরানো যাবে না।"
 
 msgid "Retry"
-msgstr "পুনরায় চেষ্টা করুনRetry"
+msgstr "পুনরায় চেষ্টা করুন"
 
 msgid "Save"
-msgstr "সংরক্ষণ করুনSave"
+msgstr "সংরক্ষণ করুন"
 
 msgid "Save..."
-msgstr "সংরক্ষণ করুন...Save..."
+msgstr "সংরক্ষণ করুন..."
 
 msgid "Save eye-tracker diagnostics"
-msgstr "চোখ-ট্র্যাকার ডায়াগনস্টিক সংরক্ষণ করুনSave eye-tracker diagnostics"
+msgstr "চোখ-ট্র্যাকার ডায়াগনস্টিক সংরক্ষণ করুন"
 
 msgid "Save failed"
-msgstr "সংরক্ষণ ব্যর্থ হয়েছেSave failed"
+msgstr "সংরক্ষণ ব্যর্থ হয়েছে"
 
 msgid "Save file"
-msgstr "ফাইল সংরক্ষণ করুনSave file"
+msgstr "ফাইল সংরক্ষণ করুন"
 
-msgid "Save text file"
-msgstr "টেক্সট ফাইল সংরক্ষণ করুনSave text file"
+msgid "Save Text File"
+msgstr "টেক্সট ফাইল সংরক্ষণ করুন"
 
 msgid "Saved"
-msgstr "সংরক্ষিতSaved"
+msgstr "সংরক্ষিত"
 
 msgid "Saved: "
-msgstr "সংরক্ষণ হয়েছেSaved: "
+msgstr "সংরক্ষণ হয়েছে"
 
 msgid "Scan Speed"
-msgstr "স্ক্যান গতিScan Speed"
+msgstr "স্ক্যান গতি"
 
 msgid "Selection Method"
-msgstr "বাছাই পদ্ধতিSelection Method"
+msgstr "বাছাই পদ্ধতি"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
-msgstr "সার্ভিস চালু আছে? ইনস্টল কমান্ডের জন্য কীবোর্ড বাটনের সেটআপ হেল্প দেখুন।service running? See the setup help on the Keyboard button for install commands."
+msgstr "সার্ভিস চালু আছে? ইনস্টল কমান্ডের জন্য কীবোর্ড বাটনের সেটআপ হেল্প দেখুন।"
 
 msgid "Settings"
-msgstr "সেটিংসSettings"
+msgstr "সেটিংস"
 
 msgid "Settings..."
-msgstr "সেটিংস...Settings..."
+msgstr "সেটিংস..."
 
 msgid "Reset all settings to defaults"
-msgstr "সমস্ত সেটিংস ডিফল্টে রিসেট করুনReset all settings to defaults"
+msgstr "সমস্ত সেটিংস ডিফল্টে রিসেট করুন"
 
 msgid "Settings reset"
-msgstr "সেটিংস রিসেট করা হয়েছেSettings reset"
+msgstr "সেটিংস রিসেট করা হয়েছে"
 
 msgid "Reset all engine settings to their built-in defaults?"
-msgstr "সমস্ত ইঞ্জিন সেটিংস তাদের বিল্ট-ইন ডিফল্টে রিসেট করবেন?Reset all engine settings to their built-in defaults?"
+msgstr "সমস্ত ইঞ্জিন সেটিংস তাদের বিল্ট-ইন ডিফল্টে রিসেট করবেন?"
 
 msgid "Settings (speed, colours, control mode, language model)"
-msgstr "সেটিংস (গতি, রং, নিয়ন্ত্রণ মোড, ভাষা মডেল)Settings (speed, colours, control mode, language model)"
+msgstr "সেটিংস (গতি, রং, নিয়ন্ত্রণ মোড, ভাষা মডেল)"
 
 msgid "Settle time: {0} ms"
-msgstr "নিষ্পত্তির সময়: {0} মি.সেSettle time: {0} ms"
+msgstr "নিষ্পত্তির সময়: {0} মি.সে"
 
 msgid "Share"
-msgstr "শেয়ারShare"
+msgstr "শেয়ার"
 
 msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard "
-msgstr "গোপনীয় ব্যবহার বিশ্লেষণ এবং ক্র্যাশ রিপোর্ট শেয়ার করবেন? কোনো টাইপ করা লেখা, কপিপেস্ট নেইShare anonymous usage analytics and crash reports? No typed text, clipboard "
+msgstr "গোপনীয় ব্যবহার বিশ্লেষণ এবং ক্র্যাশ রিপোর্ট শেয়ার করবেন? কোনো টাইপ করা লেখা, কপিপেস্ট নেই"
 
 msgid "Show Input Debug Overlay"
-msgstr "ইনপুট ডিবাগ ওভারলে দেখানShow Input Debug Overlay"
+msgstr "ইনপুট ডিবাগ ওভারলে দেখান"
 
 msgid "Show status bar"
-msgstr "স্ট্যাটাস বার দেখানShow status bar"
+msgstr "স্ট্যাটাস বার দেখান"
 
 msgid "Show typing rate (WPM)"
-msgstr "টাইপিং রেট (WPM) দেখানShow typing rate (WPM)"
+msgstr "টাইপিং রেট (WPM) দেখান"
 
 msgid "Size"
-msgstr "আকারSize"
+msgstr "আকার"
 
 msgid "Skipped files"
-msgstr "বাদ দেওয়া ফাইলগুলিSkipped files"
+msgstr "বাদ দেওয়া ফাইলগুলি"
 
 msgid "Slow"
-msgstr "ধীরSlow"
+msgstr "ধীর"
 
 msgid "Speak on stop"
-msgstr "থেমে কথা বলোSpeak on stop"
+msgstr "থেমে কথা বলো"
 
 msgid "Speak words"
-msgstr "শব্দ বলোSpeak words"
+msgstr "শব্দ বলো"
 
 msgid "Speech"
-msgstr "বক্তৃতাSpeech"
+msgstr "বক্তৃতা"
 
 msgid "Speech off"
-msgstr "বক্তৃতা বন্ধSpeech off"
+msgstr "বক্তৃতা বন্ধ"
 
 msgid "Speech on"
-msgstr "বক্তৃতাSpeech on"
+msgstr "বক্তৃতা"
 
 msgid "Hello, this is a preview of the selected voice."
-msgstr "হ্যালো, এটি নির্বাচিত কণ্ঠের একটি পূর্বরূপ।Hello, this is a preview of the selected voice."
+msgstr "হ্যালো, এটি নির্বাচিত কণ্ঠের একটি পূর্বরূপ।"
 
 msgid "Speech Settings"
-msgstr "বাক্য সেটিংসSpeech Settings"
+msgstr "বাক্য সেটিংস"
 
 msgid "<b>Speech Settings</b>"
-msgstr "<b>স্পিচ সেটিংস</b><b>Speech Settings</b>"
+msgstr "<b>স্পিচ সেটিংস</b>"
 
 msgid "Speech volume"
-msgstr "বাক্যের ভলিউমSpeech volume"
+msgstr "বাক্যের ভলিউম"
 
 msgid "Speed"
-msgstr "গতিSpeed"
+msgstr "গতি"
 
 msgid "Speed "
-msgstr "গতিSpeed "
+msgstr "গতি"
 
 msgid "Start Calibrating"
-msgstr "ক্যালিব্রেশন শুরু করুনStart Calibrating"
+msgstr "ক্যালিব্রেশন শুরু করুন"
 
 msgid "Start fresh"
-msgstr "নতুন করে শুরু করুনStart fresh"
+msgstr "নতুন করে শুরু করুন"
 
 msgid "Dasher failed to start:\n{0}"
-msgstr "ড্যাশার শুরু করতে ব্যর্থ হয়েছে:\n{0}Dasher failed to start:\n{0}"
+msgstr "ড্যাশার শুরু করতে ব্যর্থ হয়েছে:\n{0}"
 
 msgid "Steering Method"
-msgstr "সত্যনির্দেশন পদ্ধতিSteering Method"
+msgstr "সত্যনির্দেশন পদ্ধতি"
 
 msgid "Stop"
-msgstr "থামুনStop"
+msgstr "থামুন"
 
 msgid "Stop speaking"
-msgstr "কথা বলা বন্ধ করোStop speaking"
+msgstr "কথা বলা বন্ধ করো"
 
 msgid "Switch Setup"
-msgstr "সুইচ সেটআপSwitch Setup"
+msgstr "সুইচ সেটআপ"
 
 msgid "System"
-msgstr "সিস্টেমSystem"
+msgstr "সিস্টেম"
 
 msgid "text"
-msgstr "পাঠ্যtext"
+msgstr "পাঠ্য"
 
 msgid "Text files"
-msgstr "টেক্সট ফাইলText files"
+msgstr "টেক্সট ফাইল"
 
 msgid "That file already is your training data."
-msgstr "সেই ফাইলটি ইতিমধ্যেই আপনার প্রশিক্ষণ ডেটা।That file already is your training data."
+msgstr "সেই ফাইলটি ইতিমধ্যেই আপনার প্রশিক্ষণ ডেটা।"
 
 msgid "the app you are pointing at (needs ydotool)"
-msgstr "আপনি যে অ্যাপটি নির্দেশ করছেন (ydotool প্রয়োজন)the app you are pointing at (needs ydotool)"
+msgstr "আপনি যে অ্যাপটি নির্দেশ করছেন (ydotool প্রয়োজন)"
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
-msgstr "ডিবাগ ওভারলে ক্যানভাসের উপরের-বামে একটি সবুজ প্যানেল প্রদর্শন করে, যেখানে লাইভ টাচ ইভেন্টের সংখ্যা এবং সর্বশেষ রিপোর্ট করা (x, y) স্থানাঙ্ক দেখা যায়। যখন আপনি পিঞ্চ করে ধরে রাখবেন, তখন চারপাশে তাকানোর সাথে সাথে স্থানাঙ্ক পরিবর্তন হতে থাকবে এবং তারপরে touch.began ও touch.moved লেখাটি দেখতে পাবেন।The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
+msgstr "ডিবাগ ওভারলে ক্যানভাসের উপরের-বামে একটি সবুজ প্যানেল প্রদর্শন করে, যেখানে লাইভ টাচ ইভেন্টের সংখ্যা এবং সর্বশেষ রিপোর্ট করা (x, y) স্থানাঙ্ক দেখা যায়। যখন আপনি পিঞ্চ করে ধরে রাখবেন, তখন চারপাশে তাকানোর সাথে সাথে স্থানাঙ্ক পরিবর্তন হতে থাকবে এবং তারপরে touch.began ও touch.moved লেখাটি দেখতে পাবেন।"
 
 msgid "The file is too large (over 10 MB) to import as training text."
-msgstr "ফাইলটি খুব বড় (১০ এমবির বেশি) যা প্রশিক্ষণ পাঠ হিসাবে आयাত করা সম্ভব নয়।The file is too large (over 10 MB) to import as training text."
+msgstr "ফাইলটি খুব বড় (১০ এমবির বেশি) যা প্রশিক্ষণ পাঠ হিসাবে आयাত করা সম্ভব নয়।"
 
 msgid "The selected file is empty."
-msgstr "নির্বাচিত ফাইলটি খালি।The selected file is empty."
+msgstr "নির্বাচিত ফাইলটি খালি।"
 
 msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
-msgstr "এটি প্রতিটি অক্ষরের জন্য আপনার জমাকৃত প্রশিক্ষণ ডেটা মুছে দেয়। পূর্বাভাস খুব সাম্প্রতিক টাইপিংয়ের প্রভাব বজায় রাখে।This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
+msgstr "এটি প্রতিটি অক্ষরের জন্য আপনার জমাকৃত প্রশিক্ষণ ডেটা মুছে দেয়। পূর্বাভাস খুব সাম্প্রতিক টাইপিংয়ের প্রভাব বজায় রাখে।"
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
-msgstr "এটি আপনার সঞ্চিত প্রশিক্ষণ ডেটা মুছে দেবে। পরবর্তীবার চালু করলে ল্যাঙ্গুয়েজ মডেলটি তার অন্তর্নির্মিত ডিফল্ট সেটিংসে ফিরে আসবে। এটি পূর্বাবস্থায় ফেরানো যাবে না।This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
+msgstr "এটি আপনার সঞ্চিত প্রশিক্ষণ ডেটা মুছে দেবে। পরবর্তীবার চালু করলে ল্যাঙ্গুয়েজ মডেলটি তার অন্তর্নির্মিত ডিফল্ট সেটিংসে ফিরে আসবে। এটি পূর্বাবস্থায় ফেরানো যাবে না।"
 
 msgid "Tilt Calibration"
-msgstr "টিল্ট ক্যালিব্রেশনTilt Calibration"
+msgstr "টিল্ট ক্যালিব্রেশন"
 
 msgid "Hold the device upright, then tilt forward and back"
-msgstr "ডিভাইসটি উল্লম্বভাবে ধরুন, তারপর সামনের দিকে এবং পিছনের দিকে ঝোঁকানHold the device upright, then tilt forward and back"
+msgstr "ডিভাইসটি উল্লম্বভাবে ধরুন, তারপর সামনের দিকে এবং পিছনের দিকে ঝোঁকান"
 
 msgid "Tilt left and right through the full range"
-msgstr "পূর্ণ সীমার মধ্যে বামে এবং ডানে ঝোঁকানTilt left and right through the full range"
+msgstr "পূর্ণ সীমার মধ্যে বামে এবং ডানে ঝোঁকান"
 
 msgid "Move slowly and smoothly through all positions"
-msgstr "ধীরে এবং মসৃণভাবে সব অবস্থানের মধ্য দিয়ে গমন করুনMove slowly and smoothly through all positions"
+msgstr "ধীরে এবং মসৃণভাবে সব অবস্থানের মধ্য দিয়ে গমন করুন"
 
 msgid "Tilt Settings"
-msgstr "টিল্ট সেটিংসTilt Settings"
+msgstr "টিল্ট সেটিংস"
 
 msgid "Tilt your device now..."
-msgstr "এখন আপনার ডিভাইসটি কাত করুন...Tilt your device now..."
+msgstr "এখন আপনার ডিভাইসটি কাত করুন..."
 
 msgid "Tilt your device through its full range of motion during calibration."
-msgstr "ক্যালিব্রেশনের সময় আপনার ডিভাইসটিকে এর সম্পূর্ণ গতিসীমা জুড়ে কাত করুন।Tilt your device through its full range of motion during calibration."
+msgstr "ক্যালিব্রেশনের সময় আপনার ডিভাইসটিকে এর সম্পূর্ণ গতিসীমা জুড়ে কাত করুন।"
 
 msgid "time under Preferences → Privacy."
-msgstr "সময় পছন্দসমূহ → গোপনীয়তা এর অধীনে।time under Preferences → Privacy."
+msgstr "সময় পছন্দসমূহ → গোপনীয়তা এর অধীনে।"
 
 msgid "Eye Tracker Error"
-msgstr "আই ট্র্যাকার ত্রুটিEye Tracker Error"
+msgstr "আই ট্র্যাকার ত্রুটি"
 
 msgid "Eye tracker notice"
-msgstr "আই ট্র্যাকার নোটিশEye tracker notice"
+msgstr "আই ট্র্যাকার নোটিশ"
 
 msgid "The eye tracker could not be fully resumed ({0}). Tracking may run at reduced speed and accuracy — try running Dasher as administrator."
-msgstr "চোখ ট্র্যাকারটি সম্পূর্ণরূপে পুনরায় শুরু করা যায়নি ({0})। ট্র্যাকিং কম গতিতে এবং কম সঠিকতার সঙ্গে চলতে পারে — প্রশাসকের হিসাবে Dasher চালানোর চেষ্টা করুন।The eye tracker could not be fully resumed ({0}). Tracking may run at reduced speed and accuracy — try running Dasher as administrator."
+msgstr "চোখ ট্র্যাকারটি সম্পূর্ণরূপে পুনরায় শুরু করা যায়নি ({0})। ট্র্যাকিং কম গতিতে এবং কম সঠিকতার সঙ্গে চলতে পারে — প্রশাসকের হিসাবে Dasher চালানোর চেষ্টা করুন।"
 
 msgid "Toggle control mode"
-msgstr "নিয়ন্ত্রণ মোড টগল করুনToggle control mode"
+msgstr "নিয়ন্ত্রণ মোড টগল করুন"
 
 msgid "Toggle game mode"
-msgstr "গেম মোড টগল করুনToggle game mode"
+msgstr "গেম মোড টগল করুন"
 
 msgid "Toggle keyboard mode"
-msgstr "কীবোর্ড মোড চালু/বন্ধ করুনToggle keyboard mode"
+msgstr "কীবোর্ড মোড চালু/বন্ধ করুন"
 
 msgid "Toggle pane position"
-msgstr "প্যানের অবস্থান পরিবর্তন করুনToggle pane position"
+msgstr "প্যানের অবস্থান পরিবর্তন করুন"
 
 msgid "Hide/show status bar"
-msgstr "স্ট্যাটাস বার লুকানো/দেখানোHide/show status bar"
+msgstr "স্ট্যাটাস বার লুকানো/দেখানো"
 
 msgid "Copy all text"
-msgstr "সকল লেখা কপি করুনCopy all text"
+msgstr "সকল লেখা কপি করুন"
 
 msgid "Copy selection in target app"
-msgstr "লক্ষ্য অ্যাপে নির্বাচন অনুলিপি করুনCopy selection in target app"
+msgstr "লক্ষ্য অ্যাপে নির্বাচন অনুলিপি করুন"
 
 msgid "Cut selection in target app"
-msgstr "টার্গেট অ্যাপে নির্বাচন কেটে দিনCut selection in target app"
+msgstr "টার্গেট অ্যাপে নির্বাচন কেটে দিন"
+
+msgid "Start game mode"
+msgstr "গেম মোড শুরু করুন"
+
+msgid "New / clear output"
+msgstr "নতুন / পরিষ্কার আউটপুট"
+
+msgid "Open file"
+msgstr "ফাইলটি খুলুন"
 
 msgid "Paste into target app"
-msgstr "টার্গেট অ্যাপে পেস্ট করুনPaste into target app"
+msgstr "টার্গেট অ্যাপে পেস্ট করুন"
 
 msgid "Re-anchor predictions to the caret (read the sentence around your cursor)"
-msgstr "পুনঃনির্ধারণ করুন পূর্বাভাসগুলো কেয়ারেটের সাথে (আপনার কার্সরের চারপাশের বাক্যটি পড়ুন)Re-anchor predictions to the caret (read the sentence around your cursor)"
+msgstr "পুনঃনির্ধারণ করুন পূর্বাভাসগুলো কেয়ারেটের সাথে (আপনার কার্সরের চারপাশের বাক্যটি পড়ুন)"
+
+msgid "Save to file"
+msgstr "ফাইলে সংরক্ষণ করুন"
 
 msgid "Select all in target app"
-msgstr "টার্গেট অ্যাপে সব নির্বাচন করুনSelect all in target app"
+msgstr "টার্গেট অ্যাপে সব নির্বাচন করুন"
+
+msgid "Open settings"
+msgstr "সেটিংস খুলুন"
+
+msgid "Share text"
+msgstr "টেক্সট শেয়ার করুন"
 
 msgid "eyetuitive"
-msgstr "চক্ষুশূলeyetuitive"
+msgstr "চক্ষুশূল"
 
 msgid "Eye tracker"
-msgstr "চোখ ট্র্যাকারEye tracker"
+msgstr "চোখ ট্র্যাকার"
 
 msgid "Tobii (Stream Engine)"
-msgstr "টোবি (স্ট্রিম ইঞ্জিন)Tobii (Stream Engine)"
+msgstr "টোবি (স্ট্রিম ইঞ্জিন)"
 
 msgid "UDP Gaze Tracker (network)"
-msgstr "UDP গেজ ট্র্যাকার (নেটওয়ার্ক)UDP Gaze Tracker (network)"
+msgstr "UDP গেজ ট্র্যাকার (নেটওয়ার্ক)"
 
 msgid "Windows Eye Tracker (native)"
-msgstr "উইন্ডোজ আই ট্র্যাকার (নেটিভ)Windows Eye Tracker (native)"
+msgstr "উইন্ডোজ আই ট্র্যাকার (নেটিভ)"
 
 msgid "Training"
-msgstr "প্রশিক্ষণTraining"
+msgstr "প্রশিক্ষণ"
 
 msgid "Current training data: {0} KB"
-msgstr "বর্তমান প্রশিক্ষণ ডেটা: {0} KBCurrent training data: {0} KB"
+msgstr "বর্তমান প্রশিক্ষণ ডেটা: {0} KB"
 
 msgid "Training Data"
-msgstr "প্রশিক্ষণ ডেটাTraining Data"
+msgstr "প্রশিক্ষণ ডেটা"
 
 msgid "Training data deleted — restart Dasher to fully apply"
-msgstr "প্রশিক্ষণ ডেটা মুছে ফেলা হয়েছে — সম্পূর্ণভাবে প্রয়োগ করার জন্য ড্যাশার পুনরায় চালু করুনTraining data deleted — restart Dasher to fully apply"
+msgstr "প্রশিক্ষণ ডেটা মুছে ফেলা হয়েছে — সম্পূর্ণভাবে প্রয়োগ করার জন্য ড্যাশার পুনরায় চালু করুন"
 
 msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
-msgstr "আমদানি ভাষা মডেলে পাঠ্য যোগ করে এবং আপনার সঞ্চিত প্রশিক্ষণ ডেটা (পুনঃসূচনা জুড়ে রাখা)। রপ্তানি ব্যাকআপ বা স্থানান্তরের জন্য আপনার প্রশিক্ষণ ডেটা সংরক্ষণ করে। রিসেট সমস্ত ব্যবহারকারী প্রশিক্ষণ ডেটা মুছে দেয় — পরবর্তী লঞ্চে মডেলটি তার বিল্ট-ইন ডিফল্টে ফিরে আসে।Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
+msgstr "আমদানি ভাষা মডেলে পাঠ্য যোগ করে এবং আপনার সঞ্চিত প্রশিক্ষণ ডেটা (পুনঃসূচনা জুড়ে রাখা)। রপ্তানি ব্যাকআপ বা স্থানান্তরের জন্য আপনার প্রশিক্ষণ ডেটা সংরক্ষণ করে। রিসেট সমস্ত ব্যবহারকারী প্রশিক্ষণ ডেটা মুছে দেয় — পরবর্তী লঞ্চে মডেলটি তার বিল্ট-ইন ডিফল্টে ফিরে আসে।"
 
 msgid "Training data exported."
-msgstr "প্রশিক্ষণ ডেটা রফতানি করা হয়েছে।Training data exported."
+msgstr "প্রশিক্ষণ ডেটা রফতানি করা হয়েছে।"
 
 msgid "Export Training Data"
-msgstr "রপ্তানি প্রশিক্ষণ তথ্যExport Training Data"
+msgstr "রপ্তানি প্রশিক্ষণ তথ্য"
 
 msgid "Exported to {0}"
-msgstr "{0} এ রপ্তানি করা হয়েছেExported to {0}"
+msgstr "{0} এ রপ্তানি করা হয়েছে"
 
 msgid "{0} failed: {1}"
-msgstr "{0} ব্যর্থ হয়েছে: {1}{0} failed: {1}"
+msgstr "{0} ব্যর্থ হয়েছে: {1}"
 
 msgid "Imported {0} KB of training text"
-msgstr "প্রশিক্ষণ পাঠ্যের {0} KB আমদানি করা হয়েছে৷Imported {0} KB of training text"
+msgstr "প্রশিক্ষণ পাঠ্যের {0} KB আমদানি করা হয়েছে৷"
 
 msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
-msgstr "আমদানি করা {0} KB — পরবর্তী লঞ্চে সম্পূর্ণরূপে প্রযোজ্য (লাইভ মডেল {1} ফেরত)Imported {0} KB — applies fully on next launch (live model returned {1})"
+msgstr "আমদানি করা {0} KB — পরবর্তী লঞ্চে সম্পূর্ণরূপে প্রযোজ্য (লাইভ মডেল {1} ফেরত)"
 
 msgid "Training is not available yet — try again once the canvas has rendered."
-msgstr "প্রশিক্ষণ এখনও উপলব্ধ নয় — ক্যানভাসটি রেন্ডার হওয়ার পরে আবার চেষ্টা করুন।Training is not available yet — try again once the canvas has rendered."
+msgstr "প্রশিক্ষণ এখনও উপলব্ধ নয় — ক্যানভাসটি রেন্ডার হওয়ার পরে আবার চেষ্টা করুন।"
 
 msgid "Training data deleted — the model returns to its built-in defaults on next launch"
-msgstr "প্রশিক্ষণের ডেটা মুছে ফেলা হয়েছে — পরবর্তী লঞ্চে মডেলটি তার বিল্ট-ইন ডিফল্টে ফিরে আসেTraining data deleted — the model returns to its built-in defaults on next launch"
+msgstr "প্রশিক্ষণের ডেটা মুছে ফেলা হয়েছে — পরবর্তী লঞ্চে মডেলটি তার বিল্ট-ইন ডিফল্টে ফিরে আসে"
 
 msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
-msgstr "যেখানে সম্ভব প্রশিক্ষণের ডেটা মুছে ফেলা হয়েছে — {0}টি আইটেম(গুলি) ব্যর্থ হয়েছে; পুনরায় চেষ্টা করতে আবার রিসেট টিপুনDeleted training data where possible — {0} item(s) failed; press Reset again to retry"
+msgstr "যেখানে সম্ভব প্রশিক্ষণের ডেটা মুছে ফেলা হয়েছে — {0}টি আইটেম(গুলি) ব্যর্থ হয়েছে; পুনরায় চেষ্টা করতে আবার রিসেট টিপুন"
 
 msgid "TTS Engine"
-msgstr "টিটিএস ইঞ্জিনTTS Engine"
+msgstr "টিটিএস ইঞ্জিন"
 
 msgid "No credentials required"
-msgstr "কোনও প্রমাণপত্রের প্রয়োজন নেইNo credentials required"
+msgstr "কোনও প্রমাণপত্রের প্রয়োজন নেই"
 
 msgid "Turbo"
-msgstr "টার্বোTurbo"
+msgstr "টার্বো"
 
 msgid "Typing into other applications needs access to /dev/uinput, which a sandboxed "
-msgstr "অন্য অ্যাপ্লিকেশনে টাইপ করতে /dev/uinput অ্যাক্সেসের প্রয়োজন, যা একটি স্যান্ডবক্সডTyping into other applications needs access to /dev/uinput, which a sandboxed "
+msgstr "অন্য অ্যাপ্লিকেশনে টাইপ করতে /dev/uinput অ্যাক্সেসের প্রয়োজন, যা একটি স্যান্ডবক্সড"
 
 msgid "Typing rate"
-msgstr "টাইপ করার হারTyping rate"
+msgstr "টাইপ করার হার"
 
 msgid "{cps} cps · {wpm} wpm"
-msgstr "{cps} সিপিএস · {wpm} ডব্লিউপিএম{cps} cps · {wpm} wpm"
+msgstr "{cps} সিপিএস · {wpm} ডব্লিউপিএম"
 
 msgid "UDP Port"
-msgstr "ইউডিপি পোর্টUDP Port"
+msgstr "ইউডিপি পোর্ট"
 
 msgid "UDP tracker listens for STREAM_DATA or GazePoint messages"
-msgstr "UDP ট্র্যাকার STREAM_DATA বা GazePoint মেসেজের জন্য শোনেUDP tracker listens for STREAM_DATA or GazePoint messages"
+msgstr "UDP ট্র্যাকার STREAM_DATA বা GazePoint মেসেজের জন্য শোনে"
 
 msgid "Dasher {0} is available (you're running v{1}). Tap to download — disable in Settings > Privacy."
-msgstr "ড্যাশার {0} উপলব্ধ (আপনি v{1} চালাচ্ছেন)। ডাউনলোড করতে আলতো চাপুন — সেটিংস > গোপনীয়তায় অক্ষম করুন।Dasher {0} is available (you're running v{1}). Tap to download — disable in Settings > Privacy."
+msgstr "ড্যাশার {0} উপলব্ধ (আপনি v{1} চালাচ্ছেন)। ডাউনলোড করতে আলতো চাপুন — সেটিংস > গোপনীয়তায় অক্ষম করুন।"
 
 msgid "Dasher update available"
-msgstr "ড্যাশার আপডেট উপলব্ধDasher update available"
+msgstr "ড্যাশার আপডেট উপলব্ধ"
 
 msgid "Use Dasher as your keyboard"
-msgstr "আপনার কিবোর্ড হিসেবে ড্যাশার ব্যবহার করুনUse Dasher as your keyboard"
+msgstr "আপনার কিবোর্ড হিসেবে ড্যাশার ব্যবহার করুন"
 
 msgid "Voice"
-msgstr "ভয়েসVoice"
+msgstr "ভয়েস"
 
 msgid "{0} voices"
-msgstr "{0}টি ভয়েস{0} voices"
+msgstr "{0}টি ভয়েস"
 
 msgid "Volume"
-msgstr "ভলিউমVolume"
+msgstr "ভলিউম"
 
 msgid "Dasher Warning"
-msgstr "ড্যাশার সতর্কতাDasher Warning"
+msgstr "ড্যাশার সতর্কতা"
 
 msgid "We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
-msgstr "আমরা এই ম্যাকটিতে আপনার Dasher 5 কনফিগারেশনটি খুঁজে পেয়েছি। আপনার অ্যালফাবেট, রং, স্পিড সেটিংস এবং কাস্টম ফাইলগুলো Dasher 6-এ ইম্পোর্ট করা যাবে।We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
+msgstr "আমরা এই ম্যাকটিতে আপনার Dasher 5 কনফিগারেশনটি খুঁজে পেয়েছি। আপনার অ্যালফাবেট, রং, স্পিড সেটিংস এবং কাস্টম ফাইলগুলো Dasher 6-এ ইম্পোর্ট করা যাবে।"
 
 msgid "What was found"
-msgstr "যা পাওয়া গেলWhat was found"
+msgstr "যা পাওয়া গেল"
 
 msgid "{0} wpm"
 msgstr "{0} wpm"
 
 msgid "max {0}"
-msgstr "সর্বোচ্চ {0}max {0}"
+msgstr "সর্বোচ্চ {0}"
 
 msgid "X range:"
-msgstr "X পরিসর:X range:"
+msgstr "X পরিসর:"
 
 msgid "Y range:"
-msgstr "Y পরিসর:Y range:"
+msgstr "Y পরিসর:"
 
 msgid "ydotool found. Keyboard mode is ready."
-msgstr "ydotool পাওয়া গেছে । কীবোর্ড মোড প্রস্তুত ।ydotool found. Keyboard mode is ready."
+msgstr "ydotool পাওয়া গেছে । কীবোর্ড মোড প্রস্তুত ।"
 
 msgid "ydotool still isn't available. Make sure it's installed and the ydotool service is running."
-msgstr "ydotool এখনও উপলব্ধ নয়। নিশ্চিত করুন যে এটি ইনস্টল করা হয়েছে এবং ydotool সার্ভিসটি চলছে।ydotool still isn't available. Make sure it's installed and the ydotool service is running."
+msgstr "ydotool এখনও উপলব্ধ নয়। নিশ্চিত করুন যে এটি ইনস্টল করা হয়েছে এবং ydotool সার্ভিসটি চলছে।"
 
 msgid "You can import later in Settings > Privacy & Migration"
-msgstr "আপনি পরে সেটিংস > গোপনীয়তা ও মাইগ্রেশন-এ ইম্পোর্ট করতে পারবেন।You can import later in Settings > Privacy & Migration"
+msgstr "আপনি পরে সেটিংস > গোপনীয়তা ও মাইগ্রেশন-এ ইম্পোর্ট করতে পারবেন।"
 
 msgid "Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."
-msgstr "শুধুমাত্র পিঞ্চ করে ধরে রাখলেই আপনার দৃষ্টি অবিচ্ছিন্নভাবে ট্র্যাক করা হয় — ভিশনওএস-এর সমস্ত গেজ অ্যাপ এভাবেই কাজ করে।Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."
+msgstr "শুধুমাত্র পিঞ্চ করে ধরে রাখলেই আপনার দৃষ্টি অবিচ্ছিন্নভাবে ট্র্যাক করা হয় — ভিশনওএস-এর সমস্ত গেজ অ্যাপ এভাবেই কাজ করে।"

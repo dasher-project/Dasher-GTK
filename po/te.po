@@ -17,1126 +17,1156 @@ msgid "%1$.1f cps · %2$d wpm"
 msgstr "%1$.1f cps · %2$d wpm"
 
 msgid "A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
-msgstr "క్రాష్ రిపోర్ట్ ~/Library/Logs/DiagnosticReports/Dasher-*.ips లో సేవ్ చేయబడింది. మీరు దానిని గిట్‌హబ్ ఇష్యూలో పంచుకోగలిగితే, బగ్‌ను సరిచేయడానికి అది మాకు సహాయపడుతుంది.A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
+msgstr "క్రాష్ రిపోర్ట్ ~/Library/Logs/DiagnosticReports/Dasher-*.ips లో సేవ్ చేయబడింది. మీరు దానిని గిట్‌హబ్ ఇష్యూలో పంచుకోగలిగితే, బగ్‌ను సరిచేయడానికి అది మాకు సహాయపడుతుంది."
 
 msgid "About"
-msgstr "గురించిAbout"
+msgstr "గురించి"
 
 msgid "Dasher {0}"
-msgstr "డాషర్ {0}Dasher {0}"
+msgstr "డాషర్ {0}"
 
 msgid "Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
-msgstr "హోవర్/పాయింటర్ ఈవెంట్‌లను డాషర్ ఇన్‌పుట్‌గా స్వీకరించండి. కంటి ట్రాకింగ్ లేదా బాహ్య పాయింటర్‌ల కోసం ఎనేబుల్ చేయండి.Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
+msgstr "హోవర్/పాయింటర్ ఈవెంట్‌లను డాషర్ ఇన్‌పుట్‌గా స్వీకరించండి. కంటి ట్రాకింగ్ లేదా బాహ్య పాయింటర్‌ల కోసం ఎనేబుల్ చేయండి."
 
 msgid "Access"
-msgstr "యాక్సెస్Access"
+msgstr "యాక్సెస్"
 
 msgid "Accessibility Permission Required"
-msgstr "యాక్సెసిబిలిటీ అనుమతి అవసరంAccessibility Permission Required"
+msgstr "యాక్సెసిబిలిటీ అనుమతి అవసరం"
 
 msgid "Adapt Speed Automatically"
-msgstr "వేగాన్ని స్వయంచాలకంగా సర్దుబాటు చేయండిAdapt Speed Automatically"
+msgstr "వేగాన్ని స్వయంచాలకంగా సర్దుబాటు చేయండి"
 
 msgid "Advanced logging"
-msgstr "అధునిక లాగింగ్Advanced logging"
+msgstr "అధునిక లాగింగ్"
 
 msgid "Detailed diagnostic logging for bug reports (per-sample eye-tracker lines, keystroke traces, UIA reads). Basic connection events are always logged. May generate large log files."
-msgstr "బగ్ రిపోర్టుల కోసం వివరణాత్మక డయాగ్నస్టిక్ లాగింగ్ (ప్రతి సాంపిల్ ఐ-ట్రాకర్ లైన్లు, కీస్ట్రోక్ ట్రేస్‌లు, UIA రీడ్స్). మౌలిక కనెక్షన్ ఈవెంట్స్ ఎల్లప్పుడూ లాగ్ చేయబడతాయి. పెద్ద లాగ్ ఫైళ్లు ఉత్పత్తి చేయవచ్చు.Detailed diagnostic logging for bug reports (per-sample eye-tracker lines, keystroke traces, UIA reads). Basic connection events are always logged. May generate large log files."
+msgstr "బగ్ రిపోర్టుల కోసం వివరణాత్మక డయాగ్నస్టిక్ లాగింగ్ (ప్రతి సాంపిల్ ఐ-ట్రాకర్ లైన్లు, కీస్ట్రోక్ ట్రేస్‌లు, UIA రీడ్స్). మౌలిక కనెక్షన్ ఈవెంట్స్ ఎల్లప్పుడూ లాగ్ చేయబడతాయి. పెద్ద లాగ్ ఫైళ్లు ఉత్పత్తి చేయవచ్చు."
 
 msgid "Advanced settings"
-msgstr "అధునాతన సెట్టింగ్‌లుAdvanced settings"
+msgstr "అధునాతన సెట్టింగ్‌లు"
 
 msgid "All Dasher settings will be restored to their default values. This cannot be undone."
-msgstr "అన్ని డాషర్ సెట్టింగ్‌లు వాటి డిఫాల్ట్ విలువలకు పునరుద్ధరించబడతాయి. దీనిని రద్దు చేయడం సాధ్యపడదు.All Dasher settings will be restored to their default values. This cannot be undone."
+msgstr "అన్ని డాషర్ సెట్టింగ్‌లు వాటి డిఫాల్ట్ విలువలకు పునరుద్ధరించబడతాయి. దీనిని రద్దు చేయడం సాధ్యపడదు."
 
 msgid "Alphabet"
-msgstr "వర్ణమాలAlphabet"
+msgstr "వర్ణమాల"
 
 msgid "Help improve Dasher"
-msgstr "డాషర్‌ను మెరుగుపరచడంలో సహాయపడండిHelp improve Dasher"
+msgstr "డాషర్‌ను మెరుగుపరచడంలో సహాయపడండి"
 
 msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
-msgstr "అనామక వినియోగ విశ్లేషణలు మరియు క్రాష్ నివేదికలను పంచుకోవాలా? టైప్ చేసిన టెక్స్ట్, క్లిప్‌బోర్డ్ కంటెంట్ లేదా వ్యక్తిగత సమాచారం ఎప్పుడూ సేకరించబడదు. మీరు ఎప్పుడైనా సెట్టింగ్‌లలో దీనిని మార్చవచ్చు.Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
+msgstr "అనామక వినియోగ విశ్లేషణలు మరియు క్రాష్ నివేదికలను పంచుకోవాలా? టైప్ చేసిన టెక్స్ట్, క్లిప్‌బోర్డ్ కంటెంట్ లేదా వ్యక్తిగత సమాచారం ఎప్పుడూ సేకరించబడదు. మీరు ఎప్పుడైనా సెట్టింగ్‌లలో దీనిని మార్చవచ్చు."
 
 msgid "Not now"
-msgstr "ఇప్పుడు కాదుNot now"
+msgstr "ఇప్పుడు కాదు"
 
 msgid "Share anonymous analytics and crash reports"
-msgstr "అనామక విశ్లేషణలు మరియు క్రాష్ నివేదికలను పంచుకోండిShare anonymous analytics and crash reports"
+msgstr "అనామక విశ్లేషణలు మరియు క్రాష్ నివేదికలను పంచుకోండి"
 
 msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
-msgstr "Dasher వినియోగ ప్యాటర్న్లను అర్థం చేసుకోవడానికి మరియు క్రాష్‌లను సరిచేయడానికి అనామక, గోప్యతను గౌరవించే విశ్లేషణలను సేకరిస్తుంది. టైప్ చేసిన టెక్స్ట్, క్లిప్‌బోర్డ్ కంటెంట్ లేదా వ్యక్తిగత సమాచారం ఎప్పుడూ సేకరించబడదు.\n\nమీరు ఎప్పుడైనా సెట్టింగ్‌ల > గోప్యతలో దీనిని మార్చవచ్చు.Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
+msgstr "Dasher వినియోగ ప్యాటర్న్లను అర్థం చేసుకోవడానికి మరియు క్రాష్‌లను సరిచేయడానికి అనామక, గోప్యతను గౌరవించే విశ్లేషణలను సేకరిస్తుంది. టైప్ చేసిన టెక్స్ట్, క్లిప్‌బోర్డ్ కంటెంట్ లేదా వ్యక్తిగత సమాచారం ఎప్పుడూ సేకరించబడదు.\n\nమీరు ఎప్పుడైనా సెట్టింగ్‌ల > గోప్యతలో దీనిని మార్చవచ్చు."
 
 msgid "Reset analytics ID"
-msgstr "అనలిటిక్స్ IDని రీసెట్ చేయండిReset analytics ID"
+msgstr "అనలిటిక్స్ IDని రీసెట్ చేయండి"
 
 msgid "Dasher collects anonymous usage analytics and crash reports to understand how the app is used and to fix bugs. No typed text, clipboard contents, or personal information is ever collected."
-msgstr "Dasher యాప్ ఎలా ఉపయోగించబడుతుందో అర్థం చేసుకోవడానికి మరియు బగ్‌లను సరిచేయడానికి అనామక వినియోగ విశ్లేషణలు మరియు క్రాష్ నివేదికలను సేకరిస్తుంది. టైప్ చేసిన టెక్స్ట్, క్లిప్‌బోర్డ్ కంటెంట్ లేదా వ్యక్తిగత సమాచారం ఎప్పుడూ సేకరించబడదు.Dasher collects anonymous usage analytics and crash reports to understand how the app is used and to fix bugs. No typed text, clipboard contents, or personal information is ever collected."
+msgstr "Dasher యాప్ ఎలా ఉపయోగించబడుతుందో అర్థం చేసుకోవడానికి మరియు బగ్‌లను సరిచేయడానికి అనామక వినియోగ విశ్లేషణలు మరియు క్రాష్ నివేదికలను సేకరిస్తుంది. టైప్ చేసిన టెక్స్ట్, క్లిప్‌బోర్డ్ కంటెంట్ లేదా వ్యక్తిగత సమాచారం ఎప్పుడూ సేకరించబడదు."
 
 msgid "Help improve Dasher?"
-msgstr "డాషర్‌ను మెరుగుపరచడంలో సహాయం చేయాలా?Help improve Dasher?"
+msgstr "డాషర్‌ను మెరుగుపరచడంలో సహాయం చేయాలా?"
 
 msgid "Anonymous ID: {0}"
-msgstr "అనామక ID: {0}Anonymous ID: {0}"
+msgstr "అనామక ID: {0}"
 
 msgid "Anonymous usage analytics"
-msgstr "అనామక వినియోగ విశ్లేషణలుAnonymous usage analytics"
+msgstr "అనామక వినియోగ విశ్లేషణలు"
 
 msgid "Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
-msgstr "అనామక వినియోగ విశ్లేషణలు డాషర్‌ను ఎలా ఉపయోగిస్తున్నారో అర్థం చేసుకోవడానికి మరియు క్రాష్‌లను సరిచేయడానికి మాకు సహాయపడతాయి. టైప్ చేసిన టెక్స్ట్, క్లిప్‌బోర్డ్ కంటెంట్‌లు లేదా వ్యక్తిగత సమాచారం ఏదీ ఎప్పుడూ సేకరించబడదు. సెట్టింగ్‌లు → గోప్యతలో ఎప్పుడైనా నిలిపివేయవచ్చు.Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
+msgstr "అనామక వినియోగ విశ్లేషణలు డాషర్‌ను ఎలా ఉపయోగిస్తున్నారో అర్థం చేసుకోవడానికి మరియు క్రాష్‌లను సరిచేయడానికి మాకు సహాయపడతాయి. టైప్ చేసిన టెక్స్ట్, క్లిప్‌బోర్డ్ కంటెంట్‌లు లేదా వ్యక్తిగత సమాచారం ఏదీ ఎప్పుడూ సేకరించబడదు. సెట్టింగ్‌లు → గోప్యతలో ఎప్పుడైనా నిలిపివేయవచ్చు."
 
 msgid "App-Level Dwell to Select"
-msgstr "ఎంచుకోవడానికి యాప్-స్థాయి నివాసంApp-Level Dwell to Select"
+msgstr "ఎంచుకోవడానికి యాప్-స్థాయి నివాసం"
 
 msgid "Dasher"
 msgstr ""
 
 msgid "Appearance"
-msgstr "ఆకೃತಿAppearance"
+msgstr "ఆకೃತಿ"
 
 msgid "Left"
-msgstr "ఎడమLeft"
+msgstr "ఎడమ"
 
 msgid "Move caret left (hold to repeat)"
-msgstr "కేరెట్‌ను ఎడమకు కదలించండి (పునరావృతం చేయడానికి పట్టుకోండి)Move caret left (hold to repeat)"
+msgstr "కేరెట్‌ను ఎడమకు కదలించండి (పునరావృతం చేయడానికి పట్టుకోండి)"
 
 msgid "Right"
-msgstr "కుడిRight"
+msgstr "కుడి"
 
 msgid "Move caret right (hold to repeat)"
-msgstr "కేరెట్‌ను కుడికి కదలించండి (పునరావృతం చేయడానికి పట్టుకోండి)Move caret right (hold to repeat)"
+msgstr "కేరెట్‌ను కుడికి కదలించండి (పునరావృతం చేయడానికి పట్టుకోండి)"
 
 msgid "Auto"
-msgstr "ఆటోAuto"
+msgstr "ఆటో"
 
 msgid "Auto-Centre Target"
-msgstr "ఆటో-సెంటర్ టార్గెట్Auto-Centre Target"
+msgstr "ఆటో-సెంటర్ టార్గెట్"
 
 msgid "Auto-select after fixating. Only enable if OS dwell is off."
-msgstr "స్థిరంగా చూసిన తర్వాత స్వయంచాలకంగా ఎంచుకోండి. OS డెల్ ఆఫ్ చేసి ఉంటేనే ఎనేబుల్ చేయండి.Auto-select after fixating. Only enable if OS dwell is off."
+msgstr "స్థిరంగా చూసిన తర్వాత స్వయంచాలకంగా ఎంచుకోండి. OS డెల్ ఆఫ్ చేసి ఉంటేనే ఎనేబుల్ చేయండి."
 
 msgid "Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
-msgstr "పించ్ చేస్తున్నప్పుడు మీ చూపును నిలిపిన తర్వాత ఆటోమేటిక్‌గా ఎంచుకుంటుంది. OS డ్వెల్ ఆఫ్ చేసి ఉంటే మాత్రమే ఎనేబుల్ చేయండి.Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
+msgstr "పించ్ చేస్తున్నప్పుడు మీ చూపును నిలిపిన తర్వాత ఆటోమేటిక్‌గా ఎంచుకుంటుంది. OS డ్వెల్ ఆఫ్ చేసి ఉంటే మాత్రమే ఎనేబుల్ చేయండి."
 
 msgid "Back"
-msgstr "వెనుకకుBack"
+msgstr "వెనుకకు"
 
 msgid "Del"
 msgstr "Del"
 
 msgid "Delete (hold to repeat)"
-msgstr "తొలగించండి (పునరావృతం చేయడానికి పట్టుకోండి)Delete (hold to repeat)"
+msgstr "తొలగించండి (పునరావృతం చేయడానికి పట్టుకోండి)"
 
 msgid "Calibrate Tilt"
-msgstr "తిరగడం సరిచేయండిCalibrate Tilt"
+msgstr "తిరగడం సరిచేయండి"
 
 msgid "Cancel"
-msgstr "రద్దు చేయండిCancel"
+msgstr "రద్దు చేయండి"
 
 msgid "Check Again"
-msgstr "మళ్ళీ తనిఖీ చేయండిCheck Again"
+msgstr "మళ్ళీ తనిఖీ చేయండి"
 
 msgid "Check for updates"
 msgstr ""
 
 msgid "Choose..."
-msgstr "ఎంచుకోండి...Choose..."
+msgstr "ఎంచుకోండి..."
 
 msgid "Choose File..."
-msgstr "ఫైల్‌ను ఎంచుకోండి...Choose File..."
+msgstr "ఫైల్‌ను ఎంచుకోండి..."
 
 msgid "Clear"
-msgstr "స్పష్టంClear"
+msgstr "స్పష్టం"
 
 msgid "Clear logs"
-msgstr "లాగ్‌లను క్లియర్ చేయండిClear logs"
+msgstr "లాగ్‌లను క్లియర్ చేయండి"
 
 msgid "Click to set up keyboard mode (needs ydotool)"
-msgstr "కీబోర్డ్ మోడ్‌ను సెటప్ చేయడానికి క్లిక్ చేయండి (ydotool అవసరం)Click to set up keyboard mode (needs ydotool)"
+msgstr "కీబోర్డ్ మోడ్‌ను సెటప్ చేయడానికి క్లిక్ చేయండి (ydotool అవసరం)"
 
 msgid "Close"
-msgstr "మూసివేయండిClose"
+msgstr "మూసివేయండి"
 
 msgid "Close settings"
-msgstr "సెట్టింగ్‌లను మూసివేయండిClose settings"
+msgstr "సెట్టింగ్‌లను మూసివేయండి"
 
 msgid "Colour Theme"
-msgstr "రంగు థీమ్Colour Theme"
+msgstr "రంగు థీమ్"
 
 msgid "contents or personal information is ever collected. You can change this any "
-msgstr "విషయాలు లేదా వ్యక్తిగత సమాచారం ఎప్పుడూ సేకరించబడదు. మీరు దీన్ని ఎప్పుడైనా మార్చుకోవచ్చుcontents or personal information is ever collected. You can change this any "
+msgstr "విషయాలు లేదా వ్యక్తిగత సమాచారం ఎప్పుడూ సేకరించబడదు. మీరు దీన్ని ఎప్పుడైనా మార్చుకోవచ్చు"
 
 msgid "Control"
-msgstr "నియంత్రణControl"
+msgstr "నియంత్రణ"
 
 msgid "Control mode: enabled"
-msgstr "నియంత్రణ మోడ్: ప్రారంభించబడిందిControl mode: enabled"
+msgstr "నియంత్రణ మోడ్: ప్రారంభించబడింది"
 
 msgid "Control mode"
-msgstr "నియంత్రణ మోడ్Control mode"
+msgstr "నియంత్రణ మోడ్"
 
 msgid "Control nodes: move, delete, clear, speak, pause"
-msgstr "నియంత్రణ నోడ్ల్స్: కదిలించండి, తొలగించండి, క్లియర్ చేయండి, మాట్లాడండి, ఆపుControl nodes: move, delete, clear, speak, pause"
+msgstr "నియంత్రణ నోడ్ల్స్: కదిలించండి, తొలగించండి, క్లియర్ చేయండి, మాట్లాడండి, ఆపు"
 
 msgid "Copied to clipboard."
-msgstr "క్లిప్‌బోర్డ్‌కు కాపీ చేయబడింది.Copied to clipboard."
+msgstr "క్లిప్‌బోర్డ్‌కు కాపీ చేయబడింది."
 
 msgid "Copy"
-msgstr "కాపీCopy"
+msgstr "కాపీ"
 
 msgid "Copy all"
-msgstr "అన్నింటినీ కాపీ చేయండిCopy all"
+msgstr "అన్నింటినీ కాపీ చేయండి"
 
 msgid "Copy All"
-msgstr "అన్నింటినీ కాపీ చేయండిCopy All"
+msgstr "అన్నింటినీ కాపీ చేయండి"
 
 msgid "Copy all (to clipboard)"
-msgstr "అన్నీ కాపీ చేయండి (క్లిప్‌బోర్డ్‌కు)Copy all (to clipboard)"
+msgstr "అన్నీ కాపీ చేయండి (క్లిప్‌బోర్డ్‌కు)"
 
 msgid "Copy commands"
-msgstr "కాపీ ఆదేశాలుCopy commands"
+msgstr "కాపీ ఆదేశాలు"
 
 msgid "Copy selection"
-msgstr "ఎంపికను కాపీ చేయండిCopy selection"
+msgstr "ఎంపికను కాపీ చేయండి"
 
 msgid "Could not load the file into the engine"
-msgstr "ఫైల్‌ను ఇంజిన్‌లో లోడ్ చేయలేకపోయాంCould not load the file into the engine"
+msgstr "ఫైల్‌ను ఇంజిన్‌లో లోడ్ చేయలేకపోయాం"
 
 msgid "Could not open the selected file."
-msgstr "ఎంచుకున్న ఫైల్‌ను తెరవలేకపోయాం.Could not open the selected file."
+msgstr "ఎంచుకున్న ఫైల్‌ను తెరవలేకపోయాం."
 
 msgid "Could not read the selected file."
-msgstr "ఎంచుకున్న ఫైల్‌ను చదవలేకపోయాం.Could not read the selected file."
+msgstr "ఎంచుకున్న ఫైల్‌ను చదవలేకపోయాం."
 
 msgid "Could not sync your edit with the engine — it may be overwritten"
-msgstr "మీ ఎడిట్‌ను ఇంజిన్‌తో సింక్ చేయలేకపోయాం — అది ముడిపెట్టబడవచ్చుCould not sync your edit with the engine — it may be overwritten"
+msgstr "మీ ఎడిట్‌ను ఇంజిన్‌తో సింక్ చేయలేకపోయాం — అది ముడిపెట్టబడవచ్చు"
 
 msgid "Could not write the export file."
-msgstr "ఎగుమతి ఫైల్‌ను రాయలేకపోయాం.Could not write the export file."
+msgstr "ఎగుమతి ఫైల్‌ను రాయలేకపోయాం."
 
 msgid "Could not write the training data."
-msgstr "ట్రెయినింగ్ డేటాను రాయలేకపోయాం.Could not write the training data."
+msgstr "ట్రెయినింగ్ డేటాను రాయలేకపోయాం."
 
 msgid "Current Calibration"
-msgstr "ప్రస్తుత క్రమాంకనంCurrent Calibration"
+msgstr "ప్రస్తుత క్రమాంకనం"
 
 msgid "{0} custom file(s)"
-msgstr "{0} అనుకూల ఫైల్(లు){0} custom file(s)"
+msgstr "{0} అనుకూల ఫైల్(లు)"
 
 msgid "Customization"
-msgstr "అనుకూలీకరణCustomization"
+msgstr "అనుకూలీకరణ"
 
 msgid "Dark"
-msgstr "చీకటిDark"
+msgstr "చీకటి"
 
 msgid "Dasher "
-msgstr "డాషర్Dasher "
+msgstr "డాషర్"
 
 msgid "We found your Dasher 5 configuration"
-msgstr "మీ Dasher 5 కాన్ఫిగరేషన్‌ను కనుగొన్నాంWe found your Dasher 5 configuration"
+msgstr "మీ Dasher 5 కాన్ఫిగరేషన్‌ను కనుగొన్నాం"
 
 msgid "Dasher 5 Import"
-msgstr "Dasher 5 ఇంపోర్ట్Dasher 5 Import"
+msgstr "Dasher 5 ఇంపోర్ట్"
 
 msgid "Would you like to import these settings into Dasher 6?"
-msgstr "మీరు ఈ సెట్టింగ్‌లను Dasher 6 లోకి ఇంపోర్ట్ చేయాలా?Would you like to import these settings into Dasher 6?"
+msgstr "మీరు ఈ సెట్టింగ్‌లను Dasher 6 లోకి ఇంపోర్ట్ చేయాలా?"
 
 msgid "No Dasher 5 data found on this computer."
-msgstr "ఈ కంప్యూటర్‌పై Dasher 5 డేటా కనుగొనబడలేదు.No Dasher 5 data found on this computer."
+msgstr "ఈ కంప్యూటర్‌పై Dasher 5 డేటా కనుగొనబడలేదు."
 
 msgid "Dasher 5 settings found"
-msgstr "Dasher 5 సెట్టింగ్‌లు కనుగొనబడ్డాయిDasher 5 settings found"
+msgstr "Dasher 5 సెట్టింగ్‌లు కనుగొనబడ్డాయి"
 
 msgid "Dasher 5 data detected on this Mac."
-msgstr "ఈ Macలో డాషర్ 5 డేటా గుర్తించబడింది.Dasher 5 data detected on this Mac."
+msgstr "ఈ Macలో డాషర్ 5 డేటా గుర్తించబడింది."
 
 msgid "Dasher 5 settings imported successfully."
-msgstr "డాషర్ 5 సెట్టింగ్‌లు విజయవంతంగా దిగుమతి చేయబడ్డాయి.Dasher 5 settings imported successfully."
+msgstr "డాషర్ 5 సెట్టింగ్‌లు విజయవంతంగా దిగుమతి చేయబడ్డాయి."
 
 msgid "Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
-msgstr "డాషర్ సిస్టమ్ కీబోర్డ్‌గా కూడా పనిచేస్తుంది, కాబట్టి మీరు ఏ యాప్‌లోనైనా వ్రాయవచ్చు. సెట్టింగ్స్‌లో దీన్ని ఒకసారి ఎనేబుల్ చేయండి.Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
+msgstr "డాషర్ సిస్టమ్ కీబోర్డ్‌గా కూడా పనిచేస్తుంది, కాబట్టి మీరు ఏ యాప్‌లోనైనా వ్రాయవచ్చు. సెట్టింగ్స్‌లో దీన్ని ఒకసారి ఎనేబుల్ చేయండి."
 
 msgid "Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
-msgstr "వినియోగాన్ని అర్థం చేసుకోవడానికి మరియు క్రాష్‌లను సరిచేయడానికి డాషర్ అనామక విశ్లేషణలను సేకరిస్తుంది. టైప్ చేసిన టెక్స్ట్, క్లిప్‌బోర్డ్ లేదా వ్యక్తిగత సమాచారం ఏదీ ఎప్పుడూ సేకరించబడదు. github.com/dasher-project/Dasher-Apple వద్ద ఓపెన్ ఈవెంట్ స్కీమాను చూడండి.Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
+msgstr "వినియోగాన్ని అర్థం చేసుకోవడానికి మరియు క్రాష్‌లను సరిచేయడానికి డాషర్ అనామక విశ్లేషణలను సేకరిస్తుంది. టైప్ చేసిన టెక్స్ట్, క్లిప్‌బోర్డ్ లేదా వ్యక్తిగత సమాచారం ఏదీ ఎప్పుడూ సేకరించబడదు. github.com/dasher-project/Dasher-Apple వద్ద ఓపెన్ ఈవెంట్ స్కీమాను చూడండి."
 
 msgid "Dasher Engine Error"
-msgstr "Dasher ఇంజిన్ లోపంDasher Engine Error"
+msgstr "Dasher ఇంజిన్ లోపం"
 
 msgid "Dasher Keyboard"
-msgstr "డాషర్ కీబోర్డ్Dasher Keyboard"
+msgstr "డాషర్ కీబోర్డ్"
 
 msgid "Dasher keyboard"
-msgstr "డాషర్ కీబోర్డ్Dasher keyboard"
+msgstr "డాషర్ కీబోర్డ్"
 
 msgid "Dasher needs accessibility access to send text to other applications."
-msgstr "ఇతర అప్లికేషన్‌లకు టెక్స్ట్ పంపడానికి డాషర్‌కు యాక్సెసిబిలిటీ యాక్సెస్ అవసరం.Dasher needs accessibility access to send text to other applications."
+msgstr "ఇతర అప్లికేషన్‌లకు టెక్స్ట్ పంపడానికి డాషర్‌కు యాక్సెసిబిలిటీ యాక్సెస్ అవసరం."
 
 msgid "Dasher Preferences"
-msgstr "డాషర్ ప్రాధాన్యతలుDasher Preferences"
+msgstr "డాషర్ ప్రాధాన్యతలు"
 
 msgid "Dasher quit unexpectedly"
-msgstr "డాషర్ అనుకోకుండా రాజీనామా చేశాడుDasher quit unexpectedly"
+msgstr "డాషర్ అనుకోకుండా రాజీనామా చేశాడు"
 
 msgid "Dasher v6"
-msgstr "డాషర్ v6Dasher v6"
+msgstr "డాషర్ v6"
 
 msgid "<big><b>Dasher v6</b></big>\n"
-msgstr "<big><b>డాషర్ v6</b></big>\nbig><b>Dasher v6</b></big>\n"
+msgstr "<big><b>డాషర్ v6</b></big>\n"
 
 msgid "Dead zone: {0} px"
-msgstr "డెడ్ జోన్: {0} pxDead zone: {0} px"
+msgstr "డెడ్ జోన్: {0} px"
 
 msgid "Decrease Speed"
-msgstr "వేగాన్ని తగ్గించండిDecrease Speed"
+msgstr "వేగాన్ని తగ్గించండి"
 
 msgid "Default"
-msgstr "డిఫాల్ట్Default"
+msgstr "డిఫాల్ట్"
 
 msgid "Alphabet: {0}"
-msgstr "అక్షరం: {0}Alphabet: {0}"
+msgstr "అక్షరం: {0}"
 
 msgid "Colour: {0}"
-msgstr "రంగు: {0}Colour: {0}"
+msgstr "రంగు: {0}"
 
 msgid "Speed: {0}"
-msgstr "వేగం: {0}Speed: {0}"
+msgstr "వేగం: {0}"
 
 msgid "Diagnostics"
-msgstr "రోగ నిర్ధారణలుDiagnostics"
+msgstr "రోగ నిర్ధారణలు"
 
 msgid "Direct Mode"
-msgstr "డైరెక్ట్ మోడ్Direct Mode"
+msgstr "డైరెక్ట్ మోడ్"
 
 msgid "Done"
-msgstr "పూర్తయిందిDone"
+msgstr "పూర్తయింది"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
-msgstr "బటన్ లేదా స్విచ్‌ను నొక్కడానికి బదులుగా, క్లిక్‌ను ప్రేరేపించడానికి ఒక చోట హోవర్ చేయండి.Hover in one spot to trigger a click, instead of pressing a button or switch."
+msgstr "బటన్ లేదా స్విచ్‌ను నొక్కడానికి బదులుగా, క్లిక్‌ను ప్రేరేపించడానికి ఒక చోట హోవర్ చేయండి."
 
 msgid "Dwell Duration"
-msgstr "తిరగే వ్యవధిDwell Duration"
+msgstr "తిరగే వ్యవధి"
 
 msgid "Dwell to click"
-msgstr "క్లిక్ చేయడానికి డ్వెల్ చేయండిDwell to click"
+msgstr "క్లిక్ చేయడానికి డ్వెల్ చేయండి"
 
 msgid "Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
-msgstr "సెట్టింగ్స్ → జనరల్ → కీబోర్డ్ → కీబోర్డ్స్ కింద డాషర్‌ను ఎనేబుల్ చేసి, ఆ తర్వాత 'అలో ఫుల్ యాక్సెస్' ను ఆన్ చేయండి, తద్వారా డాషర్ మాట్లాడగలదు మరియు నేర్చుకోగలదు.Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
+msgstr "సెట్టింగ్స్ → జనరల్ → కీబోర్డ్ → కీబోర్డ్స్ కింద డాషర్‌ను ఎనేబుల్ చేసి, ఆ తర్వాత 'అలో ఫుల్ యాక్సెస్' ను ఆన్ చేయండి, తద్వారా డాషర్ మాట్లాడగలదు మరియు నేర్చుకోగలదు."
 
 msgid "Enable tilt input first to access calibration."
-msgstr "కాలిబ్రేషన్‌ను యాక్సెస్ చేయడానికి ముందుగా టిల్ట్ ఇన్‌పుట్‌ను ఎనేబుల్ చేయండి.Enable tilt input first to access calibration."
+msgstr "కాలిబ్రేషన్‌ను యాక్సెస్ చేయడానికి ముందుగా టిల్ట్ ఇన్‌పుట్‌ను ఎనేబుల్ చేయండి."
 
 msgid "Dasher could not start"
-msgstr "డాషర్ ప్రారంభించలేకపోయాడుDasher could not start"
+msgstr "డాషర్ ప్రారంభించలేకపోయాడు"
 
 msgid "Engine Error"
-msgstr "ఇంజిన్ లోపంEngine Error"
+msgstr "ఇంజిన్ లోపం"
 
 msgid "The Dasher engine encountered an internal error and has stopped. Please restart Dasher."
-msgstr "Dasher ఇంజిన్ అంతర్గత లోపాన్ని ఎదుర్కొంది మరియు ఆగిపోయింది. దయచేసి Dasher‌ను మళ్లీ ప్రారంభించండి.The Dasher engine encountered an internal error and has stopped. Please restart Dasher."
+msgstr "Dasher ఇంజిన్ అంతర్గత లోపాన్ని ఎదుర్కొంది మరియు ఆగిపోయింది. దయచేసి Dasher‌ను మళ్లీ ప్రారంభించండి."
 
 msgid "Please try reinstalling, or report this in a GitHub issue."
-msgstr "దయచేసి మళ్లీ ఇన్స్టాల్ చేయాలని ప్రయత్నించండి, లేక GitHub ఇష్యూ లో దీనిని రిపోర్ట్ చేయండి.Please try reinstalling, or report this in a GitHub issue."
+msgstr "దయచేసి మళ్లీ ఇన్స్టాల్ చేయాలని ప్రయత్నించండి, లేక GitHub ఇష్యూ లో దీనిని రిపోర్ట్ చేయండి."
 
 msgid "Engine Speech Features"
-msgstr "ఇంజిన్ వాయిస్ ఫీచర్లుEngine Speech Features"
+msgstr "ఇంజిన్ వాయిస్ ఫీచర్లు"
 
 msgid "Error: {0}"
-msgstr "లోపం: {0}Error: {0}"
+msgstr "లోపం: {0}"
 
 msgid "Error loading settings: {0}"
-msgstr "సెట్టింగ్‌లను లోడ్ చేయడంలో లోపం: {0}Error loading settings: {0}"
+msgstr "సెట్టింగ్‌లను లోడ్ చేయడంలో లోపం: {0}"
 
 msgid "Exit"
-msgstr "నిష్క్రమించండిExit"
+msgstr "నిష్క్రమించండి"
 
 msgid "Export Training Text"
-msgstr "ఎగుమతి శిక్షణ పాఠంExport Training Text"
+msgstr "ఎగుమతి శిక్షణ పాఠం"
 
 msgid "Eye Gaze"
-msgstr "కంటి చూపుEye Gaze"
+msgstr "కంటి చూపు"
 
 msgid "Could not connect to eye tracker on startup. Check the device and try re-selecting it in Settings > Input."
-msgstr "స్టార్ట్‌అప్‌లో ఐ ట్రాకర్‌కి కనెక్ట్ కాలేదు. డివైస్‌ని పరిశీలించండి మరియు సెట్టింగ్‌లు > ఇన్‌పుట్‌లో తిరిగి ఎంచుకోవడానికి ప్రయత్నించండి.Could not connect to eye tracker on startup. Check the device and try re-selecting it in Settings > Input."
+msgstr "స్టార్ట్‌అప్‌లో ఐ ట్రాకర్‌కి కనెక్ట్ కాలేదు. డివైస్‌ని పరిశీలించండి మరియు సెట్టింగ్‌లు > ఇన్‌పుట్‌లో తిరిగి ఎంచుకోవడానికి ప్రయత్నించండి."
 
 msgid "Eye Tracker Device"
-msgstr "కన్ను ట్రాకర్ డివైస్Eye Tracker Device"
+msgstr "కన్ను ట్రాకర్ డివైస్"
 
 msgid "Could not connect to {0}. Check the device is connected and drivers are installed."
-msgstr "{0}కి కనెక్ట్ చేయడం సాధ్యపడలేదు. పరికరం కనెక్ట్ చేయబడిందో మరియు డ్రైవర్లు ఇన్‌స్టాల్ చేయబడిందో తనిఖీ చేయండి.Could not connect to {0}. Check the device is connected and drivers are installed."
+msgstr "{0}కి కనెక్ట్ చేయడం సాధ్యపడలేదు. పరికరం కనెక్ట్ చేయబడిందో మరియు డ్రైవర్లు ఇన్‌స్టాల్ చేయబడిందో తనిఖీ చేయండి."
 
 msgid "Could not connect to {0}. Make sure tobii_stream_engine.dll is installed and a Tobii device is connected."
-msgstr "{0}కి కనెక్ట్ చేయడం సాధ్యపడలేదు. tobii_stream_engine.dll ఇన్‌స్టాల్ చేయబడిందని మరియు Tobii పరికరం కనెక్ట్ చేయబడిందని నిర్ధారించుకోండి.Could not connect to {0}. Make sure tobii_stream_engine.dll is installed and a Tobii device is connected."
+msgstr "{0}కి కనెక్ట్ చేయడం సాధ్యపడలేదు. tobii_stream_engine.dll ఇన్‌స్టాల్ చేయబడిందని మరియు Tobii పరికరం కనెక్ట్ చేయబడిందని నిర్ధారించుకోండి."
 
 msgid "Detailed tracking log for bug reports (per-sample lines, written to eyegaze.log in the Dasher folder). Basic connection events are always logged."
-msgstr "బగ్ నివేదికల కోసం వివరణాత్మక ట్రాకింగ్ లాగ్ (ప్రతి నమూనా వరుసలు, Dasher ఫోల్డర్‌లో eyegaze.log లో రాయబడతాయి). ప్రాథమిక కనెక్షన్ ఈవెంట్‌లు ఎల్లప్పుడూ లాగ్ చేయబడతాయి.Detailed tracking log for bug reports (per-sample lines, written to eyegaze.log in the Dasher folder). Basic connection events are always logged."
+msgstr "బగ్ నివేదికల కోసం వివరణాత్మక ట్రాకింగ్ లాగ్ (ప్రతి నమూనా వరుసలు, Dasher ఫోల్డర్‌లో eyegaze.log లో రాయబడతాయి). ప్రాథమిక కనెక్షన్ ఈవెంట్‌లు ఎల్లప్పుడూ లాగ్ చేయబడతాయి."
 
 msgid "Failed to open: "
-msgstr "తెరవడంలో విఫలమైంది:Failed to open: "
+msgstr "తెరవడంలో విఫలమైంది:"
 
 msgid "Failed to save: "
-msgstr "సేవ్ చేయడంలో విఫలమైంది:Failed to save: "
+msgstr "సేవ్ చేయడంలో విఫలమైంది:"
 
 msgid "Fast"
-msgstr "వేగంగాFast"
+msgstr "వేగంగా"
 
 msgid "File truncated at 4 MB — only the first part is loaded"
-msgstr "ఫైల్ 4 MB వద్ద ఛేదించబడింది — మొదటి భాగం మాత్రమే లోడ్ చేయబడిందిFile truncated at 4 MB — only the first part is loaded"
+msgstr "ఫైల్ 4 MB వద్ద ఛేదించబడింది — మొదటి భాగం మాత్రమే లోడ్ చేయబడింది"
 
 msgid "Normal Control"
-msgstr "సాధారణ నియంత్రణNormal Control"
+msgstr "సాధారణ నియంత్రణ"
 
 msgid "Smoothing Mode"
-msgstr "స్మూతింగ్ మోడ్Smoothing Mode"
+msgstr "స్మూతింగ్ మోడ్"
 
 msgid "Flatpak or AppImage build can't provide.\n\n"
-msgstr "ఫ్లాట్‌ప్యాక్ లేదా యాప్‌ఇమేజ్ బిల్డ్ అందించలేవు.atpak or AppImage build can't provide.\n\n"
+msgstr "ఫ్లాట్‌ప్యాక్ లేదా యాప్‌ఇమేజ్ బిల్డ్ అందించలేవు.\n\n"
 
 msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
-msgstr "కీబోర్డ్‌ను ఫ్లోట్ చేయడానికి, Dasher ను ఇతర యాప్‌ల పైన చూపించడానికి అనుమతించం, ఆపై Float ను మళ్లీ ట్యాప్ చేయం.To float the keyboard, allow Dasher to display over other apps, then tap Float again."
+msgstr "కీబోర్డ్‌ను ఫ్లోట్ చేయడానికి, Dasher ను ఇతర యాప్‌ల పైన చూపించడానికి అనుమతించం, ఆపై Float ను మళ్లీ ట్యాప్ చేయం."
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
-msgstr "ఫుల్ యాక్సెస్‌తో, మీరు రాసేదాన్ని డాషర్ చదవగలదు మరియు మీ శిక్షణను గుర్తుంచుకోగలదు. అది లేకుండా కూడా కీబోర్డ్ ప్రాథమిక ఎంట్రీ కోసం పనిచేస్తుంది.Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
+msgstr "ఫుల్ యాక్సెస్‌తో, మీరు రాసేదాన్ని డాషర్ చదవగలదు మరియు మీ శిక్షణను గుర్తుంచుకోగలదు. అది లేకుండా కూడా కీబోర్డ్ ప్రాథమిక ఎంట్రీ కోసం పనిచేస్తుంది."
 
 msgid "Game mode"
-msgstr "గేమ్ మోడ్Game mode"
+msgstr "గేమ్ మోడ్"
 
 msgid "Game Mode"
-msgstr "గేమ్ మోడ్Game Mode"
+msgstr "గేమ్ మోడ్"
 
 msgid "Game On"
-msgstr "గేమ్ ఆన్Game On"
+msgstr "గేమ్ ఆన్"
 
 msgid "Game Text File"
-msgstr "గేమ్ టెక్స్ట్ ఫైల్Game Text File"
+msgstr "గేమ్ టెక్స్ట్ ఫైల్"
 
 msgid "Reduces zoom toward wrong positions while your eyes move to a target"
-msgstr "మీ కళ్లు లక్ష్యానికి కదలడానికి వ్యతిరేకంగా తప్పు స్థానాల వైపు జూమ్‌ను తగ్గిస్తుందిReduces zoom toward wrong positions while your eyes move to a target"
+msgstr "మీ కళ్లు లక్ష్యానికి కదలడానికి వ్యతిరేకంగా తప్పు స్థానాల వైపు జూమ్‌ను తగ్గిస్తుంది"
 
 msgid "Filter gaze (reduces zoom toward wrong positions during eye transit)"
-msgstr "దృష్టిని ఫిల్టర్ చేయండి (కన్ను ప్రయాణం సమయంలో తప్పు స్థానాల వైపు జూమ్‌ను తగ్గిస్తుంది)Filter gaze (reduces zoom toward wrong positions during eye transit)"
+msgstr "దృష్టిని ఫిల్టర్ చేయండి (కన్ను ప్రయాణం సమయంలో తప్పు స్థానాల వైపు జూమ్‌ను తగ్గిస్తుంది)"
 
 msgid "Gaze Smoothing"
-msgstr "దృష్టి సుమారుగాGaze Smoothing"
+msgstr "దృష్టి సుమారుగా"
 
 msgid "Got it"
-msgstr "అర్థమైందిGot it"
+msgstr "అర్థమైంది"
 
 msgid "GTK Edition"
-msgstr "GTK ఎడిషన్GTK Edition"
+msgstr "GTK ఎడిషన్"
 
 msgid "Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
-msgstr "ఇంపోర్ట్ లాంగ్వేజ్ మోడల్‌కు టెక్స్ట్‌ను జోడిస్తుంది (ఇప్పటికే ఉన్న లెర్నింగ్‌కు జతచేస్తుంది). ఎక్స్‌పోర్ట్ మీరు సేకరించిన ట్రైనింగ్ డేటాను బ్యాకప్ లేదా బదిలీ కోసం సేవ్ చేస్తుంది. రీసెట్ కస్టమ్ ట్రైనింగ్ డేటాను తొలగిస్తుంది — తదుపరి లాంచ్‌లో మోడల్ దాని అంతర్నిర్మిత డిఫాల్ట్‌లకు తిరిగి వస్తుంది.Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
+msgstr "ఇంపోర్ట్ లాంగ్వేజ్ మోడల్‌కు టెక్స్ట్‌ను జోడిస్తుంది (ఇప్పటికే ఉన్న లెర్నింగ్‌కు జతచేస్తుంది). ఎక్స్‌పోర్ట్ మీరు సేకరించిన ట్రైనింగ్ డేటాను బ్యాకప్ లేదా బదిలీ కోసం సేవ్ చేస్తుంది. రీసెట్ కస్టమ్ ట్రైనింగ్ డేటాను తొలగిస్తుంది — తదుపరి లాంచ్‌లో మోడల్ దాని అంతర్నిర్మిత డిఫాల్ట్‌లకు తిరిగి వస్తుంది."
 
 msgid "Import from Dasher 5"
-msgstr "డాషర్ 5 నుండి దిగుమతి చేసుకోండిImport from Dasher 5"
+msgstr "డాషర్ 5 నుండి దిగుమతి చేసుకోండి"
 
 msgid "Import settings"
-msgstr "దిగుమతి సెట్టింగ్‌లుImport settings"
+msgstr "దిగుమతి సెట్టింగ్‌లు"
 
 msgid "Import Training Text"
-msgstr "శిక్షణ పాఠాన్ని దిగుమతి చేసుకోండిImport Training Text"
+msgstr "శిక్షణ పాఠాన్ని దిగుమతి చేసుకోండి"
 
 msgid "Imported %1 — applies fully on next launch"
-msgstr "%1 ఇంపోర్ట్ చేయబడింది — తదుపరి ప్రారంభంలో పూర్తిగా వర్తిస్తుందిImported %1 — applies fully on next launch"
+msgstr "%1 ఇంపోర్ట్ చేయబడింది — తదుపరి ప్రారంభంలో పూర్తిగా వర్తిస్తుంది"
 
 msgid "Imported %1 of training text"
-msgstr "ట్రెయినింగ్ టెక్స్ట్‌లో %1 ఇంపోర్ట్ చేయబడిందిImported %1 of training text"
+msgstr "ట్రెయినింగ్ టెక్స్ట్‌లో %1 ఇంపోర్ట్ చేయబడింది"
 
 msgid "Increase Speed"
-msgstr "వేగాన్ని పెంచండిIncrease Speed"
+msgstr "వేగాన్ని పెంచండి"
 
 msgid "Input"
-msgstr "ఇన్‌పుట్Input"
+msgstr "ఇన్‌పుట్"
 
 msgid "Active engine input filter (set via Selection Method or advanced settings)"
-msgstr "సక్రియ ఇంజిన్ ఇన్‌పుట్ ఫిల్టర్ (ఎంపిక పద్ధతి లేదా అధునాతన సెట్టింగ్‌ల ద్వారా సెట్ చేయబడింది)Active engine input filter (set via Selection Method or advanced settings)"
+msgstr "సక్రియ ఇంజిన్ ఇన్‌పుట్ ఫిల్టర్ (ఎంపిక పద్ధతి లేదా అధునాతన సెట్టింగ్‌ల ద్వారా సెట్ చేయబడింది)"
 
 msgid "Managed by the engine — change via the Selection Method setting"
-msgstr "ఇంజిన్ ద్వారా నిర్వహించబడుతుంది — ఎంపిక పద్ధతి సెట్టింగ్ ద్వారా మార్చండిManaged by the engine — change via the Selection Method setting"
+msgstr "ఇంజిన్ ద్వారా నిర్వహించబడుతుంది — ఎంపిక పద్ధతి సెట్టింగ్ ద్వారా మార్చండి"
 
 msgid "Direct pointer — minimal processing"
-msgstr "డైరెక్ట్ పాయింటర్ - కనిష్ట ప్రాసెసింగ్Direct pointer — minimal processing"
+msgstr "డైరెక్ట్ పాయింటర్ - కనిష్ట ప్రాసెసింగ్"
 
 msgid "No filtering — for clean input devices"
-msgstr "ఫిల్టరింగ్ లేదు — శుభ్రమైన ఇన్‌పుట్ डివైసెస్ కోసంNo filtering — for clean input devices"
+msgstr "ఫిల్టరింగ్ లేదు — శుభ్రమైన ఇన్‌పుట్ डివైసెస్ కోసం"
 
 msgid "Input smoothing — reduces jitter for noisy input (eye gaze, head tracking)"
-msgstr "ఇన్‌పుట్ స్మూత్టింగ్ - ధ్వనించే ఇన్‌పుట్ కోసం జిట్టర్‌ను తగ్గిస్తుంది (కంటి చూపులు, తల ట్రాకింగ్)Input smoothing — reduces jitter for noisy input (eye gaze, head tracking)"
+msgstr "ఇన్‌పుట్ స్మూత్టింగ్ - ధ్వనించే ఇన్‌పుట్ కోసం జిట్టర్‌ను తగ్గిస్తుంది (కంటి చూపులు, తల ట్రాకింగ్)"
 
 msgid "Dampens small pointer movements for a steadier zoom"
-msgstr "స్థిరమైన జూమ్ కోసం చిన్న పాయింటర్ కదలికలను తగ్గిస్తుందిDampens small pointer movements for a steadier zoom"
+msgstr "స్థిరమైన జూమ్ కోసం చిన్న పాయింటర్ కదలికలను తగ్గిస్తుంది"
 
 msgid "Standard continuous control (default)"
-msgstr "ప్రామాణిక నిరంతర నియంత్రణ (డిఫాల్ట్)Standard continuous control (default)"
+msgstr "ప్రామాణిక నిరంతర నియంత్రణ (డిఫాల్ట్)"
 
 msgid "The standard steering method — move the pointer to zoom"
-msgstr "ప్రామాణిక స్టీరింగ్ పద్ధతి — పాయింటర్‌ను జూమ్ చేయడానికి తరలించండిThe standard steering method — move the pointer to zoom"
+msgstr "ప్రామాణిక స్టీరింగ్ పద్ధతి — పాయింటర్‌ను జూమ్ చేయడానికి తరలించండి"
+
+msgid "Joystick / gamepad (deflect a stick to steer)"
+msgstr "జాయ్‌స్టిక్ / గేమ్‌ప్యాడ్ (నడపడానికి స్టిక్‌ను పక్కకు తిప్పండి)"
+
+msgid "Tilt (hold the device, tilt to steer)"
+msgstr "వంచండి (పరికరాన్ని పట్టుకుని, నడపడానికి వంచండి)"
+
+msgid "Input method"
+msgstr "ఇన్‌పుట్ పద్ధతి"
+
+msgid "Touch (drag on the canvas)"
+msgstr "తాకండి (కాన్వాస్‌పై లాగండి)"
 
 msgid "Input Processing"
-msgstr "ఇన్‌పుట్ ప్రాసెసింగ్Input Processing"
+msgstr "ఇన్‌పుట్ ప్రాసెసింగ్"
 
 msgid "Install Dasher via your package manager or build from source to use keyboard mode."
-msgstr "కీబోర్డ్ మోడ్ ఉపయోగించడానికి డాషర్‌ను మీ ప్యాకేజ్ మేనేజర్ ద్వారా ఇన్స్టాల్ చేయండి లేదా సోర్స్ నుంచి బిల్డ్ చేయండి.Install Dasher via your package manager or build from source to use keyboard mode."
+msgstr "కీబోర్డ్ మోడ్ ఉపయోగించడానికి డాషర్‌ను మీ ప్యాకేజ్ మేనేజర్ ద్వారా ఇన్స్టాల్ చేయండి లేదా సోర్స్ నుంచి బిల్డ్ చేయండి."
 
 msgid "<b>Install ydotool to use keyboard mode</b>"
-msgstr "<b>కీబోర్డ్ మోడ్‌ను ఉపయోగించడానికి ydotoolను ఇన్‌స్టాల్ చేయండి</b><b>Install ydotool to use keyboard mode</b>"
+msgstr "<b>కీబోర్డ్ మోడ్‌ను ఉపయోగించడానికి ydotoolను ఇన్‌స్టాల్ చేయండి</b>"
 
 msgid "isn't installed. Run these commands, then press Retry:"
-msgstr "ఇన్‌స్టాల్ చేయబడలేదు. ఈ కమాండ్‌లను రన్ చేసి, ఆ తర్వాత రీట్రై నొక్కండి:isn't installed. Run these commands, then press Retry:"
+msgstr "ఇన్‌స్టాల్ చేయబడలేదు. ఈ కమాండ్‌లను రన్ చేసి, ఆ తర్వాత రీట్రై నొక్కండి:"
 
 msgid "Keyboard"
-msgstr "కీబోర్డ్Keyboard"
+msgstr "కీబోర్డ్"
 
 msgid "_Keyboard"
-msgstr "కీబోర్డ్_Keyboard"
+msgstr "కీబోర్డ్"
 
 msgid "Type Dasher's output straight into the app you are pointing at"
-msgstr "మీరు సూచిస్తున్న యాప్‌లో Dasher యొక్క అవుట్‌పుట్‌ను నేరుగా టైప్ చేయండిType Dasher's output straight into the app you are pointing at"
+msgstr "మీరు సూచిస్తున్న యాప్‌లో Dasher యొక్క అవుట్‌పుట్‌ను నేరుగా టైప్ చేయండి"
 
 msgid "Exit keyboard mode"
-msgstr "కీబోర్డ్ మోడ్ నుండి నిష్క్రమించండిExit keyboard mode"
+msgstr "కీబోర్డ్ మోడ్ నుండి నిష్క్రమించండి"
 
 msgid "Keyboard mode: hide the output pane and type Dasher's text straight into "
-msgstr "కీబోర్డ్ మోడ్: అవుట్‌పుట్ ప్యాన్‌ను దాచివేసి ద్యాషర్ టెక్స్ట్ను నేరుగా టైప్ చేయడంKeyboard mode: hide the output pane and type Dasher's text straight into "
+msgstr "కీబోర్డ్ మోడ్: అవుట్‌పుట్ ప్యాన్‌ను దాచివేసి ద్యాషర్ టెక్స్ట్ను నేరుగా టైప్ చేయడం"
 
 msgid "<b>Keyboard mode isn't available in this build</b>"
-msgstr "<b>ఈ బిల్డ్‌లో కీబోర్డ్ మోడ్ అందుబాటులో లేదు</b><b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>ఈ బిల్డ్‌లో కీబోర్డ్ మోడ్ అందుబాటులో లేదు</b>"
 
 msgid "Keyboard mode opacity"
-msgstr "కీబోర్డ్ మోడ్ అస్పష్టతKeyboard mode opacity"
+msgstr "కీబోర్డ్ మోడ్ అస్పష్టత"
 
 msgid "Keyboard mode stopped"
-msgstr "కీబోర్డ్ మోడ్ ఆగిందిKeyboard mode stopped"
+msgstr "కీబోర్డ్ మోడ్ ఆగింది"
 
 msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
-msgstr "కీబోర్డ్ మోడ్ నిలిపివేయబడింది: ydotool టెక్స్ట్‌ను ఇంజెక్ట్ చేయలేకపోయింది. ydotool పాతదా?Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "కీబోర్డ్ మోడ్ నిలిపివేయబడింది: ydotool టెక్స్ట్‌ను ఇంజెక్ట్ చేయలేకపోయింది. ydotool పాతదా?"
 
 msgid "Enable Keyboard Mode"
-msgstr "కీబోర్డ్ మోడ్‌ను ప్రారంభించండిEnable Keyboard Mode"
+msgstr "కీబోర్డ్ మోడ్‌ను ప్రారంభించండి"
 
 msgid "Window transparency when in Keyboard/Direct mode"
-msgstr "కీబోర్డ్/డైరెక్ట్ మోడ్‌లో విండో పారదర్శకతWindow transparency when in Keyboard/Direct mode"
+msgstr "కీబోర్డ్/డైరెక్ట్ మోడ్‌లో విండో పారదర్శకత"
 
 msgid "Keyboard mode types Dasher's output into other applications using ydotool, which "
-msgstr "కీబోర్డ్ మోడ్ డాషర్ యొక్క అవుట్‌పుట్‌ను ydotool ఉపయోగించి ఇతర అనువర్తనాల్లో టైప్ చేస్తుంది, ఇదిKeyboard mode types Dasher's output into other applications using ydotool, which "
+msgstr "కీబోర్డ్ మోడ్ డాషర్ యొక్క అవుట్‌పుట్‌ను ydotool ఉపయోగించి ఇతర అనువర్తనాల్లో టైప్ చేస్తుంది, ఇది"
 
 msgid "(Default)"
-msgstr "(డిఫాల్ట్)(Default)"
+msgstr "(డిఫాల్ట్)"
 
 msgid "Language"
-msgstr "భాషLanguage"
+msgstr "భాష"
 
 msgid "Language / Locale"
-msgstr "భాష / లోకేల్Language / Locale"
+msgstr "భాష / లోకేల్"
 
 msgid "<b>Language / Locale</b>"
-msgstr "<b>భాష / స్థానికత</b><b>Language / Locale</b>"
+msgstr "<b>భాష / స్థానికత</b>"
 
 msgid "Bottom"
-msgstr "దిగువనBottom"
+msgstr "దిగువన"
 
 msgid "Pane position and direct-entry mode"
-msgstr "ప్యానెల్ స్థానం మరియు డైరెక్ట్-ఎంట్రీ మోడ్Pane position and direct-entry mode"
+msgstr "ప్యానెల్ స్థానం మరియు డైరెక్ట్-ఎంట్రీ మోడ్"
 
 msgid "Left side"
-msgstr "ఎడమ వైపుLeft side"
+msgstr "ఎడమ వైపు"
 
 msgid "Right side"
-msgstr "కుడి వైపుRight side"
+msgstr "కుడి వైపు"
 
 msgid "Top"
-msgstr "టాప్Top"
+msgstr "టాప్"
 
 msgid "Learning"
-msgstr "నేర్చుకోవడంLearning"
+msgstr "నేర్చుకోవడం"
 
 msgid "Leave"
-msgstr "వెళ్ళండిLeave"
+msgstr "వెళ్ళండి"
 
 msgid "Leave game mode"
-msgstr "గేమ్ మోడ్ నుండి నిష్క్రమించండిLeave game mode"
+msgstr "గేమ్ మోడ్ నుండి నిష్క్రమించండి"
 
 msgid "Light"
-msgstr "కాంతిLight"
+msgstr "కాంతి"
 
 msgid "Load Voices"
-msgstr "వాయిస్‌లను లోడ్ చేయండిLoad Voices"
+msgstr "వాయిస్‌లను లోడ్ చేయండి"
 
 msgid "Loaded %1 characters"
-msgstr "%1 అక్షరాలు లోడ్ చేయబడ్డాయిLoaded %1 characters"
+msgstr "%1 అక్షరాలు లోడ్ చేయబడ్డాయి"
 
 msgid "Loading…"
-msgstr "లోడ్ అవుతోంది…Loading…"
+msgstr "లోడ్ అవుతోంది…"
 
 msgid "Locale"
-msgstr "స్థానికLocale"
+msgstr "స్థానిక"
 
 msgid "Migration"
-msgstr "వలసMigration"
+msgstr "వలస"
 
 msgid "More"
-msgstr "మరింతMore"
+msgstr "మరింత"
 
 msgid "More options"
-msgstr "మరిన్ని ఎంపికలుMore options"
+msgstr "మరిన్ని ఎంపికలు"
 
 msgid "Move your eyes while pinching to steer"
-msgstr "స్టీరింగ్ చేయడానికి చిటికెన వేలుతో నొక్కుతున్నప్పుడు మీ కళ్ళను కదిలించండిMove your eyes while pinching to steer"
+msgstr "స్టీరింగ్ చేయడానికి చిటికెన వేలుతో నొక్కుతున్నప్పుడు మీ కళ్ళను కదిలించండి"
 
 msgid "New"
-msgstr "కొత్తNew"
+msgstr "కొత్త"
 
 msgid "New document"
-msgstr "కొత్త డాక్యుమెంట్New document"
+msgstr "కొత్త డాక్యుమెంట్"
 
 msgid "New Message"
-msgstr "కొత్త సందేశంNew Message"
+msgstr "కొత్త సందేశం"
 
 msgid "New session (clear text and context)"
-msgstr "కొత్త సెషన్ (పాఠ్యం మరియు సందర్భాన్ని క్లియర్ చేయండి)New session (clear text and context)"
+msgstr "కొత్త సెషన్ (పాఠ్యం మరియు సందర్భాన్ని క్లియర్ చేయండి)"
 
 msgid "No Dasher 5 data found on this Mac."
-msgstr "ఈ Macలో డాషర్ 5 డేటా కనుగొనబడలేదు.No Dasher 5 data found on this Mac."
+msgstr "ఈ Macలో డాషర్ 5 డేటా కనుగొనబడలేదు."
 
 msgid "No settings available for this section."
-msgstr "ఈ విభాగానికి ఎలాంటి సెట్టింగ్‌లు అందుబాటులో లేవు.No settings available for this section."
+msgstr "ఈ విభాగానికి ఎలాంటి సెట్టింగ్‌లు అందుబాటులో లేవు."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
-msgstr "ఎటువంటి మాటల ఇంజిన్ అందుబాటులో లేదు. సిస్టమ్ TTS ఫీచర్‌తో నిర్మించండి లేదా ప్రీఫరెన్సెస్‌లో క్లౌడ్ వాయిస్‌ను సెట్ చేయండి.No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr "ఎటువంటి మాటల ఇంజిన్ అందుబాటులో లేదు. సిస్టమ్ TTS ఫీచర్‌తో నిర్మించండి లేదా ప్రీఫరెన్సెస్‌లో క్లౌడ్ వాయిస్‌ను సెట్ చేయండి."
 
 msgid "No training data to export yet"
-msgstr "ఇంకా ఎగుమతి చేయడానికి ట్రెయినింగ్ డేటా లేదుNo training data to export yet"
+msgstr "ఇంకా ఎగుమతి చేయడానికి ట్రెయినింగ్ డేటా లేదు"
 
 msgid "No user training data yet"
-msgstr "ఇంకా వినియోగదారు ట్రెయినింగ్ డేటా లేదుNo user training data yet"
+msgstr "ఇంకా వినియోగదారు ట్రెయినింగ్ డేటా లేదు"
 
 msgid "No voices found"
-msgstr "స్వరాలు ఏవీ కనుగొనబడలేదుNo voices found"
+msgstr "స్వరాలు ఏవీ కనుగొనబడలేదు"
 
 msgid "Nothing to save"
-msgstr "కాపాడటానికి ఏమీ లేదుNothing to save"
+msgstr "కాపాడటానికి ఏమీ లేదు"
 
 msgid "Nothing to share"
-msgstr "పంచుకోవడానికి ఏమీ లేదుNothing to share"
+msgstr "పంచుకోవడానికి ఏమీ లేదు"
 
 msgid "OK"
-msgstr "సరేOK"
+msgstr "సరే"
 
 msgid "On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
-msgstr "విజన్‌ఓఎస్‌లో, రాయడం ప్రారంభించడానికి కాన్వాస్‌పై చిటికెడు పట్టుకుని ఉంచండి, నడిపించడానికి చిటికెడు పట్టుకుంటూ చుట్టూ చూడండి, మరియు ఆపడానికి వదిలేయండి. ఇన్‌పుట్ మోడల్ చిటికెడు-మరియు-చూపు పద్ధతిలో ఉంటుంది.On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
+msgstr "విజన్‌ఓఎస్‌లో, రాయడం ప్రారంభించడానికి కాన్వాస్‌పై చిటికెడు పట్టుకుని ఉంచండి, నడిపించడానికి చిటికెడు పట్టుకుంటూ చుట్టూ చూడండి, మరియు ఆపడానికి వదిలేయండి. ఇన్‌పుట్ మోడల్ చిటికెడు-మరియు-చూపు పద్ధతిలో ఉంటుంది."
 
 msgid "Open"
-msgstr "తెరవండిOpen"
+msgstr "తెరవండి"
 
 msgid "Open..."
-msgstr "తెరవండి...Open..."
+msgstr "తెరవండి..."
 
 msgid "Open failed"
-msgstr "ఓపెన్ విఫలమైందిOpen failed"
+msgstr "ఓపెన్ విఫలమైంది"
 
 msgid "Open Keyboard Settings"
-msgstr "కీబోర్డ్ సెట్టింగ్‌లను తెరవండిOpen Keyboard Settings"
+msgstr "కీబోర్డ్ సెట్టింగ్‌లను తెరవండి"
 
 msgid "Open Settings"
-msgstr "సెట్టింగ్‌లను తెరవండిOpen Settings"
+msgstr "సెట్టింగ్‌లను తెరవండి"
 
 msgid "Open System Settings"
-msgstr "సిస్టమ్ సెట్టింగ్‌లను తెరవండిOpen System Settings"
+msgstr "సిస్టమ్ సెట్టింగ్‌లను తెరవండి"
 
-msgid "Open text file"
-msgstr "టెక్స్ట్ ఫైల్‌ను తెరవండిOpen text file"
+msgid "Open Text File"
+msgstr "టెక్స్ట్ ఫైల్‌ను తెరవండి"
 
 msgid "Output"
-msgstr "అవుట్‌పుట్Output"
+msgstr "అవుట్‌పుట్"
 
 msgid "Output Font"
-msgstr "అవుట్‌పుట్ ఫాంట్Output Font"
+msgstr "అవుట్‌పుట్ ఫాంట్"
 
 msgid "Output Font Size"
-msgstr "అవుట్‌పుట్ ఫాంట్ పరిమాణంOutput Font Size"
+msgstr "అవుట్‌పుట్ ఫాంట్ పరిమాణం"
 
 msgid "Touch the canvas to start writing."
-msgstr "రాయడం ప్రారంభించడానికి కాన్వాస్‌ను తాకండి.Touch the canvas to start writing."
+msgstr "రాయడం ప్రారంభించడానికి కాన్వాస్‌ను తాకండి."
 
 msgid "Pane position"
-msgstr "పేన్ స్థానంPane position"
+msgstr "పేన్ స్థానం"
 
 msgid "Paste"
-msgstr "పేస్ట్Paste"
+msgstr "పేస్ట్"
 
 msgid "Pause"
-msgstr "విరామంPause"
+msgstr "విరామం"
 
 msgid "Pause When Looking Away"
-msgstr "పక్కకు చూస్తున్నప్పుడు ఆగండిPause When Looking Away"
+msgstr "పక్కకు చూస్తున్నప్పుడు ఆగండి"
 
 msgid "Pinch and hold anywhere on the canvas to start"
-msgstr "ప్రారంభించడానికి కాన్వాస్‌పై ఎక్కడైనా చిటికెడు పట్టుకుని ఉంచండి.Pinch and hold anywhere on the canvas to start"
+msgstr "ప్రారంభించడానికి కాన్వాస్‌పై ఎక్కడైనా చిటికెడు పట్టుకుని ఉంచండి."
 
 msgid "Pinch and Look to Write"
-msgstr "రాయడానికి చిటికెడు మరియు చూడండిPinch and Look to Write"
+msgstr "రాయడానికి చిటికెడు మరియు చూడండి"
 
 msgid "Pitch"
-msgstr "పిచ్Pitch"
+msgstr "పిచ్"
 
 msgid "High"
-msgstr "అధికHigh"
+msgstr "అధిక"
 
 msgid "Low"
-msgstr "తక్కువLow"
+msgstr "తక్కువ"
 
 msgid "Medium"
-msgstr "మధ్యమMedium"
+msgstr "మధ్యమ"
 
 msgid "Very High"
-msgstr "చాలా ఎక్కువVery High"
+msgstr "చాలా ఎక్కువ"
 
 msgid "Very Low"
-msgstr "చాలా తక్కువVery Low"
+msgstr "చాలా తక్కువ"
 
 msgid "Game"
-msgstr "ఆటGame"
+msgstr "ఆట"
 
 msgid "Play"
-msgstr "ఆటPlay"
+msgstr "ఆట"
 
 msgid "Pointer Hover Input"
-msgstr "పాయింటర్ హోవర్ ఇన్‌పుట్Pointer Hover Input"
+msgstr "పాయింటర్ హోవర్ ఇన్‌పుట్"
 
 msgid "Preferences"
-msgstr "ప్రెఫరెన్సెస్Preferences"
+msgstr "ప్రెఫరెన్సెస్"
 
 msgid "Prefs"
-msgstr "ప్రాధాన్యతలుPrefs"
+msgstr "ప్రాధాన్యతలు"
 
 msgid "Preparing Dasher…"
-msgstr "Dasher సిద్ధమవుతోంది…Preparing Dasher…"
+msgstr "Dasher సిద్ధమవుతోంది…"
 
 msgid "Preview"
-msgstr "ప్రివ్యూPreview"
+msgstr "ప్రివ్యూ"
 
 msgid "Privacy"
-msgstr "గోప్యతPrivacy"
+msgstr "గోప్యత"
 
 msgid "<b>Privacy</b>"
-msgstr "<b>గోప్యత</b><b>Privacy</b>"
+msgstr "<b>గోప్యత</b>"
 
 msgid "Quick speak"
-msgstr "త్వరితగా మాట్లాడండిQuick speak"
+msgstr "త్వరితగా మాట్లాడండి"
 
 msgid "Rate"
-msgstr "రేట్Rate"
+msgstr "రేట్"
 
 msgid "Very Fast"
-msgstr "చాలా వేగంగాVery Fast"
+msgstr "చాలా వేగంగా"
 
 msgid "Very Slow"
-msgstr "చాలా స్లోVery Slow"
+msgstr "చాలా స్లో"
 
 msgid "Re-import from Dasher 5"
-msgstr "డాషర్ 5 నుండి తిరిగి దిగుమతి చేసుకోండిRe-import from Dasher 5"
+msgstr "డాషర్ 5 నుండి తిరిగి దిగుమతి చేసుకోండి"
 
 msgid "Read"
-msgstr "చదవండిRead"
+msgstr "చదవండి"
 
 msgid "Release the pinch to pause"
-msgstr "పాజ్ చేయడానికి పించ్‌ను విడుదల చేయండిRelease the pinch to pause"
+msgstr "పాజ్ చేయడానికి పించ్‌ను విడుదల చేయండి"
 
 msgid "Reset"
-msgstr "రీసెట్Reset"
+msgstr "రీసెట్"
 
 msgid "Reset All Settings to Defaults"
-msgstr "అన్ని సెట్టింగ్‌లను డిఫాల్ట్‌లకు రీసెట్ చేయండిReset All Settings to Defaults"
+msgstr "అన్ని సెట్టింగ్‌లను డిఫాల్ట్‌లకు రీసెట్ చేయండి"
 
 msgid "Reset all settings to their defaults?"
-msgstr "అన్ని సెట్టింగ్‌లను వాటి డిఫాల్ట్‌లకు రీసెట్ చేయాలా?Reset all settings to their defaults?"
+msgstr "అన్ని సెట్టింగ్‌లను వాటి డిఫాల్ట్‌లకు రీసెట్ చేయాలా?"
 
 msgid "Reset anonymous ID"
-msgstr "అనామక IDని రీసెట్ చేయండిReset anonymous ID"
+msgstr "అనామక IDని రీసెట్ చేయండి"
 
 msgid "Reset engine settings to defaults"
-msgstr "ఇంజిన్ సెట్టింగ్‌లను డిఫాల్ట్‌లకు రీసెట్ చేయండిReset engine settings to defaults"
+msgstr "ఇంజిన్ సెట్టింగ్‌లను డిఫాల్ట్‌లకు రీసెట్ చేయండి"
 
 msgid "Reset Settings"
-msgstr "సెట్టింగ్‌లను రీసెట్ చేయండిReset Settings"
+msgstr "సెట్టింగ్‌లను రీసెట్ చేయండి"
 
 msgid "Reset to defaults"
-msgstr "డిఫాల్ట్‌లకు రీసెట్ చేయండిReset to defaults"
+msgstr "డిఫాల్ట్‌లకు రీసెట్ చేయండి"
 
 msgid "Reset Training Data"
-msgstr "శిక్షణ డేటాను రీసెట్ చేయండిReset Training Data"
+msgstr "శిక్షణ డేటాను రీసెట్ చేయండి"
 
 msgid "Reset Training Data?"
-msgstr "శిక్షణ డేటాను రీసెట్ చేయాలా?Reset Training Data?"
+msgstr "శిక్షణ డేటాను రీసెట్ చేయాలా?"
 
 msgid "Reset WPM averages"
-msgstr "WPM సగటులను రీసెట్ చేయండిReset WPM averages"
+msgstr "WPM సగటులను రీసెట్ చేయండి"
 
 msgid "Restarting engine…"
-msgstr "ఇంజిన్‌ను మళ్లీ ప్రారంభిస్తోంది…Restarting engine…"
+msgstr "ఇంజిన్‌ను మళ్లీ ప్రారంభిస్తోంది…"
 
 msgid "Restore all Dasher settings to their default values. This cannot be undone."
-msgstr "అన్ని డాషర్ సెట్టింగ్‌లను వాటి డిఫాల్ట్ విలువలకు పునరుద్ధరించండి. దీన్ని రద్దు చేయడం సాధ్యపడదు.Restore all Dasher settings to their default values. This cannot be undone."
+msgstr "అన్ని డాషర్ సెట్టింగ్‌లను వాటి డిఫాల్ట్ విలువలకు పునరుద్ధరించండి. దీన్ని రద్దు చేయడం సాధ్యపడదు."
 
 msgid "Retry"
-msgstr "మళ్ళీ ప్రయత్నించండిRetry"
+msgstr "మళ్ళీ ప్రయత్నించండి"
 
 msgid "Save"
-msgstr "సేవ్ చేయండిSave"
+msgstr "సేవ్ చేయండి"
 
 msgid "Save..."
-msgstr "సేవ్ చేయండి...Save..."
+msgstr "సేవ్ చేయండి..."
 
 msgid "Save eye-tracker diagnostics"
-msgstr "కన్ను ట్రాకర్ డయాగ్నాస్టిక్స్‌ను సేవ్ చేయండిSave eye-tracker diagnostics"
+msgstr "కన్ను ట్రాకర్ డయాగ్నాస్టిక్స్‌ను సేవ్ చేయండి"
 
 msgid "Save failed"
-msgstr "సేవ్ విఫలమైందిSave failed"
+msgstr "సేవ్ విఫలమైంది"
 
 msgid "Save file"
-msgstr "ఫైల్‌ను సేవ్ చేయండిSave file"
+msgstr "ఫైల్‌ను సేవ్ చేయండి"
 
-msgid "Save text file"
-msgstr "టెక్స్ట్ ఫైల్‌ను సేవ్ చేయండిSave text file"
+msgid "Save Text File"
+msgstr "టెక్స్ట్ ఫైల్‌ను సేవ్ చేయండి"
 
 msgid "Saved"
-msgstr "సేవ్ చేయబడిందిSaved"
+msgstr "సేవ్ చేయబడింది"
 
 msgid "Saved: "
-msgstr "సేవ్ చేయబడింది:Saved: "
+msgstr "సేవ్ చేయబడింది:"
 
 msgid "Scan Speed"
-msgstr "స్కాన్ వేగంScan Speed"
+msgstr "స్కాన్ వేగం"
 
 msgid "Selection Method"
-msgstr "ఎంపిక పద్ధతిSelection Method"
+msgstr "ఎంపిక పద్ధతి"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
-msgstr "సేవ నడుస్తావా? ఇన్‌స్టాల్ ఆదేశాల కోసం కీబోర్డ్ బటన్ పై సెటప్ సహాయాన్ని చూడండి.service running? See the setup help on the Keyboard button for install commands."
+msgstr "సేవ నడుస్తావా? ఇన్‌స్టాల్ ఆదేశాల కోసం కీబోర్డ్ బటన్ పై సెటప్ సహాయాన్ని చూడండి."
 
 msgid "Settings"
-msgstr "సెట్టింగ్‌లుSettings"
+msgstr "సెట్టింగ్‌లు"
 
 msgid "Settings..."
-msgstr "సెట్టింగ్‌లు...Settings..."
+msgstr "సెట్టింగ్‌లు..."
 
 msgid "Reset all settings to defaults"
-msgstr "అన్ని సెట్టింగ్‌లను డిఫాల్ట్‌లకు రీసెట్ చేయండిReset all settings to defaults"
+msgstr "అన్ని సెట్టింగ్‌లను డిఫాల్ట్‌లకు రీసెట్ చేయండి"
 
 msgid "Settings reset"
-msgstr "సెట్టింగ్‌లు రీసెట్ చేయబడ్డాయిSettings reset"
+msgstr "సెట్టింగ్‌లు రీసెట్ చేయబడ్డాయి"
 
 msgid "Reset all engine settings to their built-in defaults?"
-msgstr "అన్ని ఇంజిన్ సెట్టింగ్‌లను వాటి అంతర్నిర్మిత డిఫాల్ట్‌లకు రీసెట్ చేయాలా?Reset all engine settings to their built-in defaults?"
+msgstr "అన్ని ఇంజిన్ సెట్టింగ్‌లను వాటి అంతర్నిర్మిత డిఫాల్ట్‌లకు రీసెట్ చేయాలా?"
 
 msgid "Settings (speed, colours, control mode, language model)"
-msgstr "సెట్టింగ్‌లు (వేగం, రంగులు, నియంత్రణ మోడ్, భాషా నమూనా)Settings (speed, colours, control mode, language model)"
+msgstr "సెట్టింగ్‌లు (వేగం, రంగులు, నియంత్రణ మోడ్, భాషా నమూనా)"
 
 msgid "Settle time: {0} ms"
-msgstr "స్థిరపడే సమయం: {0} msSettle time: {0} ms"
+msgstr "స్థిరపడే సమయం: {0} ms"
 
 msgid "Share"
-msgstr "పంచుకోండిShare"
+msgstr "పంచుకోండి"
 
 msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard "
-msgstr "గోప్యమైన వాడుక విశ్లేషణలు మరియు క్రాష్ నివేదికలను పంచుకోవాలా? టైపింగ్ చేసిన టెక్స్ట్, క్లిప్‌బోర్డు లేదుShare anonymous usage analytics and crash reports? No typed text, clipboard "
+msgstr "గోప్యమైన వాడుక విశ్లేషణలు మరియు క్రాష్ నివేదికలను పంచుకోవాలా? టైపింగ్ చేసిన టెక్స్ట్, క్లిప్‌బోర్డు లేదు"
 
 msgid "Show Input Debug Overlay"
-msgstr "ఇన్‌పుట్ డీబగ్ ఓవర్‌లేను చూపించుShow Input Debug Overlay"
+msgstr "ఇన్‌పుట్ డీబగ్ ఓవర్‌లేను చూపించు"
 
 msgid "Show status bar"
-msgstr "స్టేటస్ బార్‌ను చూపించండిShow status bar"
+msgstr "స్టేటస్ బార్‌ను చూపించండి"
 
 msgid "Show typing rate (WPM)"
-msgstr "టైపింగ్ వేగాన్ని (WPM) చూపించుShow typing rate (WPM)"
+msgstr "టైపింగ్ వేగాన్ని (WPM) చూపించు"
 
 msgid "Size"
-msgstr "పరిమాణంSize"
+msgstr "పరిమాణం"
 
 msgid "Skipped files"
-msgstr "దాటవేయబడిన ఫైళ్ళుSkipped files"
+msgstr "దాటవేయబడిన ఫైళ్ళు"
 
 msgid "Slow"
-msgstr "నెమ్మదిగాSlow"
+msgstr "నెమ్మదిగా"
 
 msgid "Speak on stop"
-msgstr "ఆగినప్పుడు మాట్లాడండిSpeak on stop"
+msgstr "ఆగినప్పుడు మాట్లాడండి"
 
 msgid "Speak words"
-msgstr "పదాలను మాట్లాడండిSpeak words"
+msgstr "పదాలను మాట్లాడండి"
 
 msgid "Speech"
-msgstr "ప్రసంగంSpeech"
+msgstr "ప్రసంగం"
 
 msgid "Speech off"
-msgstr "ప్రసంగం ఆఫ్Speech off"
+msgstr "ప్రసంగం ఆఫ్"
 
 msgid "Speech on"
-msgstr "ప్రసంగంSpeech on"
+msgstr "ప్రసంగం"
 
 msgid "Hello, this is a preview of the selected voice."
-msgstr "హలో, ఇది ఎంచుకున్న కন্ঠపు ప్రివ్యూ.Hello, this is a preview of the selected voice."
+msgstr "హలో, ఇది ఎంచుకున్న కন্ঠపు ప్రివ్యూ."
 
 msgid "Speech Settings"
-msgstr "వాయిస్ సెట్టింగ్‌లుSpeech Settings"
+msgstr "వాయిస్ సెట్టింగ్‌లు"
 
 msgid "<b>Speech Settings</b>"
-msgstr "<b>స్పీచ్ సెట్టింగ్‌లు</b><b>Speech Settings</b>"
+msgstr "<b>స్పీచ్ సెట్టింగ్‌లు</b>"
 
 msgid "Speech volume"
-msgstr "వాయిస్ వాల్యూమ్Speech volume"
+msgstr "వాయిస్ వాల్యూమ్"
 
 msgid "Speed"
-msgstr "వేగంSpeed"
+msgstr "వేగం"
 
 msgid "Speed "
-msgstr "వేగంSpeed "
+msgstr "వేగం"
 
 msgid "Start Calibrating"
-msgstr "క్రమాంకనం ప్రారంభించండిStart Calibrating"
+msgstr "క్రమాంకనం ప్రారంభించండి"
 
 msgid "Start fresh"
-msgstr "కొత్తగా ప్రారంభించండిStart fresh"
+msgstr "కొత్తగా ప్రారంభించండి"
 
 msgid "Dasher failed to start:\n{0}"
-msgstr "డాషర్ ప్రారంభించడంలో విఫలమైంది:\n{0}Dasher failed to start:\n{0}"
+msgstr "డాషర్ ప్రారంభించడంలో విఫలమైంది:\n{0}"
 
 msgid "Steering Method"
-msgstr "స్టీరింగ్ పద్ధతిSteering Method"
+msgstr "స్టీరింగ్ పద్ధతి"
 
 msgid "Stop"
-msgstr "ఆపండిStop"
+msgstr "ఆపండి"
 
 msgid "Stop speaking"
-msgstr "మాట్లాడటాన్ని ఆపండిStop speaking"
+msgstr "మాట్లాడటాన్ని ఆపండి"
 
 msgid "Switch Setup"
-msgstr "స్విచ్ సెటప్Switch Setup"
+msgstr "స్విచ్ సెటప్"
 
 msgid "System"
-msgstr "వ్యవస్థSystem"
+msgstr "వ్యవస్థ"
 
 msgid "text"
-msgstr "టెక్స్ట్text"
+msgstr "టెక్స్ట్"
 
 msgid "Text files"
-msgstr "టెక్స్ట్ ఫైల్స్Text files"
+msgstr "టెక్స్ట్ ఫైల్స్"
 
 msgid "That file already is your training data."
-msgstr "ఆ ఫైల్ ఇప్పటికే మీ ట్రెయినింగ్ డేటా.That file already is your training data."
+msgstr "ఆ ఫైల్ ఇప్పటికే మీ ట్రెయినింగ్ డేటా."
 
 msgid "the app you are pointing at (needs ydotool)"
-msgstr "మీరు సూచిస్తున్న యాప్ (ydotool అవసరం)the app you are pointing at (needs ydotool)"
+msgstr "మీరు సూచిస్తున్న యాప్ (ydotool అవసరం)"
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
-msgstr "డీబగ్ ఓవర్‌లే, కాన్వాస్‌కు ఎగువ ఎడమ వైపున ఒక ఆకుపచ్చ ప్యానెల్‌ను గీస్తుంది, అది లైవ్ టచ్ ఈవెంట్ కౌంట్‌లను మరియు చివరిగా నివేదించబడిన (x, y) విలువను చూపుతుంది. మీరు పించ్ చేసి పట్టుకున్నప్పుడు, మీరు చుట్టూ చూస్తున్న కొద్దీ మారుతున్న కోఆర్డినేట్‌లతో పాటు 'touch.began' ఆపై 'touch.moved' అని కనిపించాలి.The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
+msgstr "డీబగ్ ఓవర్‌లే, కాన్వాస్‌కు ఎగువ ఎడమ వైపున ఒక ఆకుపచ్చ ప్యానెల్‌ను గీస్తుంది, అది లైవ్ టచ్ ఈవెంట్ కౌంట్‌లను మరియు చివరిగా నివేదించబడిన (x, y) విలువను చూపుతుంది. మీరు పించ్ చేసి పట్టుకున్నప్పుడు, మీరు చుట్టూ చూస్తున్న కొద్దీ మారుతున్న కోఆర్డినేట్‌లతో పాటు 'touch.began' ఆపై 'touch.moved' అని కనిపించాలి."
 
 msgid "The file is too large (over 10 MB) to import as training text."
-msgstr "ఆ ఫైల్ చాలా పెద్దది (10 MB కంటే ఎక్కువ) ట్రెయినింగ్ టెక్స్ట్‌గా ఇంపోర్ట్ చేయడానికి.The file is too large (over 10 MB) to import as training text."
+msgstr "ఆ ఫైల్ చాలా పెద్దది (10 MB కంటే ఎక్కువ) ట్రెయినింగ్ టెక్స్ట్‌గా ఇంపోర్ట్ చేయడానికి."
 
 msgid "The selected file is empty."
-msgstr "ఎంచుకున్న ఫైల్ ఖాళీగా ఉంది.The selected file is empty."
+msgstr "ఎంచుకున్న ఫైల్ ఖాళీగా ఉంది."
 
 msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
-msgstr "ఇది ప్రతి అక్షరమాలిక కోసం మీ సంచిత ట్రెయినింగ్ డేటాను తొలగిస్తుంది. అంచనాలు చాలా తాజా టైపింగ్ ప్రభావాన్ని నిలుపుకుంటాయి.This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
+msgstr "ఇది ప్రతి అక్షరమాలిక కోసం మీ సంచిత ట్రెయినింగ్ డేటాను తొలగిస్తుంది. అంచనాలు చాలా తాజా టైపింగ్ ప్రభావాన్ని నిలుపుకుంటాయి."
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
-msgstr "ఇది మీరు సేకరించిన శిక్షణ డేటాను తొలగిస్తుంది. తదుపరి ప్రారంభించినప్పుడు భాషా నమూనా అంతర్నిర్మిత డిఫాల్ట్‌లకు తిరిగి వస్తుంది. దీనిని రద్దు చేయడం సాధ్యపడదు.This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
+msgstr "ఇది మీరు సేకరించిన శిక్షణ డేటాను తొలగిస్తుంది. తదుపరి ప్రారంభించినప్పుడు భాషా నమూనా అంతర్నిర్మిత డిఫాల్ట్‌లకు తిరిగి వస్తుంది. దీనిని రద్దు చేయడం సాధ్యపడదు."
 
 msgid "Tilt Calibration"
-msgstr "టిల్ట్ క్రమాంకనంTilt Calibration"
+msgstr "టిల్ట్ క్రమాంకనం"
 
 msgid "Hold the device upright, then tilt forward and back"
-msgstr "ఉపకరణాన్ని నెమ్మదిగా నిలబెట్టుకొని ముందు మరియు వెనకకి తిప్పండిHold the device upright, then tilt forward and back"
+msgstr "ఉపకరణాన్ని నెమ్మదిగా నిలబెట్టుకొని ముందు మరియు వెనకకి తిప్పండి"
 
 msgid "Tilt left and right through the full range"
-msgstr "పూర్తి పరిధిలో ఎడమ మరియు కుడి వైపుకు వంచండిTilt left and right through the full range"
+msgstr "పూర్తి పరిధిలో ఎడమ మరియు కుడి వైపుకు వంచండి"
 
 msgid "Move slowly and smoothly through all positions"
-msgstr "అన్ని స్థితుల ద్వారా మెల్లగా మరియు సజావుగా కదలండిMove slowly and smoothly through all positions"
+msgstr "అన్ని స్థితుల ద్వారా మెల్లగా మరియు సజావుగా కదలండి"
 
 msgid "Tilt Settings"
-msgstr "తరిగిన అమరికలుTilt Settings"
+msgstr "తరిగిన అమరికలు"
 
 msgid "Tilt your device now..."
-msgstr "ఇప్పుడు మీ పరికరాన్ని వంచండి...Tilt your device now..."
+msgstr "ఇప్పుడు మీ పరికరాన్ని వంచండి..."
 
 msgid "Tilt your device through its full range of motion during calibration."
-msgstr "క్రమాంకనం సమయంలో మీ పరికరాన్ని దాని పూర్తి కదలిక పరిధిలో వంచండి.Tilt your device through its full range of motion during calibration."
+msgstr "క్రమాంకనం సమయంలో మీ పరికరాన్ని దాని పూర్తి కదలిక పరిధిలో వంచండి."
 
 msgid "time under Preferences → Privacy."
-msgstr "సమయం ప్రాధాన్యతలు → గోప్యత కింద.time under Preferences → Privacy."
+msgstr "సమయం ప్రాధాన్యతలు → గోప్యత కింద."
 
 msgid "Eye Tracker Error"
-msgstr "కంటి ట్రాకర్ లోపంEye Tracker Error"
+msgstr "కంటి ట్రాకర్ లోపం"
 
 msgid "Eye tracker notice"
-msgstr "కంటి దృష్టి ట్రాకర్ నోటీసుEye tracker notice"
+msgstr "కంటి దృష్టి ట్రాకర్ నోటీసు"
 
 msgid "The eye tracker could not be fully resumed ({0}). Tracking may run at reduced speed and accuracy — try running Dasher as administrator."
-msgstr "కంటి ట్రాకర్‌ను పూర్తిగా పునఃప్రారంభించలేము ({0}). ట్రాకింగ్ తగ్గిన వేగం మరియు ఖచ్చితత్వంతో నడిచే అవకాశం ఉంది — Dasher ను నిర్వాహకుడిగా (Administrator) இயக்கడానికి ప్రయత్నించండి.The eye tracker could not be fully resumed ({0}). Tracking may run at reduced speed and accuracy — try running Dasher as administrator."
+msgstr "కంటి ట్రాకర్‌ను పూర్తిగా పునఃప్రారంభించలేము ({0}). ట్రాకింగ్ తగ్గిన వేగం మరియు ఖచ్చితత్వంతో నడిచే అవకాశం ఉంది — Dasher ను నిర్వాహకుడిగా (Administrator) இயக்கడానికి ప్రయత్నించండి."
 
 msgid "Toggle control mode"
-msgstr "నియంత్రణ మోడ్‌ను టోగుల్ చేయండిToggle control mode"
+msgstr "నియంత్రణ మోడ్‌ను టోగుల్ చేయండి"
 
 msgid "Toggle game mode"
-msgstr "ఆట మోడ్‌ను టోగుల్ చేయండిToggle game mode"
+msgstr "ఆట మోడ్‌ను టోగుల్ చేయండి"
 
 msgid "Toggle keyboard mode"
-msgstr "కీబోర్డ్ మోడ్‌ను టోగుల్ చేయండిToggle keyboard mode"
+msgstr "కీబోర్డ్ మోడ్‌ను టోగుల్ చేయండి"
 
 msgid "Toggle pane position"
-msgstr "పేన్ స్థానాన్ని టోగుల్ చేయండిToggle pane position"
+msgstr "పేన్ స్థానాన్ని టోగుల్ చేయండి"
 
 msgid "Hide/show status bar"
-msgstr "స్టేటస్ బార్‌ను దాచండి/చూపించండిHide/show status bar"
+msgstr "స్టేటస్ బార్‌ను దాచండి/చూపించండి"
 
 msgid "Copy all text"
-msgstr "అన్ని టెక్స్ట్‌ను కాపీ చేయండిCopy all text"
+msgstr "అన్ని టెక్స్ట్‌ను కాపీ చేయండి"
 
 msgid "Copy selection in target app"
-msgstr "లక్ష్య యాప్‌లో ఎంపికను కాపీ చేయండిCopy selection in target app"
+msgstr "లక్ష్య యాప్‌లో ఎంపికను కాపీ చేయండి"
 
 msgid "Cut selection in target app"
-msgstr "లక్ష్య యాప్‌లో ఎంపికను కట్ చేయండిCut selection in target app"
+msgstr "లక్ష్య యాప్‌లో ఎంపికను కట్ చేయండి"
+
+msgid "Start game mode"
+msgstr "ఆట మోడ్‌ను ప్రారంభించండి"
+
+msgid "New / clear output"
+msgstr "కొత్త / స్పష్టమైన అవుట్‌పుట్"
+
+msgid "Open file"
+msgstr "ఫైల్ తెరవండి"
 
 msgid "Paste into target app"
-msgstr "లక్ష్య యాప్‌లో పేస్ట్ చేయండిPaste into target app"
+msgstr "లక్ష్య యాప్‌లో పేస్ట్ చేయండి"
 
 msgid "Re-anchor predictions to the caret (read the sentence around your cursor)"
-msgstr "అంచనాలను కేరెట్‌కు రీ-యాంకర్ చేయండి (మీ కర్సర్ చుట్టూ వాక్యాన్ని చదవండి)Re-anchor predictions to the caret (read the sentence around your cursor)"
+msgstr "అంచనాలను కేరెట్‌కు రీ-యాంకర్ చేయండి (మీ కర్సర్ చుట్టూ వాక్యాన్ని చదవండి)"
+
+msgid "Save to file"
+msgstr "ఫైల్‌లో భద్రపరచండి"
 
 msgid "Select all in target app"
-msgstr "లక్ష్య యాప్‌లో అన్నీ ఎంచుకోండిSelect all in target app"
+msgstr "లక్ష్య యాప్‌లో అన్నీ ఎంచుకోండి"
+
+msgid "Open settings"
+msgstr "సెట్టింగ్‌లను తెరవండి"
+
+msgid "Share text"
+msgstr "టెక్స్ట్‌ను పంచుకోండి"
 
 msgid "eyetuitive"
-msgstr "కంటిచూపుeyetuitive"
+msgstr "కంటిచూపు"
 
 msgid "Eye tracker"
-msgstr "ఐ ట్రాకర్Eye tracker"
+msgstr "ఐ ట్రాకర్"
 
 msgid "Tobii (Stream Engine)"
-msgstr "టోబి (స్ట్రీమ్ ఇంజిన్)Tobii (Stream Engine)"
+msgstr "టోబి (స్ట్రీమ్ ఇంజిన్)"
 
 msgid "UDP Gaze Tracker (network)"
-msgstr "UDP చూపుల ట్రాకర్ (నెట్‌వర్క్)UDP Gaze Tracker (network)"
+msgstr "UDP చూపుల ట్రాకర్ (నెట్‌వర్క్)"
 
 msgid "Windows Eye Tracker (native)"
-msgstr "విండోస్ ఐ ట్రాకర్ (స్థానిక)Windows Eye Tracker (native)"
+msgstr "విండోస్ ఐ ట్రాకర్ (స్థానిక)"
 
 msgid "Training"
-msgstr "శిక్షణTraining"
+msgstr "శిక్షణ"
 
 msgid "Current training data: {0} KB"
-msgstr "ప్రస్తుత శిక్షణ డేటా: {0} KBCurrent training data: {0} KB"
+msgstr "ప్రస్తుత శిక్షణ డేటా: {0} KB"
 
 msgid "Training Data"
-msgstr "శిక్షణ డేటాTraining Data"
+msgstr "శిక్షణ డేటా"
 
 msgid "Training data deleted — restart Dasher to fully apply"
-msgstr "ట్రెయినింగ్ డేటా తొలగించబడింది — పూర్తిగా వర్తింపజేయడానికి Dasher‌ను మళ్లీ ప్రారంభించండిTraining data deleted — restart Dasher to fully apply"
+msgstr "ట్రెయినింగ్ డేటా తొలగించబడింది — పూర్తిగా వర్తింపజేయడానికి Dasher‌ను మళ్లీ ప్రారంభించండి"
 
 msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
-msgstr "దిగుమతి భాషా మోడల్ మరియు మీ పేర్కొన్న శిక్షణ డేటాకు పాఠ్యాన్ని జోడిస్తుంది (పునఃప్రారంభాలలో నిలుస్తుంది). ఎగుమతి బ్యాకప్ లేదా బదిలీ కోసం మీ శిక్షణ డేటాను సేవ్ చేస్తుంది. రీసెట్ అన్ని వినియోగదారు శిక్షణ డేటాను తొలగిస్తుంది — తదుపరి ప్రారంభంలో మోడల్ దాని అంతర్గత డిఫాల్ట్‌లకు తిరిగి వస్తుంది.Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
+msgstr "దిగుమతి భాషా మోడల్ మరియు మీ పేర్కొన్న శిక్షణ డేటాకు పాఠ్యాన్ని జోడిస్తుంది (పునఃప్రారంభాలలో నిలుస్తుంది). ఎగుమతి బ్యాకప్ లేదా బదిలీ కోసం మీ శిక్షణ డేటాను సేవ్ చేస్తుంది. రీసెట్ అన్ని వినియోగదారు శిక్షణ డేటాను తొలగిస్తుంది — తదుపరి ప్రారంభంలో మోడల్ దాని అంతర్గత డిఫాల్ట్‌లకు తిరిగి వస్తుంది."
 
 msgid "Training data exported."
-msgstr "ట్రెయినింగ్ డేటా ఎగుమతి చేయబడింది.Training data exported."
+msgstr "ట్రెయినింగ్ డేటా ఎగుమతి చేయబడింది."
 
 msgid "Export Training Data"
-msgstr "శిక్షణ డేటాను ఎగుమతి చేయండిExport Training Data"
+msgstr "శిక్షణ డేటాను ఎగుమతి చేయండి"
 
 msgid "Exported to {0}"
-msgstr "{0}కి ఎగుమతి చేయబడిందిExported to {0}"
+msgstr "{0}కి ఎగుమతి చేయబడింది"
 
 msgid "{0} failed: {1}"
-msgstr "{0} విఫలమైంది: {1}{0} failed: {1}"
+msgstr "{0} విఫలమైంది: {1}"
 
 msgid "Imported {0} KB of training text"
-msgstr "{0} KB శిక్షణ పాఠ్యం దిగుమతి చేయబడిందిImported {0} KB of training text"
+msgstr "{0} KB శిక్షణ పాఠ్యం దిగుమతి చేయబడింది"
 
 msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
-msgstr "దిగుమతి చేయబడిన {0} KB — తదుపరి ప్రయోగానికి పూర్తిగా వర్తిస్తుంది (ప్రత్యక్ష మోడల్ తిరిగి ఇవ్వబడింది {1})Imported {0} KB — applies fully on next launch (live model returned {1})"
+msgstr "దిగుమతి చేయబడిన {0} KB — తదుపరి ప్రయోగానికి పూర్తిగా వర్తిస్తుంది (ప్రత్యక్ష మోడల్ తిరిగి ఇవ్వబడింది {1})"
 
 msgid "Training is not available yet — try again once the canvas has rendered."
-msgstr "ట్రెయినింగ్ ఇంకా అందుబాటులో లేదు — కాన్వాస్ రెండర్ అయిన తర్వాత మళ్లీ ప్రయత్నించండి.Training is not available yet — try again once the canvas has rendered."
+msgstr "ట్రెయినింగ్ ఇంకా అందుబాటులో లేదు — కాన్వాస్ రెండర్ అయిన తర్వాత మళ్లీ ప్రయత్నించండి."
 
 msgid "Training data deleted — the model returns to its built-in defaults on next launch"
-msgstr "శిక్షణ డేటా తొలగించబడింది - మోడల్ తదుపరి లాంచ్‌లో దాని అంతర్నిర్మిత డిఫాల్ట్‌లకు తిరిగి వస్తుందిTraining data deleted — the model returns to its built-in defaults on next launch"
+msgstr "శిక్షణ డేటా తొలగించబడింది - మోడల్ తదుపరి లాంచ్‌లో దాని అంతర్నిర్మిత డిఫాల్ట్‌లకు తిరిగి వస్తుంది"
 
 msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
-msgstr "సాధ్యమైన చోట శిక్షణ డేటా తొలగించబడింది — {0} అంశం(లు) విఫలమైంది; మళ్లీ ప్రయత్నించడానికి మళ్లీ రీసెట్ నొక్కండిDeleted training data where possible — {0} item(s) failed; press Reset again to retry"
+msgstr "సాధ్యమైన చోట శిక్షణ డేటా తొలగించబడింది — {0} అంశం(లు) విఫలమైంది; మళ్లీ ప్రయత్నించడానికి మళ్లీ రీసెట్ నొక్కండి"
 
 msgid "TTS Engine"
-msgstr "TTS ఇంజిన్TTS Engine"
+msgstr "TTS ఇంజిన్"
 
 msgid "No credentials required"
-msgstr "క్రెడెన్షియల్స్ అవసరం లేదుNo credentials required"
+msgstr "క్రెడెన్షియల్స్ అవసరం లేదు"
 
 msgid "Turbo"
-msgstr "టర్బోTurbo"
+msgstr "టర్బో"
 
 msgid "Typing into other applications needs access to /dev/uinput, which a sandboxed "
-msgstr "ఇతర అనువర్తనాల్లో టైపింగ్ చేయడానికి /dev/uinput కు యాక్సెస్ అవసరం, ఇది ఒక సాండ్‌బాక్స్‌లో ఉంచబడిందిTyping into other applications needs access to /dev/uinput, which a sandboxed "
+msgstr "ఇతర అనువర్తనాల్లో టైపింగ్ చేయడానికి /dev/uinput కు యాక్సెస్ అవసరం, ఇది ఒక సాండ్‌బాక్స్‌లో ఉంచబడింది"
 
 msgid "Typing rate"
-msgstr "టైపింగ్ రేటుTyping rate"
+msgstr "టైపింగ్ రేటు"
 
 msgid "{cps} cps · {wpm} wpm"
 msgstr "{cps} cps · {wpm} wpm"
 
 msgid "UDP Port"
-msgstr "UDP పోర్ట్UDP Port"
+msgstr "UDP పోర్ట్"
 
 msgid "UDP tracker listens for STREAM_DATA or GazePoint messages"
-msgstr "UDP ట్రాకర్ STREAM_DATA లేదా GazePoint సందేశాల కోసం వినేస్తుందిUDP tracker listens for STREAM_DATA or GazePoint messages"
+msgstr "UDP ట్రాకర్ STREAM_DATA లేదా GazePoint సందేశాల కోసం వినేస్తుంది"
 
 msgid "Dasher {0} is available (you're running v{1}). Tap to download — disable in Settings > Privacy."
-msgstr "డాషర్ {0} అందుబాటులో ఉంది (మీరు v{1}ని నడుపుతున్నారు). డౌన్‌లోడ్ చేయడానికి నొక్కండి — సెట్టింగ్‌లు > గోప్యతలో నిలిపివేయండి.Dasher {0} is available (you're running v{1}). Tap to download — disable in Settings > Privacy."
+msgstr "డాషర్ {0} అందుబాటులో ఉంది (మీరు v{1}ని నడుపుతున్నారు). డౌన్‌లోడ్ చేయడానికి నొక్కండి — సెట్టింగ్‌లు > గోప్యతలో నిలిపివేయండి."
 
 msgid "Dasher update available"
-msgstr "డాషర్ నవీకరణ లభ్యంDasher update available"
+msgstr "డాషర్ నవీకరణ లభ్యం"
 
 msgid "Use Dasher as your keyboard"
-msgstr "మీ కీబోర్డ్‌గా డాషర్‌ను ఉపయోగించండిUse Dasher as your keyboard"
+msgstr "మీ కీబోర్డ్‌గా డాషర్‌ను ఉపయోగించండి"
 
 msgid "Voice"
-msgstr "కానుకVoice"
+msgstr "కానుక"
 
 msgid "{0} voices"
-msgstr "{0} స్వరాలు{0} voices"
+msgstr "{0} స్వరాలు"
 
 msgid "Volume"
-msgstr "వాల్యూమ్Volume"
+msgstr "వాల్యూమ్"
 
 msgid "Dasher Warning"
-msgstr "డాషర్ హెచ్చరికDasher Warning"
+msgstr "డాషర్ హెచ్చరిక"
 
 msgid "We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
-msgstr "ఈ Macలో మీ Dasher 5 కాన్ఫిగరేషన్‌ను మేము కనుగొన్నాము. మీ అక్షరమాల, రంగులు, వేగపు సెట్టింగ్‌లు మరియు కస్టమ్ ఫైల్‌లను Dasher 6లోకి దిగుమతి చేసుకోవచ్చు.We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
+msgstr "ఈ Macలో మీ Dasher 5 కాన్ఫిగరేషన్‌ను మేము కనుగొన్నాము. మీ అక్షరమాల, రంగులు, వేగపు సెట్టింగ్‌లు మరియు కస్టమ్ ఫైల్‌లను Dasher 6లోకి దిగుమతి చేసుకోవచ్చు."
 
 msgid "What was found"
-msgstr "ఏమి కనుగొనబడిందిWhat was found"
+msgstr "ఏమి కనుగొనబడింది"
 
 msgid "{0} wpm"
 msgstr "{0} wpm"
 
 msgid "max {0}"
-msgstr "గరిష్టంగా {0}max {0}"
+msgstr "గరిష్టంగా {0}"
 
 msgid "X range:"
-msgstr "X పరిధి:X range:"
+msgstr "X పరిధి:"
 
 msgid "Y range:"
-msgstr "Y పరిధి:Y range:"
+msgstr "Y పరిధి:"
 
 msgid "ydotool found. Keyboard mode is ready."
-msgstr "ydotool కనుగొనబడింది. కీబోర్డ్ మోడ్ సిద్ధంగా ఉంది.ydotool found. Keyboard mode is ready."
+msgstr "ydotool కనుగొనబడింది. కీబోర్డ్ మోడ్ సిద్ధంగా ఉంది."
 
 msgid "ydotool still isn't available. Make sure it's installed and the ydotool service is running."
-msgstr "ydotool ఇంకా అందుబాటులో లేదు. ఇది ఇన్‌స్టాల్ అయినట్లు మరియు ydotool సర్వీస్ నడుస్తున్నదనగా నిర్ధారించుకోండి.ydotool still isn't available. Make sure it's installed and the ydotool service is running."
+msgstr "ydotool ఇంకా అందుబాటులో లేదు. ఇది ఇన్‌స్టాల్ అయినట్లు మరియు ydotool సర్వీస్ నడుస్తున్నదనగా నిర్ధారించుకోండి."
 
 msgid "You can import later in Settings > Privacy & Migration"
-msgstr "మీరు తర్వాత సెట్టింగ్స్ > ప్రైవసీ & మైగ్రేషన్‌లో దిగుమతి చేసుకోవచ్చుYou can import later in Settings > Privacy & Migration"
+msgstr "మీరు తర్వాత సెట్టింగ్స్ > ప్రైవసీ & మైగ్రేషన్‌లో దిగుమతి చేసుకోవచ్చు"
 
 msgid "Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."
-msgstr "మీరు చిటికెడు పట్టుకుని ఉంచినంత సేపు మాత్రమే మీ చూపు నిరంతరం ట్రాక్ చేయబడుతుంది — అన్ని visionOS గెజ్ యాప్‌లు ఈ విధంగానే పనిచేస్తాయి.Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."
+msgstr "మీరు చిటికెడు పట్టుకుని ఉంచినంత సేపు మాత్రమే మీ చూపు నిరంతరం ట్రాక్ చేయబడుతుంది — అన్ని visionOS గెజ్ యాప్‌లు ఈ విధంగానే పనిచేస్తాయి."

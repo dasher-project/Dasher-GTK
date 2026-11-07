@@ -14,1129 +14,1159 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "%1$.1f cps · %2$d wpm"
-msgstr "%1$.1f kps · %2$d wpm%1$.1f cps · %2$d wpm"
+msgstr "%1$.1f kps · %2$d wpm"
 
 msgid "A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
-msgstr "'n Ongeluksverslag is gestoor in ~/Library/Logs/DiagnosticReports/Dasher-*.ips. As jy dit in 'n GitHub-probleem kan deel, help dit ons om die fout reg te stel.A crash report was saved to ~/Library/Logs/DiagnosticReports/Dasher-*.ips. If you can share it in a GitHub issue, it helps us fix the bug."
+msgstr "'n Ongeluksverslag is gestoor in ~/Library/Logs/DiagnosticReports/Dasher-*.ips. As jy dit in 'n GitHub-probleem kan deel, help dit ons om die fout reg te stel."
 
 msgid "About"
-msgstr "OorAbout"
+msgstr "Oor"
 
 msgid "Dasher {0}"
 msgstr "Dasher {0}"
 
 msgid "Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
-msgstr "Aanvaar sweef-/wysergebeurtenisse as Dasher-invoer. Aktiveer vir oogopsporing of eksterne wysers.Accept hover/pointer events as Dasher input. Enable for eye tracking or external pointers."
+msgstr "Aanvaar sweef-/wysergebeurtenisse as Dasher-invoer. Aktiveer vir oogopsporing of eksterne wysers."
 
 msgid "Access"
-msgstr "ToegangAccess"
+msgstr "Toegang"
 
 msgid "Accessibility Permission Required"
-msgstr "Toeganklikheidstoestemming VereisAccessibility Permission Required"
+msgstr "Toeganklikheidstoestemming Vereis"
 
 msgid "Adapt Speed Automatically"
-msgstr "Pas spoed outomaties aanAdapt Speed Automatically"
+msgstr "Pas spoed outomaties aan"
 
 msgid "Advanced logging"
-msgstr "Gevorderde logboekhoudingAdvanced logging"
+msgstr "Gevorderde logboekhouding"
 
 msgid "Detailed diagnostic logging for bug reports (per-sample eye-tracker lines, keystroke traces, UIA reads). Basic connection events are always logged. May generate large log files."
-msgstr "Gedetailleerde diagnostiese logboeke vir foutverslae (per-steekproef oogopspoorlyn, toetsaanslagspoor, UIA-lesings). Basiese verbindingsgebeure word altyd aangeteken. Kan groot loglêers genereer.Detailed diagnostic logging for bug reports (per-sample eye-tracker lines, keystroke traces, UIA reads). Basic connection events are always logged. May generate large log files."
+msgstr "Gedetailleerde diagnostiese logboeke vir foutverslae (per-steekproef oogopspoorlyn, toetsaanslagspoor, UIA-lesings). Basiese verbindingsgebeure word altyd aangeteken. Kan groot loglêers genereer."
 
 msgid "Advanced settings"
-msgstr "Gevorderde instellingsAdvanced settings"
+msgstr "Gevorderde instellings"
 
 msgid "All Dasher settings will be restored to their default values. This cannot be undone."
-msgstr "Alle Dasher-instellings sal na hul verstekwaardes herstel word. Dit kan nie ongedaan gemaak word nie.All Dasher settings will be restored to their default values. This cannot be undone."
+msgstr "Alle Dasher-instellings sal na hul verstekwaardes herstel word. Dit kan nie ongedaan gemaak word nie."
 
 msgid "Alphabet"
-msgstr "AlfabetAlphabet"
+msgstr "Alfabet"
 
 msgid "Help improve Dasher"
-msgstr "Help om Dasher te verbeterHelp improve Dasher"
+msgstr "Help om Dasher te verbeter"
 
 msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
-msgstr "Deel anonieme gebruiksanalise en vasloopverslae? Geen getikte teks, knipbordinhoud of persoonlike inligting word ooit versamel nie. Jy kan dit enige tyd in Instellings verander.Share anonymous usage analytics and crash reports? No typed text, clipboard contents or personal information is ever collected. You can change this any time in Settings."
+msgstr "Deel anonieme gebruiksanalise en vasloopverslae? Geen getikte teks, knipbordinhoud of persoonlike inligting word ooit versamel nie. Jy kan dit enige tyd in Instellings verander."
 
 msgid "Not now"
-msgstr "Nie nou nieNot now"
+msgstr "Nie nou nie"
 
 msgid "Share anonymous analytics and crash reports"
-msgstr "Deel anonieme analise en ongeluk verslaeShare anonymous analytics and crash reports"
+msgstr "Deel anonieme analise en ongeluk verslae"
 
 msgid "Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
-msgstr "Dasher versamel anonieme, privaatheids-respekteerde analitiese data om gebruikspatrone te verstaan en foutmeldings reg te stel. Geen getikte teks, knipbordinhoud of persoonlike inligting word ooit versamel nie.\n\nJy kan dit enige tyd verander in Instellings > Privaatheid.Dasher collects anonymous, privacy-respecting analytics to understand usage patterns and fix crashes. No typed text, clipboard contents, or personal information is ever collected.\n\nYou can change this anytime in Settings > Privacy."
+msgstr "Dasher versamel anonieme, privaatheids-respekteerde analitiese data om gebruikspatrone te verstaan en foutmeldings reg te stel. Geen getikte teks, knipbordinhoud of persoonlike inligting word ooit versamel nie.\n\nJy kan dit enige tyd verander in Instellings > Privaatheid."
 
 msgid "Reset analytics ID"
-msgstr "Stel analitiese ID terugReset analytics ID"
+msgstr "Stel analitiese ID terug"
 
 msgid "Dasher collects anonymous usage analytics and crash reports to understand how the app is used and to fix bugs. No typed text, clipboard contents, or personal information is ever collected."
-msgstr "Dasher versamel anonieme gebruiksanalitiese data en foutverslae om te verstaan hoe die app gebruik word en om foute reg te stel. Geen getikte teks, knipbordinhoude of persoonlike inligting word ooit versamel nie.Dasher collects anonymous usage analytics and crash reports to understand how the app is used and to fix bugs. No typed text, clipboard contents, or personal information is ever collected."
+msgstr "Dasher versamel anonieme gebruiksanalitiese data en foutverslae om te verstaan hoe die app gebruik word en om foute reg te stel. Geen getikte teks, knipbordinhoude of persoonlike inligting word ooit versamel nie."
 
 msgid "Help improve Dasher?"
-msgstr "Help om Dasher te verbeter?Help improve Dasher?"
+msgstr "Help om Dasher te verbeter?"
 
 msgid "Anonymous ID: {0}"
-msgstr "Anonieme ID: {0}Anonymous ID: {0}"
+msgstr "Anonieme ID: {0}"
 
 msgid "Anonymous usage analytics"
-msgstr "Anonieme gebruiksanaliseAnonymous usage analytics"
+msgstr "Anonieme gebruiksanalise"
 
 msgid "Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
-msgstr "Anonieme gebruiksanalise help ons om te verstaan hoe Dasher gebruik word en om ineenstortings reg te stel. Geen getikte teks, knipbordinhoud of persoonlike inligting word ooit versamel nie. Kanselleer enige tyd in Instellings → Privaatheid.Anonymous usage analytics help us understand how Dasher is used and fix crashes. No typed text, clipboard contents, or personal information is ever collected. Opt out any time in Settings → Privacy."
+msgstr "Anonieme gebruiksanalise help ons om te verstaan hoe Dasher gebruik word en om ineenstortings reg te stel. Geen getikte teks, knipbordinhoud of persoonlike inligting word ooit versamel nie. Kanselleer enige tyd in Instellings → Privaatheid."
 
 msgid "App-Level Dwell to Select"
-msgstr "Toepassingsvlak-verblyf om te kiesApp-Level Dwell to Select"
+msgstr "Toepassingsvlak-verblyf om te kies"
 
 msgid "Dasher"
 msgstr ""
 
 msgid "Appearance"
-msgstr "VoorkomsAppearance"
+msgstr "Voorkoms"
 
 msgid "Left"
-msgstr "LinksLeft"
+msgstr "Links"
 
 msgid "Move caret left (hold to repeat)"
-msgstr "Beweeg speler links (hou vas om te herhaal)Move caret left (hold to repeat)"
+msgstr "Beweeg speler links (hou vas om te herhaal)"
 
 msgid "Right"
-msgstr "RegsRight"
+msgstr "Regs"
 
 msgid "Move caret right (hold to repeat)"
-msgstr "Beweeg kursor na regs (hou aan om te herhaal)Move caret right (hold to repeat)"
+msgstr "Beweeg kursor na regs (hou aan om te herhaal)"
 
 msgid "Auto"
-msgstr "OutomatiesAuto"
+msgstr "Outomaties"
 
 msgid "Auto-Centre Target"
-msgstr "Outomaties-sentreer teikenAuto-Centre Target"
+msgstr "Outomaties-sentreer teiken"
 
 msgid "Auto-select after fixating. Only enable if OS dwell is off."
-msgstr "Outomatiese keuse na fiksering. Aktiveer slegs as OS-verblyf afgeskakel is.Auto-select after fixating. Only enable if OS dwell is off."
+msgstr "Outomatiese keuse na fiksering. Aktiveer slegs as OS-verblyf afgeskakel is."
 
 msgid "Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
-msgstr "Outomatiese keuse nadat jy jou blik vasgehou het terwyl jy knyp. Aktiveer slegs as OS-verblyf afgeskakel is.Auto-select after fixating your gaze while pinching. Only enable if OS dwell is off."
+msgstr "Outomatiese keuse nadat jy jou blik vasgehou het terwyl jy knyp. Aktiveer slegs as OS-verblyf afgeskakel is."
 
 msgid "Back"
-msgstr "TerugBack"
+msgstr "Terug"
 
 msgid "Del"
-msgstr "verwyderDel"
+msgstr "verwyder"
 
 msgid "Delete (hold to repeat)"
-msgstr "Vee uit (hou aangehou om te herhaal)Delete (hold to repeat)"
+msgstr "Vee uit (hou aangehou om te herhaal)"
 
 msgid "Calibrate Tilt"
-msgstr "Kalibreer KantelCalibrate Tilt"
+msgstr "Kalibreer Kantel"
 
 msgid "Cancel"
-msgstr "KanselleerCancel"
+msgstr "Kanselleer"
 
 msgid "Check Again"
-msgstr "Kontroleer weerCheck Again"
+msgstr "Kontroleer weer"
 
 msgid "Check for updates"
 msgstr ""
 
 msgid "Choose..."
-msgstr "Kies...Choose..."
+msgstr "Kies..."
 
 msgid "Choose File..."
-msgstr "Kies Lêer...Choose File..."
+msgstr "Kies Lêer..."
 
 msgid "Clear"
-msgstr "DuidelikClear"
+msgstr "Duidelik"
 
 msgid "Clear logs"
-msgstr "Verwyder logsClear logs"
+msgstr "Verwyder logs"
 
 msgid "Click to set up keyboard mode (needs ydotool)"
-msgstr "Klik om sleutelbordmodus op te stel (benodig ydotool)Click to set up keyboard mode (needs ydotool)"
+msgstr "Klik om sleutelbordmodus op te stel (benodig ydotool)"
 
 msgid "Close"
-msgstr "Maak toeClose"
+msgstr "Maak toe"
 
 msgid "Close settings"
-msgstr "Sluit instellingsClose settings"
+msgstr "Sluit instellings"
 
 msgid "Colour Theme"
-msgstr "KleurtemaColour Theme"
+msgstr "Kleurtema"
 
 msgid "contents or personal information is ever collected. You can change this any "
-msgstr "inhoud of persoonlike inligting ooit ingesamel word. Jy kan dit enige tyd verandercontents or personal information is ever collected. You can change this any "
+msgstr "inhoud of persoonlike inligting ooit ingesamel word. Jy kan dit enige tyd verander"
 
 msgid "Control"
-msgstr "BeheerControl"
+msgstr "Beheer"
 
 msgid "Control mode: enabled"
-msgstr "Beheermodus: aangeskakelControl mode: enabled"
+msgstr "Beheermodus: aangeskakel"
 
 msgid "Control mode"
-msgstr "BeheermodusControl mode"
+msgstr "Beheermodus"
 
 msgid "Control nodes: move, delete, clear, speak, pause"
-msgstr "Beheerknope: skuif, verwyder, maak skoon, praat, onderbreekControl nodes: move, delete, clear, speak, pause"
+msgstr "Beheerknope: skuif, verwyder, maak skoon, praat, onderbreek"
 
 msgid "Copied to clipboard."
-msgstr "Knyp gekopiëerde aan knipbordCopied to clipboard."
+msgstr "Knyp gekopiëerde aan knipbord"
 
 msgid "Copy"
-msgstr "KopieerCopy"
+msgstr "Kopieer"
 
 msgid "Copy all"
-msgstr "kopieer allesCopy all"
+msgstr "kopieer alles"
 
 msgid "Copy All"
-msgstr "Kopieer AllesCopy All"
+msgstr "Kopieer Alles"
 
 msgid "Copy all (to clipboard)"
-msgstr "Kopieer alles (na knipbord)Copy all (to clipboard)"
+msgstr "Kopieer alles (na knipbord)"
 
 msgid "Copy commands"
-msgstr "Kopieer opdragteCopy commands"
+msgstr "Kopieer opdragte"
 
 msgid "Copy selection"
-msgstr "Kopieer seleksieCopy selection"
+msgstr "Kopieer seleksie"
 
 msgid "Could not load the file into the engine"
-msgstr "Kon die lêer nie in die enjin laai nieCould not load the file into the engine"
+msgstr "Kon die lêer nie in die enjin laai nie"
 
 msgid "Could not open the selected file."
-msgstr "Kon nie die geselekteerde lêer oopmaak nie.Could not open the selected file."
+msgstr "Kon nie die geselekteerde lêer oopmaak nie."
 
 msgid "Could not read the selected file."
-msgstr "Kon nie die geselekteerde lêer lees nie.Could not read the selected file."
+msgstr "Kon nie die geselekteerde lêer lees nie."
 
 msgid "Could not sync your edit with the engine — it may be overwritten"
-msgstr "Kon jou wysiging nie met die enjin sinchroniseer nie — dit mag oor geskryf wordCould not sync your edit with the engine — it may be overwritten"
+msgstr "Kon jou wysiging nie met die enjin sinchroniseer nie — dit mag oor geskryf word"
 
 msgid "Could not write the export file."
-msgstr "Kon nie die uitvoer lêer skryf nie.Could not write the export file."
+msgstr "Kon nie die uitvoer lêer skryf nie."
 
 msgid "Could not write the training data."
-msgstr "Kon nie die opleidingsdata skryf nie.Could not write the training data."
+msgstr "Kon nie die opleidingsdata skryf nie."
 
 msgid "Current Calibration"
-msgstr "Huidige KalibrasieCurrent Calibration"
+msgstr "Huidige Kalibrasie"
 
 msgid "{0} custom file(s)"
-msgstr "{0} pasgemaakte lêer(s){0} custom file(s)"
+msgstr "{0} pasgemaakte lêer(s)"
 
 msgid "Customization"
-msgstr "AanpassingCustomization"
+msgstr "Aanpassing"
 
 msgid "Dark"
-msgstr "DonkerDark"
+msgstr "Donker"
 
 msgid "Dasher "
-msgstr "DasherDasher "
+msgstr "Dasher"
 
 msgid "We found your Dasher 5 configuration"
-msgstr "Ons het jou Dasher 5-konfigurasie gevindWe found your Dasher 5 configuration"
+msgstr "Ons het jou Dasher 5-konfigurasie gevind"
 
 msgid "Dasher 5 Import"
-msgstr "Dasher 5 InvoerDasher 5 Import"
+msgstr "Dasher 5 Invoer"
 
 msgid "Would you like to import these settings into Dasher 6?"
-msgstr "Wil jy hierdie instellings na Dasher 6 invoer?Would you like to import these settings into Dasher 6?"
+msgstr "Wil jy hierdie instellings na Dasher 6 invoer?"
 
 msgid "No Dasher 5 data found on this computer."
-msgstr "Geen Dasher 5-data op hierdie rekenaar gevind nie.No Dasher 5 data found on this computer."
+msgstr "Geen Dasher 5-data op hierdie rekenaar gevind nie."
 
 msgid "Dasher 5 settings found"
-msgstr "Dasher 5-instellings gevindDasher 5 settings found"
+msgstr "Dasher 5-instellings gevind"
 
 msgid "Dasher 5 data detected on this Mac."
-msgstr "Dasher 5-data is op hierdie Mac opgespoor.Dasher 5 data detected on this Mac."
+msgstr "Dasher 5-data is op hierdie Mac opgespoor."
 
 msgid "Dasher 5 settings imported successfully."
-msgstr "Dasher 5-instellings suksesvol ingevoer.Dasher 5 settings imported successfully."
+msgstr "Dasher 5-instellings suksesvol ingevoer."
 
 msgid "Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
-msgstr "Dasher werk ook as 'n stelselsleutelbord, so jy kan in enige toepassing skryf. Aktiveer dit een keer in Instellings.Dasher also works as a system keyboard, so you can write in any app. Enable it once in Settings."
+msgstr "Dasher werk ook as 'n stelselsleutelbord, so jy kan in enige toepassing skryf. Aktiveer dit een keer in Instellings."
 
 msgid "Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
-msgstr "Dasher versamel anonieme ontledings om gebruik te verstaan en ineenstortings reg te stel. Geen getikte teks, knipbord of persoonlike inligting word ooit versamel nie. Sien die oop gebeurtenis skema by github.com/dasher-project/Dasher-Apple.Dasher collects anonymous analytics to understand usage and fix crashes. No typed text, clipboard, or personal info is ever collected. See the open event schema at github.com/dasher-project/Dasher-Apple."
+msgstr "Dasher versamel anonieme ontledings om gebruik te verstaan en ineenstortings reg te stel. Geen getikte teks, knipbord of persoonlike inligting word ooit versamel nie. Sien die oop gebeurtenis skema by github.com/dasher-project/Dasher-Apple."
 
 msgid "Dasher Engine Error"
-msgstr "Dasher-enjinfoutDasher Engine Error"
+msgstr "Dasher-enjinfout"
 
 msgid "Dasher Keyboard"
-msgstr "Dasher-sleutelbordDasher Keyboard"
+msgstr "Dasher-sleutelbord"
 
 msgid "Dasher keyboard"
-msgstr "Dasher-sleutelbordDasher keyboard"
+msgstr "Dasher-sleutelbord"
 
 msgid "Dasher needs accessibility access to send text to other applications."
-msgstr "Dasher benodig toeganklikheidstoegang om teks na ander toepassings te stuur.Dasher needs accessibility access to send text to other applications."
+msgstr "Dasher benodig toeganklikheidstoegang om teks na ander toepassings te stuur."
 
 msgid "Dasher Preferences"
-msgstr "Dasher-voorkeureDasher Preferences"
+msgstr "Dasher-voorkeure"
 
 msgid "Dasher quit unexpectedly"
-msgstr "Dasher het onverwags opgehouDasher quit unexpectedly"
+msgstr "Dasher het onverwags opgehou"
 
 msgid "Dasher v6"
-msgstr "Dashers V6Dasher v6"
+msgstr "Dashers V6"
 
 msgid "<big><b>Dasher v6</b></big>\n"
 msgstr "<big><b>Dasher v6</b></big>\n"
 
 msgid "Dead zone: {0} px"
-msgstr "Dooie sone: {0} pxDead zone: {0} px"
+msgstr "Dooie sone: {0} px"
 
 msgid "Decrease Speed"
-msgstr "Verminder spoedDecrease Speed"
+msgstr "Verminder spoed"
 
 msgid "Default"
-msgstr "StandaardDefault"
+msgstr "Standaard"
 
 msgid "Alphabet: {0}"
-msgstr "Alfabet: {0}Alphabet: {0}"
+msgstr "Alfabet: {0}"
 
 msgid "Colour: {0}"
-msgstr "Kleur: {0}Colour: {0}"
+msgstr "Kleur: {0}"
 
 msgid "Speed: {0}"
-msgstr "Spoed: {0}Speed: {0}"
+msgstr "Spoed: {0}"
 
 msgid "Diagnostics"
-msgstr "DiagnostiekDiagnostics"
+msgstr "Diagnostiek"
 
 msgid "Direct Mode"
-msgstr "Direkte modusDirect Mode"
+msgstr "Direkte modus"
 
 msgid "Done"
-msgstr "KlaarDone"
+msgstr "Klaar"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
-msgstr "Sweef op een plek om 'n klik te veroorsaak, in plaas daarvan om 'n knoppie of skakelaar te druk.Hover in one spot to trigger a click, instead of pressing a button or switch."
+msgstr "Sweef op een plek om 'n klik te veroorsaak, in plaas daarvan om 'n knoppie of skakelaar te druk."
 
 msgid "Dwell Duration"
-msgstr "VerblijfsduurDwell Duration"
+msgstr "Verblijfsduur"
 
 msgid "Dwell to click"
-msgstr "Kliek om te kliekDwell to click"
+msgstr "Kliek om te kliek"
 
 msgid "Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
-msgstr "Aktiveer Dasher onder Instellings → Algemeen → Sleutelbord → Sleutelborde, en skakel dan Laat Volle Toegang Toe aan sodat Dasher kan praat en leer.Enable Dasher under Settings → General → Keyboard → Keyboards, then turn on Allow Full Access so Dasher can speak and learn."
+msgstr "Aktiveer Dasher onder Instellings → Algemeen → Sleutelbord → Sleutelborde, en skakel dan Laat Volle Toegang Toe aan sodat Dasher kan praat en leer."
 
 msgid "Enable tilt input first to access calibration."
-msgstr "Aktiveer eers kantelinvoer om toegang tot kalibrasie te verkry.Enable tilt input first to access calibration."
+msgstr "Aktiveer eers kantelinvoer om toegang tot kalibrasie te verkry."
 
 msgid "Dasher could not start"
-msgstr "Dasher kon nie begin nieDasher could not start"
+msgstr "Dasher kon nie begin nie"
 
 msgid "Engine Error"
-msgstr "Enjin FoutEngine Error"
+msgstr "Enjin Fout"
 
 msgid "The Dasher engine encountered an internal error and has stopped. Please restart Dasher."
-msgstr "Die Dasher-enjin het 'n interne fout teëgekom en het gestaak. Herbegin asseblief Dasher.The Dasher engine encountered an internal error and has stopped. Please restart Dasher."
+msgstr "Die Dasher-enjin het 'n interne fout teëgekom en het gestaak. Herbegin asseblief Dasher."
 
 msgid "Please try reinstalling, or report this in a GitHub issue."
-msgstr "Probeer asseblief weer installeer, of meld dit in 'n GitHub-kwessie.Please try reinstalling, or report this in a GitHub issue."
+msgstr "Probeer asseblief weer installeer, of meld dit in 'n GitHub-kwessie."
 
 msgid "Engine Speech Features"
-msgstr "Enjin SpraakkenmerkeEngine Speech Features"
+msgstr "Enjin Spraakkenmerke"
 
 msgid "Error: {0}"
-msgstr "Fout: {0}Error: {0}"
+msgstr "Fout: {0}"
 
 msgid "Error loading settings: {0}"
-msgstr "Kon nie instellings laai nie: {0}Error loading settings: {0}"
+msgstr "Kon nie instellings laai nie: {0}"
 
 msgid "Exit"
-msgstr "VerlaatExit"
+msgstr "Verlaat"
 
 msgid "Export Training Text"
-msgstr "Voer opleidingsteks uitExport Training Text"
+msgstr "Voer opleidingsteks uit"
 
 msgid "Eye Gaze"
-msgstr "OogblikEye Gaze"
+msgstr "Oogblik"
 
 msgid "Could not connect to eye tracker on startup. Check the device and try re-selecting it in Settings > Input."
-msgstr "Kon nie aan oogspoorder koppel tydens opstart nie. Gaan die toestel na en probeer om dit weer te kies in Instellings > Invoer.Could not connect to eye tracker on startup. Check the device and try re-selecting it in Settings > Input."
+msgstr "Kon nie aan oogspoorder koppel tydens opstart nie. Gaan die toestel na en probeer om dit weer te kies in Instellings > Invoer."
 
 msgid "Eye Tracker Device"
-msgstr "OogopsporingstoestelEye Tracker Device"
+msgstr "Oogopsporingstoestel"
 
 msgid "Could not connect to {0}. Check the device is connected and drivers are installed."
-msgstr "Kon nie aan {0} koppel nie. Kontroleer of die toestel gekoppel is en bestuurders geïnstalleer is.Could not connect to {0}. Check the device is connected and drivers are installed."
+msgstr "Kon nie aan {0} koppel nie. Kontroleer of die toestel gekoppel is en bestuurders geïnstalleer is."
 
 msgid "Could not connect to {0}. Make sure tobii_stream_engine.dll is installed and a Tobii device is connected."
-msgstr "Kon nie aan {0} koppel nie. Maak seker dat tobii_stream_engine.dll geïnstalleer is en 'n Tobii-toestel is verbind.Could not connect to {0}. Make sure tobii_stream_engine.dll is installed and a Tobii device is connected."
+msgstr "Kon nie aan {0} koppel nie. Maak seker dat tobii_stream_engine.dll geïnstalleer is en 'n Tobii-toestel is verbind."
 
 msgid "Detailed tracking log for bug reports (per-sample lines, written to eyegaze.log in the Dasher folder). Basic connection events are always logged."
-msgstr "Gedetailleerde opsporingslogboek vir foutverslae (per-voorbeeldlyne, geskryf na eyegaze.log in die Dasher-gids). Basiese verbindingsgebeurtenisse word altyd aangeteken.Detailed tracking log for bug reports (per-sample lines, written to eyegaze.log in the Dasher folder). Basic connection events are always logged."
+msgstr "Gedetailleerde opsporingslogboek vir foutverslae (per-voorbeeldlyne, geskryf na eyegaze.log in die Dasher-gids). Basiese verbindingsgebeurtenisse word altyd aangeteken."
 
 msgid "Failed to open: "
-msgstr "Kon nie spel open nie: %sFailed to open: "
+msgstr "Kon nie spel open nie: %s"
 
 msgid "Failed to save: "
-msgstr "Kon nie spel stoor nie: %sFailed to save: "
+msgstr "Kon nie spel stoor nie: %s"
 
 msgid "Fast"
-msgstr "VinnigFast"
+msgstr "Vinnig"
 
 msgid "File truncated at 4 MB — only the first part is loaded"
-msgstr "Lêer by 4 MB verkort — net die eerste deel is gelaaiFile truncated at 4 MB — only the first part is loaded"
+msgstr "Lêer by 4 MB verkort — net die eerste deel is gelaai"
 
 msgid "Normal Control"
-msgstr "Normale beheerNormal Control"
+msgstr "Normale beheer"
 
 msgid "Smoothing Mode"
-msgstr "VermoedelingsmodusSmoothing Mode"
+msgstr "Vermoedelingsmodus"
 
 msgid "Flatpak or AppImage build can't provide.\n\n"
-msgstr "Flatpak- of AppImage-bou kan nie voorsien nie.atpak or AppImage build can't provide.\n\n"
+msgstr "Flatpak- of AppImage-bou kan nie voorsien nie.\n\n"
 
 msgid "To float the keyboard, allow Dasher to display over other apps, then tap Float again."
-msgstr "Om die sleutelbord te laat dryf, laat Dasher toe om oor ander apps te vertoon en tik dan Float weer.To float the keyboard, allow Dasher to display over other apps, then tap Float again."
+msgstr "Om die sleutelbord te laat dryf, laat Dasher toe om oor ander apps te vertoon en tik dan Float weer."
 
 msgid "Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
-msgstr "Volle Toegang laat Dasher toe om te praat wat jy skryf en jou opleiding te onthou. Die sleutelbord werk steeds vir basiese invoer daarsonder.Full Access lets Dasher speak what you write and remember your training. The keyboard still works for basic entry without it."
+msgstr "Volle Toegang laat Dasher toe om te praat wat jy skryf en jou opleiding te onthou. Die sleutelbord werk steeds vir basiese invoer daarsonder."
 
 msgid "Game mode"
-msgstr "SpelmodusGame mode"
+msgstr "Spelmodus"
 
 msgid "Game Mode"
-msgstr "oneGame Mode"
+msgstr "one"
 
 msgid "Game On"
-msgstr "Speel AanGame On"
+msgstr "Speel Aan"
 
 msgid "Game Text File"
-msgstr "SpeltekslêerGame Text File"
+msgstr "Speltekslêer"
 
 msgid "Reduces zoom toward wrong positions while your eyes move to a target"
-msgstr "Verminder inzoomen na verkeerde posisies terwyl jou oë na 'n teiken beweegReduces zoom toward wrong positions while your eyes move to a target"
+msgstr "Verminder inzoomen na verkeerde posisies terwyl jou oë na 'n teiken beweeg"
 
 msgid "Filter gaze (reduces zoom toward wrong positions during eye transit)"
-msgstr "Filtreer kyk (verminder zoom na verkeerde posisies tydens oogbeweging)Filter gaze (reduces zoom toward wrong positions during eye transit)"
+msgstr "Filtreer kyk (verminder zoom na verkeerde posisies tydens oogbeweging)"
 
 msgid "Gaze Smoothing"
-msgstr "Kyk GladderingGaze Smoothing"
+msgstr "Kyk Gladdering"
 
 msgid "Got it"
-msgstr "VerstaanGot it"
+msgstr "Verstaan"
 
 msgid "GTK Edition"
-msgstr "GTK-uitgaweGTK Edition"
+msgstr "GTK-uitgawe"
 
 msgid "Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
-msgstr "Invoer voeg teks by die taalmodel (voeg by bestaande leerinstellings). Uitvoer stoor jou opgehoopte opleidingsdata vir rugsteun of oordrag. Herstel verwyder persoonlike opleidingsdata — die model keer terug na sy ingeboude verstekwaardes met die volgende bekendstelling.Import adds text to the language model (appends to existing learning). Export saves your accumulated training data for backup or transfer. Reset deletes custom training data — the model returns to its built-in defaults on next launch."
+msgstr "Invoer voeg teks by die taalmodel (voeg by bestaande leerinstellings). Uitvoer stoor jou opgehoopte opleidingsdata vir rugsteun of oordrag. Herstel verwyder persoonlike opleidingsdata — die model keer terug na sy ingeboude verstekwaardes met die volgende bekendstelling."
 
 msgid "Import from Dasher 5"
-msgstr "Voer in vanaf Dasher 5Import from Dasher 5"
+msgstr "Voer in vanaf Dasher 5"
 
 msgid "Import settings"
-msgstr "InvoerinstellingsImport settings"
+msgstr "Invoerinstellings"
 
 msgid "Import Training Text"
-msgstr "Voer opleidingsteks inImport Training Text"
+msgstr "Voer opleidingsteks in"
 
 msgid "Imported %1 — applies fully on next launch"
-msgstr "Ingevoer %1 — geld ten volle by die volgende beginImported %1 — applies fully on next launch"
+msgstr "Ingevoer %1 — geld ten volle by die volgende begin"
 
 msgid "Imported %1 of training text"
-msgstr "Ingevoer %1 van opleidingsmateriaalImported %1 of training text"
+msgstr "Ingevoer %1 van opleidingsmateriaal"
 
 msgid "Increase Speed"
-msgstr "Verhoog SpoedIncrease Speed"
+msgstr "Verhoog Spoed"
 
 msgid "Input"
-msgstr "InvoerInput"
+msgstr "Invoer"
 
 msgid "Active engine input filter (set via Selection Method or advanced settings)"
-msgstr "Aktiewe enjininsetfilter (gestel via seleksiemetode of gevorderde instellings)Active engine input filter (set via Selection Method or advanced settings)"
+msgstr "Aktiewe enjininsetfilter (gestel via seleksiemetode of gevorderde instellings)"
 
 msgid "Managed by the engine — change via the Selection Method setting"
-msgstr "Bestuur deur die enjin — verander via die seleksiemetode-instellingManaged by the engine — change via the Selection Method setting"
+msgstr "Bestuur deur die enjin — verander via die seleksiemetode-instelling"
 
 msgid "Direct pointer — minimal processing"
-msgstr "Direkte wyser - minimale verwerkingDirect pointer — minimal processing"
+msgstr "Direkte wyser - minimale verwerking"
 
 msgid "No filtering — for clean input devices"
-msgstr "Geen filter nie - vir skoon invoertoestelleNo filtering — for clean input devices"
+msgstr "Geen filter nie - vir skoon invoertoestelle"
 
 msgid "Input smoothing — reduces jitter for noisy input (eye gaze, head tracking)"
-msgstr "Invoer gladmaak - verminder jitter vir lawaaierige invoer (oog blik, kop dop)Input smoothing — reduces jitter for noisy input (eye gaze, head tracking)"
+msgstr "Invoer gladmaak - verminder jitter vir lawaaierige invoer (oog blik, kop dop)"
 
 msgid "Dampens small pointer movements for a steadier zoom"
-msgstr "Demp klein wyserbewegings vir 'n bestendiger zoomDampens small pointer movements for a steadier zoom"
+msgstr "Demp klein wyserbewegings vir 'n bestendiger zoom"
 
 msgid "Standard continuous control (default)"
-msgstr "Standaard deurlopende beheer (verstek)Standard continuous control (default)"
+msgstr "Standaard deurlopende beheer (verstek)"
 
 msgid "The standard steering method — move the pointer to zoom"
-msgstr "Die standaardstuurmetode — beweeg die wyser om te zoemThe standard steering method — move the pointer to zoom"
+msgstr "Die standaardstuurmetode — beweeg die wyser om te zoem"
+
+msgid "Joystick / gamepad (deflect a stick to steer)"
+msgstr "Joystick / gamepad (buig 'n stok af om te stuur)"
+
+msgid "Tilt (hold the device, tilt to steer)"
+msgstr "Kantel (hou die toestel vas, kantel om te stuur)"
+
+msgid "Input method"
+msgstr "Invoermetode"
+
+msgid "Touch (drag on the canvas)"
+msgstr "Raak (sleep op die doek)"
 
 msgid "Input Processing"
-msgstr "InvoerverwerkingInput Processing"
+msgstr "Invoerverwerking"
 
 msgid "Install Dasher via your package manager or build from source to use keyboard mode."
-msgstr "Installeer Dasher via jou pakketbestuurder of bou vanaf bron om sleutelbordmodus te gebruik.Install Dasher via your package manager or build from source to use keyboard mode."
+msgstr "Installeer Dasher via jou pakketbestuurder of bou vanaf bron om sleutelbordmodus te gebruik."
 
 msgid "<b>Install ydotool to use keyboard mode</b>"
-msgstr "<b>Installeer ydotool om sleutelbordmodus te gebruik</b><b>Install ydotool to use keyboard mode</b>"
+msgstr "<b>Installeer ydotool om sleutelbordmodus te gebruik</b>"
 
 msgid "isn't installed. Run these commands, then press Retry:"
-msgstr "is nie geïnstalleer. Begin hierdie opdragte, dan druk Herprobeer:isn't installed. Run these commands, then press Retry:"
+msgstr "is nie geïnstalleer. Begin hierdie opdragte, dan druk Herprobeer:"
 
 msgid "Keyboard"
-msgstr "SleutelbordKeyboard"
+msgstr "Sleutelbord"
 
 msgid "_Keyboard"
-msgstr "Sleutelbord_Keyboard"
+msgstr "Sleutelbord"
 
 msgid "Type Dasher's output straight into the app you are pointing at"
-msgstr "Tik Dasher se uitvoer regstreeks in die toepassing waarna jy wysType Dasher's output straight into the app you are pointing at"
+msgstr "Tik Dasher se uitvoer regstreeks in die toepassing waarna jy wys"
 
 msgid "Exit keyboard mode"
-msgstr "Verlaat sleutelbordmodusExit keyboard mode"
+msgstr "Verlaat sleutelbordmodus"
 
 msgid "Keyboard mode: hide the output pane and type Dasher's text straight into "
-msgstr "Sleutelbordmodus: verberg die uitvoerpaneel en tik Dasher se teks direk inKeyboard mode: hide the output pane and type Dasher's text straight into "
+msgstr "Sleutelbordmodus: verberg die uitvoerpaneel en tik Dasher se teks direk in"
 
 msgid "<b>Keyboard mode isn't available in this build</b>"
-msgstr "<b>Sleutelbordmodus is nie in hierdie gebou beskikbaar nie</b><b>Keyboard mode isn't available in this build</b>"
+msgstr "<b>Sleutelbordmodus is nie in hierdie gebou beskikbaar nie</b>"
 
 msgid "Keyboard mode opacity"
-msgstr "Sleutelbordmodus ondeursigtigheidKeyboard mode opacity"
+msgstr "Sleutelbordmodus ondeursigtigheid"
 
 msgid "Keyboard mode stopped"
-msgstr "Sleutelbordmodus gestopKeyboard mode stopped"
+msgstr "Sleutelbordmodus gestop"
 
 msgid "Keyboard mode stopped: ydotool could not inject text. Is the ydotoold "
-msgstr "Sleutelbordmodus gestop: ydotool kon nie teks inspuit nie. Is die ydotooldKeyboard mode stopped: ydotool could not inject text. Is the ydotoold "
+msgstr "Sleutelbordmodus gestop: ydotool kon nie teks inspuit nie. Is die ydotoold"
 
 msgid "Enable Keyboard Mode"
-msgstr "Aktiveer sleutelbordEnable Keyboard Mode"
+msgstr "Aktiveer sleutelbord"
 
 msgid "Window transparency when in Keyboard/Direct mode"
-msgstr "Vensterdeursigtigheid in Sleutelbord-/DirektoestandWindow transparency when in Keyboard/Direct mode"
+msgstr "Vensterdeursigtigheid in Sleutelbord-/Direktoestand"
 
 msgid "Keyboard mode types Dasher's output into other applications using ydotool, which "
-msgstr "Toetsbordmodus tik Dasher se uitvoer in ander toepassings met behulp van ydotool, watKeyboard mode types Dasher's output into other applications using ydotool, which "
+msgstr "Toetsbordmodus tik Dasher se uitvoer in ander toepassings met behulp van ydotool, wat"
 
 msgid "(Default)"
-msgstr "(Verstek)(Default)"
+msgstr "(Verstek)"
 
 msgid "Language"
-msgstr "TaalLanguage"
+msgstr "Taal"
 
 msgid "Language / Locale"
-msgstr "Taal / StreekinstellingLanguage / Locale"
+msgstr "Taal / Streekinstelling"
 
 msgid "<b>Language / Locale</b>"
-msgstr "<b>Taal / Plaaslike</b><b>Language / Locale</b>"
+msgstr "<b>Taal / Plaaslike</b>"
 
 msgid "Bottom"
-msgstr "OnderkantBottom"
+msgstr "Onderkant"
 
 msgid "Pane position and direct-entry mode"
-msgstr "Paneelposisie en direkte toegangsmodusPane position and direct-entry mode"
+msgstr "Paneelposisie en direkte toegangsmodus"
 
 msgid "Left side"
-msgstr "LinkerkantLeft side"
+msgstr "Linkerkant"
 
 msgid "Right side"
-msgstr "RegterkantRight side"
+msgstr "Regterkant"
 
 msgid "Top"
-msgstr "BoTop"
+msgstr "Bo"
 
 msgid "Learning"
-msgstr "LeerLearning"
+msgstr "Leer"
 
 msgid "Leave"
-msgstr "VerlaatLeave"
+msgstr "Verlaat"
 
 msgid "Leave game mode"
-msgstr "Verlaat spelmodusLeave game mode"
+msgstr "Verlaat spelmodus"
 
 msgid "Light"
-msgstr "LigLight"
+msgstr "Lig"
 
 msgid "Load Voices"
-msgstr "Laai StemmerLoad Voices"
+msgstr "Laai Stemmer"
 
 msgid "Loaded %1 characters"
-msgstr "Gelaai %1 karaktersLoaded %1 characters"
+msgstr "Gelaai %1 karakters"
 
 msgid "Loading…"
-msgstr "Laai…Loading…"
+msgstr "Laai…"
 
 msgid "Locale"
-msgstr "LokaliseringLocale"
+msgstr "Lokalisering"
 
 msgid "Migration"
-msgstr "MigrasieMigration"
+msgstr "Migrasie"
 
 msgid "More"
-msgstr "MôreMore"
+msgstr "Môre"
 
 msgid "More options"
-msgstr "Meer opsiesMore options"
+msgstr "Meer opsies"
 
 msgid "Move your eyes while pinching to steer"
-msgstr "Beweeg jou oë terwyl jy knyp om te stuurMove your eyes while pinching to steer"
+msgstr "Beweeg jou oë terwyl jy knyp om te stuur"
 
 msgid "New"
-msgstr "NuutNew"
+msgstr "Nuut"
 
 msgid "New document"
-msgstr "Nuwe dokumentNew document"
+msgstr "Nuwe dokument"
 
 msgid "New Message"
-msgstr "Nuwe BoodskapNew Message"
+msgstr "Nuwe Boodskap"
 
 msgid "New session (clear text and context)"
-msgstr "Nuwe sessie (maak teks en konteks skoon)New session (clear text and context)"
+msgstr "Nuwe sessie (maak teks en konteks skoon)"
 
 msgid "No Dasher 5 data found on this Mac."
-msgstr "Geen Dasher 5-data op hierdie Mac gevind nie.No Dasher 5 data found on this Mac."
+msgstr "Geen Dasher 5-data op hierdie Mac gevind nie."
 
 msgid "No settings available for this section."
-msgstr "Geen instellings beskikbaar vir hierdie afdeling nie.No settings available for this section."
+msgstr "Geen instellings beskikbaar vir hierdie afdeling nie."
 
 msgid "No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
-msgstr "Geen spraak-enjin beskikbaar nie. Bou met die stelsel se TTS-funksie, of stel 'n wolkstem op in Voorkeure.No speech engine available. Build with the system TTS feature, or set up a cloud voice in Preferences."
+msgstr "Geen spraak-enjin beskikbaar nie. Bou met die stelsel se TTS-funksie, of stel 'n wolkstem op in Voorkeure."
 
 msgid "No training data to export yet"
-msgstr "Nog geen opleidingsdata om uit te voer nieNo training data to export yet"
+msgstr "Nog geen opleidingsdata om uit te voer nie"
 
 msgid "No user training data yet"
-msgstr "Nog geen gebruikers opleidingsdata nieNo user training data yet"
+msgstr "Nog geen gebruikers opleidingsdata nie"
 
 msgid "No voices found"
-msgstr "Geen stemme gevind nieNo voices found"
+msgstr "Geen stemme gevind nie"
 
 msgid "Nothing to save"
-msgstr "Niks om te spaar nieNothing to save"
+msgstr "Niks om te spaar nie"
 
 msgid "Nothing to share"
-msgstr "Niks om te deelNothing to share"
+msgstr "Niks om te deel"
 
 msgid "OK"
-msgstr "GoedOK"
+msgstr "Goed"
 
 msgid "On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
-msgstr "Op visionOS, knyp en hou die doek vas om te begin skryf, kyk rond terwyl jy knyp om te stuur, en laat los om te pouseer. Die invoermodel is knyp-en-kyk.On visionOS, pinch and hold on the canvas to start writing, look around while pinching to steer, and release to pause. The input model is pinch-and-look."
+msgstr "Op visionOS, knyp en hou die doek vas om te begin skryf, kyk rond terwyl jy knyp om te stuur, en laat los om te pouseer. Die invoermodel is knyp-en-kyk."
 
 msgid "Open"
-msgstr "OopOpen"
+msgstr "Oop"
 
 msgid "Open..."
-msgstr "Oopmaak...Open..."
+msgstr "Oopmaak..."
 
 msgid "Open failed"
-msgstr "Oopmaak het mislukOpen failed"
+msgstr "Oopmaak het misluk"
 
 msgid "Open Keyboard Settings"
-msgstr "Maak sleutelbordinstellings oopOpen Keyboard Settings"
+msgstr "Maak sleutelbordinstellings oop"
 
 msgid "Open Settings"
-msgstr "Maak Instellings oopOpen Settings"
+msgstr "Maak Instellings oop"
 
 msgid "Open System Settings"
-msgstr "Maak stelselinstellings oopOpen System Settings"
+msgstr "Maak stelselinstellings oop"
 
-msgid "Open text file"
-msgstr "Open Teks LêerOpen text file"
+msgid "Open Text File"
+msgstr "Open Teks Lêer"
 
 msgid "Output"
-msgstr "AfvoerOutput"
+msgstr "Afvoer"
 
 msgid "Output Font"
-msgstr "Uitset LettertipeOutput Font"
+msgstr "Uitset Lettertipe"
 
 msgid "Output Font Size"
-msgstr "Uitvoer lettergrootteOutput Font Size"
+msgstr "Uitvoer lettergrootte"
 
 msgid "Touch the canvas to start writing."
-msgstr "Raak die doek aan om te begin skryf.Touch the canvas to start writing."
+msgstr "Raak die doek aan om te begin skryf."
 
 msgid "Pane position"
-msgstr "Pane posisiePane position"
+msgstr "Pane posisie"
 
 msgid "Paste"
-msgstr "PlakPaste"
+msgstr "Plak"
 
 msgid "Pause"
-msgstr "PouseerPause"
+msgstr "Pouseer"
 
 msgid "Pause When Looking Away"
-msgstr "Pouseer wanneer jy wegkykPause When Looking Away"
+msgstr "Pouseer wanneer jy wegkyk"
 
 msgid "Pinch and hold anywhere on the canvas to start"
-msgstr "Knyp en hou enige plek op die doek vas om te beginPinch and hold anywhere on the canvas to start"
+msgstr "Knyp en hou enige plek op die doek vas om te begin"
 
 msgid "Pinch and Look to Write"
-msgstr "Knyp en kyk om te skryfPinch and Look to Write"
+msgstr "Knyp en kyk om te skryf"
 
 msgid "Pitch"
-msgstr "WerfPitch"
+msgstr "Werf"
 
 msgid "High"
-msgstr "HoogHigh"
+msgstr "Hoog"
 
 msgid "Low"
-msgstr "LaagLow"
+msgstr "Laag"
 
 msgid "Medium"
 msgstr "Medium"
 
 msgid "Very High"
-msgstr "Baie hoogVery High"
+msgstr "Baie hoog"
 
 msgid "Very Low"
-msgstr "Baie laagVery Low"
+msgstr "Baie laag"
 
 msgid "Game"
-msgstr "SpeletjieGame"
+msgstr "Speletjie"
 
 msgid "Play"
-msgstr "SpeelPlay"
+msgstr "Speel"
 
 msgid "Pointer Hover Input"
-msgstr "Wyser Sweef InvoerPointer Hover Input"
+msgstr "Wyser Sweef Invoer"
 
 msgid "Preferences"
-msgstr "VoorkeurePreferences"
+msgstr "Voorkeure"
 
 msgid "Prefs"
-msgstr "VoorkeurePrefs"
+msgstr "Voorkeure"
 
 msgid "Preparing Dasher…"
-msgstr "Dasher word voorberei…Preparing Dasher…"
+msgstr "Dasher word voorberei…"
 
 msgid "Preview"
-msgstr "VoorskouPreview"
+msgstr "Voorskou"
 
 msgid "Privacy"
-msgstr "PrivaatheidPrivacy"
+msgstr "Privaatheid"
 
 msgid "<b>Privacy</b>"
-msgstr "<b>Privaatheid</b><b>Privacy</b>"
+msgstr "<b>Privaatheid</b>"
 
 msgid "Quick speak"
-msgstr "Vinnig praatQuick speak"
+msgstr "Vinnig praat"
 
 msgid "Rate"
-msgstr "TariefRate"
+msgstr "Tarief"
 
 msgid "Very Fast"
-msgstr "Baie vinnigVery Fast"
+msgstr "Baie vinnig"
 
 msgid "Very Slow"
-msgstr "Baie StadigVery Slow"
+msgstr "Baie Stadig"
 
 msgid "Re-import from Dasher 5"
-msgstr "Herinvoer vanaf Dasher 5Re-import from Dasher 5"
+msgstr "Herinvoer vanaf Dasher 5"
 
 msgid "Read"
-msgstr "RyRead"
+msgstr "Ry"
 
 msgid "Release the pinch to pause"
-msgstr "Laat die knyp los om te pouseerRelease the pinch to pause"
+msgstr "Laat die knyp los om te pouseer"
 
 msgid "Reset"
-msgstr "HerstelReset"
+msgstr "Herstel"
 
 msgid "Reset All Settings to Defaults"
-msgstr "Stel alle instellings terug na verstekwaardesReset All Settings to Defaults"
+msgstr "Stel alle instellings terug na verstekwaardes"
 
 msgid "Reset all settings to their defaults?"
-msgstr "Stel alle instellings terug na hul verstekwaardes?Reset all settings to their defaults?"
+msgstr "Stel alle instellings terug na hul verstekwaardes?"
 
 msgid "Reset anonymous ID"
-msgstr "Herstel anonieme IDReset anonymous ID"
+msgstr "Herstel anonieme ID"
 
 msgid "Reset engine settings to defaults"
-msgstr "Herstel enjin instellings na verstekReset engine settings to defaults"
+msgstr "Herstel enjin instellings na verstek"
 
 msgid "Reset Settings"
-msgstr "Stel instellings terugReset Settings"
+msgstr "Stel instellings terug"
 
 msgid "Reset to defaults"
-msgstr "Stel terug na verstekwaardesReset to defaults"
+msgstr "Stel terug na verstekwaardes"
 
 msgid "Reset Training Data"
-msgstr "Herstel opleidingsdataReset Training Data"
+msgstr "Herstel opleidingsdata"
 
 msgid "Reset Training Data?"
-msgstr "Stel opleidingsdata terug?Reset Training Data?"
+msgstr "Stel opleidingsdata terug?"
 
 msgid "Reset WPM averages"
-msgstr "Stel WPM-gemiddeldes terugReset WPM averages"
+msgstr "Stel WPM-gemiddeldes terug"
 
 msgid "Restarting engine…"
-msgstr "Herbegin van enjin…Restarting engine…"
+msgstr "Herbegin van enjin…"
 
 msgid "Restore all Dasher settings to their default values. This cannot be undone."
-msgstr "Stel alle Dasher-instellings terug na hul verstekwaardes. Dit kan nie ongedaan gemaak word nie.Restore all Dasher settings to their default values. This cannot be undone."
+msgstr "Stel alle Dasher-instellings terug na hul verstekwaardes. Dit kan nie ongedaan gemaak word nie."
 
 msgid "Retry"
-msgstr "HerprobeerRetry"
+msgstr "Herprobeer"
 
 msgid "Save"
-msgstr "StoorSave"
+msgstr "Stoor"
 
 msgid "Save..."
-msgstr "Stoor...Save..."
+msgstr "Stoor..."
 
 msgid "Save eye-tracker diagnostics"
-msgstr "Stoor oog-volger diagnostiekSave eye-tracker diagnostics"
+msgstr "Stoor oog-volger diagnostiek"
 
 msgid "Save failed"
-msgstr "Stoor het mislukSave failed"
+msgstr "Stoor het misluk"
 
 msgid "Save file"
-msgstr "Stoor lêerSave file"
+msgstr "Stoor lêer"
 
-msgid "Save text file"
-msgstr "Stoor Teks LêerSave text file"
+msgid "Save Text File"
+msgstr "Stoor Teks Lêer"
 
 msgid "Saved"
-msgstr "GestoorSaved"
+msgstr "Gestoor"
 
 msgid "Saved: "
-msgstr "GebêreSaved: "
+msgstr "Gebêre"
 
 msgid "Scan Speed"
-msgstr "SkandeerspoedScan Speed"
+msgstr "Skandeerspoed"
 
 msgid "Selection Method"
-msgstr "SeleksiemetodeSelection Method"
+msgstr "Seleksiemetode"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
-msgstr "diens aan die gang? Sien die instellingshulp op die Sleutelbord-knoppie vir installeeropdragte.service running? See the setup help on the Keyboard button for install commands."
+msgstr "diens aan die gang? Sien die instellingshulp op die Sleutelbord-knoppie vir installeeropdragte."
 
 msgid "Settings"
-msgstr "InstellingsSettings"
+msgstr "Instellings"
 
 msgid "Settings..."
-msgstr "Instellings...Settings..."
+msgstr "Instellings..."
 
 msgid "Reset all settings to defaults"
-msgstr "Stel alle instellings terug na verstekwaardesReset all settings to defaults"
+msgstr "Stel alle instellings terug na verstekwaardes"
 
 msgid "Settings reset"
-msgstr "Instellings teruggestelSettings reset"
+msgstr "Instellings teruggestel"
 
 msgid "Reset all engine settings to their built-in defaults?"
-msgstr "Herstel alle enjininstellings na hul ingeboude standaard?Reset all engine settings to their built-in defaults?"
+msgstr "Herstel alle enjininstellings na hul ingeboude standaard?"
 
 msgid "Settings (speed, colours, control mode, language model)"
-msgstr "Instellings (spoed, kleure, beheermodus, taalmodel)Settings (speed, colours, control mode, language model)"
+msgstr "Instellings (spoed, kleure, beheermodus, taalmodel)"
 
 msgid "Settle time: {0} ms"
-msgstr "Vereffen tyd: {0} msSettle time: {0} ms"
+msgstr "Vereffen tyd: {0} ms"
 
 msgid "Share"
-msgstr "DeelShare"
+msgstr "Deel"
 
 msgid "Share anonymous usage analytics and crash reports? No typed text, clipboard "
-msgstr "Deel anonieme gebruiksanalises en foutverslae? Geen getikte teks, clipboard nieShare anonymous usage analytics and crash reports? No typed text, clipboard "
+msgstr "Deel anonieme gebruiksanalises en foutverslae? Geen getikte teks, clipboard nie"
 
 msgid "Show Input Debug Overlay"
-msgstr "Wys invoer-ontfouting-oorlegShow Input Debug Overlay"
+msgstr "Wys invoer-ontfouting-oorleg"
 
 msgid "Show status bar"
-msgstr "Wys statusbalkShow status bar"
+msgstr "Wys statusbalk"
 
 msgid "Show typing rate (WPM)"
-msgstr "Wys tikspoed (WPM)Show typing rate (WPM)"
+msgstr "Wys tikspoed (WPM)"
 
 msgid "Size"
-msgstr "GrootteSize"
+msgstr "Grootte"
 
 msgid "Skipped files"
-msgstr "Oorgeslaande lêersSkipped files"
+msgstr "Oorgeslaande lêers"
 
 msgid "Slow"
-msgstr "StadigSlow"
+msgstr "Stadig"
 
 msgid "Speak on stop"
-msgstr "Praat op stopSpeak on stop"
+msgstr "Praat op stop"
 
 msgid "Speak words"
-msgstr "Spreek woordeSpeak words"
+msgstr "Spreek woorde"
 
 msgid "Speech"
-msgstr "SpraakSpeech"
+msgstr "Spraak"
 
 msgid "Speech off"
-msgstr "Spraak afSpeech off"
+msgstr "Spraak af"
 
 msgid "Speech on"
-msgstr "Toespraak oorSpeech on"
+msgstr "Toespraak oor"
 
 msgid "Hello, this is a preview of the selected voice."
-msgstr "Hallo, hierdie is 'n voorskou van die geselekteerde stem.Hello, this is a preview of the selected voice."
+msgstr "Hallo, hierdie is 'n voorskou van die geselekteerde stem."
 
 msgid "Speech Settings"
-msgstr "SpraakinstellingsSpeech Settings"
+msgstr "Spraakinstellings"
 
 msgid "<b>Speech Settings</b>"
-msgstr "<b>Spraakinstellings</b><b>Speech Settings</b>"
+msgstr "<b>Spraakinstellings</b>"
 
 msgid "Speech volume"
-msgstr "SpraakvolumeSpeech volume"
+msgstr "Spraakvolume"
 
 msgid "Speed"
-msgstr "SpoedSpeed"
+msgstr "Spoed"
 
 msgid "Speed "
-msgstr "SpoedSpeed "
+msgstr "Spoed"
 
 msgid "Start Calibrating"
-msgstr "Begin kalibrasieStart Calibrating"
+msgstr "Begin kalibrasie"
 
 msgid "Start fresh"
-msgstr "Begin varsStart fresh"
+msgstr "Begin vars"
 
 msgid "Dasher failed to start:\n{0}"
-msgstr "Dasher kon nie begin nie:\n{0}Dasher failed to start:\n{0}"
+msgstr "Dasher kon nie begin nie:\n{0}"
 
 msgid "Steering Method"
-msgstr "StuurmetodeSteering Method"
+msgstr "Stuurmetode"
 
 msgid "Stop"
 msgstr "Stop"
 
 msgid "Stop speaking"
-msgstr "Hou op praatStop speaking"
+msgstr "Hou op praat"
 
 msgid "Switch Setup"
-msgstr "SkakelopstellingSwitch Setup"
+msgstr "Skakelopstelling"
 
 msgid "System"
-msgstr "StelselSystem"
+msgstr "Stelsel"
 
 msgid "text"
-msgstr "tekstext"
+msgstr "teks"
 
 msgid "Text files"
-msgstr "BeeldeNameText files"
+msgstr "BeeldeName"
 
 msgid "That file already is your training data."
-msgstr "Daardie lêer is reeds jou opleidingsdata.That file already is your training data."
+msgstr "Daardie lêer is reeds jou opleidingsdata."
 
 msgid "the app you are pointing at (needs ydotool)"
-msgstr "die app waarna jy wys (het ydotool nodig)the app you are pointing at (needs ydotool)"
+msgstr "die app waarna jy wys (het ydotool nodig)"
 
 msgid "The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
-msgstr "Die ontfoutingsoorleg teken 'n groen paneel links bo op die doek wat die aantal lewendige aanrakingsgebeurtenisse en die laaste gerapporteerde (x, y) wys. Wanneer jy knyp en hou, behoort jy touch.began en dan touch.moved te sien met veranderende koördinate terwyl jy rondkyk.The debug overlay draws a green panel top-left of the canvas showing live touch event counts and the last reported (x, y). When you pinch and hold, you should see touch.began then touch.moved with changing coordinates as you look around."
+msgstr "Die ontfoutingsoorleg teken 'n groen paneel links bo op die doek wat die aantal lewendige aanrakingsgebeurtenisse en die laaste gerapporteerde (x, y) wys. Wanneer jy knyp en hou, behoort jy touch.began en dan touch.moved te sien met veranderende koördinate terwyl jy rondkyk."
 
 msgid "The file is too large (over 10 MB) to import as training text."
-msgstr "Die lêer is te groot (meer as 10 MB) om as opleidingsmateriaal ingevoer te word.The file is too large (over 10 MB) to import as training text."
+msgstr "Die lêer is te groot (meer as 10 MB) om as opleidingsmateriaal ingevoer te word."
 
 msgid "The selected file is empty."
-msgstr "Die geselekteerde lêer is leeg.The selected file is empty."
+msgstr "Die geselekteerde lêer is leeg."
 
 msgid "This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
-msgstr "Dit vee jou opgeboude opleidingsdata vir elke alfabet uit. Voorspellings behou die invloed van baie onlangse tikwerk.This deletes your accumulated training data for every alphabet. Predictions keep the influence of very recent typing."
+msgstr "Dit vee jou opgeboude opleidingsdata vir elke alfabet uit. Voorspellings behou die invloed van baie onlangse tikwerk."
 
 msgid "This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
-msgstr "Dit verwyder jou opgehoopte opleidingsdata. Die taalmodel sal terugkeer na ingeboude verstekwaardes met die volgende bekendstelling. Dit kan nie ongedaan gemaak word nie.This deletes your accumulated training data. The language model will return to built-in defaults on next launch. This cannot be undone."
+msgstr "Dit verwyder jou opgehoopte opleidingsdata. Die taalmodel sal terugkeer na ingeboude verstekwaardes met die volgende bekendstelling. Dit kan nie ongedaan gemaak word nie."
 
 msgid "Tilt Calibration"
-msgstr "KantelkalibrasieTilt Calibration"
+msgstr "Kantelkalibrasie"
 
 msgid "Hold the device upright, then tilt forward and back"
-msgstr "Houer die toestel regop, draai dan vorentoe en terugHold the device upright, then tilt forward and back"
+msgstr "Houer die toestel regop, draai dan vorentoe en terug"
 
 msgid "Tilt left and right through the full range"
-msgstr "Kantel links en regs deur die volle reeksTilt left and right through the full range"
+msgstr "Kantel links en regs deur die volle reeks"
 
 msgid "Move slowly and smoothly through all positions"
-msgstr "Beweeg stadig en glad deur alle posisiesMove slowly and smoothly through all positions"
+msgstr "Beweeg stadig en glad deur alle posisies"
 
 msgid "Tilt Settings"
-msgstr "KantelinstellingsTilt Settings"
+msgstr "Kantelinstellings"
 
 msgid "Tilt your device now..."
-msgstr "Kantel jou toestel nou...Tilt your device now..."
+msgstr "Kantel jou toestel nou..."
 
 msgid "Tilt your device through its full range of motion during calibration."
-msgstr "Kantel jou toestel deur sy volle bewegingsreeks tydens kalibrasie.Tilt your device through its full range of motion during calibration."
+msgstr "Kantel jou toestel deur sy volle bewegingsreeks tydens kalibrasie."
 
 msgid "time under Preferences → Privacy."
-msgstr "tyd onder Voorkeure → Privaatheid.time under Preferences → Privacy."
+msgstr "tyd onder Voorkeure → Privaatheid."
 
 msgid "Eye Tracker Error"
-msgstr "Eye Tracker FoutEye Tracker Error"
+msgstr "Eye Tracker Fout"
 
 msgid "Eye tracker notice"
-msgstr "Eye tracker kennisgewingEye tracker notice"
+msgstr "Eye tracker kennisgewing"
 
 msgid "The eye tracker could not be fully resumed ({0}). Tracking may run at reduced speed and accuracy — try running Dasher as administrator."
-msgstr "Die oogopsporing kon nie volledig hervat word nie ({0}). Opsporing mag teen verminderde spoed en akkuraatheid werk — probeer om Dasher as administrateur te laat loop.The eye tracker could not be fully resumed ({0}). Tracking may run at reduced speed and accuracy — try running Dasher as administrator."
+msgstr "Die oogopsporing kon nie volledig hervat word nie ({0}). Opsporing mag teen verminderde spoed en akkuraatheid werk — probeer om Dasher as administrateur te laat loop."
 
 msgid "Toggle control mode"
-msgstr "Skakel beheermodusToggle control mode"
+msgstr "Skakel beheermodus"
 
 msgid "Toggle game mode"
-msgstr "Skakel speletjie-modus omToggle game mode"
+msgstr "Skakel speletjie-modus om"
 
 msgid "Toggle keyboard mode"
-msgstr "Skakel sleutelbordmodusToggle keyboard mode"
+msgstr "Skakel sleutelbordmodus"
 
 msgid "Toggle pane position"
-msgstr "Wissel pane-posisieToggle pane position"
+msgstr "Wissel pane-posisie"
 
 msgid "Hide/show status bar"
-msgstr "Versteek/vertroon statusbalkHide/show status bar"
+msgstr "Versteek/vertroon statusbalk"
 
 msgid "Copy all text"
-msgstr "Kopieer alle teksCopy all text"
+msgstr "Kopieer alle teks"
 
 msgid "Copy selection in target app"
-msgstr "Kopieer seleksie in teikentoepassingCopy selection in target app"
+msgstr "Kopieer seleksie in teikentoepassing"
 
 msgid "Cut selection in target app"
-msgstr "Sny seleksie in teikenprogramCut selection in target app"
+msgstr "Sny seleksie in teikenprogram"
+
+msgid "Start game mode"
+msgstr "Begin spelmodus"
+
+msgid "New / clear output"
+msgstr "Nuwe / duidelike uitvoer"
+
+msgid "Open file"
+msgstr "Maak lêer oop"
 
 msgid "Paste into target app"
-msgstr "Plak in teikenprogramPaste into target app"
+msgstr "Plak in teikenprogram"
 
 msgid "Re-anchor predictions to the caret (read the sentence around your cursor)"
-msgstr "Heranker voorspellings na die kollig (lees die sin rondom jou wyser)Re-anchor predictions to the caret (read the sentence around your cursor)"
+msgstr "Heranker voorspellings na die kollig (lees die sin rondom jou wyser)"
+
+msgid "Save to file"
+msgstr "Stoor na lêer"
 
 msgid "Select all in target app"
-msgstr "Selekteer alles in teikenappSelect all in target app"
+msgstr "Selekteer alles in teikenapp"
+
+msgid "Open settings"
+msgstr "Maak instellings oop"
+
+msgid "Share text"
+msgstr "Deel teks"
 
 msgid "eyetuitive"
-msgstr "oogtoesigeyetuitive"
+msgstr "oogtoesig"
 
 msgid "Eye tracker"
-msgstr "OogspoorsnyerEye tracker"
+msgstr "Oogspoorsnyer"
 
 msgid "Tobii (Stream Engine)"
-msgstr "Tobii (stroomenjin)Tobii (Stream Engine)"
+msgstr "Tobii (stroomenjin)"
 
 msgid "UDP Gaze Tracker (network)"
-msgstr "UDP Kykopsporinger (netwerk)UDP Gaze Tracker (network)"
+msgstr "UDP Kykopsporinger (netwerk)"
 
 msgid "Windows Eye Tracker (native)"
-msgstr "Windows Eye Tracker (inheems)Windows Eye Tracker (native)"
+msgstr "Windows Eye Tracker (inheems)"
 
 msgid "Training"
-msgstr "OpleidingTraining"
+msgstr "Opleiding"
 
 msgid "Current training data: {0} KB"
-msgstr "Huidige opleidingsdata: {0} KBCurrent training data: {0} KB"
+msgstr "Huidige opleidingsdata: {0} KB"
 
 msgid "Training Data"
-msgstr "OpleidingsdataTraining Data"
+msgstr "Opleidingsdata"
 
 msgid "Training data deleted — restart Dasher to fully apply"
-msgstr "Opleidingsdata uitgevee — herbegin Dasher om volledig toe te pasTraining data deleted — restart Dasher to fully apply"
+msgstr "Opleidingsdata uitgevee — herbegin Dasher om volledig toe te pas"
 
 msgid "Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
-msgstr "Invoer voeg teks by die taalmodel en jou opgehoopte opleidingsdata (met herbeginsels gehou). Uitvoer stoor jou opleidingsdata vir rugsteun of oordrag. Herstel vee alle gebruikersopleidingsdata uit - die model keer terug na sy ingeboude verstekke met volgende bekendstelling.Import adds text to the language model and your accumulated training data (kept across restarts). Export saves your training data for backup or transfer. Reset deletes all user training data — the model returns to its built-in defaults on next launch."
+msgstr "Invoer voeg teks by die taalmodel en jou opgehoopte opleidingsdata (met herbeginsels gehou). Uitvoer stoor jou opleidingsdata vir rugsteun of oordrag. Herstel vee alle gebruikersopleidingsdata uit - die model keer terug na sy ingeboude verstekke met volgende bekendstelling."
 
 msgid "Training data exported."
-msgstr "Opleidingsdata uitgevoer.Training data exported."
+msgstr "Opleidingsdata uitgevoer."
 
 msgid "Export Training Data"
-msgstr "Voer opleidingsdata uitExport Training Data"
+msgstr "Voer opleidingsdata uit"
 
 msgid "Exported to {0}"
-msgstr "Uitgevoer na {0}Exported to {0}"
+msgstr "Uitgevoer na {0}"
 
 msgid "{0} failed: {1}"
-msgstr "{0} het misluk: {1}{0} failed: {1}"
+msgstr "{0} het misluk: {1}"
 
 msgid "Imported {0} KB of training text"
-msgstr "Het {0} KB se opleidingsteks ingevoerImported {0} KB of training text"
+msgstr "Het {0} KB se opleidingsteks ingevoer"
 
 msgid "Imported {0} KB — applies fully on next launch (live model returned {1})"
-msgstr "Ingevoerde {0} KB — is ten volle van toepassing op volgende bekendstelling (regstreekse model teruggestuur {1})Imported {0} KB — applies fully on next launch (live model returned {1})"
+msgstr "Ingevoerde {0} KB — is ten volle van toepassing op volgende bekendstelling (regstreekse model teruggestuur {1})"
 
 msgid "Training is not available yet — try again once the canvas has rendered."
-msgstr "Opleiding is nog nie beskikbaar nie — probeer weer sodra die doek weergawe vertoon het.Training is not available yet — try again once the canvas has rendered."
+msgstr "Opleiding is nog nie beskikbaar nie — probeer weer sodra die doek weergawe vertoon het."
 
 msgid "Training data deleted — the model returns to its built-in defaults on next launch"
-msgstr "Opleidingsdata is uitgevee - die model keer terug na sy ingeboude verstekke met volgende bekendstellingTraining data deleted — the model returns to its built-in defaults on next launch"
+msgstr "Opleidingsdata is uitgevee - die model keer terug na sy ingeboude verstekke met volgende bekendstelling"
 
 msgid "Deleted training data where possible — {0} item(s) failed; press Reset again to retry"
-msgstr "Opleidingsdata uitgevee waar moontlik — {0} item(s) het misluk; druk Herstel weer om weer te probeerDeleted training data where possible — {0} item(s) failed; press Reset again to retry"
+msgstr "Opleidingsdata uitgevee waar moontlik — {0} item(s) het misluk; druk Herstel weer om weer te probeer"
 
 msgid "TTS Engine"
-msgstr "TTS-enjinTTS Engine"
+msgstr "TTS-enjin"
 
 msgid "No credentials required"
-msgstr "Geen geloofsbriewe benodig nieNo credentials required"
+msgstr "Geen geloofsbriewe benodig nie"
 
 msgid "Turbo"
 msgstr "Turbo"
 
 msgid "Typing into other applications needs access to /dev/uinput, which a sandboxed "
-msgstr "Tik in ander toepassings benodig toegang tot /dev/uinput, wat 'n gesandboxteTyping into other applications needs access to /dev/uinput, which a sandboxed "
+msgstr "Tik in ander toepassings benodig toegang tot /dev/uinput, wat 'n gesandboxte"
 
 msgid "Typing rate"
-msgstr "Te tik TempoTyping rate"
+msgstr "Te tik Tempo"
 
 msgid "{cps} cps · {wpm} wpm"
-msgstr "{cps} sps · {wpm} wpm{cps} cps · {wpm} wpm"
+msgstr "{cps} sps · {wpm} wpm"
 
 msgid "UDP Port"
-msgstr "UDP-poortUDP Port"
+msgstr "UDP-poort"
 
 msgid "UDP tracker listens for STREAM_DATA or GazePoint messages"
-msgstr "UDP-tracker luister vir STREAM_DATA of GazePoint-boodskappeUDP tracker listens for STREAM_DATA or GazePoint messages"
+msgstr "UDP-tracker luister vir STREAM_DATA of GazePoint-boodskappe"
 
 msgid "Dasher {0} is available (you're running v{1}). Tap to download — disable in Settings > Privacy."
-msgstr "Dasher {0} is beskikbaar (jy gebruik v{1}). Tik om af te laai — deaktiveer in Instellings > Privaatheid.Dasher {0} is available (you're running v{1}). Tap to download — disable in Settings > Privacy."
+msgstr "Dasher {0} is beskikbaar (jy gebruik v{1}). Tik om af te laai — deaktiveer in Instellings > Privaatheid."
 
 msgid "Dasher update available"
-msgstr "Dasher-opdatering beskikbaarDasher update available"
+msgstr "Dasher-opdatering beskikbaar"
 
 msgid "Use Dasher as your keyboard"
-msgstr "Gebruik Dasher as jou sleutelbordUse Dasher as your keyboard"
+msgstr "Gebruik Dasher as jou sleutelbord"
 
 msgid "Voice"
-msgstr "StemVoice"
+msgstr "Stem"
 
 msgid "{0} voices"
-msgstr "{0} stemme{0} voices"
+msgstr "{0} stemme"
 
 msgid "Volume"
 msgstr "Volume"
 
 msgid "Dasher Warning"
-msgstr "Dasher waarskuwingDasher Warning"
+msgstr "Dasher waarskuwing"
 
 msgid "We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
-msgstr "Ons het jou Dasher 5-konfigurasie op hierdie Mac gevind. Jou alfabet, kleure, spoedinstellings en persoonlike lêers kan in Dasher 6 ingevoer word.We found your Dasher 5 configuration on this Mac. Your alphabet, colours, speed settings, and custom files can be imported into Dasher 6."
+msgstr "Ons het jou Dasher 5-konfigurasie op hierdie Mac gevind. Jou alfabet, kleure, spoedinstellings en persoonlike lêers kan in Dasher 6 ingevoer word."
 
 msgid "What was found"
-msgstr "Wat gevind isWhat was found"
+msgstr "Wat gevind is"
 
 msgid "{0} wpm"
 msgstr "{0} wpm"
 
 msgid "max {0}"
-msgstr "maksimum {0}max {0}"
+msgstr "maksimum {0}"
 
 msgid "X range:"
-msgstr "X-reeks:X range:"
+msgstr "X-reeks:"
 
 msgid "Y range:"
-msgstr "Y-reeks:Y range:"
+msgstr "Y-reeks:"
 
 msgid "ydotool found. Keyboard mode is ready."
-msgstr "ydotool gevind. Sleutelbord modus is gereed.ydotool found. Keyboard mode is ready."
+msgstr "ydotool gevind. Sleutelbord modus is gereed."
 
 msgid "ydotool still isn't available. Make sure it's installed and the ydotool service is running."
-msgstr "ydotool is nog steeds nie beskikbaar nie. Maak seker dit is geïnstalleer en dat die ydotool-diens aan die gang is.ydotool still isn't available. Make sure it's installed and the ydotool service is running."
+msgstr "ydotool is nog steeds nie beskikbaar nie. Maak seker dit is geïnstalleer en dat die ydotool-diens aan die gang is."
 
 msgid "You can import later in Settings > Privacy & Migration"
-msgstr "Jy kan later invoer in Instellings > Privaatheid en MigrasieYou can import later in Settings > Privacy & Migration"
+msgstr "Jy kan later invoer in Instellings > Privaatheid en Migrasie"
 
 msgid "Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."
-msgstr "Jou blik word slegs voortdurend dopgehou terwyl jy knyp en vashou – so werk alle visionOS-blik-apps.Your gaze is tracked continuously only while you pinch and hold — this is how all visionOS gaze apps work."
+msgstr "Jou blik word slegs voortdurend dopgehou terwyl jy knyp en vashou – so werk alle visionOS-blik-apps."
