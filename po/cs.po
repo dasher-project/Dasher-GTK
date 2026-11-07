@@ -751,6 +751,9 @@ msgstr "Znovu importovat z Dasheru 5"
 msgid "Read"
 msgstr "Přečteno"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "Uvolněním prstů pozastavíte"
 
@@ -819,6 +822,9 @@ msgstr "Uloženo:"
 
 msgid "Scan Speed"
 msgstr "Rychlost skenování"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "Metoda výběru"

@@ -751,6 +751,9 @@ msgstr "ડેશર 5 માંથી ફરીથી આયાત કરો"
 msgid "Read"
 msgstr "વાંચો"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "થોભાવવા માટે પિંચ છોડી દો"
 
@@ -819,6 +822,9 @@ msgstr "સંગ્રહ થયેલ છે"
 
 msgid "Scan Speed"
 msgstr "સ્કેન સ્પીડ"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "પસંદગિરી પદ્ધતિ"

@@ -751,6 +751,9 @@ msgstr "Dasher 5 سے دوبارہ درآمد کریں۔"
 msgid "Read"
 msgstr "پڑھیں"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "توقف کے لیے چوٹکی چھوڑ دیں۔"
 
@@ -819,6 +822,9 @@ msgstr "محفوظ کیا گیا:"
 
 msgid "Scan Speed"
 msgstr "اسکین کی رفتار"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "سلیکشن کا طریقہ"

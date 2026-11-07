@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate GTK .po files and Android values-XX/ from the shared UI catalogue.
+"""Generate GTK .po files from the shared UI catalogue.
 
 The shared catalogue (shared-resources/ui-strings.json) is the single source
 of truth for all Dasher v6 UI translations. Translators edit that file;

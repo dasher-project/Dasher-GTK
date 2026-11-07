@@ -751,6 +751,9 @@ msgstr "Ngenisa kabusha kusuka ku-Dasher 5"
 msgid "Read"
 msgstr "Funda"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "Khulula ukuncinza ukuze umise okwesikhashana"
 
@@ -819,6 +822,9 @@ msgstr "Kulondoloziwe:"
 
 msgid "Scan Speed"
 msgstr "Isivinini Sokuskena"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "Indlela Yokukhetha"

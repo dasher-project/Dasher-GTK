@@ -751,6 +751,9 @@ msgstr "Tuo uudelleen Dasher 5:stä"
 msgid "Read"
 msgstr "Lue"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "Pysähdy päästämällä nipistys irti"
 
@@ -819,6 +822,9 @@ msgstr "Tallennettu"
 
 msgid "Scan Speed"
 msgstr "Skannausnopeus"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "Valintamenetelmä"

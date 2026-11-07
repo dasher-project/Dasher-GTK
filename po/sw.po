@@ -751,6 +751,9 @@ msgstr "Ingiza tena kutoka Dasher 5"
 msgid "Read"
 msgstr "Soma"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "Achilia mkazo ili kusimamisha"
 
@@ -819,6 +822,9 @@ msgstr "Imehifadhiwa:"
 
 msgid "Scan Speed"
 msgstr "Kasi ya Kuchanganua"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "Mbinu ya Uchaguzi"

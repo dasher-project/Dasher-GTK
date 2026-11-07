@@ -751,6 +751,9 @@ msgstr "Újraimportálás a Dasher 5-ből"
 msgid "Read"
 msgstr "Elolvas"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "Engedje el a csípést a szüneteltetéshez"
 
@@ -819,6 +822,9 @@ msgstr "Elmentve:"
 
 msgid "Scan Speed"
 msgstr "Szkennelési sebesség"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "Kiválasztási módszer"

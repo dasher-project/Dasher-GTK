@@ -751,6 +751,9 @@ msgstr "دوباره از Dasher 5 وارد کنید"
 msgid "Read"
 msgstr "خواندن"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "برای مکث، نیشگون گرفتن را رها کنید"
 
@@ -819,6 +822,9 @@ msgstr "ذخیره شده"
 
 msgid "Scan Speed"
 msgstr "سرعت اسکن"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "روش انتخاب"

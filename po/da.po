@@ -751,6 +751,9 @@ msgstr "Genimportér fra Dasher 5"
 msgid "Read"
 msgstr "Læs"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "Slip kniben for at sætte på pause"
 
@@ -819,6 +822,9 @@ msgstr "Gemt"
 
 msgid "Scan Speed"
 msgstr "Scanningshastighed"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "Udvælgelsesmetode"

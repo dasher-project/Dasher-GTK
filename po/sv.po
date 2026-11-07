@@ -751,6 +751,9 @@ msgstr "Importera om från Dasher 5"
 msgid "Read"
 msgstr "Läsa"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "Släpp nypknappen för att pausa"
 
@@ -819,6 +822,9 @@ msgstr "Sparad:"
 
 msgid "Scan Speed"
 msgstr "Skanningshastighet"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "Urvalsmetod"

@@ -751,6 +751,9 @@ msgstr "डॅशर ५ मधून पुन्हा आयात करा"
 msgid "Read"
 msgstr "वाचा"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "थांबवण्यासाठी चिमटा सोडा"
 
@@ -819,6 +822,9 @@ msgstr "जतन केले:"
 
 msgid "Scan Speed"
 msgstr "स्कॅन गती"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "निवड पद्धत"

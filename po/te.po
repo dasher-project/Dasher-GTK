@@ -751,6 +751,9 @@ msgstr "డాషర్ 5 నుండి తిరిగి దిగుమత�
 msgid "Read"
 msgstr "చదవండి"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "పాజ్ చేయడానికి పించ్‌ను విడుదల చేయండి"
 
@@ -819,6 +822,9 @@ msgstr "సేవ్ చేయబడింది:"
 
 msgid "Scan Speed"
 msgstr "స్కాన్ వేగం"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "ఎంపిక పద్ధతి"

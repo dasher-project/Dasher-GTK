@@ -751,6 +751,9 @@ msgstr "从 Dasher 5 重新导入"
 msgid "Read"
 msgstr "读"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "松开捏合即可暂停"
 
@@ -819,6 +822,9 @@ msgstr "已保存："
 
 msgid "Scan Speed"
 msgstr "扫描速度"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "选择方法"

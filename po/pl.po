@@ -751,6 +751,9 @@ msgstr "Ponowny import z Dasher 5"
 msgid "Read"
 msgstr "Czytać"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "Zwolnij szczyptę, aby wstrzymać"
 
@@ -819,6 +822,9 @@ msgstr "Zapisano:"
 
 msgid "Scan Speed"
 msgstr "Prędkość skanowania"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "Metoda wyboru"

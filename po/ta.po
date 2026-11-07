@@ -751,6 +751,9 @@ msgstr "டேஷர் 5 இலிருந்து மீண்டும் �
 msgid "Read"
 msgstr "படிக்கவும்"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "இடைநிறுத்த, கிள்ளலை விடுங்கள்."
 
@@ -819,6 +822,9 @@ msgstr "சேமிக்கப்பட்டது:"
 
 msgid "Scan Speed"
 msgstr "ஸ்கேன் வேகம்"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "தேர்வு முறை"

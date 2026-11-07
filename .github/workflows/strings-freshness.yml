@@ -13,6 +13,7 @@ on:
       - "shared-resources/**"
       - "shared-resources"  # bare gitlink — pin bumps change this, not children
       - "Scripts/generate-from-shared.py"
+      - "Scripts/check-po-content.py"
   workflow_dispatch:
 
 permissions:

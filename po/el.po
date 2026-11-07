@@ -751,6 +751,9 @@ msgstr "Επανεισαγωγή από το Dasher 5"
 msgid "Read"
 msgstr "Αναγνωσμένο"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "Αφήστε το τσίμπημα για παύση"
 
@@ -819,6 +822,9 @@ msgstr "Αποθηκεύτηκε"
 
 msgid "Scan Speed"
 msgstr "Ταχύτητα σάρωσης"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "Μέθοδος Επιλογής"

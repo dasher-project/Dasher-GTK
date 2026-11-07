@@ -751,6 +751,9 @@ msgstr "ഡാഷർ 5-ൽ നിന്ന് വീണ്ടും ഇറക്
 msgid "Read"
 msgstr "വായിക്കുക"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "താൽക്കാലികമായി നിർത്താൻ പിഞ്ച് വിടുക"
 
@@ -819,6 +822,9 @@ msgstr "സംരക്ഷിച്ചു:"
 
 msgid "Scan Speed"
 msgstr "സ്കാൻ വേഗത"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "തിരഞ്ഞെടുപ്പ് രീതി"

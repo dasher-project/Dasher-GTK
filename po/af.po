@@ -751,6 +751,9 @@ msgstr "Herinvoer vanaf Dasher 5"
 msgid "Read"
 msgstr "Ry"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "Laat die knyp los om te pouseer"
 
@@ -819,6 +822,9 @@ msgstr "Gebêre"
 
 msgid "Scan Speed"
 msgstr "Skandeerspoed"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "Seleksiemetode"

@@ -751,6 +751,9 @@ msgstr "นำเข้าใหม่จาก Dasher 5"
 msgid "Read"
 msgstr "อ่าน"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "ปล่อยนิ้วเพื่อหยุดชั่วคราว"
 
@@ -819,6 +822,9 @@ msgstr "บันทึกแล้ว:"
 
 msgid "Scan Speed"
 msgstr "ความเร็วในการสแกน"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "วิธีการเลือก"

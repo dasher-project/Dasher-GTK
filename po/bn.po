@@ -751,6 +751,9 @@ msgstr "ড্যাশার ৫ থেকে পুনরায় আমদ�
 msgid "Read"
 msgstr "পড়া"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "থামানোর জন্য চিমটি ছেড়ে দিন।"
 
@@ -819,6 +822,9 @@ msgstr "সংরক্ষণ হয়েছে"
 
 msgid "Scan Speed"
 msgstr "স্ক্যান গতি"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "বাছাই পদ্ধতি"

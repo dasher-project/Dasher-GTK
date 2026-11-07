@@ -751,6 +751,9 @@ msgstr "Повторный импорт из Dasher 5"
 msgid "Read"
 msgstr "Читать"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "Отпустите щипок, чтобы поставить на паузу."
 
@@ -819,6 +822,9 @@ msgstr "Сохранено:"
 
 msgid "Scan Speed"
 msgstr "Скорость сканирования"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "Метод выбора"

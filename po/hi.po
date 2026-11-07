@@ -751,6 +751,9 @@ msgstr "डैशर 5 से पुनः आयात करें"
 msgid "Read"
 msgstr "पढ़ें"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "रोकने के लिए पिंच बटन छोड़ दें"
 
@@ -819,6 +822,9 @@ msgstr "सेव किया गया"
 
 msgid "Scan Speed"
 msgstr "स्कैन गति"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "चयन विधि"

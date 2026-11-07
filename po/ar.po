@@ -751,6 +751,9 @@ msgstr "إعادة الاستيراد من Dasher 5"
 msgid "Read"
 msgstr "اقرأ"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "حرر الضغطة للتوقف مؤقتًا"
 
@@ -819,6 +822,9 @@ msgstr "تم الحفظ:"
 
 msgid "Scan Speed"
 msgstr "سرعة المسح"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "طريقة الاختيار"

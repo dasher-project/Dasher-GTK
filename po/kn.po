@@ -751,6 +751,9 @@ msgstr "ಡ್ಯಾಷರ್ 5 ರಿಂದ ಮರು-ಆಮದು ಮಾಡಿ
 msgid "Read"
 msgstr "ಓದು, @ item: intext Access permission, concatenated"
 
+msgid "Re-anchor context"
+msgstr ""
+
 msgid "Release the pinch to pause"
 msgstr "ವಿರಾಮಗೊಳಿಸಲು ಪಿಂಚ್ ಅನ್ನು ಬಿಡುಗಡೆ ಮಾಡಿ"
 
@@ -819,6 +822,9 @@ msgstr "ಉಳಿಸಲಾಗಿದೆ"
 
 msgid "Scan Speed"
 msgstr "ಸ್ಕ್ಯಾನ್ ವೇಗ"
+
+msgid "Select All"
+msgstr ""
 
 msgid "Selection Method"
 msgstr "ಆಯ್ಕೆ ವಿಧಾನ"
