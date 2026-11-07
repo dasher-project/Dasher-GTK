@@ -161,6 +161,10 @@ class MainWindow : public Gtk::Window {
     Gtk::Button m_minibar_paste_btn;
     Gtk::Button m_minibar_settings_btn;
     Gtk::Button m_minibar_exit_btn;
+    // RFC 0012 direct-entry clause (2026-10-30 amendment): compact live-WPM
+    // in the mini-bar, current rate only, ~2 Hz, mirroring Windows' mini-bar
+    // and Android's IME top bar. GTK #97.
+    Gtk::Label m_minibar_wpm_label;
 
     // RFC 0015 parity: keyboard-mode window opacity (persisted frontend-side).
     ui::UiSettings m_ui_settings = ui::UiSettings::load();
