@@ -225,6 +225,20 @@ else()
 endif()
 message(STATUS "Dasher-GTK version: ${DASHER_GTK_VERSION}")
 target_compile_definitions(Dasher PRIVATE DASHER_GTK_VERSION="${DASHER_GTK_VERSION}")
+# RFC 0022 item 3: CAPI compatibility gate. The frontend declares the
+# minimum DasherCore C-API level it requires; the build FAILS if the pinned
+# engine's dasher.h is older — "can I bump the engine?" becomes a check
+# instead of changelog archaeology.
+set(REQUIRED_DASHER_CAPI_VERSION 3)
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}/DasherCore/src/dasher.h" _dasher_h)
+string(REGEX MATCH "#define[ \t]+DASHER_CAPI_VERSION[ \t]+([0-9]+)" _m "${_dasher_h}")
+if(NOT CMAKE_MATCH_1)
+	message(FATAL_ERROR "CAPI gate: DASHER_CAPI_VERSION not found in the pinned dasher.h (submodule not checked out?)")
+endif()
+if(CMAKE_MATCH_1 LESS REQUIRED_DASHER_CAPI_VERSION)
+	message(FATAL_ERROR "CAPI gate: pinned DasherCore exposes CAPI version ${CMAKE_MATCH_1}, this frontend requires >= ${REQUIRED_DASHER_CAPI_VERSION}. Bump the DasherCore submodule (see .github/workflows/engine-bump.yml).")
+endif()
+message(STATUS "CAPI gate: pinned DasherCore CAPI version ${CMAKE_MATCH_1} (required >= ${REQUIRED_DASHER_CAPI_VERSION}) — OK")
 # RFC 0022 item 4: the bundled DasherCore's version (git describe of the
 # submodule pin) — the engine is built from this tree, so the pin IS what
 # runs. Exact describe string (pin commits past a tag matter for triage).
