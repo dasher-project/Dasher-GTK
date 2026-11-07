@@ -1,0 +1,100 @@
+name: Shared-deps bump
+
+# RFC 0023 item 2 (amended 2026-11-08: covers ALL shared submodules, not just
+# DasherCore). Weekly + on demand: for each tracked submodule, compare the pin
+# to the newest v* tag upstream; when behind, open a PR that bumps the pin,
+# with the component's changelog in the body. Green CI = merge.
+#
+# Uses only this repo's GITHUB_TOKEN (same-repo PRs) — no org app, no PAT.
+# SUBMODULES below is the only per-repo line: "path@upstream-owner/repo".
+
+on:
+  schedule:
+    - cron: "0 7 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  # path-in-this-repo @ upstream repository (tags are compared there)
+  SUBMODULES: DasherCore@dasher-project/DasherCore shared-resources@dasher-project/dasher-shared-resources
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { sub: "DasherCore", upstream: "dasher-project/DasherCore", label: "DasherCore" }
+          - { sub: "shared-resources", upstream: "dasher-project/dasher-shared-resources", label: "shared-resources" }
+    steps:
+      - name: Checkout (recursive submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Compare pin to the newest upstream tag
+        id: check
+        run: |
+          set -euo pipefail
+          LATEST=$(git ls-remote --tags --sort=-v:refname "https://github.com/${{ matrix.upstream }}.git" "v*" \
+            | grep -v "\^{}" | head -1 | sed 's|.*refs/tags/||')
+          PINNED=$(git -C "${{ matrix.sub }}" describe --tags --abbrev=0 2>/dev/null || echo "none")
+          echo "latest=$LATEST pinned=$PINNED"
+          NEWER=$(printf '%s\n%s\n' "$PINNED" "$LATEST" | sort -V | tail -1)
+          if [ "$LATEST" = "$PINNED" ] || [ "$NEWER" != "$LATEST" ]; then
+            echo "up_to_date=true" >> "$GITHUB_OUTPUT"
+            echo "Pin $PINNED is current (latest: $LATEST) — nothing to do."
+          else
+            echo "up_to_date=false" >> "$GITHUB_OUTPUT"
+            echo "latest=$LATEST" >> "$GITHUB_OUTPUT"
+            echo "pinned=$PINNED" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Skip if a bump PR for this component is already open
+        if: steps.check.outputs.up_to_date == 'false'
+        id: dup
+        run: |
+          set -euo pipefail
+          BRANCH="chore/${{ matrix.label }}-bump-${{ steps.check.outputs.latest }}"
+          if gh pr list --head "$BRANCH" --state open | grep -q .; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Bump the pin and open the PR
+        if: steps.check.outputs.up_to_date == 'false' && steps.dup.outputs.skip != 'true'
+        run: |
+          set -euo pipefail
+          LATEST="${{ steps.check.outputs.latest }}"
+          PINNED="${{ steps.check.outputs.pinned }}"
+          BRANCH="${{ steps.dup.outputs.branch }}"
+          git -C "${{ matrix.sub }}" fetch --tags origin
+          CHANGELOG=$(git -C "${{ matrix.sub }}" log --oneline "${PINNED}..${LATEST}" | head -60 || echo "(changelog unavailable)")
+          git config user.name "dasher-bot"
+          git config user.email "noreply@dasher.at"
+          git checkout -b "$BRANCH"
+          git -C "${{ matrix.sub }}" checkout "$LATEST"
+          git add "${{ matrix.sub }}"
+          git commit -m "chore: bump ${{ matrix.label }} to ${LATEST} (RFC 0023 shared-deps automation)"
+          git push origin "$BRANCH"
+          gh pr create --head "$BRANCH" --title "chore: bump ${{ matrix.label }} to ${LATEST}" --body "Automated shared-deps bump (RFC 0023 item 2). **${PINNED} → ${LATEST}**
+
+          Merge when CI is green; frontend adaptation work rides this PR as additional commits.
+
+          <details><summary>${{ matrix.label }} changelog (${PINNED}..${LATEST})</summary>
+
+          \`\`\`
+          ${CHANGELOG}
+          \`\`\`
+          </details>"
+        env:
+          GH_TOKEN: ${{ github.token }}
