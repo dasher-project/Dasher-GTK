@@ -594,11 +594,20 @@ MainWindow::MainWindow()
     m_minibar_exit_btn.set_tooltip_text(_("Exit keyboard mode"));
     m_minibar_exit_btn.set_valign(Gtk::Align::START);
     m_minibar_exit_btn.signal_clicked().connect([this]() { m_keyboard_button.set_active(false); });
+    // GTK #97: compact live-WPM (RFC 0012 direct-entry clause) — current
+    // rate only, refreshed by the existing 2 Hz footer timeout.
+    m_minibar_wpm_label.set_text("0 wpm");
+    m_minibar_wpm_label.add_css_class("dim-label");
+    m_minibar_wpm_label.set_valign(Gtk::Align::CENTER);
+    m_minibar_wpm_label.set_margin_start(4);
+    m_minibar_wpm_label.set_margin_end(4);
+
     m_keyboard_minibar.append(m_minibar_new_btn);
     m_keyboard_minibar.append(m_minibar_reanchor_btn);
     m_keyboard_minibar.append(m_minibar_selectall_btn);
     m_keyboard_minibar.append(m_minibar_copy_btn);
     m_keyboard_minibar.append(m_minibar_paste_btn);
+    m_keyboard_minibar.append(m_minibar_wpm_label);
     m_keyboard_minibar.append(m_minibar_settings_btn);
     m_keyboard_minibar.append(m_minibar_exit_btn);
     m_keyboard_minibar.set_halign(Gtk::Align::END);
@@ -765,6 +774,10 @@ MainWindow::MainWindow()
             char buf[48];
             std::snprintf(buf, sizeof(buf), "%.1f cps \xc2\xb7 %d wpm", cps, static_cast<int>(std::lround(wpm)));
             m_wpm_label.set_text(buf);
+            // GTK #97: compact form for the keyboard-mode mini-bar.
+            char wpm_buf[16];
+            std::snprintf(wpm_buf, sizeof(wpm_buf), "%d wpm", static_cast<int>(std::lround(wpm)));
+            m_minibar_wpm_label.set_text(wpm_buf);
             update_game_target();
             return true;
         },
