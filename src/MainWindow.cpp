@@ -1,4 +1,5 @@
 #include "MainWindow.h"
+#include "Output/ControlActions.h"
 #include "Output/TargetContextWatcher.h"
 #include "dasher.h"
 #include "i18n.h"
@@ -91,6 +92,85 @@ void MainWindow::wire_editor_sync() {
         const int caret_bytes = DasherBridge::engine_byte_offset(engine, pane, caret_chars);
         if (caret_bytes >= 0 && caret_bytes != bridge->get_offset()) bridge->set_offset(caret_bytes);
     });
+}
+
+// ── RFC 0021 control-mode action dispatch (issue #109) ─────────────────────
+//
+// The engine fires the registered-action callback from inside dasher_frame;
+// DasherBridge's trampoline has already marshalled it to a main-loop idle,
+// so by the time we get here we are off the engine's stack and may touch
+// both the output pane and the engine (a delete re-seeds via the pane's
+// changed handler — the same user-edit path typing takes).
+void MainWindow::on_control_action(const std::string& name, const DasherBridge::ActionAttributes& attrs) {
+    if (!ControlActions::is_control_action(name)) return;
+
+    const auto dist_it = attrs.find("dist");
+    const auto fwd_it = attrs.find("forward");
+    const std::string dist = dist_it != attrs.end() ? dist_it->second : "";
+    const std::string forward = fwd_it != attrs.end() ? fwd_it->second : "";
+    const auto parsed = ControlActions::parse(dist, forward);
+    if (!parsed) {
+        // The engine validates NO attributes for custom actions — a typo'd
+        // dist lands here (log and no-op, never crash: the Windows contract).
+        g_warning("Dasher: control action '%s' with unknown attributes dist=%s forward=%s — no-op", name.c_str(),
+                  dist.c_str(), forward.c_str());
+        return;
+    }
+    const auto [distance, direction] = *parsed;
+    ++m_control_action_generation;
+
+    std::string fallback; // telemetry tag when direct mode degraded sentence→paragraph
+    if (m_direct_mode_active) {
+        // Keyboard mode: native operations in the TARGET via ydotool chords.
+        bool sentence_fallback = false;
+        const auto plan = ControlActions::direct_plan(name, distance, direction, sentence_fallback);
+        if (sentence_fallback) {
+            g_message("Dasher: control action %s sentence: no direct-mode chord — paragraph fallback", name.c_str());
+            fallback = "paragraph";
+        }
+        if (plan.empty()) {
+            // No viable chord at all: NO-OP safely rather than inject
+            // something wrong (currently unreachable — the planner maps
+            // every distance — but the contract holds if that ever changes).
+            g_warning("Dasher: control action %s dist=%s has no direct-mode chord — no-op", name.c_str(), dist.c_str());
+            return;
+        }
+        for (const auto& chord : plan) {
+            if (!m_direct_mode->inject_key_sequence(ControlActions::chord_sequence(chord), name == "delete")) {
+                handle_keyboard_mode_failure();
+                return;
+            }
+        }
+    } else {
+        // Editor mode: measured over the output pane with gtkmm's native
+        // TextIter boundary primitives (moves re-anchor the engine via the
+        // pane's cursor handler, deletes re-seed via its changed handler —
+        // RFC 0019 clauses 3/4, exactly how arrow-key edits and backspaces
+        // already sync).
+        auto buffer = m_text_view.get_buffer();
+        if (name == "select") {
+            // A selection change is not a text edit: no seed fires (the
+            // text is unchanged), only the cursor-follow re-anchor.
+            ControlActions::editor_select(buffer, distance, direction);
+        } else if (name == "move") {
+            ControlActions::editor_move(buffer, distance, direction);
+        } else {
+            ControlActions::editor_delete(buffer, distance, direction);
+        }
+    }
+
+    // Telemetry in the Windows style (RFC 0021 §Telemetry): ui_action with
+    // the control_tree surface, granularity as a dist property, and
+    // fallback=paragraph when direct mode degraded a sentence so field
+    // data never reads sentence-accurate. Opt-in gated inside capture().
+    std::map<std::string, std::string> props = {
+        {"surface", "control_tree"},
+        {"action", name},
+        {"dist", ControlActions::distance_name(distance)},
+        {"forward", ControlActions::is_forward(direction) ? "yes" : "no"},
+    };
+    if (!fallback.empty()) props.emplace("fallback", fallback);
+    analytics::AnalyticsClient::instance().capture("ui_action", props);
 }
 
 MainWindow::MainWindow()
@@ -699,6 +779,18 @@ MainWindow::MainWindow()
         }
         if (!ok) handle_keyboard_mode_failure();
     });
+
+    // RFC 0021: the engine's select/move/delete control actions arrive here
+    // (the bridge registered the handlers at engine creation and marshals
+    // each callback to a main-loop idle — see DasherBridge). Attached in the
+    // constructor, long before the first resize realises the engine, so no
+    // action can fire unwired; the alive flag guards teardown races the same
+    // way the DirectModeService failure callback does.
+    m_canvas.bridge->set_action_callback(
+        [this, alive = m_ui_alive](const std::string& name, const DasherBridge::ActionAttributes& attrs) {
+            if (!alive->load()) return;
+            on_control_action(name, attrs);
+        });
 
     m_side_panel.append(m_panel_bar);
     m_side_panel.append(m_text_view);

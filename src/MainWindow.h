@@ -121,6 +121,18 @@ class MainWindow : public Gtk::Window {
     bool m_seed_push_in_flight = false;
     void wire_editor_sync();
 
+    // ── RFC 0021 control-mode custom actions (issue #109) ──
+    // select/move/delete arrive from the engine as registered-action
+    // callbacks (see DasherBridge::set_action_callback) already marshalled
+    // to a main-loop idle; dispatched to editor mode (native TextIter
+    // measurement over the output pane) or keyboard mode (ydotool chords).
+    void on_control_action(const std::string& name, const DasherBridge::ActionAttributes& attrs);
+    // Bumped at every dispatch (Windows' _unitActionGeneration pattern): the
+    // GTK dispatch is synchronous so a second action cannot interleave
+    // mid-application, but the counter documents that contract and fails
+    // safe if the path ever becomes async.
+    int m_control_action_generation = 0;
+
     // RFC 0015 clause 8 / RFC 0019 clause 6: caret-move context triggers on
     // direct-mode targets (atspi). Started/stopped with keyboard mode.
     // (Global forward declaration above the class.)
