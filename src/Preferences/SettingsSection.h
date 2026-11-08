@@ -19,10 +19,10 @@
 #include <string>
 
 class SettingsSection : public Gtk::Box {
-public:
-    SettingsSection(const std::string& title, std::shared_ptr<DasherBridge> bridge, const std::string& group_filter, const std::string& subgroup_filter = "")
-        : Gtk::Box(Gtk::Orientation::VERTICAL, 8), m_bridge(bridge)
-    {
+  public:
+    SettingsSection(const std::string& title, std::shared_ptr<DasherBridge> bridge, const std::string& group_filter,
+                    const std::string& subgroup_filter = "")
+        : Gtk::Box(Gtk::Orientation::VERTICAL, 8), m_bridge(bridge) {
         set_margin_start(12);
         set_margin_end(12);
         set_margin_top(8);
@@ -90,6 +90,6 @@ public:
         }
     }
 
-private:
+  private:
     std::shared_ptr<DasherBridge> m_bridge;
 };
