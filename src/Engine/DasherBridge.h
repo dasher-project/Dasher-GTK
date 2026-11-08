@@ -5,9 +5,12 @@
 #include <cairomm/surface.h>
 #include <cairomm/fontface.h>
 #include <functional>
+#include <map>
 #include <string>
 #include <vector>
 #include <chrono>
+#include <atomic>
+#include <memory>
 
 struct DasherParameterInfo {
     int key;
@@ -170,6 +173,24 @@ public:
 
     void set_output_callback(std::function<void(int, const std::string&)> callback);
 
+    // ── RFC 0021 control-mode custom actions ──
+    // The constructor registers "select", "move" and "delete" with the engine
+    // (dasher_register_action) — the timing contract (DasherCore
+    // docs/CUSTOM_ACTIONS.md) requires registration BEFORE the first
+    // dasher_set_screen_size, which only happens at the first canvas resize,
+    // long after this object exists. Without a registered handler the
+    // engine's gating fixpoint prunes those groups from the control tree,
+    // which is why GTK users saw no Select/Move/Delete nodes.
+    //
+    // The listener is invoked OFF the engine's frame stack, marshalled to a
+    // GLib main-loop idle (see the trampoline): actions mutate the editor
+    // buffer, which seeds the engine — a synchronous dispatch would re-enter
+    // dasher_* calls from inside dasher_frame's own stack. Attribute arrays
+    // are copied in the trampoline (valid only during the C callback).
+    using ActionAttributes = std::map<std::string, std::string>;
+    using ActionCallback = std::function<void(const std::string& name, const ActionAttributes& attrs)>;
+    void set_action_callback(ActionCallback callback);
+
     // Canvas font, single source of truth for BOTH the engine's label
     // measurement (text-size callback, DasherCore v0.2.4 / issue #56) and the
     // renderer's opcode-5 text drawing, so layout and drawing cannot diverge.
@@ -202,7 +223,16 @@ public:
     bool m_startup_training_checked = false;
     std::function<void(int, const std::string&)> m_output_callback;
 
+    // RFC 0021 action dispatch state (see set_action_callback). The alive
+    // flag is heap-shared so an idle queued before destruction can check it
+    // safely after the object is gone (both the idle and the destructor run
+    // on the GTK main thread — same pattern as MainWindow's m_ui_alive).
+    ActionCallback m_action_callback;
+    std::shared_ptr<std::atomic<bool>> m_action_alive = std::make_shared<std::atomic<bool>>(true);
+
     static void output_callback_trampoline(int event_type, const char* text, void* user_data);
+    static void action_callback_trampoline(const char* name, int attr_count, const char** attr_keys,
+                                           const char** attr_values, void* user_data);
     static void log_callback_trampoline(int level, const char* message, void* user_data);
     static int text_size_trampoline(const char* text, int font_size, int* out_width, int* out_height, void* user_data);
 

@@ -6,6 +6,7 @@
 #include <fstream>
 #include <filesystem>
 #include <glib.h>
+#include <glibmm/main.h>
 
 DasherBridge::DasherBridge(const std::string& data_dir, const std::string& user_dir) : m_user_dir(user_dir) {
     m_start_time = std::chrono::steady_clock::now();
@@ -25,6 +26,17 @@ DasherBridge::DasherBridge(const std::string& data_dir, const std::string& user_
         // actually reaches stderr by domain/level at display time.
         dasher_set_log_callback(m_ctx, log_callback_trampoline, nullptr, /*min_level=*/1);
 
+        // RFC 0021 + amendment: register the control-mode custom actions
+        // immediately after dasher_create. The engine parses control.xml at
+        // the first dasher_set_screen_size (Realize) and PRUNES any action
+        // element with no registered handler at parse time, so these must be
+        // in place before the first set_screen_size (which happens at the
+        // first canvas resize, i.e. after this constructor). All three share
+        // one trampoline; the action NAME arrives as a callback parameter.
+        dasher_register_action(m_ctx, "select", action_callback_trampoline, this);
+        dasher_register_action(m_ctx, "move", action_callback_trampoline, this);
+        dasher_register_action(m_ctx, "delete", action_callback_trampoline, this);
+
         // Real text metrics for label layout (DasherCore v0.2.4 / issue #56):
         // the engine previously estimated label width, and the estimate's error
         // compounds down the label chain — deep-zoom text degenerated into
@@ -35,6 +47,9 @@ DasherBridge::DasherBridge(const std::string& data_dir, const std::string& user_
 }
 
 DasherBridge::~DasherBridge() {
+    // Retire queued action idles before the object goes: they check this
+    // heap-shared flag (not the object) after destruction.
+    m_action_alive->store(false);
     if (m_ctx) {
         dasher_destroy(m_ctx);
     }
@@ -476,6 +491,39 @@ void DasherBridge::set_output_callback(std::function<void(int, const std::string
     if (m_ctx) {
         dasher_set_output_callback(m_ctx, output_callback_trampoline, this);
     }
+}
+
+void DasherBridge::set_action_callback(ActionCallback callback) {
+    m_action_callback = std::move(callback);
+}
+
+void DasherBridge::action_callback_trampoline(const char* name, int attr_count, const char** attr_keys,
+                                              const char** attr_values, void* user_data) {
+    auto* self = static_cast<DasherBridge*>(user_data);
+    if (!self || !name) return;
+
+    // The attribute arrays are only valid during the C callback — copy
+    // everything the listener needs (the dasher.h contract).
+    ActionAttributes attrs;
+    for (int i = 0; i < attr_count; ++i) {
+        if (attr_keys && attr_keys[i] && attr_values && attr_values[i]) {
+            attrs[attr_keys[i]] = attr_values[i];
+        }
+    }
+    const std::string action_name = name;
+
+    // Hop off the engine's frame stack before dispatching: the callback fires
+    // from CContNode::Do() inside dasher_frame() (on this, the GTK main,
+    // thread), and the listener mutates the editor buffer, which re-seeds the
+    // engine — a synchronous dispatch would re-enter dasher_* calls from
+    // inside dasher_frame's own stack (mirrors Apple's DispatchQueue.main.async
+    // hop and Windows' dispatcher marshal). The alive flag is heap-shared so
+    // this closure survives the bridge itself.
+    auto alive = self->m_action_alive;
+    Glib::signal_idle().connect_once([alive, self, action_name, attrs = std::move(attrs)]() {
+        if (!alive->load() || !self->m_action_callback) return;
+        self->m_action_callback(action_name, attrs);
+    });
 }
 
 void DasherBridge::set_canvas_font(const std::string& family, Cairo::ToyFontFace::Slant slant,
