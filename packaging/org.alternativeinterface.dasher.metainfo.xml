@@ -36,6 +36,12 @@
   </developer>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="6.0.0" date="2026-11-08">
+      <description>
+        <p>Dasher 6.0.0 is the first release under the project's new unified version numbering: every Dasher edition — Linux, Windows, macOS, Android and web — now shares the same version number, so a version means the same generation everywhere.</p>
+        <p>Localisation is rebuilt from the shared catalogue: the speech settings (engine, voice, rate, pitch, volume and preview) are now translated, every interface string is checked automatically against 32 languages, several strings that were stuck in English are translated, and the "Preparing Dasher…" and "Leave game mode" strings are fixed. The keyboard-mode mini bar now also shows your live typing speed while you write into other apps. The bundled Dasher engine is updated to v0.2.28, and crash and analytics reports now record the engine version to speed up support.</p>
+      </description>
+    </release>
     <release version="0.2.16" date="2026-10-28">
       <description>
         <p>Privacy-preserving usage insights (RFC 0001 amendment, opt-in as always): if you have analytics enabled, Dasher now records which toolbar buttons are used and which preferences are changed — never the content you type, never free-text setting values, never file paths. This tells the project which settings matter most and where to focus interface improvements. The speed stepper, alphabet chooser, and every preference control are covered.</p>

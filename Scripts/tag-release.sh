@@ -23,7 +23,11 @@ do_push=0
 if [[ "${1:-}" == "--push" ]]; then do_push=1; shift; fi
 [[ $# -eq 1 ]] || die "usage: $0 [--push] vX.Y.Z"
 version="$1"
-[[ "$version" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || die "version must look like v0.2.12, got '$version'"
+# RFC 0023 §1 aligned scheme: vMAJOR.MINOR.PATCH with MAJOR >= 6, optional
+# -rc.N prerelease. The legacy 0.x numbering is retired; publish.yml's
+# tag-sanity job enforces the same server-side.
+[[ "$version" =~ ^v(6|[7-9]|[1-9][0-9]+)\.[0-9]+\.[0-9]+(-rc\.[0-9]+)?$ ]] ||
+    die "version must look like v6.0.0 (RFC 0023 §1: vMAJOR.MINOR.PATCH[.-rc.N], MAJOR >= 6), got '$version'"
 bare="${version#v}"
 metainfo="packaging/org.alternativeinterface.dasher.metainfo.xml"
 
