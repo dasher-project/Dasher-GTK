@@ -147,6 +147,31 @@ bool DirectModeService::inject_ctrl_key(int evdev_code) {
     return true;
 }
 
+bool DirectModeService::key_sequence_valid(const std::string& key_sequence) {
+    if (key_sequence.empty()) return false;
+    for (char c : key_sequence) {
+        const bool ok = (c >= '0' && c <= '9') || c == ':' || c == ' ';
+        if (!ok) return false;
+    }
+    return true;
+}
+
+bool DirectModeService::inject_key_sequence(const std::string& key_sequence, bool changes_text) {
+    if (!m_available || !key_sequence_valid(key_sequence)) return m_available;
+
+    DirectModeJob job;
+    job.is_delete = false;
+    job.key_sequence = key_sequence;
+    job.chord_changes_text = changes_text;
+    {
+        std::lock_guard<std::mutex> lock(m_mutex);
+        job.generation = m_generation;
+        m_queue.push(std::move(job));
+    }
+    m_cv.notify_one();
+    return true;
+}
+
 bool DirectModeService::inject_delete(const std::string& deleted_text) {
     if (!m_available || deleted_text.empty()) return m_available;
 
@@ -175,8 +200,21 @@ bool DirectModeService::run_job(const DirectModeJob& job) {
     // event is the SIGNAL we want — paste changes the target wholesale and
     // the engine must re-seed from it (greptile P1 "paste synchronization
     // is suppressed"); the shadow-compare guard already prevents no-op
-    // rebuilds for Copy/Select All.
-    if (job.ctrl_key <= 0) m_last_injection_ms.store(static_cast<int64_t>(g_get_monotonic_time()) / 1000);
+    // rebuilds for Copy/Select All. RFC 0021 chord jobs arm it selectively —
+    // see the chord branch below.
+    if (job.key_sequence.empty() && job.ctrl_key <= 0)
+        m_last_injection_ms.store(static_cast<int64_t>(g_get_monotonic_time()) / 1000);
+    if (!job.key_sequence.empty()) {
+        // RFC 0021 chords. Select/move (caret-only) arm the quiet window —
+        // their caret events must not re-seed mid-dash. Delete-family chords
+        // deliberately do NOT (the target text changed; the caret event is
+        // the re-seed signal, exactly the paste precedent above).
+        if (!job.chord_changes_text) m_last_injection_ms.store(static_cast<int64_t>(g_get_monotonic_time()) / 1000);
+        // Validated at enqueue (inject_key_sequence); the re-check keeps
+        // run_job safe if a job ever arrives by another path.
+        if (!key_sequence_valid(job.key_sequence)) return false;
+        return run_command("ydotool key " + job.key_sequence + " >/dev/null 2>&1");
+    }
     if (job.ctrl_key > 0) {
         // RFC 0015 clipboard bridge: Ctrl held, key tap, Ctrl released —
         // one ydotool invocation so the target sees an atomic chord.

@@ -23,3 +23,17 @@ TEST_CASE("utf8_length counts code points, not bytes") {
                                          "b") == 3);
     CHECK(DirectModeService::utf8_length("h\xC3\xA9llo") == 5);
 }
+
+// RFC 0021: chord sequences reach a ydotool (shell) command line, so the
+// injection boundary validates their shape — digits, colons and spaces only.
+// The planner (ControlActions) generates well-formed sequences; this is
+// defence in depth at the boundary that actually executes them.
+TEST_CASE("key_sequence_valid rejects anything that is not a ydotool key sequence") {
+    CHECK(DirectModeService::key_sequence_valid("42:1 106:1 106:0 42:0"));
+    CHECK(DirectModeService::key_sequence_valid("14:1 14:0"));
+    CHECK_FALSE(DirectModeService::key_sequence_valid(""));               // empty
+    CHECK_FALSE(DirectModeService::key_sequence_valid("29:1; rm -rf /")); // shell metachar
+    CHECK_FALSE(DirectModeService::key_sequence_valid("$(reboot)"));      // substitution
+    CHECK_FALSE(DirectModeService::key_sequence_valid("key 106"));        // words
+    CHECK_FALSE(DirectModeService::key_sequence_valid("106:1\n42:0"));    // newline
+}
