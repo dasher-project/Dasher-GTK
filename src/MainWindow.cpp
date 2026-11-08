@@ -143,6 +143,16 @@ MainWindow::MainWindow()
     m_main_box.append(m_pane);
     m_main_box.append(m_footer_bar);
 
+    // GTK4 CSS dropped the 'spacing' property, so the bars' spacing is set
+    // here on the internal revealer→box (the same nodes the UIStyle.css
+    // 'actionbar > revealer > box' rules target). The old CSS rules were
+    // parsed as errors and silently ignored.
+    for (Gtk::ActionBar* bar : {&m_header_bar, &m_panel_bar, &m_footer_bar}) {
+        if (auto* revealer = dynamic_cast<Gtk::Revealer*>(bar->get_first_child())) {
+            if (auto* box = dynamic_cast<Gtk::Box*>(revealer->get_first_child())) box->set_spacing(12);
+        }
+    }
+
     m_message_overlay.set_child(m_canvas);
     m_message_overlay.ConnectToDasher(m_canvas.bridge);
 

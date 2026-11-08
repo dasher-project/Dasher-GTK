@@ -18,6 +18,15 @@
 
 namespace {
 
+// GTK 4.18 deprecated the X11 accessors with no replacement (the Xlib
+// handles themselves have no GDK equivalent, and the keyboard-mode focus
+// management below needs them). Silence the deprecation locally rather than
+// project-wide so genuine deprecations elsewhere still surface.
+#if defined(__GNUC__) || defined(__clang__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
+
 Display* x11_display_of(Gtk::Window& window) {
     auto surface = window.get_surface();
     if (!surface) return nullptr;
@@ -33,6 +42,10 @@ Window x11_window_of(Gtk::Window& window) {
     if (!GDK_IS_X11_SURFACE(gdk_surf)) return None;
     return gdk_x11_surface_get_xid(gdk_surf);
 }
+
+#if defined(__GNUC__) || defined(__clang__)
+#pragma GCC diagnostic pop
+#endif
 
 void set_input_focus_hint(Gtk::Window& window, bool accept) {
     // EWMH window-type is the robust lever: a _NET_WM_WINDOW_TYPE_DOCK is
