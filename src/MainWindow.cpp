@@ -6,9 +6,11 @@
 #include <cairomm/fontface.h>
 #include <gdkmm/display.h>
 #include <gdkmm/monitor.h>
+#include <gdkmm/texture.h>
 #include <giomm/listmodel.h>
 #include <pangomm/fontdescription.h>
 #include <glibmm/main.h>
+#include <gtkmm/gestureclick.h>
 #include <algorithm>
 #include <cmath>
 #include <optional>
@@ -226,8 +228,10 @@ MainWindow::MainWindow()
     // GTK4 CSS dropped the 'spacing' property, so the bars' spacing is set
     // here on the internal revealer→box (the same nodes the UIStyle.css
     // 'actionbar > revealer > box' rules target). The old CSS rules were
-    // parsed as errors and silently ignored.
-    for (Gtk::ActionBar* bar : {&m_header_bar, &m_panel_bar, &m_footer_bar}) {
+    // parsed as errors and silently ignored. (The output-pane toolbar is a
+    // FlowBox now — issue #110 — and takes its spacing below.)
+    m_footer_bar.add_css_class("footer-bar"); // slimmer than the header (#110 r2)
+    for (Gtk::ActionBar* bar : {&m_header_bar, &m_footer_bar}) {
         if (auto* revealer = dynamic_cast<Gtk::Revealer*>(bar->get_first_child())) {
             if (auto* box = dynamic_cast<Gtk::Box*>(revealer->get_first_child())) box->set_spacing(12);
         }
@@ -362,6 +366,10 @@ MainWindow::MainWindow()
     m_speed_value_label.set_halign(Gtk::Align::CENTER);
     for (auto* btn : {&m_speed_down_btn, &m_speed_up_btn}) {
         btn->set_valign(Gtk::Align::CENTER);
+        // Issue #110 item 4: compact stepper (Windows' ui-step-btn is a
+        // borderless ~28 px button in a 28 px strip); GTK's default button
+        // was visibly chunkier in the bottom bar.
+        btn->add_css_class("step-btn");
         btn->set_tooltip_text("Maximum writing speed, Dasher 5 scale (1.0 = 100).");
     }
     m_speed_down_btn.signal_clicked().connect([this]() { nudge_speed(-m_speed_step); });
@@ -635,7 +643,22 @@ MainWindow::MainWindow()
     // selection; v5 and Dasher-Windows#56 do it frontend-side too).
     // Catalogue msgids: new/copy/paste carry 32 locales; "Select All" is a
     // new key for the next shared-resources batch.
-    m_minibar_new_btn.set_icon_name("document-new");
+    // Bundled-Lucide icon for a mini-bar button (the same resource set
+    // ImageButton uses — the raw theme icon_names rendered whatever the
+    // XFCE theme shipped, which looked nothing like the rest of the app).
+    auto set_lucide_icon = [](Gtk::Button& btn, const char* stem) {
+        auto* image = Gtk::make_managed<Gtk::Image>();
+        auto file = Gio::File::create_for_uri(std::string("resource:///org/alternativeinterface/dasher/icons/") + stem +
+                                              ".svg");
+        if (file->query_exists()) {
+            auto paintable = Gtk::IconPaintable::create(file, 24, btn.get_scale_factor());
+            image->property_paintable() = paintable;
+            image->set_pixel_size(17);
+        }
+        btn.set_child(*image);
+    };
+
+    set_lucide_icon(m_minibar_new_btn, "file-plus");
     m_minibar_new_btn.set_tooltip_text(_("New"));
     m_minibar_new_btn.set_valign(Gtk::Align::START);
     m_minibar_new_btn.signal_clicked().connect([this]() { m_canvas.bridge->reset(); });
@@ -644,7 +667,7 @@ MainWindow::MainWindow()
     // for edge cases where the caret-moved event doesn't fire (some apps'
     // accessibility providers miss same-field clicks) or the user wants
     // certainty about the current context.
-    m_minibar_reanchor_btn.set_icon_name("edit-find");
+    set_lucide_icon(m_minibar_reanchor_btn, "search");
     m_minibar_reanchor_btn.set_tooltip_text(_("Re-anchor context"));
     m_minibar_reanchor_btn.set_valign(Gtk::Align::START);
     m_minibar_reanchor_btn.signal_clicked().connect([this]() {
@@ -654,22 +677,32 @@ MainWindow::MainWindow()
         s_target_watcher.force_reanchor();
     });
 
-    m_minibar_selectall_btn.set_icon_name("edit-select-all");
+    set_lucide_icon(m_minibar_selectall_btn, "text-select");
     m_minibar_selectall_btn.set_tooltip_text(_("Select All"));
     m_minibar_selectall_btn.set_valign(Gtk::Align::START);
-    m_minibar_selectall_btn.signal_clicked().connect([this]() { m_direct_mode->inject_ctrl_key(30); }); // A
+    m_minibar_selectall_btn.signal_clicked().connect([this]() {
+        analytics::AnalyticsClient::instance().capture("ui_action",
+                                                       {{"surface", "ime_toolbar"}, {"action", "select_all"}});
+        m_direct_mode->inject_ctrl_key(30); // A
+    });
 
-    m_minibar_copy_btn.set_icon_name("edit-copy");
+    set_lucide_icon(m_minibar_copy_btn, "copy");
     m_minibar_copy_btn.set_tooltip_text(_("Copy"));
     m_minibar_copy_btn.set_valign(Gtk::Align::START);
-    m_minibar_copy_btn.signal_clicked().connect([this]() { m_direct_mode->inject_ctrl_key(46); }); // C
+    m_minibar_copy_btn.signal_clicked().connect([this]() {
+        analytics::AnalyticsClient::instance().capture("ui_action", {{"surface", "ime_toolbar"}, {"action", "copy"}});
+        m_direct_mode->inject_ctrl_key(46); // C
+    });
 
-    m_minibar_paste_btn.set_icon_name("edit-paste");
+    set_lucide_icon(m_minibar_paste_btn, "paste");
     m_minibar_paste_btn.set_tooltip_text(_("Paste"));
     m_minibar_paste_btn.set_valign(Gtk::Align::START);
-    m_minibar_paste_btn.signal_clicked().connect([this]() { m_direct_mode->inject_ctrl_key(47); }); // V
+    m_minibar_paste_btn.signal_clicked().connect([this]() {
+        analytics::AnalyticsClient::instance().capture("ui_action", {{"surface", "ime_toolbar"}, {"action", "paste"}});
+        m_direct_mode->inject_ctrl_key(47); // V
+    });
 
-    m_minibar_settings_btn.set_icon_name("settings");
+    set_lucide_icon(m_minibar_settings_btn, "settings");
     m_minibar_settings_btn.set_tooltip_text(_("Settings"));
     m_minibar_settings_btn.set_valign(Gtk::Align::START);
     m_minibar_settings_btn.signal_clicked().connect([this]() {
@@ -680,10 +713,79 @@ MainWindow::MainWindow()
         preferences_window().present();
         KeyboardWindowX11::raise_overlay(preferences_window());
     });
-    m_minibar_exit_btn.set_icon_name("keyboard");
+    set_lucide_icon(m_minibar_exit_btn, "keyboard");
     m_minibar_exit_btn.set_tooltip_text(_("Exit keyboard mode"));
     m_minibar_exit_btn.set_valign(Gtk::Align::START);
     m_minibar_exit_btn.signal_clicked().connect([this]() { m_keyboard_button.set_active(false); });
+
+    // ── Issue #110 item 1: drag affordance ──
+    // The keyboard-mode window is an undecorated dock (no title bar), so
+    // it has no way to move. A grip at the mini-bar's leading edge lets
+    // the user drag it — see the gesture below for why the move is done
+    // with client-side X11 requests rather than the WM's interactive-move
+    // path (GTK4 removed gtk_window_begin_move_drag).
+    // The grip icon is a bundled asset loaded as a plain texture rather
+    // than an IconPaintable: IconPaintable runs the icon-theme lookup
+    // machinery, which on an overlay child of the no-activate keyboard
+    // window churned WM_NORMAL_HINTS every layout pass and left the dock
+    // without an input region (live XFCE report — issue #110 testing).
+    m_minibar_drag_grip.set(Gdk::Texture::create_from_resource("/org/alternativeinterface/dasher/icons/grip.svg"));
+    m_minibar_drag_grip.add_css_class("drag-grip");
+    // Deliberately NOT _()-wrapped: check-po-content hard-fails any code
+    // msgid missing from the shared catalogue ("English-forever"), and no
+    // key exists for this yet — queued for the next shared-resources batch
+    // (wrap it the day the key lands).
+    m_minibar_drag_grip.set_tooltip_text("Drag to move the keyboard window");
+    m_minibar_drag_grip.set_cursor("grab");
+    {
+        // A drag grip that moves the window directly (X11 configure
+        // requests) rather than delegating to the WM: the keyboard-mode
+        // window is _NET_WM_WINDOW_TYPE_DOCK, and XFWM4 (like most WMs)
+        // ignores _NET_WM_MOVERESIZE for docks — panels position
+        // themselves. Pure client-side moves work everywhere on X11 and
+        // leave focus alone. No-op off X11 (see WindowPlacementX11).
+        // Deltas come from the events' SURFACE coordinates: GestureDrag's
+        // own offsets are widget-relative, and the drag moves the widget,
+        // which would feed back into itself (the drag settles at half the
+        // pointer travel — live test, issue #110).
+        auto drag = Gtk::GestureDrag::create();
+        auto drag_ref = drag;
+        drag->signal_drag_begin().connect([this, drag_ref](double, double) { on_grip_drag_begin(*drag_ref); });
+        drag->signal_drag_update().connect([this, drag_ref](double, double) { on_grip_drag_update(*drag_ref); });
+        m_minibar_drag_grip.add_controller(drag);
+    }
+
+    // ── Issue #110 item 2: mini-bar parity with Windows/Apple ──
+    // The editing keys come first, exactly like Dasher-Windows' mini-bar
+    // (WireEditingKeyRepeat) and Apple's RepeatActionButton row: for AAC
+    // users these are the most-used controls. Plain-key injections aimed
+    // at the target. Catalogue msgids (33 locales each, from the Windows/
+    // Apple tooltips).
+    set_lucide_icon(m_minibar_backspace_btn, "delete");
+    m_minibar_backspace_btn.set_tooltip_text(_("Delete (hold to repeat)"));
+    m_minibar_backspace_btn.set_valign(Gtk::Align::START);
+    wire_editing_key(m_minibar_backspace_btn, "backspace", 14 /*KEY_BACKSPACE*/, 90);
+
+    set_lucide_icon(m_minibar_left_btn, "arrow-left");
+    m_minibar_left_btn.set_tooltip_text(_("Move caret left (hold to repeat)"));
+    m_minibar_left_btn.set_valign(Gtk::Align::START);
+    wire_editing_key(m_minibar_left_btn, "arrow_left", 105 /*KEY_LEFT*/, 120);
+
+    set_lucide_icon(m_minibar_right_btn, "arrow-right");
+    m_minibar_right_btn.set_tooltip_text(_("Move caret right (hold to repeat)"));
+    m_minibar_right_btn.set_valign(Gtk::Align::START);
+    wire_editing_key(m_minibar_right_btn, "arrow_right", 106 /*KEY_RIGHT*/, 120);
+
+    // Cut completes the target-side clipboard bridge (Select All / Copy /
+    // Paste already inject chords): Ctrl+X, as in Dasher-Windows #95.
+    set_lucide_icon(m_minibar_cut_btn, "scissors");
+    m_minibar_cut_btn.set_tooltip_text(_("Cut selection in target app"));
+    m_minibar_cut_btn.set_valign(Gtk::Align::START);
+    m_minibar_cut_btn.signal_clicked().connect([this]() {
+        analytics::AnalyticsClient::instance().capture("ui_action", {{"surface", "ime_toolbar"}, {"action", "cut"}});
+        m_direct_mode->inject_ctrl_key(45); // X
+    });
+
     // GTK #97: compact live-WPM (RFC 0012 direct-entry clause) — current
     // rate only, refreshed by the existing 2 Hz footer timeout.
     m_minibar_wpm_label.set_text("0 wpm");
@@ -692,12 +794,21 @@ MainWindow::MainWindow()
     m_minibar_wpm_label.set_margin_start(4);
     m_minibar_wpm_label.set_margin_end(4);
 
-    m_keyboard_minibar.append(m_minibar_new_btn);
+    // Windows' order (KeyboardMiniBar): rate readout, editing keys,
+    // re-anchor, new, clipboard, settings, exit — with the drag grip at
+    // the leading edge and GTK's extra Select All kept before Copy.
+    m_keyboard_minibar.add_css_class("minibar");
+    m_keyboard_minibar.append(m_minibar_drag_grip);
+    m_keyboard_minibar.append(m_minibar_wpm_label);
+    m_keyboard_minibar.append(m_minibar_backspace_btn);
+    m_keyboard_minibar.append(m_minibar_left_btn);
+    m_keyboard_minibar.append(m_minibar_right_btn);
     m_keyboard_minibar.append(m_minibar_reanchor_btn);
+    m_keyboard_minibar.append(m_minibar_new_btn);
     m_keyboard_minibar.append(m_minibar_selectall_btn);
     m_keyboard_minibar.append(m_minibar_copy_btn);
+    m_keyboard_minibar.append(m_minibar_cut_btn);
     m_keyboard_minibar.append(m_minibar_paste_btn);
-    m_keyboard_minibar.append(m_minibar_wpm_label);
     m_keyboard_minibar.append(m_minibar_settings_btn);
     m_keyboard_minibar.append(m_minibar_exit_btn);
     m_keyboard_minibar.set_halign(Gtk::Align::END);
@@ -706,11 +817,34 @@ MainWindow::MainWindow()
     m_keyboard_minibar.set_visible(false); // keyboard mode off at start
     m_message_overlay.float_widget(m_keyboard_minibar);
 
-    pack_bar_start(m_panel_bar, m_copy_button);
-    pack_bar_start(m_panel_bar, m_copyall_button);
-    pack_bar_start(m_panel_bar, m_paste_button);
-    pack_bar_start(m_panel_bar, *Gtk::make_managed<Gtk::Separator>(Gtk::Orientation::VERTICAL));
-    pack_bar_start(m_panel_bar, m_read_button);
+    // ── Issue #110 item 3: wrapping output-pane toolbar ──
+    // The old single-row ActionBar clipped its overflow once the text pane
+    // got narrow (Copy all / Read slid out of view). A FlowBox wraps its
+    // children onto extra rows, like Dasher-Windows' toolbar panel, so
+    // every action stays reachable. Same margins the ActionBar children
+    // got via pack_bar_start().
+    {
+        auto pack_panel = [this](Gtk::Widget& child) {
+            const int margin = dynamic_cast<Gtk::Separator*>(&child) ? 4 : 3;
+            child.set_margin_start(margin);
+            child.set_margin_end(margin);
+            m_panel_bar.append(child);
+        };
+        pack_panel(m_copy_button);
+        pack_panel(m_copyall_button);
+        pack_panel(m_paste_button);
+        // No separator here: inside a FlowBox it picks up child styling and
+        // reads as a blank grey button once rows wrap (maintainer report).
+        pack_panel(m_read_button);
+        m_panel_bar.set_selection_mode(Gtk::SelectionMode::NONE);
+        m_panel_bar.set_activate_on_single_click(false);
+        m_panel_bar.set_homogeneous(false);
+        m_panel_bar.set_min_children_per_line(1);
+        m_panel_bar.set_max_children_per_line(8); // all five actions fit one row when wide
+        m_panel_bar.set_column_spacing(6);
+        m_panel_bar.set_row_spacing(3);
+        m_panel_bar.set_hexpand(true);
+    }
     m_panel_bar.set_size_request(150, -1);
     m_panel_bar.add_css_class("topbar");
 
@@ -921,6 +1055,9 @@ void MainWindow::update_game_target() {
 
 MainWindow::~MainWindow() {
     target_watcher().stop();
+    // A held editing key's repeat timer must not fire into a half-torn-down
+    // window (its action captures `this`).
+    stop_edit_key_repeat();
     // Retire cross-thread idles before any member (or widget) teardown: the
     // DirectModeService worker's failure callback checks this flag inside its
     // queued idle, so nothing reaches a half-destroyed window afterwards.
@@ -993,6 +1130,95 @@ void MainWindow::handle_keyboard_mode_failure() {
 
 double MainWindow::keyboard_opacity() const {
     return m_ui_settings.keyboard_opacity();
+}
+
+// ── Issue #110: keyboard-mode UX parity ─────────────────────────────────────
+
+void MainWindow::on_grip_drag_begin(Gtk::EventController& ctrl) {
+    // Basis for the drag: the pointer's SURFACE coordinates at press, plus
+    // the window's root position (query() is X11-only — off X11 the drag
+    // stays inactive; Wayland compositors own placement and keyboard mode
+    // is X11-first anyway).
+    double sx = 0.0, sy = 0.0;
+    auto ev = ctrl.get_current_event();
+    if (!ev || !ev->get_position(sx, sy)) return;
+    m_drag_begin_surf_x = sx;
+    m_drag_begin_surf_y = sy;
+    m_drag_applied_dx = 0;
+    m_drag_applied_dy = 0;
+    m_window_drag_active = WindowPlacementX11::query(*this, m_window_drag_x0, m_window_drag_y0);
+}
+
+void MainWindow::on_grip_drag_update(Gtk::EventController& ctrl) {
+    if (!m_window_drag_active) return;
+    double sx = 0.0, sy = 0.0;
+    auto ev = ctrl.get_current_event();
+    if (!ev || !ev->get_position(sx, sy)) return;
+    // Screen delta = surface delta + what we already moved the window (the
+    // surface itself travels with the window, so surface coords alone
+    // under-report by exactly the applied move).
+    const double dx = (sx - m_drag_begin_surf_x) + m_drag_applied_dx;
+    const double dy = (sy - m_drag_begin_surf_y) + m_drag_applied_dy;
+    int target_x = m_window_drag_x0 + static_cast<int>(dx);
+    int target_y = m_window_drag_y0 + static_cast<int>(dy);
+    // Clamp roughly on-screen so an enthusiastic fling can't park the
+    // keyboard irretrievably off-view: keep the mini-bar band (top strip,
+    // where the grip lives) inside the primary monitor.
+    auto display = Gdk::Display::get_default();
+    if (display && display->get_monitors() && display->get_monitors()->get_n_items() > 0) {
+        if (auto monitor = std::dynamic_pointer_cast<Gdk::Monitor>(display->get_monitors()->get_object(0))) {
+            Gdk::Rectangle b;
+            monitor->get_geometry(b);
+            target_x = std::clamp(target_x, b.get_x() - get_width() + 120, b.get_x() + b.get_width() - 120);
+            target_y = std::clamp(target_y, b.get_y(), b.get_y() + b.get_height() - 80);
+        }
+    }
+    WindowPlacementX11::move_to(*this, target_x, target_y);
+    // Accumulate the APPLIED (post-clamp) delta: once the window pins at a
+    // screen edge, overshoot is not banked — the window resumes following
+    // the pointer after only the pointer's own retrace, not twice that
+    // (review: clamp hysteresis).
+    m_drag_applied_dx = static_cast<double>(target_x - m_window_drag_x0);
+    m_drag_applied_dy = static_cast<double>(target_y - m_window_drag_y0);
+}
+
+void MainWindow::wire_editing_key(Gtk::Button& btn, const char* telemetry_action, int evdev_code, int repeat_ms) {
+    // Wired with a GestureClick rather than signal_clicked so the action
+    // lands on PRESS (one action + telemetry per press; repeat ticks are
+    // not activations) and hold-to-repeat can drive it — the same pointer-
+    // event shape as Dasher-Windows' WireEditingKeyRepeat.
+    auto click = Gtk::GestureClick::create();
+    click->signal_pressed().connect([this, telemetry_action, evdev_code, repeat_ms](int, double, double) {
+        analytics::AnalyticsClient::instance().capture("ui_action",
+                                                       {{"surface", "ime_toolbar"}, {"action", telemetry_action}});
+        start_edit_key_repeat([this, evdev_code]() { m_direct_mode->inject_key(evdev_code); }, repeat_ms);
+    });
+    click->signal_released().connect([this](int, double, double) { stop_edit_key_repeat(); });
+    click->signal_cancel().connect([this](Gdk::EventSequence*) { stop_edit_key_repeat(); });
+    btn.add_controller(click);
+}
+
+void MainWindow::start_edit_key_repeat(const std::function<void()>& action, int repeat_ms) {
+    stop_edit_key_repeat();
+    action(); // immediate action on press
+    // 350 ms deliberate-hold delay before repeating begins (Windows'
+    // constant), then a repeat tick every repeat_ms until release/cancel.
+    m_editkey_delay_conn = Glib::signal_timeout().connect(
+        [this, action, repeat_ms]() -> bool {
+            m_editkey_repeat_conn = Glib::signal_timeout().connect(
+                [action]() -> bool {
+                    action();
+                    return true; // keep repeating
+                },
+                repeat_ms);
+            return false; // one-shot: hand over to the repeat timer
+        },
+        350);
+}
+
+void MainWindow::stop_edit_key_repeat() {
+    m_editkey_delay_conn.disconnect();
+    m_editkey_repeat_conn.disconnect();
 }
 
 void MainWindow::nudge_speed(double delta_v5) {

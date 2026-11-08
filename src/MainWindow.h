@@ -38,6 +38,10 @@
 #include <giomm/menu.h>
 #include <giomm/simpleactiongroup.h>
 #include <gtkmm/switch.h>
+#include <gtkmm/flowbox.h>
+#include <gtkmm/gesturedrag.h>
+#include <sigc++/connection.h>
+#include <functional>
 #include <gtkmm/filedialog.h>
 #include <gtkmm/filefilter.h>
 
@@ -80,7 +84,10 @@ class MainWindow : public Gtk::Window {
     MessageOverlay m_message_overlay;
 
     Gtk::Box m_side_panel = Gtk::Box(Gtk::Orientation::VERTICAL);
-    Gtk::ActionBar m_panel_bar;
+    // Issue #110 item 3: the output-pane toolbar wraps (Gtk::FlowBox) — the
+    // previous single-row ActionBar clipped its overflow once the pane got
+    // narrow, hiding Copy/Read; Windows' toolbar panel wraps the same way.
+    Gtk::FlowBox m_panel_bar;
     ImageButton m_copy_button = ImageButton(_("Copy"), "copy");
     ImageButton m_copyall_button = ImageButton(_("Copy all"), "copy-all");
     ImageButton m_paste_button = ImageButton(_("Paste"), "paste");
@@ -177,6 +184,40 @@ class MainWindow : public Gtk::Window {
     // in the mini-bar, current rate only, ~2 Hz, mirroring Windows' mini-bar
     // and Android's IME top bar. GTK #97.
     Gtk::Label m_minibar_wpm_label;
+
+    // ── Issue #110: keyboard-mode UX parity ──
+    // Item 1 — the keyboard-mode window is an undecorated dock (no title
+    // bar to grab), so the mini-bar grows a drag grip that moves the
+    // window with direct X11 configure requests: the WM ignores
+    // _NET_WM_MOVERESIZE for dock-typed windows (XFWM4 live report), so
+    // gdk_toplevel_begin_move is useless here and the drag is client-side.
+    Gtk::Image m_minibar_drag_grip;
+    void on_grip_drag_begin(Gtk::EventController& ctrl);
+    void on_grip_drag_update(Gtk::EventController& ctrl);
+    bool m_window_drag_active = false;
+    int m_window_drag_x0 = 0;
+    int m_window_drag_y0 = 0;
+    double m_drag_begin_surf_x = 0;
+    double m_drag_begin_surf_y = 0;
+    double m_drag_applied_dx = 0;
+    double m_drag_applied_dy = 0;
+    // Item 2 — mini-bar parity with Dasher-Windows' KeyboardMiniBar /
+    // Apple's directModeMiniBar: the editing keys (backspace + caret
+    // arrows, hold to repeat — "for AAC users these are the most-used
+    // controls") and Cut. The control-mode toggle is deliberately absent
+    // (maintainer decision: settings-only pending RFC 0021's review).
+    Gtk::Button m_minibar_backspace_btn;
+    Gtk::Button m_minibar_left_btn;
+    Gtk::Button m_minibar_right_btn;
+    Gtk::Button m_minibar_cut_btn;
+    void wire_editing_key(Gtk::Button& btn, const char* telemetry_action, int evdev_code, int repeat_ms);
+    // Hold-to-repeat state (Windows' WireEditingKeyRepeat shape): the
+    // action fires immediately on press, a 350 ms deliberate-hold delay,
+    // then repeat ticks at repeat_ms. Telemetry only on the initial press.
+    sigc::connection m_editkey_delay_conn;
+    sigc::connection m_editkey_repeat_conn;
+    void start_edit_key_repeat(const std::function<void()>& action, int repeat_ms);
+    void stop_edit_key_repeat();
 
     // RFC 0015 parity: keyboard-mode window opacity (persisted frontend-side).
     ui::UiSettings m_ui_settings = ui::UiSettings::load();

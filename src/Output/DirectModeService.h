@@ -41,6 +41,10 @@ struct DirectModeJob {
     // events carry no new text, so arming the window prevents the
     // caret-anchored re-seed from resetting the canvas mid-dash.
     bool chord_changes_text = false;
+    // Issue #110 mini-bar parity: a single plain key press+release injected
+    // into the target (evdev keycode: 14=backspace, 105/106=caret arrows)
+    // — the mini-bar editing keys. -1 = not a plain-key job.
+    int key = -1;
     // Availability generation at enqueue time. A failure only counts against
     // the verdict that was current when the job was queued: one queued before
     // a successful recheck() (Retry) must not disable the recovered service.
@@ -75,6 +79,13 @@ class DirectModeService {
     // containing anything but digits, colons and spaces are rejected (the
     // string reaches a shell command line).
     bool inject_key_sequence(const std::string& key_sequence, bool changes_text);
+
+    // Issue #110 mini-bar parity: queue one plain key press+release (evdev
+    // keycode: 14=backspace, 105/106=caret arrows) into the focused window —
+    // the mini-bar editing keys, mirroring Dasher-Windows' SendBackspaces/
+    // arrow SendInput calls. Like text/delete jobs (and unlike Ctrl-combos)
+    // these perturb the target and arm the self-injection quiet window.
+    bool inject_key(int evdev_code);
 
     // Monotonic ms (g_get_monotonic_time()/1000) of the most recent
     // injection job RUN by the worker — the TargetContextWatcher's
