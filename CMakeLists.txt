@@ -351,6 +351,10 @@ add_custom_command(TARGET Dasher POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${DATA_DIR}/alphabets ${CMAKE_BINARY_DIR}/Dasher/Data
     # DasherCore #82 ended the colors/colours split — one colours/ set now.
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${DATA_DIR}/colours ${CMAKE_BINARY_DIR}/Dasher/Data
+    # RFC 0021 / #109: the control palette (Select/Move/Delete groups).
+    # Without it the engine builds an EMPTY control box — one anonymous grey
+    # node with no children and no labels — which is exactly what shipped.
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${DATA_DIR}/control ${CMAKE_BINARY_DIR}/Dasher/Data/control
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${DATA_DIR}/training ${CMAKE_BINARY_DIR}/Dasher/Data
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/Dasher/Strings
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/DasherCore/Strings ${CMAKE_BINARY_DIR}/Dasher/Strings
