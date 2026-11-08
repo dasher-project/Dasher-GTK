@@ -615,6 +615,10 @@ void PreferencesWindow::add_speech_section() {
     speech_box->append(*speech_title);
 
     auto tts = std::make_shared<TtsService>();
+    // NOTE: the cloud-credential widgets below ("Credentials", "Connect", the
+    // per-engine key labels, and the no-TTS fallback message) are deliberately
+    // NOT localised: the TTS backend is slated for rework, so these strings
+    // will change. Only strings already in the shared catalogue are wrapped.
     if (tts->is_available()) {
         auto engines = tts->get_engines();
         std::vector<Glib::ustring> engine_names;
@@ -622,7 +626,7 @@ void PreferencesWindow::add_speech_section() {
             engine_names.push_back(e.name.empty() ? e.id : e.name);
         }
 
-        auto* engine_label = Gtk::make_managed<Gtk::Label>("TTS Engine:");
+        auto* engine_label = Gtk::make_managed<Gtk::Label>(_("TTS Engine"));
         engine_label->set_halign(Gtk::Align::START);
         speech_box->append(*engine_label);
 
@@ -636,7 +640,7 @@ void PreferencesWindow::add_speech_section() {
         auto cred_keys = std::make_shared<std::vector<std::string>>();
         auto cred_entries = std::make_shared<std::vector<Gtk::Entry*>>();
 
-        auto* voice_label = Gtk::make_managed<Gtk::Label>("Voice:");
+        auto* voice_label = Gtk::make_managed<Gtk::Label>(_("Voice"));
         voice_label->set_halign(Gtk::Align::START);
         speech_box->append(*voice_label);
 
@@ -741,18 +745,18 @@ void PreferencesWindow::add_speech_section() {
             });
         };
 
-        add_slider("Rate:", 0.1, 3.0, 1.0, 0.1, [tts](float v) { tts->set_rate(v); });
-        add_slider("Pitch:", 0.1, 3.0, 1.0, 0.1, [tts](float v) { tts->set_pitch(v); });
-        add_slider("Volume:", 0.0, 2.0, 1.0, 0.1, [tts](float v) { tts->set_volume(v); });
+        add_slider(_("Rate"), 0.1, 3.0, 1.0, 0.1, [tts](float v) { tts->set_rate(v); });
+        add_slider(_("Pitch"), 0.1, 3.0, 1.0, 0.1, [tts](float v) { tts->set_pitch(v); });
+        add_slider(_("Volume"), 0.0, 2.0, 1.0, 0.1, [tts](float v) { tts->set_volume(v); });
 
-        auto* preview_btn = Gtk::make_managed<Gtk::Button>("Test Voice");
+        auto* preview_btn = Gtk::make_managed<Gtk::Button>(_("Preview"));
         preview_btn->set_halign(Gtk::Align::START);
         preview_btn->set_margin_top(8);
         speech_box->append(*preview_btn);
 
         preview_btn->signal_clicked().connect([tts]() {
             tts->stop();
-            tts->speak("Hello, this is a test of the text to speech engine.");
+            tts->speak(_("Hello, this is a preview of the selected voice."));
         });
     } else {
         auto* no_tts = Gtk::make_managed<Gtk::Label>("No TTS engine available.\nInstall speech-dispatcher for system TTS.");
@@ -824,9 +828,9 @@ void PreferencesWindow::add_privacy_section() {
     title->set_halign(Gtk::Align::START);
     box->append(*title);
 
-    auto* blurb = Gtk::make_managed<Gtk::Label>("Help improve Dasher by sharing anonymous usage analytics and crash "
-                                                "reports. No typed text, clipboard contents or personal information is "
-                                                "ever collected, and reports are only sent if you opt in.");
+    auto* blurb = Gtk::make_managed<Gtk::Label>(
+        _("Dasher collects anonymous usage analytics and crash reports to understand how the app is used and to "
+          "fix bugs. No typed text, clipboard contents, or personal information is ever collected."));
     blurb->set_halign(Gtk::Align::START);
     blurb->set_wrap(true);
     blurb->set_xalign(0.0f);
