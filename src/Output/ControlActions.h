@@ -70,9 +70,9 @@ class ControlActions {
                                           bool& sentence_fallback);
 
     // Render a chord as a ydotool key argument ("29:1 42:1 106:1 106:0
-    // 42:0 29:0" — presses in order, releases in reverse). Pure; validates
-    // that codes are positive so nothing but digits/colons/spaces can reach
-    // the shell.
+    // 42:0 29:0" — presses in order, releases in reverse). Pure; the
+    // injection boundary (DirectModeService::key_sequence_valid) is what
+    // actually screens the output — chord_sequence itself validates nothing.
     static std::string chord_sequence(const Chord& chord);
 
     // ── Editor mode: native TextIter operations ──────────────────────────

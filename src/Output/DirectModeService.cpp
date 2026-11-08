@@ -149,15 +149,28 @@ bool DirectModeService::inject_ctrl_key(int evdev_code) {
 
 bool DirectModeService::key_sequence_valid(const std::string& key_sequence) {
     if (key_sequence.empty()) return false;
-    for (char c : key_sequence) {
-        const bool ok = (c >= '0' && c <= '9') || c == ':' || c == ' ';
-        if (!ok) return false;
+    // Per-token shape check: digits ':' 0|1, space-separated. Degenerate
+    // tokens ("1:2:3:4", " : ") would make ydotool exit nonzero — the job
+    // fails, the service disables itself, and a failure dialog interrupts
+    // the user. Reject here so the boundary is self-sufficient.
+    size_t i = 0;
+    while (i < key_sequence.size()) {
+        if (key_sequence[i] == ' ') { i++; continue; }
+        size_t digits = 0;
+        while (i < key_sequence.size() && key_sequence[i] >= '0' && key_sequence[i] <= '9') { i++; digits++; }
+        if (digits == 0 || i >= key_sequence.size() || key_sequence[i] != ':') return false;
+        i++;
+        if (i >= key_sequence.size() || (key_sequence[i] != '0' && key_sequence[i] != '1')) return false;
+        i++;
+        if (i < key_sequence.size() && key_sequence[i] != ' ') return false;
     }
     return true;
 }
 
 bool DirectModeService::inject_key_sequence(const std::string& key_sequence, bool changes_text) {
-    if (!m_available || !key_sequence_valid(key_sequence)) return m_available;
+    // A rejected sequence reports FAILURE (not m_available): the caller must
+    // be able to distinguish "dropped as invalid" from "queued fine".
+    if (!m_available || !key_sequence_valid(key_sequence)) return false;
 
     DirectModeJob job;
     job.is_delete = false;
