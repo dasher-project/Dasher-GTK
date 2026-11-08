@@ -35,13 +35,26 @@ jobs:
   # never starts a build (and unlike a check in the release job, a main that
   # advances during a long build can't invalidate an already-valid tag).
   tag-sanity:
-    name: Tag sanity (freshness at push time)
+    name: Tag sanity (scheme + freshness at push time)
     runs-on: ubuntu-latest
     if: github.event_name != 'pull_request'
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 0
+      - name: Reject tags outside the RFC 0023 §1 scheme
+        # Same contract as Dasher-Apple's mac-release.yml: releases follow the
+        # aligned scheme vMAJOR.MINOR.PATCH (MAJOR >= 6), optional -rc.N. This
+        # retires the legacy 0.x numbering at the workflow level — a stray
+        # v0.2.17 tag can no longer ship a package.
+        if: github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
+        env:
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          if ! [[ "$REF_NAME" =~ ^v(6|[7-9]|[1-9][0-9]+)\.[0-9]+\.[0-9]+(-rc\.[0-9]+)?$ ]]; then
+            echo "::error::Tag '$REF_NAME' does not match the RFC 0023 §1 scheme (vMAJOR.MINOR.PATCH or vMAJOR.MINOR.PATCH-rc.N, MAJOR >= 6). The 0.x numbering is retired."
+            exit 1
+          fi
       - name: Check tag freshness (tag == origin/main tip)
         # Push-only: a workflow_dispatch against an existing v* tag is a
         # deliberate rebuild/repair — main has usually advanced since the
