@@ -155,9 +155,15 @@ bool DirectModeService::key_sequence_valid(const std::string& key_sequence) {
     // the user. Reject here so the boundary is self-sufficient.
     size_t i = 0;
     while (i < key_sequence.size()) {
-        if (key_sequence[i] == ' ') { i++; continue; }
+        if (key_sequence[i] == ' ') {
+            i++;
+            continue;
+        }
         size_t digits = 0;
-        while (i < key_sequence.size() && key_sequence[i] >= '0' && key_sequence[i] <= '9') { i++; digits++; }
+        while (i < key_sequence.size() && key_sequence[i] >= '0' && key_sequence[i] <= '9') {
+            i++;
+            digits++;
+        }
         if (digits == 0 || i >= key_sequence.size() || key_sequence[i] != ':') return false;
         i++;
         if (i >= key_sequence.size() || (key_sequence[i] != '0' && key_sequence[i] != '1')) return false;
