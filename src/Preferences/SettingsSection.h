@@ -19,10 +19,10 @@
 #include <string>
 
 class SettingsSection : public Gtk::Box {
-public:
-    SettingsSection(const std::string& title, std::shared_ptr<DasherBridge> bridge, const std::string& group_filter, const std::string& subgroup_filter = "")
-        : Gtk::Box(Gtk::Orientation::VERTICAL, 8), m_bridge(bridge)
-    {
+  public:
+    SettingsSection(const std::string& title, std::shared_ptr<DasherBridge> bridge, const std::string& group_filter,
+                    const std::string& subgroup_filter = "", int exclude_key = -1)
+        : Gtk::Box(Gtk::Orientation::VERTICAL, 8), m_bridge(bridge) {
         set_margin_start(12);
         set_margin_end(12);
         set_margin_top(8);
@@ -34,6 +34,10 @@ public:
             if (info.name.empty()) continue;
             if (!group_filter.empty() && info.group != group_filter) continue;
             if (!subgroup_filter.empty() && info.subgroup != subgroup_filter) continue;
+            // exclude_key: a parameter rendered by a deliberate hand-built row
+            // in this section (e.g. Control Mode, RFC 0021) must not ALSO come
+            // out of the generic loop — the row would appear twice.
+            if (exclude_key >= 0 && info.key == exclude_key) continue;
 
             auto* row = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::HORIZONTAL, 8);
             row->set_margin_top(4);
@@ -90,6 +94,6 @@ public:
         }
     }
 
-private:
+  private:
     std::shared_ptr<DasherBridge> m_bridge;
 };

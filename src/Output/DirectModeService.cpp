@@ -147,6 +147,50 @@ bool DirectModeService::inject_ctrl_key(int evdev_code) {
     return true;
 }
 
+bool DirectModeService::key_sequence_valid(const std::string& key_sequence) {
+    if (key_sequence.empty()) return false;
+    // Per-token shape check: digits ':' 0|1, space-separated. Degenerate
+    // tokens ("1:2:3:4", " : ") would make ydotool exit nonzero — the job
+    // fails, the service disables itself, and a failure dialog interrupts
+    // the user. Reject here so the boundary is self-sufficient.
+    size_t i = 0;
+    while (i < key_sequence.size()) {
+        if (key_sequence[i] == ' ') {
+            i++;
+            continue;
+        }
+        size_t digits = 0;
+        while (i < key_sequence.size() && key_sequence[i] >= '0' && key_sequence[i] <= '9') {
+            i++;
+            digits++;
+        }
+        if (digits == 0 || i >= key_sequence.size() || key_sequence[i] != ':') return false;
+        i++;
+        if (i >= key_sequence.size() || (key_sequence[i] != '0' && key_sequence[i] != '1')) return false;
+        i++;
+        if (i < key_sequence.size() && key_sequence[i] != ' ') return false;
+    }
+    return true;
+}
+
+bool DirectModeService::inject_key_sequence(const std::string& key_sequence, bool changes_text) {
+    // A rejected sequence reports FAILURE (not m_available): the caller must
+    // be able to distinguish "dropped as invalid" from "queued fine".
+    if (!m_available || !key_sequence_valid(key_sequence)) return false;
+
+    DirectModeJob job;
+    job.is_delete = false;
+    job.key_sequence = key_sequence;
+    job.chord_changes_text = changes_text;
+    {
+        std::lock_guard<std::mutex> lock(m_mutex);
+        job.generation = m_generation;
+        m_queue.push(std::move(job));
+    }
+    m_cv.notify_one();
+    return true;
+}
+
 bool DirectModeService::inject_delete(const std::string& deleted_text) {
     if (!m_available || deleted_text.empty()) return m_available;
 
@@ -175,8 +219,21 @@ bool DirectModeService::run_job(const DirectModeJob& job) {
     // event is the SIGNAL we want — paste changes the target wholesale and
     // the engine must re-seed from it (greptile P1 "paste synchronization
     // is suppressed"); the shadow-compare guard already prevents no-op
-    // rebuilds for Copy/Select All.
-    if (job.ctrl_key <= 0) m_last_injection_ms.store(static_cast<int64_t>(g_get_monotonic_time()) / 1000);
+    // rebuilds for Copy/Select All. RFC 0021 chord jobs arm it selectively —
+    // see the chord branch below.
+    if (job.key_sequence.empty() && job.ctrl_key <= 0)
+        m_last_injection_ms.store(static_cast<int64_t>(g_get_monotonic_time()) / 1000);
+    if (!job.key_sequence.empty()) {
+        // RFC 0021 chords. Select/move (caret-only) arm the quiet window —
+        // their caret events must not re-seed mid-dash. Delete-family chords
+        // deliberately do NOT (the target text changed; the caret event is
+        // the re-seed signal, exactly the paste precedent above).
+        if (!job.chord_changes_text) m_last_injection_ms.store(static_cast<int64_t>(g_get_monotonic_time()) / 1000);
+        // Validated at enqueue (inject_key_sequence); the re-check keeps
+        // run_job safe if a job ever arrives by another path.
+        if (!key_sequence_valid(job.key_sequence)) return false;
+        return run_command("ydotool key " + job.key_sequence + " >/dev/null 2>&1");
+    }
     if (job.ctrl_key > 0) {
         // RFC 0015 clipboard bridge: Ctrl held, key tap, Ctrl released —
         // one ydotool invocation so the target sees an atomic chord.

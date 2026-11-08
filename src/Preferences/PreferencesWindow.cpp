@@ -210,9 +210,53 @@ void PreferencesWindow::rebuild_sections() {
         {"gamemode", _("Game Mode"), _("Game Mode")},
     };
 
+    // Control Mode (RFC 0021 / issue #109) is rendered by a deliberate
+    // hand-built row inside the Input section below, so the generic loop
+    // skips it there (exclude_key) — before this it appeared as an
+    // accidental mid-list row labelled by the engine's human name with a
+    // description that never mentioned selection, the capability this
+    // frontend actually adds.
+    const int control_mode_key = m_bridge->find_parameter_key("BP_CONTROL_MODE");
+
     for (auto& g : groups) {
         auto* scrolled = Gtk::make_managed<Gtk::ScrolledWindow>();
-        auto* section = Gtk::make_managed<SettingsSection>(g.label, m_bridge, g.group);
+        auto* section = Gtk::make_managed<SettingsSection>(g.label, m_bridge, g.group, /*subgroup_filter=*/"",
+                                                           g.id == "input" ? control_mode_key : -1);
+        if (g.id == "input" && control_mode_key >= 0) {
+            // RFC 0021: Control Mode gets a deliberate, discoverable row at
+            // the top of Input (mirroring the dwell-to-click row pattern):
+            // a catalogue-localised label + a description that says what it
+            // actually adds — Select/Move/Delete editing commands on the
+            // canvas. The switch itself is the engine parameter via
+            // SyncedSwitch, so persistence, the engine link and the
+            // setting_changed telemetry all match the generic rows.
+            const auto info = m_bridge->find_parameter_info("BP_CONTROL_MODE");
+            auto* row = Gtk::make_managed<Gtk::Box>(Gtk::Orientation::HORIZONTAL, 8);
+            row->set_margin_top(4);
+            row->set_margin_bottom(4);
+
+            // Catalogue msgid (32 locales — key control_mode_tooltip); the
+            // engine's own human name is English-only today.
+            auto* name_label = Gtk::make_managed<Gtk::Label>(_("Control mode"));
+            name_label->set_halign(Gtk::Align::START);
+            name_label->set_hexpand(true);
+            row->append(*name_label);
+
+            row->append(*Gtk::make_managed<SyncedSwitch>(info.key, info.name, m_bridge));
+
+            // Description deliberately NOT _()-wrapped: the shared catalogue
+            // has no string for it and a local .po edit would break the
+            // strings-freshness pipeline (same English-only precedent as the
+            // dwell-to-click and typing-rate descriptions; next catalogue
+            // batch should pick it up as a new key).
+            row->append(*Gtk::make_managed<PopoverMenuButtonInfo>(
+                "Adds Select, Move and Delete editing commands to the Dasher canvas. Navigate into the Control "
+                "node while writing to select a character, word, paragraph or all text, move the cursor, or "
+                "delete — without the toolbar. Works in the output pane and in Keyboard mode (typing into other "
+                "apps)."));
+
+            section->prepend(*row);
+        }
         // Dwell-to-click is a GTK-side input mode (no backing DasherCore parameter,
         // so SettingsSection can't auto-render it). Hand-build its toggle here so it
         // lives under Input alongside the engine's input settings, instead of in the

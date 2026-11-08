@@ -330,3 +330,118 @@ TEST_CASE("text-size callback is cached per label and size") {
     CHECK(repeats == 0);
     CHECK(pair_counts.size() > 10); // the cache engaged on a real tree
 }
+
+// ── RFC 0021: control-action registration ordering ─────────────────────────
+//
+// The engine parses control.xml at the first dasher_set_screen_size (Realize)
+// and PRUNES any action element with no registered handler — so select/move/
+// delete must be registered before that point or the groups silently vanish
+// (this is why GTK users saw none of them before issue #109). GTK's ordering
+// is structural: registration happens in the DasherBridge CONSTRUCTOR, the
+// screen size in a member function the canvas calls later. This pins the
+// source order (the same class of wiring-contract test Dasher-Apple and
+// Dasher-Windows ship for their bridges).
+TEST_CASE("bridge registers select/move/delete before set_screen_size") {
+    std::ifstream in("src/Engine/DasherBridge.cpp");
+    REQUIRE(in.good()); // WORKING_DIRECTORY is the source root (CMakeLists)
+
+    std::string src((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
+    const auto line_of = [&src](const std::string& needle) {
+        const auto pos = src.find(needle);
+        REQUIRE(pos != std::string::npos);
+        return pos;
+    };
+
+    const auto ctor = line_of("DasherBridge::DasherBridge(");
+    const auto reg_select = line_of("dasher_register_action(m_ctx, \"select\"");
+    const auto reg_move = line_of("dasher_register_action(m_ctx, \"move\"");
+    const auto reg_delete = line_of("dasher_register_action(m_ctx, \"delete\"");
+    const auto screen_size = line_of("dasher_set_screen_size(m_ctx");
+    const auto dtor = line_of("DasherBridge::~DasherBridge(");
+
+    // All three registrations live in the constructor body, after
+    // dasher_create, before the destructor (i.e. once per bridge, at birth).
+    CHECK(reg_select > ctor);
+    CHECK(reg_select < dtor);
+    CHECK(reg_move > ctor);
+    CHECK(reg_move < dtor);
+    CHECK(reg_delete > ctor);
+    CHECK(reg_delete < dtor);
+    // And the first dasher_set_screen_size call site (the set_screen_size
+    // member) comes after the constructor in the file — registrations beat
+    // realization by construction.
+    CHECK(screen_size > reg_delete);
+}
+
+TEST_CASE("control mode realizes cleanly with the actions registered") {
+    // Runtime smoke: with BP_CONTROL_MODE on from birth, the engine
+    // realizes, runs frames and reports no sticky error — the parse of
+    // control.xml (including the now-live select/move/delete groups) must
+    // not regress startup. The measurement callback is swapped for the same
+    // stub the other frame-driving tests use: the real one measures via
+    // Pango wrappers that need an initialised display, which a ctest run
+    // does not have.
+    const std::string data = find_data_dir();
+    REQUIRE_FALSE(data.empty());
+
+    DasherBridge bridge(data, make_fresh_user_dir());
+    bridge.set_text_size_callback_for_tests([](const std::string& t, int fs, int* w, int* h) {
+        *w = static_cast<int>(t.size()) * fs / 2;
+        *h = fs;
+        return 0;
+    });
+    const int key = bridge.find_parameter_key("BP_CONTROL_MODE");
+    REQUIRE(key >= 0);
+    bridge.set_bool_parameter(key, true);
+    bridge.set_screen_size(800, 600);
+    for (int i = 0; i < 30; i++)
+        bridge.frame(i * 16);
+    CHECK_FALSE(bridge.has_engine_error());
+    // The parameter itself is live and persisted through the engine.
+    CHECK(bridge.get_bool_parameter(key));
+}
+
+TEST_CASE("control palette renders labelled children (the empty-grey-box regression)") {
+    // #109 live repro: the shipped app's Data/ never included control/,
+    // so BP_CONTROL_MODE produced an EMPTY control box — one anonymous
+    // grey node, no children, no labels. This pins the actual user-visible
+    // contract: with the palette present and steering into the control
+    // graft (DasherCore test_control_select_gating's recipe), the frame's
+    // TEXT commands must carry real control labels. A missing palette, a
+    // parse failure, or a pruning regression all collapse to "no labels"
+    // and fail here.
+    const std::string data = find_data_dir();
+    REQUIRE_FALSE(data.empty());
+    REQUIRE(std::filesystem::exists(std::filesystem::path(data) / "control" / "control.xml"));
+
+    DasherBridge bridge(data, make_fresh_user_dir());
+    bridge.set_text_size_callback_for_tests([](const std::string& t, int fs, int* w, int* h) {
+        *w = static_cast<int>(t.size()) * fs / 2;
+        *h = fs;
+        return 0;
+    });
+    const int key = bridge.find_parameter_key("BP_CONTROL_MODE");
+    REQUIRE(key >= 0);
+    bridge.set_bool_parameter(key, true);
+    const int speed_key = bridge.find_parameter_key("LP_MAX_BITRATE");
+    if (speed_key >= 0) bridge.set_long_parameter(speed_key, 300);
+
+    bridge.set_screen_size(800, 600);
+    bool saw_move = false, saw_delete = false, saw_select = false;
+    int64_t t = 1000;
+    bridge.mouse_move(700.0f, 580.0f);
+    bridge.mouse_down();
+    for (int fr = 0; fr < 900 && !(saw_move && saw_delete && saw_select); fr++) {
+        bridge.mouse_move(700.0f, 580.0f);
+        const auto result = bridge.frame(t += 16);
+        for (const auto& s : result.strings) {
+            if (s.find("Move") != std::string::npos) saw_move = true;
+            if (s.find("Delete") != std::string::npos) saw_delete = true;
+            if (s.find("Select") != std::string::npos) saw_select = true;
+        }
+    }
+    bridge.mouse_up();
+    CHECK(saw_move);
+    CHECK(saw_delete);
+    CHECK(saw_select);
+}

@@ -64,9 +64,12 @@
     "ui_action": {
       "description": "User activated a control in the main UI (outside settings windows) — RFC 0001 2026-10-28 amendment. Answers 'where should main-UI focus go'.",
       "properties": {
-        "surface": { "type": "string", "enum": ["main_toolbar", "status_bar", "ime_toolbar", "ime_topbar"] },
-        "action": { "type": "string", "description": "Fixed vocabulary; new identifiers require a schema update", "examples": ["new", "open", "save", "pause_play", "game_mode", "settings", "copy", "share", "emoji_toggle", "speed_up", "speed_down", "layout", "float", "dock", "hide"] },
-        "state": { "type": "string", "enum": ["on", "off", "paused", "playing", "text", "emoji"], "description": "Optional — for toggles" }
+        "surface": { "type": "string", "enum": ["main_toolbar", "status_bar", "ime_toolbar", "ime_topbar", "control_tree"], "description": "control_tree = a zoomed control-mode node (RFC 0021). NOTE: the canonical governance copy of this schema must absorb this additive value (schema-sync.yml pulls from dasher-project/governance) — same local-amendment precedent as Dasher-Windows #81." },
+        "action": { "type": "string", "description": "Fixed vocabulary; new identifiers require a schema update", "examples": ["new", "open", "save", "pause_play", "game_mode", "settings", "copy", "share", "emoji_toggle", "speed_up", "speed_down", "layout", "float", "dock", "hide", "select", "move", "delete"] },
+        "state": { "type": "string", "enum": ["on", "off", "paused", "playing", "text", "emoji"], "description": "Optional — for toggles" },
+        "dist": { "type": "string", "enum": ["char", "word", "sentence", "paragraph", "all"], "description": "Optional — RFC 0021 control-tree actions only: the granularity the engine requested (verbatim; the applied granularity may differ, see fallback)" },
+        "forward": { "type": "string", "enum": ["yes", "no"], "description": "Optional — RFC 0021 control-tree actions only: direction" },
+        "fallback": { "type": "string", "enum": ["paragraph"], "description": "Optional — RFC 0021 control-tree actions only: present when the platform could not honour the requested granularity and applied this one instead (e.g. sentence has no direct-mode keystroke on Linux/Windows, so paragraph runs). Field data must never read sentence-accurate when the applied granularity was paragraph" }
       },
       "pii": false
     },

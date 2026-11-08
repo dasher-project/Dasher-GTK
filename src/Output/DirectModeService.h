@@ -17,9 +17,9 @@
 // waiting on the ydotoold daemon round-trip must never happen on the GTK
 // frame loop (a slow daemon would hitch rendering on every character), and a
 // single queue keeps insert/delete ordering stable.
-// One queued keyboard-mode command: either text to type or text that was
-// deleted (one backspace per character). Namespace scope rather than a
-// nested private struct so clang-format versions agree on the layout.
+// One queued keyboard-mode command: text to type, text that was
+// deleted (one backspace per character), or a chord. Namespace scope rather
+// than a nested private struct so clang-format versions agree on the layout.
 struct DirectModeJob {
     bool is_delete = false;
     std::string text;
@@ -28,6 +28,19 @@ struct DirectModeJob {
     // engine cannot reach — frontend injections, same as v5). Evdev keycode
     // (30=A, 46=C, 47=V); -1 = not a combo job.
     int ctrl_key = -1;
+    // RFC 0021 control actions: a raw ydotool key sequence for a
+    // select/move/delete chord, e.g. "29:1 42:1 106:1 106:0 42:0 29:0"
+    // (presses in order, releases reversed — one atomic invocation). Empty
+    // = not a chord job. Built by ControlActions::direct_plan, validated on
+    // entry (digits/colons/spaces only — it reaches a shell command line).
+    std::string key_sequence;
+    // RFC 0021: true when the chord CHANGES THE TARGET'S TEXT (the delete
+    // family). Those chords deliberately do NOT arm the self-injection
+    // quiet window — the caret event they provoke is the re-seed signal
+    // (the paste precedent). Select/move chords only move the caret: their
+    // events carry no new text, so arming the window prevents the
+    // caret-anchored re-seed from resetting the canvas mid-dash.
+    bool chord_changes_text = false;
     // Availability generation at enqueue time. A failure only counts against
     // the verdict that was current when the job was queued: one queued before
     // a successful recheck() (Retry) must not disable the recovered service.
@@ -55,6 +68,14 @@ class DirectModeService {
     // injections aimed at the target, exactly like v5 and Dasher-Windows.
     bool inject_ctrl_key(int evdev_code);
 
+    // RFC 0021 control actions: queue one atomic key-sequence chord (the
+    // ydotool argument string, e.g. "29:1 42:1 106:1 106:0 42:0 29:0") for
+    // the focused window. changes_text selects the self-injection quiet
+    // window behaviour — see DirectModeJob::chord_changes_text. Sequences
+    // containing anything but digits, colons and spaces are rejected (the
+    // string reaches a shell command line).
+    bool inject_key_sequence(const std::string& key_sequence, bool changes_text);
+
     // Monotonic ms (g_get_monotonic_time()/1000) of the most recent
     // injection job RUN by the worker — the TargetContextWatcher's
     // self-injection quiet window keys off this (our injections fire the
@@ -81,6 +102,12 @@ class DirectModeService {
     // Number of UTF-8 code points in `text` (lead-byte count). Injected
     // backspaces must match characters, or multibyte output over-deletes.
     static int utf8_length(const std::string& text);
+
+    // RFC 0021: validate a chord sequence before it is queued — only
+    // digits, colons and spaces may reach the ydotool command line (the
+    // planner generates them, but validation lives at the injection
+    // boundary, defence in depth). Pure, exposed for tests.
+    static bool key_sequence_valid(const std::string& key_sequence);
 
   private:
     std::atomic<int64_t> m_last_injection_ms{0};
