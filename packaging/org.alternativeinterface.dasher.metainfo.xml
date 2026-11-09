@@ -36,6 +36,12 @@
   </developer>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="6.0.1" date="2026-11-09">
+      <description>
+        <p>Dasher 6.0.1 brings the control node to GTK: with Control mode enabled in Preferences (Input tab), Select, Move and Delete commands appear inside the Dasher canvas — select or delete by letter, word, sentence, paragraph or everything, forwards or backwards, in the output pane and while typing into other apps. The control palette had never actually shipped with the app, so this is its first appearance on Linux.</p>
+        <p>The on-screen keyboard window can now be moved by dragging the grip at the left of its toolbar, and the keyboard toolbar gains backspace, caret movement and cut with press-and-hold repeat, matching the Windows and macOS editions. In the main window, the output toolbar wraps onto extra rows when the pane is narrow instead of hiding buttons, and the toolbars are more compact.</p>
+      </description>
+    </release>
     <release version="6.0.0" date="2026-11-08">
       <description>
         <p>Dasher 6.0.0 is the first release under the project's new unified version numbering: every Dasher edition — Linux, Windows, macOS, Android and web — now shares the same version number, so a version means the same generation everywhere.</p>
