@@ -43,7 +43,7 @@ jobs:
           git checkout -b "$BRANCH"
           cp /tmp/canonical.json analytics-events.json
           git add analytics-events.json
-          git commit -m "chore: sync analytics schema from governance (RFC 0022 item 6)"
+          git commit -s -m "chore: sync analytics schema from governance (RFC 0022 item 6)"
           git push origin "$BRANCH"
           gh pr create --head "$BRANCH" --title "chore: sync analytics schema from governance" \
             --body "Automated (RFC 0022 item 6): the canonical schema changed in governance; this regenerates the repo copy. Review the diff for events this frontend should start/stop emitting."
