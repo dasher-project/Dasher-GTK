@@ -16,6 +16,13 @@
     <file alias="icons/panel-left.svg">icons/lucide-panel-left.svg</file>
     <file alias="icons/panel-bottom.svg">icons/lucide-panel-bottom.svg</file>
     <file alias="icons/panel-top.svg">icons/lucide-panel-top.svg</file>
+    <file alias="icons/grip.svg">icons/lucide-grip-horizontal.svg</file>
+    <file alias="icons/search.svg">icons/lucide-search.svg</file>
+    <file alias="icons/text-select.svg">icons/lucide-text-select.svg</file>
+    <file alias="icons/delete.svg">icons/lucide-delete.svg</file>
+    <file alias="icons/arrow-left.svg">icons/lucide-arrow-left.svg</file>
+    <file alias="icons/arrow-right.svg">icons/lucide-arrow-right.svg</file>
+    <file alias="icons/scissors.svg">icons/lucide-scissors.svg</file>
     <file alias="icons/info.svg">icons/lucide-info.svg</file>
   </gresource>
 </gresources>

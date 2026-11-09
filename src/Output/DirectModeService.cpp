@@ -191,6 +191,20 @@ bool DirectModeService::inject_key_sequence(const std::string& key_sequence, boo
     return true;
 }
 
+bool DirectModeService::inject_key(int evdev_code) {
+    if (!m_available || evdev_code <= 0) return m_available;
+
+    DirectModeJob job;
+    job.key = evdev_code;
+    {
+        std::lock_guard<std::mutex> lock(m_mutex);
+        job.generation = m_generation;
+        m_queue.push(std::move(job));
+    }
+    m_cv.notify_one();
+    return true;
+}
+
 bool DirectModeService::inject_delete(const std::string& deleted_text) {
     if (!m_available || deleted_text.empty()) return m_available;
 
@@ -233,6 +247,12 @@ bool DirectModeService::run_job(const DirectModeJob& job) {
         // run_job safe if a job ever arrives by another path.
         if (!key_sequence_valid(job.key_sequence)) return false;
         return run_command("ydotool key " + job.key_sequence + " >/dev/null 2>&1");
+    }
+    if (job.key > 0) {
+        // Plain editing key (mini-bar backspace/arrows): press + release in
+        // one ydotool invocation, like the Ctrl-combos below.
+        const std::string code = std::to_string(job.key);
+        return run_command("ydotool key " + code + ":1 " + code + ":0 >/dev/null 2>&1");
     }
     if (job.ctrl_key > 0) {
         // RFC 0015 clipboard bridge: Ctrl held, key tap, Ctrl released —

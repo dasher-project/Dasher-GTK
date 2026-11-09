@@ -34,6 +34,16 @@ actionbar.topbar > revealer > box {
     padding: 4px 8px;
 }
 
+/* Issue #110 item 3: the output-pane toolbar is a wrapping FlowBox (the
+   single-row ActionBar clipped its actions once the pane got narrow).
+   Same skin as the actionbar rule above, minus the revealer indirection. */
+flowbox.topbar {
+    border-bottom: 1px solid @border-light;
+    background-color: @bg-light;
+    min-height: 48px;
+    padding: 4px 8px;
+}
+
 /* Footer (status) bar gets the same treatment as the top bar: without an
    explicit min-height the actionbar collapses around its children and the
    dropdowns/buttons squeeze into a strip. The air between the controls
@@ -45,10 +55,43 @@ actionbar > revealer > box {
     padding: 4px 8px;
 }
 
-actionbar.topbar button {
-    min-width: 48px;
-    min-height: 40px;
-    padding: 4px 10px;
+/* Issue #110 item 4: icon/button parity with Dasher-Windows (pane toolbar
+   46×44, kb-bar 32×32, 16–18 px glyphs) and Dasher-Apple (32×32). GTK's
+   previous 48/40 minimums plus padding rendered ~70×50 buttons — visibly
+   larger than either. min-width/min-height in GTK CSS exclude padding and
+   border, so 36+16+2 ≈ 54 wide and 32+8+2 = 42 tall: inside the Windows
+   band while keeping every hit area ≥32 px. */
+actionbar.topbar button,
+flowbox.topbar button {
+    min-width: 36px;
+    min-height: 32px;
+    padding: 4px 8px;
+}
+
+/* Keyboard-mode mini-bar (issue #110 item 4, Windows' kb-bar parity):
+   24 min + 8 padding + 2 border ≈ 34 px buttons — Windows uses 32×32 with
+   18 px Lucide glyphs; still above the 32 px touch-target floor. */
+.minibar button {
+    min-width: 24px;
+    min-height: 24px;
+    padding: 4px;
+}
+
+/* Mini-bar drag grip (issue #110 item 1): the 24 px bundled grip texture
+   plus 8 px padding ≈ 40 px grab area (≥ the 32 px touch floor) on the
+   undecorated keyboard window. */
+.minibar .drag-grip {
+    min-width: 16px;
+    min-height: 16px;
+    padding: 8px;
+}
+
+/* Bottom-bar speed stepper (issue #110 item 4): compact like Windows'
+   ui-step-btn strip instead of a full-size default button. */
+button.step-btn {
+    min-width: 26px;
+    min-height: 26px;
+    padding: 2px 8px;
 }
 
 #InfoPopup:hover {
@@ -83,4 +126,17 @@ textview.dasher-output {
     padding: 8px 16px;
     border-radius: 8px;
     font-size: 14pt;
+}
+
+
+/* Footer bar (issue #110 round 2): a touch slimmer than the header —
+   matches the Windows/Apple bottom strips. */
+.footer-bar button {
+    min-height: 26px;
+    min-width: 26px;
+    padding: 2px 6px;
+}
+.footer-bar button.step-btn {
+    min-height: 24px;
+    padding: 1px 7px;
 }
