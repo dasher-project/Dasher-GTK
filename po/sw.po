@@ -169,6 +169,9 @@ msgstr "maudhui au taarifa binafsi zikikusanywa. Unaweza kubadilisha hii yoyote"
 msgid "Control"
 msgstr "Udhibiti"
 
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "Inaongeza Chagua, Hamisha na Futa amri za uhariri kwenye turubai: chagua, sogeza au futa maandishi kwa herufi, neno, sentensi, aya au vyote, mbele au nyuma."
+
 msgid "Control mode: enabled"
 msgstr "Hali ya udhibiti: imewezeshwa"
 
@@ -309,6 +312,9 @@ msgstr "Hali ya Moja kwa Moja"
 
 msgid "Done"
 msgstr "Imekamilika"
+
+msgid "Drag to move the keyboard window"
+msgstr "Buruta ili kusogeza kidirisha cha kibodi"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "Kaa juu ya sehemu moja ili kusababisha kubofya, badala ya kubonyeza kitufe au swichi."
@@ -618,6 +624,9 @@ msgstr "Hakuna injini ya hotuba inayopatikana. Jenga kwa kipengele cha TTS cha m
 
 msgid "No training data to export yet"
 msgstr "Hakuna data ya mafunzo ya kusafirisha bado"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "Hakuna injini ya TTS inayopatikana. Sakinisha kisambaza sauti kwa mfumo wa TTS."
 
 msgid "No user training data yet"
 msgstr "Hakuna data ya mafunzo ya mtumiaji bado"

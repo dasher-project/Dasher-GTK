@@ -169,6 +169,9 @@ msgstr "indhold eller personlige oplysninger nogensinde indsamles. Du kan ændre
 msgid "Control"
 msgstr "Kontrol"
 
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "Tilføjer Vælg, Flyt og Slet redigeringskommandoer til lærredet: vælg, flyt eller slet tekst efter bogstav, ord, sætning, afsnit eller alle, fremad eller tilbage."
+
 msgid "Control mode: enabled"
 msgstr "Kontroltilstand: aktiveret"
 
@@ -309,6 +312,9 @@ msgstr "Direkte tilstand"
 
 msgid "Done"
 msgstr "Færdig"
+
+msgid "Drag to move the keyboard window"
+msgstr "Træk for at flytte tastaturvinduet"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "Hold musen over ét punkt for at udløse et klik i stedet for at trykke på en knap eller kontakt."
@@ -618,6 +624,9 @@ msgstr "Ingen taleengine tilgængelig. Byg med systemets TTS-funktion, eller ops
 
 msgid "No training data to export yet"
 msgstr "Ingen træningsdata at eksportere endnu"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "Ingen TTS-motor tilgængelig. Installer taledispatcher til system TTS."
 
 msgid "No user training data yet"
 msgstr "Ingen brugertræningsdata endnu"

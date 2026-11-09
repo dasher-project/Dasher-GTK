@@ -169,6 +169,9 @@ msgstr "περιεχόμενο ή προσωπικές πληροφορίες σ
 msgid "Control"
 msgstr "Έλεγχος"
 
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "Προσθέτει εντολές επεξεργασίας Επιλογή, Μετακίνηση και Διαγραφή στον καμβά: επιλέξτε, μετακινήστε ή διαγράψτε κείμενο ανά γράμμα, λέξη, πρόταση, παράγραφο ή όλα, προς τα εμπρός ή προς τα πίσω."
+
 msgid "Control mode: enabled"
 msgstr "Λειτουργία ελέγχου: ενεργοποιημένη"
 
@@ -309,6 +312,9 @@ msgstr "Άμεση λειτουργία"
 
 msgid "Done"
 msgstr "Γινώμενος"
+
+msgid "Drag to move the keyboard window"
+msgstr "Σύρετε για να μετακινήσετε το παράθυρο του πληκτρολογίου"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "Κράτα τον δείκτη σε ένα σημείο για να ενεργοποιήσεις ένα κλικ, αντί να πατήσεις ένα κουμπί ή διακόπτη."
@@ -618,6 +624,9 @@ msgstr "Δεν υπάρχει διαθέσιμος κινητήρας ομιλί
 
 msgid "No training data to export yet"
 msgstr "Δεν υπάρχει ακόμη δεδομένα εκπαίδευσης προς εξαγωγή"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "Δεν υπάρχει διαθέσιμος κινητήρας TTS. Εγκαταστήστε τον αποστολέα ομιλίας για το σύστημα TTS."
 
 msgid "No user training data yet"
 msgstr "Δεν υπάρχουν ακόμη δεδομένα εκπαίδευσης χρήστη"

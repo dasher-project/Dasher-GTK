@@ -169,6 +169,9 @@ msgstr "ഉള്ളടക്കങ്ങൾ അല്ലെങ്കിൽ വ�
 msgid "Control"
 msgstr "നിയന്ത്രണം"
 
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "എഡിറ്റിംഗ് കമാൻഡുകൾ തിരഞ്ഞെടുക്കുക, നീക്കുക, ഇല്ലാതാക്കുക എന്നിവ ക്യാൻവാസിലേക്ക് ചേർക്കുന്നു: അക്ഷരം, വാക്ക്, വാക്യം, ഖണ്ഡിക അല്ലെങ്കിൽ എല്ലാം, മുന്നോട്ട് അല്ലെങ്കിൽ പിന്നിലേക്ക് വാചകം തിരഞ്ഞെടുക്കുക, നീക്കുക അല്ലെങ്കിൽ ഇല്ലാതാക്കുക."
+
 msgid "Control mode: enabled"
 msgstr "നിയന്ത്രണ മോഡ്: സജീവം"
 
@@ -309,6 +312,9 @@ msgstr "ഡയറക്ട് മോഡ്"
 
 msgid "Done"
 msgstr "ചെയ്തുകഴിഞ്ഞു"
+
+msgid "Drag to move the keyboard window"
+msgstr "കീബോർഡ് വിൻഡോ നീക്കാൻ വലിച്ചിടുക"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "ഒരു സ്ഥലത്ത് നിൽക്കുക ക്ലിക്ക് ട്രിഗർ ചെയ്യാൻ, ബട്ടൺ അല്ലെങ്കിൽ സ്വിച്ച് അമർത്തുന്നതിനുപകരം."
@@ -618,6 +624,9 @@ msgstr "എന്നും സംസാര എഞ്ചിൻ ലഭ്യമല
 
 msgid "No training data to export yet"
 msgstr "ഇനിയും എക്സ്പോർട്ട് ചെയ്യാനുള്ള പരിശീലന ഡാറ്റ ഇല്ല"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "TTS എഞ്ചിൻ ലഭ്യമല്ല. സിസ്റ്റം TTS-നായി സ്പീച്ച്-ഡിസ്പാച്ചർ ഇൻസ്റ്റാൾ ചെയ്യുക."
 
 msgid "No user training data yet"
 msgstr "ഇനിയും ഉപയോക്തൃ പരിശീലന ഡാറ്റ ഇല്ല"

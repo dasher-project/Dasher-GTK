@@ -169,6 +169,9 @@ msgstr "مواد یا ذاتی معلومات کبھی بھی جمع نہیں ک
 msgid "Control"
 msgstr "کنٹرول"
 
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "کینوس میں سلیکٹ، موو اور ڈیلیٹ ایڈیٹنگ کمانڈز شامل کرتا ہے: حرف، لفظ، جملہ، پیراگراف یا سبھی، آگے یا پیچھے کی طرف متن کو منتخب، منتقل یا حذف کریں۔"
+
 msgid "Control mode: enabled"
 msgstr "کنٹرول موڈ: فعال"
 
@@ -309,6 +312,9 @@ msgstr "ڈائریکٹ موڈ"
 
 msgid "Done"
 msgstr "ہو گیا"
+
+msgid "Drag to move the keyboard window"
+msgstr "کی بورڈ ونڈو کو منتقل کرنے کے لیے گھسیٹیں۔"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "کسی بٹن یا سوئچ کو دبانے کی بجائے ایک جگہ پر ہوور کریں تاکہ کلک ٹرگر ہو۔"
@@ -618,6 +624,9 @@ msgstr "کوئی تقریر کا انجن دستیاب نہیں۔ سسٹم TTS �
 
 msgid "No training data to export yet"
 msgstr "ابھی تک برآمد کرنے کے لیے کوئی ٹریننگ ڈیٹا نہیں ہے"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "کوئی TTS انجن دستیاب نہیں ہے۔ سسٹم TTS کے لیے اسپیچ ڈسپیچر انسٹال کریں۔"
 
 msgid "No user training data yet"
 msgstr "ابھی تک کوئی یوزر ٹریننگ ڈیٹا نہیں ہے"

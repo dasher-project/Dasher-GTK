@@ -169,6 +169,9 @@ msgstr "obsah nebo osobní údaje jsou kdykoli sbírány. Toto můžete kdykoli 
 msgid "Control"
 msgstr "Kontrola"
 
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "Přidá na plátno editační příkazy Select, Move a Delete: výběr, přesun nebo odstranění textu po písmenech, slovech, větách, odstavcích nebo vše, dopředu nebo dozadu."
+
 msgid "Control mode: enabled"
 msgstr "Režim ovládání: zapnuto"
 
@@ -309,6 +312,9 @@ msgstr "Přímý režim"
 
 msgid "Done"
 msgstr "Hotovo"
+
+msgid "Drag to move the keyboard window"
+msgstr "Tažením přesunete okno klávesnice"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "Zůstaňte na jednom místě, abyste vyvolali kliknutí, místo stisknutí tlačítka nebo spínače."
@@ -618,6 +624,9 @@ msgstr "Žádný dostupný řečový modul. Sestavte s funkcí systému TTS nebo
 
 msgid "No training data to export yet"
 msgstr "Žádná výcviková data k exportu zatím"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "Není k dispozici žádný motor TTS. Nainstalujte hlasový dispečer pro systém TTS."
 
 msgid "No user training data yet"
 msgstr "Dosud žádná data o školení uživatele"

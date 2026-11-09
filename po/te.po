@@ -169,6 +169,9 @@ msgstr "విషయాలు లేదా వ్యక్తిగత సమా
 msgid "Control"
 msgstr "నియంత్రణ"
 
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "కాన్వాస్‌కి ఎంచుకోండి, తరలించు మరియు తొలగించు సవరణ ఆదేశాలను జోడిస్తుంది: అక్షరం, పదం, వాక్యం, పేరా లేదా అన్నీ, ముందుకు లేదా వెనుకకు వచనాన్ని ఎంచుకోండి, తరలించండి లేదా తొలగించండి."
+
 msgid "Control mode: enabled"
 msgstr "నియంత్రణ మోడ్: ప్రారంభించబడింది"
 
@@ -309,6 +312,9 @@ msgstr "డైరెక్ట్ మోడ్"
 
 msgid "Done"
 msgstr "పూర్తయింది"
+
+msgid "Drag to move the keyboard window"
+msgstr "కీబోర్డ్ విండోను తరలించడానికి లాగండి"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "బటన్ లేదా స్విచ్‌ను నొక్కడానికి బదులుగా, క్లిక్‌ను ప్రేరేపించడానికి ఒక చోట హోవర్ చేయండి."
@@ -618,6 +624,9 @@ msgstr "ఎటువంటి మాటల ఇంజిన్ అందుబా
 
 msgid "No training data to export yet"
 msgstr "ఇంకా ఎగుమతి చేయడానికి ట్రెయినింగ్ డేటా లేదు"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "TTS ఇంజిన్ అందుబాటులో లేదు. సిస్టమ్ TTS కోసం స్పీచ్-డిస్పాచర్‌ను ఇన్‌స్టాల్ చేయండి."
 
 msgid "No user training data yet"
 msgstr "ఇంకా వినియోగదారు ట్రెయినింగ్ డేటా లేదు"

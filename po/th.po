@@ -169,6 +169,9 @@ msgstr "เนื้อหาหรือข้อมูลส่วนบุค
 msgid "Control"
 msgstr "ควบคุม"
 
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "เพิ่มคำสั่งแก้ไขเลือก ย้าย และลบลงบนผืนผ้าใบ: เลือก ย้าย หรือลบข้อความตามตัวอักษร คำ ประโยค ย่อหน้า หรือทั้งหมด ไปข้างหน้าหรือข้างหลัง"
+
 msgid "Control mode: enabled"
 msgstr "โหมดควบคุม: เปิดใช้งาน"
 
@@ -309,6 +312,9 @@ msgstr "โหมดโดยตรง"
 
 msgid "Done"
 msgstr "เสร็จแล้ว"
+
+msgid "Drag to move the keyboard window"
+msgstr "ลากเพื่อย้ายหน้าต่างแป้นพิมพ์"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "ลอยค้างอยู่ในตำแหน่งเดียวเพื่อกระตุ้นการคลิก แทนการกดปุ่มหรือตัวสวิตช์"
@@ -618,6 +624,9 @@ msgstr "ไม่มีเครื่องยนต์การพูดพร
 
 msgid "No training data to export yet"
 msgstr "ยังไม่มีข้อมูลการฝึกอบรมให้ส่งออก"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "ไม่มีเครื่องยนต์ TTS ติดตั้งโปรแกรมกระจายเสียงพูดสำหรับระบบ TTS"
 
 msgid "No user training data yet"
 msgstr "ยังไม่มีข้อมูลการฝึกอบรมผู้ใช้"

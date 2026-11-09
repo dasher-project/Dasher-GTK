@@ -169,6 +169,9 @@ msgstr "okuqukethwe noma ulwazi lomuntu siqu luhlala luqoqwa. Ungashintsha lokhu
 msgid "Control"
 msgstr "Ukulawula"
 
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "Yengeza Khetha, Hambisa futhi Susa imiyalo yokuhlela kukhanvasi: khetha, hambisa noma susa umbhalo ngohlamvu, igama, umusho, indima noma konke, phambili noma emuva."
+
 msgid "Control mode: enabled"
 msgstr "Imodi yokulawula: ivuliwe"
 
@@ -309,6 +312,9 @@ msgstr "Imodi Eqondile"
 
 msgid "Done"
 msgstr "Kuqediwe"
+
+msgid "Drag to move the keyboard window"
+msgstr "Hudula ukuze uhambise iwindi lekhibhodi"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "Hlala endaweni eyodwa ukuze uqalise ukuchofoza, esikhundleni sokucindezela inkinobho noma iswishi."
@@ -618,6 +624,9 @@ msgstr "Ayikho injini yokukhuluma etholakalayo. Yakha usebenzisa isici se-TTS se
 
 msgid "No training data to export yet"
 msgstr "Asikakayitholi idatha yokuqeqesha yokuthekelisa okwamanje"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "Ayikho injini ye-TTS etholakalayo. Faka i-speech-dispatcher yesistimu ye-TTS."
 
 msgid "No user training data yet"
 msgstr "Akukho idatha yokuqeqesha yomsebenzisi okwamanje"

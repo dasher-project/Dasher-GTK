@@ -169,6 +169,9 @@ msgstr "inhoud of persoonlike inligting ooit ingesamel word. Jy kan dit enige ty
 msgid "Control"
 msgstr "Beheer"
 
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "Voeg Kies-, Skuif- en Vee-redigeeropdragte by die doek: kies, skuif of vee teks uit per letter, woord, sin, paragraaf of alles, vorentoe of agtertoe."
+
 msgid "Control mode: enabled"
 msgstr "Beheermodus: aangeskakel"
 
@@ -309,6 +312,9 @@ msgstr "Direkte modus"
 
 msgid "Done"
 msgstr "Klaar"
+
+msgid "Drag to move the keyboard window"
+msgstr "Sleep om die sleutelbordvenster te skuif"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "Sweef op een plek om 'n klik te veroorsaak, in plaas daarvan om 'n knoppie of skakelaar te druk."
@@ -618,6 +624,9 @@ msgstr "Geen spraak-enjin beskikbaar nie. Bou met die stelsel se TTS-funksie, of
 
 msgid "No training data to export yet"
 msgstr "Nog geen opleidingsdata om uit te voer nie"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "Geen TTS-enjin beskikbaar nie. Installeer spraakversender vir stelsel TTS."
 
 msgid "No user training data yet"
 msgstr "Nog geen gebruikers opleidingsdata nie"

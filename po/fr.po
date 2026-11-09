@@ -169,6 +169,9 @@ msgstr "contenu du presse-papiers ni information personnelle n'est collecté. Vo
 msgid "Control"
 msgstr "Contrôle"
 
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "Ajoute des commandes d'édition Sélectionner, Déplacer et Supprimer au canevas : sélectionner, déplacer ou supprimer du texte par lettre, mot, phrase, paragraphe ou tout, vers l'avant ou vers l'arrière."
+
 msgid "Control mode: enabled"
 msgstr "Mode de contrôle : activé"
 
@@ -309,6 +312,9 @@ msgstr "Mode direct"
 
 msgid "Done"
 msgstr "Fait"
+
+msgid "Drag to move the keyboard window"
+msgstr "Faites glisser pour déplacer la fenêtre du clavier"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "Survolez un endroit pour déclencher un clic, au lieu d’appuyer sur un bouton ou un interrupteur."
@@ -618,6 +624,9 @@ msgstr "Aucun moteur de synthèse vocale disponible. Compilez avec la fonction T
 
 msgid "No training data to export yet"
 msgstr "Pas encore de données d'entraînement à exporter"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "Aucun moteur TTS disponible. Installez le répartiteur vocal pour le système TTS."
 
 msgid "No user training data yet"
 msgstr "Pas encore de données de formation utilisateur"
