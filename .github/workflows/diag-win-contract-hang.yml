@@ -1,0 +1,88 @@
+name: "Diagnostic: engine_contract_tests Windows hang bisect (GTK #63)"
+
+on:
+  push:
+    branches: [diag/win-contract-hang]
+  workflow_dispatch:
+
+jobs:
+  bisect:
+    runs-on: windows-2025
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      # Same GTK acquisition as cmake-multi-platform.yml's Windows job.
+      - name: Resolve GVSBuild URL
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          url="$(gh api repos/wingtk/gvsbuild/releases/latest \
+                  --jq '.assets[] | select(.name | test("^GTK4_.*_x64\\.zip$")) | .browser_download_url' \
+                | head -n1)"
+          [ -n "$url" ] || { echo "no GTK4 asset"; exit 1; }
+          echo "GVS_URL=$url" >> "$GITHUB_ENV"
+
+      - name: Install GTK4
+        shell: pwsh
+        run: |
+          if (!(Test-Path "C:\gtk")) {
+            Invoke-WebRequest -OutFile gtk.zip ${{ env.GVS_URL }}
+            Expand-Archive -Path gtk.zip -DestinationPath "C:\gtk"
+            Remove-Item gtk.zip
+          }
+          "C:\gtk\bin;" >> $env:GITHUB_PATH
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Configure (same shape as CI's windows job)
+        env:
+          PKG_CONFIG_PATH: C:\gtk\lib\pkgconfig
+        shell: pwsh
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl -DBUILD_TESTING=ON
+
+      - name: Build the suite only
+        shell: cmd
+        run: cmake --build build --target engine_contract_tests
+
+      # THE POINT (#63): run the exe directly with a hard timeout so stdout is
+      # CAPTURED — ctest's kill discards buffered output.
+      - name: List test cases
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem -Path build -Recurse -Filter engine_contract_tests.exe | Select-Object -First 1 -ExpandProperty FullName
+          if (-not $exe) { Get-ChildItem -Path build -Recurse -Filter *.exe | Select-Object -ExpandProperty FullName; throw "suite exe not found" }
+          "EXE=$exe"
+          & $exe --test-case-list
+
+      - name: Run all (120s cap, captured)
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem -Path build -Recurse -Filter engine_contract_tests.exe | Select-Object -First 1 -ExpandProperty FullName
+          $p = Start-Process -FilePath $exe -ArgumentList "--order=decl" -RedirectStandardOutput all-out.txt -RedirectStandardError all-err.txt -PassThru -NoNewWindow
+          if (-not $p.WaitForExit(120000)) {
+            "TIMED OUT RUNNING ALL CASES"
+            Stop-Process -Id $p.Id -Force
+            Get-Content all-out.txt; Get-Content all-err.txt
+            exit 3
+          }
+          "ALL CASES EXITED: $($p.ExitCode)"
+          Get-Content all-out.txt; Get-Content all-err.txt
+
+      - name: Bisect each case (90s cap each)
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem -Path build -Recurse -Filter engine_contract_tests.exe | Select-Object -First 1 -ExpandProperty FullName
+          $cases = (& $exe --test-case-list) | Where-Object { $_ -match '^\*\s' } | ForEach-Object { ($_ -replace '^\*\s+','').Trim() }
+          "found $($cases.Count) cases"
+          foreach ($c in $cases) {
+            "=== CASE: $c"
+            $p = Start-Process -FilePath $exe -ArgumentList "--test-case=`"$c`"" -RedirectStandardOutput case-out.txt -RedirectStandardError case-err.txt -PassThru -NoNewWindow
+            if (-not $p.WaitForExit(90000)) { ">>> HANGS: $c"; Stop-Process -Id $p.Id -Force }
+            else { "ok ($($p.ExitCode))" }
+            Get-Content case-out.txt -ErrorAction SilentlyContinue
+          }
