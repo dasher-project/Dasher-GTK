@@ -64,6 +64,28 @@ std::string iso8601_now() {
     return out;
 }
 
+// #114: extract a frame's function name from one canonical backtrace line —
+// "module(function+0xoff) [0xaddr]" — the shape CrashReporter's capture path
+// writes (glibc prints it directly; macOS lines are normalised to it before
+// saving). Returns "" for anything else (message lines, scrubber damage,
+// empty lines, a tail truncated mid-frame by the size cap) so callers skip
+// non-frames without knowing a second grammar. Unsymbolised frames
+// ("module(+0xoff)" — no dynamic symbol) keep the "module(+0xoff)" text:
+// which binary the frame belongs to is still signal for Error Tracking.
+std::string frame_function_of_line(const std::string& line) {
+    const std::size_t tail = line.rfind(") [0x");
+    if (tail == std::string::npos || line.empty() || line.back() != ']' || tail + 5 >= line.size()) return "";
+    // The grammar's '(' is the FIRST one — demangled function names contain
+    // their own parentheses ("ns::f(int)"), so searching backwards for the
+    // last '(' would split inside the signature.
+    const std::size_t open = line.find('(');
+    if (open == std::string::npos || open >= tail || tail == open + 1) return "";
+    const std::string symbol = line.substr(open + 1, tail - open - 1);
+    const std::size_t plus = symbol.find("+0x");
+    if (plus == 0) return line.substr(0, tail + 1);
+    return plus == std::string::npos ? symbol : symbol.substr(0, plus);
+}
+
 } // namespace
 
 AnalyticsClient& AnalyticsClient::instance() {
@@ -130,19 +152,103 @@ void AnalyticsClient::capture(const std::string& event, const std::map<std::stri
     enqueue(event, props);
 }
 
-void AnalyticsClient::capture_exception(const CrashEnvelope& env) {
+void AnalyticsClient::capture_exception(const CrashEnvelope& env, bool deferred) {
     if (!m_opted_in) return;
     auto props = default_properties();
     props["exception_type"] = env.exception_type;
     props["stack_trace"] = env.stack_trace;
     props["engine_log_tail"] = env.engine_log_tail;
     props["source"] = env.source;
-    // PostHog Error Tracking keys so the crash surfaces as a $exception rather
-    // than a bare custom event.
+    // #114: the full Error Tracking envelope. PostHog groups $exception
+    // events on $exception_type alone unless the event also carries an
+    // $exception_list with structured frames — before this, every crash
+    // reported a message with no functions and unrelated crashes merged.
+    // The shape mirrors the posthog SDKs' serialisation (Dasher-Windows#116,
+    // verified against the SDK source); stack_trace and app_version stay in
+    // properties as raw evidence for the detail pane.
+    const std::string message = exception_message(env.exception_type, env.stack_trace);
     props["$exception_type"] = env.exception_type;
-    props["$exception_message"] = env.stack_trace.empty() ? env.source : env.stack_trace;
+    props["$exception_message"] = message;
+    props["$exception_list"] = build_exception_list(env.exception_type, message, env.stack_trace);
+    // Replay of a previous session's crash file — matches the Android
+    // frontend's deferred flag (issue #114).
+    if (deferred) props["deferred"] = "true";
     ensure_worker();
     enqueue("$exception", props);
+}
+
+std::vector<std::string> AnalyticsClient::parse_exception_frames(const std::string& stack_trace) {
+    std::vector<std::string> frames;
+    std::size_t pos = 0;
+    while (pos != std::string::npos && frames.size() < kMaxExceptionFrames) {
+        const std::size_t eol = stack_trace.find('\n', pos);
+        std::string line = stack_trace.substr(pos, eol == std::string::npos ? std::string::npos : eol - pos);
+        if (!line.empty() && line.back() == '\r') line.pop_back();
+        if (std::string fn = frame_function_of_line(line); !fn.empty()) frames.push_back(std::move(fn));
+        pos = eol == std::string::npos ? std::string::npos : eol + 1;
+    }
+    return frames;
+}
+
+std::string AnalyticsClient::exception_message(const std::string& exception_type, const std::string& stack_trace) {
+    if (stack_trace.empty()) return exception_type; // signal records: type-only
+
+    const std::size_t eol = stack_trace.find('\n');
+    std::string first = stack_trace.substr(0, eol == std::string::npos ? std::string::npos : eol);
+    if (!first.empty() && first.back() == '\r') first.pop_back();
+
+    // The message, when there is one, is saved as the first line — either
+    // "Type: message" (the terminate handler follows ex.ToString()) or a
+    // free-form line (the engine sticky-error report). A first line that
+    // parses as a frame means there is no message line at all.
+    if (frame_function_of_line(first).empty() && !first.empty()) {
+        if (first.rfind(exception_type, 0) == 0) {
+            std::string rest = first.substr(exception_type.size());
+            const std::size_t colon = rest.find(':');
+            if (colon != std::string::npos) rest = rest.substr(colon + 1);
+            const std::size_t text = rest.find_first_not_of(' ');
+            if (text != std::string::npos) return rest.substr(text);
+            // "Type:" with an empty message — fall through to the frame
+            // fallback rather than reporting an empty string.
+        } else {
+            return first;
+        }
+    }
+
+    // No message text: "<type>: <top frame>" keeps grouping and the
+    // $exception_functions column informative (issue #114's minimum).
+    // Skip the crash machinery's OWN leading frames — terminate_handler /
+    // __cxa_throw name the reporter, not the throw site (review r1: the
+    // first USER frame below them is the useful signal).
+    const std::vector<std::string> frames = parse_exception_frames(stack_trace);
+    for (const std::string& f : frames) {
+        if (f.rfind("terminate_handler", 0) == 0 || f.rfind("__cxa_throw", 0) == 0 || f.rfind("std::terminate", 0) == 0)
+            continue;
+        return exception_type + ": " + f;
+    }
+    if (!frames.empty()) return exception_type + ": " + frames.front();
+    return exception_type;
+}
+
+std::string AnalyticsClient::build_exception_list(const std::string& exception_type, const std::string& value,
+                                                  const std::string& stack_trace) {
+    std::string frames_json;
+    for (const std::string& fn : parse_exception_frames(stack_trace)) {
+        if (!frames_json.empty()) frames_json += ",";
+        // filename/lineno are omitted: backtrace_symbols() carries neither,
+        // and symbolication is out of scope (RFC 0009). platform/lang are
+        // Required per PostHog's manual-capture schema (review r1: without
+        // them ingestion may degrade the frames — silently restoring the
+        // type-only grouping this PR exists to fix); the Windows #116
+        // envelope carries the same pair.
+        frames_json += "{\"platform\":\"custom\",\"lang\":\"native\",\"function\":\"" + json_escape(fn) + "\"}";
+    }
+    // Single exception per record. mechanism.handled=false — it reached
+    // std::terminate (or a fatal signal), so nothing caught it.
+    return "[{\"type\":\"" + json_escape(exception_type) + "\",\"value\":\"" + json_escape(value) +
+           "\",\"mechanism\":{\"handled\":false,\"type\":\"generic\"},"
+           "\"stacktrace\":{\"type\":\"raw\",\"frames\":[" +
+           frames_json + "]}}]";
 }
 
 std::string AnalyticsClient::json_escape(const std::string& s) {
@@ -201,11 +307,22 @@ std::string AnalyticsClient::build_capture_body(const std::string& event,
         // to a known set of boolean control properties: a broad $-prefix check
         // would retype textual fields such as $exception_type or
         // $exception_message whose value happens to be exactly "true"/"false",
-        // so all other properties (user data included) stay strings.
-        const bool boolean_flag = kv.first == "$geoip_disable";
+        // so all other properties (user data included) stay strings. #114 adds
+        // "deferred" to the set so the replayed-crash flag matches the Android
+        // frontend's boolean true, not the string "true".
+        const bool boolean_flag = kv.first == "$geoip_disable" || kv.first == "deferred";
         const bool as_bool = boolean_flag && (kv.second == "true" || kv.second == "false");
+        // #114: $exception_list is pre-serialised JSON — an array built by
+        // build_exception_list, never from user input — and must be emitted
+        // verbatim so Error Tracking receives structured frames rather than a
+        // stringified copy. An empty value can only be a bug; degrade to an
+        // empty array rather than emitting invalid JSON.
+        const bool raw_json = kv.first == "$exception_list";
         body += "\"" + json_escape(kv.first) + "\":";
-        body += as_bool ? kv.second : "\"" + json_escape(kv.second) + "\"";
+        if (raw_json)
+            body += kv.second.empty() ? "[]" : kv.second;
+        else
+            body += as_bool ? kv.second : "\"" + json_escape(kv.second) + "\"";
         first = false;
     }
     body += "}}";
