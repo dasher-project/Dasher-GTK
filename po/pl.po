@@ -169,6 +169,9 @@ msgstr "zawartość lub informacje osobiste nigdy nie są zbierane. Możesz to z
 msgid "Control"
 msgstr "Sterowanie"
 
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "Dodaje do obszaru roboczego polecenia edycji Wybierz, Przenieś i Usuń: zaznacz, przesuń lub usuń tekst po literze, słowie, zdaniu, akapicie lub całości, do przodu lub do tyłu."
+
 msgid "Control mode: enabled"
 msgstr "Tryb sterowania: włączony"
 
@@ -309,6 +312,9 @@ msgstr "Tryb bezpośredni"
 
 msgid "Done"
 msgstr "Zrobione"
+
+msgid "Drag to move the keyboard window"
+msgstr "Przeciągnij, aby przesunąć okno klawiatury"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "Przytrzymaj w jednym miejscu, aby wywołać kliknięcie, zamiast naciskać przycisk lub przełącznik."
@@ -618,6 +624,9 @@ msgstr "Brak dostępnego silnika mowy. Zbuduj z użyciem funkcji TTS systemu lub
 
 msgid "No training data to export yet"
 msgstr "Brak danych treningowych do eksportu"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "Brak dostępnego silnika TTS. Zainstaluj dyspozytora mowy dla systemowego TTS."
 
 msgid "No user training data yet"
 msgstr "Brak danych treningowych użytkownika"

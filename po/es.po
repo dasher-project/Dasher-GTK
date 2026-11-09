@@ -169,6 +169,9 @@ msgstr "contenidos o información personal se recopilen alguna vez. Puedes cambi
 msgid "Control"
 msgstr "Control"
 
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "Agrega comandos de edición Seleccionar, Mover y Eliminar al lienzo: seleccione, mueva o elimine texto por letra, palabra, oración, párrafo o todo, hacia adelante o hacia atrás."
+
 msgid "Control mode: enabled"
 msgstr "Modo de control: activado"
 
@@ -309,6 +312,9 @@ msgstr "Modo directo"
 
 msgid "Done"
 msgstr "Hecho"
+
+msgid "Drag to move the keyboard window"
+msgstr "Arrastra para mover la ventana del teclado"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "Mantén el cursor en un lugar para activar un clic, en lugar de presionar un botón o interruptor."
@@ -618,6 +624,9 @@ msgstr "No hay motor de voz disponible. Compila con la función TTS del sistema,
 
 msgid "No training data to export yet"
 msgstr "Aún no hay datos de entrenamiento para exportar"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "No hay motor TTS disponible. Instale el despachador de voz para el sistema TTS."
 
 msgid "No user training data yet"
 msgstr "Todavía no hay datos de entrenamiento de usuario"

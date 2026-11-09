@@ -169,6 +169,9 @@ msgstr "உள்ளடக்கம் அல்லது தனிப்பட�
 msgid "Control"
 msgstr "கட்டுப்பாடு"
 
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "கேன்வாஸில் தேர்ந்தெடு, நகர்த்து மற்றும் நீக்கு எடிட்டிங் கட்டளைகளைச் சேர்க்கிறது: எழுத்து, சொல், வாக்கியம், பத்தி அல்லது அனைத்தும், முன்னோக்கி அல்லது பின்னோக்கி உரையைத் தேர்ந்தெடுக்கவும், நகர்த்தவும் அல்லது நீக்கவும்."
+
 msgid "Control mode: enabled"
 msgstr "கட்டுப்பாட்டு முறை: இயலுமைப்படுத்தப்பட்டது"
 
@@ -309,6 +312,9 @@ msgstr "நேரடி பயன்முறை"
 
 msgid "Done"
 msgstr "முடிந்தது"
+
+msgid "Drag to move the keyboard window"
+msgstr "விசைப்பலகை சாளரத்தை நகர்த்த இழுக்கவும்"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "ஒரு இடத்தில் நிலைநிறுத்தி கிளிக் செய்யவும், பொத்தான் அல்லது ஸ்விட்ச் அழுத்தாமல்."
@@ -618,6 +624,9 @@ msgstr "எந்த வாக்கிய இயந்திரத்தைய�
 
 msgid "No training data to export yet"
 msgstr "இன்னும் ஏற்றுமதி செய்ய பயிற்சி தரவு இல்லை"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "TTS இன்ஜின் இல்லை. கணினி TTSக்கான பேச்சு-அனுப்பியலை நிறுவவும்."
 
 msgid "No user training data yet"
 msgstr "இன்னும் பயனர் பயிற்சி தரவு இல்லை"

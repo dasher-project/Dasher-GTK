@@ -169,6 +169,9 @@ msgstr "ಸಾಮಗ್ರಿಗಳು ಅಥವಾ ವೈಯಕ್ತಿಕ ಮ
 msgid "Control"
 msgstr "ನಿಯಂತ್ರಣ"
 
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "ಕ್ಯಾನ್ವಾಸ್‌ಗೆ ಸೆಲೆಕ್ಟ್, ಮೂವ್ ಮತ್ತು ಡಿಲೀಟ್ ಎಡಿಟಿಂಗ್ ಕಮಾಂಡ್‌ಗಳನ್ನು ಸೇರಿಸುತ್ತದೆ: ಅಕ್ಷರ, ಪದ, ವಾಕ್ಯ, ಪ್ಯಾರಾಗ್ರಾಫ್ ಅಥವಾ ಎಲ್ಲಾ ಮೂಲಕ ಪಠ್ಯವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ, ಸರಿಸಿ ಅಥವಾ ಅಳಿಸಿ, ಮುಂದಕ್ಕೆ ಅಥವಾ ಹಿಂದಕ್ಕೆ."
+
 msgid "Control mode: enabled"
 msgstr "ನಿಯಂತ್ರಣ ಮೋಡ್: ಸಕ್ರಿಯವಾಗಿದೆ"
 
@@ -309,6 +312,9 @@ msgstr "ನೇರ ಮೋಡ್"
 
 msgid "Done"
 msgstr "ಮುಗಿದಿದೆ"
+
+msgid "Drag to move the keyboard window"
+msgstr "ಕೀಬೋರ್ಡ್ ವಿಂಡೋವನ್ನು ಸರಿಸಲು ಎಳೆಯಿರಿ"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "ಬಟನ್ ಅಥವಾ ಸ್ವಿಚ್ ಒತ್ತುವ ಬದಲು, ಕ್ಲಿಕ್ ಅನ್ನು ಪ್ರೇರೇಪಿಸಲು ಒಂದೇ ಸ್ಥಳದಲ್ಲಿ ಹವರ್ ಮಾಡಿ."
@@ -618,6 +624,9 @@ msgstr "ಮಾತಿನ ಎಂಜಿನ್ ಲಭ್ಯವಿಲ್ಲ. ಸి�
 
 msgid "No training data to export yet"
 msgstr "ಈಗಿನವರೆಗೆ ರಫ್ತಿಗೆ ತಯಾರಿರುವ ತರಬೇತಿ ಡೇಟಾ ಇಲ್ಲ"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "ಯಾವುದೇ TTS ಎಂಜಿನ್ ಲಭ್ಯವಿಲ್ಲ. ಸಿಸ್ಟಂ TTS ಗಾಗಿ ಸ್ಪೀಚ್ ಡಿಸ್ಪ್ಯಾಚರ್ ಅನ್ನು ಸ್ಥಾಪಿಸಿ."
 
 msgid "No user training data yet"
 msgstr "ಇನ್ನೂ ಯಾವುದೇ ಬಳಕೆದಾರ ತರಬೇತಿ ಡೇಟಾ ಇಲ್ಲ"

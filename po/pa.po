@@ -169,6 +169,9 @@ msgstr "ਸਮੱਗਰੀ ਜਾਂ ਨਿੱਜੀ ਜਾਣਕਾਰੀ ਕ�
 msgid "Control"
 msgstr "ਕੰਟਰੋਲ"
 
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "ਕੈਨਵਸ ਵਿੱਚ ਸਿਲੈਕਟ, ਮੂਵ ਅਤੇ ਡਿਲੀਟ ਸੰਪਾਦਨ ਕਮਾਂਡਾਂ ਨੂੰ ਜੋੜਦਾ ਹੈ: ਅੱਖਰ, ਸ਼ਬਦ, ਵਾਕ, ਪੈਰਾਗ੍ਰਾਫ ਜਾਂ ਸਾਰੇ, ਅੱਗੇ ਜਾਂ ਪਿੱਛੇ ਵੱਲ ਟੈਕਸਟ ਨੂੰ ਚੁਣੋ, ਮੂਵ ਕਰੋ ਜਾਂ ਮਿਟਾਓ।"
+
 msgid "Control mode: enabled"
 msgstr "ਕੰਟਰੋਲ ਮੋਡ: ਚਾਲੂ"
 
@@ -309,6 +312,9 @@ msgstr "ਸਿੱਧਾ ਮੋਡ"
 
 msgid "Done"
 msgstr "ਹੋ ਗਿਆ"
+
+msgid "Drag to move the keyboard window"
+msgstr "ਕੀਬੋਰਡ ਵਿੰਡੋ ਨੂੰ ਮੂਵ ਕਰਨ ਲਈ ਖਿੱਚੋ"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "ਇੱਕ ਥਾਂ 'ਤੇ ਹੋਵਰ ਕਰੋ ਤਾਂ ਕਿ ਕਲਿੱਕ ਟ੍ਰਿਗਰ ਹੋਵੇ, ਬਟਨ ਜਾਂ ਸਵਿੱਚ ਦਬਾਉਣ ਦੀ ਬਜਾਏ।"
@@ -618,6 +624,9 @@ msgstr "ਕੋਈ ਭਾਸ਼ਣ ਇੰਜਣ ਉਪਲਬਧ ਨਹੀਂ। �
 
 msgid "No training data to export yet"
 msgstr "ਹਾਲੇ ਕੋਈ ਟ੍ਰੇਨਿੰਗ ਡਾਟਾ ਐਕਸਪੋਰਟ ਕਰਨ ਲਈ ਨਹੀਂ"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "ਕੋਈ TTS ਇੰਜਣ ਉਪਲਬਧ ਨਹੀਂ ਹੈ। ਸਿਸਟਮ TTS ਲਈ ਸਪੀਚ-ਡਿਸਪੈਚਰ ਸਥਾਪਤ ਕਰੋ।"
 
 msgid "No user training data yet"
 msgstr "ਹਾਲੇ ਕੋਈ ਯੂਜ਼ਰ ਟ੍ਰੇਨਿੰਗ ਡਾਟਾ ਨਹੀਂ"

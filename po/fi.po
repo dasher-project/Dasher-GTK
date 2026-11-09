@@ -169,6 +169,9 @@ msgstr "sisältöä tai henkilötietoja koskaan kerätä. Voit muuttaa tätä mi
 msgid "Control"
 msgstr "Kontrolli"
 
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "Lisää kankaalle Select-, Move- ja Delete-muokkauskomennot: valitse, siirrä tai poista tekstiä kirjaimella, sanalla, lauseella, kappaleella tai kaikilla, eteenpäin tai taaksepäin."
+
 msgid "Control mode: enabled"
 msgstr "Ohjaustila: käytössä"
 
@@ -309,6 +312,9 @@ msgstr "Suora tila"
 
 msgid "Done"
 msgstr "Tehty"
+
+msgid "Drag to move the keyboard window"
+msgstr "Siirrä näppäimistöikkunaa vetämällä"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "Liikuta kohdistinta yhdessä kohdassa aktivoidaksesi napsautuksen sen sijaan, että painaisit painiketta tai kytkintä."
@@ -618,6 +624,9 @@ msgstr "Puheentunnistusta ei ole saatavilla. Rakenna järjestelmän TTS-ominaisu
 
 msgid "No training data to export yet"
 msgstr "Vie lähtömateriaalina ei ole vielä koulutusdataa"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "TTS-moottoria ei ole saatavilla. Asenna puheenvälittäjä järjestelmälle TTS."
 
 msgid "No user training data yet"
 msgstr "Ei käyttäjäkoulutusdataa vielä"

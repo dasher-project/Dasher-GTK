@@ -169,6 +169,9 @@ msgstr "内容或个人信息是否被收集。您可以随时更改此设置"
 msgid "Control"
 msgstr "控制"
 
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "将选择、移动和删除编辑命令添加到画布：按字母、单词、句子、段落或全部向前或向后选择、移动或删除文本。"
+
 msgid "Control mode: enabled"
 msgstr "控制模式：已启用"
 
@@ -309,6 +312,9 @@ msgstr "直接模式"
 
 msgid "Done"
 msgstr "完毕"
+
+msgid "Drag to move the keyboard window"
+msgstr "拖动以移动键盘窗口"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "悬停在一个位置以触发点击，而不是按按钮或开关。"
@@ -618,6 +624,9 @@ msgstr "没有可用的语音引擎。请使用系统 TTS 功能构建，或在�
 
 msgid "No training data to export yet"
 msgstr "暂无可导出的训练数据"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "没有可用的 TTS 引擎。为系统 TTS 安装语音调度程序。"
 
 msgid "No user training data yet"
 msgstr "尚无用户训练数据"

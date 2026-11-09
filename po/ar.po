@@ -169,6 +169,9 @@ msgstr "يتم جمع المحتوى أو المعلومات الشخصية في
 msgid "Control"
 msgstr "تحكم"
 
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "إضافة أوامر التحرير التحديد والنقل والحذف إلى اللوحة القماشية: تحديد النص أو نقله أو حذفه بالحرف أو الكلمة أو الجملة أو الفقرة أو الكل، للأمام أو للخلف."
+
 msgid "Control mode: enabled"
 msgstr "وضع التحكم: مفعل"
 
@@ -309,6 +312,9 @@ msgstr "الوضع المباشر"
 
 msgid "Done"
 msgstr "منتهي"
+
+msgid "Drag to move the keyboard window"
+msgstr "اسحب لتحريك نافذة لوحة المفاتيح"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "حوم في مكان واحد لتفعيل النقر، بدلاً من الضغط على زر أو مفتاح."
@@ -618,6 +624,9 @@ msgstr "لا يوجد محرك تحويل نص إلى كلام متاح. قم ب
 
 msgid "No training data to export yet"
 msgstr "لا توجد بيانات تدريب للتصدير بعد"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "لا يتوفر محرك TTS. تثبيت مرسل الكلام لنظام TTS."
 
 msgid "No user training data yet"
 msgstr "لا توجد بيانات تدريب للمستخدم بعد"

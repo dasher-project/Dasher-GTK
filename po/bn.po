@@ -169,6 +169,9 @@ msgstr "কোনো সামগ্রী বা ব্যক্তিগত �
 msgid "Control"
 msgstr "নিয়ন্ত্রণ"
 
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "ক্যানভাসে সিলেক্ট, মুভ এবং ডিলিট এডিটিং কমান্ড যোগ করে: অক্ষর, শব্দ, বাক্য, অনুচ্ছেদ বা সমস্ত, ফরোয়ার্ড বা পিছনের দ্বারা পাঠ্য নির্বাচন, সরান বা মুছুন।"
+
 msgid "Control mode: enabled"
 msgstr "নিয়ন্ত্রণ মোড: সক্রিয়"
 
@@ -309,6 +312,9 @@ msgstr "সরাসরি মোড"
 
 msgid "Done"
 msgstr "সম্পন্ন হয়েছে"
+
+msgid "Drag to move the keyboard window"
+msgstr "কীবোর্ড উইন্ডো সরাতে টেনে আনুন"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "একটি বোতাম বা সুইচ চাপার পরিবর্তে একটি স্থানে হোভার করুন ক্লিক ট্রিগার করার জন্য।"
@@ -618,6 +624,9 @@ msgstr "কোনও বক্তৃতা ইঞ্জিন উপলব্ধ
 
 msgid "No training data to export yet"
 msgstr "এখন পর্যন্ত রপ্তানি করার কোনো প্রশিক্ষণ তথ্য নেই"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "কোনো TTS ইঞ্জিন উপলব্ধ নেই। সিস্টেম TTS-এর জন্য স্পিচ-ডিসপ্যাচার ইনস্টল করুন।"
 
 msgid "No user training data yet"
 msgstr "এখনও কোনো ব্যবহারকারীর প্রশিক্ষণ ডেটা নেই"

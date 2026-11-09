@@ -169,6 +169,9 @@ msgstr "सामग्री या व्यक्तिगत जानका
 msgid "Control"
 msgstr "नियंत्रण"
 
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "कैनवास पर चयन करें, स्थानांतरित करें और हटाएं संपादन कमांड जोड़ता है: अक्षर, शब्द, वाक्य, पैराग्राफ या सभी, आगे या पीछे से टेक्स्ट का चयन करें, स्थानांतरित करें या हटाएं।"
+
 msgid "Control mode: enabled"
 msgstr "नियंत्रण मोड: सक्षम"
 
@@ -309,6 +312,9 @@ msgstr "प्रत्यक्ष मोड"
 
 msgid "Done"
 msgstr "हो गया"
+
+msgid "Drag to move the keyboard window"
+msgstr "कीबोर्ड विंडो को स्थानांतरित करने के लिए खींचें"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "किसी बटन या स्विच को दबाने के बजाय, क्लिक को सक्रिय करने के लिए एक ही जगह पर होवर करें।"
@@ -618,6 +624,9 @@ msgstr "कोई स्पीच इंजन उपलब्ध नहीं �
 
 msgid "No training data to export yet"
 msgstr "निर्यात करने के लिए अभी कोई प्रशिक्षण डेटा नहीं है"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "कोई टीटीएस इंजन उपलब्ध नहीं है. सिस्टम टीटीएस के लिए स्पीच-डिस्पैचर स्थापित करें।"
 
 msgid "No user training data yet"
 msgstr "अभी तक कोई उपयोगकर्ता प्रशिक्षण डेटा नहीं"
