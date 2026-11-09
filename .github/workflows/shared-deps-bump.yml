@@ -84,7 +84,7 @@ jobs:
           git checkout -b "$BRANCH"
           git -C "${{ matrix.sub }}" checkout "$LATEST"
           git add "${{ matrix.sub }}"
-          git commit -m "chore: bump ${{ matrix.label }} to ${LATEST} (RFC 0023 shared-deps automation)"
+          git commit -s -m "chore: bump ${{ matrix.label }} to ${LATEST} (RFC 0023 shared-deps automation)"
           git push origin "$BRANCH"
           gh pr create --head "$BRANCH" --title "chore: bump ${{ matrix.label }} to ${LATEST}" --body "Automated shared-deps bump (RFC 0023 item 2). **${PINNED} → ${LATEST}**
 
