@@ -10,6 +10,7 @@
 #include <mutex>
 #include <string>
 #include <thread>
+#include <vector>
 
 namespace analytics {
 
@@ -54,7 +55,11 @@ class AnalyticsClient {
     void capture(const std::string& event, const std::map<std::string, std::string>& properties = {});
 
     // Report a recovered crash as a $exception. No-op unless opted in.
-    void capture_exception(const CrashEnvelope& env);
+    // `deferred` (issue #114) marks the report as the replay of a previous
+    // session's crash file — the flag the Android frontend already sends on
+    // its pending-file flush path, so PostHog filters can tell live from
+    // replayed crashes across frontends.
+    void capture_exception(const CrashEnvelope& env, bool deferred = false);
 
     // Default properties appended to every event.
     std::map<std::string, std::string> default_properties() const;
@@ -67,6 +72,29 @@ class AnalyticsClient {
                                           const std::map<std::string, std::string>& properties,
                                           const std::string& distinct_id, const std::string& token,
                                           const std::string& timestamp);
+
+    // --- #114: crash-frame envelope helpers (pure, exposed for tests) ---
+    // PostHog's SDKs cap an exception's frames at 50; match them.
+    static constexpr std::size_t kMaxExceptionFrames = 50;
+
+    // Parse a saved stack trace (the terminate handler's format: optional
+    // "<type>: message" line, then one canonical "module(function+0xoff)
+    // [0xaddr]" line per frame) into frame function names, top of stack
+    // first, capped at kMaxExceptionFrames. Message lines and anything
+    // malformed (scrubber damage, a size-cap-truncated tail) are skipped.
+    static std::vector<std::string> parse_exception_frames(const std::string& stack_trace);
+
+    // The $exception_message for a crash envelope: the saved message line's
+    // text when one exists, else "<type>: <top frame>" so grouping and the
+    // $exception_functions column keep signal (issue #114's minimum).
+    static std::string exception_message(const std::string& exception_type, const std::string& stack_trace);
+
+    // Build the $exception_list JSON array (type/value/mechanism{handled:
+    // false, generic}/stacktrace{type: raw, frames[{function}]}) — the shape
+    // PostHog Error Tracking groups and lists functions from, verified
+    // against the SDK source in Dasher-Windows#116.
+    static std::string build_exception_list(const std::string& exception_type, const std::string& value,
+                                            const std::string& stack_trace);
 
   private:
     AnalyticsClient() = default;

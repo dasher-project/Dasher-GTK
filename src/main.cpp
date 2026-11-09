@@ -79,8 +79,12 @@
 
         analytics::AnalyticsSettings settings = analytics::AnalyticsSettings::load();
         analytics::AnalyticsClient::instance().init(settings);
-        analytics::CrashReporter::flush_pending(
-            [](const analytics::CrashEnvelope& env) { analytics::AnalyticsClient::instance().capture_exception(env); });
+        // #114: deferred=true marks this report as the replay of a previous
+        // session's crash file (the Android frontend's flush path does the
+        // same), so live and replayed crashes stay separable in PostHog.
+        analytics::CrashReporter::flush_pending([](const analytics::CrashEnvelope& env) {
+            analytics::AnalyticsClient::instance().capture_exception(env, /*deferred=*/true);
+        });
 
         auto app = Gtk::Application::create("org.dasher.gtk");
         // Shows the window and returns when it is closed.

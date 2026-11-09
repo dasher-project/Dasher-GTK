@@ -285,6 +285,16 @@ if(WIN32)
 	)
 endif()
 
+# #114 (crash frames): glibc's backtrace_symbols() resolves function names
+# through the DYNAMIC symbol table, so without exporting the executable's
+# symbols nearly every frame degrades to "binary(+0xoff)" and crash reports
+# carry no function names again. macOS's backtrace_symbols() reads the symbol
+# table directly, and MSVC has no execinfo path at all, so export-dynamic is
+# ELF/Linux-only.
+if(UNIX AND NOT APPLE)
+	target_link_options(Dasher PRIVATE "-Wl,--export-dynamic")
+endif()
+
 add_dependencies(Dasher dasher)
 if(TARGET tts_wrapper)
 	add_dependencies(Dasher tts_wrapper)

@@ -12,7 +12,12 @@ struct CrashEnvelope {
     std::string source;         // capture hook, e.g. "std::terminate", "signal_handler"
     std::string app_version;
     std::string os_version;
-    std::string stack_trace;     // PII-scrubbed; may be empty for native signals
+    // PII-scrubbed. #114: the terminate path saves an ex.ToString()-style
+    // message line ("<type>: <what>") followed by one canonical
+    // "module(function+0xoff) [0xaddr]" backtrace line per frame, so the next
+    // launch can rebuild structured frames for PostHog Error Tracking. May be
+    // empty for native signals (see the frame-less decision in CrashReporter).
+    std::string stack_trace;
     std::string engine_log_tail; // last engine log lines, PII-scrubbed
 };
 
@@ -20,9 +25,12 @@ struct CrashEnvelope {
 // no network, no SDK calls) and, on the next launch, flushes it to the analytics
 // sink. Two paths per RFC 0009:
 //   * std::set_terminate  — uncaught C++ exceptions; runs in normal context, so
-//     it captures the exception type, message and the live engine log tail.
-//   * SIGSEGV/SIGABRT/SIGILL — async-signal-safe: writes a pre-built minimal
-//     record; the log tail is recovered from the mirrored engine.log next launch.
+//     it captures the exception type, message, a real (demangled) backtrace
+//     (#114) and the live engine log tail.
+//   * SIGSEGV/SIGABRT/SIGILL/SIGBUS — async-signal-safe: writes a pre-built
+//     minimal record; the log tail is recovered from the mirrored engine.log
+//     next launch. Deliberately frame-less: see the decision comment at the
+//     signal handler in CrashReporter.cpp (#114).
 class CrashReporter {
   public:
     // Discard crash files older than this without reporting (RFC 0009).
