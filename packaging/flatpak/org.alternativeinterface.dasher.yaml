@@ -165,9 +165,10 @@ modules:
         PKG_CONFIG_PATH: /app/lib64/pkgconfig:/app/lib/pkgconfig:/app/lib/${FLATPAK_ARCH}-linux-gnu/pkgconfig:/app/share/pkgconfig
     build-commands:
       # sherpaonnx is bundled (models download at runtime into the
-      # sandboxed home); `system` stays off — the speech-dispatcher
-      # socket is not exported in finish-args.
-      - cmake -B _build -DCMAKE_BUILD_TYPE=Release -DTTS_WRAPPER_FEATURES=cloud,sherpaonnx -DBUILD_GTK_TESTS=OFF -DCMAKE_INSTALL_PREFIX=/app .
+      # sandboxed home; sherpa-g2p fetches voicegarden lexicon bundles
+      # for non-English voices); `system` stays off — the
+      # speech-dispatcher socket is not exported in finish-args.
+      - cmake -B _build -DCMAKE_BUILD_TYPE=Release -DTTS_WRAPPER_FEATURES=cloud,sherpaonnx,sherpa-g2p -DBUILD_GTK_TESTS=OFF -DCMAKE_INSTALL_PREFIX=/app .
       - cmake --build _build -j$(nproc)
       - cmake --install _build
     post-install:
@@ -205,11 +206,10 @@ modules:
         tag: release-3.2.16
         dest: Thirdparty/SDL
       # Pinned to the commit Dasher-GTK's submodule points at: v1.11.0
-      # plus the GTK-integration fixes (no phantom voices without a
-      # model; espeak data_dir dropped). Follow the submodule pin in
-      # .gitmodules when bumping. Re-pin to the release tag once
-      # AACTools/rust-tts-wrapper#101 merges.
+      # plus #101 (no phantom voices without a model; espeak data_dir
+      # dropped), squash-merged to AACTools main. Follow the submodule
+      # pin in .gitmodules when bumping.
       - type: git
         url: https://github.com/AACTools/rust-tts-wrapper.git
-        commit: f5b84fb417b902b2acbcd79a1e2196559077ba1e
+        commit: 19799579866f41c0ef4cecbd570b1cf3f8e4f735
         dest: rust-tts-wrapper
