@@ -164,7 +164,10 @@ modules:
         # so PKG_CONFIG_PATH has to follow the build arch.
         PKG_CONFIG_PATH: /app/lib64/pkgconfig:/app/lib/pkgconfig:/app/lib/${FLATPAK_ARCH}-linux-gnu/pkgconfig:/app/share/pkgconfig
     build-commands:
-      - cmake -B _build -DCMAKE_BUILD_TYPE=Release -DTTS_WRAPPER_FEATURES=cloud -DBUILD_GTK_TESTS=OFF -DCMAKE_INSTALL_PREFIX=/app .
+      # sherpaonnx is bundled (models download at runtime into the
+      # sandboxed home); `system` stays off — the speech-dispatcher
+      # socket is not exported in finish-args.
+      - cmake -B _build -DCMAKE_BUILD_TYPE=Release -DTTS_WRAPPER_FEATURES=cloud,sherpaonnx -DBUILD_GTK_TESTS=OFF -DCMAKE_INSTALL_PREFIX=/app .
       - cmake --build _build -j$(nproc)
       - cmake --install _build
     post-install:
@@ -201,11 +204,12 @@ modules:
         url: https://github.com/libsdl-org/SDL.git
         tag: release-3.2.16
         dest: Thirdparty/SDL
-      # Pinned to the commit Dasher-GTK's TtsService.cpp is written against:
-      # AACTools/main's tree + the from_mins->from_secs fix (stable-Rust safe).
-      # AACTools/main itself still uses unstable Duration::from_mins and won't
-      # build on the GNOME SDK's stable rustc.
+      # Pinned to the commit Dasher-GTK's submodule points at: v1.11.0
+      # plus the GTK-integration fixes (no phantom voices without a
+      # model; espeak data_dir dropped). Follow the submodule pin in
+      # .gitmodules when bumping. Re-pin to the release tag once
+      # AACTools/rust-tts-wrapper#101 merges.
       - type: git
-        url: https://github.com/owenpkent/rust-tts-wrapper.git
-        branch: pin/dasher-gtk-linux-publish
+        url: https://github.com/AACTools/rust-tts-wrapper.git
+        commit: f5b84fb417b902b2acbcd79a1e2196559077ba1e
         dest: rust-tts-wrapper
