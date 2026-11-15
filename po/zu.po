@@ -121,6 +121,9 @@ msgstr "Khetha ngokuzenzakalelayo ngemva kokulungisa amehlo akho ngenkathi ucind
 msgid "Back"
 msgstr "Emuva"
 
+msgid "Back to Dasher"
+msgstr "Buyela ku-Dasher"
+
 msgid "Del"
 msgstr "susa"
 
@@ -307,8 +310,32 @@ msgstr "Isivinini: {0}"
 msgid "Diagnostics"
 msgstr "Ukuxilongwa"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "Uma i-Dasher Direct Input ingekho"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "Imodi Eqondile isilungile. Engeza i-Dasher Direct Input ukuze ukuqagela kusebenzise umbhalo ongaphambi kwekhesa ezinhlelweni zokusebenza eziningi."
+
+msgid "Restart your Mac, then check the list again."
+msgstr "Qala kabusha i-Mac yakho, bese uhlola uhlu futhi."
+
+msgid "Set Up Text Context"
+msgstr "Setha Umongo Wombhalo"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "Kuzilungiselelo zekhibhodi, hamba kokuthi Okokufaka Umbhalo → Hlela → +. Sesha okuthi Dasher Direct Input bese uchofoza Engeza."
+
+msgid "Improve Predictions in Other Apps"
+msgstr "Thuthukisa ukubikezela kwezinye izinhlelo zokusebenza"
+
 msgid "Direct Mode"
 msgstr "Imodi Eqondile"
+
+msgid "Direct Mode starts as soon as access is available."
+msgstr "Imodi Eqondile iqala ngokushesha ngemva kokuba usunikeze imvume Yokufinyeleleka."
+
+msgid "Focus an editor to start"
+msgstr "Ukuze uqale, beka ikhesa endaweni yokufaka umbhalo."
 
 msgid "Done"
 msgstr "Kuqediwe"
@@ -549,6 +576,9 @@ msgstr "Ulimi / Indawo"
 
 msgid "<b>Language / Locale</b>"
 msgstr "<b>Ulimi / Indawo</b>"
+
+msgid "Later"
+msgstr "Kamuva"
 
 msgid "Bottom"
 msgstr "Ngaphansi"
@@ -837,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "Indlela Yokukhetha"
+
+msgid "Sending to {app}"
+msgstr "Ithumela ku-{app}"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "inkonzo iyasebenza? Bheka usizo lokumisa ku-Keyboard batini ukuze uthole imiyalo yokufaka."

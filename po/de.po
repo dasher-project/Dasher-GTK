@@ -121,6 +121,9 @@ msgstr "Automatische Auswahl, nachdem Sie Ihren Blick beim Kneifen fixiert haben
 msgid "Back"
 msgstr "Zurück"
 
+msgid "Back to Dasher"
+msgstr "Zurück zu Dasher"
+
 msgid "Del"
 msgstr "löschen"
 
@@ -307,8 +310,32 @@ msgstr "Geschwindigkeit: {0}"
 msgid "Diagnostics"
 msgstr "Diagnose"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "Wenn Dasher Direct Input fehlt"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "Der Direktmodus ist bereit. Fügen Sie Dasher Direct Input hinzu, damit die Vorhersagen in mehr Apps den Text direkt vor dem Cursor berücksichtigen."
+
+msgid "Restart your Mac, then check the list again."
+msgstr "Starten Sie Ihren Mac neu und überprüfen Sie die Liste erneut."
+
+msgid "Set Up Text Context"
+msgstr "Textkontext einrichten"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "Gehen Sie in den Tastatureinstellungen zu Texteingabe → Bearbeiten → +. Suchen Sie nach Dasher Direct Input und klicken Sie auf Hinzufügen."
+
+msgid "Improve Predictions in Other Apps"
+msgstr "Verbessern Sie Vorhersagen in anderen Apps"
+
 msgid "Direct Mode"
 msgstr "Direktmodus"
+
+msgid "Direct Mode starts as soon as access is available."
+msgstr "Der Direktmodus startet, sobald der Zugriff verfügbar ist."
+
+msgid "Focus an editor to start"
+msgstr "Setzen Sie zum Starten den Textcursor in ein Textfeld."
 
 msgid "Done"
 msgstr "Erledigt"
@@ -549,6 +576,9 @@ msgstr "Sprache / Gebietsschema"
 
 msgid "<b>Language / Locale</b>"
 msgstr "Sprache lokal"
+
+msgid "Later"
+msgstr "Später"
 
 msgid "Bottom"
 msgstr "Unten"
@@ -837,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "Auswahlverfahren"
+
+msgid "Sending to {app}"
+msgstr "Senden an {app}"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "Läuft der Dienst? Siehe die Einrichtungshilfe auf der Tastaturtaste für Installationsbefehle."

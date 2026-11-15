@@ -121,6 +121,9 @@ msgstr "Outomatiese keuse nadat jy jou blik vasgehou het terwyl jy knyp. Aktivee
 msgid "Back"
 msgstr "Terug"
 
+msgid "Back to Dasher"
+msgstr "Terug na Dasher"
+
 msgid "Del"
 msgstr "verwyder"
 
@@ -307,8 +310,32 @@ msgstr "Spoed: {0}"
 msgid "Diagnostics"
 msgstr "Diagnostiek"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "As Dasher Direct Input ontbreek"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "Direkte modus is gereed. Voeg Dasher Direct Input by sodat voorspellings die teks net voor die wyser in meer programme kan gebruik."
+
+msgid "Restart your Mac, then check the list again."
+msgstr "Herbegin jou Mac en gaan dan weer na die lys."
+
+msgid "Set Up Text Context"
+msgstr "Stel tekskonteks op"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "In Sleutelbordinstellings, gaan na Teksinvoer → Wysig → +. Soek vir Dasher Direct Input en klik Voeg by."
+
+msgid "Improve Predictions in Other Apps"
+msgstr "Verbeter voorspellings in ander toepassings"
+
 msgid "Direct Mode"
 msgstr "Direkte modus"
+
+msgid "Direct Mode starts as soon as access is available."
+msgstr "Direkte modus begin sodra toegang beskikbaar is."
+
+msgid "Focus an editor to start"
+msgstr "Plaas die tekswyser in ’n teksveld om te begin."
 
 msgid "Done"
 msgstr "Klaar"
@@ -549,6 +576,9 @@ msgstr "Taal / Streekinstelling"
 
 msgid "<b>Language / Locale</b>"
 msgstr "<b>Taal / Plaaslike</b>"
+
+msgid "Later"
+msgstr "Later"
 
 msgid "Bottom"
 msgstr "Onderkant"
@@ -837,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "Seleksiemetode"
+
+msgid "Sending to {app}"
+msgstr "Stuur tans na {app}"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "diens aan die gang? Sien die instellingshulp op die Sleutelbord-knoppie vir installeeropdragte."
