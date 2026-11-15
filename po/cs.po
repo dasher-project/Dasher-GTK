@@ -121,6 +121,9 @@ msgstr "Automatický výběr po upoutání pozornosti během sevření prstů. P
 msgid "Back"
 msgstr "Zpět"
 
+msgid "Back to Dasher"
+msgstr "Zpět na Dasher"
+
 msgid "Del"
 msgstr "smazat"
 
@@ -307,8 +310,32 @@ msgstr "Rychlost: {0}"
 msgid "Diagnostics"
 msgstr "Diagnostika"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "Pokud chybí Dasher Direct Input"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "Přímý režim je připraven. Přidejte Dasher Direct Input, aby předpovědi mohly využívat text těsně před kurzorem ve více aplikacích."
+
+msgid "Restart your Mac, then check the list again."
+msgstr "Restartujte Mac a znovu zkontrolujte seznam."
+
+msgid "Set Up Text Context"
+msgstr "Nastavit textový kontext"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "V Nastavení klávesnice přejděte na Textový vstup → Upravit → +. Vyhledejte Dasher Direct Input a klikněte na Přidat."
+
+msgid "Improve Predictions in Other Apps"
+msgstr "Vylepšete předpovědi v jiných aplikacích"
+
 msgid "Direct Mode"
 msgstr "Přímý režim"
+
+msgid "Direct Mode starts as soon as access is available."
+msgstr "Přímý režim se spustí, jakmile je k dispozici přístup."
+
+msgid "Focus an editor to start"
+msgstr "Začněte umístěním kurzoru do textového pole."
 
 msgid "Done"
 msgstr "Hotovo"
@@ -549,6 +576,9 @@ msgstr "Jazyk / Lokalita"
 
 msgid "<b>Language / Locale</b>"
 msgstr "Jazyková lokalita"
+
+msgid "Later"
+msgstr "Později"
 
 msgid "Bottom"
 msgstr "Dno"
@@ -837,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "Metoda výběru"
+
+msgid "Sending to {app}"
+msgstr "Odesílání do {app}"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "Služba běží? Podívejte se na nápovědu k nastavení na tlačítku Klávesnice pro instalační příkazy."

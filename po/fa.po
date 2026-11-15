@@ -121,6 +121,9 @@ msgstr "انتخاب خودکار پس از ثابت نگه داشتن نگاه 
 msgid "Back"
 msgstr "بازگشت"
 
+msgid "Back to Dasher"
+msgstr "بازگشت به Dasher"
+
 msgid "Del"
 msgstr "دل"
 
@@ -307,8 +310,32 @@ msgstr "سرعت: {0}"
 msgid "Diagnostics"
 msgstr "تشخیص"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "اگر Dasher Direct Input وجود ندارد"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "حالت مستقیم آماده است. Dasher Direct Input را اضافه کنید تا پیش‌بینی‌ها در برنامه‌های بیشتری از متن درست پیش از نشانگر نوشتن استفاده کنند."
+
+msgid "Restart your Mac, then check the list again."
+msgstr "مک خود را مجددا راه اندازی کنید، سپس دوباره لیست را بررسی کنید."
+
+msgid "Set Up Text Context"
+msgstr "تنظیم زمینهٔ متن"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "در تنظیمات صفحه کلید، به ورودی متن → ویرایش → + بروید. Dasher Direct Input را جستجو کنید و روی افزودن کلیک کنید."
+
+msgid "Improve Predictions in Other Apps"
+msgstr "بهبود پیش بینی ها در سایر برنامه ها"
+
 msgid "Direct Mode"
 msgstr "حالت مستقیم"
+
+msgid "Direct Mode starts as soon as access is available."
+msgstr "حالت مستقیم به محض اینکه دسترسی در دسترس باشد شروع می شود."
+
+msgid "Focus an editor to start"
+msgstr "برای شروع، نشانگر نوشتن را در یک کادر متنی قرار دهید."
 
 msgid "Done"
 msgstr "انجام شد"
@@ -549,6 +576,9 @@ msgstr "زبان / منطقه"
 
 msgid "<b>Language / Locale</b>"
 msgstr "<b>زبان / منطقه</b>"
+
+msgid "Later"
+msgstr "بعدا"
 
 msgid "Bottom"
 msgstr "پایین"
@@ -837,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "روش انتخاب"
+
+msgid "Sending to {app}"
+msgstr "ارسال به {app}"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "سرویس در حال اجرا است؟ راهنمای نصب را از دکمه کیبورد برای دستورات نصب ببینید."

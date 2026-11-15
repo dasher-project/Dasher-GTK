@@ -121,6 +121,9 @@ msgstr "Automatikus kiválasztás a tekintet rögzítése után csippentés köz
 msgid "Back"
 msgstr "Vissza"
 
+msgid "Back to Dasher"
+msgstr "Vissza ide: Dasher"
+
 msgid "Del"
 msgstr "törlés"
 
@@ -307,8 +310,32 @@ msgstr "Sebesség: {0}"
 msgid "Diagnostics"
 msgstr "Diagnosztika"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "Ha a(z) Dasher Direct Input hiányzik"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "A közvetlen mód készen áll. Adja hozzá a következőt: Dasher Direct Input. Így az előrejelzések több alkalmazásban használhatják a kurzor előtti szöveget."
+
+msgid "Restart your Mac, then check the list again."
+msgstr "Indítsa újra a Mac-et, majd ellenőrizze újra a listát."
+
+msgid "Set Up Text Context"
+msgstr "Szövegkörnyezet beállítása"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "A Billentyűzet beállításaiban válassza a Szövegbevitel → Szerkesztés → + lehetőséget. Keresse meg a következőt: Dasher Direct Input, és kattintson a Hozzáadás gombra."
+
+msgid "Improve Predictions in Other Apps"
+msgstr "Javítsa az előrejelzéseket más alkalmazásokban"
+
 msgid "Direct Mode"
 msgstr "Közvetlen mód"
+
+msgid "Direct Mode starts as soon as access is available."
+msgstr "A Közvetlen mód azonnal elindul, amint elérhető a hozzáférés."
+
+msgid "Focus an editor to start"
+msgstr "A kezdéshez helyezze a szövegkurzort egy szövegmezőbe."
 
 msgid "Done"
 msgstr "Kész"
@@ -549,6 +576,9 @@ msgstr "Nyelv / Terület"
 
 msgid "<b>Language / Locale</b>"
 msgstr "<b>Nyelv /Terület</b>"
+
+msgid "Later"
+msgstr "Később"
 
 msgid "Bottom"
 msgstr "Alsó"
@@ -837,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "Kiválasztási módszer"
+
+msgid "Sending to {app}"
+msgstr "Küldés ide: {app}"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "A szolgáltatás fut? Lásd a beállítási segítséget a Billentyűzet gombnál a telepítési parancsokhoz."

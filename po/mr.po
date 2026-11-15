@@ -121,6 +121,9 @@ msgstr "पिंच करताना तुमची नजर स्थि�
 msgid "Back"
 msgstr "मागे"
 
+msgid "Back to Dasher"
+msgstr "Dasher वर परत"
+
 msgid "Del"
 msgstr "Del"
 
@@ -307,8 +310,32 @@ msgstr "गती: {0}"
 msgid "Diagnostics"
 msgstr "निदान"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "जर Dasher Direct Input गहाळ असेल"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "थेट मोड तयार आहे. अधिक ॲप्समध्ये कर्सरच्या अगोदरचा मजकूर अंदाजांसाठी वापरण्यासाठी Dasher Direct Input जोडा."
+
+msgid "Restart your Mac, then check the list again."
+msgstr "तुमचा Mac रीस्टार्ट करा, नंतर सूची पुन्हा तपासा."
+
+msgid "Set Up Text Context"
+msgstr "मजकूर संदर्भ सेट करा"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "कीबोर्ड सेटिंग्जमध्ये, मजकूर इनपुट → संपादन → + वर जा. Dasher Direct Input शोधा आणि जोडा क्लिक करा."
+
+msgid "Improve Predictions in Other Apps"
+msgstr "इतर ॲप्समधील अंदाज सुधारा"
+
 msgid "Direct Mode"
 msgstr "थेट मोड"
+
+msgid "Direct Mode starts as soon as access is available."
+msgstr "प्रवेश उपलब्ध होताच डायरेक्ट मोड सुरू होतो."
+
+msgid "Focus an editor to start"
+msgstr "सुरू करण्यासाठी मजकूर कर्सर एखाद्या मजकूर फील्डमध्ये ठेवा."
 
 msgid "Done"
 msgstr "पूर्ण झाले"
@@ -549,6 +576,9 @@ msgstr "भाषा / स्थानिक"
 
 msgid "<b>Language / Locale</b>"
 msgstr "<b>भाषा / स्थानिक भाषा</b>"
+
+msgid "Later"
+msgstr "नंतर"
 
 msgid "Bottom"
 msgstr "तळ"
@@ -837,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "निवड पद्धत"
+
+msgid "Sending to {app}"
+msgstr "{app} ला पाठवत आहे"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "सेवा चालू आहे का? इन्स्टॉलेशन कमांडसाठी कीबोर्ड बटणावर सेटअप मदत पहा."

@@ -121,6 +121,9 @@ msgstr "പിഞ്ച് ചെയ്യുമ്പോൾ നോട്ടം 
 msgid "Back"
 msgstr "തിരികെ"
 
+msgid "Back to Dasher"
+msgstr "Dasher എന്നതിലേക്ക് മടങ്ങുക"
+
 msgid "Del"
 msgstr "Del"
 
@@ -307,8 +310,32 @@ msgstr "വേഗത: {0}"
 msgid "Diagnostics"
 msgstr "ഡയഗ്നോസ്റ്റിക്സ്"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "Dasher Direct Input ഇല്ലെങ്കിൽ"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "ഡയറക്ട് മോഡ് തയ്യാറാണ്. കൂടുതൽ ആപ്പുകളിൽ കർസറിനു തൊട്ടുമുമ്പുള്ള ടെക്സ്റ്റ് പ്രവചനങ്ങൾക്ക് ഉപയോഗിക്കാൻ Dasher Direct Input ചേർക്കുക."
+
+msgid "Restart your Mac, then check the list again."
+msgstr "നിങ്ങളുടെ Mac പുനരാരംഭിക്കുക, തുടർന്ന് ലിസ്റ്റ് വീണ്ടും പരിശോധിക്കുക."
+
+msgid "Set Up Text Context"
+msgstr "ടെക്സ്റ്റ് സന്ദർഭം സജ്ജീകരിക്കുക"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "കീബോർഡ് ക്രമീകരണങ്ങളിൽ, ടെക്സ്റ്റ് ഇൻപുട്ട് → എഡിറ്റ് → + എന്നതിലേക്ക് പോകുക. Dasher Direct Input എന്നതിനായി തിരയുക, ചേർക്കുക ക്ലിക്ക് ചെയ്യുക."
+
+msgid "Improve Predictions in Other Apps"
+msgstr "മറ്റ് ആപ്പുകളിലെ പ്രവചനങ്ങൾ മെച്ചപ്പെടുത്തുക"
+
 msgid "Direct Mode"
 msgstr "ഡയറക്ട് മോഡ്"
+
+msgid "Direct Mode starts as soon as access is available."
+msgstr "ആക്സസ് ലഭ്യമാകുമ്പോൾ തന്നെ ഡയറക്ട് മോഡ് ആരംഭിക്കുന്നു."
+
+msgid "Focus an editor to start"
+msgstr "തുടങ്ങാൻ ഒരു ടെക്സ്റ്റ് ഫീൽഡിൽ കർസർ വയ്ക്കുക."
 
 msgid "Done"
 msgstr "ചെയ്തുകഴിഞ്ഞു"
@@ -549,6 +576,9 @@ msgstr "ഭാഷ / ലോക്കേൽ"
 
 msgid "<b>Language / Locale</b>"
 msgstr "<b>ഭാഷ / ഭാഷ</b>"
+
+msgid "Later"
+msgstr "പിന്നീട്"
 
 msgid "Bottom"
 msgstr "അടിത്തട്ട്"
@@ -837,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "തിരഞ്ഞെടുപ്പ് രീതി"
+
+msgid "Sending to {app}"
+msgstr "{app} എന്നതിലേക്ക് അയയ്ക്കുന്നു"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "സേവനം പ്രവർത്തിക്കുന്നുണ്ടോ? ഇൻസ്റ്റാൾ കമാൻഡുകൾക്കായി കീബോർഡ് ബട്ടണിലുള്ള സജ്ജീകരണ സഹായം കാണുക."

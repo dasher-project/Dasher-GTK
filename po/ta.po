@@ -121,6 +121,9 @@ msgstr "விரல்களால் கிள்ளும்போது உ�
 msgid "Back"
 msgstr "மீண்டும்"
 
+msgid "Back to Dasher"
+msgstr "Dasherக்குத் திரும்பு"
+
 msgid "Del"
 msgstr "Del"
 
@@ -307,8 +310,32 @@ msgstr "வேகம்: {0}"
 msgid "Diagnostics"
 msgstr "நோயறிதல்"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "Dasher Direct Input இல்லை என்றால்"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "நேரடி பயன்முறை தயாராக உள்ளது. கூடுதல் செயலிகளில் கர்சருக்கு முன் உள்ள உரையைக் கணிப்புகளுக்குப் பயன்படுத்த Dasher Direct Input ஐச் சேர்க்கவும்."
+
+msgid "Restart your Mac, then check the list again."
+msgstr "உங்கள் மேக்கை மறுதொடக்கம் செய்து, பட்டியலை மீண்டும் சரிபார்க்கவும்."
+
+msgid "Set Up Text Context"
+msgstr "உரை சூழலை அமைக்கவும்"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "விசைப்பலகை அமைப்புகளில், உரை உள்ளீடு → திருத்து → + என்பதற்குச் செல்லவும். Dasher Direct Input ஐத் தேடி சேர் என்பதைக் கிளிக் செய்யவும்."
+
+msgid "Improve Predictions in Other Apps"
+msgstr "பிற பயன்பாடுகளில் கணிப்புகளை மேம்படுத்தவும்"
+
 msgid "Direct Mode"
 msgstr "நேரடி பயன்முறை"
+
+msgid "Direct Mode starts as soon as access is available."
+msgstr "அணுகல் கிடைத்தவுடன் நேரடி பயன்முறை தொடங்கும்."
+
+msgid "Focus an editor to start"
+msgstr "தொடங்க, உரைக் கர்சரை ஓர் உரைப் புலத்தில் வைக்கவும்."
 
 msgid "Done"
 msgstr "முடிந்தது"
@@ -549,6 +576,9 @@ msgstr "மொழி / பிராந்தியம்"
 
 msgid "<b>Language / Locale</b>"
 msgstr "<b>மொழி / வட்டாரம்</b>"
+
+msgid "Later"
+msgstr "பின்னர்"
 
 msgid "Bottom"
 msgstr "கீழ்"
@@ -837,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "தேர்வு முறை"
+
+msgid "Sending to {app}"
+msgstr "{app}க்கு அனுப்புகிறது"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "சேவை இயங்குகிறதா? நிறுவல் கட்டளைகளுக்காக விசைப்பலகை பொத்தானில் அமைப்பு உதவியைப் பார்க்கவும்."

@@ -121,6 +121,9 @@ msgstr "يتم التحديد التلقائي بعد تثبيت النظر أث
 msgid "Back"
 msgstr "عودة"
 
+msgid "Back to Dasher"
+msgstr "العودة إلى Dasher"
+
 msgid "Del"
 msgstr "حذف"
 
@@ -307,8 +310,32 @@ msgstr "السرعة: {0}"
 msgid "Diagnostics"
 msgstr "التشخيص"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "إذا كان Dasher Direct Input مفقودًا"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "الوضع المباشر جاهز. أضف Dasher Direct Input لتستخدم التوقعات النص الذي يسبق مؤشر الكتابة مباشرةً في مزيد من التطبيقات."
+
+msgid "Restart your Mac, then check the list again."
+msgstr "أعد تشغيل جهاز Mac الخاص بك، ثم تحقق من القائمة مرة أخرى."
+
+msgid "Set Up Text Context"
+msgstr "إعداد سياق النص"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "في إعدادات لوحة المفاتيح، انتقل إلى إدخال النص → تحرير → +. ابحث عن Dasher Direct Input وانقر فوق \"إضافة\"."
+
+msgid "Improve Predictions in Other Apps"
+msgstr "تحسين التوقعات في تطبيقات أخرى"
+
 msgid "Direct Mode"
 msgstr "الوضع المباشر"
+
+msgid "Direct Mode starts as soon as access is available."
+msgstr "يبدأ الوضع المباشر بمجرد توفر الوصول."
+
+msgid "Focus an editor to start"
+msgstr "ضع مؤشر الكتابة في حقل نص للبدء."
 
 msgid "Done"
 msgstr "منتهي"
@@ -549,6 +576,9 @@ msgstr "اللغة / الإعدادات المحلية"
 
 msgid "<b>Language / Locale</b>"
 msgstr "اللغة المحلية"
+
+msgid "Later"
+msgstr "لاحقاً"
 
 msgid "Bottom"
 msgstr "قاع"
@@ -837,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "طريقة الاختيار"
+
+msgid "Sending to {app}"
+msgstr "إرسال إلى {app}"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "هل الخدمة تعمل؟ انظر مساعدة الإعداد على زر لوحة المفاتيح لأوامر التثبيت."
