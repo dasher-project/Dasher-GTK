@@ -32,6 +32,9 @@ pkg_check_modules(ATSPI atspi-2)
 # toolchain ships it (e.g. GVSBuild on Windows). When absent the app still
 # builds and events are queued but not transmitted (see HAS_ANALYTICS_CURL).
 find_package(CURL)
+# bzip2: decompressing the sherpa-onnx model archives (.tar.bz2) in
+# the model downloader (Linux only; harmless elsewhere).
+find_package(BZip2)
 
 ###############################
 # Using/Building SDL3
@@ -86,7 +89,10 @@ if(EXISTS "${TTS_WRAPPER_DIR}/Cargo.toml")
 		# registry. Linux links the k2-fsa static tarball (sherpa +
 		# onnxruntime baked in); the macOS/Windows GTK builds stay
 		# cloud+system until their prebuilt archives are validated.
-		set(TTS_WRAPPER_FEATURES_DEFAULT "system,cloud,sherpaonnx")
+		# sherpa-g2p: voicegarden lexicon bundles for non-English
+		# voices (the no-espeak phonemization path) — fetched at
+		# runtime, the build stays offline.
+		set(TTS_WRAPPER_FEATURES_DEFAULT "system,cloud,sherpaonnx,sherpa-g2p")
 	endif()
 	if(NOT TTS_WRAPPER_FEATURES)
 		set(TTS_WRAPPER_FEATURES "${TTS_WRAPPER_FEATURES_DEFAULT}")
@@ -332,6 +338,14 @@ if(TARGET tts_wrapper)
 		# copy that places it next to the executable.
 		target_link_libraries(Dasher PRIVATE
 			"${TTS_WRAPPER_BUILD_DIR}/release/librust_tts_wrapper.so")
+		# The Sherpa model browser/downloader (src/Speech): needs curl
+		# for the verified downloads and bzip2 for the .tar.bz2
+		# archives. Without either it compiles out and the Speech page
+		# falls back to hand-typed model ids.
+		if(CURL_FOUND AND BZIP2_FOUND)
+			target_compile_definitions(Dasher PRIVATE HAS_TTS_DOWNLOAD)
+			target_link_libraries(Dasher PRIVATE BZip2::BZip2)
+		endif()
 	else()
 		target_link_libraries(Dasher PRIVATE "${TTS_WRAPPER_LIB}")
 		if(APPLE)

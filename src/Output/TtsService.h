@@ -19,7 +19,7 @@ struct TtsEngineInfo {
 };
 
 class TtsService {
-public:
+  public:
     TtsService();
     ~TtsService();
 
@@ -45,7 +45,16 @@ public:
     std::vector<TtsEngineInfo> get_engines() const;
     std::vector<TtsVoiceInfo> get_voices() const;
 
-private:
+    // The wrapper's embedded Sherpa-ONNX model registry as JSON
+    // (empty string when the feature is compiled out).
+    std::string get_sherpa_models_json() const;
+
+    // Fetch + sha-verify the voicegarden g2p bundle for a registry
+    // model id (no-espeak phonemization for non-English voices).
+    // True when the bundle is cached afterwards.
+    bool provision_sherpa_g2p(const std::string& model_id) const;
+
+  private:
     void* m_ctx;
     bool m_available = false;
     std::string m_engine_id;

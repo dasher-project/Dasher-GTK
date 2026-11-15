@@ -76,8 +76,7 @@ void TtsService::set_engine(const std::string& engine_id, const std::string& cre
     if (m_ctx) {
         tts_destroy(static_cast<tts_ctx*>(m_ctx));
     }
-    m_ctx = tts_create(engine_id.c_str(),
-                       credentials.empty() ? nullptr : credentials.c_str());
+    m_ctx = tts_create(engine_id.c_str(), credentials.empty() ? nullptr : credentials.c_str());
     m_available = (m_ctx != nullptr);
     if (m_available) {
         m_engine_id = engine_id;
@@ -164,14 +163,34 @@ std::vector<TtsEngineInfo> TtsService::get_engines() const {
     return result;
 }
 
+std::string TtsService::get_sherpa_models_json() const {
+#ifdef HAS_TTS
+    char* json = tts_get_sherpa_models_json();
+    if (!json) return {};
+    std::string result(json);
+    tts_free_string(json);
+    return result;
+#else
+    return {};
+#endif
+}
+
+bool TtsService::provision_sherpa_g2p(const std::string& model_id) const {
+#ifdef HAS_TTS
+    return tts_provision_sherpa_g2p_bundle(model_id.c_str());
+#else
+    (void)model_id;
+    return false;
+#endif
+}
+
 std::vector<TtsVoiceInfo> TtsService::get_voices() const {
     std::vector<TtsVoiceInfo> result;
 #ifdef HAS_TTS
     if (!m_ctx) return result;
     tts_voice* voices = nullptr;
     int32_t count = 0;
-    if (tts_get_voices(static_cast<tts_ctx*>(m_ctx), &voices, &count) != 0)
-        return result;
+    if (tts_get_voices(static_cast<tts_ctx*>(m_ctx), &voices, &count) != 0) return result;
     for (int32_t i = 0; i < count; i++) {
         TtsVoiceInfo info;
         if (voices[i].id) info.id = voices[i].id;
