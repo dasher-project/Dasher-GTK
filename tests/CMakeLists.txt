@@ -34,6 +34,9 @@ add_executable(dasher_unit_tests
     ${CMAKE_SOURCE_DIR}/src/Analytics/CrashReporter.cpp
     ${CMAKE_SOURCE_DIR}/src/Analytics/AnalyticsClient.cpp
     ${CMAKE_SOURCE_DIR}/src/Analytics/AnalyticsSettings.cpp
+    test_sherpa_models.cpp
+    ${CMAKE_SOURCE_DIR}/src/Speech/Json.cpp
+    ${CMAKE_SOURCE_DIR}/src/Speech/SherpaModels.cpp
 )
 
 target_include_directories(dasher_unit_tests SYSTEM PRIVATE ${GTKMM_INCLUDE_DIRS})
@@ -143,21 +146,27 @@ if(CURL_FOUND)
     target_compile_definitions(prefs_rebuild_selftest PRIVATE HAS_ANALYTICS_CURL)
 endif()
 if(TARGET tts_wrapper)
-    target_link_libraries(prefs_rebuild_selftest PRIVATE "${TTS_WRAPPER_LIB}")
     target_include_directories(prefs_rebuild_selftest PRIVATE "${TTS_WRAPPER_DIR}/include")
     if(APPLE)
-        target_link_libraries(prefs_rebuild_selftest PRIVATE "-framework AVFAudio" "-framework Foundation" "-lobjc")
+        target_link_libraries(prefs_rebuild_selftest PRIVATE "-framework AVFAudio" "-framework Foundation" "-lobjc" "${TTS_WRAPPER_LIB}")
     elseif(WIN32)
-        target_link_libraries(prefs_rebuild_selftest PRIVATE
+        target_link_libraries(prefs_rebuild_selftest PRIVATE "${TTS_WRAPPER_LIB}"
             ntdll userenv bcrypt ws2_32 advapi32 crypt32 secur32 ncrypt ole32 oleaut32)
     else()
-        target_link_libraries(prefs_rebuild_selftest PRIVATE dl pthread)
-        # speech-dispatcher (libspeechd) is only pulled in by the `system`
-        # TTS engine (the default feature set on Linux CI). Cloud-only builds
-        # have no speechd symbols, so linking it there just fails — mirrors
-        # the Dasher target's conditional.
-        if(TTS_WRAPPER_FEATURES MATCHES "system")
-            target_link_libraries(prefs_rebuild_selftest PRIVATE speechd)
+        # Same cdylib switch as the Dasher target: the staticlib now
+        # needs the 11 sherpa-onnx archives living in a cargo-internal
+        # hash directory, while the .so bundles everything and rides
+        # the $ORIGIN layout next to the test binary.
+        target_link_libraries(prefs_rebuild_selftest PRIVATE
+            "${TTS_WRAPPER_BUILD_DIR}/release/librust_tts_wrapper.so")
+        if(CURL_FOUND AND BZIP2_FOUND)
+            target_compile_definitions(prefs_rebuild_selftest PRIVATE HAS_TTS_DOWNLOAD)
+            target_link_libraries(prefs_rebuild_selftest PRIVATE BZip2::BZip2 CURL::libcurl)
         endif()
+        # The .so must sit next to the executable for the $ORIGIN rpath.
+        add_custom_command(TARGET prefs_rebuild_selftest POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                "${TTS_WRAPPER_BUILD_DIR}/release/librust_tts_wrapper.so"
+                $<TARGET_FILE_DIR:prefs_rebuild_selftest>)
     endif()
 endif()

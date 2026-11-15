@@ -12,6 +12,9 @@
 #include "Output/TtsService.h"
 #include "Input/DwellClickHandler.h"
 #include "UIComponents/PopoverMenuButtonInfo.h"
+#ifdef HAS_TTS_DOWNLOAD
+#include "Speech/SherpaModelBrowser.h"
+#endif
 #include <gtkmm/checkbutton.h>
 #include <gtkmm/dropdown.h>
 #include <gtkmm/stringlist.h>
@@ -49,10 +52,8 @@ static std::vector<std::string> parse_json_keys(const std::string& json) {
     return keys;
 }
 
-static std::string build_credentials_json(
-    const std::vector<std::string>& keys,
-    const std::vector<Gtk::Entry*>& entries)
-{
+static std::string build_credentials_json(const std::vector<std::string>& keys,
+                                          const std::vector<Gtk::Entry*>& entries) {
     std::string json = "{";
     for (size_t i = 0; i < keys.size() && i < entries.size(); i++) {
         if (i > 0) json += ",";
@@ -704,7 +705,8 @@ void PreferencesWindow::add_speech_section() {
             }
         };
 
-        auto rebuild_creds = [creds_box, cred_keys, cred_entries, tts, engines, engine_dropdown, refresh_voices]() {
+        auto rebuild_creds = [this, creds_box, cred_keys, cred_entries, tts, engines, engine_dropdown,
+                              refresh_voices]() {
             while (creds_box->get_first_child() != nullptr) {
                 auto* child = creds_box->get_first_child();
                 creds_box->remove(*child);
@@ -717,6 +719,42 @@ void PreferencesWindow::add_speech_section() {
 
             auto& engine = engines[idx];
             auto keys = parse_json_keys(engine.credential_keys_json);
+
+            // Shared apply step so both the Connect button and the
+            // Sherpa model browser ("Use Model") configure the engine
+            // through one path.
+            auto apply_creds = std::make_shared<std::function<void()>>();
+            *apply_creds = [tts, engine, cred_keys, cred_entries, refresh_voices]() {
+                auto json = build_credentials_json(*cred_keys, *cred_entries);
+                tts->set_engine(engine.id, json);
+                refresh_voices();
+            };
+
+#ifdef HAS_TTS_DOWNLOAD
+            if (engine.id == "sherpaonnx") {
+                auto* browse_btn = Gtk::make_managed<Gtk::Button>("Browse Models…");
+                browse_btn->set_margin_bottom(4);
+                creds_box->append(*browse_btn);
+                browse_btn->signal_clicked().connect([this, tts, cred_keys, cred_entries, apply_creds]() {
+                    auto* browser = new Dasher::SherpaModelBrowser(
+                        *this, tts, [cred_keys, cred_entries, apply_creds](const std::string& model_id) {
+                            for (size_t i = 0; i < cred_keys->size() && i < cred_entries->size(); i++) {
+                                if ((*cred_keys)[i] == "modelId") {
+                                    (*cred_entries)[i]->set_text(model_id);
+                                }
+                            }
+                            (*apply_creds)();
+                        });
+                    browser->signal_close_request().connect(
+                        [browser]() {
+                            delete browser;
+                            return true;
+                        },
+                        false);
+                    browser->show();
+                });
+            }
+#endif
 
             if (keys.empty()) {
                 tts->set_engine(engine.id);
@@ -736,7 +774,9 @@ void PreferencesWindow::add_speech_section() {
 
                 auto* entry = Gtk::make_managed<Gtk::Entry>();
                 entry->set_hexpand(true);
-                entry->set_visibility(false);
+                // Cloud engine fields are API keys; sherpaonnx's are
+                // model settings (modelId, threads, …) — show those.
+                entry->set_visibility(engine.id != "sherpaonnx" || key == "referenceAudio");
                 creds_box->append(*entry);
                 cred_keys->push_back(key);
                 cred_entries->push_back(entry);
@@ -747,27 +787,18 @@ void PreferencesWindow::add_speech_section() {
             connect_btn->set_margin_top(4);
             creds_box->append(*connect_btn);
 
-            connect_btn->signal_clicked().connect(
-                [tts, engine, cred_keys, cred_entries, refresh_voices]() {
-                    auto json = build_credentials_json(*cred_keys, *cred_entries);
-                    tts->set_engine(engine.id, json);
-                    refresh_voices();
-                });
+            connect_btn->signal_clicked().connect([apply_creds]() { (*apply_creds)(); });
         };
 
-        engine_dropdown->property_selected().signal_changed().connect(
-            [rebuild_creds]() {
-                rebuild_creds();
-            });
+        engine_dropdown->property_selected().signal_changed().connect([rebuild_creds]() { rebuild_creds(); });
 
-        voice_dropdown->property_selected().signal_changed().connect(
-            [tts, voice_dropdown]() {
-                auto voices = tts->get_voices();
-                guint idx = voice_dropdown->get_selected();
-                if (idx < voices.size()) {
-                    tts->set_voice(voices[idx].id);
-                }
-            });
+        voice_dropdown->property_selected().signal_changed().connect([tts, voice_dropdown]() {
+            auto voices = tts->get_voices();
+            guint idx = voice_dropdown->get_selected();
+            if (idx < voices.size()) {
+                tts->set_voice(voices[idx].id);
+            }
+        });
 
         rebuild_creds();
 
@@ -784,9 +815,8 @@ void PreferencesWindow::add_speech_section() {
             scale->set_draw_value(true);
             speech_box->append(*scale);
 
-            adj->signal_value_changed().connect([adj, setter = std::move(setter)]() {
-                setter(static_cast<float>(adj->get_value()));
-            });
+            adj->signal_value_changed().connect(
+                [adj, setter = std::move(setter)]() { setter(static_cast<float>(adj->get_value())); });
         };
 
         add_slider(_("Rate"), 0.1, 3.0, 1.0, 0.1, [tts](float v) { tts->set_rate(v); });
@@ -803,7 +833,8 @@ void PreferencesWindow::add_speech_section() {
             tts->speak(_("Hello, this is a preview of the selected voice."));
         });
     } else {
-        auto* no_tts = Gtk::make_managed<Gtk::Label>("No TTS engine available.\nInstall speech-dispatcher for system TTS.");
+        auto* no_tts =
+            Gtk::make_managed<Gtk::Label>("No TTS engine available.\nInstall speech-dispatcher for system TTS.");
         no_tts->set_halign(Gtk::Align::START);
         speech_box->append(*no_tts);
     }
