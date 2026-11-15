@@ -121,6 +121,9 @@ msgstr "يتم التحديد التلقائي بعد تثبيت النظر أث
 msgid "Back"
 msgstr "عودة"
 
+msgid "Back to Dasher"
+msgstr "العودة إلى Dasher"
+
 msgid "Del"
 msgstr "حذف"
 
@@ -168,6 +171,9 @@ msgstr "يتم جمع المحتوى أو المعلومات الشخصية في
 
 msgid "Control"
 msgstr "تحكم"
+
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "إضافة أوامر التحرير التحديد والنقل والحذف إلى اللوحة القماشية: تحديد النص أو نقله أو حذفه بالحرف أو الكلمة أو الجملة أو الفقرة أو الكل، للأمام أو للخلف."
 
 msgid "Control mode: enabled"
 msgstr "وضع التحكم: مفعل"
@@ -304,11 +310,38 @@ msgstr "السرعة: {0}"
 msgid "Diagnostics"
 msgstr "التشخيص"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "إذا كان Dasher Direct Input مفقودًا"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "الوضع المباشر جاهز. أضف Dasher Direct Input لتستخدم التوقعات النص الذي يسبق مؤشر الكتابة مباشرةً في مزيد من التطبيقات."
+
+msgid "Restart your Mac, then check the list again."
+msgstr "أعد تشغيل جهاز Mac الخاص بك، ثم تحقق من القائمة مرة أخرى."
+
+msgid "Set Up Text Context"
+msgstr "إعداد سياق النص"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "في إعدادات لوحة المفاتيح، انتقل إلى إدخال النص → تحرير → +. ابحث عن Dasher Direct Input وانقر فوق \"إضافة\"."
+
+msgid "Improve Predictions in Other Apps"
+msgstr "تحسين التوقعات في تطبيقات أخرى"
+
 msgid "Direct Mode"
 msgstr "الوضع المباشر"
 
+msgid "Direct Mode starts as soon as access is available."
+msgstr "يبدأ الوضع المباشر بمجرد توفر الوصول."
+
+msgid "Focus an editor to start"
+msgstr "ضع مؤشر الكتابة في حقل نص للبدء."
+
 msgid "Done"
 msgstr "منتهي"
+
+msgid "Drag to move the keyboard window"
+msgstr "اسحب لتحريك نافذة لوحة المفاتيح"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "حوم في مكان واحد لتفعيل النقر، بدلاً من الضغط على زر أو مفتاح."
@@ -544,6 +577,9 @@ msgstr "اللغة / الإعدادات المحلية"
 msgid "<b>Language / Locale</b>"
 msgstr "اللغة المحلية"
 
+msgid "Later"
+msgstr "لاحقاً"
+
 msgid "Bottom"
 msgstr "قاع"
 
@@ -618,6 +654,9 @@ msgstr "لا يوجد محرك تحويل نص إلى كلام متاح. قم ب
 
 msgid "No training data to export yet"
 msgstr "لا توجد بيانات تدريب للتصدير بعد"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "لا يتوفر محرك TTS. تثبيت مرسل الكلام لنظام TTS."
 
 msgid "No user training data yet"
 msgstr "لا توجد بيانات تدريب للمستخدم بعد"
@@ -828,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "طريقة الاختيار"
+
+msgid "Sending to {app}"
+msgstr "إرسال إلى {app}"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "هل الخدمة تعمل؟ انظر مساعدة الإعداد على زر لوحة المفاتيح لأوامر التثبيت."

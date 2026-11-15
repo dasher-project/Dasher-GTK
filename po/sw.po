@@ -121,6 +121,9 @@ msgstr "Chagua kiotomatiki baada ya kuelekeza macho yako unapobanwa. Washa tu ik
 msgid "Back"
 msgstr "Nyuma"
 
+msgid "Back to Dasher"
+msgstr "Rudi kwa Dasher"
+
 msgid "Del"
 msgstr "futa"
 
@@ -168,6 +171,9 @@ msgstr "maudhui au taarifa binafsi zikikusanywa. Unaweza kubadilisha hii yoyote"
 
 msgid "Control"
 msgstr "Udhibiti"
+
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "Inaongeza Chagua, Hamisha na Futa amri za uhariri kwenye turubai: chagua, sogeza au futa maandishi kwa herufi, neno, sentensi, aya au vyote, mbele au nyuma."
 
 msgid "Control mode: enabled"
 msgstr "Hali ya udhibiti: imewezeshwa"
@@ -304,11 +310,38 @@ msgstr "Kasi: {0}"
 msgid "Diagnostics"
 msgstr "Utambuzi"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "Ikiwa Dasher Direct Input haipo"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "Hali ya Moja kwa Moja iko tayari. Ongeza Dasher Direct Input ili ubashiri utumie maandishi yaliyo kabla ya kishale katika programu zaidi."
+
+msgid "Restart your Mac, then check the list again."
+msgstr "Anzisha tena Mac yako, kisha angalia orodha tena."
+
+msgid "Set Up Text Context"
+msgstr "Weka Muktadha wa Maandishi"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "Katika Mipangilio ya Kibodi, nenda kwa Ingizo la Maandishi → Hariri → +. Tafuta Dasher Direct Input na ubofye Ongeza."
+
+msgid "Improve Predictions in Other Apps"
+msgstr "Boresha Utabiri katika Programu Zingine"
+
 msgid "Direct Mode"
 msgstr "Hali ya Moja kwa Moja"
 
+msgid "Direct Mode starts as soon as access is available."
+msgstr "Hali ya Moja kwa Moja huanza mara tu ufikiaji unapatikana."
+
+msgid "Focus an editor to start"
+msgstr "Ili kuanza, weka kishale cha maandishi kwenye sehemu ya kuandika."
+
 msgid "Done"
 msgstr "Imekamilika"
+
+msgid "Drag to move the keyboard window"
+msgstr "Buruta ili kusogeza kidirisha cha kibodi"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "Kaa juu ya sehemu moja ili kusababisha kubofya, badala ya kubonyeza kitufe au swichi."
@@ -544,6 +577,9 @@ msgstr "Lugha / Eneo"
 msgid "<b>Language / Locale</b>"
 msgstr "<b>Lugha / Eneo</b>"
 
+msgid "Later"
+msgstr "Baadaye"
+
 msgid "Bottom"
 msgstr "Chini"
 
@@ -618,6 +654,9 @@ msgstr "Hakuna injini ya hotuba inayopatikana. Jenga kwa kipengele cha TTS cha m
 
 msgid "No training data to export yet"
 msgstr "Hakuna data ya mafunzo ya kusafirisha bado"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "Hakuna injini ya TTS inayopatikana. Sakinisha kisambaza sauti kwa mfumo wa TTS."
 
 msgid "No user training data yet"
 msgstr "Hakuna data ya mafunzo ya mtumiaji bado"
@@ -828,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "Mbinu ya Uchaguzi"
+
+msgid "Sending to {app}"
+msgstr "Inatuma kwa {app}"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "huduma inafanya kazi? Angalia msaada wa usanidi kwenye kitufe cha Keyboard kwa amri za usakinishaji."

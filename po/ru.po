@@ -121,6 +121,9 @@ msgstr "Автоматический выбор после фиксации вз
 msgid "Back"
 msgstr "Назад"
 
+msgid "Back to Dasher"
+msgstr "Вернуться к Dasher"
+
 msgid "Del"
 msgstr "Del"
 
@@ -168,6 +171,9 @@ msgstr "содержимое или личная информация когда
 
 msgid "Control"
 msgstr "Управление"
+
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "Добавляет на холст команды редактирования «Выбрать», «Переместить» и «Удалить»: выделить, переместить или удалить текст по букве, слову, предложению, абзацу или всему тексту вперед или назад."
 
 msgid "Control mode: enabled"
 msgstr "Режим управления: включён"
@@ -304,11 +310,38 @@ msgstr "Скорость: {0}"
 msgid "Diagnostics"
 msgstr "Диагностика"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "Если Dasher Direct Input отсутствует"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "Прямой режим готов. Добавьте Dasher Direct Input, чтобы подсказки учитывали текст перед курсором в большем числе приложений."
+
+msgid "Restart your Mac, then check the list again."
+msgstr "Перезагрузите Mac, затем еще раз проверьте список."
+
+msgid "Set Up Text Context"
+msgstr "Настройка текстового контекста"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "В настройках клавиатуры выберите «Ввод текста» → «Правка» → «+». Найдите Dasher Direct Input и нажмите «Добавить»."
+
+msgid "Improve Predictions in Other Apps"
+msgstr "Улучшите прогнозы в других приложениях"
+
 msgid "Direct Mode"
 msgstr "Прямой режим"
 
+msgid "Direct Mode starts as soon as access is available."
+msgstr "Прямой режим запускается, как только становится доступен доступ."
+
+msgid "Focus an editor to start"
+msgstr "Чтобы начать, установите курсор в текстовое поле."
+
 msgid "Done"
 msgstr "Сделанный"
+
+msgid "Drag to move the keyboard window"
+msgstr "Перетащите, чтобы переместить окно клавиатуры"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "Наведите курсор в одну точку, чтобы вызвать клик, вместо нажатия кнопки или переключателя."
@@ -544,6 +577,9 @@ msgstr "Язык / Локаль"
 msgid "<b>Language / Locale</b>"
 msgstr "<b>Язык / Регион</b>"
 
+msgid "Later"
+msgstr "Позже"
+
 msgid "Bottom"
 msgstr "Нижний"
 
@@ -618,6 +654,9 @@ msgstr "Двигатель речи недоступен. Соберите с ф
 
 msgid "No training data to export yet"
 msgstr "Нет данных обучения для экспорта"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "Движок TTS отсутствует. Установите речевой диспетчер для системы TTS."
 
 msgid "No user training data yet"
 msgstr "Нет пользовательских данных обучения"
@@ -828,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "Метод выбора"
+
+msgid "Sending to {app}"
+msgstr "Отправка на {app}"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "Служба запущена? Смотрите справку по настройке на кнопке Клавиатура для команд установки."

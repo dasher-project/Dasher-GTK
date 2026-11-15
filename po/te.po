@@ -121,6 +121,9 @@ msgstr "పించ్ చేస్తున్నప్పుడు మీ చ
 msgid "Back"
 msgstr "వెనుకకు"
 
+msgid "Back to Dasher"
+msgstr "తిరిగి Dasherకి"
+
 msgid "Del"
 msgstr "Del"
 
@@ -168,6 +171,9 @@ msgstr "విషయాలు లేదా వ్యక్తిగత సమా
 
 msgid "Control"
 msgstr "నియంత్రణ"
+
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "కాన్వాస్‌కి ఎంచుకోండి, తరలించు మరియు తొలగించు సవరణ ఆదేశాలను జోడిస్తుంది: అక్షరం, పదం, వాక్యం, పేరా లేదా అన్నీ, ముందుకు లేదా వెనుకకు వచనాన్ని ఎంచుకోండి, తరలించండి లేదా తొలగించండి."
 
 msgid "Control mode: enabled"
 msgstr "నియంత్రణ మోడ్: ప్రారంభించబడింది"
@@ -304,11 +310,38 @@ msgstr "వేగం: {0}"
 msgid "Diagnostics"
 msgstr "రోగ నిర్ధారణలు"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "Dasher Direct Input తప్పిపోయినట్లయితే"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "డైరెక్ట్ మోడ్ సిద్ధంగా ఉంది. మరిన్ని యాప్‌లలో కర్సర్‌కు ముందు ఉన్న టెక్స్ట్‌ను అంచనాలకు ఉపయోగించడానికి Dasher Direct Inputని జోడించండి."
+
+msgid "Restart your Mac, then check the list again."
+msgstr "మీ Macని పునఃప్రారంభించి, ఆపై జాబితాను మళ్లీ తనిఖీ చేయండి."
+
+msgid "Set Up Text Context"
+msgstr "వచన సందర్భాన్ని సెటప్ చేయండి"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "కీబోర్డ్ సెట్టింగ్‌లలో, టెక్స్ట్ ఇన్‌పుట్ → ఎడిట్ → +కి వెళ్లండి. Dasher Direct Input కోసం వెతికి, జోడించు క్లిక్ చేయండి."
+
+msgid "Improve Predictions in Other Apps"
+msgstr "ఇతర యాప్‌లలో అంచనాలను మెరుగుపరచండి"
+
 msgid "Direct Mode"
 msgstr "డైరెక్ట్ మోడ్"
 
+msgid "Direct Mode starts as soon as access is available."
+msgstr "యాక్సెస్ అందుబాటులోకి వచ్చిన వెంటనే డైరెక్ట్ మోడ్ ప్రారంభమవుతుంది."
+
+msgid "Focus an editor to start"
+msgstr "ప్రారంభించడానికి టెక్స్ట్ కర్సర్‌ను ఒక టెక్స్ట్ ఫీల్డ్‌లో ఉంచండి."
+
 msgid "Done"
 msgstr "పూర్తయింది"
+
+msgid "Drag to move the keyboard window"
+msgstr "కీబోర్డ్ విండోను తరలించడానికి లాగండి"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "బటన్ లేదా స్విచ్‌ను నొక్కడానికి బదులుగా, క్లిక్‌ను ప్రేరేపించడానికి ఒక చోట హోవర్ చేయండి."
@@ -544,6 +577,9 @@ msgstr "భాష / లోకేల్"
 msgid "<b>Language / Locale</b>"
 msgstr "<b>భాష / స్థానికత</b>"
 
+msgid "Later"
+msgstr "తరువాత"
+
 msgid "Bottom"
 msgstr "దిగువన"
 
@@ -618,6 +654,9 @@ msgstr "ఎటువంటి మాటల ఇంజిన్ అందుబా
 
 msgid "No training data to export yet"
 msgstr "ఇంకా ఎగుమతి చేయడానికి ట్రెయినింగ్ డేటా లేదు"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "TTS ఇంజిన్ అందుబాటులో లేదు. సిస్టమ్ TTS కోసం స్పీచ్-డిస్పాచర్‌ను ఇన్‌స్టాల్ చేయండి."
 
 msgid "No user training data yet"
 msgstr "ఇంకా వినియోగదారు ట్రెయినింగ్ డేటా లేదు"
@@ -828,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "ఎంపిక పద్ధతి"
+
+msgid "Sending to {app}"
+msgstr "{app}కి పంపుతోంది"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "సేవ నడుస్తావా? ఇన్‌స్టాల్ ఆదేశాల కోసం కీబోర్డ్ బటన్ పై సెటప్ సహాయాన్ని చూడండి."

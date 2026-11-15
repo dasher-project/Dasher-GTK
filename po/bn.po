@@ -121,6 +121,9 @@ msgstr "পিঞ্চ করার সময় দৃষ্টি স্থ�
 msgid "Back"
 msgstr "পেছনে"
 
+msgid "Back to Dasher"
+msgstr "Dasher এ ফিরে যান"
+
 msgid "Del"
 msgstr "মুছুন"
 
@@ -168,6 +171,9 @@ msgstr "কোনো সামগ্রী বা ব্যক্তিগত �
 
 msgid "Control"
 msgstr "নিয়ন্ত্রণ"
+
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "ক্যানভাসে সিলেক্ট, মুভ এবং ডিলিট এডিটিং কমান্ড যোগ করে: অক্ষর, শব্দ, বাক্য, অনুচ্ছেদ বা সমস্ত, ফরোয়ার্ড বা পিছনের দ্বারা পাঠ্য নির্বাচন, সরান বা মুছুন।"
 
 msgid "Control mode: enabled"
 msgstr "নিয়ন্ত্রণ মোড: সক্রিয়"
@@ -304,11 +310,38 @@ msgstr "গতি: {0}"
 msgid "Diagnostics"
 msgstr "ডায়াগনস্টিকস"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "যদি Dasher Direct Input অনুপস্থিত থাকে"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "সরাসরি মোড প্রস্তুত। আরও অ্যাপে কার্সরের ঠিক আগের লেখা থেকে পূর্বাভাস পেতে Dasher Direct Input যোগ করুন।"
+
+msgid "Restart your Mac, then check the list again."
+msgstr "আপনার ম্যাক রিস্টার্ট করুন, তারপর আবার তালিকা চেক করুন।"
+
+msgid "Set Up Text Context"
+msgstr "টেক্সট কনটেক্সট সেট আপ করুন"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "কীবোর্ড সেটিংসে, টেক্সট ইনপুট → সম্পাদনা → + এ যান। Dasher Direct Input অনুসন্ধান করুন এবং যোগ করুন ক্লিক করুন।"
+
+msgid "Improve Predictions in Other Apps"
+msgstr "অন্যান্য অ্যাপে পূর্বাভাস উন্নত করুন"
+
 msgid "Direct Mode"
 msgstr "সরাসরি মোড"
 
+msgid "Direct Mode starts as soon as access is available."
+msgstr "অ্যাক্সেস উপলব্ধ হওয়ার সাথে সাথে সরাসরি মোড শুরু হয়।"
+
+msgid "Focus an editor to start"
+msgstr "শুরু করতে একটি টেক্সট ফিল্ডে কার্সর রাখুন।"
+
 msgid "Done"
 msgstr "সম্পন্ন হয়েছে"
+
+msgid "Drag to move the keyboard window"
+msgstr "কীবোর্ড উইন্ডো সরাতে টেনে আনুন"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "একটি বোতাম বা সুইচ চাপার পরিবর্তে একটি স্থানে হোভার করুন ক্লিক ট্রিগার করার জন্য।"
@@ -544,6 +577,9 @@ msgstr "ভাষা / স্থানীয়তা"
 msgid "<b>Language / Locale</b>"
 msgstr "<b>ভাষা / স্থানীয়</b>"
 
+msgid "Later"
+msgstr "পরে"
+
 msgid "Bottom"
 msgstr "নীচে"
 
@@ -618,6 +654,9 @@ msgstr "কোনও বক্তৃতা ইঞ্জিন উপলব্ধ
 
 msgid "No training data to export yet"
 msgstr "এখন পর্যন্ত রপ্তানি করার কোনো প্রশিক্ষণ তথ্য নেই"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "কোনো TTS ইঞ্জিন উপলব্ধ নেই। সিস্টেম TTS-এর জন্য স্পিচ-ডিসপ্যাচার ইনস্টল করুন।"
 
 msgid "No user training data yet"
 msgstr "এখনও কোনো ব্যবহারকারীর প্রশিক্ষণ ডেটা নেই"
@@ -828,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "বাছাই পদ্ধতি"
+
+msgid "Sending to {app}"
+msgstr "{app} এ পাঠানো হচ্ছে"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "সার্ভিস চালু আছে? ইনস্টল কমান্ডের জন্য কীবোর্ড বাটনের সেটআপ হেল্প দেখুন।"

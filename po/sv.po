@@ -121,6 +121,9 @@ msgstr "Välj automatiskt efter att du fixerat blicken medan du nyper. Aktivera 
 msgid "Back"
 msgstr "Tillbaka"
 
+msgid "Back to Dasher"
+msgstr "Tillbaka till Dasher"
+
 msgid "Del"
 msgstr "Radera"
 
@@ -168,6 +171,9 @@ msgstr "innehåll eller personlig information någonsin samlas in. Du kan ändra
 
 msgid "Control"
 msgstr "Kontroll"
+
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "Lägger till redigeringskommandon Välj, Flytta och Ta bort till arbetsytan: välj, flytta eller ta bort text efter bokstav, ord, mening, stycke eller allt, framåt eller bakåt."
 
 msgid "Control mode: enabled"
 msgstr "Kontrollläge: aktiverat"
@@ -304,11 +310,38 @@ msgstr "Hastighet: {0}"
 msgid "Diagnostics"
 msgstr "Diagnostik"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "Om Dasher Direct Input saknas"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "Direktläget är klart. Lägg till Dasher Direct Input så att förutsägelser kan använda texten precis före markören i fler appar."
+
+msgid "Restart your Mac, then check the list again."
+msgstr "Starta om din Mac och kontrollera sedan listan igen."
+
+msgid "Set Up Text Context"
+msgstr "Ställ in textkontext"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "I Tangentbordsinställningar, gå till Textinmatning → Redigera → +. Sök efter Dasher Direct Input och klicka på Lägg till."
+
+msgid "Improve Predictions in Other Apps"
+msgstr "Förbättra förutsägelser i andra appar"
+
 msgid "Direct Mode"
 msgstr "Direktläge"
 
+msgid "Direct Mode starts as soon as access is available."
+msgstr "Direktläget startar så snart åtkomst är tillgänglig."
+
+msgid "Focus an editor to start"
+msgstr "Placera textmarkören i ett textfält för att börja."
+
 msgid "Done"
 msgstr "Gjort"
+
+msgid "Drag to move the keyboard window"
+msgstr "Dra för att flytta tangentbordsfönstret"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "Håll blicken på en punkt för att aktivera ett klick, istället för att trycka på en knapp eller en switch."
@@ -544,6 +577,9 @@ msgstr "Språk / Region"
 msgid "<b>Language / Locale</b>"
 msgstr "<b>Språk / Lokalt läge</b>"
 
+msgid "Later"
+msgstr "Senare"
+
 msgid "Bottom"
 msgstr "Botten"
 
@@ -618,6 +654,9 @@ msgstr "Ingen talmotor tillgänglig. Bygg med systemets TTS-funktion eller stäl
 
 msgid "No training data to export yet"
 msgstr "Inga träningsdata att exportera ännu"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "Ingen TTS-motor tillgänglig. Installera speech-dispatcher för system TTS."
 
 msgid "No user training data yet"
 msgstr "Inga användarträningsdata ännu"
@@ -828,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "Urvalsmetod"
+
+msgid "Sending to {app}"
+msgstr "Skickar till {app}"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "tjänst igång? Se installationshjälpen på Tangentbords-knappen för installationskommandon."

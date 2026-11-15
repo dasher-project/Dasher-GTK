@@ -121,6 +121,9 @@ msgstr "เลือกอัตโนมัติหลังจากจ้อ
 msgid "Back"
 msgstr "กลับ"
 
+msgid "Back to Dasher"
+msgstr "กลับไปที่ Dasher"
+
 msgid "Del"
 msgstr "ลบ"
 
@@ -168,6 +171,9 @@ msgstr "เนื้อหาหรือข้อมูลส่วนบุค
 
 msgid "Control"
 msgstr "ควบคุม"
+
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "เพิ่มคำสั่งแก้ไขเลือก ย้าย และลบลงบนผืนผ้าใบ: เลือก ย้าย หรือลบข้อความตามตัวอักษร คำ ประโยค ย่อหน้า หรือทั้งหมด ไปข้างหน้าหรือข้างหลัง"
 
 msgid "Control mode: enabled"
 msgstr "โหมดควบคุม: เปิดใช้งาน"
@@ -304,11 +310,38 @@ msgstr "ความเร็ว: {0}"
 msgid "Diagnostics"
 msgstr "การวินิจฉัยโรค"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "หาก Dasher Direct Input หายไป"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "โหมดโดยตรงพร้อมใช้งานแล้ว เพิ่ม Dasher Direct Input เพื่อใช้ข้อความก่อนเคอร์เซอร์ในการคาดเดาคำในแอปต่าง ๆ ได้มากขึ้น"
+
+msgid "Restart your Mac, then check the list again."
+msgstr "รีสตาร์ท Mac ของคุณ จากนั้นตรวจสอบรายการอีกครั้ง"
+
+msgid "Set Up Text Context"
+msgstr "ตั้งค่าบริบทข้อความ"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "ในการตั้งค่าคีย์บอร์ด ให้ไปที่การป้อนข้อความ → แก้ไข → + ค้นหา Dasher Direct Input และคลิกเพิ่ม"
+
+msgid "Improve Predictions in Other Apps"
+msgstr "ปรับปรุงการคาดการณ์ในแอปอื่นๆ"
+
 msgid "Direct Mode"
 msgstr "โหมดโดยตรง"
 
+msgid "Direct Mode starts as soon as access is available."
+msgstr "โหมดตรงจะเริ่มทันทีที่สามารถเข้าถึงได้"
+
+msgid "Focus an editor to start"
+msgstr "วางเคอร์เซอร์ในช่องข้อความเพื่อเริ่มต้น"
+
 msgid "Done"
 msgstr "เสร็จแล้ว"
+
+msgid "Drag to move the keyboard window"
+msgstr "ลากเพื่อย้ายหน้าต่างแป้นพิมพ์"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "ลอยค้างอยู่ในตำแหน่งเดียวเพื่อกระตุ้นการคลิก แทนการกดปุ่มหรือตัวสวิตช์"
@@ -544,6 +577,9 @@ msgstr "ภาษา / ภูมิภาค"
 msgid "<b>Language / Locale</b>"
 msgstr "<b>ภาษา / สถานที่ตั้ง</b>"
 
+msgid "Later"
+msgstr "ภายหลัง"
+
 msgid "Bottom"
 msgstr "ด้านล่าง"
 
@@ -618,6 +654,9 @@ msgstr "ไม่มีเครื่องยนต์การพูดพร
 
 msgid "No training data to export yet"
 msgstr "ยังไม่มีข้อมูลการฝึกอบรมให้ส่งออก"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "ไม่มีเครื่องยนต์ TTS ติดตั้งโปรแกรมกระจายเสียงพูดสำหรับระบบ TTS"
 
 msgid "No user training data yet"
 msgstr "ยังไม่มีข้อมูลการฝึกอบรมผู้ใช้"
@@ -828,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "วิธีการเลือก"
+
+msgid "Sending to {app}"
+msgstr "กำลังส่งไปที่ {app}"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "บริการกำลังทำงานอยู่หรือไม่? ดูความช่วยเหลือการตั้งค่าที่ปุ่มแป้นพิมพ์สำหรับคำสั่งติดตั้ง"

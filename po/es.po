@@ -101,7 +101,7 @@ msgid "Move caret left (hold to repeat)"
 msgstr "Mover el cursor a la izquierda (mantener presionado para repetir)"
 
 msgid "Right"
-msgstr "Correcto"
+msgstr "Derecha"
 
 msgid "Move caret right (hold to repeat)"
 msgstr "Mover el cursor a la derecha (mantener presionado para repetir)"
@@ -110,7 +110,7 @@ msgid "Auto"
 msgstr "Automático"
 
 msgid "Auto-Centre Target"
-msgstr "Objetivo del centro automotriz"
+msgstr "Objetivo de centrado automático"
 
 msgid "Auto-select after fixating. Only enable if OS dwell is off."
 msgstr "Selección automática tras la fijación. Habilitar solo si la opción de tiempo de espera del sistema operativo está desactivada."
@@ -120,6 +120,9 @@ msgstr "Selección automática tras fijar la mirada mientras se pellizca. Solo s
 
 msgid "Back"
 msgstr "Atrás"
+
+msgid "Back to Dasher"
+msgstr "Volver a Dasher"
 
 msgid "Del"
 msgstr "del"
@@ -168,6 +171,9 @@ msgstr "contenidos o información personal se recopilen alguna vez. Puedes cambi
 
 msgid "Control"
 msgstr "Control"
+
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "Agrega comandos de edición Seleccionar, Mover y Eliminar al lienzo: seleccione, mueva o elimine texto por letra, palabra, oración, párrafo o todo, hacia adelante o hacia atrás."
 
 msgid "Control mode: enabled"
 msgstr "Modo de control: activado"
@@ -304,11 +310,38 @@ msgstr "Velocidad: {0}"
 msgid "Diagnostics"
 msgstr "Diagnóstico"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "Si falta Dasher Direct Input"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "El modo directo está listo. Añade Dasher Direct Input para que las predicciones usen el texto que precede al cursor en más aplicaciones."
+
+msgid "Restart your Mac, then check the list again."
+msgstr "Reinicie su Mac y luego verifique la lista nuevamente."
+
+msgid "Set Up Text Context"
+msgstr "Configurar contexto de texto"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "En los ajustes del teclado, ve a Entrada de texto → Editar → +. Busca Dasher Direct Input y haz clic en Añadir."
+
+msgid "Improve Predictions in Other Apps"
+msgstr "Mejorar las predicciones en otras aplicaciones"
+
 msgid "Direct Mode"
 msgstr "Modo directo"
 
+msgid "Direct Mode starts as soon as access is available."
+msgstr "El modo directo comienza tan pronto como el acceso esté disponible."
+
+msgid "Focus an editor to start"
+msgstr "Coloca el cursor en un campo de texto para empezar."
+
 msgid "Done"
 msgstr "Hecho"
+
+msgid "Drag to move the keyboard window"
+msgstr "Arrastra para mover la ventana del teclado"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "Mantén el cursor en un lugar para activar un clic, en lugar de presionar un botón o interruptor."
@@ -544,6 +577,9 @@ msgstr "Idioma / Configuración regional"
 msgid "<b>Language / Locale</b>"
 msgstr "Configuración local de idioma"
 
+msgid "Later"
+msgstr "Más tarde"
+
 msgid "Bottom"
 msgstr "Abajo"
 
@@ -618,6 +654,9 @@ msgstr "No hay motor de voz disponible. Compila con la función TTS del sistema,
 
 msgid "No training data to export yet"
 msgstr "Aún no hay datos de entrenamiento para exportar"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "No hay motor TTS disponible. Instale el despachador de voz para el sistema TTS."
 
 msgid "No user training data yet"
 msgstr "Todavía no hay datos de entrenamiento de usuario"
@@ -828,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "Método de selección"
+
+msgid "Sending to {app}"
+msgstr "Enviando a {app}"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "¿El servicio está en funcionamiento? Consulta la ayuda de configuración en el botón del teclado para los comandos de instalación."

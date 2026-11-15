@@ -121,6 +121,9 @@ msgstr "چوٹکی کرتے وقت اپنی نگاہیں ٹھیک کرنے کے 
 msgid "Back"
 msgstr "واپس"
 
+msgid "Back to Dasher"
+msgstr "واپس Dasher پر"
+
 msgid "Del"
 msgstr "Del"
 
@@ -168,6 +171,9 @@ msgstr "مواد یا ذاتی معلومات کبھی بھی جمع نہیں ک
 
 msgid "Control"
 msgstr "کنٹرول"
+
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "کینوس میں سلیکٹ، موو اور ڈیلیٹ ایڈیٹنگ کمانڈز شامل کرتا ہے: حرف، لفظ، جملہ، پیراگراف یا سبھی، آگے یا پیچھے کی طرف متن کو منتخب، منتقل یا حذف کریں۔"
 
 msgid "Control mode: enabled"
 msgstr "کنٹرول موڈ: فعال"
@@ -304,11 +310,38 @@ msgstr "رفتار: {0}"
 msgid "Diagnostics"
 msgstr "تشخیص"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "اگر Dasher Direct Input غائب ہے۔"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "ڈائریکٹ موڈ تیار ہے۔ مزید ایپس میں پیش گوئی کے لیے کرسر سے ٹھیک پہلے کا متن استعمال کرنے کے لیے Dasher Direct Input شامل کریں۔"
+
+msgid "Restart your Mac, then check the list again."
+msgstr "اپنے میک کو دوبارہ شروع کریں، پھر فہرست کو دوبارہ چیک کریں۔"
+
+msgid "Set Up Text Context"
+msgstr "متن کا سیاق و سباق مرتب کریں۔"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "کی بورڈ سیٹنگز میں، ٹیکسٹ ان پٹ → ایڈیٹ → + پر جائیں۔ Dasher Direct Input تلاش کریں اور شامل کریں پر کلک کریں۔"
+
+msgid "Improve Predictions in Other Apps"
+msgstr "دیگر ایپس میں پیشین گوئیوں کو بہتر بنائیں"
+
 msgid "Direct Mode"
 msgstr "ڈائریکٹ موڈ"
 
+msgid "Direct Mode starts as soon as access is available."
+msgstr "رسائی دستیاب ہوتے ہی ڈائریکٹ موڈ شروع ہو جاتا ہے۔"
+
+msgid "Focus an editor to start"
+msgstr "شروع کرنے کے لیے ٹیکسٹ کرسر کو کسی ٹیکسٹ فیلڈ میں رکھیں۔"
+
 msgid "Done"
 msgstr "ہو گیا"
+
+msgid "Drag to move the keyboard window"
+msgstr "کی بورڈ ونڈو کو منتقل کرنے کے لیے گھسیٹیں۔"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "کسی بٹن یا سوئچ کو دبانے کی بجائے ایک جگہ پر ہوور کریں تاکہ کلک ٹرگر ہو۔"
@@ -544,6 +577,9 @@ msgstr "زبان / مقامی"
 msgid "<b>Language / Locale</b>"
 msgstr "<b>زبان / لوکیل</b>"
 
+msgid "Later"
+msgstr "بعد میں"
+
 msgid "Bottom"
 msgstr "نیچے"
 
@@ -618,6 +654,9 @@ msgstr "کوئی تقریر کا انجن دستیاب نہیں۔ سسٹم TTS �
 
 msgid "No training data to export yet"
 msgstr "ابھی تک برآمد کرنے کے لیے کوئی ٹریننگ ڈیٹا نہیں ہے"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "کوئی TTS انجن دستیاب نہیں ہے۔ سسٹم TTS کے لیے اسپیچ ڈسپیچر انسٹال کریں۔"
 
 msgid "No user training data yet"
 msgstr "ابھی تک کوئی یوزر ٹریننگ ڈیٹا نہیں ہے"
@@ -828,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "سلیکشن کا طریقہ"
+
+msgid "Sending to {app}"
+msgstr "{app} کو بھیج رہا ہے"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "سروس چل رہی ہے؟ انسٹال کمانڈز کے لیے کی بورڈ کے بٹن پر سیٹ اپ ہیلپ دیکھیں۔"

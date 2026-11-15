@@ -121,6 +121,9 @@ msgstr "Vælg automatisk efter at have fikseret dit blik, mens du kniber. Aktive
 msgid "Back"
 msgstr "Tilbage"
 
+msgid "Back to Dasher"
+msgstr "Tilbage til Dasher"
+
 msgid "Del"
 msgstr "del"
 
@@ -168,6 +171,9 @@ msgstr "indhold eller personlige oplysninger nogensinde indsamles. Du kan ændre
 
 msgid "Control"
 msgstr "Kontrol"
+
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "Tilføjer Vælg, Flyt og Slet redigeringskommandoer til lærredet: vælg, flyt eller slet tekst efter bogstav, ord, sætning, afsnit eller alle, fremad eller tilbage."
 
 msgid "Control mode: enabled"
 msgstr "Kontroltilstand: aktiveret"
@@ -304,11 +310,38 @@ msgstr "Hastighed: {0}"
 msgid "Diagnostics"
 msgstr "Diagnostik"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "Hvis Dasher Direct Input mangler"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "Direkte tilstand er klar. Tilføj Dasher Direct Input, så forudsigelser kan bruge teksten lige før markøren i flere apps."
+
+msgid "Restart your Mac, then check the list again."
+msgstr "Genstart din Mac, og tjek derefter listen igen."
+
+msgid "Set Up Text Context"
+msgstr "Indstil tekstkontekst"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "I Tastaturindstillinger skal du gå til Tekstinput → Rediger → +. Søg efter Dasher Direct Input, og klik på Tilføj."
+
+msgid "Improve Predictions in Other Apps"
+msgstr "Forbedre forudsigelser i andre apps"
+
 msgid "Direct Mode"
 msgstr "Direkte tilstand"
 
+msgid "Direct Mode starts as soon as access is available."
+msgstr "Direkte tilstand starter, så snart der er adgang."
+
+msgid "Focus an editor to start"
+msgstr "Placér tekstmarkøren i et tekstfelt for at begynde."
+
 msgid "Done"
 msgstr "Færdig"
+
+msgid "Drag to move the keyboard window"
+msgstr "Træk for at flytte tastaturvinduet"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "Hold musen over ét punkt for at udløse et klik i stedet for at trykke på en knap eller kontakt."
@@ -544,6 +577,9 @@ msgstr "Sprog / Lokalitet"
 msgid "<b>Language / Locale</b>"
 msgstr "<b>Sprog/lokalitet</b>"
 
+msgid "Later"
+msgstr "Senere"
+
 msgid "Bottom"
 msgstr "Bund"
 
@@ -618,6 +654,9 @@ msgstr "Ingen taleengine tilgængelig. Byg med systemets TTS-funktion, eller ops
 
 msgid "No training data to export yet"
 msgstr "Ingen træningsdata at eksportere endnu"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "Ingen TTS-motor tilgængelig. Installer taledispatcher til system TTS."
 
 msgid "No user training data yet"
 msgstr "Ingen brugertræningsdata endnu"
@@ -828,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "Udvælgelsesmetode"
+
+msgid "Sending to {app}"
+msgstr "Sender til {app}"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "tjeneste kører? Se installationshjælpen på Tastatur-knappen for installationskommandoer."

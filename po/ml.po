@@ -121,6 +121,9 @@ msgstr "പിഞ്ച് ചെയ്യുമ്പോൾ നോട്ടം 
 msgid "Back"
 msgstr "തിരികെ"
 
+msgid "Back to Dasher"
+msgstr "Dasher എന്നതിലേക്ക് മടങ്ങുക"
+
 msgid "Del"
 msgstr "Del"
 
@@ -168,6 +171,9 @@ msgstr "ഉള്ളടക്കങ്ങൾ അല്ലെങ്കിൽ വ�
 
 msgid "Control"
 msgstr "നിയന്ത്രണം"
+
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "എഡിറ്റിംഗ് കമാൻഡുകൾ തിരഞ്ഞെടുക്കുക, നീക്കുക, ഇല്ലാതാക്കുക എന്നിവ ക്യാൻവാസിലേക്ക് ചേർക്കുന്നു: അക്ഷരം, വാക്ക്, വാക്യം, ഖണ്ഡിക അല്ലെങ്കിൽ എല്ലാം, മുന്നോട്ട് അല്ലെങ്കിൽ പിന്നിലേക്ക് വാചകം തിരഞ്ഞെടുക്കുക, നീക്കുക അല്ലെങ്കിൽ ഇല്ലാതാക്കുക."
 
 msgid "Control mode: enabled"
 msgstr "നിയന്ത്രണ മോഡ്: സജീവം"
@@ -304,11 +310,38 @@ msgstr "വേഗത: {0}"
 msgid "Diagnostics"
 msgstr "ഡയഗ്നോസ്റ്റിക്സ്"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "Dasher Direct Input ഇല്ലെങ്കിൽ"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "ഡയറക്ട് മോഡ് തയ്യാറാണ്. കൂടുതൽ ആപ്പുകളിൽ കർസറിനു തൊട്ടുമുമ്പുള്ള ടെക്സ്റ്റ് പ്രവചനങ്ങൾക്ക് ഉപയോഗിക്കാൻ Dasher Direct Input ചേർക്കുക."
+
+msgid "Restart your Mac, then check the list again."
+msgstr "നിങ്ങളുടെ Mac പുനരാരംഭിക്കുക, തുടർന്ന് ലിസ്റ്റ് വീണ്ടും പരിശോധിക്കുക."
+
+msgid "Set Up Text Context"
+msgstr "ടെക്സ്റ്റ് സന്ദർഭം സജ്ജീകരിക്കുക"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "കീബോർഡ് ക്രമീകരണങ്ങളിൽ, ടെക്സ്റ്റ് ഇൻപുട്ട് → എഡിറ്റ് → + എന്നതിലേക്ക് പോകുക. Dasher Direct Input എന്നതിനായി തിരയുക, ചേർക്കുക ക്ലിക്ക് ചെയ്യുക."
+
+msgid "Improve Predictions in Other Apps"
+msgstr "മറ്റ് ആപ്പുകളിലെ പ്രവചനങ്ങൾ മെച്ചപ്പെടുത്തുക"
+
 msgid "Direct Mode"
 msgstr "ഡയറക്ട് മോഡ്"
 
+msgid "Direct Mode starts as soon as access is available."
+msgstr "ആക്സസ് ലഭ്യമാകുമ്പോൾ തന്നെ ഡയറക്ട് മോഡ് ആരംഭിക്കുന്നു."
+
+msgid "Focus an editor to start"
+msgstr "തുടങ്ങാൻ ഒരു ടെക്സ്റ്റ് ഫീൽഡിൽ കർസർ വയ്ക്കുക."
+
 msgid "Done"
 msgstr "ചെയ്തുകഴിഞ്ഞു"
+
+msgid "Drag to move the keyboard window"
+msgstr "കീബോർഡ് വിൻഡോ നീക്കാൻ വലിച്ചിടുക"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "ഒരു സ്ഥലത്ത് നിൽക്കുക ക്ലിക്ക് ട്രിഗർ ചെയ്യാൻ, ബട്ടൺ അല്ലെങ്കിൽ സ്വിച്ച് അമർത്തുന്നതിനുപകരം."
@@ -544,6 +577,9 @@ msgstr "ഭാഷ / ലോക്കേൽ"
 msgid "<b>Language / Locale</b>"
 msgstr "<b>ഭാഷ / ഭാഷ</b>"
 
+msgid "Later"
+msgstr "പിന്നീട്"
+
 msgid "Bottom"
 msgstr "അടിത്തട്ട്"
 
@@ -618,6 +654,9 @@ msgstr "എന്നും സംസാര എഞ്ചിൻ ലഭ്യമല
 
 msgid "No training data to export yet"
 msgstr "ഇനിയും എക്സ്പോർട്ട് ചെയ്യാനുള്ള പരിശീലന ഡാറ്റ ഇല്ല"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "TTS എഞ്ചിൻ ലഭ്യമല്ല. സിസ്റ്റം TTS-നായി സ്പീച്ച്-ഡിസ്പാച്ചർ ഇൻസ്റ്റാൾ ചെയ്യുക."
 
 msgid "No user training data yet"
 msgstr "ഇനിയും ഉപയോക്തൃ പരിശീലന ഡാറ്റ ഇല്ല"
@@ -828,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "തിരഞ്ഞെടുപ്പ് രീതി"
+
+msgid "Sending to {app}"
+msgstr "{app} എന്നതിലേക്ക് അയയ്ക്കുന്നു"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "സേവനം പ്രവർത്തിക്കുന്നുണ്ടോ? ഇൻസ്റ്റാൾ കമാൻഡുകൾക്കായി കീബോർഡ് ബട്ടണിലുള്ള സജ്ജീകരണ സഹായം കാണുക."

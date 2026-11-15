@@ -121,6 +121,9 @@ msgstr "Sélection automatique après avoir fixé votre regard tout en pinçant.
 msgid "Back"
 msgstr "Retour"
 
+msgid "Back to Dasher"
+msgstr "Retour à Dasher"
+
 msgid "Del"
 msgstr "del"
 
@@ -168,6 +171,9 @@ msgstr "contenu du presse-papiers ni information personnelle n'est collecté. Vo
 
 msgid "Control"
 msgstr "Contrôle"
+
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "Ajoute des commandes d'édition Sélectionner, Déplacer et Supprimer au canevas : sélectionner, déplacer ou supprimer du texte par lettre, mot, phrase, paragraphe ou tout, vers l'avant ou vers l'arrière."
 
 msgid "Control mode: enabled"
 msgstr "Mode de contrôle : activé"
@@ -304,11 +310,38 @@ msgstr "Vitesse : {0}"
 msgid "Diagnostics"
 msgstr "Diagnostic"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "Si Dasher Direct Input est manquant"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "Le mode direct est prêt. Ajoutez Dasher Direct Input pour que les prédictions utilisent le texte juste avant le curseur dans davantage d’applications."
+
+msgid "Restart your Mac, then check the list again."
+msgstr "Redémarrez votre Mac, puis vérifiez à nouveau la liste."
+
+msgid "Set Up Text Context"
+msgstr "Configurer le contexte du texte"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "Dans les réglages Clavier, accédez à Saisie de texte → Modifier → +. Recherchez Dasher Direct Input, puis cliquez sur Ajouter."
+
+msgid "Improve Predictions in Other Apps"
+msgstr "Améliorer les prédictions dans d'autres applications"
+
 msgid "Direct Mode"
 msgstr "Mode direct"
 
+msgid "Direct Mode starts as soon as access is available."
+msgstr "Le mode direct démarre dès que l'accès est disponible."
+
+msgid "Focus an editor to start"
+msgstr "Placez le curseur dans un champ de texte pour commencer."
+
 msgid "Done"
 msgstr "Fait"
+
+msgid "Drag to move the keyboard window"
+msgstr "Faites glisser pour déplacer la fenêtre du clavier"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "Survolez un endroit pour déclencher un clic, au lieu d’appuyer sur un bouton ou un interrupteur."
@@ -544,6 +577,9 @@ msgstr "Langue / Paramètres régionaux"
 msgid "<b>Language / Locale</b>"
 msgstr "<b>Langue / Paramètres régionaux</b>"
 
+msgid "Later"
+msgstr "Plus tard"
+
 msgid "Bottom"
 msgstr "Bas"
 
@@ -618,6 +654,9 @@ msgstr "Aucun moteur de synthèse vocale disponible. Compilez avec la fonction T
 
 msgid "No training data to export yet"
 msgstr "Pas encore de données d'entraînement à exporter"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "Aucun moteur TTS disponible. Installez le répartiteur vocal pour le système TTS."
 
 msgid "No user training data yet"
 msgstr "Pas encore de données de formation utilisateur"
@@ -828,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "Méthode de sélection"
+
+msgid "Sending to {app}"
+msgstr "Envoi à {app}"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "est-il en cours d'exécution ? Consultez l'aide sur le bouton Clavier pour les commandes d'installation."

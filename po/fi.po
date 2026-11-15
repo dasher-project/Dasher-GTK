@@ -121,6 +121,9 @@ msgstr "Automaattinen valinta katseen kiinnittämisen jälkeen nipistyksen aikan
 msgid "Back"
 msgstr "Takaisin"
 
+msgid "Back to Dasher"
+msgstr "Takaisin kohteeseen Dasher"
+
 msgid "Del"
 msgstr "poista"
 
@@ -168,6 +171,9 @@ msgstr "sisältöä tai henkilötietoja koskaan kerätä. Voit muuttaa tätä mi
 
 msgid "Control"
 msgstr "Kontrolli"
+
+msgid "Adds Select, Move and Delete editing commands to the canvas: select, move or delete text by letter, word, sentence, paragraph or all, forwards or backwards."
+msgstr "Lisää kankaalle Select-, Move- ja Delete-muokkauskomennot: valitse, siirrä tai poista tekstiä kirjaimella, sanalla, lauseella, kappaleella tai kaikilla, eteenpäin tai taaksepäin."
 
 msgid "Control mode: enabled"
 msgstr "Ohjaustila: käytössä"
@@ -304,11 +310,38 @@ msgstr "Nopeus: {0}"
 msgid "Diagnostics"
 msgstr "Diagnostiikka"
 
+msgid "If Dasher Direct Input is missing"
+msgstr "Jos Dasher Direct Input puuttuu"
+
+msgid "Direct Mode is ready. Add Dasher Direct Input to help predictions follow the caret in more apps."
+msgstr "Suora tila on valmis. Lisää Dasher Direct Input, jotta ennusteet voivat käyttää tekstiä juuri ennen kohdistinta useammissa sovelluksissa."
+
+msgid "Restart your Mac, then check the list again."
+msgstr "Käynnistä Mac uudelleen ja tarkista luettelo uudelleen."
+
+msgid "Set Up Text Context"
+msgstr "Määritä tekstikonteksti"
+
+msgid "In Keyboard Settings, go to Text Input → Edit → +. Search for Dasher Direct Input and click Add."
+msgstr "Siirry Näppäimistöasetuksissa kohtaan Tekstinsyöttö → Muokkaa → +. Etsi Dasher Direct Input ja napsauta Lisää."
+
+msgid "Improve Predictions in Other Apps"
+msgstr "Paranna ennusteita muissa sovelluksissa"
+
 msgid "Direct Mode"
 msgstr "Suora tila"
 
+msgid "Direct Mode starts as soon as access is available."
+msgstr "Suora tila alkaa heti, kun pääsy on käytettävissä."
+
+msgid "Focus an editor to start"
+msgstr "Aloita asettamalla tekstikohdistin tekstikenttään."
+
 msgid "Done"
 msgstr "Tehty"
+
+msgid "Drag to move the keyboard window"
+msgstr "Siirrä näppäimistöikkunaa vetämällä"
 
 msgid "Hover in one spot to trigger a click, instead of pressing a button or switch."
 msgstr "Liikuta kohdistinta yhdessä kohdassa aktivoidaksesi napsautuksen sen sijaan, että painaisit painiketta tai kytkintä."
@@ -544,6 +577,9 @@ msgstr "Kieli / Alue"
 msgid "<b>Language / Locale</b>"
 msgstr "<b>Kieli /alue</b>"
 
+msgid "Later"
+msgstr "Myöhemmin"
+
 msgid "Bottom"
 msgstr "Pohja"
 
@@ -618,6 +654,9 @@ msgstr "Puheentunnistusta ei ole saatavilla. Rakenna järjestelmän TTS-ominaisu
 
 msgid "No training data to export yet"
 msgstr "Vie lähtömateriaalina ei ole vielä koulutusdataa"
+
+msgid "No TTS engine available. Install speech-dispatcher for system TTS."
+msgstr "TTS-moottoria ei ole saatavilla. Asenna puheenvälittäjä järjestelmälle TTS."
 
 msgid "No user training data yet"
 msgstr "Ei käyttäjäkoulutusdataa vielä"
@@ -828,6 +867,9 @@ msgstr ""
 
 msgid "Selection Method"
 msgstr "Valintamenetelmä"
+
+msgid "Sending to {app}"
+msgstr "Lähetetään osoitteeseen {app}"
 
 msgid "service running? See the setup help on the Keyboard button for install commands."
 msgstr "Palvelu käynnissä? Katso asennusohjeet näppäimistön painikkeen ohjeesta."
