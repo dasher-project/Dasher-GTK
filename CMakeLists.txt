@@ -65,7 +65,7 @@ add_subdirectory("Thirdparty/SDL" EXCLUDE_FROM_ALL)
 
 set(TTS_WRAPPER_DIR "${CMAKE_CURRENT_LIST_DIR}/rust-tts-wrapper")
 set(TTS_WRAPPER_BUILD_DIR "${CMAKE_BINARY_DIR}/rust-tts-wrapper")
-set(TTS_WRAPPER_VERSION "0.1.0" CACHE STRING "rust-tts-wrapper version to download")
+set(TTS_WRAPPER_VERSION "1.11.0" CACHE STRING "rust-tts-wrapper version to download")
 
 if(EXISTS "${TTS_WRAPPER_DIR}/Cargo.toml")
 	# cargo names the staticlib per target: MSVC produces rust_tts_wrapper.lib,
@@ -82,7 +82,11 @@ if(EXISTS "${TTS_WRAPPER_DIR}/Cargo.toml")
 	elseif(WIN32)
 		set(TTS_WRAPPER_FEATURES_DEFAULT "sapi,cloud")
 	else()
-		set(TTS_WRAPPER_FEATURES_DEFAULT "system,cloud")
+		# sherpaonnx: offline neural TTS via the embedded AACTools model
+		# registry. Linux links the k2-fsa static tarball (sherpa +
+		# onnxruntime baked in); the macOS/Windows GTK builds stay
+		# cloud+system until their prebuilt archives are validated.
+		set(TTS_WRAPPER_FEATURES_DEFAULT "system,cloud,sherpaonnx")
 	endif()
 	if(NOT TTS_WRAPPER_FEATURES)
 		set(TTS_WRAPPER_FEATURES "${TTS_WRAPPER_FEATURES_DEFAULT}")
@@ -316,23 +320,28 @@ if(CURL_FOUND)
 	target_compile_definitions(Dasher PRIVATE HAS_ANALYTICS_CURL)
 endif()
 if(TARGET tts_wrapper)
-	target_link_libraries(Dasher PRIVATE "${TTS_WRAPPER_LIB}")
 	target_include_directories(Dasher PRIVATE "${TTS_WRAPPER_DIR}/include")
-	if(APPLE)
-		target_link_libraries(Dasher PRIVATE "-framework AVFAudio" "-framework Foundation" "-lobjc")
-	elseif(WIN32)
-		# The rust-tts-wrapper staticlib pulls in Rust std, getrandom and rustls,
-		# whose native dependencies are not propagated when the archive is linked
-		# by MSVC instead of by cargo. Mirror `rustc --print native-static-libs`.
+	if(UNIX AND NOT APPLE)
+		# Link the cdylib rather than the staticlib: cargo bundles the
+		# Rust std and every native dependency (rustls, speechd,
+		# sherpa-onnx + onnxruntime when the feature is on) inside it,
+		# so the C++ side never has to mirror `rustc --print
+		# native-static-libs` — which grew from 3 libs to the 11-archive
+		# sherpa-onnx set living in a cargo-internal hash directory.
+		# Resolved at runtime via the $ORIGIN rpath and the POST_BUILD
+		# copy that places it next to the executable.
 		target_link_libraries(Dasher PRIVATE
-			ntdll userenv bcrypt ws2_32 advapi32 crypt32 secur32 ncrypt ole32 oleaut32)
+			"${TTS_WRAPPER_BUILD_DIR}/release/librust_tts_wrapper.so")
 	else()
-		target_link_libraries(Dasher PRIVATE dl pthread)
-		# speech-dispatcher (libspeechd) is only pulled in by the `system`
-		# TTS engine. Cloud-only builds have no speechd symbols, so linking
-		# it there just fails (e.g. the Flatpak SDK has no libspeechd).
-		if(TTS_WRAPPER_FEATURES MATCHES "system")
-			target_link_libraries(Dasher PRIVATE speechd)
+		target_link_libraries(Dasher PRIVATE "${TTS_WRAPPER_LIB}")
+		if(APPLE)
+			target_link_libraries(Dasher PRIVATE "-framework AVFAudio" "-framework Foundation" "-lobjc")
+		elseif(WIN32)
+			# The rust-tts-wrapper staticlib pulls in Rust std, getrandom and rustls,
+			# whose native dependencies are not propagated when the archive is linked
+			# by MSVC instead of by cargo. Mirror `rustc --print native-static-libs`.
+			target_link_libraries(Dasher PRIVATE
+				ntdll userenv bcrypt ws2_32 advapi32 crypt32 secur32 ncrypt ole32 oleaut32)
 		endif()
 	endif()
 endif()
@@ -388,10 +397,15 @@ else()
 	set(TTS_WRAPPER_LIB_EXT "so")
 endif()
 
-if(EXISTS "${TTS_WRAPPER_BUILD_DIR}/release/librust_tts_wrapper.${TTS_WRAPPER_LIB_EXT}")
+# Copy the TTS cdylib next to the executable (Linux links it; the $ORIGIN
+# rpath resolves it both from the build tree and the portable install).
+# Unconditional when tts_wrapper exists: POST_BUILD ordering guarantees the
+# cargo build already produced it, whereas a configure-time EXISTS test
+# would skip the rule on the very first build of a fresh checkout.
+if(TARGET tts_wrapper AND UNIX AND NOT APPLE)
 	add_custom_command(TARGET Dasher POST_BUILD
 		COMMAND ${CMAKE_COMMAND} -E copy_if_different
-			"${TTS_WRAPPER_BUILD_DIR}/release/librust_tts_wrapper.${TTS_WRAPPER_LIB_EXT}"
+			"${TTS_WRAPPER_BUILD_DIR}/release/librust_tts_wrapper.so"
 			${CMAKE_BINARY_DIR}/Dasher/
 	)
 endif()
