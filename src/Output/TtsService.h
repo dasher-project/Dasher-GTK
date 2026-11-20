@@ -42,6 +42,13 @@ class TtsService {
     void set_pitch(float pitch);
     void set_volume(float volume);
 
+    // X-SAMPA phoneme mode (parity with Dasher-Apple's SpeechService
+    // .phonemeMode): when the active alphabet is phonetic, each spoken
+    // token is wrapped as (tok)[xsampa:"tok"] SpeechMarkdown so
+    // phoneme-capable engines pronounce it; sherpa (local, strips
+    // <phoneme>) receives the raw text.
+    void set_phoneme_mode(bool on);
+
     std::vector<TtsEngineInfo> get_engines() const;
     std::vector<TtsVoiceInfo> get_voices() const;
 
@@ -54,8 +61,27 @@ class TtsService {
     // True when the bundle is cached afterwards.
     bool provision_sherpa_g2p(const std::string& model_id) const;
 
+    // User pronunciation overrides (rust-tts-wrapper #125/#131): a
+    // plain-text file ("word = respell" / "word = /ipa/") applied at
+    // the wrapper's text-normalization stage on every utterance.
+    // The default file (~/.rust-tts-wrapper/pronunciations.txt) is
+    // picked up with no configuration; these surface state for the
+    // Speech page.
+    static std::string pronunciations_default_path();
+    static bool pronunciations_active();
+    static int pronunciations_entry_count(); // -1 when no file loaded
+    // Dry-run the text-form overrides: the text a plain-text engine
+    // will actually speak (for editor previews and self-tests).
+    static std::string apply_pronunciations(const std::string& text);
+
   private:
     void* m_ctx;
     bool m_available = false;
     std::string m_engine_id;
+    bool m_phoneme_mode = false;
+
+    // The payload actually sent to tts_speak: raw text, or each
+    // space-separated token wrapped in SpeechMarkdown when phoneme
+    // mode is on and the engine is not sherpa-onnx.
+    std::string build_payload(const std::string& text) const;
 };

@@ -832,6 +832,70 @@ void PreferencesWindow::add_speech_section() {
             tts->stop();
             tts->speak(_("Hello, this is a preview of the selected voice."));
         });
+
+        // ── Pronunciation exceptions (rust-tts-wrapper #125/#131) ────
+        // The wrapper applies ~/.rust-tts-wrapper/pronunciations.txt to
+        // every utterance automatically (whole-word matching, reloaded
+        // on edit). This row surfaces the state and opens the file.
+        auto* pron_title = Gtk::make_managed<Gtk::Label>("");
+        pron_title->set_markup(_("<b>Pronunciation exceptions</b>"));
+        pron_title->set_halign(Gtk::Align::START);
+        pron_title->set_margin_top(8);
+        speech_box->append(*pron_title);
+
+        auto* pron_status = Gtk::make_managed<Gtk::Label>("");
+        pron_status->set_halign(Gtk::Align::START);
+        pron_status->set_wrap(true);
+        speech_box->append(*pron_status);
+
+        auto refresh_pron_status = [pron_status]() {
+            if (TtsService::pronunciations_active()) {
+                int n = TtsService::pronunciations_entry_count();
+                if (n > 0)
+                    pron_status->set_text(Glib::ustring::compose(_("Active — %1 word overrides"), n));
+                else
+                    pron_status->set_text(_("Active"));
+            } else {
+                pron_status->set_text(_("No overrides yet — teach Dasher how words should sound"));
+            }
+        };
+        refresh_pron_status();
+
+        auto* pron_hint = Gtk::make_managed<Gtk::Label>(_(
+            "One per line:  botox = bow tocks   (or  botox = /ˈboʊ.tɑːks/ for engines with phoneme support)"));
+        pron_hint->set_halign(Gtk::Align::START);
+        pron_hint->set_wrap(true);
+        pron_hint->set_opacity(0.7);
+        speech_box->append(*pron_hint);
+
+        auto* pron_btn = Gtk::make_managed<Gtk::Button>(_("Open overrides file"));
+        pron_btn->set_halign(Gtk::Align::START);
+        speech_box->append(*pron_btn);
+
+        pron_btn->signal_clicked().connect([this, refresh_pron_status]() {
+            std::string path = TtsService::pronunciations_default_path();
+            if (path.empty()) return;
+            std::error_code ec;
+            std::filesystem::create_directories(std::filesystem::path(path).parent_path(), ec);
+            if (!std::filesystem::exists(path, ec)) {
+                // Create with a commented template so the editor opens
+                // onto something self-explanatory; an all-comment file
+                // counts as "no entries" (stays inactive) until the
+                // user adds a first line.
+                std::ofstream out(path, std::ios::app);
+                out << "# Dasher pronunciation exceptions - one per line:\n"
+                       "#   word = respell        (works on every engine)\n"
+                       "#   word = /ipa/          (engines with phoneme support)\n"
+                       "# Example:\n"
+                       "#   botox = bow tocks\n";
+            }
+            char* uri = g_filename_to_uri(path.c_str(), nullptr, nullptr);
+            if (uri) {
+                g_app_info_launch_default_for_uri(uri, nullptr, nullptr);
+                g_free(uri);
+            }
+            refresh_pron_status();
+        });
     } else {
         auto* no_tts =
             Gtk::make_managed<Gtk::Label>("No TTS engine available.\nInstall speech-dispatcher for system TTS.");
