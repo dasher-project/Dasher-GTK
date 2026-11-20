@@ -742,16 +742,19 @@ void PreferencesWindow::add_speech_section() {
         };
 
         auto rebuild_creds = [this, creds_box, cred_keys, cred_entries, tts, engines, engine_dropdown, apply_engine]() {
-            // An open model browser captures widgets this rebuild frees;
-            // close it first (see m_model_browser). Same deferred-delete
-            // rule as the close handler — a download-in-progress joins
-            // here, so never delete inside this rebuild either.
+        // An open model browser captures widgets this rebuild frees;
+        // close it first (see m_model_browser). Same deferred-delete
+        // rule as the close handler — a download-in-progress joins
+        // here, so never delete inside this rebuild either. Only
+        // possible where the browser exists.
+#ifdef HAS_TTS_DOWNLOAD
             if (m_model_browser) {
                 Dasher::SherpaModelBrowser* stale = m_model_browser;
                 m_model_browser = nullptr;
                 stale->hide();
                 Glib::signal_idle().connect_once([stale]() { delete stale; });
             }
+#endif
             while (creds_box->get_first_child() != nullptr) {
                 auto* child = creds_box->get_first_child();
                 creds_box->remove(*child);
