@@ -897,8 +897,8 @@ MainWindow::MainWindow()
                     }
                     if (!last_word.empty()) {
                         m_tts->stop();
-                        m_tts->set_phoneme_mode(
-                            m_canvas.bridge->get_alphabet_id().find("X-SAMPA") != std::string::npos);
+                        m_tts->set_phoneme_mode(m_canvas.bridge->get_alphabet_id().find("X-SAMPA") !=
+                                                std::string::npos);
                         m_tts->speak(last_word);
                     }
                 }

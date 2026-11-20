@@ -738,8 +738,7 @@ void PreferencesWindow::add_speech_section() {
             }).detach();
         };
 
-        auto rebuild_creds = [this, creds_box, cred_keys, cred_entries, tts, engines, engine_dropdown,
-                              apply_engine]() {
+        auto rebuild_creds = [this, creds_box, cred_keys, cred_entries, tts, engines, engine_dropdown, apply_engine]() {
             // An open model browser captures widgets this rebuild frees;
             // close it first (see m_model_browser). Same deferred-delete
             // rule as the close handler — a download-in-progress joins
@@ -931,8 +930,8 @@ void PreferencesWindow::add_speech_section() {
         };
         refresh_pron_status();
 
-        auto* pron_hint = Gtk::make_managed<Gtk::Label>(_(
-            "One per line:  botox = bow tocks   (or  botox = /ˈboʊ.tɑːks/ for engines with phoneme support)"));
+        auto* pron_hint = Gtk::make_managed<Gtk::Label>(
+            _("One per line:  botox = bow tocks   (or  botox = /ˈboʊ.tɑːks/ for engines with phoneme support)"));
         pron_hint->set_halign(Gtk::Align::START);
         pron_hint->set_wrap(true);
         pron_hint->set_opacity(0.7);

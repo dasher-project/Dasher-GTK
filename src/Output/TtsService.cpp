@@ -73,8 +73,7 @@ std::string TtsService::build_payload(const std::string& text) const {
     bool first = true;
     while (start <= text.size()) {
         size_t end = text.find(' ', start);
-        std::string token =
-            text.substr(start, end == std::string::npos ? std::string::npos : end - start);
+        std::string token = text.substr(start, end == std::string::npos ? std::string::npos : end - start);
         if (!token.empty()) {
             if (!first) payload += ' ';
             payload += '(';
