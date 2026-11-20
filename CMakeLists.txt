@@ -68,7 +68,7 @@ add_subdirectory("Thirdparty/SDL" EXCLUDE_FROM_ALL)
 
 set(TTS_WRAPPER_DIR "${CMAKE_CURRENT_LIST_DIR}/rust-tts-wrapper")
 set(TTS_WRAPPER_BUILD_DIR "${CMAKE_BINARY_DIR}/rust-tts-wrapper")
-set(TTS_WRAPPER_VERSION "1.16.1" CACHE STRING "rust-tts-wrapper version to download")
+set(TTS_WRAPPER_VERSION "1.16.2" CACHE STRING "rust-tts-wrapper version to download")
 
 if(EXISTS "${TTS_WRAPPER_DIR}/Cargo.toml")
 	# cargo names the staticlib per target: MSVC produces rust_tts_wrapper.lib,
@@ -92,7 +92,10 @@ if(EXISTS "${TTS_WRAPPER_DIR}/Cargo.toml")
 		# sherpa-g2p: voicegarden lexicon bundles for non-English
 		# voices (the no-espeak phonemization path) — fetched at
 		# runtime, the build stays offline.
-		set(TTS_WRAPPER_FEATURES_DEFAULT "system,cloud,sherpaonnx,sherpa-g2p")
+		# speaker: in-process cpal playback on Linux (#139) — warm ALSA
+		# stream, stop() interrupts within one buffer, no subprocess,
+		# no spoken audio on disk. Needs libasound2-dev at build time.
+		set(TTS_WRAPPER_FEATURES_DEFAULT "system,cloud,sherpaonnx,sherpa-g2p,speaker,display_names")
 	endif()
 	if(NOT TTS_WRAPPER_FEATURES)
 		set(TTS_WRAPPER_FEATURES "${TTS_WRAPPER_FEATURES_DEFAULT}")
