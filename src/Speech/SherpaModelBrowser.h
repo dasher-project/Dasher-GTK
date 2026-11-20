@@ -28,7 +28,7 @@ class SherpaModelBrowser : public Gtk::Window {
 
   private:
     void rebuild_list();
-    void show_details(const std::string& model_id);
+    void show_details(const std::string& model_id, bool clear_error = true);
     void start_download(const std::string& model_id);
     void stop_download();
     void finish_download();

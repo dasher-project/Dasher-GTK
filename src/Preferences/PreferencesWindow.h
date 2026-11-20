@@ -18,6 +18,10 @@
 
 class DwellClickHandler;
 
+namespace Dasher {
+class SherpaModelBrowser;
+}
+
 // tests/test_prefs_rebuild_selftest.cpp — drives the private rebuild path to
 // reproduce issue #42 (rebuild_sections() use-after-free) headlessly.
 class PrefsRebuildSelftest;
@@ -94,6 +98,12 @@ class PreferencesWindow : public Gtk::Window {
     Gtk::Box m_layout = Gtk::Box(Gtk::Orientation::HORIZONTAL);
     Gtk::StackSidebar m_sidebar;
     Gtk::Stack m_stack;
+
+    // The Sherpa model browser dialog, when open. Tracked so a section
+    // rebuild (engine switch, locale switch) can close it — its
+    // "Use Model" callback would otherwise write into widgets the
+    // rebuild frees (the GTK_IS_LABEL/GTK_IS_WIDGET criticals).
+    Dasher::SherpaModelBrowser* m_model_browser = nullptr;
 
     std::vector<Gtk::Widget*> m_dynamic_pages;
 };

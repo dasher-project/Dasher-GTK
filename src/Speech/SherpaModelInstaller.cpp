@@ -503,7 +503,11 @@ void validate_model_files(const SherpaModel& model, const fs::path& folder) {
     } else if (model.model_type == "mms") {
         required = {{"model.onnx"}, {"tokens.txt"}};
     } else if (model.model_type == "kokoro" || model.model_type == "kitten") {
-        if (!dir_has_lexicon(folder)) {
+        // needs_bundle models (catalog v2) phonemize through the
+        // voicegarden G2P bundle — their tarballs ship no lexicon.txt
+        // (kokoro-en-v0_19 et al.). The lexicon is only required when
+        // no bundle backs the model, mirroring the vits branch above.
+        if (!model.uses_g2p_bundle() && !dir_has_lexicon(folder)) {
             fail("This model needs a pronunciation dictionary that Dasher cannot install yet.");
         }
         required = {{"model.onnx", "model.int8.onnx"}, {"tokens.txt"}, {"voices.bin"}};

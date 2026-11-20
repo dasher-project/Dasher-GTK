@@ -144,10 +144,19 @@ void SherpaModelBrowser::rebuild_list() {
         m_list->remove(*child);
     }
 
+    // Only offer models Dasher can actually install (or already has);
+    // the 1781-model catalog is mostly blocked/needs-other-engine
+    // entries that render as dead rows.
     std::string search = m_search->get_text();
     std::vector<const SherpaModel*> shown;
     size_t matches = 0;
+    size_t hidden = 0;
     for (const auto& m : m_catalog) {
+        bool installed = m_installed.count(m.id) != 0;
+        if (!installed && SherpaStorage::download_unavailable_reason(m)) {
+            hidden++;
+            continue;
+        }
         if (!m.matches(search)) continue;
         matches++;
         if (shown.size() < kMaxRows) shown.push_back(&m);
@@ -178,13 +187,14 @@ void SherpaModelBrowser::rebuild_list() {
     }
 
     std::string count = std::to_string(matches) + (matches == 1 ? " model" : " models");
+    if (hidden > 0) count += " — " + std::to_string(hidden) + " not installable hidden";
     if (matches > shown.size()) count += " — type to narrow the search";
     m_count_label->set_text(count);
 }
 
-void SherpaModelBrowser::show_details(const std::string& model_id) {
+void SherpaModelBrowser::show_details(const std::string& model_id, bool clear_error) {
     m_selected_id = model_id;
-    m_error->set_text("");
+    if (clear_error) m_error->set_text("");
     const SherpaModel* found = nullptr;
     for (const auto& m : m_catalog) {
         if (m.id == model_id) {
@@ -313,16 +323,20 @@ void SherpaModelBrowser::finish_download() {
     if (m_worker.joinable()) m_worker.join();
     m_progress->hide();
     bool ok = m_result_error.empty();
+    m_downloading_id.clear();
+    // show_details BEFORE setting the error label — it resets the
+    // details pane, and used to wipe an error set here in the same
+    // tick, so failures looked like silent flip-backs to Download.
+    show_details(m_selected_id);
     if (ok) {
         refresh_installed();
         rebuild_list();
     } else if (m_result_error == "Download cancelled.") {
         // Quietly return to the pre-download state.
     } else {
+        g_printerr("sherpa: model install failed: %s\n", m_result_error.c_str());
         m_error->set_text(m_result_error);
     }
-    m_downloading_id.clear();
-    show_details(m_selected_id);
 }
 
 } // namespace Dasher
