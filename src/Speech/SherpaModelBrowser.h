@@ -34,6 +34,18 @@ class SherpaModelBrowser : public Gtk::Window {
     void finish_download();
     void refresh_installed();
 
+    // Lifetime guard shared by every async callback (poll timeout,
+    // worker progress/completion). The destructor flips it, so a
+    // callback that fires after the browser is freed — whatever path
+    // freed it (idle delete, rebuild force-close, parent teardown) —
+    // sees a dead guard, touches no widget, and disconnects itself.
+    // This is the structural fix for the GTK_IS_LABEL/GTK_IS_WIDGET
+    // criticals: no deletion path has to be enumerated to be safe.
+    struct AsyncGuard {
+        std::atomic_bool alive{true};
+    };
+    std::shared_ptr<AsyncGuard> m_guard = std::make_shared<AsyncGuard>();
+
     std::shared_ptr<TtsService> m_tts;
     UseModelFn m_on_use_model;
 
@@ -41,7 +53,19 @@ class SherpaModelBrowser : public Gtk::Window {
     std::set<std::string> m_installed;
     std::string m_selected_id;
 
-    // Widgets
+    // Shared between the install worker and the UI poll: the worker
+    // writes ONLY this; the poll (main loop) is the sole UI reader.
+    // Freed-with-the-download, never with the browser.
+    struct WorkerState {
+        std::atomic<double> fraction{-1.0}; // <0: unknown total (pulse)
+        std::atomic_bool done{false};
+        std::mutex mutex;                   // guards stage (and error at completion)
+        std::string stage;
+        std::string error;                  // empty = success
+    };
+    std::shared_ptr<WorkerState> m_worker_state; // non-null while a download runs/awaits finish
+
+    // Widgets (touched only on the main loop while m_guard->alive)
     Gtk::SearchEntry* m_search = nullptr;
     Gtk::Label* m_count_label = nullptr;
     Gtk::ListBox* m_list = nullptr;
@@ -55,17 +79,12 @@ class SherpaModelBrowser : public Gtk::Window {
     Gtk::Button* m_use_btn = nullptr;
     Gtk::ProgressBar* m_progress = nullptr;
 
-    // Worker thread state. The download runs on m_worker; progress is
+    // Worker thread. The download runs on m_worker; progress is
     // polled from a 150 ms main-loop timeout, so nothing touches GTK
     // from the worker.
     std::thread m_worker;
     sigc::connection m_poll_conn;
     std::atomic_bool m_cancel{false};
-    std::atomic<double> m_fraction{-2.0}; // < -1: idle, [-1,0): unknown total
-    std::mutex m_stage_mutex;
-    std::string m_stage;
-    std::atomic_bool m_done{true};
-    std::string m_result_error;
     std::string m_downloading_id;
 };
 
