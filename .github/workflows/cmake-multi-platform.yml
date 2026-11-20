@@ -105,8 +105,10 @@ jobs:
       run: |
         sudo apt-get update
         # libcurl4-openssl-dev provides the analytics HTTP transport (optional,
-        # so the Windows/macOS jobs build without it).
-        sudo apt-get install -y libspeechd-dev libclang-dev libcurl4-openssl-dev libbz2-dev xvfb
+        # so the Windows/macOS jobs build without it). libasound2-dev feeds
+        # the rust-tts-wrapper "speaker" feature (in-process cpal playback,
+        # upstream #139): cpal's ALSA backend needs the headers at build time.
+        sudo apt-get install -y libspeechd-dev libclang-dev libcurl4-openssl-dev libbz2-dev libasound2-dev xvfb
 
     # rust-tts-wrapper is built with cargo on every platform.
     - name: Set up Rust
