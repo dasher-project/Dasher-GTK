@@ -75,6 +75,17 @@ static std::string prettify_key(const std::string& key) {
     return result;
 }
 
+PreferencesWindow::~PreferencesWindow() {
+    // Closing the prefs window with a model browser open left the
+    // browser alive with callbacks into freed speech-section widgets
+    // (one of the GTK_IS_LABEL critical paths). Its own destructor
+    // cancels any download and joins the worker.
+    if (m_model_browser) {
+        delete m_model_browser;
+        m_model_browser = nullptr;
+    }
+}
+
 PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge, DwellClickHandler* dwell_handler)
     : m_bridge(bridge), m_dwell_handler(dwell_handler) {
     set_child(m_layout);

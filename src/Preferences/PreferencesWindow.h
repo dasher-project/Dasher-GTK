@@ -31,6 +31,7 @@ class PreferencesWindow : public Gtk::Window {
     // dwell_handler is owned by the canvas (may be null); the Input section hosts
     // its on/off toggle, which used to live in the footer bar (issue #35).
     PreferencesWindow(std::shared_ptr<DasherBridge> bridge, DwellClickHandler* dwell_handler = nullptr);
+    ~PreferencesWindow() override;
 
     // Keyboard-mode window opacity (RFC 0015 parity with Windows/Apple):
     // getter returns the persisted value; setter persists + applies live.

@@ -132,6 +132,7 @@ SherpaModelBrowser::SherpaModelBrowser(Gtk::Window& parent, std::shared_ptr<TtsS
 }
 
 SherpaModelBrowser::~SherpaModelBrowser() {
+    m_guard->alive = false;
     stop_download();
 }
 
@@ -231,14 +232,14 @@ void SherpaModelBrowser::show_details(const std::string& model_id, bool clear_er
     m_reason->set_text(reason ? *reason : "");
 
     bool installed = m_installed.count(m.id) != 0;
-    bool busy = !m_done;
+    bool busy = m_worker_state != nullptr;
     m_download_btn->set_visible(!installed && !reason && !busy);
     m_use_btn->set_visible(installed && !busy);
     m_cancel_btn->set_visible(busy);
 }
 
 void SherpaModelBrowser::start_download(const std::string& model_id) {
-    if (!m_done) return;
+    if (m_worker_state) return; // a download is already running/awaiting finish
     const SherpaModel* found = nullptr;
     for (const auto& m : m_catalog) {
         if (m.id == model_id) {
@@ -249,15 +250,14 @@ void SherpaModelBrowser::start_download(const std::string& model_id) {
     if (!found) return;
 
     m_downloading_id = model_id;
-    m_result_error.clear();
     m_error->set_text("");
-    m_done = false;
     m_cancel = false;
-    m_fraction = -1.0;
+    auto state = std::make_shared<WorkerState>();
     {
-        std::lock_guard<std::mutex> lock(m_stage_mutex);
-        m_stage = "Downloading model…";
+        std::lock_guard<std::mutex> lock(state->mutex);
+        state->stage = "Downloading model…";
     }
+    m_worker_state = state;
     m_progress->show();
     m_download_btn->set_visible(false);
     m_use_btn->set_visible(false);
@@ -267,27 +267,36 @@ void SherpaModelBrowser::start_download(const std::string& model_id) {
     auto installer = std::make_shared<SherpaModelInstaller>(
         [tts = m_tts](const std::string& id) { return tts->provision_sherpa_g2p(id); });
 
-    m_worker = std::thread([this, installer, model]() {
+    // The worker writes ONLY WorkerState; the poll (below) is the sole
+    // UI reader. If the browser dies mid-download the worker finishes
+    // harmlessly into the shared state and the poll self-disconnects
+    // on its next tick via the guard — no path can touch a freed
+    // widget, whatever freed the browser.
+    m_worker = std::thread([installer, model, state, cancel = &m_cancel]() {
         std::string error;
         bool ok = installer->install(
-            model, [this]() { return m_cancel.load(); },
-            [this](double fraction, const std::string& stage) {
-                m_fraction = fraction;
-                std::lock_guard<std::mutex> lock(m_stage_mutex);
-                m_stage = stage;
+            model, [cancel]() { return cancel->load(); },
+            [state](double fraction, const std::string& stage) {
+                state->fraction = fraction;
+                std::lock_guard<std::mutex> lock(state->mutex);
+                state->stage = stage;
             },
             error);
-        if (!ok) m_result_error = error;
-        m_done = true;
+        {
+            std::lock_guard<std::mutex> lock(state->mutex);
+            if (!ok) state->error = error;
+        }
+        state->done = true;
     });
 
     m_poll_conn = Glib::signal_timeout().connect(
-        [this]() -> bool {
-            if (m_done) {
+        [this, state]() -> bool {
+            if (!m_guard->alive) return false; // browser freed: disconnect
+            if (state->done) {
                 finish_download();
                 return false;
             }
-            double fraction = m_fraction;
+            double fraction = state->fraction;
             if (fraction >= 0.0) {
                 m_progress->set_fraction(std::min(fraction, 1.0));
             } else if (fraction >= -1.0) {
@@ -295,8 +304,8 @@ void SherpaModelBrowser::start_download(const std::string& model_id) {
             }
             std::string stage;
             {
-                std::lock_guard<std::mutex> lock(m_stage_mutex);
-                stage = m_stage;
+                std::lock_guard<std::mutex> lock(state->mutex);
+                stage = state->stage;
             }
             m_progress->set_text(stage);
             return true;
@@ -309,20 +318,27 @@ void SherpaModelBrowser::stop_download() {
     // so a timeout firing between window teardown and thread join
     // would be a use-after-free.
     if (m_poll_conn.connected()) m_poll_conn.disconnect();
-    if (m_done) {
-        if (m_worker.joinable()) m_worker.join();
-        return;
-    }
+    if (!m_worker_state) return;
     m_cancel = true;
     if (m_worker.joinable()) m_worker.join();
-    m_done = true;
     finish_download();
 }
 
 void SherpaModelBrowser::finish_download() {
     if (m_worker.joinable()) m_worker.join();
+    auto state = std::move(m_worker_state);
+    if (!state) return;
+    // After a deferred/idle delete the guard is dead: apply nothing.
+    // The worker already completed into `state`; dropping it here is
+    // the whole cleanup.
+    if (!m_guard->alive) return;
     m_progress->hide();
-    bool ok = m_result_error.empty();
+    std::string error;
+    {
+        std::lock_guard<std::mutex> lock(state->mutex);
+        error = state->error;
+    }
+    bool ok = error.empty();
     m_downloading_id.clear();
     // show_details BEFORE setting the error label — it resets the
     // details pane, and used to wipe an error set here in the same
@@ -331,11 +347,11 @@ void SherpaModelBrowser::finish_download() {
     if (ok) {
         refresh_installed();
         rebuild_list();
-    } else if (m_result_error == "Download cancelled.") {
+    } else if (error == "Download cancelled.") {
         // Quietly return to the pre-download state.
     } else {
-        g_printerr("sherpa: model install failed: %s\n", m_result_error.c_str());
-        m_error->set_text(m_result_error);
+        g_printerr("sherpa: model install failed: %s\n", error.c_str());
+        m_error->set_text(error);
     }
 }
 
