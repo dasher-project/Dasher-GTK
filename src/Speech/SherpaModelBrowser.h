@@ -59,9 +59,9 @@ class SherpaModelBrowser : public Gtk::Window {
     struct WorkerState {
         std::atomic<double> fraction{-1.0}; // <0: unknown total (pulse)
         std::atomic_bool done{false};
-        std::mutex mutex;                   // guards stage (and error at completion)
+        std::mutex mutex; // guards stage (and error at completion)
         std::string stage;
-        std::string error;                  // empty = success
+        std::string error; // empty = success
     };
     std::shared_ptr<WorkerState> m_worker_state; // non-null while a download runs/awaits finish
 
