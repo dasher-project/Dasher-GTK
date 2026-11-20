@@ -36,6 +36,12 @@
   </developer>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="6.0.2" date="2026-11-20">
+      <description>
+        <p>Speech is rebuilt on the new text-to-speech engine core (rust-tts-wrapper 1.16.2, Sherpa-ONNX 2). Choosing a voice is now three steps — provider, model, voice — and the Sherpa catalogue offers its verified models directly, with downloads that complete properly for bundle-based voices (including non-English ones) and errors that say what went wrong instead of failing silently. Audio plays through an in-process output stream: speaking starts faster, Stop interrupts immediately, and nothing you say is ever written to disk.</p>
+        <p>Pronunciation exceptions let you teach Dasher how words should sound: a simple editable file (a respelling such as "botox = bow tocks", or IPA for engines that support it) applied to everything Dasher says, with live status on the Speech page. Phonetic (X-SAMPA) alphabets now speak their phonemes correctly, matching the macOS and iOS editions. Switching speech engines no longer freezes the window while a voice model loads, and a set of crashes reported around the model browser during testing is fixed.</p>
+      </description>
+    </release>
     <release version="6.0.1" date="2026-11-09">
       <description>
         <p>Dasher 6.0.1 brings the control node to GTK: with Control mode enabled in Preferences (Input tab), Select, Move and Delete commands appear inside the Dasher canvas — select or delete by letter, word, sentence, paragraph or everything, forwards or backwards, in the output pane and while typing into other apps. The control palette had never actually shipped with the app, so this is its first appearance on Linux.</p>
