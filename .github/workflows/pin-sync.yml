@@ -1,0 +1,32 @@
+name: Packaging pin sync
+
+# The Flatpak manifest clones the submodules from their own git sources
+# with hand-maintained pins; when a submodule bumps and the pin is
+# forgotten, the Flatpak leg silently builds a stale dependency against
+# the new app code (the v6.0.2 publish failure). This check fails the
+# PR the moment the two drift apart.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths:
+      - .gitmodules
+      - rust-tts-wrapper
+      - DasherCore
+      - Thirdparty/SDL
+      - packaging/flatpak/**
+      - Scripts/check-flatpak-pins.py
+  workflow_dispatch:
+
+jobs:
+  flatpak-pins:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The gitlink SHAs come from the tree; no submodule checkout needed.
+          submodules: false
+
+      - name: Manifest pins follow the submodules
+        run: python3 Scripts/check-flatpak-pins.py
