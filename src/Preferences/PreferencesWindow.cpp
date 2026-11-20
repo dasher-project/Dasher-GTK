@@ -32,6 +32,8 @@
 #include <functional>
 #include <sstream>
 #include <algorithm>
+#include <mutex>
+#include <thread>
 #include <glibmm/main.h>
 #include <cstdio>
 #include <cmath>
@@ -693,20 +695,50 @@ void PreferencesWindow::add_speech_section() {
         auto* voice_dropdown = Gtk::make_managed<Gtk::DropDown>(voice_list);
         speech_box->append(*voice_dropdown);
 
-        auto refresh_voices = [tts, voice_list]() {
-            while (voice_list->get_n_items() > 0)
-                voice_list->remove(0);
-            auto voices = tts->get_voices();
-            for (auto& v : voices) {
-                voice_list->append(v.name.empty() ? v.id : v.name);
-            }
-            if (!voices.empty()) {
-                tts->set_voice(voices[0].id);
-            }
+        // Engine switching + voice enumeration run OFF the UI thread:
+        // sherpa's tts_create loads an ONNX model (and provisions the
+        // G2P bundle on first use) — seconds of work that froze the
+        // whole window (and visually detached the engine dropdown on
+        // X11). Jobs serialize on one mutex so the TtsService context
+        // is never touched concurrently; the UI half runs via
+        // signal_idle holding only the StringList ref (kept alive by
+        // the RefPtr capture, so closing the window mid-load cannot
+        // leave the idle holding a dead widget).
+        auto apply_engine = [tts, voice_list](std::string engine_id, std::string credentials) {
+            static std::mutex serial;
+            std::thread([tts, voice_list, id = std::move(engine_id), creds = std::move(credentials)]() {
+                std::lock_guard<std::mutex> lock(serial);
+                if (creds.empty()) {
+                    tts->set_engine(id);
+                } else {
+                    tts->set_engine(id, creds);
+                }
+                auto voices = tts->get_voices();
+                Glib::signal_idle().connect_once([tts, voice_list, voices = std::move(voices)]() {
+                    while (voice_list->get_n_items() > 0)
+                        voice_list->remove(0);
+                    for (auto& v : voices) {
+                        voice_list->append(v.name.empty() ? v.id : v.name);
+                    }
+                    if (!voices.empty()) {
+                        tts->set_voice(voices[0].id);
+                    }
+                });
+            }).detach();
         };
 
         auto rebuild_creds = [this, creds_box, cred_keys, cred_entries, tts, engines, engine_dropdown,
-                              refresh_voices]() {
+                              apply_engine]() {
+            // An open model browser captures widgets this rebuild frees;
+            // close it first (see m_model_browser). Same deferred-delete
+            // rule as the close handler — a download-in-progress joins
+            // here, so never delete inside this rebuild either.
+            if (m_model_browser) {
+                Dasher::SherpaModelBrowser* stale = m_model_browser;
+                m_model_browser = nullptr;
+                stale->hide();
+                Glib::signal_idle().connect_once([stale]() { delete stale; });
+            }
             while (creds_box->get_first_child() != nullptr) {
                 auto* child = creds_box->get_first_child();
                 creds_box->remove(*child);
@@ -720,45 +752,75 @@ void PreferencesWindow::add_speech_section() {
             auto& engine = engines[idx];
             auto keys = parse_json_keys(engine.credential_keys_json);
 
-            // Shared apply step so both the Connect button and the
-            // Sherpa model browser ("Use Model") configure the engine
-            // through one path.
-            auto apply_creds = std::make_shared<std::function<void()>>();
-            *apply_creds = [tts, engine, cred_keys, cred_entries, refresh_voices]() {
-                auto json = build_credentials_json(*cred_keys, *cred_entries);
-                tts->set_engine(engine.id, json);
-                refresh_voices();
-            };
-
 #ifdef HAS_TTS_DOWNLOAD
             if (engine.id == "sherpaonnx") {
-                auto* browse_btn = Gtk::make_managed<Gtk::Button>("Browse Models…");
+                // Provider → model → voice, nothing else. Sherpa's
+                // credential keys (modelId, modelPath, threads, …) are
+                // engine plumbing and stay out of the UI (parity with
+                // Dasher-Apple's modelSection). The chosen model id is
+                // kept in shared state — no text entries to type into
+                // or go stale.
+                auto sherpa_model = std::make_shared<std::string>();
+                auto apply_sherpa = [sherpa_model, apply_engine](const std::string& id) {
+                    *sherpa_model = id;
+                    if (id.empty()) {
+                        apply_engine("sherpaonnx", "");
+                    } else {
+                        apply_engine("sherpaonnx", "{\"modelId\":\"" + id + "\"}");
+                    }
+                };
+
+                auto* model_lbl = Gtk::make_managed<Gtk::Label>(_("Default English model"));
+                model_lbl->set_halign(Gtk::Align::START);
+                creds_box->append(*model_lbl);
+
+                auto* browse_btn = Gtk::make_managed<Gtk::Button>(_("Browse Models…"));
+                browse_btn->set_margin_top(4);
                 browse_btn->set_margin_bottom(4);
                 creds_box->append(*browse_btn);
-                browse_btn->signal_clicked().connect([this, tts, cred_keys, cred_entries, apply_creds]() {
+                browse_btn->signal_clicked().connect([this, tts, apply_sherpa, model_lbl, sherpa_model]() {
                     auto* browser = new Dasher::SherpaModelBrowser(
-                        *this, tts, [cred_keys, cred_entries, apply_creds](const std::string& model_id) {
-                            for (size_t i = 0; i < cred_keys->size() && i < cred_entries->size(); i++) {
-                                if ((*cred_keys)[i] == "modelId") {
-                                    (*cred_entries)[i]->set_text(model_id);
-                                }
-                            }
-                            (*apply_creds)();
+                        *this, tts, [apply_sherpa, model_lbl, sherpa_model](const std::string& model_id) {
+                            apply_sherpa(model_id);
+                            model_lbl->set_text(Glib::ustring::compose(_("Model: %1"), model_id));
+                            (void)sherpa_model;
                         });
+                    m_model_browser = browser;
                     browser->signal_close_request().connect(
-                        [browser]() {
-                            delete browser;
+                        [this, browser]() {
+                            if (m_model_browser == browser) m_model_browser = nullptr;
+                            // Hide now, delete on the next idle: "Use
+                            // Model" closes the dialog from inside its
+                            // own clicked signal, and deleting the
+                            // window mid-emission leaves GTK dispatching
+                            // on freed widgets (the GTK_IS_LABEL /
+                            // GTK_IS_WIDGET criticals).
+                            browser->hide();
+                            Glib::signal_idle().connect_once([browser]() { delete browser; });
                             return true;
                         },
                         false);
                     browser->show();
                 });
+
+                // Configure immediately (off-thread): no credentials
+                // means the engine's default model; voices populate
+                // when it finishes.
+                apply_engine("sherpaonnx", "");
+                return;
             }
 #endif
 
+            // Shared apply step so the Connect button configures the
+            // engine through one path.
+            auto apply_creds = std::make_shared<std::function<void()>>();
+            *apply_creds = [engine, cred_keys, cred_entries, apply_engine]() {
+                auto json = build_credentials_json(*cred_keys, *cred_entries);
+                apply_engine(engine.id, json);
+            };
+
             if (keys.empty()) {
-                tts->set_engine(engine.id);
-                refresh_voices();
+                apply_engine(engine.id, "");
                 return;
             }
 
@@ -774,9 +836,6 @@ void PreferencesWindow::add_speech_section() {
 
                 auto* entry = Gtk::make_managed<Gtk::Entry>();
                 entry->set_hexpand(true);
-                // Cloud engine fields are API keys; sherpaonnx's are
-                // model settings (modelId, threads, …) — show those.
-                entry->set_visibility(engine.id != "sherpaonnx" || key == "referenceAudio");
                 creds_box->append(*entry);
                 cred_keys->push_back(key);
                 cred_entries->push_back(entry);
