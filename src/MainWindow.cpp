@@ -853,6 +853,9 @@ MainWindow::MainWindow()
         auto buffer = m_text_view.get_buffer();
         std::string text = buffer->get_text();
         if (!text.empty()) {
+            // X-SAMPA alphabets speak through SpeechMarkdown phoneme
+            // tags (parity with Dasher-Apple's phonemeMode).
+            m_tts->set_phoneme_mode(m_canvas.bridge->get_alphabet_id().find("X-SAMPA") != std::string::npos);
             m_tts->speak(text);
         }
     });
@@ -894,6 +897,8 @@ MainWindow::MainWindow()
                     }
                     if (!last_word.empty()) {
                         m_tts->stop();
+                        m_tts->set_phoneme_mode(
+                            m_canvas.bridge->get_alphabet_id().find("X-SAMPA") != std::string::npos);
                         m_tts->speak(last_word);
                     }
                 }
