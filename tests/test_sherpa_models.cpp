@@ -10,13 +10,13 @@
 #include <cstring>
 #include <filesystem>
 #include <fstream>
+#include <chrono>
 #include <sstream>
-#include <unistd.h>
 
 namespace fs = std::filesystem;
 using Dasher::JsonValue;
-using Dasher::SherpaModel;
 using Dasher::sherpa_catalog_from_json;
+using Dasher::SherpaModel;
 namespace SherpaStorage = Dasher::SherpaStorage;
 
 namespace {
@@ -67,22 +67,27 @@ SherpaModel model_with(const std::string& overrides_json) {
         first = false;
         merged += "\"" + k + "\":";
         // Re-serialize the value (objects only in these tests).
-        if (v.is_string()) merged += "\"" + v.as_string() + "\"";
-        else if (v.is_number()) merged += std::to_string(v.as_number());
-        else if (v.is_bool()) merged += v.as_bool() ? "true" : "false";
+        if (v.is_string())
+            merged += "\"" + v.as_string() + "\"";
+        else if (v.is_number())
+            merged += std::to_string(v.as_number());
+        else if (v.is_bool())
+            merged += v.as_bool() ? "true" : "false";
         else if (v.is_array()) {
             merged += "[";
             for (size_t i = 0; i < v.items().size(); i++) {
                 if (i) merged += ",";
                 const JsonValue& l = v.items()[i];
-                merged += "{\"lang_code\":\"" + l.get_string("lang_code")
-                    + "\",\"language_name\":\"" + l.get_string("language_name") + "\"}";
+                merged += "{\"lang_code\":\"" + l.get_string("lang_code") + "\",\"language_name\":\"" +
+                          l.get_string("language_name") + "\"}";
             }
             merged += "]";
         }
     };
-    for (const auto& [k, v] : b.fields()) emit(k, v);
-    for (const auto& [k, v] : o.fields()) emit(k, v);
+    for (const auto& [k, v] : b.fields())
+        emit(k, v);
+    for (const auto& [k, v] : o.fields())
+        emit(k, v);
     merged += "}";
     // The catalogue is keyed by id: honour an overridden id in the key.
     std::string key = "x";
@@ -143,51 +148,55 @@ TEST_CASE("catalogue: parses the registry shape") {
     // A plain en (US) piper voice is installable: the installer fetches
     // the pinned en-US lexicon for it.
     CHECK(!SherpaStorage::download_unavailable_reason(
-        model_with("{\"language\": [{\"lang_code\": \"en\", \"language_name\": \"English\"}]}"))
-        .has_value());
+               model_with("{\"language\": [{\"lang_code\": \"en\", \"language_name\": \"English\"}]}"))
+               .has_value());
 }
 
 TEST_CASE("catalogue: search matches across fields") {
     auto models = sherpa_catalog_from_json(kTwoModels);
     const SherpaModel& piper = models[1];
     CHECK(piper.matches("alan"));
-    CHECK(piper.matches("PIPER ALAN"));       // case-insensitive, all terms
-    CHECK(piper.matches("en-gb"));            // lang code
+    CHECK(piper.matches("PIPER ALAN"));        // case-insensitive, all terms
+    CHECK(piper.matches("en-gb"));             // lang code
     CHECK_FALSE(piper.matches("alan french")); // one term missing
     CHECK(piper.matches(""));                  // empty matches everything
 }
 
 TEST_CASE("availability: readiness blocks and engine gates") {
-    CHECK(SherpaStorage::download_unavailable_reason(
-              model_with("{\"readiness\": \"blocked:deprecated\"}"))
+    CHECK(SherpaStorage::download_unavailable_reason(model_with("{\"readiness\": \"blocked:deprecated\"}"))
               .value_or("") == "This model is deprecated.");
-    CHECK(SherpaStorage::download_unavailable_reason(
-              model_with("{\"readiness\": \"blocked:no-bundle\"}"))
-              .value_or("").find("pronunciation dictionary") != std::string::npos);
+    CHECK(SherpaStorage::download_unavailable_reason(model_with("{\"readiness\": \"blocked:no-bundle\"}"))
+              .value_or("")
+              .find("pronunciation dictionary") != std::string::npos);
     // floravox-only engines are not installable here.
-    CHECK(SherpaStorage::download_unavailable_reason(
-              model_with("{\"engines\": \"floravox\"}"))
-              .value_or("") == "Requires a different speech engine.");
+    CHECK(SherpaStorage::download_unavailable_reason(model_with("{\"engines\": \"floravox\"}")).value_or("") ==
+          "Requires a different speech engine.");
     // No checksum → no verified download.
-    CHECK(SherpaStorage::download_unavailable_reason(
-              model_with("{\"sha256\": \"\"}"))
-              .value_or("").find("no verified download") != std::string::npos);
+    CHECK(SherpaStorage::download_unavailable_reason(model_with("{\"sha256\": \"\"}"))
+              .value_or("")
+              .find("no verified download") != std::string::npos);
     // The pinned replacement digests count as a checksum.
-    CHECK_FALSE(SherpaStorage::download_unavailable_reason(
-        model_with("{\"id\": \"icefall-en-ljspeech\", "
-                   "\"url\": \"https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/icefall-en-ljspeech.tar.bz2\", "
-                   "\"model_type\": \"matcha\", \"developer\": \"icefall\", \"sha256\": \"\"}"))
-        .has_value());
+    CHECK_FALSE(
+        SherpaStorage::download_unavailable_reason(
+            model_with(
+                "{\"id\": \"icefall-en-ljspeech\", "
+                "\"url\": "
+                "\"https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/icefall-en-ljspeech.tar.bz2\", "
+                "\"model_type\": \"matcha\", \"developer\": \"icefall\", \"sha256\": \"\"}"))
+            .has_value());
     // Non-English piper without a g2p bundle needs a lexicon Dasher
     // cannot supply.
     CHECK(SherpaStorage::download_unavailable_reason(
               model_with("{\"language\": [{\"lang_code\": \"fr\", \"language_name\": \"French\"}]}"))
-              .value_or("").find("pronunciation dictionary") != std::string::npos);
+              .value_or("")
+              .find("pronunciation dictionary") != std::string::npos);
 }
 
 TEST_CASE("storage: models dir and install marker") {
     // Point HOME at a scratch dir.
-    fs::path scratch = fs::temp_directory_path() / ("dasher-sherpa-test-" + std::to_string(::getpid()));
+    fs::path scratch =
+        fs::temp_directory_path() /
+        ("dasher-sherpa-test-" + std::to_string(std::chrono::steady_clock::now().time_since_epoch().count()));
     fs::remove_all(scratch);
     fs::create_directories(scratch);
 #ifdef _WIN32

@@ -2,6 +2,11 @@
 #include "SherpaModelInstaller.h"
 #include "SherpaModels.h"
 
+// Only built where the Sherpa model browser exists (HAS_TTS_DOWNLOAD —
+// Linux with the sherpaonnx engine; SherpaModelInstaller.cpp is empty
+// elsewhere, so this TU must be too or the link fails).
+#ifdef HAS_TTS_DOWNLOAD
+
 #include <algorithm>
 #include <set>
 #include <sstream>
@@ -356,3 +361,5 @@ void SherpaModelBrowser::finish_download() {
 }
 
 } // namespace Dasher
+
+#endif // HAS_TTS_DOWNLOAD
