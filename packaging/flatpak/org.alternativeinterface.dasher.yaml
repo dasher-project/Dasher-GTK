@@ -168,7 +168,10 @@ modules:
       # sandboxed home; sherpa-g2p fetches voicegarden lexicon bundles
       # for non-English voices); `system` stays off — the
       # speech-dispatcher socket is not exported in finish-args.
-      - cmake -B _build -DCMAKE_BUILD_TYPE=Release -DTTS_WRAPPER_FEATURES=cloud,sherpaonnx,sherpa-g2p -DBUILD_GTK_TESTS=OFF -DCMAKE_INSTALL_PREFIX=/app .
+      # `speaker` = in-process cpal playback (rust-tts-wrapper #139);
+      # the GNOME SDK ships alsa-lib, and PipeWire's ALSA plugin covers
+      # the runtime side (--device=all is already in finish-args).
+      - cmake -B _build -DCMAKE_BUILD_TYPE=Release -DTTS_WRAPPER_FEATURES=cloud,sherpaonnx,sherpa-g2p,speaker -DBUILD_GTK_TESTS=OFF -DCMAKE_INSTALL_PREFIX=/app .
       - cmake --build _build -j$(nproc)
       - cmake --install _build
     post-install:
@@ -205,11 +208,11 @@ modules:
         url: https://github.com/libsdl-org/SDL.git
         tag: release-3.2.16
         dest: Thirdparty/SDL
-      # Pinned to the commit Dasher-GTK's submodule points at: v1.11.0
-      # plus #101 (no phantom voices without a model; espeak data_dir
-      # dropped), squash-merged to AACTools main. Follow the submodule
-      # pin in .gitmodules when bumping.
+      # Pinned to the commit Dasher-GTK's submodule points at: v1.16.2
+      # (Sherpa-ONNX 2, model installer, pronunciations #125/#131,
+      # in-process playback #139/#140). Follow the submodule pin in
+      # .gitmodules when bumping.
       - type: git
         url: https://github.com/AACTools/rust-tts-wrapper.git
-        commit: 19799579866f41c0ef4cecbd570b1cf3f8e4f735
+        commit: f8d487878288a79eec17fb7db69cfaccea41f4ac
         dest: rust-tts-wrapper
