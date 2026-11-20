@@ -79,11 +79,14 @@ PreferencesWindow::~PreferencesWindow() {
     // Closing the prefs window with a model browser open left the
     // browser alive with callbacks into freed speech-section widgets
     // (one of the GTK_IS_LABEL critical paths). Its own destructor
-    // cancels any download and joins the worker.
+    // cancels any download and joins the worker. Only possible where
+    // the browser exists (HAS_TTS_DOWNLOAD builds).
+#ifdef HAS_TTS_DOWNLOAD
     if (m_model_browser) {
         delete m_model_browser;
         m_model_browser = nullptr;
     }
+#endif
 }
 
 PreferencesWindow::PreferencesWindow(std::shared_ptr<DasherBridge> bridge, DwellClickHandler* dwell_handler)

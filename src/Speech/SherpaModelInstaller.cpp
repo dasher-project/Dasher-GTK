@@ -1,6 +1,13 @@
 #include "SherpaModelInstaller.h"
 #include "Json.h"
 
+// The installer needs curl + bzip2 and only backs the Sherpa model
+// browser (HAS_TTS_DOWNLOAD: Linux builds with the sherpaonnx engine).
+// Other platforms compile this translation unit empty rather than
+// requiring bzlib.h — Windows/macOS GTK builds use their system/cloud
+// engines and never see the model browser.
+#ifdef HAS_TTS_DOWNLOAD
+
 #include <algorithm>
 #include <array>
 #include <cctype>
@@ -670,3 +677,5 @@ bool SherpaModelInstaller::install(const SherpaModel& model, const CancelFn& can
 }
 
 } // namespace Dasher
+
+#endif // HAS_TTS_DOWNLOAD
