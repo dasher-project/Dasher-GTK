@@ -206,7 +206,7 @@ modules:
         dest: DasherCore
       - type: git
         url: https://github.com/libsdl-org/SDL.git
-        tag: release-3.2.16
+        tag: release-3.2.30
         dest: Thirdparty/SDL
       # Pinned to the commit Dasher-GTK's submodule points at: v1.16.2
       # (Sherpa-ONNX 2, model installer, pronunciations #125/#131,
