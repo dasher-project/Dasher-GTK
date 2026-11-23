@@ -200,13 +200,21 @@ modules:
       - type: shell
         commands:
           - rm -rf DasherCore Thirdparty rust-tts-wrapper .gitmodules .git
+      # Pinned to the commit Dasher-GTK's DasherCore submodule points at, so
+      # the Flatpak builds the same core as every other leg (a floating
+      # `branch: main` is neither reproducible nor accepted by Flathub).
+      # Scripts/check-flatpak-pins.py fails the PR when the two drift apart.
       - type: git
         url: https://github.com/dasher-project/DasherCore.git
-        branch: main
+        commit: ec9aa2dbbbc3ad6b7d625fb01679268e418c7ef3
         dest: DasherCore
+      # tag + commit: flatpak-builder verifies the tag still resolves to this
+      # commit, so a moved upstream tag fails the build instead of silently
+      # changing what is compiled.
       - type: git
         url: https://github.com/libsdl-org/SDL.git
         tag: release-3.2.30
+        commit: f5e5f6588921eed3d7d048ce43d9eb1ff0da0ffc
         dest: Thirdparty/SDL
       # Pinned to the commit Dasher-GTK's submodule points at: v1.16.2
       # (Sherpa-ONNX 2, model installer, pronunciations #125/#131,
