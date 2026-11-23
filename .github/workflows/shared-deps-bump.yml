@@ -90,6 +90,11 @@ jobs:
 
           Merge when CI is green; frontend adaptation work rides this PR as additional commits.
 
+          > **Weekly review:** PRs from the automation do not trigger CI
+          > (no checks appear at all on this repo). Recreate from your
+          > account with \`Scripts/weekly-bump-review.sh --recreate\` — the
+          > human reviews the diff and merges.
+
           <details><summary>${{ matrix.label }} changelog (${PINNED}..${LATEST})</summary>
 
           \`\`\`
