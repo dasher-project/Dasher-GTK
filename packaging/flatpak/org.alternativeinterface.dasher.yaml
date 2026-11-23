@@ -250,6 +250,21 @@ modules:
         printf '%s\n' '#include <onnxruntime_c_api.h>' 'int main(void) { return OrtGetApiBase()->GetApi(ORT_API_VERSION) == 0; }' > _build/linkcheck.c
         gcc -I/app/sherpa-onnx/include/onnxruntime _build/linkcheck.c -o _build/linkcheck -L/app/sherpa-onnx/lib -lonnxruntime -lstdc++ -lm -lpthread -ldl -Wl,-z,noexecstack
         _build/linkcheck
+    post-install:
+      # Licence texts. libonnxruntime.a carries protobuf, abseil, re2, onnx
+      # and the other dependencies with it, and all of that ends up inside
+      # librust_tts_wrapper.so; ThirdPartyNotices.txt is upstream's
+      # collection of their notices. flatpak-builder 1.4.5 and newer copies
+      # LICENSE by itself, before post-install; an older one (Ubuntu 24.04,
+      # which the publish workflow uses, has 1.4.2) copies nothing and does
+      # not know `license-files`, hence a command that fills in what is not
+      # there yet.
+      - |
+        set -e
+        dest="/app/share/licenses/${FLATPAK_ID}/onnxruntime"
+        for f in LICENSE ThirdPartyNotices.txt; do
+          [ -e "$dest/$f" ] || install -Dm644 "$f" "$dest/$f"
+        done
     sources:
       # ONNX Runtime v1.28.2 is commit 33ca9628 (the upstream prebuilt
       # archive reports the same commit in its build info). The source is
@@ -368,6 +383,29 @@ modules:
       - -DSHERPA_ONNX_ENABLE_TESTS=OFF
       - -DSHERPA_ONNX_ENABLE_PYTHON=OFF
       - -DSHERPA_ONNX_LINK_LIBSTDCPP_STATICALLY=OFF
+    post-install:
+      # Licence texts, as for onnxruntime above: sherpa-onnx's own, and
+      # those of the dependencies cmake unpacked into _deps/ (this runs in
+      # the build directory), all of which are linked statically. Each one
+      # gets a directory of its own. A LICENSES/ directory is copied whole
+      # (kissfft's COPYING refers to it), so texts for files that are not
+      # linked come along too, such as the GPL of a test tool in json. A
+      # dependency in which no licence file is found stops the build, so a
+      # new one is looked at once.
+      - |
+        set -e
+        dest="/app/share/licenses/${FLATPAK_ID}/sherpa-onnx"
+        [ -e "$dest/LICENSE" ] || install -Dm644 ../LICENSE "$dest/LICENSE"
+        for src in _deps/*-src; do
+          name="$(basename "$src" -src)"
+          found=
+          for f in "$src"/LICEN[SC]E* "$src"/COPYING* "$src"/LICENSES/*; do
+            [ -f "$f" ] || continue
+            install -Dm644 "$f" "$dest/$name/${f#"$src"/}"
+            found=1
+          done
+          [ -n "$found" ] || { echo "No licence file found in $src" >&2; exit 1; }
+        done
     sources:
       # The tag must be v<version of sherpa-onnx-sys in the cargo lock>.
       - type: git
