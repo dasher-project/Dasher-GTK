@@ -249,7 +249,7 @@ if(NOT CMAKE_MATCH_1)
 	message(FATAL_ERROR "CAPI gate: DASHER_CAPI_VERSION not found in the pinned dasher.h (submodule not checked out?)")
 endif()
 if(CMAKE_MATCH_1 LESS REQUIRED_DASHER_CAPI_VERSION)
-	message(FATAL_ERROR "CAPI gate: pinned DasherCore exposes CAPI version ${CMAKE_MATCH_1}, this frontend requires >= ${REQUIRED_DASHER_CAPI_VERSION}. Bump the DasherCore submodule (see .github/workflows/engine-bump.yml).")
+	message(FATAL_ERROR "CAPI gate: pinned DasherCore exposes CAPI version ${CMAKE_MATCH_1}, this frontend requires >= ${REQUIRED_DASHER_CAPI_VERSION}. Bump the DasherCore submodule (see .github/workflows/shared-deps-bump.yml).")
 endif()
 message(STATUS "CAPI gate: pinned DasherCore CAPI version ${CMAKE_MATCH_1} (required >= ${REQUIRED_DASHER_CAPI_VERSION}) — OK")
 
