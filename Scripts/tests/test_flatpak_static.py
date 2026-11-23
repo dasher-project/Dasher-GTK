@@ -14,7 +14,8 @@ the merge. These tests read the files of the repository as they are:
   - the metainfo and the desktop file: what Flathub requires, a screenshot
     that is pinned and matches the image in the repository, a newest
     release that is the version in CMakeLists.txt;
-  - the workflows: the unit tests run on every push and pull request.
+  - the workflows: the unit tests run on every push and pull request, and
+    the smoke test runs on both Flatpak legs after the build.
 
 Each manifest rule is a small function, and ManifestRuleTests breaks a
 copy of the real manifest once per rule to show that the rule notices.
@@ -25,13 +26,18 @@ tests are skipped and the others still run. Stdlib otherwise.
     python3 -m unittest discover -s Scripts/tests -v
 """
 
+import contextlib
 import copy
 import importlib.util
+import io
 import json
+import os
 import re
+import shlex
 import shutil
 import subprocess
 import sys
+import tempfile
 import unittest
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -988,6 +994,7 @@ class DesktopFileTests(unittest.TestCase):
 
 # ── Workflows ───────────────────────────────────────────────────────────
 WORKFLOWS = REPO / ".github" / "workflows"
+SMOKE_TEST = "packaging/flatpak/tests/smoke-test.py"
 
 
 @unittest.skipIf(yaml is None, NEEDS_YAML)
@@ -1049,6 +1056,183 @@ class WorkflowTests(unittest.TestCase):
                         )
                     script += step.get("run", "") + "\n"
         self.assertEqual(runs_it, ["pin-sync.yml", "shared-deps-bump.yml"])
+
+    # ── the smoke test in publish.yml ────────────────────────────────────
+    # Asserted on what the steps do and in which order, not on their text:
+    # the commands are split into words the way the shell would, so that a
+    # reformatted or reordered command line changes nothing here.
+
+    @staticmethod
+    def commands(step):
+        """The commands of a step's `run:` as lists of words. Comments are
+        dropped, continuation lines joined, `&&` separates commands."""
+        text = re.sub(r"\\\n", " ", step.get("run", ""))
+        found = []
+        for line in text.splitlines():
+            for part in line.split("&&"):
+                words = shlex.split(part, comments=True)
+                if words:
+                    found.append(words)
+        return found
+
+    @staticmethod
+    def runner_path(value):
+        """A path below the runner's temporary directory, in one spelling."""
+        return value.replace("${{ runner.temp }}", "$RUNNER_TEMP")
+
+    def flatpak_job(self):
+        workflow = self.load("publish.yml")
+        return workflow, workflow["jobs"]["flatpak"]
+
+    def smoke_step(self):
+        """(the flatpak job, the index of its smoke-test step, the step,
+        the directory it tests, the options smoke-test.py reads from it)."""
+        _, job = self.flatpak_job()
+        index, step, command = self.step_running(job, SMOKE_TEST, "--strict")
+        return job, index, step, *self.smoke_options(command)
+
+    def step_using(self, job, action, accepts, missing):
+        """(index, step) of the one step that uses `action` with a path
+        that `accepts`; `missing` is what to say when there is none."""
+        found = [
+            (index, step)
+            for index, step in enumerate(job["steps"])
+            if step.get("uses", "").startswith(f"{action}@")
+            and accepts(self.runner_path(step["with"]["path"]))
+        ]
+        self.assertEqual(len(found), 1, missing)
+        return found[0]
+
+    def step_running(self, job, program, *words):
+        """(index, step, command) of the one step that starts `program`
+        with `words` on its command line. A step that starts it inside
+        `$(...)` counts when no step starts it as a command of its own;
+        the command is None then."""
+        started, mentioned = [], []
+        for index, step in enumerate(job["steps"]):
+            if not {program, *words} <= set(re.findall(r"[^\s\"'()]+", step.get("run", ""))):
+                continue
+            commands = [c for c in self.commands(step) if program in c[:2]]
+            if commands:
+                started.append((index, step, commands[0]))
+            else:
+                mentioned.append((index, step, None))
+        found = started or mentioned
+        self.assertEqual(len(found), 1, f"expected one step that runs {program} {words}")
+        return found[0]
+
+    def smoke_options(self, command):
+        """The smoke test's own reading of the workflow's command line. An
+        option it does not know ends the test with its usage error."""
+        arguments = command[command.index(SMOKE_TEST) + 1 :]
+        usage = io.StringIO()
+        with tempfile.TemporaryDirectory() as build:
+            (Path(build) / "metadata").write_text("[Application]\n")
+            try:
+                with contextlib.redirect_stderr(usage):
+                    options = smoke.parse_args([build, *arguments[1:]])
+            except SystemExit:
+                self.fail(
+                    "smoke-test.py does not take the workflow's command line: "
+                    + usage.getvalue().strip().splitlines()[-1]
+                )
+        return arguments[0], options
+
+    def test_the_smoke_test_runs_on_both_flatpak_legs(self):
+        job, _, step, _, _ = self.smoke_step()
+        arches = sorted(leg["arch"] for leg in job["strategy"]["matrix"]["include"])
+        self.assertEqual(arches, ["aarch64", "x86_64"])
+        # Unconditional and fatal: every leg, and a failure fails the leg.
+        self.assertNotIn("if", step)
+        self.assertNotIn("continue-on-error", step)
+        for command in self.commands(step):
+            self.assertNotIn("||", command)
+            self.assertNotEqual(command[:2], ["set", "+e"])
+
+    def test_it_tests_the_directory_that_was_built_after_build_and_upload(self):
+        job, at, _, build_dir, _ = self.smoke_step()
+        built, build_step, build_command = self.step_running(job, "flatpak-builder")
+        self.assertLess(built, at)
+        # flatpak-builder DIRECTORY MANIFEST, in the directory the step went to.
+        positional = [word for word in build_command[1:] if not word.startswith("-")]
+        self.assertEqual(len(positional), 2, build_command)
+        directory, manifest = positional
+        self.assertTrue(manifest.endswith(f"packaging/flatpak/{APP_ID}.yaml"), manifest)
+        commands = self.commands(build_step)
+        went_to = [c[1] for c in commands[: commands.index(build_command)] if c[0] == "cd"]
+        self.assertTrue(went_to, "the build step does not say where it builds")
+        self.assertEqual(build_dir, os.path.normpath(os.path.join(went_to[-1], directory)))
+        # After the bundle is uploaded: a failing leg still leaves it to look at.
+        uploaded, _ = self.step_using(
+            job, "actions/upload-artifact", lambda path: ".flatpak" in path, "no bundle upload"
+        )
+        self.assertLess(uploaded, at)
+
+    def test_a_release_needs_the_smoke_tested_legs(self):
+        workflow, job = self.flatpak_job()
+        self.assertIn("flatpak", workflow["jobs"]["release"]["needs"])
+        # The job may be advisory for an experiment, never for a tag.
+        advisory = job.get("continue-on-error", False)
+        self.assertIsNot(advisory, True)
+        if advisory:
+            self.assertRegex(advisory, r"!\s*startsWith\(github\.ref, 'refs/tags/")
+
+    def test_the_smoke_test_in_ci_skips_nothing_silently(self):
+        options = self.smoke_step()[-1]
+        self.assertTrue(options.strict)
+        self.assertTrue(options.host_checks, "without it the linter does not run in CI")
+        self.assertTrue(options.network, "without it the synthesis check has no voice in CI")
+        self.assertEqual(options.installed, APP_ID)
+        self.assertEqual(options.check, [])
+        self.assertEqual(options.skip, [])
+        # Only what depends on the machine may be skipped, never a check
+        # of the build itself. (An unreachable voice server is let through
+        # by the smoke test itself, with a warning.)
+        self.assertLessEqual(set(options.allow_skip), {"audio-device", "input-devices"})
+
+    def test_the_logs_of_the_smoke_test_are_uploaded_whatever_happens(self):
+        job, at, _, _, options = self.smoke_step()
+        self.assertTrue(options.keep_logs)
+        index, step = self.step_using(
+            job,
+            "actions/upload-artifact",
+            lambda path: path == options.keep_logs,
+            "no step uploads the directory given to --keep-logs",
+        )
+        self.assertGreater(index, at)
+        self.assertEqual(step.get("if"), "always()")
+
+    def test_a_download_that_hangs_ends_well_inside_the_time_limit_of_the_step(self):
+        """A voice download that never finishes is stopped and tried again,
+        and then skipped with a warning. That is worth nothing if the step
+        is cancelled first: all attempts and pauses together take at most
+        half of the step's time limit."""
+        _, _, step, _, options = self.smoke_step()
+        self.assertTrue(options.network)
+        limit = step.get("timeout-minutes")
+        self.assertIsInstance(limit, int, "the smoke-test step has no time limit")
+        worst = smoke.INSTALL_ATTEMPTS * smoke.INSTALL_TIMEOUT + sum(smoke.INSTALL_BACKOFF)
+        self.assertLessEqual(worst, limit * 60 / 2)
+
+    def test_the_voice_is_cached_under_a_key_that_follows_its_pin(self):
+        job, at, _, _, options = self.smoke_step()
+        index, cache = self.step_using(
+            job,
+            "actions/cache",
+            lambda path: path == options.voice_cache,
+            "no cache step for the directory given to --voice-cache",
+        )
+        self.assertLess(index, at)
+        # A cache that cannot be restored must not stop the leg.
+        self.assertNotIn("fail-on-cache-miss", cache["with"])
+        # The key is what `smoke-test.py --voice-key` prints, in an earlier step.
+        keyed, key_step, _ = self.step_running(job, SMOKE_TEST, "--voice-key")
+        self.assertLess(keyed, index)
+        output = re.search(r"steps\.([\w-]+)\.outputs\.([\w-]+)", cache["with"]["key"])
+        self.assertIsNotNone(output, cache["with"]["key"])
+        self.assertEqual(key_step.get("id"), output.group(1))
+        self.assertRegex(key_step["run"], rf"\b{output.group(2)}=.*GITHUB_OUTPUT")
+        self.assertIn("matrix.arch", cache["with"]["key"])
 
 
 if __name__ == "__main__":
