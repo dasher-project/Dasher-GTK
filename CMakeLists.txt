@@ -68,7 +68,7 @@ add_subdirectory("Thirdparty/SDL" EXCLUDE_FROM_ALL)
 
 set(TTS_WRAPPER_DIR "${CMAKE_CURRENT_LIST_DIR}/rust-tts-wrapper")
 set(TTS_WRAPPER_BUILD_DIR "${CMAKE_BINARY_DIR}/rust-tts-wrapper")
-set(TTS_WRAPPER_VERSION "1.16.2" CACHE STRING "rust-tts-wrapper version to download")
+set(TTS_WRAPPER_VERSION "1.16.3" CACHE STRING "rust-tts-wrapper version to download")
 
 if(EXISTS "${TTS_WRAPPER_DIR}/Cargo.toml")
 	# cargo names the staticlib per target: MSVC produces rust_tts_wrapper.lib,
