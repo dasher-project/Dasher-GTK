@@ -14,6 +14,7 @@ the merge. These tests read the files of the repository as they are:
   - the metainfo and the desktop file: what Flathub requires, a screenshot
     that is pinned and matches the image in the repository, a newest
     release that is the version in CMakeLists.txt;
+  - README.md and CONTRIBUTING.md: the repository paths they name exist;
   - the workflows: the unit tests run on every push and pull request, and
     the smoke test runs on both Flatpak legs after the build.
 
@@ -990,6 +991,130 @@ class DesktopFileTests(unittest.TestCase):
         manifest = load_manifest()
         self.assertEqual(self.entry["Exec"].split()[0], manifest["command"])
         self.assertEqual(self.entry["Icon"], manifest["app-id"])
+
+
+# ══ Paths named in the documentation ══════════════════════════════════════
+
+DOCUMENTS = ["README.md", "CONTRIBUTING.md"]
+PATH_PREFIXES = ("packaging/", "Scripts/", ".github/", "tests/", "src/")
+# Named in the documentation without being a file of this repository:
+# (document, path) -> why.
+NOT_OF_THIS_REPOSITORY = {
+    ("CONTRIBUTING.md", "src/data/feature-status.json"): "a file of the `website` repository",
+    ("CONTRIBUTING.md", "src/your_file.cpp"): "a placeholder in an example command",
+}
+# References that are broken today and were left alone (nobody should have
+# to fix the documentation to get this test green on an unrelated change):
+# (document, path) -> why. Empty is the goal; remove an entry when the
+# reference is fixed, the test says when one is stale.
+KNOWN_BROKEN = {}
+
+FENCE = re.compile(r"(?ms)^```.*?^```[ \t]*$")
+CODE_SPAN = re.compile(r"`([^`\n]+)`")
+LINK_TARGET = re.compile(r"\]\(([^)\s]+)\)")
+PLACEHOLDER = re.compile(r"[*<>{}$]|…|\.\.\.")
+
+
+def clean_token(token):
+    """A word of a command or code span as a repository path, or None."""
+    token = token.strip("\"'`()[],;:")
+    # The README builds from outside the repository with "$repo/<path>".
+    token = re.sub(r"^\$(repo|\{repo\})/", "", token)
+    token = token.removeprefix("./")
+    token = token.split("#", 1)[0].rstrip(".,;:")
+    if not token.startswith(PATH_PREFIXES) or PLACEHOLDER.search(token):
+        return None
+    return token
+
+
+def referenced_paths(text):
+    """The repository paths a Markdown document names: in code spans and
+    fenced blocks those under PATH_PREFIXES, and every relative link."""
+    found = set()
+    prose = FENCE.sub("\n", text)
+    for block in FENCE.findall(text):
+        found.update(filter(None, (clean_token(token) for token in block.split())))
+    for span in CODE_SPAN.findall(prose):
+        found.update(filter(None, (clean_token(token) for token in span.split())))
+    for target in LINK_TARGET.findall(prose):
+        if target.startswith(("http://", "https://", "mailto:", "#", "../")):
+            continue
+        target = target.removeprefix("./").split("#", 1)[0]
+        if target and not PLACEHOLDER.search(target):
+            found.add(target)
+    return found
+
+
+class DocumentationTests(unittest.TestCase):
+    def test_paths_named_in_the_documentation_exist(self):
+        for document in DOCUMENTS:
+            paths = referenced_paths((REPO / document).read_text())
+            self.assertTrue(paths, f"no path found in {document}: the extraction is broken")
+            for path in sorted(paths):
+                if (document, path) in NOT_OF_THIS_REPOSITORY or (document, path) in KNOWN_BROKEN:
+                    continue
+                with self.subTest(document=document, path=path):
+                    self.assertTrue(
+                        (REPO / path).exists(),
+                        f"{document} names {path}, which does not exist in the repository",
+                    )
+
+    def test_the_exception_lists_are_not_stale(self):
+        named = {(d, p) for d in DOCUMENTS for p in referenced_paths((REPO / d).read_text())}
+        for key, why in list(NOT_OF_THIS_REPOSITORY.items()) + list(KNOWN_BROKEN.items()):
+            with self.subTest(key):
+                self.assertTrue(why.strip())
+                self.assertIn(key, named, "no longer named in the document: remove the entry")
+        for document, path in KNOWN_BROKEN:
+            with self.subTest(document=document, path=path):
+                self.assertFalse((REPO / path).exists(), "the reference is fixed: remove the entry")
+
+    def test_the_packaging_files_the_readme_explains_are_found(self):
+        paths = referenced_paths((REPO / "README.md").read_text())
+        for expected in (
+            f"packaging/flatpak/{APP_ID}.yaml",
+            "packaging/flatpak/cargo-sources.json",
+            "packaging/flatpak/rust-tts-wrapper-Cargo.lock",
+            "packaging/flatpak/rust-tts-wrapper-Cargo.lock.commit",
+            "Scripts/check-flatpak-pins.py",
+            ".github/workflows/publish.yml",
+            "packaging/build-appimage.sh",
+            "Scripts/tag-release.sh",
+        ):
+            self.assertIn(expected, paths)
+
+    def test_extraction(self):
+        text = "\n".join(
+            [
+                "See `packaging/flatpak/x.yaml`, `Scripts/tests/` and `bash packaging/build.sh`.",
+                "A [link](.github/workflows/publish.yml), [one](./LICENSE), [anchor](./README.md#top),",
+                "[web](https://example.org/src/x), [up](../../issues), [here](#section).",
+                "Globs `src/**/*.cpp`, `src/MainWindow.*`, `packaging/<name>` are not paths.",
+                "Other code: `cmake --build build`, `tests`, `build/Dasher/`, `rust-tts-wrapper/src/x`.",
+                "```sh",
+                "python3 -m unittest discover -s Scripts/tests -v",
+                'flatpak-builder build "$repo/packaging/flatpak/app.yaml"',
+                "Scripts/tag-release.sh --push v0.2.12 # verifies",
+                "```",
+                "After the block: `tests/CMakeLists.txt`, `Scripts/notes.md#usage`.",
+            ]
+        )
+        self.assertEqual(
+            referenced_paths(text),
+            {
+                "packaging/flatpak/x.yaml",
+                "Scripts/tests/",
+                "packaging/build.sh",
+                ".github/workflows/publish.yml",
+                "LICENSE",
+                "README.md",
+                "Scripts/tests",
+                "packaging/flatpak/app.yaml",
+                "Scripts/tag-release.sh",
+                "tests/CMakeLists.txt",
+                "Scripts/notes.md",
+            },
+        )
 
 
 # ── Workflows ───────────────────────────────────────────────────────────
