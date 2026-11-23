@@ -173,6 +173,9 @@ tests found.
 
 CI runs these tests on every push as part of the multi-platform workflow.
 
+The Flatpak packaging has tests of its own, in Python: see
+[Testing the Flatpak packaging](#testing-the-flatpak-packaging).
+
 ### TTS Support
 
 The `rust-tts-wrapper` submodule provides text-to-speech support. It is included
@@ -366,6 +369,159 @@ enforcement lives in publish, where failure actually blocks the release.)
 If a bad tag already went out: add the missing metainfo entry, merge, then
 delete and re-push the tag — validate re-runs green and the publish workflow
 updates the existing release in place.
+
+### Testing the Flatpak packaging
+
+Three layers, from the one that runs everywhere in seconds to the one that
+needs a finished build. All of it is Python with the standard library only
+(3.11 or newer), plus PyYAML (`python3-yaml`), which the pin-sync check and
+the tests read the manifest with.
+
+**1. Unit tests: no build, no network.** They live in `Scripts/tests/`:
+
+```sh
+python3 -m unittest discover -s Scripts/tests -v
+```
+
+- `test_check_flatpak_pins.py` runs the pin-sync check
+  (`Scripts/check-flatpak-pins.py`) against small made-up repositories and a
+  faked upstream: every check with a passing case and each way it can fail,
+  `--fix`, the exit codes, the `::error::` lines, what happens when GitHub
+  cannot be reached, and the forms YAML has for a pin (quotes, block scalars,
+  flow mappings, aliases, continuation lines, duplicate keys, CRLF), with what
+  the check reads from a `commit:` value compared with a second YAML reading.
+  It also runs the real manifest, lock and crate list against a faked
+  upstream. `DASHER_PIN_SYNC_LIVE=1` adds one test that runs the real check
+  online.
+- `test_flatpak_static.py` reads the manifest, the metainfo, the desktop file
+  and the workflows as they are in the tree: every source pinned by sha256 or
+  commit, no `branch:`, no network during the build, the `finish-args` exactly
+  the reviewed list, the from-source speech modules in place, the screenshot
+  URL on a commit or tag with the size of the image in the repository, the
+  newest `<release>` equal to `DASHER_GTK_FALLBACK_VERSION` in
+  `CMakeLists.txt`, and the paths that this README and `CONTRIBUTING.md` name.
+- `test_flatpak_smoke.py` tests the smoke test below against made-up build
+  directories, so a change to it is checked without a build. That includes
+  the command lines that keep the app off the desktop and the helper that
+  starts it.
+
+`.github/workflows/packaging-tests.yml` runs these on every push and pull
+request; they take about ten seconds.
+
+**2. Smoke test of a built Flatpak.**
+`packaging/flatpak/tests/smoke-test.py` takes the build directory that
+`flatpak-builder` leaves behind (`/tmp/dasher-fb/build` after the commands
+above) and prints one `PASS`, `FAIL` or `SKIP` line per check:
+
+```sh
+packaging/flatpak/tests/smoke-test.py /tmp/dasher-fb/build
+packaging/flatpak/tests/smoke-test.py /tmp/dasher-fb/build --host-checks   # also the linter, sound and /dev/input
+packaging/flatpak/tests/smoke-test.py /tmp/dasher-fb/build --network       # also install the test voice
+packaging/flatpak/tests/smoke-test.py /tmp/dasher-fb/build --check permissions,linkage
+packaging/flatpak/tests/smoke-test.py --list
+```
+
+It checks that the permissions of the build are exactly the expected ones
+(and that `--socket=session-bus` and build-time network are absent); that the
+launcher, binary, libraries, desktop file, metainfo, icons and licence texts
+are there and that headers, static archives and the speech build prefix are
+not; that the desktop file and the metainfo validate; that every library
+resolves in the Platform runtime and no search path leads out of the app; that
+the speech library carries the ONNX Runtime the manifest builds, not a
+prebuilt one; that the app starts, takes its bus name `org.dasher.gtk`, prints
+no error and stops again; that the speech library synthesizes audible speech;
+and, when asked, that the default sound device and `/dev/input` are reachable
+and that `flatpak-builder-lint` reports no new error.
+
+It needs `flatpak` with the runtime and SDK the build used.
+`desktop-file-validate` and `appstreamcli` are used when present; a check
+whose tool is missing is skipped and says so. What a run touches depends on
+how it is started:
+
+| Run | What it touches outside its sandboxes |
+|---|---|
+| default | Nothing of the desktop: no display, session bus, portal, sound server, device or network. It installs nothing, opens no window and does not write to the build directory. The app runs inside `flatpak build --readonly` on GTK's Broadway backend with a session bus of its own, with every permission of the build switched off, and writes go to a temporary directory. `flatpak build` itself asks the systemd user instance for a scope per sandbox; nothing of the session reaches the sandbox that way. |
+| `--host-checks` | Adds `lint-manifest` and `lint-builddir` (`flatpak-builder-lint` uses the network; when it comes from the `org.flatpak.Builder` Flatpak it is started with `flatpak run`, which uses the session bus and portals), `audio-device` (a sandbox gets the host's sound server socket; the device is opened and closed, nothing is played) and `input-devices` (a sandbox gets the host's `/dev` and lists `/dev/input`). |
+| `--network` | Adds `speech-install`: a sandbox with network access in which the app's own installer downloads a 20 MB voice and 23 MB of pronunciation data. The voice is kept in `~/.cache/dasher-flatpak-smoke` (`--voice-cache` to change that), and the synthesis check, which is skipped until a complete voice is there, then runs offline. |
+| `--installed APP_ID` | Adds `installed-permissions`: reads the metadata of an installed app with `flatpak info`. The app is never run. |
+
+The `log` check fails on every line the app prints while starting that is not
+expected: GLib errors, criticals and warnings, and also plain lines on stdout
+or stderr, which is where the app's own `std::cerr` messages go. A healthy
+start prints one line, a warning of the Broadway backend.
+
+The voice download never touches the cached voice until it is done. The
+installer works in a directory of its own (`installing` in the voice cache),
+and what it leaves is checked before it is used: the installer's record of the
+voice with every file it lists, the model against its pinned checksum, and the
+pronunciation data as the speech library itself asks for it before it speaks
+offline (the manifest, the dictionary and the model for unknown words of the
+`en-GB` bundle, and the checksum the bundle was verified against). Only then
+does the new directory take the place of `installed`, whole, by a rename. A
+download that fails, that sends nothing for three minutes (it is stopped) or
+that brings only a part, such as the manifest of the pronunciation data
+without the data, is tried again, three times in all, with pauses. If that
+does not help, `speech-install` is skipped with the reason, and the synthesis
+runs with the voice of an earlier run when there is a complete one. What is
+never retried and always fails: a voice or pronunciation data with a wrong
+checksum, and an installer that reports success without a complete voice. The
+pronunciation data has no checksum pinned in the test, because the library
+takes the newest release of `voicegarden-lexicons`; the test checks that the
+bundle on disk is the one its own manifest names.
+
+Every tool the smoke test starts has a time limit (the validators, `git`,
+`flatpak`, the linter, each sandbox), so a tool that hangs fails its check
+with a message and cannot hold up the run.
+
+The publish workflow runs the smoke test on both Flatpak legs after the build,
+with `--host-checks --network --strict` (a check that cannot run fails the
+leg; only the sound device and `/dev/input` checks may be skipped on a
+runner). The voice download is the one thing that may fail without failing
+the leg: when the three attempts do not bring a complete voice, the download
+check is skipped with a warning annotation, and so is the synthesis unless the
+cache has a complete voice from the last good run, which it normally has. A
+hung download costs a leg at most ten minutes, half of the step's time limit.
+All this adds about 3 to 5 minutes to a leg, most of it installing
+`org.flatpak.Builder` for the linter. Like the build itself it runs on pushes
+to `main`, tags and manual dispatch, not on pull requests.
+
+Known limits: the app ignores SIGTERM today (SDL takes the signal and the
+event loop drops the quit event), and it exports no `quit` action on the bus,
+so the `shutdown` check cannot ask for a clean exit; it reports the known
+issue, kills the app, and says so when either changes. `appstreamcli` is the
+host's, and what it treats as a warning has changed between releases (Ubuntu
+24.04 has 1.0.x); the `metainfo` result names the version that ran.
+
+**3. Does the smoke test notice?**
+`packaging/flatpak/tests/mutation-test.py` copies a build directory, breaks
+the copy in one way at a time (an extra permission, a missing licence file, a
+stray static archive, a screenshot URL on a branch, a missing library, a
+prebuilt ONNX Runtime, an error printed on stderr, and so on) and expects the
+matching check to fail. Run it after changing the smoke test; it takes under
+a minute and is not part of CI. Like the smoke test it stays inside the
+sandbox unless `--host-checks` is given:
+
+```sh
+packaging/flatpak/tests/mutation-test.py /tmp/dasher-fb/build
+```
+
+**When something changes on purpose**, the lists at the top of
+`packaging/flatpak/tests/smoke-test.py` are what to edit:
+
+- `EXPECTED_FINISH_ARGS` when a permission is added to or removed from the
+  manifest. The unit tests compare the manifest with this list on every pull
+  request, so the two change in the same commit, and the commit message says
+  why the app needs the permission.
+- `LINT_EXPECTED_ERRORS` when a linter error is accepted for now. An accepted
+  error that is no longer reported is pointed out by the run (a warning
+  annotation in CI) and should then be deleted from the list: today that will
+  be `appstream-missing-screenshots`, once the screenshot commit is on GitHub.
+- `LOG_ALLOWLIST` for a GLib warning the app logs at startup that is harmless
+  in the test and `OUTPUT_ALLOWLIST` for any other line it prints (keep both
+  narrow: a wide pattern hides the next real error), `KNOWN_ISSUES` for a
+  known problem of the app the test has to live with (the run says when it is
+  fixed), `SHERPA_DEP_LICENCE_DIRS` when sherpa-onnx gains or loses a
+  statically linked dependency, and `VOICE` for the pinned test voice.
 
 ## Privacy & analytics
 
