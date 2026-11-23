@@ -23,13 +23,17 @@ This is the **GTK** frontend, built on the shared
 ## Usage
 
 Runtime controls live in the footer bar: the alphabet chooser, speed, a Learning
-toggle, colour and font choosers, and the Speech toggle. Keyboard mode sits on the
-top toolbar, and dwell-to-click is under **Preferences → Input**.
+toggle and the Speech toggle. The colour and font choosers are under
+**Preferences → Customization**. Keyboard mode is the last entry of the layout
+menu on the top toolbar (Right side, Left side, Bottom, Top, Keyboard), and
+dwell-to-click is under **Preferences → Input**.
 
-The live typing-rate readout (RFC 0012) lives under **Preferences → Output**,
+The live typing-rate readout (RFC 0012) sits at the right-hand end of the footer
+and under **Preferences → Output**,
 showing characters per second and words per minute (e.g. `4.2 cps · 50 wpm`) in
 subtle text. It is computed engine-side over a short rolling window and refreshed
-about twice a second, with a **Reset** button that restarts the measurement. See
+about twice a second; the **Reset** button under Preferences restarts the
+measurement. See
 [RFC 0012](https://github.com/dasher-project/governance/pull/19).
 
 ## Install
@@ -70,9 +74,10 @@ Speech and Keyboard mode each depend on an external service:
   does not enable the service for you. Availability is checked by probing the
   daemon (a zero-length pointer move), and if injection fails mid-session the
   mode turns itself off with a message rather than dropping output silently.
-  Clicking the Keyboard button (on the top toolbar) when ydotool isn't working
-  opens a setup dialog with the install command for your distro and a Retry,
-  instead of enabling the mode.
+  Choosing Keyboard in the layout menu (on the top toolbar) when ydotool isn't
+  working opens a setup dialog with the install command for your distro and a
+  Retry, instead of enabling the mode. In the Flatpak the dialog says that
+  Keyboard mode is not available in that build.
 
 **Dwell to click** (hover in place to click, under **Preferences → Input**) needs
 no external dependency.
