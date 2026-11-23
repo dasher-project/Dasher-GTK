@@ -52,8 +52,13 @@ Speech and Keyboard mode each depend on an external service:
 
 - **Speech** (spoken feedback and read-aloud) needs a working text-to-speech
   engine. A from-source Linux build enables the `system` feature, which drives a
-  running `speech-dispatcher` (`sudo apt install speech-dispatcher`). The Flatpak
-  and AppImage ship `cloud`-only, so configure a cloud engine under
+  running `speech-dispatcher` (`sudo apt install speech-dispatcher`), next to
+  the cloud engines and offline Sherpa-ONNX voices. The AppImage is built with
+  the same feature set and is not sandboxed, so for system speech it needs the
+  host's `speech-dispatcher` as well. The Flatpak is built without `system`,
+  with the cloud engines and Sherpa-ONNX, but its sandbox has no network
+  permission, so there the cloud engines and the in-app voice downloads cannot
+  reach the network. Engines and voices are chosen under
   **Preferences → Speech**. With no engine available the Speech toggle stays
   disabled. See [TTS Support](#tts-support) for how the feature set is chosen at
   build time.
@@ -79,13 +84,18 @@ no external dependency.
 | Platform | Command |
 |----------|---------|
 | macOS | `brew install gtk4 gtkmm4 pkg-config cmake` |
-| Linux (Debian/Ubuntu) | `apt-get install build-essential libgtk-4-dev libgtkmm-4.0-dev git cmake pkg-config libspeechd-dev libclang-dev speech-dispatcher ydotool` |
+| Linux (Debian/Ubuntu) | `apt-get install build-essential libgtk-4-dev libgtkmm-4.0-dev git cmake pkg-config libspeechd-dev libclang-dev libasound2-dev libcurl4-openssl-dev libbz2-dev speech-dispatcher ydotool` |
 | Windows | Install GTK from [GVSBuild](https://github.com/wingtk/gvsbuild/releases) to `C:\gtk`, add `C:\gtk\bin` to PATH. Requires CMake, Git, and MSVC or Clang. Use an optimized release build for binary compatibility. |
 
 All platforms additionally require a **Rust toolchain** (`cargo`) to build the bundled
 `rust-tts-wrapper`. Install it from [rustup.rs](https://rustup.rs). On Linux the
 `system` TTS feature binds speech-dispatcher via bindgen, hence `libspeechd-dev`
-(headers) and `libclang-dev` (for bindgen) above. The `speech-dispatcher` and
+(headers) and `libclang-dev` (for bindgen) above, and the `speaker` feature
+(in-process audio playback, part of the default Linux feature set) needs the
+ALSA headers from `libasound2-dev`. `libcurl4-openssl-dev` and `libbz2-dev` are
+optional: curl is the analytics transport (without it events are queued but
+never sent), and the in-app voice downloader is built only when both are
+present. The `speech-dispatcher` and
 `ydotool` packages are runtime dependencies for the optional Speech and
 Keyboard-mode features (see [Optional runtime features](#optional-runtime-features));
 the app still builds and runs without them (the Speech toggle greys out, and
@@ -180,13 +190,14 @@ automatically when cloning with `--recursive`. CMake builds and links it if the
 submodule is present.
 
 - **macOS**: builds with `avsynth,cloud` features (no local speech-dispatcher needed)
-- **Linux**: builds with `system,cloud` features (uses speech-dispatcher + cloud engines); needs `libspeechd-dev` and `libclang-dev` (see Prerequisites)
+- **Linux**: builds with `system,cloud,sherpaonnx,sherpa-g2p,speaker,display_names` features (speech-dispatcher, cloud engines, offline Sherpa-ONNX voices, in-process ALSA playback); needs `libspeechd-dev`, `libclang-dev` and `libasound2-dev` (see Prerequisites)
 - **Windows**: builds with `sapi,cloud` features (uses the Windows SAPI engine plus cloud engines)
 - All platforms need a Rust toolchain (`cargo`) on `PATH` to compile the wrapper
 
 Override the default feature set with `-DTTS_WRAPPER_FEATURES=...` at configure
-time — e.g. `-DTTS_WRAPPER_FEATURES=cloud` for a cloud-only build with no
-speech-dispatcher dependency (this is what the Flatpak uses).
+time, for example `-DTTS_WRAPPER_FEATURES=cloud` for a cloud-only build with no
+speech-dispatcher dependency. The Flatpak manifest passes
+`cloud,sherpaonnx,sherpa-g2p,speaker`; the AppImage uses the Linux default.
 
 The feature set is decided at configure time and stored in the CMake cache, so
 installing `libspeechd-dev` after a cloud-only build does not change anything
@@ -224,12 +235,14 @@ rebuild if stale (`cmake --build build`).
 
 ### Known Issues
 
-- **Keyboard mode** and **system Speech** aren't available in the Flatpak and
-  AppImage builds. Both need host-level access the self-contained, sandboxed
-  formats can't provide: `/dev/uinput` (via `ydotoold`) for `ydotool` keyboard
-  injection, and `libspeechd` plus a running `speech-dispatcher` for system TTS.
-  The Flatpak is `cloud`-only for speech; Keyboard mode expects a from-source or
-  native install. See [Optional runtime features](#optional-runtime-features).
+- **Keyboard mode** and **system Speech** aren't available in the Flatpak.
+  Both need host services the sandbox doesn't have: the `ydotool` client and
+  its `ydotoold` daemon for keyboard injection, and `libspeechd` plus a running
+  `speech-dispatcher` for system TTS. The Flatpak is built with the cloud
+  engines and Sherpa-ONNX instead, and has no network permission. The AppImage
+  is not sandboxed: it is built with `system` and looks for the host's
+  `ydotool` and `speech-dispatcher` the way a from-source build does. See
+  [Optional runtime features](#optional-runtime-features).
 
 ## Packaging & releases
 
@@ -238,7 +251,7 @@ Linux is distributed as **Flatpak** and **AppImage**, both built by
 
 **Flatpak** — manifest: `packaging/flatpak/org.alternativeinterface.dasher.yaml`
 (GNOME 50 runtime + the `rust-stable` SDK extension; builds `rust-tts-wrapper`
-with `TTS_WRAPPER_FEATURES=cloud`). The manifest bundles the working tree via a
+with `TTS_WRAPPER_FEATURES=cloud,sherpaonnx,sherpa-g2p,speaker`). The manifest bundles the working tree via a
 `type: dir` source, so run `flatpak-builder` from **outside** the repo to avoid
 copying its build directory into itself. `--install-deps-from=flathub` pulls the
 runtime, SDK and `rust-stable` extension at the versions the manifest declares:
