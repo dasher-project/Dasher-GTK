@@ -98,7 +98,7 @@ cmake -B build-asan -DCMAKE_BUILD_TYPE=RelWithDebInfo \
 cmake --build build-asan -j$(nproc)
 ```
 
-**`src/Analytics/CrashReporter.cpp` installs its own SIGSEGV/SIGABRT/SIGILL
+**`src/Analytics/CrashReporter.cpp` installs its own SIGSEGV/SIGABRT/SIGILL/SIGBUS
 handlers, which will swallow the sanitizer's report.** Run with
 `handle_segv=2` so ASan keeps its handler, or you will get a silent exit and a
 `pending_crash.txt` instead of a stack trace:

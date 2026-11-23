@@ -318,11 +318,15 @@ updates the existing release in place.
 Dasher-GTK includes **opt-in** anonymous usage analytics and crash reporting to
 help prioritise accessibility work. It is **off by default** — nothing is sent
 until you turn it on under **Preferences → Privacy**. All Dasher frontends share
-one self-hosted [PostHog](https://posthog.com) project; the complete event
+one [PostHog](https://posthog.com) project on PostHog Cloud EU; the complete event
 schema is published in [`analytics-events.json`](./analytics-events.json).
 
 - **Collected only after opt-in:** app launches, the input method / alphabet you
-  select, which settings tab you open, and crash reports. Each event carries a
+  select, which settings tab you open, which control of the main window you
+  activate (by name: New, Open, Save, Game, Copy, Paste and so on), which setting
+  you change (with its new value only for switches, numbers and choices from a
+  fixed list, never for free text or file paths), a reset of the settings or of
+  the training data, and crash and engine-error reports. Each event carries a
   random anonymous ID (resettable under Privacy) plus `platform`, `app_variant`,
   `app_version`, `os_version`, and `$os`.
 - **Never collected:** the text you type, clipboard contents, canvas contents,
@@ -334,8 +338,9 @@ schema is published in [`analytics-events.json`](./analytics-events.json).
   is ever derived from your connection (RFC 0001: no location data).
 - **Crash reports** capture the exception type and the last lines of the engine
   log, with home-directory paths and email addresses scrubbed before anything
-  leaves your device. An uncaught C++ exception also carries its message and
-  the live log tail; a native signal (SIGSEGV/SIGABRT/SIGILL) is handled in an
+  leaves your device. An uncaught C++ exception also carries its message, a
+  backtrace (module, function name and offset per frame, scrubbed the same way)
+  and the live log tail; a native signal (SIGSEGV/SIGABRT/SIGILL/SIGBUS) is handled in an
   async-signal-safe path that writes a minimal record with no stack trace, and
   recovers the log tail from the mirrored `engine.log` on the next launch. A
   crash is written locally and only transmitted (as a PostHog `$exception`) on
