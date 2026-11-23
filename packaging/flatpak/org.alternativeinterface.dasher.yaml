@@ -19,6 +19,14 @@ finish-args:
   # reach, so the full --socket=session-bus is not needed.
   - --own-name=org.dasher.gtk
   - --share=ipc
+  # Network at runtime (the build itself stays offline). The cloud speech
+  # engines call their providers' APIs, and the Sherpa voices (models and
+  # the lexicon bundles for non-English ones) are downloaded on demand;
+  # without this the sandbox has no routes and no DNS and both fail. The
+  # analytics and crash-report upload uses it too: that is opt-in, off by
+  # default, and sends nothing until it is enabled under Preferences ->
+  # Privacy. The update check is not affected (it is disabled in Flatpak).
+  - --share=network
   # Joysticks, gamepads and switch interfaces: SDL opens them under
   # /dev/input (src/Input/InputManager.cpp). --device=input would be the
   # narrow permission, but it needs Flatpak 1.15.6 or newer and the older
