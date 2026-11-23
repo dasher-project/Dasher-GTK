@@ -1,7 +1,7 @@
 ---
 app-id: org.alternativeinterface.dasher
 runtime: org.gnome.Platform
-runtime-version: '50'
+runtime-version: '51'
 sdk: org.gnome.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
@@ -50,9 +50,15 @@ modules:
   # ─── C++ binding chain for gtkmm ──────────────────────────────────────
   # The GNOME runtime ships GTK/glib/pango (C) but not their C++ bindings, so
   # the mm stack is built from source. These versions MUST track the runtime:
-  # runtime-version 50 ships GTK 4.22 / glib 2.88 / pango 1.56, hence gtkmm
-  # 4.22 / glibmm 2.88 / pangomm 2.56. Bumping runtime-version means bumping
-  # these too — an older gtkmm won't compile against a newer GTK.
+  # runtime-version 51 ships GTK 4.24.1 / glib 2.90.1 / pango 1.58.2 / cairo
+  # 1.18.6, hence gtkmm 4.24 / glibmm 2.90 / pangomm 2.58 / cairomm 1.18.
+  # Bumping runtime-version means bumping these too: gtkmm wraps the newest
+  # API of its GTK series and an older one will not compile against a newer
+  # GTK. To see what a runtime ships:
+  #   flatpak run --command=pkg-config org.gnome.Sdk//51 --modversion \
+  #     gtk4 glib-2.0 pango cairo
+  # GNOME 51 is based on freedesktop 26.08, so flatpak-builder takes the
+  # rust-stable SDK extension from its 26.08 branch.
   - name: mm-common
     buildsystem: meson
     cleanup:
@@ -80,8 +86,8 @@ modules:
       - --wrap-mode=nodownload
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/glibmm/2.88/glibmm-2.88.1.tar.xz
-        sha256: c139f962b1575c8827cd39d1ac21b7a367be3bda1409c0c7e21a29090f371506
+        url: https://download.gnome.org/sources/glibmm/2.90/glibmm-2.90.0.tar.xz
+        sha256: e2efa45643f16b9fea2d6299f2f403d672eaeacddf0ff7f8094e1af9b0f5980b
       - type: archive
         url: https://download.gnome.org/sources/libsigc++/3.6/libsigc++-3.6.0.tar.xz
         sha256: c3d23b37dfd6e39f2e09f091b77b1541fbfa17c4f0b6bf5c89baef7229080e17
@@ -112,8 +118,8 @@ modules:
       - --wrap-mode=nodownload
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/pangomm/2.56/pangomm-2.56.2.tar.xz
-        sha256: f1e984c85a85b6a0e61616366521f51dd8282a072bb45d15b5084762b62f4c0e
+        url: https://download.gnome.org/sources/pangomm/2.58/pangomm-2.58.0.tar.xz
+        sha256: 217514c1a65035c2fce6e69e33b0d92bafa2594cc474e995a4473441b10f3a33
       - type: archive
         url: https://download.gnome.org/sources/libsigc++/3.6/libsigc++-3.6.0.tar.xz
         sha256: c3d23b37dfd6e39f2e09f091b77b1541fbfa17c4f0b6bf5c89baef7229080e17
@@ -129,8 +135,8 @@ modules:
         sha256: b81255394e3ea8e8aa887276d22afa8985fc8daef60692eb2407d23049f03cfb
         dest: subprojects/cairomm
       - type: archive
-        url: https://download.gnome.org/sources/glibmm/2.88/glibmm-2.88.1.tar.xz
-        sha256: c139f962b1575c8827cd39d1ac21b7a367be3bda1409c0c7e21a29090f371506
+        url: https://download.gnome.org/sources/glibmm/2.90/glibmm-2.90.0.tar.xz
+        sha256: e2efa45643f16b9fea2d6299f2f403d672eaeacddf0ff7f8094e1af9b0f5980b
         dest: subprojects/glibmm
 
   - name: gtkmm
@@ -139,8 +145,8 @@ modules:
       - --wrap-mode=nodownload
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gtkmm/4.22/gtkmm-4.22.0.tar.xz
-        sha256: 2e8a21b4b0725f620e33aaee0cd343ed121b533275b632896619b1c89e96de67
+        url: https://download.gnome.org/sources/gtkmm/4.24/gtkmm-4.24.0.tar.xz
+        sha256: 7fd9cea356e7d3b74bf7d2a51d7e0e6763f3f9f1cddc5e77c8b0b5b7fa9d5e5a
       - type: archive
         url: https://download.gnome.org/sources/libsigc++/3.6/libsigc++-3.6.0.tar.xz
         sha256: c3d23b37dfd6e39f2e09f091b77b1541fbfa17c4f0b6bf5c89baef7229080e17
@@ -156,12 +162,12 @@ modules:
         sha256: b81255394e3ea8e8aa887276d22afa8985fc8daef60692eb2407d23049f03cfb
         dest: subprojects/cairomm
       - type: archive
-        url: https://download.gnome.org/sources/glibmm/2.88/glibmm-2.88.1.tar.xz
-        sha256: c139f962b1575c8827cd39d1ac21b7a367be3bda1409c0c7e21a29090f371506
+        url: https://download.gnome.org/sources/glibmm/2.90/glibmm-2.90.0.tar.xz
+        sha256: e2efa45643f16b9fea2d6299f2f403d672eaeacddf0ff7f8094e1af9b0f5980b
         dest: subprojects/glibmm
       - type: archive
-        url: https://download.gnome.org/sources/pangomm/2.56/pangomm-2.56.2.tar.xz
-        sha256: f1e984c85a85b6a0e61616366521f51dd8282a072bb45d15b5084762b62f4c0e
+        url: https://download.gnome.org/sources/pangomm/2.58/pangomm-2.58.0.tar.xz
+        sha256: 217514c1a65035c2fce6e69e33b0d92bafa2594cc474e995a4473441b10f3a33
         dest: subprojects/pangomm
 
   # ─── Dasher-GTK (builds DasherCore + SDL3 + TTS + app together) ───────
