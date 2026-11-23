@@ -46,6 +46,7 @@ platform-specific dependencies (GTK4, gtkmm, pkg-config).
 | `src/Input/`       | Input device handling (SDL3 joystick, dwell-click)             |
 | `src/Output/`      | TTS (rust-tts-wrapper), direct mode                            |
 | `src/Preferences/` | Settings UI                                                    |
+| `src/Speech/`      | Sherpa-ONNX voice browser and downloader                       |
 | `src/UIComponents/` | Reusable GTK widgets (Synced* controls bound to CAPI params)  |
 | `src/Analytics/`   | Opt-in analytics + crash reporting (PostHog; RFC 0001/0009)    |
 | `tests/`           | doctest unit tests, built and run via ctest                     |
@@ -53,6 +54,9 @@ platform-specific dependencies (GTK4, gtkmm, pkg-config).
 | `DasherCore/`      | **Submodule** — the C++ engine (do not edit here; PR upstream) |
 | `Thirdparty/SDL/`  | **Submodule** — SDL3 (joystick/haptic input only)             |
 | `rust-tts-wrapper/` | **Submodule** — cross-platform TTS with C ABI                |
+| `shared-resources/` | **Submodule**: the UI string catalogue shared by the frontends |
+| `po/`              | UI translations, generated from `shared-resources/` by `Scripts/generate-from-shared.py` (do not edit by hand) |
+| `Scripts/`         | Release, pin-check and translation scripts                     |
 | `Resources/`       | UI style, licenses                                             |
 | `InputFilterHierarchy.txt` | Reference notes: DasherCore's `CInputFilter` class tree and the parameters each filter reads |
 
@@ -144,7 +148,12 @@ Several workflows run on every PR:
 - **`validate-metadata.yml`** — validates the desktop/AppStream metadata.
 - **`publish.yml`** — builds the Flatpak + AppImage, and on a `v*` tag cuts a
   GitHub Release (see
-  [Packaging & releases](./README.md#packaging--releases)).
+  [Packaging & releases](./README.md#packaging--releases)). Its packaging jobs
+  are skipped on pull requests (#60): they run on pushes to `main`, on tags and
+  on manual dispatch.
+- **`pin-sync.yml`** and **`strings-freshness.yml`** run only on PRs that touch
+  what they check: the submodule pins and the Flatpak manifest, or `po/` and
+  the shared string catalogue.
 
 `main` is protected — land changes via PR once the required platform builds are
 green.

@@ -381,12 +381,14 @@ for the engine contract.
 | `src/Input/` | `InputManager`, `DwellClickHandler` (pointer/switch input) |
 | `src/Output/` | `TtsService`, `DirectModeService` (speech + output modes) |
 | `src/Preferences/` | Settings UI (`PreferencesWindow`, `SettingsSection`) |
+| `src/Speech/` | Sherpa-ONNX voice browser and downloader |
 | `src/UIComponents/` | Reusable GTK widgets (canvas, synced controls) |
 | `src/Analytics/` | Opt-in analytics + crash reporting (PostHog, RFC 0001/0009) |
 | `tests/` | doctest unit tests |
 | `packaging/` | Flatpak manifest + AppImage build script (Linux distribution) |
 | `DasherCore/` | DasherCore submodule (do not edit here — PR upstream) |
 | `rust-tts-wrapper/` | TTS wrapper submodule |
+| `shared-resources/` | Shared UI string catalogue submodule; `po/` is generated from it |
 | `Thirdparty/SDL` | SDL submodule (joystick input) |
 
 ## Contributing
