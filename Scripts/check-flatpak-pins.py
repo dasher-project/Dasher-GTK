@@ -16,22 +16,55 @@ Checks:
              that does not resolve to the pinned commit).
   WARNING    SDL: if the submodule has moved past the pinned tag the build
              still works, but the log says so.
+  HARD FAIL  Offline cargo inputs: the Flatpak build has no network, so
+             rust-tts-wrapper-Cargo.lock must be the lock for the pinned
+             rust-tts-wrapper: rust-tts-wrapper-Cargo.lock.commit records
+             the commit it was generated for and must equal the submodule
+             SHA, and the crate version must agree with Cargo.toml at
+             that commit (which must exist upstream). cargo-sources.json
+             must vendor exactly the sources in that lock (crates.io
+             crates by checksum, git dependencies by commit), and the
+             manifest must carry one sherpa-onnx archive per supported
+             arch at the locked sherpa-onnx-sys version.
 
 Runs from the repo root with no arguments; stdlib only.
 
   --fix   Rewrite the hard-pinned `commit:` lines (rust-tts-wrapper,
-          DasherCore) to the submodule SHAs staged in the index, then
-          check. For submodule bumps: `git add <submodule>`, run with
-          --fix, `git add` the manifest. The shared-deps bump workflow
-          does exactly this.
+          DasherCore) to the submodule SHAs staged in the index. For
+          submodule bumps: `git add <submodule>`, run with --fix,
+          `git add` the manifest. The shared-deps bump workflow does
+          exactly this. --fix cannot regenerate the offline cargo
+          inputs: when the staged rust-tts-wrapper is not the commit
+          the lock was generated for, it says so and exits non-zero,
+          and the check keeps failing until they are regenerated.
 """
 
+import json
 import re
 import subprocess
 import sys
+import tomllib
+import urllib.error
+import urllib.request
 from pathlib import Path
 
 MANIFEST = Path("packaging/flatpak/org.alternativeinterface.dasher.yaml")
+# rust-tts-wrapper commits no Cargo.lock; the manifest ships this one and
+# the crate list generated from it (see the comments in the manifest).
+CARGO_LOCK = MANIFEST.with_name("rust-tts-wrapper-Cargo.lock")
+CARGO_SOURCES = MANIFEST.with_name("cargo-sources.json")
+# The rust-tts-wrapper commit CARGO_LOCK was generated for. The crate
+# version alone cannot tell a stale lock: dependencies change between
+# commits that share a version.
+CARGO_LOCK_COMMIT = MANIFEST.with_name("rust-tts-wrapper-Cargo.lock.commit")
+REGENERATE = (
+    "Regenerate packaging/flatpak/rust-tts-wrapper-Cargo.lock, "
+    "rust-tts-wrapper-Cargo.lock.commit and cargo-sources.json (commands "
+    "are next to the sources in the manifest)."
+)
+CRATES_IO = "registry+https://github.com/rust-lang/crates.io-index"
+# Flatpak arch -> the arch token in the k2-fsa static-lib archive name.
+SHERPA_ARCHES = {"x86_64": "x64", "aarch64": "aarch64"}
 
 # Submodules whose manifest `commit:` must equal the submodule gitlink:
 # (display name, submodule path, fragment of the manifest source url).
@@ -105,6 +138,163 @@ def manifest_git_pin(url_fragment: str) -> tuple[str | None, str | None]:
     return (None, None)
 
 
+def check_lock_commit(wrapper_sha: str) -> bool:
+    """The lock was generated for `wrapper_sha`, going by the commit recorded
+    next to it. Returns True when it was not (or nothing is recorded)."""
+    recorded = CARGO_LOCK_COMMIT.read_text().strip() if CARGO_LOCK_COMMIT.exists() else ""
+    if not re.fullmatch(r"[0-9a-f]{40}", recorded):
+        print(
+            f"::error::{CARGO_LOCK_COMMIT} does not hold a commit SHA, so nothing says "
+            f"which rust-tts-wrapper commit {CARGO_LOCK.name} was generated for. {REGENERATE}"
+        )
+        return True
+    if recorded != wrapper_sha:
+        print(
+            f"::error::{CARGO_LOCK.name} was generated for rust-tts-wrapper "
+            f"{recorded[:12]} but the submodule is at {wrapper_sha[:12]}. Its "
+            "dependencies may have changed, and the Flatpak build is offline and "
+            f"would fail to resolve crates. {REGENERATE}"
+        )
+        return True
+    print(f"ok: {CARGO_LOCK.name} was generated for the pinned rust-tts-wrapper ({recorded[:12]})")
+    return False
+
+
+def sherpa_archives() -> list[tuple[str, str, str | None]]:
+    """The manifest's sherpa-onnx archive sources as (version, arch token,
+    only-arches), one per source; only-arches is None when the source has
+    no single-line `only-arches: [...]`."""
+    found = []
+    # Every list item of the manifest; the ones with a sherpa-onnx url are
+    # the archive sources.
+    for block in re.split(r"(?m)^\s*-\s+", MANIFEST.read_text()):
+        m_url = re.search(
+            r"(?m)^\s*url:\s*\S*/sherpa-onnx-v([0-9.]+)-linux-(\w+)-static-lib\.tar\.bz2\s*$", block
+        )
+        if not m_url:
+            continue
+        m_arches = re.search(r"(?m)^\s*only-arches:\s*\[([^\]]*)\]", block)
+        arches = ",".join(a.strip() for a in m_arches.group(1).split(",")) if m_arches else None
+        found.append((m_url.group(1), m_url.group(2), arches))
+    return found
+
+
+def check_cargo_inputs(wrapper_sha: str) -> bool:
+    """The offline cargo inputs agree with each other and with the pinned
+    rust-tts-wrapper. Returns True when something is out of sync."""
+    failed = check_lock_commit(wrapper_sha)
+    packages = tomllib.loads(CARGO_LOCK.read_text())["package"]
+    versions = {p["name"]: p["version"] for p in packages}
+
+    # Cross-check the recorded commit against the lock itself: the crate
+    # version in the lock must be the one in Cargo.toml at the pinned commit
+    # (the submodule is not checked out in CI, so read it from GitHub). This
+    # also proves the commit exists upstream, where the Flatpak build clones
+    # it from: an HTTP error (404 for a commit that was never pushed) fails.
+    # Only a failure to reach GitHub at all is let through with a warning.
+    url = f"https://raw.githubusercontent.com/AACTools/rust-tts-wrapper/{wrapper_sha}/Cargo.toml"
+    try:
+        with urllib.request.urlopen(url, timeout=30) as response:
+            pinned = tomllib.loads(response.read().decode())["package"]["version"]
+    except urllib.error.HTTPError as e:
+        print(
+            f"::error::rust-tts-wrapper's Cargo.toml at {wrapper_sha[:12]} is not readable "
+            f"upstream (HTTP {e.code} {e.reason} for {url}). Is the commit pushed to "
+            "AACTools/rust-tts-wrapper? The Flatpak build clones it from there."
+        )
+        failed = True
+    except OSError as e:  # no HTTP response: DNS, connection, timeout
+        print(
+            f"::warning::Could not reach GitHub to read rust-tts-wrapper's Cargo.toml at "
+            f"{wrapper_sha[:12]} ({e}); the crate version in {CARGO_LOCK.name} was not checked."
+        )
+    else:
+        locked = versions.get("rust-tts-wrapper")
+        if locked != pinned:
+            print(
+                f"::error::{CARGO_LOCK.name} was generated for rust-tts-wrapper {locked} "
+                f"but the pinned commit is {pinned}. The Flatpak build is offline and "
+                f"would fail to resolve crates. {REGENERATE}"
+            )
+            failed = True
+        else:
+            print(f"ok: {CARGO_LOCK.name} has the pinned rust-tts-wrapper's version ({pinned})")
+
+    # cargo-sources.json vendors exactly the sources the lock names:
+    # crates.io crates by checksum, git dependencies by commit. A package
+    # with no source is a workspace member or path dependency and comes
+    # with the checkout. Anything else could not be compared, so it fails.
+    locked_sums, locked_git, unverifiable = set(), set(), []
+    for p in packages:
+        source = p.get("source")
+        if source is None:
+            continue
+        if source == CRATES_IO and "checksum" in p:
+            locked_sums.add(p["checksum"])
+        elif source.startswith("git+") and re.search(r"#[0-9a-f]{40}$", source):
+            locked_git.add(source[-40:])
+        else:
+            unverifiable.append(f"{p['name']} {p['version']} ({source})")
+    if unverifiable:
+        print(
+            f"::error::{CARGO_LOCK.name} has packages this check cannot match against "
+            f"{CARGO_SOURCES.name} (neither a checksummed crates.io crate nor a git "
+            f"dependency at a commit): {', '.join(unverifiable)}. Use a crates.io or git "
+            "source, or teach Scripts/check-flatpak-pins.py about the new kind."
+        )
+        failed = True
+    vendored = json.loads(CARGO_SOURCES.read_text())
+    vendored_sums = {s["sha256"] for s in vendored if s.get("type") == "archive"}
+    vendored_git = {s.get("commit") for s in vendored if s.get("type") == "git"}
+    if locked_sums != vendored_sums or locked_git != vendored_git:
+        print(
+            f"::error::{CARGO_SOURCES.name} does not match {CARGO_LOCK.name} "
+            f"({len(locked_sums - vendored_sums)} crates missing, "
+            f"{len(vendored_sums - locked_sums)} stale; "
+            f"{len(locked_git - vendored_git)} git dependencies missing, "
+            f"{len(vendored_git - locked_git)} stale). {REGENERATE}"
+        )
+        failed = True
+    else:
+        git_note = f" and {len(locked_git)} git dependencies" if locked_git else ""
+        print(
+            f"ok: {CARGO_SOURCES.name} vendors the {len(locked_sums)} crates{git_note} "
+            f"in {CARGO_LOCK.name}"
+        )
+
+    # sherpa-onnx-sys looks for the prebuilt archive of its own version and
+    # of the arch being built: one archive source per supported arch, each
+    # limited to that arch.
+    sherpa = versions.get("sherpa-onnx-sys")
+    if sherpa is not None:
+        expected = sorted(((sherpa, token, arch) for arch, token in SHERPA_ARCHES.items()), key=str)
+        actual = sorted(sherpa_archives(), key=str)
+        if actual != expected:
+            listed = ", ".join(
+                f"v{version} linux-{token} (only-arches: [{arches}])"
+                if arches is not None
+                else f"v{version} linux-{token} (no only-arches: [...] line)"
+                for version, token, arches in actual
+            )
+            wanted = ", ".join(
+                f"v{sherpa} linux-{token} (only-arches: [{arch}])"
+                for arch, token in SHERPA_ARCHES.items()
+            )
+            print(
+                f"::error::{CARGO_LOCK.name} locks sherpa-onnx-sys {sherpa}, so the manifest "
+                f"needs exactly these sherpa-onnx archive sources: {wanted}. It has: "
+                f"{listed or 'none'}. Fix their url, sha256 and only-arches."
+            )
+            failed = True
+        else:
+            print(
+                f"ok: sherpa-onnx archive sources match sherpa-onnx-sys {sherpa} "
+                f"({', '.join(SHERPA_ARCHES)})"
+            )
+
+    return failed
+
+
 def main() -> int:
     failed = False
 
@@ -113,9 +303,12 @@ def main() -> int:
             sha = staged_submodule_sha(path)
             if fix_manifest_pin(url_fragment, sha):
                 print(f"fixed: {name} manifest pin -> {sha[:12]}")
-        # The check below compares against HEAD, which a not yet committed
-        # bump has not reached; the fix itself is the result here.
-        return 0
+        # The checks below compare against HEAD, which a not yet committed
+        # bump has not reached; the fix itself is the result here. The one
+        # thing --fix cannot bring along is the offline cargo inputs, so a
+        # lock generated for another rust-tts-wrapper commit is reported
+        # (never re-recorded: that would bless a stale lock).
+        return 1 if check_lock_commit(staged_submodule_sha("rust-tts-wrapper")) else 0
 
     # ── rust-tts-wrapper, DasherCore: hard equality with the submodule pin ──
     for name, path, url_fragment in HARD_PINS:
@@ -139,6 +332,10 @@ def main() -> int:
             failed = True
         else:
             print(f"ok: {name} manifest pin == submodule ({subm[:12]})")
+
+    # ── Offline cargo inputs follow the rust-tts-wrapper pin ────────
+    if check_cargo_inputs(submodule_sha("rust-tts-wrapper")):
+        failed = True
 
     # ── SDL: tag + commit pin; warn when the submodule has moved past it ────
     sdl_commit, tag = manifest_git_pin("libsdl-org/SDL")

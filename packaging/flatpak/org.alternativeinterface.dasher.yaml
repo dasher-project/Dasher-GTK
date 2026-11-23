@@ -155,10 +155,18 @@ modules:
     buildsystem: simple
     build-options:
       append-path: /usr/lib/sdk/rust-stable/bin
-      build-args:
-        - --share=network
+      # No network at build time (a Flathub requirement, and what makes the
+      # build reproducible): every crate is vendored through
+      # cargo-sources.json into $CARGO_HOME/vendor, and cargo is told to
+      # stay offline. See the sources below for how to regenerate.
       env:
         CARGO_HOME: /run/build/dasher/cargo
+        CARGO_NET_OFFLINE: 'true'
+        # sherpa-onnx-sys' build script downloads the k2-fsa prebuilt
+        # static libs unless it finds the archive in this directory (it
+        # looks for sherpa-onnx-v<version>-linux-<arch>-static-lib.tar.bz2).
+        # The archives are declared as checksummed sources below.
+        SHERPA_ONNX_ARCHIVE_DIR: /run/build/dasher/sherpa-onnx-archives
         # FLATPAK_ARCH is x86_64 / aarch64 depending on the leg. The C++ mm
         # bindings install their .pc files under the multiarch triplet dir,
         # so PKG_CONFIG_PATH has to follow the build arch.
@@ -224,3 +232,44 @@ modules:
         url: https://github.com/AACTools/rust-tts-wrapper.git
         commit: f8d487878288a79eec17fb7db69cfaccea41f4ac
         dest: rust-tts-wrapper
+      # ─── Offline cargo inputs for rust-tts-wrapper ───────────────────
+      # rust-tts-wrapper does not commit a Cargo.lock (it is gitignored
+      # upstream), so the lock that fixes the crate versions lives here and
+      # is dropped into the checkout; cargo-sources.json is generated from
+      # it and vendors exactly those crates. rust-tts-wrapper-Cargo.lock.commit
+      # records the rust-tts-wrapper commit the lock was generated for;
+      # Scripts/check-flatpak-pins.py fails while it is not the pin above,
+      # because dependencies can change without the crate version changing.
+      # Regenerate ALL THREE whenever the rust-tts-wrapper pin above moves
+      # (from the repo root, with the submodule checked out at the new
+      # commit):
+      #   cargo generate-lockfile --manifest-path rust-tts-wrapper/Cargo.toml
+      #   mv rust-tts-wrapper/Cargo.lock packaging/flatpak/rust-tts-wrapper-Cargo.lock
+      #   git -C rust-tts-wrapper rev-parse HEAD \
+      #     > packaging/flatpak/rust-tts-wrapper-Cargo.lock.commit
+      #   python3 flatpak-cargo-generator.py \
+      #     packaging/flatpak/rust-tts-wrapper-Cargo.lock \
+      #     -o packaging/flatpak/cargo-sources.json
+      # (flatpak-cargo-generator.py: github.com/flatpak/flatpak-builder-tools,
+      # cargo/ directory.) Never edit the .commit file by hand to get the
+      # check green: it must name the commit the lock really came from.
+      - type: file
+        path: rust-tts-wrapper-Cargo.lock
+        dest: rust-tts-wrapper
+        dest-filename: Cargo.lock
+      - cargo-sources.json
+      # Prebuilt sherpa-onnx static libs (sherpa + onnxruntime), the same
+      # archives sherpa-onnx-sys would otherwise download in its build
+      # script. The version in the file name must match the sherpa-onnx-sys
+      # version in rust-tts-wrapper-Cargo.lock (rust-tts-wrapper pins
+      # sherpa-onnx with `=`); bump url + sha256 together with it.
+      - type: file
+        only-arches: [x86_64]
+        url: https://github.com/k2-fsa/sherpa-onnx/releases/download/v2.0.1/sherpa-onnx-v2.0.1-linux-x64-static-lib.tar.bz2
+        sha256: 55cfadf65ba50d0afc1a802b7a337942819e51c94a5b5a384def1978f7c70871
+        dest: sherpa-onnx-archives
+      - type: file
+        only-arches: [aarch64]
+        url: https://github.com/k2-fsa/sherpa-onnx/releases/download/v2.0.1/sherpa-onnx-v2.0.1-linux-aarch64-static-lib.tar.bz2
+        sha256: b6c6090e40fd18d6812f04fe21260602cd1223d7b5e83ad39dab87ad7c1c031d
+        dest: sherpa-onnx-archives
