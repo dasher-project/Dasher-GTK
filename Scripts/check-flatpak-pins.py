@@ -23,9 +23,15 @@ Checks:
              SHA, and the crate version must agree with Cargo.toml at
              that commit (which must exist upstream). cargo-sources.json
              must vendor exactly the sources in that lock (crates.io
-             crates by checksum, git dependencies by commit), and the
-             manifest must carry one sherpa-onnx archive per supported
-             arch at the locked sherpa-onnx-sys version.
+             crates by checksum, git dependencies by commit).
+  HARD FAIL  From-source speech stack: sherpa-onnx-sys links the
+             sherpa-onnx and ONNX Runtime libraries the manifest builds,
+             so the sherpa-onnx git source must be the tag of the locked
+             sherpa-onnx-sys version (tag and commit agreeing upstream),
+             the ONNX Runtime version the manifest builds must be the
+             one that sherpa-onnx release pins, and every dependency
+             tarball sherpa-onnx pins by SHA256 in its cmake files must
+             be a source in the manifest.
 
 Runs from the repo root with no arguments; stdlib only.
 
@@ -63,8 +69,27 @@ REGENERATE = (
     "are next to the sources in the manifest)."
 )
 CRATES_IO = "registry+https://github.com/rust-lang/crates.io-index"
-# Flatpak arch -> the arch token in the k2-fsa static-lib archive name.
-SHERPA_ARCHES = {"x86_64": "x64", "aarch64": "aarch64"}
+SHERPA_REPO = "k2-fsa/sherpa-onnx"
+# sherpa-onnx cmake files (at the pinned commit) that say which ONNX Runtime
+# release it is built against, one per Flatpak arch.
+SHERPA_ORT_CMAKE = {
+    "x86_64": "cmake/onnxruntime-linux-x86_64-static.cmake",
+    "aarch64": "cmake/onnxruntime-linux-aarch64-static.cmake",
+}
+# sherpa-onnx cmake files that pin a dependency tarball by SHA256 and are
+# used by the manifest's build (static libs, no binaries, no websocket,
+# no portaudio, no tests, no python). Each pinned tarball must be a source
+# of the sherpa-onnx module.
+SHERPA_DEP_CMAKE = [
+    "cmake/kaldi-native-fbank.cmake",
+    "cmake/kaldi-decoder.cmake",
+    "cmake/openfst.cmake",
+    "cmake/eigen.cmake",
+    "cmake/utf8proc.cmake",
+    "cmake/simple-sentencepiece.cmake",
+    "cmake/json.cmake",
+    "cmake/hclust-cpp.cmake",
+]
 
 # Submodules whose manifest `commit:` must equal the submodule gitlink:
 # (display name, submodule path, fragment of the manifest source url).
@@ -160,23 +185,136 @@ def check_lock_commit(wrapper_sha: str) -> bool:
     return False
 
 
-def sherpa_archives() -> list[tuple[str, str, str | None]]:
-    """The manifest's sherpa-onnx archive sources as (version, arch token,
-    only-arches), one per source; only-arches is None when the source has
-    no single-line `only-arches: [...]`."""
-    found = []
-    # Every list item of the manifest; the ones with a sherpa-onnx url are
-    # the archive sources.
-    for block in re.split(r"(?m)^\s*-\s+", MANIFEST.read_text()):
-        m_url = re.search(
-            r"(?m)^\s*url:\s*\S*/sherpa-onnx-v([0-9.]+)-linux-(\w+)-static-lib\.tar\.bz2\s*$", block
+def remote_tag_commit(url: str, tag: str) -> str | None:
+    """The commit `tag` points at in the remote `url`, or None when the tag
+    does not exist (or the remote cannot be reached). An annotated tag is
+    peeled to its commit."""
+    result = subprocess.run(
+        ["git", "ls-remote", url, f"refs/tags/{tag}", f"refs/tags/{tag}^{{}}"],
+        capture_output=True,
+        text=True,
+    )
+    refs = {}
+    for line in result.stdout.splitlines():
+        sha, _, ref = line.partition("\t")
+        refs[ref] = sha
+    return refs.get(f"refs/tags/{tag}^{{}}") or refs.get(f"refs/tags/{tag}")
+
+
+def fetch_text(url: str) -> tuple[str | None, str | None]:
+    """(text, None) for a readable URL; (None, error) for an HTTP error,
+    which means the file is not there; (None, None) when the host cannot be
+    reached at all, which callers let through with a warning."""
+    try:
+        with urllib.request.urlopen(url, timeout=30) as response:
+            return response.read().decode(), None
+    except urllib.error.HTTPError as e:
+        return None, f"HTTP {e.code} {e.reason}"
+    except OSError as e:  # no HTTP response: DNS, connection, timeout
+        print(f"::warning::Could not reach {url} ({e}); the check that needs it was skipped.")
+        return None, None
+
+
+def check_speech_stack(sherpa_version: str) -> bool:
+    """The sherpa-onnx and ONNX Runtime the manifest builds from source are
+    the ones the locked sherpa-onnx-sys `sherpa_version` expects. Returns
+    True when something is out of sync."""
+    failed = False
+    manifest = MANIFEST.read_text()
+    url = f"https://github.com/{SHERPA_REPO}.git"
+    commit, tag = manifest_git_pin(SHERPA_REPO)
+    wanted_tag = f"v{sherpa_version}"
+    if commit is None or tag is None:
+        print(
+            f"::error::{MANIFEST} has no {SHERPA_REPO} git source with both tag: and "
+            f"commit:. sherpa-onnx-sys {sherpa_version} links the sherpa-onnx the manifest "
+            f"builds from source; pin tag {wanted_tag} and its commit."
         )
-        if not m_url:
+        return True
+    if tag != wanted_tag:
+        print(
+            f"::error::{CARGO_LOCK.name} locks sherpa-onnx-sys {sherpa_version} but the "
+            f"manifest builds sherpa-onnx {tag}. The Rust bindings and the C library must "
+            f"be the same release: pin tag {wanted_tag} with its commit, then update the "
+            "dependency tarballs and the ONNX Runtime version to what that release pins."
+        )
+        failed = True
+    # The checks further down read sherpa-onnx's files at the pinned commit,
+    # so stop here when tag and commit do not belong together.
+    remote = remote_tag_commit(url, tag)
+    if remote is None:
+        print(f"::error::sherpa-onnx tag {tag} pinned in the manifest does not resolve upstream.")
+        return True
+    if remote != commit:
+        print(
+            f"::error::Manifest pins sherpa-onnx tag {tag} with commit {commit} but the "
+            f"tag resolves to {remote} upstream. flatpak-builder refuses that; update "
+            "the commit together with the tag."
+        )
+        return True
+    if not failed:
+        print(f"ok: sherpa-onnx source is {tag} ({commit[:12]}), matching sherpa-onnx-sys")
+
+    raw = f"https://raw.githubusercontent.com/{SHERPA_REPO}/{commit}"
+
+    # ONNX Runtime: the onnxruntime module asserts the version of the source
+    # it builds (`test "$(cat VERSION_NUMBER)" = <version>`); that version
+    # must be the release sherpa-onnx is built against upstream.
+    m_ort = re.search(r'VERSION_NUMBER\)" = ([0-9]+(?:\.[0-9]+)+)', manifest)
+    if not m_ort:
+        print(
+            f"::error::{MANIFEST} does not state the ONNX Runtime version it builds "
+            '(expected `test "$(cat VERSION_NUMBER)" = <version>` in the onnxruntime module).'
+        )
+        failed = True
+    else:
+        for arch, path in SHERPA_ORT_CMAKE.items():
+            text, error = fetch_text(f"{raw}/{path}")
+            if error:
+                print(f"::error::{path} is not readable at sherpa-onnx {commit[:12]} ({error}).")
+                failed = True
+            elif text is not None:
+                pinned = set(re.findall(r"onnxruntime-libs/releases/download/v([0-9.]+)/", text))
+                if pinned != {m_ort.group(1)}:
+                    print(
+                        f"::error::sherpa-onnx {tag} is built against ONNX Runtime "
+                        f"{', '.join(sorted(pinned)) or '(not found)'} on {arch} but the manifest "
+                        f"builds {m_ort.group(1)}. Move the onnxruntime module (source, version "
+                        "check and its cmake/deps.txt mirror files) to that release."
+                    )
+                    failed = True
+                else:
+                    print(f"ok: ONNX Runtime {m_ort.group(1)} is what sherpa-onnx {tag} pins ({arch})")
+
+    # Dependency tarballs: cmake verifies them with these SHA256 values at
+    # build time, so a missing or different file only fails in the (offline)
+    # Flatpak build. Catch it here.
+    sha256s = set(re.findall(r"(?m)^\s*sha256:\s*([0-9a-f]{64})\s*$", manifest))
+    missing = []
+    checked = 0
+    for path in SHERPA_DEP_CMAKE:
+        text, error = fetch_text(f"{raw}/{path}")
+        if error:
+            print(f"::error::{path} is not readable at sherpa-onnx {commit[:12]} ({error}).")
+            failed = True
             continue
-        m_arches = re.search(r"(?m)^\s*only-arches:\s*\[([^\]]*)\]", block)
-        arches = ",".join(a.strip() for a in m_arches.group(1).split(",")) if m_arches else None
-        found.append((m_url.group(1), m_url.group(2), arches))
-    return found
+        if text is None:
+            continue
+        for name, digest in re.findall(r'set\(([\w-]+)_HASH\s+"SHA256=([0-9a-f]{64})"\)', text):
+            checked += 1
+            if digest not in sha256s:
+                missing.append(f"{name} ({path}, sha256 {digest[:12]}...)")
+    if missing:
+        print(
+            f"::error::sherpa-onnx {tag} pins dependency tarballs that are not sources in "
+            f"{MANIFEST}: {', '.join(missing)}. The build is offline and cmake would fail to "
+            "download them; add them next to the sherpa-onnx source (url and sha256 are in "
+            "the named cmake file)."
+        )
+        failed = True
+    elif checked:
+        print(f"ok: the {checked} dependency tarballs sherpa-onnx {tag} pins are manifest sources")
+    return failed
 
 
 def check_cargo_inputs(wrapper_sha: str) -> bool:
@@ -262,35 +400,12 @@ def check_cargo_inputs(wrapper_sha: str) -> bool:
             f"in {CARGO_LOCK.name}"
         )
 
-    # sherpa-onnx-sys looks for the prebuilt archive of its own version and
-    # of the arch being built: one archive source per supported arch, each
-    # limited to that arch.
+    # sherpa-onnx-sys links the sherpa-onnx / ONNX Runtime static libraries
+    # the manifest builds from source (SHERPA_ONNX_LIB_DIR); they have to be
+    # the release the bindings were written for.
     sherpa = versions.get("sherpa-onnx-sys")
-    if sherpa is not None:
-        expected = sorted(((sherpa, token, arch) for arch, token in SHERPA_ARCHES.items()), key=str)
-        actual = sorted(sherpa_archives(), key=str)
-        if actual != expected:
-            listed = ", ".join(
-                f"v{version} linux-{token} (only-arches: [{arches}])"
-                if arches is not None
-                else f"v{version} linux-{token} (no only-arches: [...] line)"
-                for version, token, arches in actual
-            )
-            wanted = ", ".join(
-                f"v{sherpa} linux-{token} (only-arches: [{arch}])"
-                for arch, token in SHERPA_ARCHES.items()
-            )
-            print(
-                f"::error::{CARGO_LOCK.name} locks sherpa-onnx-sys {sherpa}, so the manifest "
-                f"needs exactly these sherpa-onnx archive sources: {wanted}. It has: "
-                f"{listed or 'none'}. Fix their url, sha256 and only-arches."
-            )
-            failed = True
-        else:
-            print(
-                f"ok: sherpa-onnx archive sources match sherpa-onnx-sys {sherpa} "
-                f"({', '.join(SHERPA_ARCHES)})"
-            )
+    if sherpa is not None and check_speech_stack(sherpa):
+        failed = True
 
     return failed
 
