@@ -142,8 +142,8 @@ Dasher itself.
 It checks for the system dependencies listed above and names the package to
 install when one is missing, initialises the submodules if you cloned without
 `--recursive`, falls back to `-DTTS_WRAPPER_FEATURES=cloud` when the
-speech-dispatcher headers are absent, and launches from the right working
-directory (see [Running](#running) for why that matters).
+speech-dispatcher headers are absent, and launches the result from
+`build/Dasher`.
 
 If a submodule is checked out at a commit other than the one this repository
 records, the launcher says so and leaves it alone, since that is usually
@@ -152,10 +152,6 @@ resets them to the recorded commits.
 
 ### Running
 
-Dasher must be launched from the `build/Dasher/` directory so it can find its
-data files. Started from anywhere else it comes up looking fine, but every
-letter box is the same size, because the language model found no training text.
-
 The binary is lowercase `dasher` on Linux and `Dasher` on macOS:
 
 ```sh
@@ -163,13 +159,21 @@ cd build/Dasher
 ./dasher      # './Dasher' on macOS
 ```
 
-On Windows it is `Dasher.exe`, one directory deeper, and the working directory
-still has to be `build/Dasher` for the data files:
+On Windows it is `Dasher.exe`, one directory deeper:
 
 ```pwsh
 cd build\Dasher
 .\Release\Dasher.exe
 ```
+
+The working directory does not matter. The build records the absolute path of
+`build/Dasher/Data`, and an installed copy looks for `Data/` next to the
+executable (`resolve_data_dir()` in `src/UIComponents/RenderingCanvas.cpp`).
+Only when neither is found does Dasher fall back to `Data` relative to the
+working directory (the AppImage relies on that: its `AppRun` changes directory
+first). A build tree that was moved after it was configured is in the same
+position: start that one from `build/Dasher`, or every letter box comes up the
+same size because the language model found no training text.
 
 ### Running the Tests
 
@@ -219,10 +223,9 @@ build/Dasher/
 ├── dasher              # executable (lowercase on Linux; `Dasher` on macOS)
 ├── libdasher.so        # Linux (libdasher.dylib on macOS, dasher.dll on Windows)
 ├── librust_tts_wrapper.so  # TTS wrapper, unless built without it
-├── UIStyle.css
 ├── Data/
 │   ├── alphabet.*.xml  # alphabet definitions
-│   ├── color*.xml      # colour schemes
+│   ├── colour.*.xml    # colour schemes
 │   └── training*.txt   # language model training data (PPM)
 ├── Strings/
 │   └── strings_*.json  # UI translations
@@ -235,8 +238,9 @@ files. Each alphabet definition specifies a `trainingFilename`
 (e.g. `training_english_GB.txt`). Without training data, all letter boxes will be
 the same size and prediction will not work. Training files are copied from
 `DasherCore/Data/training/` during the build; if letters appear uniformly sized
-after launch, run from `build/Dasher/` so the `"Data"` relative path resolves, and
-rebuild if stale (`cmake --build build`).
+after launch, the data directory was not found: rebuild
+(`cmake --build build`), and see [Running](#running) if the build tree was moved.
+The stylesheet is not in this tree: `src/UIStyle.css` is compiled into the binary.
 
 ### Known Issues
 

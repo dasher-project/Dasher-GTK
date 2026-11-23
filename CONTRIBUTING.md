@@ -15,9 +15,9 @@ cmake ..
 cmake --build . --config Release --parallel
 ```
 
-The runtime data is placed in `build/Dasher/`, and the working directory has to
-be that same directory when you start the app, or the engine resolves `Data/`
-against the wrong place and every letter box comes up the same size:
+The runtime data is placed in `build/Dasher/`, next to the binary. The app
+finds it from any working directory, because the build records the path (see
+[Running](./README.md#running) for the one exception, a moved build tree):
 
 ```bash
 cd Dasher          # i.e. build/Dasher, not build/
@@ -30,7 +30,7 @@ per-configuration subdirectory that the data files do not get.
 
 Or `python run.py`, which does the same and launches the result. It checks the
 system dependencies below, initialises submodules if you cloned without them,
-and starts the binary from the directory it needs to run in. `--build-only`,
+and starts the binary. `--build-only`,
 `--tests` and `--clean` do what they sound like. It is a convenience wrapper:
 CMake remains the build system, and CI does not use it.
 
@@ -121,8 +121,9 @@ your real settings, analytics opt-in, or pending crash file:
 XDG_DATA_HOME=/tmp/d/data XDG_CONFIG_HOME=/tmp/d/config XDG_CACHE_HOME=/tmp/d/cache ./dasher
 ```
 
-Engine parameters are *not* stored under XDG — `DasherBridge` is constructed
-with a relative data directory, so `dasher_settings.xml` is written to
+Engine parameters are stored under XDG as well: `RenderingCanvas` gives
+`DasherBridge` `<XDG_DATA_HOME>/dasher` as its user directory, so
+`dasher_settings.xml` and the training data you add are written there, not to
 `Data/` next to the binary you launched.
 
 ## DasherCore changes
