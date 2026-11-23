@@ -473,8 +473,9 @@ Every tool the smoke test starts has a time limit (the validators, `git`,
 `flatpak`, the linter, each sandbox), so a tool that hangs fails its check
 with a message and cannot hold up the run.
 
-The publish workflow runs the smoke test on both Flatpak legs after the build,
-with `--host-checks --network --strict` (a check that cannot run fails the
+The publish workflow runs the smoke test on both Flatpak legs after the build
+(which also installs the app on the runner), with `--host-checks --installed
+org.alternativeinterface.dasher --network --strict` (a check that cannot run fails the
 leg; only the sound device and `/dev/input` checks may be skipped on a
 runner). The voice download is the one thing that may fail without failing
 the leg: when the three attempts do not bring a complete voice, the download
