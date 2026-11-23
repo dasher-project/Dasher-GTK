@@ -130,6 +130,12 @@ Engine parameters are stored under XDG as well: `RenderingCanvas` gives
 `dasher_settings.xml` and the training data you add are written there, not to
 `Data/` next to the binary you launched.
 
+Speech data is the exception. Downloaded voices and the pronunciation overrides
+live in `$HOME/.rust-tts-wrapper/` (`sherpaonnx/` and `pronunciations.txt`),
+not under XDG, so a run with the variables above still reads and writes your
+real ones. The same holds in the Flatpak, whose manifest grants
+`--filesystem=home`.
+
 ## DasherCore changes
 
 DasherCore is a git submodule pointing to
