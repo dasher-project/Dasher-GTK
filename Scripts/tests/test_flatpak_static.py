@@ -13,7 +13,8 @@ the merge. These tests read the files of the repository as they are:
     smoke test later looks for the results of;
   - the metainfo and the desktop file: what Flathub requires, a screenshot
     that is pinned and matches the image in the repository, a newest
-    release that is the version in CMakeLists.txt.
+    release that is the version in CMakeLists.txt;
+  - the workflows: the unit tests run on every push and pull request.
 
 Each manifest rule is a small function, and ManifestRuleTests breaks a
 copy of the real manifest once per rule to show that the rule notices.
@@ -983,6 +984,71 @@ class DesktopFileTests(unittest.TestCase):
         manifest = load_manifest()
         self.assertEqual(self.entry["Exec"].split()[0], manifest["command"])
         self.assertEqual(self.entry["Icon"], manifest["app-id"])
+
+
+# ── Workflows ───────────────────────────────────────────────────────────
+WORKFLOWS = REPO / ".github" / "workflows"
+
+
+@unittest.skipIf(yaml is None, NEEDS_YAML)
+class WorkflowTests(unittest.TestCase):
+    """The tests are only worth something while CI runs them. A workflow
+    edit that drops a step, or adds a path filter in front of it, would
+    go unnoticed otherwise: nothing fails when a test does not run."""
+
+    @staticmethod
+    def load(name):
+        data = yaml.safe_load((WORKFLOWS / name).read_text())
+        # YAML 1.1 reads the key `on` as the boolean True.
+        data["on"] = data.pop(True, data.get("on"))
+        return data
+
+    def test_every_workflow_parses_and_has_jobs(self):
+        names = sorted(p.name for p in WORKFLOWS.glob("*.yml"))
+        self.assertIn("packaging-tests.yml", names)
+        for name in names:
+            with self.subTest(workflow=name):
+                self.assertTrue(self.load(name).get("jobs"), "no jobs")
+
+    def test_the_unit_tests_run_on_every_push_and_pull_request(self):
+        workflow = self.load("packaging-tests.yml")
+        for event in ("push", "pull_request"):
+            with self.subTest(event=event):
+                self.assertIn(event, workflow["on"])
+                # No branch or path filter: None, or an empty mapping.
+                self.assertFalse(workflow["on"][event], "the event has a filter")
+        commands = [
+            step.get("run", "") for job in workflow["jobs"].values() for step in job["steps"]
+        ]
+        self.assertTrue(
+            any("unittest discover -s Scripts/tests" in command for command in commands),
+            "no step runs the tests in Scripts/tests",
+        )
+        self.assertTrue(
+            any(re.search(r"(?m)^python3 -c 'import yaml", command) for command in commands),
+            "no step fails when PyYAML is missing (the manifest tests would skip themselves)",
+        )
+
+    def test_the_pin_check_has_pyyaml_wherever_a_workflow_runs_it(self):
+        """Scripts/check-flatpak-pins.py reads the manifest with PyYAML and
+        stops without it. Every job that runs it makes sure of PyYAML
+        first, in an earlier step or earlier in the same script."""
+        runs_it = []
+        for path in sorted(WORKFLOWS.glob("*.yml")):
+            for job in self.load(path.name)["jobs"].values():
+                script = ""
+                for step in job.get("steps", []):
+                    before, found, _ = step.get("run", "").partition("check-flatpak-pins.py")
+                    if found:
+                        runs_it.append(path.name)
+                        self.assertRegex(
+                            script + before,
+                            r"(?m)^python3 -c 'import yaml' 2>/dev/null \|\| "
+                            r"\{ sudo apt-get update && sudo apt-get install -y python3-yaml; \}$",
+                            f"{path.name} runs the pin check without making sure of PyYAML",
+                        )
+                    script += step.get("run", "") + "\n"
+        self.assertEqual(runs_it, ["pin-sync.yml", "shared-deps-bump.yml"])
 
 
 if __name__ == "__main__":
