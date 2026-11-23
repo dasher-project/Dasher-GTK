@@ -1,0 +1,19 @@
+#!/bin/sh
+# Stand-in for /usr/bin/flatpak-spawn inside the smoke-test sandbox.
+#
+# GTK loads images (the SVG icons in the app's resources) in helper
+# processes that it starts with `flatpak-spawn --sandbox ...` when it runs
+# inside a Flatpak. That goes through the Flatpak portal on the session bus.
+# The smoke test gives the app a private bus with no portal on it, so the
+# helper would not start and the app would abort at its first icon.
+# This script drops flatpak-spawn's own options and runs the helper
+# directly: no nested sandbox, which is fine for a test that only loads the
+# app's own resources. smoke-test.py binds it over /usr/bin/flatpak-spawn
+# for the headless start only.
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --*) shift ;;
+    *) break ;;
+  esac
+done
+exec "$@"
