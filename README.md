@@ -38,8 +38,8 @@ Prebuilt **Linux** packages are attached to each [Release](../../releases):
 
 - **Flatpak** — needs the GNOME 50 runtime
   (`flatpak install flathub org.gnome.Platform//50`), then
-  `flatpak install --user Dasher.flatpak` and
-  `flatpak run org.alternativeinterface.dasher`.
+  `flatpak install --user Dasher-x86_64.flatpak` (or `Dasher-aarch64.flatpak`)
+  and `flatpak run org.alternativeinterface.dasher`.
 - **AppImage** — `chmod +x Dasher-x86_64.AppImage && ./Dasher-x86_64.AppImage`
   (self-contained).
 
@@ -269,7 +269,7 @@ flatpak run org.alternativeinterface.dasher
 
 **Cutting a release** — a `v*` tag push makes the publish workflow build both
 artifacts and attach them to a new GitHub Release. Two things must be true
-before you tag, or CI refuses the release:
+before you tag:
 
 1. **The metainfo carries this release's entry** — add a
    `<release version="…">` block at the top of `<releases>` in
@@ -279,14 +279,20 @@ before you tag, or CI refuses the release:
    without its entry will not ship packages (that gate exists because
    v0.2.10 shipped with the check red).
 2. **The DasherCore submodule is pinned at an upstream tag**, not a floating
-   commit — tag DasherCore first and bump the pin.
+   commit: tag DasherCore first and bump the pin. No workflow checks this one,
+   only the helper below does.
 
 The safe path is the helper, which enforces both plus the usual hygiene
 (clean tree, on `main`, tag not taken) and refuses to tag otherwise:
 
 ```sh
-Scripts/tag-release.sh --push v0.2.12 # verifies, tags, pushes
+Scripts/tag-release.sh --push v6.0.3  # verifies, tags, pushes
 ```
+
+The tag has to follow `vMAJOR.MINOR.PATCH` with `MAJOR` 6 or higher, optionally
+with an `-rc.N` suffix (RFC 0023). The helper and the publish workflow's
+`tag-sanity` job both reject anything else, the retired `v0.x` numbering
+included.
 
 Freshness is enforced by the publish workflow's `tag-sanity` job, which
 runs within seconds of the tag push and gates both artifact builds — a tag
