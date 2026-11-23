@@ -10,10 +10,20 @@ command: dasher
 finish-args:
   - --socket=fallback-x11
   - --socket=wayland
-  # GtkApplication registers its app-id on the session bus at startup; without
-  # this the app aborts with "Failed to register: ... ServiceUnknown".
-  - --socket=session-bus
+  # GtkApplication registers its application id on the session bus at
+  # startup; without the right to own that name the app aborts with
+  # "Failed to register: ... ServiceUnknown". The id set in src/main.cpp is
+  # org.dasher.gtk, not the Flatpak app-id (which an app may always own), so
+  # it is granted by name. Nothing else in the app talks to the session bus
+  # beyond the a11y names below and the portals, which every Flatpak app can
+  # reach, so the full --socket=session-bus is not needed.
+  - --own-name=org.dasher.gtk
   - --share=ipc
+  # Joysticks, gamepads and switch interfaces: SDL opens them under
+  # /dev/input (src/Input/InputManager.cpp). --device=input would be the
+  # narrow permission, but it needs Flatpak 1.15.6 or newer and the older
+  # releases some distros still ship do not understand it, so --device=all
+  # stays.
   - --device=all
   - --talk-name=org.a11y.Bus
   - --talk-name=org.a11y.*
