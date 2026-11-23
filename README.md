@@ -36,7 +36,7 @@ about twice a second, with a **Reset** button that restarts the measurement. See
 
 Prebuilt **Linux** packages are attached to each [Release](../../releases):
 
-- **Flatpak** — needs the GNOME 51 runtime
+- **Flatpak**: needs the GNOME 51 runtime
   (`flatpak install flathub org.gnome.Platform//51`), then
   `flatpak install --user Dasher.flatpak` and
   `flatpak run org.alternativeinterface.dasher`.
