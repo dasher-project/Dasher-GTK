@@ -31,7 +31,22 @@ Checks:
              the ONNX Runtime version the manifest builds must be the
              one that sherpa-onnx release pins, and every dependency
              tarball sherpa-onnx pins by SHA256 in its cmake files must
-             be a source in the manifest.
+             be a source of the sherpa-onnx module, under the file name
+             that cmake looks for. That includes the two tarballs pinned
+             one level down: kissfft (by kaldi-native-fbank) and
+             kaldifst (by kaldi-decoder), read at the versions
+             sherpa-onnx pins.
+
+Network: the upstream lookups need GitHub. An answer that is an error
+(HTTP 404, a tag that does not exist) FAILS the check. Only when a host
+cannot be reached at all is the check that needs it skipped with a
+warning; the run then ends with a line that says it was incomplete and
+lists what was not verified. It still exits 0, so read that line.
+What the repository alone can answer is checked before any lookup and
+fails the run with or without network: a `tag:` or `commit:` pin that is
+missing from the manifest (or a commit that is not a full SHA), a lock
+with no rust-tts-wrapper package, a manifest that does not state its
+ONNX Runtime version.
 
 Runs from the repo root with no arguments; stdlib only.
 
@@ -46,11 +61,13 @@ Runs from the repo root with no arguments; stdlib only.
 """
 
 import json
+import os
 import re
 import subprocess
 import sys
 import tomllib
 import urllib.error
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -90,6 +107,21 @@ SHERPA_DEP_CMAKE = [
     "cmake/json.cmake",
     "cmake/hclust-cpp.cmake",
 ]
+# Tarballs pinned one level down: the dependency (named by the sherpa-onnx
+# cmake file that pins it) fetches one more tarball from a cmake file of
+# its own, with the same local-file lookup. Read at the tag sherpa-onnx
+# pins for the dependency.
+SHERPA_TRANSITIVE_DEP_CMAKE = {
+    "cmake/kaldi-native-fbank.cmake": ["cmake/kissfft.cmake"],
+    "cmake/kaldi-decoder.cmake": ["cmake/kaldifst.cmake"],
+}
+
+# What could not be verified because a host was unreachable (no HTTP
+# answer at all). Reported at the end of the run; see "Network" above.
+SKIPPED: list[str] = []
+# host -> error, so a network that is down costs one timeout per host and
+# not one per lookup.
+UNREACHABLE: dict[str, str] = {}
 
 # Submodules whose manifest `commit:` must equal the submodule gitlink:
 # (display name, submodule path, fragment of the manifest source url).
@@ -185,34 +217,98 @@ def check_lock_commit(wrapper_sha: str) -> bool:
     return False
 
 
-def remote_tag_commit(url: str, tag: str) -> str | None:
-    """The commit `tag` points at in the remote `url`, or None when the tag
-    does not exist (or the remote cannot be reached). An annotated tag is
-    peeled to its commit."""
+def skip(what: str, url: str, error: str) -> None:
+    """Record (and warn) that `what` was not verified: `url` gave no HTTP
+    answer."""
+    print(f"::warning::Could not reach {url} ({error}). SKIPPED, not verified: {what}.")
+    SKIPPED.append(what)
+
+
+def fetch_text(url: str, what: str) -> tuple[str | None, str | None]:
+    """(text, None) for a readable URL; (None, error) for an HTTP error,
+    which means the file is not there and callers fail on; (None, None)
+    when the host cannot be reached at all: `what` (the check that needed
+    the file) is then recorded as skipped, with a warning."""
+    host = urllib.parse.urlsplit(url).netloc
+    if host in UNREACHABLE:
+        skip(what, url, f"{host} was unreachable earlier in this run")
+        return None, None
+    try:
+        with urllib.request.urlopen(url, timeout=30) as response:
+            return response.read().decode(errors="replace"), None
+    except urllib.error.HTTPError as e:
+        return None, f"HTTP {e.code} {e.reason}"
+    except OSError as e:  # no HTTP response: DNS, connection, timeout
+        UNREACHABLE[host] = str(e)
+        skip(what, url, str(e))
+        return None, None
+
+
+def remote_tag_commit(url: str, tag: str, what: str) -> tuple[str | None, str | None]:
+    """The commit `tag` points at in the git remote `url` (an annotated tag
+    is peeled to its commit). Same contract as fetch_text: (commit, None);
+    (None, error) when the remote answered and the tag is not there, or it
+    answered with an error; (None, None) when the remote cannot be reached
+    at all, with `what` recorded as skipped."""
     result = subprocess.run(
         ["git", "ls-remote", url, f"refs/tags/{tag}", f"refs/tags/{tag}^{{}}"],
         capture_output=True,
         text=True,
+        env={**os.environ, "GIT_TERMINAL_PROMPT": "0"},
     )
-    refs = {}
-    for line in result.stdout.splitlines():
-        sha, _, ref = line.partition("\t")
-        refs[ref] = sha
-    return refs.get(f"refs/tags/{tag}^{{}}") or refs.get(f"refs/tags/{tag}")
-
-
-def fetch_text(url: str) -> tuple[str | None, str | None]:
-    """(text, None) for a readable URL; (None, error) for an HTTP error,
-    which means the file is not there; (None, None) when the host cannot be
-    reached at all, which callers let through with a warning."""
-    try:
-        with urllib.request.urlopen(url, timeout=30) as response:
-            return response.read().decode(), None
-    except urllib.error.HTTPError as e:
-        return None, f"HTTP {e.code} {e.reason}"
-    except OSError as e:  # no HTTP response: DNS, connection, timeout
-        print(f"::warning::Could not reach {url} ({e}); the check that needs it was skipped.")
+    if result.returncode == 0:
+        refs = {}
+        for line in result.stdout.splitlines():
+            sha, _, ref = line.partition("\t")
+            refs[ref] = sha
+        commit = refs.get(f"refs/tags/{tag}^{{}}") or refs.get(f"refs/tags/{tag}")
+        return (commit, None) if commit else (None, f"{url} has no tag {tag}")
+    # git failed. Its messages do not say reliably whether the remote
+    # answered, so ask the same endpoint over HTTP and apply the same rule
+    # as everywhere else: an HTTP error fails, no answer at all is a skip.
+    text, error = fetch_text(f"{url}/info/refs?service=git-upload-pack", what)
+    if error:
+        return None, f"{url} answered {error}"
+    if text is None:
         return None, None
+    stderr = " ".join(result.stderr.split()) or f"exit status {result.returncode}"
+    return None, f"git ls-remote {url} failed: {stderr}"
+
+
+def cmake_tarball_pins(text: str) -> list[tuple[str, str, str, str | None]]:
+    """The tarballs a sherpa-onnx style cmake file pins, as (name, url,
+    sha256, local file name). The files all follow one pattern:
+        set(<name>_URL  "https://...")
+        set(<name>_HASH "SHA256=...")
+        set(possible_file_locations ... ${CMAKE_SOURCE_DIR}/<file name> ...)
+    and the tarball is taken from the first location that exists, else
+    downloaded. The file name is None when it cannot be told apart."""
+    hashes = re.findall(r'set\(([\w-]+)_HASH\s+"SHA256=([0-9a-f]{64})"\)', text)
+    names = list(dict.fromkeys(re.findall(r"\$\{CMAKE_SOURCE_DIR\}/([^\s)]+)", text)))
+    pins = []
+    for i, (name, digest) in enumerate(hashes):
+        m_url = re.search(rf'set\({re.escape(name)}_URL\s+"(https?://[^"]+)"\)', text)
+        local = names[i] if len(names) == len(hashes) else None
+        pins.append((name, m_url.group(1) if m_url else "", digest, local))
+    return pins
+
+
+def module_sources(module: str) -> list[dict[str, str]]:
+    """The sources of the manifest module `module`, each as a dict of its
+    type, url, sha256, dest and dest-filename (those that are present)."""
+    text = MANIFEST.read_text()
+    m_start = re.search(rf"(?m)^  - name: {re.escape(module)}[ \t]*$", text)
+    if not m_start:
+        return []
+    m_end = re.search(r"(?m)^  - name: ", text[m_start.end() :])
+    body = text[m_start.end() : m_start.end() + m_end.start() if m_end else len(text)]
+    sources = []
+    for block in re.split(r"(?m)^\s*-\s+type:[ \t]*", body)[1:]:
+        source = {"type": block.split(None, 1)[0]}
+        for key, value in re.findall(r"(?m)^\s*(url|sha256|dest|dest-filename):[ \t]*(\S+)", block):
+            source[key] = value
+        sources.append(source)
+    return sources
 
 
 def check_speech_stack(sherpa_version: str) -> bool:
@@ -239,27 +335,10 @@ def check_speech_stack(sherpa_version: str) -> bool:
             "dependency tarballs and the ONNX Runtime version to what that release pins."
         )
         failed = True
-    # The checks further down read sherpa-onnx's files at the pinned commit,
-    # so stop here when tag and commit do not belong together.
-    remote = remote_tag_commit(url, tag)
-    if remote is None:
-        print(f"::error::sherpa-onnx tag {tag} pinned in the manifest does not resolve upstream.")
-        return True
-    if remote != commit:
-        print(
-            f"::error::Manifest pins sherpa-onnx tag {tag} with commit {commit} but the "
-            f"tag resolves to {remote} upstream. flatpak-builder refuses that; update "
-            "the commit together with the tag."
-        )
-        return True
-    if not failed:
-        print(f"ok: sherpa-onnx source is {tag} ({commit[:12]}), matching sherpa-onnx-sys")
-
-    raw = f"https://raw.githubusercontent.com/{SHERPA_REPO}/{commit}"
-
     # ONNX Runtime: the onnxruntime module asserts the version of the source
-    # it builds (`test "$(cat VERSION_NUMBER)" = <version>`); that version
-    # must be the release sherpa-onnx is built against upstream.
+    # it builds (`test "$(cat VERSION_NUMBER)" = <version>`). Whether it does
+    # is read from the manifest, so say so before the upstream lookups: an
+    # early return or a skipped lookup below must not hide it.
     m_ort = re.search(r'VERSION_NUMBER\)" = ([0-9]+(?:\.[0-9]+)+)', manifest)
     if not m_ort:
         print(
@@ -267,9 +346,37 @@ def check_speech_stack(sherpa_version: str) -> bool:
             '(expected `test "$(cat VERSION_NUMBER)" = <version>` in the onnxruntime module).'
         )
         failed = True
-    else:
+    # The checks further down read sherpa-onnx's files at the pinned commit,
+    # so stop here when tag and commit do not belong together.
+    remote, error = remote_tag_commit(
+        url, tag, f"that sherpa-onnx tag {tag} resolves to the pinned commit upstream"
+    )
+    if error:
+        print(
+            f"::error::sherpa-onnx tag {tag} pinned in the manifest does not resolve "
+            f"upstream ({error})."
+        )
+        return True
+    if remote is not None and remote != commit:
+        print(
+            f"::error::Manifest pins sherpa-onnx tag {tag} with commit {commit} but the "
+            f"tag resolves to {remote} upstream. flatpak-builder refuses that; update "
+            "the commit together with the tag."
+        )
+        return True
+    if not failed and remote is not None:
+        print(f"ok: sherpa-onnx source is {tag} ({commit[:12]}), matching sherpa-onnx-sys")
+
+    raw = f"https://raw.githubusercontent.com/{SHERPA_REPO}/{commit}"
+
+    # The ONNX Runtime version the manifest states (read above) must be the
+    # release sherpa-onnx is built against upstream.
+    if m_ort:
         for arch, path in SHERPA_ORT_CMAKE.items():
-            text, error = fetch_text(f"{raw}/{path}")
+            text, error = fetch_text(
+                f"{raw}/{path}",
+                f"that ONNX Runtime {m_ort.group(1)} is what sherpa-onnx {tag} pins ({arch})",
+            )
             if error:
                 print(f"::error::{path} is not readable at sherpa-onnx {commit[:12]} ({error}).")
                 failed = True
@@ -286,35 +393,114 @@ def check_speech_stack(sherpa_version: str) -> bool:
                 else:
                     print(f"ok: ONNX Runtime {m_ort.group(1)} is what sherpa-onnx {tag} pins ({arch})")
 
-    # Dependency tarballs: cmake verifies them with these SHA256 values at
-    # build time, so a missing or different file only fails in the (offline)
-    # Flatpak build. Catch it here.
-    sha256s = set(re.findall(r"(?m)^\s*sha256:\s*([0-9a-f]{64})\s*$", manifest))
-    missing = []
-    checked = 0
-    for path in SHERPA_DEP_CMAKE:
-        text, error = fetch_text(f"{raw}/{path}")
+    # Dependency tarballs: cmake looks for each one next to sherpa-onnx's
+    # CMakeLists.txt under a fixed file name, verifies its SHA256, and
+    # downloads it when the file is not there. A missing, different or
+    # differently named file therefore only fails in the (offline) Flatpak
+    # build. Catch it here.
+    #
+    # pins: (what pins it, tarball name, sha256, file name cmake looks for)
+    pins: list[tuple[str, str, str, str | None]] = []
+    complete = True
+    deps_failed = False
+
+    def read_pins(cmake_url: str, where: str) -> list[tuple[str, str, str, str | None]]:
+        nonlocal deps_failed, complete
+        text, error = fetch_text(cmake_url, f"the dependency tarball pinned in {where}")
         if error:
-            print(f"::error::{path} is not readable at sherpa-onnx {commit[:12]} ({error}).")
-            failed = True
-            continue
+            print(f"::error::{where} is not readable ({error} for {cmake_url}).")
+            deps_failed = True
+            return []
         if text is None:
+            complete = False
+            return []
+        found = cmake_tarball_pins(text)
+        if not found:
+            print(
+                f"::error::No SHA256-pinned tarball found in {where}. Its layout has "
+                "changed and Scripts/check-flatpak-pins.py no longer understands it."
+            )
+            deps_failed = True
+        pins.extend((where, name, digest, local) for name, _, digest, local in found)
+        return found
+
+    for path in SHERPA_DEP_CMAKE:
+        found = read_pins(f"{raw}/{path}", f"sherpa-onnx {tag} {path}")
+        for child in SHERPA_TRANSITIVE_DEP_CMAKE.get(path, []):
+            # One level down: `child` is a file of the dependency itself, at
+            # the release this sherpa-onnx pins (its tag, from the tarball URL).
+            for name, dep_url, _, _ in found:
+                m_dep = re.fullmatch(
+                    r"https://github\.com/([^/]+/[^/]+)/archive/refs/tags/(.+?)\.(?:tar\.gz|zip)",
+                    dep_url,
+                )
+                if not m_dep:
+                    print(
+                        f"::error::Cannot tell which release of {name} sherpa-onnx {tag} "
+                        f"pins ({path}: {dep_url or 'no URL found'}), so the tarball its "
+                        f"{child} pins was not checked. Teach Scripts/check-flatpak-pins.py "
+                        "the new URL form."
+                    )
+                    deps_failed = True
+                    continue
+                dep_repo, dep_tag = m_dep.groups()
+                read_pins(
+                    f"https://raw.githubusercontent.com/{dep_repo}/refs/tags/{dep_tag}/{child}",
+                    f"{dep_repo.split('/')[1]} {dep_tag} {child}",
+                )
+
+    sources = {s["sha256"]: s for s in module_sources("sherpa-onnx") if "sha256" in s}
+    missing, misplaced = [], []
+    for where, name, digest, local in pins:
+        source = sources.get(digest)
+        if source is None:
+            missing.append(f"{name} ({where}, sha256 {digest[:12]}...)")
             continue
-        for name, digest in re.findall(r'set\(([\w-]+)_HASH\s+"SHA256=([0-9a-f]{64})"\)', text):
-            checked += 1
-            if digest not in sha256s:
-                missing.append(f"{name} ({path}, sha256 {digest[:12]}...)")
+        if local is None:
+            print(
+                f"::error::Cannot tell which file name cmake expects for {name} ({where}). "
+                "Its layout has changed and Scripts/check-flatpak-pins.py no longer "
+                "understands it."
+            )
+            deps_failed = True
+            continue
+        # A `file` source lands in the source root as dest-filename (or the
+        # last part of the url); anything else is not where cmake looks.
+        placed = source.get("dest-filename") or source.get("url", "").rsplit("/", 1)[-1]
+        if source["type"] != "file" or "dest" in source or placed != local:
+            actual = (
+                f"type: {source['type']}"
+                if source["type"] != "file"
+                else f"{source['dest']}/{placed}"
+                if "dest" in source
+                else placed
+            )
+            misplaced.append(f"{name}: is '{actual}', {where} looks for '{local}'")
     if missing:
         print(
-            f"::error::sherpa-onnx {tag} pins dependency tarballs that are not sources in "
-            f"{MANIFEST}: {', '.join(missing)}. The build is offline and cmake would fail to "
-            "download them; add them next to the sherpa-onnx source (url and sha256 are in "
-            "the named cmake file)."
+            f"::error::sherpa-onnx {tag} needs dependency tarballs that are not sources of "
+            f"the sherpa-onnx module in {MANIFEST}: {', '.join(missing)}. The build is "
+            "offline and cmake would fail to download them; add them next to the "
+            "sherpa-onnx source (url and sha256 are in the named cmake file)."
         )
-        failed = True
-    elif checked:
-        print(f"ok: the {checked} dependency tarballs sherpa-onnx {tag} pins are manifest sources")
-    return failed
+        deps_failed = True
+    if misplaced:
+        print(
+            f"::error::Dependency tarballs of the sherpa-onnx module in {MANIFEST} are not "
+            f"where cmake looks for them: {'; '.join(misplaced)}. cmake only uses a local "
+            "copy under exactly that name next to sherpa-onnx's CMakeLists.txt; otherwise "
+            "it tries to download, which fails in the offline build. Make each a "
+            "`type: file` source with that `dest-filename:` and no `dest:`."
+        )
+        deps_failed = True
+    if pins and complete and not deps_failed:
+        transitive = sum(1 for where, *_ in pins if not where.startswith("sherpa-onnx "))
+        print(
+            f"ok: the {len(pins)} dependency tarballs sherpa-onnx {tag} needs ({transitive} "
+            "of them pinned by its dependencies) are sources of the sherpa-onnx module, "
+            "under the file names cmake looks for"
+        )
+    return failed or deps_failed
 
 
 def check_cargo_inputs(wrapper_sha: str) -> bool:
@@ -323,6 +509,15 @@ def check_cargo_inputs(wrapper_sha: str) -> bool:
     failed = check_lock_commit(wrapper_sha)
     packages = tomllib.loads(CARGO_LOCK.read_text())["package"]
     versions = {p["name"]: p["version"] for p in packages}
+    # Read from the lock alone, so it fails before the upstream lookup and
+    # whether or not GitHub can be reached.
+    locked = versions.get("rust-tts-wrapper")
+    if locked is None:
+        print(
+            f"::error::{CARGO_LOCK.name} has no rust-tts-wrapper package, so it is not "
+            f"the lock of the pinned rust-tts-wrapper. {REGENERATE}"
+        )
+        failed = True
 
     # Cross-check the recorded commit against the lock itself: the crate
     # version in the lock must be the one in Cargo.toml at the pinned commit
@@ -342,13 +537,17 @@ def check_cargo_inputs(wrapper_sha: str) -> bool:
         )
         failed = True
     except OSError as e:  # no HTTP response: DNS, connection, timeout
-        print(
-            f"::warning::Could not reach GitHub to read rust-tts-wrapper's Cargo.toml at "
-            f"{wrapper_sha[:12]} ({e}); the crate version in {CARGO_LOCK.name} was not checked."
+        UNREACHABLE[urllib.parse.urlsplit(url).netloc] = str(e)
+        skip(
+            f"that {CARGO_LOCK.name} has the crate version of rust-tts-wrapper "
+            f"{wrapper_sha[:12]}, and that the commit exists upstream",
+            url,
+            str(e),
         )
     else:
-        locked = versions.get("rust-tts-wrapper")
-        if locked != pinned:
+        if locked is None:
+            pass  # reported above
+        elif locked != pinned:
             print(
                 f"::error::{CARGO_LOCK.name} was generated for rust-tts-wrapper {locked} "
                 f"but the pinned commit is {pinned}. The Flatpak build is offline and "
@@ -455,26 +654,39 @@ def main() -> int:
     # ── SDL: tag + commit pin; warn when the submodule has moved past it ────
     sdl_commit, tag = manifest_git_pin("libsdl-org/SDL")
     sdl_subm = submodule_sha("Thirdparty/SDL")
+    # Both pins are read from the manifest, so a missing one fails here:
+    # before the upstream lookup, and whether or not GitHub can be reached.
     if tag is None:
         print("::error::No tag: pin found for the SDL git source — pin a release tag.")
         failed = True
-    else:
-        # Resolve the tag without a checkout: ask the submodule's remote.
-        result = subprocess.run(
-            ["git", "ls-remote", "https://github.com/libsdl-org/SDL.git", f"refs/tags/{tag}"],
-            capture_output=True,
-            text=True,
+    if sdl_commit is None:
+        print(
+            "::error::No commit: pin (a full 40-character SHA) found "
+            + (f"next to the SDL tag {tag}" if tag else "for the SDL git source")
+            + f" in {MANIFEST}. Add the commit the tag resolves to, so a moved tag "
+            "cannot change the build."
         )
-        remote = result.stdout.split()[0] if result.stdout.strip() else None
-        if remote is None:
-            print(f"::error::SDL tag {tag} pinned in the manifest does not resolve upstream.")
-            failed = True
-        elif sdl_commit is None:
+        failed = True
+    if tag is not None:
+        # Resolve the tag without a checkout: ask the submodule's remote.
+        remote, error = remote_tag_commit(
+            "https://github.com/libsdl-org/SDL.git",
+            tag,
+            f"that SDL tag {tag} resolves to the pinned commit upstream"
+            if sdl_commit
+            else f"which commit SDL tag {tag} resolves to upstream",
+        )
+        if error:
             print(
-                f"::error::No commit: next to the SDL tag {tag} in {MANIFEST}. "
-                f"Add `commit: {remote}` so a moved tag cannot change the build."
+                f"::error::SDL tag {tag} pinned in the manifest does not resolve "
+                f"upstream ({error})."
             )
             failed = True
+        elif remote is None:
+            pass  # remote unreachable: skipped, reported at the end of the run
+        elif sdl_commit is None:
+            # The error is reported above; upstream answered, so name the commit.
+            print(f"hint: SDL tag {tag} resolves to {remote} upstream: add `commit: {remote}`.")
         elif sdl_commit != remote:
             print(
                 f"::error::Manifest pins SDL tag {tag} with commit {sdl_commit[:12]} "
@@ -491,6 +703,18 @@ def main() -> int:
         else:
             print(f"ok: SDL manifest tag == submodule ({sdl_subm[:12]})")
 
+    # A skipped check is not a passed one: say so last, where it is read.
+    if SKIPPED:
+        print(
+            f"::warning::INCOMPLETE RUN: {len(SKIPPED)} check(s) were SKIPPED because the "
+            f"network could not be reached. Not verified: {'; '.join(SKIPPED)}. "
+            + (
+                "The errors above stand."
+                if failed
+                else "Nothing that did run failed, so this exits 0, but it is not a full "
+                "pass: run it again with network access."
+            )
+        )
     return 1 if failed else 0
 
 
