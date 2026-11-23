@@ -25,6 +25,12 @@ finish-args:
   # releases some distros still ship do not understand it, so --device=all
   # stays.
   - --device=all
+  # Speech output. The in-process player (rust-tts-wrapper `speaker`, cpal
+  # on ALSA) opens the default ALSA device, which in the runtime is the
+  # PulseAudio plugin; that needs the sound server socket (PipeWire's
+  # pipewire-pulse included). --device=all alone only exposes the raw
+  # /dev/snd nodes and the default device fails with "Connection refused".
+  - --socket=pulseaudio
   - --talk-name=org.a11y.Bus
   - --talk-name=org.a11y.*
   - --filesystem=home
@@ -187,8 +193,9 @@ modules:
       # for non-English voices); `system` stays off — the
       # speech-dispatcher socket is not exported in finish-args.
       # `speaker` = in-process cpal playback (rust-tts-wrapper #139);
-      # the GNOME SDK ships alsa-lib, and PipeWire's ALSA plugin covers
-      # the runtime side (--device=all is already in finish-args).
+      # the GNOME SDK ships alsa-lib, and at runtime the default ALSA
+      # device reaches the sound server through --socket=pulseaudio in
+      # finish-args.
       - cmake -B _build -DCMAKE_BUILD_TYPE=Release -DTTS_WRAPPER_FEATURES=cloud,sherpaonnx,sherpa-g2p,speaker -DBUILD_GTK_TESTS=OFF -DCMAKE_INSTALL_PREFIX=/app .
       - cmake --build _build -j$(nproc)
       - cmake --install _build
