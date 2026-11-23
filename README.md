@@ -36,8 +36,8 @@ about twice a second, with a **Reset** button that restarts the measurement. See
 
 Prebuilt **Linux** packages are attached to each [Release](../../releases):
 
-- **Flatpak** — needs the GNOME 50 runtime
-  (`flatpak install flathub org.gnome.Platform//50`), then
+- **Flatpak** — needs the GNOME 51 runtime
+  (`flatpak install flathub org.gnome.Platform//51`), then
   `flatpak install --user Dasher.flatpak` and
   `flatpak run org.alternativeinterface.dasher`.
 - **AppImage** — `chmod +x Dasher-x86_64.AppImage && ./Dasher-x86_64.AppImage`
@@ -237,11 +237,12 @@ Linux is distributed as **Flatpak** and **AppImage**, both built by
 [`.github/workflows/publish.yml`](.github/workflows/publish.yml).
 
 **Flatpak** — manifest: `packaging/flatpak/org.alternativeinterface.dasher.yaml`
-(GNOME 50 runtime + the `rust-stable` SDK extension; builds `rust-tts-wrapper`
-with `TTS_WRAPPER_FEATURES=cloud`). The manifest bundles the working tree via a
-`type: dir` source, so run `flatpak-builder` from **outside** the repo to avoid
-copying its build directory into itself. `--install-deps-from=flathub` pulls the
-runtime, SDK and `rust-stable` extension at the versions the manifest declares:
+(GNOME 51 runtime + the `rust-stable` SDK extension; builds `rust-tts-wrapper`
+with `TTS_WRAPPER_FEATURES=cloud,sherpaonnx,sherpa-g2p,speaker`). The manifest
+bundles the working tree via a `type: dir` source, so run `flatpak-builder`
+from **outside** the repo to avoid copying its build directory into itself.
+`--install-deps-from=flathub` pulls the runtime, SDK and `rust-stable`
+extension at the versions the manifest declares:
 
 ```sh
 flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -251,6 +252,87 @@ flatpak-builder --user --install --force-clean --install-deps-from=flathub build
     "$repo/packaging/flatpak/org.alternativeinterface.dasher.yaml"
 flatpak run org.alternativeinterface.dasher
 ```
+
+The Flatpak build has no network access (a Flathub requirement). The crates
+`rust-tts-wrapper` needs are vendored through
+`packaging/flatpak/cargo-sources.json`, generated from
+`packaging/flatpak/rust-tts-wrapper-Cargo.lock` (upstream commits no lock).
+`packaging/flatpak/rust-tts-wrapper-Cargo.lock.commit` records the
+`rust-tts-wrapper` commit the lock was generated for. When the
+`rust-tts-wrapper` submodule moves, regenerate all three files; the commands
+are in the manifest next to those sources.
+
+The local speech engine is built from source as well (another Flathub
+requirement). The `sherpa-onnx-sys` crate would otherwise download prebuilt
+static libraries; the manifest has an `onnxruntime` module and a `sherpa-onnx`
+module that build the same static libraries, and the `dasher` module points the
+crate at them with `SHERPA_ONNX_LIB_DIR`. Their dependencies are checksummed
+sources that the two projects' own CMake picks up from local files
+(ONNX Runtime from its `mirror/` directory, sherpa-onnx from tarballs next to
+its `CMakeLists.txt`). The versions are tied together: sherpa-onnx is the
+release of the `sherpa-onnx-sys` version in the lock, and ONNX Runtime is the
+release that sherpa-onnx is built against upstream. When `sherpa-onnx-sys`
+moves, update the sherpa-onnx tag and commit, its dependency tarballs, and, if
+it changed, the ONNX Runtime version with the files from that release's
+`cmake/deps.txt`. The two modules take about 13 minutes on a 16-core machine
+and far longer on small or emulated builders, which is why both Flatpak legs
+of the publish workflow build natively (x86_64 on `ubuntu-24.04`, aarch64 on
+`ubuntu-24.04-arm`): under QEMU the aarch64 leg would not finish within the job
+time limit.
+
+ONNX Runtime's source is GitHub's tarball of the release commit, pinned by
+sha256, with a fork as a mirror because `microsoft/onnxruntime` returned 404
+when the module was written. The comment next to that source in the manifest
+explains why the mirror is a stopgap and what would make it permanent.
+
+The licence texts of what is linked statically into the speech library are
+installed under `/app/share/licenses/org.alternativeinterface.dasher/`: ONNX
+Runtime's `LICENSE` and `ThirdPartyNotices.txt`, sherpa-onnx's `LICENSE`, and
+the licence files of each sherpa-onnx dependency in a directory of its own.
+
+At runtime the sandbox has network access (`--share=network`): the cloud
+speech engines and the Sherpa voice downloads need it, and the opt-in
+analytics upload uses it too. The build itself never has network.
+
+The screenshot the metainfo points at is `packaging/screenshots/main-window.png`.
+Flathub wants the URL to name a commit or a tag, not a branch, so it carries
+the sha of the commit that added the file. That sha only stays resolvable while
+the commit is reachable on GitHub: a branch that adds or replaces the
+screenshot has to be merged with a merge commit (squashing or rebasing creates
+new commits and leaves the sha behind), or a ref has to be kept on it. When
+replacing the file, commit the image first and then point the URL at that
+commit. When cutting a release, point the URL at the release tag, which is the
+form that cannot go stale.
+
+The pin-sync check (`Scripts/check-flatpak-pins.py`) fails the PR when the
+recorded commit is not the submodule's commit, when that commit cannot be
+fetched from upstream, when `cargo-sources.json` does not vendor exactly what
+the lock names, when the sherpa-onnx source is not the tag of the locked
+`sherpa-onnx-sys` version, when the ONNX Runtime version is not the one that
+sherpa-onnx release pins, or when one of the dependency tarballs sherpa-onnx
+needs (the eight it pins itself, plus kissfft and kaldifst, which
+kaldi-native-fbank and kaldi-decoder pin) is not a source of the `sherpa-onnx`
+module under the file name its CMake looks for. It compares these files with
+each other and with the CMake files of sherpa-onnx and those two dependencies
+at the pinned versions; it does not run cargo or build
+the Flatpak, so it trusts the recorded commit (write it only when regenerating
+the lock) and it does not check ONNX Runtime's own dependency list, which only
+the build verifies. An upstream lookup that answers with an error (a 404, a
+missing tag) fails the check. If GitHub cannot be reached at all, the checks
+that need it are skipped with warnings and the last line of the output says the
+run was incomplete; it still exits 0, so read that line. The offline build
+itself first runs in the publish workflow on the push to `main`, not on the PR.
+`--fix` moves the manifest's commit pins only and never regenerates these
+files.
+
+The check reads the manifest with a YAML parser (PyYAML, `python3-yaml`, which
+the GitHub runner images ship; the workflows that run the check install it
+when it is missing), so a pin is the value flatpak-builder gets, however it is
+written. A `commit:` whose value is not exactly one full SHA is reported as a
+missing pin: a second word, a line break, or an indented line after the SHA,
+which YAML folds into the value. A manifest that is not valid YAML, or that
+has the same key twice in one mapping, stops the run. Without PyYAML the
+script stops and says what to install.
 
 **AppImage** — `bash packaging/build-appimage.sh` produces `Dasher-x86_64.AppImage`.
 
