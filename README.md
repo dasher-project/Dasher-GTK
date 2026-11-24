@@ -23,13 +23,17 @@ This is the **GTK** frontend, built on the shared
 ## Usage
 
 Runtime controls live in the footer bar: the alphabet chooser, speed, a Learning
-toggle, colour and font choosers, and the Speech toggle. Keyboard mode sits on the
-top toolbar, and dwell-to-click is under **Preferences → Input**.
+toggle and the Speech toggle. The colour and font choosers are under
+**Preferences → Customization**. Keyboard mode is the last entry of the layout
+menu on the top toolbar (Right side, Left side, Bottom, Top, Keyboard), and
+dwell-to-click is under **Preferences → Input**.
 
-The live typing-rate readout (RFC 0012) lives under **Preferences → Output**,
+The live typing-rate readout (RFC 0012) sits at the right-hand end of the footer
+and under **Preferences → Output**,
 showing characters per second and words per minute (e.g. `4.2 cps · 50 wpm`) in
 subtle text. It is computed engine-side over a short rolling window and refreshed
-about twice a second, with a **Reset** button that restarts the measurement. See
+about twice a second; the **Reset** button under Preferences restarts the
+measurement. See
 [RFC 0012](https://github.com/dasher-project/governance/pull/19).
 
 ## Install
@@ -38,8 +42,8 @@ Prebuilt **Linux** packages are attached to each [Release](../../releases):
 
 - **Flatpak** — needs the GNOME 50 runtime
   (`flatpak install flathub org.gnome.Platform//50`), then
-  `flatpak install --user Dasher.flatpak` and
-  `flatpak run org.alternativeinterface.dasher`.
+  `flatpak install --user Dasher-x86_64.flatpak` (or `Dasher-aarch64.flatpak`)
+  and `flatpak run org.alternativeinterface.dasher`.
 - **AppImage** — `chmod +x Dasher-x86_64.AppImage && ./Dasher-x86_64.AppImage`
   (self-contained).
 
@@ -52,8 +56,13 @@ Speech and Keyboard mode each depend on an external service:
 
 - **Speech** (spoken feedback and read-aloud) needs a working text-to-speech
   engine. A from-source Linux build enables the `system` feature, which drives a
-  running `speech-dispatcher` (`sudo apt install speech-dispatcher`). The Flatpak
-  and AppImage ship `cloud`-only, so configure a cloud engine under
+  running `speech-dispatcher` (`sudo apt install speech-dispatcher`), next to
+  the cloud engines and offline Sherpa-ONNX voices. The AppImage is built with
+  the same feature set and is not sandboxed, so for system speech it needs the
+  host's `speech-dispatcher` as well. The Flatpak is built without `system`,
+  with the cloud engines and Sherpa-ONNX, but its sandbox has no network
+  permission, so there the cloud engines and the in-app voice downloads cannot
+  reach the network. Engines and voices are chosen under
   **Preferences → Speech**. With no engine available the Speech toggle stays
   disabled. See [TTS Support](#tts-support) for how the feature set is chosen at
   build time.
@@ -65,9 +74,10 @@ Speech and Keyboard mode each depend on an external service:
   does not enable the service for you. Availability is checked by probing the
   daemon (a zero-length pointer move), and if injection fails mid-session the
   mode turns itself off with a message rather than dropping output silently.
-  Clicking the Keyboard button (on the top toolbar) when ydotool isn't working
-  opens a setup dialog with the install command for your distro and a Retry,
-  instead of enabling the mode.
+  Choosing Keyboard in the layout menu (on the top toolbar) when ydotool isn't
+  working opens a setup dialog with the install command for your distro and a
+  Retry, instead of enabling the mode. In the Flatpak the dialog says that
+  Keyboard mode is not available in that build.
 
 **Dwell to click** (hover in place to click, under **Preferences → Input**) needs
 no external dependency.
@@ -79,13 +89,18 @@ no external dependency.
 | Platform | Command |
 |----------|---------|
 | macOS | `brew install gtk4 gtkmm4 pkg-config cmake` |
-| Linux (Debian/Ubuntu) | `apt-get install build-essential libgtk-4-dev libgtkmm-4.0-dev git cmake pkg-config libspeechd-dev libclang-dev speech-dispatcher ydotool` |
+| Linux (Debian/Ubuntu) | `apt-get install build-essential libgtk-4-dev libgtkmm-4.0-dev git cmake pkg-config libspeechd-dev libclang-dev libasound2-dev libcurl4-openssl-dev libbz2-dev speech-dispatcher ydotool` |
 | Windows | Install GTK from [GVSBuild](https://github.com/wingtk/gvsbuild/releases) to `C:\gtk`, add `C:\gtk\bin` to PATH. Requires CMake, Git, and MSVC or Clang. Use an optimized release build for binary compatibility. |
 
 All platforms additionally require a **Rust toolchain** (`cargo`) to build the bundled
 `rust-tts-wrapper`. Install it from [rustup.rs](https://rustup.rs). On Linux the
 `system` TTS feature binds speech-dispatcher via bindgen, hence `libspeechd-dev`
-(headers) and `libclang-dev` (for bindgen) above. The `speech-dispatcher` and
+(headers) and `libclang-dev` (for bindgen) above, and the `speaker` feature
+(in-process audio playback, part of the default Linux feature set) needs the
+ALSA headers from `libasound2-dev`. `libcurl4-openssl-dev` and `libbz2-dev` are
+optional: curl is the analytics transport (without it events are queued but
+never sent), and the in-app voice downloader is built only when both are
+present. The `speech-dispatcher` and
 `ydotool` packages are runtime dependencies for the optional Speech and
 Keyboard-mode features (see [Optional runtime features](#optional-runtime-features));
 the app still builds and runs without them (the Speech toggle greys out, and
@@ -127,8 +142,8 @@ Dasher itself.
 It checks for the system dependencies listed above and names the package to
 install when one is missing, initialises the submodules if you cloned without
 `--recursive`, falls back to `-DTTS_WRAPPER_FEATURES=cloud` when the
-speech-dispatcher headers are absent, and launches from the right working
-directory (see [Running](#running) for why that matters).
+speech-dispatcher headers are absent, and launches the result from
+`build/Dasher`.
 
 If a submodule is checked out at a commit other than the one this repository
 records, the launcher says so and leaves it alone, since that is usually
@@ -137,10 +152,6 @@ resets them to the recorded commits.
 
 ### Running
 
-Dasher must be launched from the `build/Dasher/` directory so it can find its
-data files. Started from anywhere else it comes up looking fine, but every
-letter box is the same size, because the language model found no training text.
-
 The binary is lowercase `dasher` on Linux and `Dasher` on macOS:
 
 ```sh
@@ -148,13 +159,21 @@ cd build/Dasher
 ./dasher      # './Dasher' on macOS
 ```
 
-On Windows it is `Dasher.exe`, one directory deeper, and the working directory
-still has to be `build/Dasher` for the data files:
+On Windows it is `Dasher.exe`, one directory deeper:
 
 ```pwsh
 cd build\Dasher
 .\Release\Dasher.exe
 ```
+
+The working directory does not matter. The build records the absolute path of
+`build/Dasher/Data`, and an installed copy looks for `Data/` next to the
+executable (`resolve_data_dir()` in `src/UIComponents/RenderingCanvas.cpp`).
+Only when neither is found does Dasher fall back to `Data` relative to the
+working directory (the AppImage relies on that: its `AppRun` changes directory
+first). A build tree that was moved after it was configured is in the same
+position: start that one from `build/Dasher`, or every letter box comes up the
+same size because the language model found no training text.
 
 ### Running the Tests
 
@@ -180,13 +199,14 @@ automatically when cloning with `--recursive`. CMake builds and links it if the
 submodule is present.
 
 - **macOS**: builds with `avsynth,cloud` features (no local speech-dispatcher needed)
-- **Linux**: builds with `system,cloud` features (uses speech-dispatcher + cloud engines); needs `libspeechd-dev` and `libclang-dev` (see Prerequisites)
+- **Linux**: builds with `system,cloud,sherpaonnx,sherpa-g2p,speaker,display_names` features (speech-dispatcher, cloud engines, offline Sherpa-ONNX voices, in-process ALSA playback); needs `libspeechd-dev`, `libclang-dev` and `libasound2-dev` (see Prerequisites)
 - **Windows**: builds with `sapi,cloud` features (uses the Windows SAPI engine plus cloud engines)
 - All platforms need a Rust toolchain (`cargo`) on `PATH` to compile the wrapper
 
 Override the default feature set with `-DTTS_WRAPPER_FEATURES=...` at configure
-time — e.g. `-DTTS_WRAPPER_FEATURES=cloud` for a cloud-only build with no
-speech-dispatcher dependency (this is what the Flatpak uses).
+time, for example `-DTTS_WRAPPER_FEATURES=cloud` for a cloud-only build with no
+speech-dispatcher dependency. The Flatpak manifest passes
+`cloud,sherpaonnx,sherpa-g2p,speaker`; the AppImage uses the Linux default.
 
 The feature set is decided at configure time and stored in the CMake cache, so
 installing `libspeechd-dev` after a cloud-only build does not change anything
@@ -203,10 +223,9 @@ build/Dasher/
 ├── dasher              # executable (lowercase on Linux; `Dasher` on macOS)
 ├── libdasher.so        # Linux (libdasher.dylib on macOS, dasher.dll on Windows)
 ├── librust_tts_wrapper.so  # TTS wrapper, unless built without it
-├── UIStyle.css
 ├── Data/
 │   ├── alphabet.*.xml  # alphabet definitions
-│   ├── color*.xml      # colour schemes
+│   ├── colour.*.xml    # colour schemes
 │   └── training*.txt   # language model training data (PPM)
 ├── Strings/
 │   └── strings_*.json  # UI translations
@@ -219,17 +238,20 @@ files. Each alphabet definition specifies a `trainingFilename`
 (e.g. `training_english_GB.txt`). Without training data, all letter boxes will be
 the same size and prediction will not work. Training files are copied from
 `DasherCore/Data/training/` during the build; if letters appear uniformly sized
-after launch, run from `build/Dasher/` so the `"Data"` relative path resolves, and
-rebuild if stale (`cmake --build build`).
+after launch, the data directory was not found: rebuild
+(`cmake --build build`), and see [Running](#running) if the build tree was moved.
+The stylesheet is not in this tree: `src/UIStyle.css` is compiled into the binary.
 
 ### Known Issues
 
-- **Keyboard mode** and **system Speech** aren't available in the Flatpak and
-  AppImage builds. Both need host-level access the self-contained, sandboxed
-  formats can't provide: `/dev/uinput` (via `ydotoold`) for `ydotool` keyboard
-  injection, and `libspeechd` plus a running `speech-dispatcher` for system TTS.
-  The Flatpak is `cloud`-only for speech; Keyboard mode expects a from-source or
-  native install. See [Optional runtime features](#optional-runtime-features).
+- **Keyboard mode** and **system Speech** aren't available in the Flatpak.
+  Both need host services the sandbox doesn't have: the `ydotool` client and
+  its `ydotoold` daemon for keyboard injection, and `libspeechd` plus a running
+  `speech-dispatcher` for system TTS. The Flatpak is built with the cloud
+  engines and Sherpa-ONNX instead, and has no network permission. The AppImage
+  is not sandboxed: it is built with `system` and looks for the host's
+  `ydotool` and `speech-dispatcher` the way a from-source build does. See
+  [Optional runtime features](#optional-runtime-features).
 
 ## Packaging & releases
 
@@ -238,7 +260,7 @@ Linux is distributed as **Flatpak** and **AppImage**, both built by
 
 **Flatpak** — manifest: `packaging/flatpak/org.alternativeinterface.dasher.yaml`
 (GNOME 50 runtime + the `rust-stable` SDK extension; builds `rust-tts-wrapper`
-with `TTS_WRAPPER_FEATURES=cloud`). The manifest bundles the working tree via a
+with `TTS_WRAPPER_FEATURES=cloud,sherpaonnx,sherpa-g2p,speaker`). The manifest bundles the working tree via a
 `type: dir` source, so run `flatpak-builder` from **outside** the repo to avoid
 copying its build directory into itself. `--install-deps-from=flathub` pulls the
 runtime, SDK and `rust-stable` extension at the versions the manifest declares:
@@ -256,7 +278,7 @@ flatpak run org.alternativeinterface.dasher
 
 **Cutting a release** — a `v*` tag push makes the publish workflow build both
 artifacts and attach them to a new GitHub Release. Two things must be true
-before you tag, or CI refuses the release:
+before you tag:
 
 1. **The metainfo carries this release's entry** — add a
    `<release version="…">` block at the top of `<releases>` in
@@ -266,14 +288,20 @@ before you tag, or CI refuses the release:
    without its entry will not ship packages (that gate exists because
    v0.2.10 shipped with the check red).
 2. **The DasherCore submodule is pinned at an upstream tag**, not a floating
-   commit — tag DasherCore first and bump the pin.
+   commit: tag DasherCore first and bump the pin. No workflow checks this one,
+   only the helper below does.
 
 The safe path is the helper, which enforces both plus the usual hygiene
 (clean tree, on `main`, tag not taken) and refuses to tag otherwise:
 
 ```sh
-Scripts/tag-release.sh --push v0.2.12 # verifies, tags, pushes
+Scripts/tag-release.sh --push v6.0.3  # verifies, tags, pushes
 ```
+
+The tag has to follow `vMAJOR.MINOR.PATCH` with `MAJOR` 6 or higher, optionally
+with an `-rc.N` suffix (RFC 0023). The helper and the publish workflow's
+`tag-sanity` job both reject anything else, the retired `v0.x` numbering
+included.
 
 Freshness is enforced by the publish workflow's `tag-sanity` job, which
 runs within seconds of the tag push and gates both artifact builds — a tag
@@ -290,11 +318,15 @@ updates the existing release in place.
 Dasher-GTK includes **opt-in** anonymous usage analytics and crash reporting to
 help prioritise accessibility work. It is **off by default** — nothing is sent
 until you turn it on under **Preferences → Privacy**. All Dasher frontends share
-one self-hosted [PostHog](https://posthog.com) project; the complete event
+one [PostHog](https://posthog.com) project on PostHog Cloud EU; the complete event
 schema is published in [`analytics-events.json`](./analytics-events.json).
 
 - **Collected only after opt-in:** app launches, the input method / alphabet you
-  select, which settings tab you open, and crash reports. Each event carries a
+  select, which settings tab you open, which control of the main window you
+  activate (by name: New, Open, Save, Game, Copy, Paste and so on), which setting
+  you change (with its new value only for switches, numbers and choices from a
+  fixed list, never for free text or file paths), a reset of the settings or of
+  the training data, and crash and engine-error reports. Each event carries a
   random anonymous ID (resettable under Privacy) plus `platform`, `app_variant`,
   `app_version`, `os_version`, and `$os`.
 - **Never collected:** the text you type, clipboard contents, canvas contents,
@@ -306,8 +338,9 @@ schema is published in [`analytics-events.json`](./analytics-events.json).
   is ever derived from your connection (RFC 0001: no location data).
 - **Crash reports** capture the exception type and the last lines of the engine
   log, with home-directory paths and email addresses scrubbed before anything
-  leaves your device. An uncaught C++ exception also carries its message and
-  the live log tail; a native signal (SIGSEGV/SIGABRT/SIGILL) is handled in an
+  leaves your device. An uncaught C++ exception also carries its message, a
+  backtrace (module, function name and offset per frame, scrubbed the same way)
+  and the live log tail; a native signal (SIGSEGV/SIGABRT/SIGILL/SIGBUS) is handled in an
   async-signal-safe path that writes a minimal record with no stack trace, and
   recovers the log tail from the mirrored `engine.log` on the next launch. A
   crash is written locally and only transmitted (as a PostHog `$exception`) on
@@ -348,12 +381,14 @@ for the engine contract.
 | `src/Input/` | `InputManager`, `DwellClickHandler` (pointer/switch input) |
 | `src/Output/` | `TtsService`, `DirectModeService` (speech + output modes) |
 | `src/Preferences/` | Settings UI (`PreferencesWindow`, `SettingsSection`) |
+| `src/Speech/` | Sherpa-ONNX voice browser and downloader |
 | `src/UIComponents/` | Reusable GTK widgets (canvas, synced controls) |
 | `src/Analytics/` | Opt-in analytics + crash reporting (PostHog, RFC 0001/0009) |
 | `tests/` | doctest unit tests |
 | `packaging/` | Flatpak manifest + AppImage build script (Linux distribution) |
 | `DasherCore/` | DasherCore submodule (do not edit here — PR upstream) |
 | `rust-tts-wrapper/` | TTS wrapper submodule |
+| `shared-resources/` | Shared UI string catalogue submodule; `po/` is generated from it |
 | `Thirdparty/SDL` | SDL submodule (joystick input) |
 
 ## Contributing
