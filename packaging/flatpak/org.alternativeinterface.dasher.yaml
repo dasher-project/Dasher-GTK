@@ -268,24 +268,26 @@ modules:
     sources:
       # ONNX Runtime v1.28.2 is commit 33ca9628 (the upstream prebuilt
       # archive reports the same commit in its build info). The source is
-      # taken as GitHub's tarball of that commit. GitHub serves a commit
-      # from any repository of the fork network, but the tarball is only
-      # byte-identical between repositories that are also named
-      # `onnxruntime`: its top directory is <repository name>-<commit>, so a
-      # fork under another name gives another file and another sha256.
-      # microsoft/onnxruntime itself returned 404 when this was written, so
-      # a fork of that name is listed as a mirror; flatpak-builder falls
-      # back to mirror-urls when the primary fails, and the sha256 pins the
-      # content either way.
-      # The mirror is a stopgap: no branch or tag of intel/onnxruntime
-      # contains the commit, so GitHub serves it only because the fork
-      # network shares its object storage, and with the network's root
-      # repository gone nothing guarantees it stays. A repository the
-      # project controls, named onnxruntime and with a tag on this commit,
-      # would make it permanent; add it to mirror-urls when it exists.
+      # GitHub's tarball of that commit.
+      # ONNX Runtime is maintained (1.32.0 was published on PyPI and NuGet
+      # on 13 November 2026), but the microsoft/onnxruntime repository on
+      # GitHub has returned 404 since about 17 November 2026, cause
+      # unannounced, and there is no official source location right now.
+      # flatpak-builder tries mirror-urls in order when the primary fails:
+      # - pykeio/onnxruntime, a temporary mirror by the maintainers of the
+      #   `ort` crate, has the tag v1.28.2 on this commit, and its tarball
+      #   is the file pinned below.
+      # - intel/onnxruntime is a further fallback. No branch or tag of it
+      #   contains the commit; GitHub serves it only from the fork
+      #   network's shared storage, so nothing guarantees it stays.
+      # The tarball's top directory is <repository name>-<commit>, so a
+      # copy under another repository name is a different file. The sha256
+      # guarantees that whichever URL answers gives the same content. When
+      # an official repository is back, point url at it.
       - type: archive
         url: https://github.com/microsoft/onnxruntime/archive/33ca9628233dc8f002435e868d4c2e9f82766ca1.tar.gz
         mirror-urls:
+          - https://github.com/pykeio/onnxruntime/archive/33ca9628233dc8f002435e868d4c2e9f82766ca1.tar.gz
           - https://github.com/intel/onnxruntime/archive/33ca9628233dc8f002435e868d4c2e9f82766ca1.tar.gz
         sha256: 889281e9b54b65664b1628fa28bab05b1238f388ad30c179dbe5bc15655a7532
       # onnxruntime's cmake fetches its dependencies from the URLs in
