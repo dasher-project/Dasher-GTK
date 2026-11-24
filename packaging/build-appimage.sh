@@ -1,6 +1,6 @@
 #!/bin/bash
-# AppImage packaging script — runs inside CI on ubuntu-22.04 (x86_64 native)
-# or inside an arm64v8/ubuntu container under QEMU (aarch64).
+# AppImage packaging script: runs inside CI on ubuntu-latest (x86_64 native)
+# or inside an arm64v8/ubuntu:24.04 container under QEMU (aarch64).
 # Produces Dasher-${ARCH}.AppImage
 set -ex
 
