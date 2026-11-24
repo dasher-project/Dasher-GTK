@@ -289,9 +289,12 @@ of the publish workflow build natively (x86_64 on `ubuntu-24.04`, aarch64 on
 time limit.
 
 ONNX Runtime's source is GitHub's tarball of the release commit, pinned by
-sha256, with a fork as a mirror because `microsoft/onnxruntime` returned 404
-when the module was written. The comment next to that source in the manifest
-explains why the mirror is a stopgap and what would make it permanent.
+sha256. The project is maintained, but its `microsoft/onnxruntime` repository
+on GitHub has returned 404 since about 17 November 2026, so the source also
+lists two mirrors: `pykeio/onnxruntime` (a temporary mirror with the tag
+v1.28.2, whose tarball is the pinned file) first and `intel/onnxruntime`
+second. The sha256 guarantees the same file from any of them; the comment next
+to that source in the manifest has the details.
 
 The licence texts of what is linked statically into the speech library are
 installed under `/app/share/licenses/org.alternativeinterface.dasher/`: ONNX
