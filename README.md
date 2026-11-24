@@ -174,9 +174,13 @@ The working directory does not matter. The build records the absolute path of
 executable (`resolve_data_dir()` in `src/UIComponents/RenderingCanvas.cpp`).
 Only when neither is found does Dasher fall back to `Data` relative to the
 working directory (the AppImage relies on that: its `AppRun` changes directory
-first). A build tree that was moved after it was configured is in the same
-position: start that one from `build/Dasher`, or every letter box comes up the
-same size because the language model found no training text.
+first). A build tree that was moved after it was configured loses the recorded
+path, but on Linux and macOS the executable and `Data/` are both in
+`build/Dasher`, so it still finds `Data/` next to itself. Only where that fails
+too, as in the Windows layout with `build\Dasher\Release\Dasher.exe` and no
+`Data` beside it, does the working directory matter: start such a build from
+`build\Dasher`, or every letter box comes up the same size because the language
+model found no training text.
 
 ### Running the Tests
 
