@@ -523,8 +523,7 @@ packaging/flatpak/tests/mutation-test.py /tmp/dasher-fb/build
   why the app needs the permission.
 - `LINT_EXPECTED_ERRORS` when a linter error is accepted for now. An accepted
   error that is no longer reported is pointed out by the run (a warning
-  annotation in CI) and should then be deleted from the list: today that will
-  be `appstream-missing-screenshots`, once the screenshot commit is on GitHub.
+  annotation in CI) and should then be deleted from the list.
 - `LOG_ALLOWLIST` for a GLib warning the app logs at startup that is harmless
   in the test and `OUTPUT_ALLOWLIST` for any other line it prints (keep both
   narrow: a wide pattern hides the next real error), `KNOWN_ISSUES` for a
