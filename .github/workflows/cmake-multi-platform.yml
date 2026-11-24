@@ -6,7 +6,38 @@ on:
   workflow_dispatch: 
 
 jobs:
+  # Docs-only short-circuit: when every changed file is Markdown, the
+  # 25-minute build matrix below reports "skipped" (which satisfies the
+  # required checks) instead of compiling nothing. For one-off skips of
+  # real code PRs, the GitHub magic strings still work: put
+  # "[skip ci]" in the HEAD commit message.
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      code: ${{ steps.filter.outputs.code }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: filter
+        run: |
+          if [ "${{ github.event_name }}" != "pull_request" ]; then
+            echo "code=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          BASE="${{ github.event.pull_request.base.sha }}"
+          HEAD="${{ github.event.pull_request.head.sha }}"
+          # Merge commits on the PR branch can make base..head miss
+          # files; diff against the merge base instead.
+          BASE=$(git merge-base "$BASE" "$HEAD" || echo "$BASE")
+          if git diff --name-only "$BASE" "$HEAD" | grep -vE '\.md$' >/dev/null; then
+            echo "code=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "code=false" >> "$GITHUB_OUTPUT"
+          fi
+
   build:
+    needs: changes
+    if: needs.changes.outputs.code == 'true'
     runs-on: ${{ matrix.os }}
 
     strategy:
