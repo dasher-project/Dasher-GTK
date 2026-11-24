@@ -540,9 +540,10 @@ modules:
         tag: release-3.2.30
         commit: f5e5f6588921eed3d7d048ce43d9eb1ff0da0ffc
         dest: Thirdparty/SDL
-      # Pinned to the commit Dasher-GTK's submodule points at: v1.16.2
+      # Pinned to the commit Dasher-GTK's submodule points at: v1.16.3
       # (Sherpa-ONNX 2, model installer, pronunciations #125/#131,
-      # in-process playback #139/#140). Follow the submodule pin in
+      # in-process playback #139/#140, Edge Sec-MS-GEC v2 handshake
+      # #141/#142). Follow the submodule pin in
       # .gitmodules when bumping.
       - type: git
         url: https://github.com/AACTools/rust-tts-wrapper.git
