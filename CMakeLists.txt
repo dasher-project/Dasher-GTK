@@ -68,7 +68,7 @@ add_subdirectory("Thirdparty/SDL" EXCLUDE_FROM_ALL)
 
 set(TTS_WRAPPER_DIR "${CMAKE_CURRENT_LIST_DIR}/rust-tts-wrapper")
 set(TTS_WRAPPER_BUILD_DIR "${CMAKE_BINARY_DIR}/rust-tts-wrapper")
-set(TTS_WRAPPER_VERSION "1.16.2" CACHE STRING "rust-tts-wrapper version to download")
+set(TTS_WRAPPER_VERSION "1.16.3" CACHE STRING "rust-tts-wrapper version to download")
 
 if(EXISTS "${TTS_WRAPPER_DIR}/Cargo.toml")
 	# cargo names the staticlib per target: MSVC produces rust_tts_wrapper.lib,
@@ -249,7 +249,7 @@ if(NOT CMAKE_MATCH_1)
 	message(FATAL_ERROR "CAPI gate: DASHER_CAPI_VERSION not found in the pinned dasher.h (submodule not checked out?)")
 endif()
 if(CMAKE_MATCH_1 LESS REQUIRED_DASHER_CAPI_VERSION)
-	message(FATAL_ERROR "CAPI gate: pinned DasherCore exposes CAPI version ${CMAKE_MATCH_1}, this frontend requires >= ${REQUIRED_DASHER_CAPI_VERSION}. Bump the DasherCore submodule (see .github/workflows/engine-bump.yml).")
+	message(FATAL_ERROR "CAPI gate: pinned DasherCore exposes CAPI version ${CMAKE_MATCH_1}, this frontend requires >= ${REQUIRED_DASHER_CAPI_VERSION}. Bump the DasherCore submodule (see .github/workflows/shared-deps-bump.yml).")
 endif()
 message(STATUS "CAPI gate: pinned DasherCore CAPI version ${CMAKE_MATCH_1} (required >= ${REQUIRED_DASHER_CAPI_VERSION}) — OK")
 

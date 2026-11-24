@@ -3,7 +3,10 @@ name: Shared-deps bump
 # RFC 0023 item 2 (amended 2026-11-08: covers ALL shared submodules, not just
 # DasherCore). Weekly + on demand: for each tracked submodule, compare the pin
 # to the newest v* tag upstream; when behind, open a PR that bumps the pin,
-# with the component's changelog in the body. Green CI = merge.
+# with the component's changelog in the body. A PR opened with GITHUB_TOKEN
+# starts no CI on this repository, so a maintainer recreates it from their own
+# account with Scripts/weekly-bump-review.sh --recreate. Green CI on that copy
+# = merge.
 #
 # Uses only this repo's GITHUB_TOKEN (same-repo PRs) — no org app, no PAT.
 # SUBMODULES below is the only per-repo line: "path@upstream-owner/repo".

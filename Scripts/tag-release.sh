@@ -8,7 +8,7 @@
 # it refuses to tag unless the entry is already in place (plus the usual
 # release hygiene).
 #
-# Usage: Scripts/tag-release.sh [--push] v0.2.12
+# Usage: Scripts/tag-release.sh [--push] v6.0.3
 #
 # --push pushes the tag in the same breath as the final freshness check,
 # closing the (small) window where origin/main could advance between the
