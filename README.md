@@ -36,10 +36,15 @@ about twice a second, with a **Reset** button that restarts the measurement. See
 
 Prebuilt **Linux** packages are attached to each [Release](../../releases):
 
-- **Flatpak**: needs the GNOME 51 runtime
-  (`flatpak install flathub org.gnome.Platform//51`), then
-  `flatpak install --user Dasher.flatpak` and
-  `flatpak run org.alternativeinterface.dasher`.
+- **Flatpak**: download `Dasher-x86_64.flatpak` or `Dasher-aarch64.flatpak`
+  (`flatpak --default-arch` prints which), then add Flathub for your user and
+  install the bundle, which pulls the runtime it needs from there:
+
+  ```sh
+  flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+  flatpak install --user Dasher-x86_64.flatpak
+  flatpak run org.alternativeinterface.dasher
+  ```
 - **AppImage** — `chmod +x Dasher-x86_64.AppImage && ./Dasher-x86_64.AppImage`
   (self-contained).
 
