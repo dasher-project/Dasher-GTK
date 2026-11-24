@@ -241,10 +241,6 @@ LINT_EXPECTED_ERRORS = {
     },
     "builddir": {
         "appid-url-not-reachable": "as for the manifest",
-        "appstream-missing-screenshots": (
-            "the screenshot URL names a commit that is not on GitHub until this branch is "
-            "merged; appstream drops an unreachable screenshot from the catalogue"
-        ),
     },
 }
 
