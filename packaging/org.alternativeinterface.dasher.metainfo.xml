@@ -47,6 +47,12 @@
   </screenshots>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="6.0.3" date="2026-11-26">
+      <description>
+        <p>This patch release fixes speech through Microsoft's Edge voices: an October change to their service handshake had been rejecting every Edge synthesis with an error, while the voice list kept working and hid the break. The speech engine core moves to rust-tts-wrapper 1.17.0 with the corrected handshake (v1.16.3) and current pins.</p>
+        <p>The Linux Flatpak is rebuilt to Flathub standards: it now compiles everything — including ONNX Runtime and the speech models' engine — from source, offline and with every dependency cryptographically pinned, runs on the GNOME 51 runtime, owns its own bus name instead of broad session access, and requests only the permissions it needs (audio, runtime network for cloud speech and voice downloads). Packaging is verified automatically now: over five hundred packaging tests run on every change, and each release build is smoke-tested on both processor architectures before it is published.</p>
+      </description>
+    </release>
     <release version="6.0.2" date="2026-11-20">
       <description>
         <p>Speech is rebuilt on the new text-to-speech engine core (rust-tts-wrapper 1.16.2, Sherpa-ONNX 2). Choosing a voice is now three steps — provider, model, voice — and the Sherpa catalogue offers its verified models directly, with downloads that complete properly for bundle-based voices (including non-English ones) and errors that say what went wrong instead of failing silently. Audio plays through an in-process output stream: speaking starts faster, Stop interrupts immediately, and nothing you say is ever written to disk.</p>
