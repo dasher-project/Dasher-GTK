@@ -13,13 +13,21 @@ env:
 
 jobs:
   # ─── Flatpak ──────────────────────────────────────────────────────────
-  # Two legs: x86_64 native, aarch64 via QEMU/binfmt. flathub serves both
-  # runtimes natively, so the only arch-specific bit is the `--arch` flag
-  # passed to flatpak-builder and the bundle filename.
+  # Two legs, each native on a runner of its own architecture: x86_64 on
+  # ubuntu-24.04, aarch64 on ubuntu-24.04-arm (GitHub's hosted arm64 runner,
+  # free for public repositories). flathub serves both runtimes natively, so
+  # the only arch-specific bits are the runner, the `--arch` flag passed to
+  # flatpak-builder and the bundle filename.
+  #
+  # The aarch64 leg used to run on an x86_64 runner under QEMU/binfmt and took
+  # ~3h30 there. The manifest now also builds ONNX Runtime and sherpa-onnx
+  # from source (about 13 minutes on 16 native cores), which under emulation
+  # would not fit the 6 hour job limit, and the release job needs both legs.
   #
   # Packaging legs (this job + appimage below) run on main, tags and manual
   # dispatch only — never on PRs (#60). Measured on a recent run: Flatpak
-  # x86_64 ~17 min and Flatpak aarch64 ~3h30 under QEMU, while every PR
+  # x86_64 ~17 min and Flatpak aarch64 ~3h30 under QEMU (both before the
+  # from-source speech modules and the native arm64 runner), while every PR
   # already gets full code verification from the dedicated workflows
   # (multi-platform builds + ctest in cmake-multi-platform.yml, clang-format,
   # dco, validate-metadata). Building distributable binaries per PR bought
@@ -74,7 +82,7 @@ jobs:
   flatpak:
     name: Flatpak (${{ matrix.arch }})
     needs: [tag-sanity]
-    runs-on: ubuntu-24.04
+    runs-on: ${{ matrix.runner }}
     if: github.event_name != 'pull_request'
     # Manual dispatch is advisory except on tags: if someone experiments with
     # the packaging via workflow_dispatch the run must not mark the branch
@@ -84,17 +92,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        arch: [x86_64, aarch64]
+        # `arch` is the Flatpak arch; `runner` must be a runner of that
+        # architecture, so the build is native and needs no QEMU/binfmt.
+        include:
+          - arch: x86_64
+            runner: ubuntu-24.04
+          - arch: aarch64
+            runner: ubuntu-24.04-arm
     steps:
       - uses: actions/checkout@v4
-
-      # Register binfmt handlers so aarch64 binaries (the SDK's build tools
-      # and any generated executables) run transparently under QEMU.
-      - name: Setup QEMU (aarch64 leg only)
-        if: matrix.arch == 'aarch64'
-        uses: docker/setup-qemu-action@v3
-        with:
-          platforms: arm64
 
       - name: Setup Flatpak
         run: |

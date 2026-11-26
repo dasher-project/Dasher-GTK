@@ -34,6 +34,17 @@
   <developer id="org.alternativeinterface">
     <name>The Dasher Project</name>
   </developer>
+  <screenshots>
+    <!-- The image lives in this repository (packaging/screenshots/). The
+         URL names the commit that added the file, because Flathub wants a
+         commit or a tag here, not a branch. When the file is replaced,
+         point the URL at the commit that replaces it; at a release, at the
+         release tag. -->
+    <screenshot type="default">
+      <caption>Writing by steering towards the predicted letters</caption>
+      <image type="source" width="900" height="610">https://raw.githubusercontent.com/dasher-project/Dasher-GTK/ce0032d4555f417a894790e97f2018e27b7a483b/packaging/screenshots/main-window.png</image>
+    </screenshot>
+  </screenshots>
   <content_rating type="oars-1.1"/>
   <releases>
     <release version="6.0.2" date="2026-11-20">
