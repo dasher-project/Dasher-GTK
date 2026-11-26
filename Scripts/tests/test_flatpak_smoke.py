@@ -717,7 +717,6 @@ class PermissionTests(SmokeTestCase):
         for extra in (
             "--socket=session-bus",
             "--socket=system-bus",
-            "--socket=x11",
             "--filesystem=host",
             "--filesystem=xdg-download:ro",
             "--device=shm",
@@ -735,6 +734,28 @@ class PermissionTests(SmokeTestCase):
                 reason = smoke.FORBIDDEN_FINISH_ARGS.get(extra)
                 if reason:
                     self.assertIn(reason, problems[0])
+
+    def test_x11_next_to_fallback_x11_is_what_older_flatpak_writes(self):
+        # flatpak 1.14 and 1.16 record --socket=fallback-x11 as
+        # sockets=x11;fallback-x11; 1.18 as fallback-x11 alone.
+        fixture = self.fixture()
+        fixture.set_metadata(smoke.EXPECTED_FINISH_ARGS + ["--socket=x11"])
+        self.passes(fixture.suite())
+
+    def test_x11_without_fallback_x11_fails(self):
+        replaced = [
+            "--socket=x11" if arg == "--socket=fallback-x11" else arg
+            for arg in smoke.EXPECTED_FINISH_ARGS
+        ]
+        problems = self.broken_metadata(r"unexpected permission --socket=x11", replaced)
+        self.assertTrue(any("missing permission --socket=fallback-x11" in p for p in problems))
+
+    def test_x11_in_the_manifest_fails_even_next_to_fallback_x11(self):
+        problems = self.broken(
+            r"manifest finish-args: unexpected permission --socket=x11",
+            lambda f: f.set_manifest(lambda data: data["finish-args"].append("--socket=x11")),
+        )
+        self.assertEqual(len(problems), 1, problems)
 
     def test_a_dropped_permission_fails(self):
         for dropped in smoke.EXPECTED_FINISH_ARGS:
@@ -1907,7 +1928,7 @@ class LogTests(unittest.TestCase):
 
     def test_a_healthy_start_prints_only_what_the_lists_name(self):
         # The whole output of a start that is fine (see HeadlessJudgementTests).
-        self.assertEqual(smoke.OUTPUT_ALLOWLIST, [])
+        self.assertEqual(len(smoke.OUTPUT_ALLOWLIST), 1)
         self.assertEqual(len(smoke.LOG_ALLOWLIST), 1)
         self.assertEqual(smoke.log_problems(GOOD_START["log"])[0], [])
 
@@ -1936,6 +1957,20 @@ class LogTests(unittest.TestCase):
                 )
         # A GLib allowlist says nothing about plain lines.
         self.assertEqual(smoke.log_problems(added, [(r".*", "too wide")]), ([added], []))
+
+    def test_the_missing_font_dirs_file_of_older_flatpak_build_is_harmless(self):
+        line = (
+            'Fontconfig error: Cannot load config file "/run/host/font-dirs.xml": '
+            "File not found: /run/host/font-dirs.xml"
+        )
+        self.assertEqual(smoke.log_problems(line), ([], [line]))
+        for other in (
+            'Fontconfig error: Cannot load config file "/app/etc/fonts.conf": '
+            "File not found: /app/etc/fonts.conf",
+            line + " (and more)",
+        ):
+            with self.subTest(other):
+                self.assertEqual(smoke.log_problems(other), ([other], []))
 
     def test_the_allowlist_entries_are_anchored_narrow_and_have_a_reason(self):
         for pattern, reason in smoke.LOG_ALLOWLIST + smoke.OUTPUT_ALLOWLIST:
