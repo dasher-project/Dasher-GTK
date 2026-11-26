@@ -50,7 +50,9 @@ platform-specific dependencies (GTK4, gtkmm, pkg-config).
 | `src/UIComponents/` | Reusable GTK widgets (Synced* controls bound to CAPI params)  |
 | `src/Analytics/`   | Opt-in analytics + crash reporting (PostHog; RFC 0001/0009)    |
 | `tests/`           | doctest unit tests, built and run via ctest                     |
+| `Scripts/tests/`   | Python unit tests of the packaging tooling (no build needed)   |
 | `packaging/`       | Flatpak manifest + AppImage build script (Linux)              |
+| `packaging/flatpak/tests/` | Smoke test for a built Flatpak, and its mutation test  |
 | `DasherCore/`      | **Submodule** — the C++ engine (do not edit here; PR upstream) |
 | `Thirdparty/SDL/`  | **Submodule** — SDL3 (joystick/haptic input only)             |
 | `rust-tts-wrapper/` | **Submodule** — cross-platform TTS with C ABI                |
@@ -152,6 +154,10 @@ Several workflows run on every PR:
   merging into `main`.
 - **`dco.yml`** — checks that every commit is signed off (see Definition of Done).
 - **`validate-metadata.yml`** — validates the desktop/AppStream metadata.
+- **`packaging-tests.yml`** runs the unit tests of the packaging tooling in
+  `Scripts/tests/` (the pin-sync check, the Flatpak manifest and metainfo, the
+  Flatpak smoke test). No build, about ten seconds. See
+  [Testing the Flatpak packaging](./README.md#testing-the-flatpak-packaging).
 - **`publish.yml`** — builds the Flatpak + AppImage, and on a `v*` tag cuts a
   GitHub Release (see
   [Packaging & releases](./README.md#packaging--releases)). Its packaging jobs
@@ -171,6 +177,8 @@ green.
 - [ ] Builds on Linux (and ideally macOS/Windows)
 - [ ] No new clang-tidy warnings
 - [ ] Commits are signed off (DCO) — `git commit -s`
+- [ ] If you changed the Flatpak manifest, the metainfo or the packaging
+      scripts: `python3 -m unittest discover -s Scripts/tests` passes
 - [ ] If you changed a user-visible capability, update the
       [feature status matrix](https://dasher.at/status/) (`website` repo:
       `src/data/feature-status.json`) — the PR template has a checkbox for this
