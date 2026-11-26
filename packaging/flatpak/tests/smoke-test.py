@@ -241,6 +241,11 @@ LINT_EXPECTED_ERRORS = {
     },
     "builddir": {
         "appid-url-not-reachable": "as for the manifest",
+        "appstream-external-screenshot-url": (
+            "flatpak-builder points the catalogue's screenshots at dl.flathub.org/media only "
+            "with --mirror-screenshots-url, which Flathub's own builds pass; a build outside "
+            "Flathub keeps the upstream URL, which is where the image is"
+        ),
     },
 }
 
@@ -265,10 +270,17 @@ LOG_ALLOWLIST = [
 ]
 # Lines that are not GLib log messages (the app's own std::cout/std::cerr,
 # a library writing to stderr): (regular expression, why it is harmless),
-# matched against the whole line. Empty today, because a healthy start
-# prints none. GLib messages below WARNING (Message, INFO, DEBUG) need no
-# entry.
-OUTPUT_ALLOWLIST = []
+# matched against the whole line. GLib messages below WARNING (Message,
+# INFO, DEBUG) need no entry.
+OUTPUT_ALLOWLIST = [
+    (
+        r'^Fontconfig error: Cannot load config file "/run/host/font-dirs\.xml": '
+        r"File not found: /run/host/font-dirs\.xml$",
+        "`flatpak build` before flatpak 1.18 (1.14 on the CI runners) provides no "
+        "/run/host/font-dirs.xml for the runtime's fonts.conf to include; `flatpak run` "
+        "always writes one, and the runtime's own fonts load either way",
+    ),
+]
 # Lines that are not GLib log messages and mean the start went wrong. They
 # fail the check whatever OUTPUT_ALLOWLIST says.
 FATAL_LOG_PATTERNS = [
@@ -425,7 +437,13 @@ def split_list(value):
 def permissions_from_metadata(metadata):
     """The permissions a `metadata` file grants, as a set of finish-args.
     Raises ValueError for anything this script does not know how to write
-    as a finish-arg, so that nothing is passed over silently."""
+    as a finish-arg, so that nothing is passed over silently.
+
+    `x11` next to `fallback-x11` is left out: flatpak before 1.18 (1.14 on
+    the Ubuntu 24.04 runners) writes both for `--socket=fallback-x11`, and
+    with `fallback-x11` set it ignores the `x11` bit at run time, so the
+    pair grants no more than `fallback-x11` alone. `x11` on its own is
+    still reported, and so is a `--socket=x11` in the manifest."""
     args = set()
     unknown = []
     context_keys = {
@@ -461,6 +479,8 @@ def permissions_from_metadata(metadata):
                 unknown.append(f"[{section}]")
     if unknown:
         raise ValueError("; ".join(unknown))
+    if "--socket=fallback-x11" in args:
+        args.discard("--socket=x11")
     return args
 
 
