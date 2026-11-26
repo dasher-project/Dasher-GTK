@@ -547,7 +547,7 @@ modules:
       # .gitmodules when bumping.
       - type: git
         url: https://github.com/AACTools/rust-tts-wrapper.git
-        commit: fe568db97dfd101fff0a19ee1119cdb9824e2310
+        commit: 1b6a43b8b637171215d662f125cbe498588fe94c
         dest: rust-tts-wrapper
       # ─── Offline cargo inputs for rust-tts-wrapper ───────────────────
       # rust-tts-wrapper does not commit a Cargo.lock (it is gitignored
