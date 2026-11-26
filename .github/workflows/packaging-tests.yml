@@ -1,0 +1,47 @@
+name: Packaging tests
+
+# Unit tests of the packaging tooling. They need no Flatpak build and no
+# network, so they run on every push and pull request, in seconds:
+#
+#   - Scripts/check-flatpak-pins.py (the pin-sync check) against made-up
+#     repositories and a faked upstream, plus the real manifest, lock and
+#     crate list against a faked upstream;
+#   - the manifest, the metainfo and the desktop file as they are in the
+#     tree: every source pinned, no branch, no network during the build,
+#     the finish-args exactly the reviewed list, the screenshot URL on a
+#     commit or tag, the newest release the version CMake falls back to;
+#   - packaging/flatpak/tests/smoke-test.py itself, against made-up build
+#     directories. The smoke test of the real build runs in publish.yml.
+#
+# pin-sync.yml stays the check that asks upstream; it has path filters and
+# needs GitHub to answer. This workflow has neither.
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unit:
+    name: Pin-sync, manifest and smoke-test unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The gitlink SHAs come from the tree; no submodule checkout needed.
+          submodules: false
+
+      # The manifest tests parse YAML. The runner image has PyYAML for the
+      # system python3; install it when an image does not, and fail when
+      # it still cannot be imported: without it those tests skip themselves.
+      - name: PyYAML for the manifest tests
+        run: |
+          python3 -c 'import yaml' 2>/dev/null || { sudo apt-get update && sudo apt-get install -y python3-yaml; }
+          python3 -c 'import yaml; print("PyYAML", yaml.__version__)'
+
+      - name: Unit tests
+        run: python3 -m unittest discover -s Scripts/tests -v

@@ -138,6 +138,73 @@ jobs:
           name: Dasher-flatpak-${{ matrix.arch }}
           path: Dasher-${{ matrix.arch }}.flatpak
 
+      # ─── Smoke test of what was just built ──────────────────────────────
+      # packaging/flatpak/tests/smoke-test.py on the build directory: the
+      # permissions, files and licence texts of the build, that every
+      # library resolves in the Platform runtime, that the speech stack is
+      # the one built from source, a headless start of the app (GTK's
+      # Broadway backend and a private session bus, both inside the
+      # sandbox), speech synthesis with a small downloaded voice, and
+      # flatpak-builder-lint. It runs after the upload so that the bundle of
+      # a failing leg can still be downloaded and looked at; a failure fails
+      # the leg, and with it the release job. Nothing in it depends on the
+      # architecture. Cost: about 3 to 5 minutes per leg, most of it the
+      # installation of org.flatpak.Builder (it has the linter); the checks
+      # themselves take under a minute.
+      #
+      # What can fail a leg here without the build being at fault: the
+      # linter needs the network (as the build itself does, for its
+      # sources). The voice download does not count: it is tried three
+      # times, and when the server stays away, stops sending (an attempt is
+      # stopped after three minutes) or delivers only a part, the download
+      # check is skipped with a warning annotation and the leg goes on. A
+      # voice or pronunciation data with a wrong checksum fails. The cache
+      # below keeps the voice of the last good run, and only a complete
+      # download replaces it, so the synthesis is normally tested even
+      # then; without a cached voice it is skipped with a warning too.
+      - name: Install the smoke-test tools
+        run: |
+          sudo apt-get install -y desktop-file-utils appstream
+          flatpak install --user -y --noninteractive flathub org.flatpak.Builder
+
+      # The key changes when the pinned test voice does.
+      - name: Key of the smoke-test voice
+        id: voice
+        run: echo "key=$(python3 packaging/flatpak/tests/smoke-test.py --voice-key)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache the smoke-test voice
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/smoke-voice
+          key: dasher-smoke-voice-${{ matrix.arch }}-${{ steps.voice.outputs.key }}
+
+      - name: Smoke test
+        timeout-minutes: 20
+        run: |
+          # --host-checks: the linter (network), and the sound device and
+          # /dev/input checks where the runner has them. Without it the
+          # smoke test stays inside its sandboxes, which is the default for
+          # a developer's machine.
+          # --strict: a check that cannot run fails the leg, except the two
+          # that depend on the machine (a runner has no sound server, and
+          # may have no /dev/input) and a voice download that the server
+          # does not deliver. No session bus is needed (the runner has
+          # none): the app gets a private one inside its sandbox.
+          python3 packaging/flatpak/tests/smoke-test.py "$RUNNER_TEMP/fb/build" \
+            --host-checks \
+            --installed org.alternativeinterface.dasher \
+            --network --voice-cache "$RUNNER_TEMP/smoke-voice" \
+            --strict --allow-skip audio-device,input-devices \
+            --keep-logs "$RUNNER_TEMP/smoke-logs"
+
+      - name: Upload smoke-test logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Dasher-flatpak-smoke-${{ matrix.arch }}
+          path: ${{ runner.temp }}/smoke-logs
+          if-no-files-found: ignore
+
   # ─── AppImage ─────────────────────────────────────────────────────────
   # x86_64 builds natively on the runner; aarch64 builds inside an
   # arm64v8/ubuntu:24.04 container under QEMU so all GTK / gtkmm / libcurl

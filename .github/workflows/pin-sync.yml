@@ -28,5 +28,13 @@ jobs:
           # The gitlink SHAs come from the tree; no submodule checkout needed.
           submodules: false
 
+      # The check reads the manifest with PyYAML. The runner image has it
+      # for the system python3; install it when an image does not. Without
+      # it the check stops with an error and no pin is compared.
+      - name: PyYAML for the pin check
+        run: |
+          python3 -c 'import yaml' 2>/dev/null || { sudo apt-get update && sudo apt-get install -y python3-yaml; }
+          python3 -c 'import yaml; print("PyYAML", yaml.__version__)'
+
       - name: Manifest pins follow the submodules
         run: python3 Scripts/check-flatpak-pins.py

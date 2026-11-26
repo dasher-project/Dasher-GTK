@@ -89,7 +89,10 @@ jobs:
           git add "${{ matrix.sub }}"
           # The Flatpak manifest pins DasherCore to the submodule commit;
           # move that pin with the bump or pin-sync fails this PR. A no-op
-          # for submodules the manifest does not pin.
+          # for submodules the manifest does not pin. The script reads the
+          # manifest with PyYAML, which the runner image has for the system
+          # python3; install it when an image does not.
+          python3 -c 'import yaml' 2>/dev/null || { sudo apt-get update && sudo apt-get install -y python3-yaml; }
           python3 Scripts/check-flatpak-pins.py --fix
           git add packaging/flatpak
           git commit -s -m "chore: bump ${{ matrix.label }} to ${LATEST} (RFC 0023 shared-deps automation)"

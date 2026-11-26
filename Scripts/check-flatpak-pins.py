@@ -44,17 +44,33 @@ warning; the run then ends with a line that says it was incomplete and
 lists what was not verified. It still exits 0, so read that line.
 What the repository alone can answer is checked before any lookup and
 fails the run with or without network: a `tag:` or `commit:` pin that is
-missing from the manifest (or a commit that is not a full SHA), a lock
-with no rust-tts-wrapper package, a manifest that does not state its
-ONNX Runtime version.
+missing from the manifest (or a commit value that is not exactly one full
+SHA), a lock with no rust-tts-wrapper package, a manifest that does not
+state its ONNX Runtime version.
 
-Runs from the repo root with no arguments; stdlib only.
+The manifest is read with a YAML parser (PyYAML, with libyaml where it is
+built in: the parser flatpak-builder uses), never line by line. A pin is
+the value the parser hands on, however it is written: a SHA with a comment
+after it, a quoted SHA, a SHA in a flow mapping or behind an alias all pin
+that SHA, and a SHA with a continuation line, a second word or a line break
+after it does not.
+A manifest that is not valid YAML, or that has the same key twice in one
+mapping (parsers take the last one, readers the first), stops the run.
+
+Runs from the repo root with no arguments. Needs PyYAML (python3-yaml on
+Debian and Ubuntu, which the GitHub runner images ship); without it the
+run stops and says so.
 
   --fix   Rewrite the hard-pinned `commit:` lines (rust-tts-wrapper,
           DasherCore) to the submodule SHAs staged in the index. For
           submodule bumps: `git add <submodule>`, run with --fix,
           `git add` the manifest. The shared-deps bump workflow does
-          exactly this. --fix cannot regenerate the offline cargo
+          exactly this. Only the SHA is replaced, where the parser found
+          it, and the result is parsed again before it is written: it
+          has to differ from the manifest in that one value. A value
+          written as anything but a plain or quoted SHA (a block scalar,
+          an anchor, an alias) is not rewritten; --fix stops and says
+          so. --fix cannot regenerate the offline cargo
           inputs: when the staged rust-tts-wrapper is not the commit
           the lock was generated for, it says so and exits non-zero,
           and the check keeps failing until they are regenerated.
@@ -70,6 +86,11 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
+
+try:
+    import yaml
+except ImportError:  # parse_manifest() stops the run and says what to install
+    yaml = None
 
 MANIFEST = Path("packaging/flatpak/org.alternativeinterface.dasher.yaml")
 # rust-tts-wrapper commits no Cargo.lock; the manifest ships this one and
@@ -123,6 +144,14 @@ SKIPPED: list[str] = []
 # not one per lookup.
 UNREACHABLE: dict[str, str] = {}
 
+# A commit pin: the whole value, as YAML reads it, is one full SHA.
+# `commit: <sha>0` and `commit: <sha> v0.2.28` are not pins on <sha>, and
+# neither is a SHA with an indented line after it, which YAML folds into
+# the value: flatpak-builder is handed the whole value and fails on it.
+FULL_SHA = re.compile(r"[0-9a-f]{40}")
+# What module_sources() reports of a source.
+SOURCE_KEYS = ("type", "url", "sha256", "dest", "dest-filename")
+
 # Submodules whose manifest `commit:` must equal the submodule gitlink:
 # (display name, submodule path, fragment of the manifest source url).
 HARD_PINS = [
@@ -156,43 +185,157 @@ def staged_submodule_sha(path: str) -> str:
     return parts[1]
 
 
+class Scalar(str):
+    """A scalar of the manifest as YAML reads it, with the node it was read
+    from: --fix needs to know where the value is written, and how."""
+
+    node = None
+
+
+def manifest_text() -> str:
+    """The manifest, character for character (line endings included)."""
+    with open(MANIFEST, encoding="utf-8", newline="") as f:
+        return f.read()
+
+
+def parse_manifest(text: str):
+    """`text` as a YAML parser reads it: mappings as dicts, sequences as
+    lists and every scalar as a string (a Scalar), with aliases resolved.
+    No value is given a type, which is how a SHA of forty digits stays a
+    string. Stops the run when PyYAML is missing, when the text is not one
+    valid YAML document, and when a mapping has the same key twice: YAML
+    parsers keep the last value and a reader sees the first, so there is no
+    saying which one is meant."""
+    if yaml is None:
+        raise SystemExit(
+            f"error: PyYAML is not installed, and {MANIFEST} is read with it (a line by "
+            "line reading kept taking for a pin what YAML reads as something else). "
+            "Install python3-yaml (Debian, Ubuntu) or `pip install pyyaml`."
+        )
+    try:
+        # libyaml where PyYAML is built with it: the parser flatpak-builder uses.
+        root = yaml.compose(text, Loader=getattr(yaml, "CBaseLoader", yaml.BaseLoader))
+    except yaml.YAMLError as e:
+        raise SystemExit(
+            f"error: {MANIFEST} is not valid YAML: {' '.join(str(e).split())}"
+        ) from None
+    open_nodes = []
+
+    def build(node):
+        if isinstance(node, yaml.ScalarNode):
+            scalar = Scalar(node.value)
+            scalar.node = node
+            return scalar
+        line = node.start_mark.line + 1
+        if any(node is seen for seen in open_nodes):
+            raise SystemExit(f"error: {MANIFEST} line {line}: an alias that contains itself")
+        open_nodes.append(node)
+        if isinstance(node, yaml.SequenceNode):
+            data = [build(item) for item in node.value]
+        else:
+            data = {}
+            for key_node, value_node in node.value:
+                key = build(key_node)
+                if not isinstance(key, str):
+                    raise SystemExit(
+                        f"error: {MANIFEST} line {key_node.start_mark.line + 1}: a mapping "
+                        "key that is not a scalar"
+                    )
+                if key in data:
+                    raise SystemExit(
+                        f"error: {MANIFEST} line {key_node.start_mark.line + 1}: the key "
+                        f"`{key}` is in this mapping twice (the mapping starts on line "
+                        f"{line}). A YAML parser keeps the last one and a reader sees the "
+                        "first: remove one."
+                    )
+                data[key] = build(value_node)
+        open_nodes.pop()
+        return data
+
+    return {} if root is None else build(root)
+
+
+def load_manifest():
+    """The manifest as a YAML parser reads it (see parse_manifest)."""
+    return parse_manifest(manifest_text())
+
+
+def entries(node, key: str) -> list[dict]:
+    """The mappings in the sequence `node[key]`: the modules of a manifest
+    or of a module, the sources of a module. Nothing when `node` is not a
+    mapping or the value not a sequence; entries that are not mappings (a
+    module or source given as a file name) are left out."""
+    value = node.get(key) if isinstance(node, dict) else None
+    return [entry for entry in value if isinstance(entry, dict)] if isinstance(value, list) else []
+
+
+def git_source(document, url_fragment: str) -> dict | None:
+    """The first `type: git` source, of any module or module in a module,
+    whose url contains `url_fragment`. None when there is none."""
+    found = []
+
+    def walk(parent):
+        for module in entries(parent, "modules"):
+            found.extend(s for s in entries(module, "sources") if s.get("type") == "git")
+            walk(module)
+
+    walk(document)
+    for source in found:
+        url = source.get("url")
+        if isinstance(url, str) and url_fragment in url:
+            return source
+    return None
+
+
+def full_sha(value) -> str | None:
+    """`value` when it is one full SHA and nothing else, as a plain string."""
+    return str(value) if isinstance(value, str) and FULL_SHA.fullmatch(value) else None
+
+
 def fix_manifest_pin(url_fragment: str, sha: str) -> bool:
     """Point the `commit:` of the git source whose url contains
-    `url_fragment` at `sha`. Returns True when the manifest changed."""
-    text = MANIFEST.read_text()
-    starts = [m.end() for m in re.finditer(r"(?m)^\s*-\s+type:\s*git\s*$", text)]
-    for start, end in zip(starts, starts[1:] + [len(text)]):
-        block = text[start:end]
-        m_url = re.search(r"(?m)^\s*url:\s*(\S+)", block)
-        if not m_url or url_fragment not in m_url.group(1):
-            continue
-        m_commit = re.search(r"(?m)^(\s*commit:\s*)([0-9a-f]{40})", block)
-        if not m_commit:
-            raise SystemExit(f"error: no commit: line to fix for {url_fragment} in {MANIFEST}")
-        if m_commit.group(2) == sha:
-            return False
-        MANIFEST.write_text(
-            text[: start + m_commit.start(2)] + sha + text[start + m_commit.end(2) :]
+    `url_fragment` at `sha`. Returns True when the manifest changed. Only
+    the SHA is replaced, where the YAML parser found it: indentation, line
+    endings, quotes and a trailing comment stay as they are. The new text
+    is parsed again before it is written and has to be the old manifest
+    with that one value changed."""
+    text = manifest_text()
+    document = parse_manifest(text)
+    source = git_source(document, url_fragment)
+    if source is None:
+        raise SystemExit(f"error: no git source for {url_fragment} in {MANIFEST}")
+    commit = source.get("commit")
+    if full_sha(commit) is None:
+        raise SystemExit(
+            f"error: no commit: pin to fix for {url_fragment} in {MANIFEST} (its value has "
+            "to be one full SHA as YAML reads it)"
         )
-        return True
-    raise SystemExit(f"error: no git source for {url_fragment} in {MANIFEST}")
+    if commit == sha:
+        return False
+    node = commit.node
+    start, end = node.start_mark.index, node.end_mark.index
+    quote = node.style if node.style in ("'", '"') else ""
+    fixed = text[:start] + quote + sha + quote + text[end:]
+    source["commit"] = sha  # `document` is now what the fixed text has to parse to
+    if text[start:end] != quote + commit + quote or parse_manifest(fixed) != document:
+        raise SystemExit(
+            f"error: cannot rewrite the commit: pin for {url_fragment} in {MANIFEST} (line "
+            f"{node.start_mark.line + 1}): it is not written as a plain or quoted SHA where "
+            "it is used (a block scalar, an anchor, an alias or a tag?), and replacing it "
+            f"there would change more than this pin. Set it to {sha} by hand."
+        )
+    with open(MANIFEST, "w", encoding="utf-8", newline="") as f:
+        f.write(fixed)
+    return True
 
 
 def manifest_git_pin(url_fragment: str) -> tuple[str | None, str | None]:
     """The commit and tag the manifest pins for the git source whose url
-    contains `url_fragment`. Returns (commit, tag); either may be None."""
-    text = MANIFEST.read_text()
-    # Every git source block: "- type: git" followed by url/commit/tag lines
-    # (possibly with other keys between). Walk the source blocks in order.
-    blocks = re.split(r"(?m)^\s*-\s+type:\s*git\s*$", text)
-    for block in blocks[1:]:
-        m_url = re.search(r"(?m)^\s*url:\s*(\S+)", block)
-        if not m_url or url_fragment not in m_url.group(1):
-            continue
-        m_commit = re.search(r"(?m)^\s*commit:\s*([0-9a-f]{40})", block)
-        m_tag = re.search(r"(?m)^\s*tag:\s*(\S+)", block)
-        return (m_commit.group(1) if m_commit else None, m_tag.group(1) if m_tag else None)
-    return (None, None)
+    contains `url_fragment`, as YAML reads them. Returns (commit, tag);
+    either may be None: a commit that is not one full SHA is no pin."""
+    source = git_source(load_manifest(), url_fragment) or {}
+    tag = source.get("tag")
+    return (full_sha(source.get("commit")), str(tag) if isinstance(tag, str) and tag else None)
 
 
 def check_lock_commit(wrapper_sha: str) -> bool:
@@ -295,20 +438,32 @@ def cmake_tarball_pins(text: str) -> list[tuple[str, str, str, str | None]]:
 
 def module_sources(module: str) -> list[dict[str, str]]:
     """The sources of the manifest module `module`, each as a dict of its
-    type, url, sha256, dest and dest-filename (those that are present)."""
-    text = MANIFEST.read_text()
-    m_start = re.search(rf"(?m)^  - name: {re.escape(module)}[ \t]*$", text)
-    if not m_start:
-        return []
-    m_end = re.search(r"(?m)^  - name: ", text[m_start.end() :])
-    body = text[m_start.end() : m_start.end() + m_end.start() if m_end else len(text)]
-    sources = []
-    for block in re.split(r"(?m)^\s*-\s+type:[ \t]*", body)[1:]:
-        source = {"type": block.split(None, 1)[0]}
-        for key, value in re.findall(r"(?m)^\s*(url|sha256|dest|dest-filename):[ \t]*(\S+)", block):
-            source[key] = value
-        sources.append(source)
-    return sources
+    type, url, sha256, dest and dest-filename (those that are present; a
+    value that is not a scalar is kept, as text, so that it is not taken
+    for a key that is not there)."""
+    for entry in entries(load_manifest(), "modules"):
+        if entry.get("name") == module:
+            return [
+                {key: str(source[key]) for key in SOURCE_KEYS if key in source}
+                for source in entries(entry, "sources")
+            ]
+    return []
+
+
+def onnxruntime_version() -> str | None:
+    """The ONNX Runtime version the manifest says it builds: the onnxruntime
+    module asserts it against the source in a build command
+    (`test "$(cat VERSION_NUMBER)" = <version>`). None when it does not."""
+    for entry in entries(load_manifest(), "modules"):
+        if entry.get("name") == "onnxruntime":
+            commands = entry.get("build-commands")
+            commands = commands if isinstance(commands, list) else []
+            m = re.search(
+                r'VERSION_NUMBER\)" = ([0-9]+(?:\.[0-9]+)+)',
+                "\n".join(command for command in commands if isinstance(command, str)),
+            )
+            return m.group(1) if m else None
+    return None
 
 
 def check_speech_stack(sherpa_version: str) -> bool:
@@ -316,7 +471,6 @@ def check_speech_stack(sherpa_version: str) -> bool:
     the ones the locked sherpa-onnx-sys `sherpa_version` expects. Returns
     True when something is out of sync."""
     failed = False
-    manifest = MANIFEST.read_text()
     url = f"https://github.com/{SHERPA_REPO}.git"
     commit, tag = manifest_git_pin(SHERPA_REPO)
     wanted_tag = f"v{sherpa_version}"
@@ -339,8 +493,8 @@ def check_speech_stack(sherpa_version: str) -> bool:
     # it builds (`test "$(cat VERSION_NUMBER)" = <version>`). Whether it does
     # is read from the manifest, so say so before the upstream lookups: an
     # early return or a skipped lookup below must not hide it.
-    m_ort = re.search(r'VERSION_NUMBER\)" = ([0-9]+(?:\.[0-9]+)+)', manifest)
-    if not m_ort:
+    ort = onnxruntime_version()
+    if ort is None:
         print(
             f"::error::{MANIFEST} does not state the ONNX Runtime version it builds "
             '(expected `test "$(cat VERSION_NUMBER)" = <version>` in the onnxruntime module).'
@@ -371,27 +525,27 @@ def check_speech_stack(sherpa_version: str) -> bool:
 
     # The ONNX Runtime version the manifest states (read above) must be the
     # release sherpa-onnx is built against upstream.
-    if m_ort:
+    if ort is not None:
         for arch, path in SHERPA_ORT_CMAKE.items():
             text, error = fetch_text(
                 f"{raw}/{path}",
-                f"that ONNX Runtime {m_ort.group(1)} is what sherpa-onnx {tag} pins ({arch})",
+                f"that ONNX Runtime {ort} is what sherpa-onnx {tag} pins ({arch})",
             )
             if error:
                 print(f"::error::{path} is not readable at sherpa-onnx {commit[:12]} ({error}).")
                 failed = True
             elif text is not None:
                 pinned = set(re.findall(r"onnxruntime-libs/releases/download/v([0-9.]+)/", text))
-                if pinned != {m_ort.group(1)}:
+                if pinned != {ort}:
                     print(
                         f"::error::sherpa-onnx {tag} is built against ONNX Runtime "
                         f"{', '.join(sorted(pinned)) or '(not found)'} on {arch} but the manifest "
-                        f"builds {m_ort.group(1)}. Move the onnxruntime module (source, version "
+                        f"builds {ort}. Move the onnxruntime module (source, version "
                         "check and its cmake/deps.txt mirror files) to that release."
                     )
                     failed = True
                 else:
-                    print(f"ok: ONNX Runtime {m_ort.group(1)} is what sherpa-onnx {tag} pins ({arch})")
+                    print(f"ok: ONNX Runtime {ort} is what sherpa-onnx {tag} pins ({arch})")
 
     # Dependency tarballs: cmake looks for each one next to sherpa-onnx's
     # CMakeLists.txt under a fixed file name, verifies its SHA256, and
@@ -467,10 +621,11 @@ def check_speech_stack(sherpa_version: str) -> bool:
         # A `file` source lands in the source root as dest-filename (or the
         # last part of the url); anything else is not where cmake looks.
         placed = source.get("dest-filename") or source.get("url", "").rsplit("/", 1)[-1]
-        if source["type"] != "file" or "dest" in source or placed != local:
+        kind = source.get("type", "(none)")
+        if kind != "file" or "dest" in source or placed != local:
             actual = (
-                f"type: {source['type']}"
-                if source["type"] != "file"
+                f"type: {kind}"
+                if kind != "file"
                 else f"{source['dest']}/{placed}"
                 if "dest" in source
                 else placed
