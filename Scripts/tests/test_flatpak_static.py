@@ -87,10 +87,10 @@ PREBUILT_SPEECH_URL = re.compile(r"sherpa-onnx/releases/download|onnxruntime-lib
 # Modules that build what a later module links, in this order.
 SPEECH_MODULES = ["onnxruntime", "sherpa-onnx"]
 APP_MODULE = "dasher"
-# smoke-test.py also looks for this directory, which the manifest's cleanup
-# does not name: nothing is installed there today (the launcher only puts
-# /app/lib64 on the library path in case the mm libraries land in it).
-NOT_IN_MANIFEST_CLEANUP = {"lib64/pkgconfig"}
+# Directories smoke-test.py looks for that the manifest's cleanup does not
+# name. None: lib64/pkgconfig was one until the x86_64 runner showed that
+# the mm libraries install their .pc files there.
+NOT_IN_MANIFEST_CLEANUP = set()
 
 
 def load_included(name, base=MANIFEST_DIR):

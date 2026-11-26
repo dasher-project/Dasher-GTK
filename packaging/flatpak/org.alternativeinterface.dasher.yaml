@@ -46,6 +46,8 @@ finish-args:
 cleanup:
   - /include
   - /lib/pkgconfig
+  # Where the gtkmm C++ stack installs on x86_64 (see dasher's post-install).
+  - /lib64/pkgconfig
   - /share/pkgconfig
   - /share/aclocal
   - /share/man
